@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OpenWRT | 胡桃]]></title>
   <link href="http://hutaow.github.io/blog/categories/openwrt/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2013-09-07T23:18:36+08:00</updated>
+  <updated>2013-09-07T23:28:36+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -203,7 +203,7 @@ option enabled '1'
 
 <h4>2.6 重启路由器，完成OpenWRT的扩展</h4>
 
-<p>重启路由器，再次"df -h"一下，可以看到路由器的空间已经扩大了。
+<p>重启路由器，再次"df -h"一下，可以看到路由器的空间已经扩展成功了。
 <img class="center <a" src="href="https://ud4gvq.bn1.livefilestore.com/y2pzJqbVbECIXy7jqLZO4t2CWQGi0hSgklc6fVjyPQ9EA3bj3n6igAl9Y_28BFyt-BeTGxqtIzefzxfN0mpWzCvmqss8HrN31J-aVd2pvM__g0/install_openwrt_03_df.png">https://ud4gvq.bn1.livefilestore.com/y2pzJqbVbECIXy7jqLZO4t2CWQGi0hSgklc6fVjyPQ9EA3bj3n6igAl9Y_28BFyt-BeTGxqtIzefzxfN0mpWzCvmqss8HrN31J-aVd2pvM__g0/install_openwrt_03_df.png</a>" title="&ldquo;DF Info&rdquo;" ></p>
 ]]></content>
   </entry>
