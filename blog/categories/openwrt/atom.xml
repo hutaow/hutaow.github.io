@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: OpenWRT | 胡桃]]></title>
+  <link href="http://hutaow.github.io/blog/categories/openwrt/atom.xml" rel="self"/>
+  <link href="http://hutaow.github.io/"/>
+  <updated>2013-09-07T23:18:36+08:00</updated>
+  <id>http://hutaow.github.io/</id>
+  <author>
+    <name><![CDATA[Wang Tao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[TP-WR703n安装OpenWRT记录]]></title>
+    <link href="http://hutaow.github.io/blog/2013/09/06/install-openwrt/"/>
+    <updated>2013-09-06T23:16:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2013/09/06/install-openwrt</id>
+    <content type="html"><![CDATA[<h3>1 安装OpenWRT</h3>
+
+<h4>1.1 下载并刷新固件</h4>
+
+<p>如果以前没刷过OpenWRT，需要升级factory固件，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin">点击这里下载</a>。</p>
+
+<p>如果之前已经安装过了OpenWRT，则直接更新sysupgrade固件即可，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin">点击这里下载</a>。</p>
+
+<p>注意升级的时候要将原配置删除，避免配置文件互相影响，固件刷新完成后，路由器会自动重启。</p>
+
+<h4>1.2 登陆路由器</h4>
+
+<p>OpenWRT主线固件的无线信号是默认关闭的，这个时候需要找跟网线将电脑和路由器连接上，然后将电脑的IP地址设置为静态的"192.168.1.100"，然后用Telnet访问"192.168.1.1"，正确的情况下，会看到如下界面：
+<img class="center <a" src="href="https://ud4gvq.bn1.livefilestore.com/y2mbiCJq5EZtm9yAiQT9pIhW--cGwtZIZGY6RbMlqqUT62SUJY4xcDp5JuWQsGrLRKw1MFNgcdQQzy0dtC0zZJLMJY5boYejkb6P61EExZTKcI9N86Ktb4XnffBdyhgEogu/install_openwrt_01_first_login.png">https://ud4gvq.bn1.livefilestore.com/y2mbiCJq5EZtm9yAiQT9pIhW--cGwtZIZGY6RbMlqqUT62SUJY4xcDp5JuWQsGrLRKw1MFNgcdQQzy0dtC0zZJLMJY5boYejkb6P61EExZTKcI9N86Ktb4XnffBdyhgEogu/install_openwrt_01_first_login.png</a>" title="&ldquo;First Login&rdquo;" ></p>
+
+<h4>1.3 打开无线信号</h4>
+
+<p>编辑"/etc/config/wireless"文件，将"option disabled 1"这一行注掉，或者直接删除。</p>
+
+<p>```
+config wifi-device radio0</p>
+
+<pre><code>option type     mac80211
+option channel  11
+option hwmode   11ng
+option path     'platform/ar933x_wmac'
+option htmode   HT20
+list ht_capab   SHORT-GI-20
+list ht_capab   SHORT-GI-40
+list ht_capab   RX-STBC1
+list ht_capab   DSSS_CCK-40
+# REMOVE THIS LINE TO ENABLE WIFI:
+# option disabled 1
+</code></pre>
+
+<p>config wifi-iface</p>
+
+<pre><code>option device   radio0
+option network  lan
+option mode     ap
+option ssid     OpenWrt
+option encryption none
+</code></pre>
+
+<p>```</p>
+
+<h4>1.4 外网接入配置</h4>
+
+<p>编辑"/etc/config/network"文件，将原"lan"区段中的"ifname"注掉，新增"wan"段，如果是用宽带拨号上网，则配置成下面的样子（其中USERNAME和PASSWORD分别是拨号的用户名和密码）：</p>
+
+<p>```
+config interface &lsquo;loopback&rsquo;</p>
+
+<pre><code>option ifname 'lo'
+option proto 'static'
+option ipaddr '127.0.0.1'
+option netmask '255.0.0.0'
+</code></pre>
+
+<p>config globals &lsquo;globals&rsquo;</p>
+
+<pre><code>option ula_prefix 'fd4f:26fb:9d78::/48'
+</code></pre>
+
+<p>config interface &lsquo;lan&rsquo;</p>
+
+<pre><code># option ifname 'eth0'
+option type 'bridge'
+option proto 'static'
+option ipaddr '192.168.1.1'
+option netmask '255.255.255.0'
+option ip6assign '60'
+</code></pre>
+
+<p>config interface &lsquo;wan&rsquo;</p>
+
+<pre><code>option ifname 'eth0'
+option proto 'pppoe'
+option username 'USERNAME'
+option password 'PASSWORD'
+</code></pre>
+
+<p>```</p>
+
+<p>如果不需要拨号，直接通过其它路由器连接，则将"wan"区段配置成下面的样子：</p>
+
+<p>```
+config interface &lsquo;wan&rsquo;</p>
+
+<pre><code>option ifname 'eth0'
+option proto 'dhcp'
+</code></pre>
+
+<p>```</p>
+
+<h4>1.5 重启路由器，完成OpenWRT的安装</h4>
+
+<p>执行reboot命令重启路由器，将外网线连上，重启后搜索无线信号，就可以看到"OpenWRT"的信号了，连接上去，不出意外的话，这个时候电脑已经可以上网了。</p>
+
+<h3>2 将OpenWRT扩展至U盘</h3>
+
+<h4>2.1 安装基本软件</h4>
+
+<p>再次用Telnet访问"192.168.1.1"，执行下面的命令，将挂载U盘相关的基本软件安装上。</p>
+
+<p><code>
+opkg update
+opkg install block-mount kmod-fs-ext4 kmod-usb-ohci kmod-usb-storage e2fsprogs
+</code></p>
+
+<h4>2.2 准备挂载U盘</h4>
+
+<p>将U盘插上，执行"block info"命令，看下U盘是否已被识别，如下图，其中中sda1、sda2、sda5为U盘分区：
+<img class="center <a" src="href="https://ud4gvq.bn1.livefilestore.com/y2ptuqKik66axDpZHewnvoHWYVfJn1j53_Mpj_JHm6FTDHj8o2viAPALuyQ2M27OpjGW5aO5nf_UsODXn4sL7f59msKEX2hOaNVzRKf9SkyH7A/install_openwrt_02_block_info.png">https://ud4gvq.bn1.livefilestore.com/y2ptuqKik66axDpZHewnvoHWYVfJn1j53_Mpj_JHm6FTDHj8o2viAPALuyQ2M27OpjGW5aO5nf_UsODXn4sL7f59msKEX2hOaNVzRKf9SkyH7A/install_openwrt_02_block_info.png</a>" title="&ldquo;Block Info&rdquo;" ></p>
+
+<h4>2.3 拷贝系统文件</h4>
+
+<p>执行如下命令，将路由器ROM中的系统文件全部拷贝到U盘中：</p>
+
+<p><code>
+mount /dev/sda1 /mnt
+mkdir /tmp/vroot
+mount --bind / /tmp/vroot
+cp -a /tmp/vroot/* /mnt
+sync
+umount /tmp/vroot
+</code></p>
+
+<h4>2.4 设置交换空间（可选）</h4>
+
+<p>U盘在分区时可以预留一个交换分区，防止路由器内存不足，这里预留的交换分区是sda5，执行下面的命令：</p>
+
+<p><code>
+swapon /dev/sda5
+</code></p>
+
+<h4>2.5 保存挂载信息</h4>
+
+<p>将当前挂载状态写入fstab文件中：</p>
+
+<p><code>
+block detect &gt; /etc/config/fstab
+</code></p>
+
+<p>然后修改"/etc/config/fstab"文件，将sda1的挂载点设置为"/&ldquo;，并将"option enabled"置1，配置类似下面的样子：</p>
+
+<p>```
+config global</p>
+
+<pre><code>option anon_swap '0'
+option anon_mount '0'
+option auto_swap '1'
+option auto_mount '1'
+option delay_root '5'
+option check_fs '0'
+</code></pre>
+
+<p>config mount</p>
+
+<pre><code>option target '/'
+option uuid '413b964c-9c9c-4af4-8966-daf04ee53414'
+option enabled '1'
+option fstype 'ext4'
+</code></pre>
+
+<p>config mount</p>
+
+<pre><code>option target '/home'
+option uuid 'e7052ed0-b883-4375-9f31-5648ea8f2948'
+option enabled '1'
+option fstype 'ext4'
+</code></pre>
+
+<p>config swap</p>
+
+<pre><code>option uuid '58713d02-e9de-4c23-a56b-a5ea3d3dfcf0'
+option enabled '1'
+</code></pre>
+
+<p>```</p>
+
+<p>如果U盘只有一个分区，会只看到一个sda1(&ldquo;/&rdquo;)，其它诸如sda2(&ldquo;/home&rdquo;)、sda5(&ldquo;swap&rdquo;)需要额外分区才能看到。</p>
+
+<h4>2.6 重启路由器，完成OpenWRT的扩展</h4>
+
+<p>重启路由器，再次"df -h"一下，可以看到路由器的空间已经扩大了。
+<img class="center <a" src="href="https://ud4gvq.bn1.livefilestore.com/y2pzJqbVbECIXy7jqLZO4t2CWQGi0hSgklc6fVjyPQ9EA3bj3n6igAl9Y_28BFyt-BeTGxqtIzefzxfN0mpWzCvmqss8HrN31J-aVd2pvM__g0/install_openwrt_03_df.png">https://ud4gvq.bn1.livefilestore.com/y2pzJqbVbECIXy7jqLZO4t2CWQGi0hSgklc6fVjyPQ9EA3bj3n6igAl9Y_28BFyt-BeTGxqtIzefzxfN0mpWzCvmqss8HrN31J-aVd2pvM__g0/install_openwrt_03_df.png</a>" title="&ldquo;DF Info&rdquo;" ></p>
+]]></content>
+  </entry>
+  
+</feed>
