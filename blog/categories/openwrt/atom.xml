@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OpenWRT | 胡桃]]></title>
   <link href="http://hutaow.github.io/blog/categories/openwrt/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2013-09-07T23:28:36+08:00</updated>
+  <updated>2013-09-08T13:31:16+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -31,7 +31,7 @@
 <h4>1.2 登陆路由器</h4>
 
 <p>OpenWRT主线固件的无线信号是默认关闭的，这个时候需要找跟网线将电脑和路由器连接上，然后将电脑的IP地址设置为静态的"192.168.1.100"，然后用Telnet访问"192.168.1.1"，正确的情况下，会看到如下界面：
-<img class="center <a" src="href="https://ud4gvq.bn1.livefilestore.com/y2mbiCJq5EZtm9yAiQT9pIhW--cGwtZIZGY6RbMlqqUT62SUJY4xcDp5JuWQsGrLRKw1MFNgcdQQzy0dtC0zZJLMJY5boYejkb6P61EExZTKcI9N86Ktb4XnffBdyhgEogu/install_openwrt_01_first_login.png">https://ud4gvq.bn1.livefilestore.com/y2mbiCJq5EZtm9yAiQT9pIhW--cGwtZIZGY6RbMlqqUT62SUJY4xcDp5JuWQsGrLRKw1MFNgcdQQzy0dtC0zZJLMJY5boYejkb6P61EExZTKcI9N86Ktb4XnffBdyhgEogu/install_openwrt_01_first_login.png</a>" title="&ldquo;First Login&rdquo;" ></p>
+<img class="center <a" src="href="https://ud67yq.bn1.livefilestore.com/y2p4IuQ79sxRr7qZKpAmlZYmRVJJ2qf_ZP_SjXWezDnXPBDxHS5L70G43_wUcxZ6es0_gIX4a1Q243V2ZP2Y78RGR7z7379vxalCb40DtKpO68/install_openwrt_01_first_login.png">https://ud67yq.bn1.livefilestore.com/y2p4IuQ79sxRr7qZKpAmlZYmRVJJ2qf_ZP_SjXWezDnXPBDxHS5L70G43_wUcxZ6es0_gIX4a1Q243V2ZP2Y78RGR7z7379vxalCb40DtKpO68/install_openwrt_01_first_login.png</a>" title="First Login" ></p>
 
 <h4>1.3 打开无线信号</h4>
 
@@ -131,7 +131,7 @@ opkg install block-mount kmod-fs-ext4 kmod-usb-ohci kmod-usb-storage e2fsprogs
 <h4>2.2 准备挂载U盘</h4>
 
 <p>将U盘插上，执行"block info"命令，看下U盘是否已被识别，如下图，其中中sda1、sda2、sda5为U盘分区：
-<img class="center <a" src="href="https://ud4gvq.bn1.livefilestore.com/y2ptuqKik66axDpZHewnvoHWYVfJn1j53_Mpj_JHm6FTDHj8o2viAPALuyQ2M27OpjGW5aO5nf_UsODXn4sL7f59msKEX2hOaNVzRKf9SkyH7A/install_openwrt_02_block_info.png">https://ud4gvq.bn1.livefilestore.com/y2ptuqKik66axDpZHewnvoHWYVfJn1j53_Mpj_JHm6FTDHj8o2viAPALuyQ2M27OpjGW5aO5nf_UsODXn4sL7f59msKEX2hOaNVzRKf9SkyH7A/install_openwrt_02_block_info.png</a>" title="&ldquo;Block Info&rdquo;" ></p>
+<img class="center <a" src="href="https://ud67yq.bn1.livefilestore.com/y2pWZx-REoT-BjxRuM-Le_21uoaGJ54RP3J5KD6q9yDaK1nn5yuoLu8jVpiswl_BctTOv9PibX1aiOwCEDikriNuhKtOxc51_rPyB4jNdrg7ik/install_openwrt_02_block_info.png">https://ud67yq.bn1.livefilestore.com/y2pWZx-REoT-BjxRuM-Le_21uoaGJ54RP3J5KD6q9yDaK1nn5yuoLu8jVpiswl_BctTOv9PibX1aiOwCEDikriNuhKtOxc51_rPyB4jNdrg7ik/install_openwrt_02_block_info.png</a>" title="Block Info" ></p>
 
 <h4>2.3 拷贝系统文件</h4>
 
@@ -204,7 +204,7 @@ option enabled '1'
 <h4>2.6 重启路由器，完成OpenWRT的扩展</h4>
 
 <p>重启路由器，再次"df -h"一下，可以看到路由器的空间已经扩展成功了。
-<img class="center <a" src="href="https://ud4gvq.bn1.livefilestore.com/y2pzJqbVbECIXy7jqLZO4t2CWQGi0hSgklc6fVjyPQ9EA3bj3n6igAl9Y_28BFyt-BeTGxqtIzefzxfN0mpWzCvmqss8HrN31J-aVd2pvM__g0/install_openwrt_03_df.png">https://ud4gvq.bn1.livefilestore.com/y2pzJqbVbECIXy7jqLZO4t2CWQGi0hSgklc6fVjyPQ9EA3bj3n6igAl9Y_28BFyt-BeTGxqtIzefzxfN0mpWzCvmqss8HrN31J-aVd2pvM__g0/install_openwrt_03_df.png</a>" title="&ldquo;DF Info&rdquo;" ></p>
+<img class="center <a" src="href="https://ud67yq.bn1.livefilestore.com/y2psk-rh15q-L4ULzd_iisHmcdJJ_0jqTt6Inqnx2kwiUAV7pfjf-YX8-uHpegORqctFQXpRBZjEcAHJFCBqDHJYOfDmDL5BioIz1ULZw2Bq-E/install_openwrt_03_df.png">https://ud67yq.bn1.livefilestore.com/y2psk-rh15q-L4ULzd_iisHmcdJJ_0jqTt6Inqnx2kwiUAV7pfjf-YX8-uHpegORqctFQXpRBZjEcAHJFCBqDHJYOfDmDL5BioIz1ULZw2Bq-E/install_openwrt_03_df.png</a>" title="DF Info" ></p>
 ]]></content>
   </entry>
   
