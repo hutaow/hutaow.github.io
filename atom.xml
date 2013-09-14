@@ -4,11 +4,11 @@
   <title><![CDATA[胡桃]]></title>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2013-09-08T13:58:26+08:00</updated>
+  <updated>2013-09-14T23:22:18+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
-    
+    <email><![CDATA[hutaow (at) hotmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
@@ -31,7 +31,7 @@
 <h4>1.2 登陆路由器</h4>
 
 <p>OpenWRT主线固件的无线信号是默认关闭的，这个时候需要找跟网线将电脑和路由器连接上，然后将电脑的IP地址设置为静态的&#8221;192.168.1.100&#8221;，然后用Telnet访问&#8221;192.168.1.1&#8221;，正确的情况下，会看到如下界面：
-<img class="center" src="https://ud67yq.bn1.livefilestore.com/y2p4IuQ79sxRr7qZKpAmlZYmRVJJ2qf_ZP_SjXWezDnXPBDxHS5L70G43_wUcxZ6es0_gIX4a1Q243V2ZP2Y78RGR7z7379vxalCb40DtKpO68/install_openwrt_01_first_login.png" title="First Login" ></p>
+<img class="center" src="http://hutaow.github.io/images/articles/201309/install_openwrt_01_first_login.png" title="First Login" ></p>
 
 <h4>1.3 打开无线信号</h4>
 
@@ -156,7 +156,7 @@
 <h4>2.2 准备挂载U盘</h4>
 
 <p>将U盘插上，执行&#8221;block info&#8221;命令，看下U盘是否已被识别，如下图，其中中sda1、sda2、sda5为U盘分区：
-<img class="center" src="https://ud67yq.bn1.livefilestore.com/y2pWZx-REoT-BjxRuM-Le_21uoaGJ54RP3J5KD6q9yDaK1nn5yuoLu8jVpiswl_BctTOv9PibX1aiOwCEDikriNuhKtOxc51_rPyB4jNdrg7ik/install_openwrt_02_block_info.png" title="Block Info" ></p>
+<img class="center" src="http://hutaow.github.io/images/articles/201309/install_openwrt_02_block_info.png" title="Block Info" ></p>
 
 <h4>2.3 拷贝系统文件</h4>
 
@@ -247,7 +247,7 @@
 <h4>2.6 重启路由器，完成OpenWRT的扩展</h4>
 
 <p>重启路由器，再次&#8221;df -h&#8221;一下，可以看到路由器的空间已经扩展成功了。
-<img class="center" src="https://ud67yq.bn1.livefilestore.com/y2psk-rh15q-L4ULzd_iisHmcdJJ_0jqTt6Inqnx2kwiUAV7pfjf-YX8-uHpegORqctFQXpRBZjEcAHJFCBqDHJYOfDmDL5BioIz1ULZw2Bq-E/install_openwrt_03_df.png" title="DF Info" ></p>
+<img class="center" src="http://hutaow.github.io/images/articles/201309/install_openwrt_03_df.png" title="DF Info" ></p>
 ]]></content>
   </entry>
   
