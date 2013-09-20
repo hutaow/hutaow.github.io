@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Programming | Tony Wang]]></title>
+  <link href="http://hutaow.github.io/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="http://hutaow.github.io/"/>
+  <updated>2008-03-20T17:30:14+08:00</updated>
+  <id>http://hutaow.github.io/</id>
+  <author>
+    <name><![CDATA[Wang Tao]]></name>
+    <email><![CDATA[hutaow (at) hotmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[因字符编码导致的编译不同过]]></title>
+    <link href="http://hutaow.github.io/blog/2008/03/20/compilation-failed-due-to-character-encoding/"/>
+    <updated>2008-03-20T15:08:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2008/03/20/compilation-failed-due-to-character-encoding</id>
+    <content type="html"><![CDATA[<p>从网上下了QR标准的二维码库，打算直接调用里面的类来实现。在Fedora下Java编译通过，只是提示了一下使用了过时的方法。但我把代码复制到Windows里时，却编译不同过，出现了近1k个错误，代码完全一样，只是操作系统不同就会出问题？</p>
+
+<p>回想在Windows里用UltraEdit打开时，提示文件不是"DOS Format"，会不会和文字编码有关？Linux用的是UTF-8的编码，而Windows用的是GBK的编码，难道字符编码必须要和本地相同才能编译通过么？试一下，于是把代码用UltraEdit转换成了GBK编码，再次编译，终于正常通过。</p>
+
+<p>看来有时编译不通过不一定是语句问题，连文件的编码也有可能出问题，如果在不同系统中出现类似上面一个正常一个错误的情况，可以考虑看是不是因为文件的编码和系统默认的编码有差异而引起的。</p>
+]]></content>
+  </entry>
+  
+</feed>
