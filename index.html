@@ -388,6 +388,334 @@
   
 
 
+<time datetime="2010-04-17T21:25:00+08:00" data-updated="true" itemprop="datePublished">Apr 17<span>th</span>, 2010</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/security/'>Security</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/" itemprop="url">入侵检测与响应系统的信息共享</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<h3>引言</h3>
+
+<p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 &ndash; The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 &ndash; IDMEF, RFC4766 &ndash; IDMER)、入侵检测交换协议(RFC4767 &ndash; IDXP)。</p>
+
+<p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。
+　</p>
+
+<h3>1 入侵检测消息交互过程</h3>
+
+<h4>1.1 建立连接</h4>
+
+<p>使用IDXP传输数据的入侵检测实体被称为IDXP对等体。对等体只能成对出现，这些对等体通过BEEP会话中的一个或多个BEEP信道进行数据传输。对等体可能是管理器或分析器。</p>
+
+<p>在分析器和管理器之间很可能是多对多的关系。即一个分析器可以和多个管理器通信，同样，一个管理器也可以和多个分析器通信；在不同的管理器之间也可以是多对多的关系。所以，一个管理器可以通过多个中间管理器接收大量的来自分析器的报警信息。但是，各个分析器之间禁止建立IDXP连接，避免重复报警情况的发生。</p>
+
+<p><strong>对等体&#8221;Alice&#8221;和&#8221;Bob&#8221;建立IDXP交换的过程</strong></p>
+
+<p>IDXP对等体之间通过打开一个BEEP信道进行通信。在打开BEEP信道之前，需要首先建立BEEP会话，然后就安全特性等问题进行协商。BEEP安全轮廓协商成功后，再经互相确认应答，然后开始IDXP交换。</p>
+
+<pre><code>Alice                                               Bob
+  ------------------- 建立连接(1) --------------------&gt;
+&lt;---------------------- 问候 ------------------------&gt;
+&lt;------------------ 启动安全轮廓(2) ------------------&gt;
+&lt;---------------------- 问候 ------------------------&gt;
+&lt;------------------- 启动 IDXP(3) -------------------&gt;
+</code></pre>
+
+<p>交互过程:</p>
+
+<ul>
+<li>&ldquo;Alice&#8221;建立一个到&#8217;Bob&#8217;的连接, 并触发交换二者BEEP问候消息</li>
+<li>两个实体协商BEEP安全轮廓</li>
+<li>两个实体协商IDXP轮廓</li>
+</ul>
+
+
+<p><strong>对等体&#8221;Alice&#8221;和&#8221;Bob&#8221;通过代理服务器建立IDXP交换</strong></p>
+
+<p>在一对IDXP对等体之间可以存在多个代理，这些代理可能是因为管理的需要。比如透过防火墙进行受限访问，或是将公司各部门分析器的数据转发到公司总管理器。</p>
+
+<p>在使用代理转发数据时，会使用BEEP协调轮廓建立一个应用层的隧道。隧道轮廓(详细见&#8221;RFC3620 &ndash; The TUNNEL profile&#8221;)即在此时发挥作用。在创建应用层隧道时，必须建立一个作为协调轮廓的隧道，并且该隧道轮廓需要进行SASL认证。隧道建立完成后，BEEP安全轮廓才可以提供IDXP协商时需要的各项安全特性。</p>
+
+<pre><code>Alice              proxy1               proxy2               Bob
+  ----- 建立连接 ----&gt;
+&lt;------ 问候 -------&gt;
+  ---- 启动隧道 -----&gt;
+                      --- 建立连接(1) ----&gt;
+                    &lt;------- 问候 -------&gt;
+                      ----- 启动隧道 -----&gt;
+                                           ----- 建立连接 -----&gt;
+                                         &lt;------- 问候 -------&gt;
+                                           ----- 启动隧道 -----&gt;
+                                         &lt;---- &lt;确认&gt;(2) -----
+                    &lt;------ &lt;确认&gt; ------
+&lt;----- &lt;确认&gt; ------
+&lt;--------------------------- 问候 ----------------------------&gt;
+&lt;----------------------- 启动安全轮廓 -------------------------&gt;
+&lt;--------------------------- 问候 ----------------------------&gt;
+&lt;------------------------- 启动 IDXP -------------------------&gt;
+</code></pre>
+
+<p>交互过程:</p>
+
+<ul>
+<li>收到&#8221;Alice&#8221;启动隧道的消息后，&#8221;proxy1&#8221;并没有立即返回确认消息，而是先试图和&#8221;proxy&#8221;连接以建立隧道。同样的，&#8221;proxy2&#8221;也不会立即给&#8221;proxy1&#8221;返回确认消息</li>
+<li>&ldquo;Bob&#8221;的确认信息首先到达&#8221;proxy2&#8221;并且与之启动隧道，然后确认消息会传递下去最终返回给&#8221;Alice&#8221;，最终&#8221;Alice&#8221;和&#8221;Bob&#8221;之间就成功建立了应用层的隧道</li>
+</ul>
+
+
+<h4>1.2 数据传输</h4>
+
+<p>在一对入侵检测实体通过BEEP会话进行通信时，会使用IDXP轮廓打开一个或多个BEEP信道。如果需要，可以用IDXP轮廓建立更多的BEEP会话，以提供额外的信道。但是在多数情况下，还是应该在已有的BEEP会话中添加新的信道，尽量避免用新建BEEP会话的方式添加信道。</p>
+
+<p>在每条信道中，对等体都是以客户端/服务器形式进行通信。客户端和服务器的角色扮演决定于建立BEEP会话的发起者和监听者。即发起者为客户端，监听者为服务器。</p>
+
+<pre><code>+----------+                          +----------+
+|          |                          |          |
+|          |******** BEEP 会话 *******|          |
+|          |                          |          |
+|  分析器  | ------- IDXP 轮廓 -----&gt; |  管理器  |
+| (客户端) |                          | (服务端) |
+|          |                          |          |
+|          |**************************|          |
+|          |                          |          |
++----------+                          +----------+
+</code></pre>
+
+<p>在一个BEEP会话中使用多个BEEP信道的方式对IDXP对等体之间传输数据的分类和优先级的管理非常有利。例如，管理器&#8221;M1&#8221;向&#8221;M2&#8221;发送报警数据时，可以将不同类型的信息使用单独的信道进行传输。&#8221;M1&#8221;在这些信道中扮演了客户端的角色，&#8221;M2&#8221;则对接收到的报警信息根据其不同类型进行相应处理。</p>
+
+<pre><code>+----------+                                            +----------+
+|          |                                            |          |
+|          |**************** BEEP 会话 *****************|          |
+|          |                                            |          |
+|          | ----- IDXP 轮廓, 基于网络的报警信息 -----&gt; |          |
+|  管理器  |                                            |  管理器  |
+|    M1    | ----- IDXP 轮廓, 基于主机的报警信息 -----&gt; |    M2    |
+| (客户端) |                                            | (服务端) |
+|          | -------- IDXP 轮廓, 其它报警信息 --------&gt; |          |
+|          |                                            |          |
+|          |********************************************|          |
+|          |                                            |          |
++----------+                                            +----------+
+</code></pre>
+
+<h4>1.3 断开连接</h4>
+
+<p>在一些情况下(如处理过程中出现错误)，IDXP对等体可以关闭某个IDXP信道。要关闭某条信道，需要在零号信道上发送一条&#8221;关闭&#8221;的指令，并且指明所关闭的信道。如果想要关闭整个BEEP会话，只需在零号信道上发送一条要求&#8221;关闭&#8221;零信道的指令即可。</p>
+
+<p>由于应用层隧道和BEEP安全轮廓会经常使用，所以凡是包含IDXP信道的BEEP会话将会一直存活下去。同时，为了避免IDXP信道被反复的建立，系统会一直保持这些IDXP信道的连接，即使当前已经没有数据在上面传输。建议当IDXP对等体在合适的时候，手动关闭并重建BEEP会话。</p>
+
+<h4>1.4 可信模型</h4>
+
+<p>在以上的模型中，BEEP安全轮廓是建立在IDXP对等体之间从而实现的端到端安全，而无需对中间代理建立信任。因此，只有在安全轮廓下经过协商后的IDXP对等体之间是相互信任的，而代理始终被看作是不可信的。</p>
+
+<h3>2 入侵检测消息交换格式</h3>
+
+<h4>2.1 IDMEF数据模型</h4>
+
+<p>IDMEF数据模型的各主要部分关系如下图所示（这里省略了事件指示器和属性）。
+<img class="center" src="/images/articles/201004/intrusion_dedection_and_response_system_for_information_sharing.png" title="数据模型" ></p>
+
+<p>IDMEF消息的最高层类是&#8221;IDMEF-Message&#8221;，其它各类型消息都是该类的子类。目前IDMEF定义了两种消息：&#8221;Alerts&#8221;和&#8221;Heartbeats&#8221;。其中这两个消息各自携带不同的子类，各子类又描述了更加详细的信息。</p>
+
+<p>需要注意的是，数据模型并没有指明警报信息如何分类和识别。例如，端口扫描这一行为，它可能被分析器识别为一次单点对多目标的攻击，同时被另一分析器识别为多次的单点攻击。所有，只有在分析器确定了报警类型之后，数据模型才能确定如何对报警数据进行格式化。</p>
+
+<h4>2.2 示例</h4>
+
+<p>IDMEF数据模型最终是以XML形式实现，XML跨平台、跨语言以及强扩展性的特点保证了IDS设备之间共享信息时良好的兼容性。</p>
+
+<p>下面用实例说明IDMEF对报警信息封装的格式。这些例子只是为说明用，不具备代表性。</p>
+
+<figure class='code'><figcaption><span>基于网络检测到的某次泪滴攻击报警信息</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;idmef:IDMEF-Message</span> <span class="na">xmlns:idmef=</span><span class="s">&quot;http://iana.org/idmef&quot;</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>     <span class="nt">&lt;idmef:Alert</span> <span class="na">messageid=</span><span class="s">&quot;abc123456789&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;idmef:Analyzer</span> <span class="na">analyzerid=</span><span class="s">&quot;hq-dmz-analyzer01&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;idmef:Node</span> <span class="na">category=</span><span class="s">&quot;dns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:location&gt;</span>Headquarters DMZ Network<span class="nt">&lt;/idmef:location&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:name&gt;</span>analyzer01.example.com<span class="nt">&lt;/idmef:name&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;/idmef:Node&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;/idmef:Analyzer&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;idmef:CreateTime</span> <span class="na">ntpstamp=</span><span class="s">&quot;0xbc723b45.0xef449129&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>         2000-03-09T10:01:25.93464-05:00
+</span><span class='line'>       <span class="nt">&lt;/idmef:CreateTime&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;idmef:Source</span> <span class="na">ident=</span><span class="s">&quot;a1b2c3d4&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;idmef:Node</span> <span class="na">ident=</span><span class="s">&quot;a1b2c3d4-001&quot;</span> <span class="na">category=</span><span class="s">&quot;dns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:name&gt;</span>badguy.example.net<span class="nt">&lt;/idmef:name&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:Address</span> <span class="na">ident=</span><span class="s">&quot;a1b2c3d4-002&quot;</span> <span class="na">category=</span><span class="s">&quot;ipv4-net-mask&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>             <span class="nt">&lt;idmef:address&gt;</span>192.0.2.50<span class="nt">&lt;/idmef:address&gt;</span>
+</span><span class='line'>             <span class="nt">&lt;idmef:netmask&gt;</span>255.255.255.255<span class="nt">&lt;/idmef:netmask&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;/idmef:Address&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;/idmef:Node&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;/idmef:Source&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;idmef:Target</span> <span class="na">ident=</span><span class="s">&quot;d1c2b3a4&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;idmef:Node</span> <span class="na">ident=</span><span class="s">&quot;d1c2b3a4-001&quot;</span> <span class="na">category=</span><span class="s">&quot;dns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:Address</span> <span class="na">category=</span><span class="s">&quot;ipv4-addr-hex&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>             <span class="nt">&lt;idmef:address&gt;</span>0xde796f70<span class="nt">&lt;/idmef:address&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;/idmef:Address&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;/idmef:Node&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;/idmef:Target&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;idmef:Classification</span> <span class="na">text=</span><span class="s">&quot;Teardrop detected&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;idmef:Reference</span> <span class="na">origin=</span><span class="s">&quot;bugtraqid&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:name&gt;</span>124<span class="nt">&lt;/idmef:name&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:url&gt;</span>http://www.securityfocus.com/bid/124<span class="nt">&lt;/idmef:url&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;/idmef:Reference&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;/idmef:Classification&gt;</span>
+</span><span class='line'>     <span class="nt">&lt;/idmef:Alert&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;/idmef:IDMEF-Message&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>基于网络检测到的某个端口扫描行为（注意<portlist>中记录了被扫描的端口列表）</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;idmef:IDMEF-Message</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span> <span class="na">xmlns:idmef=</span><span class="s">&quot;http://iana.org/idmef&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>     <span class="nt">&lt;idmef:Alert</span> <span class="na">messageid=</span><span class="s">&quot;abc123456789&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;idmef:Analyzer</span> <span class="na">analyzerid=</span><span class="s">&quot;hq-dmz-analyzer62&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;idmef:Node</span> <span class="na">category=</span><span class="s">&quot;dns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:location&gt;</span>Headquarters Web Server<span class="nt">&lt;/idmef:location&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:name&gt;</span>analyzer62.example.com<span class="nt">&lt;/idmef:name&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;/idmef:Node&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;/idmef:Analyzer&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;idmef:CreateTime</span> <span class="na">ntpstamp=</span><span class="s">&quot;0xbc72b2b4.0x00000000&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>         2000-03-09T15:31:00-08:00
+</span><span class='line'>       <span class="nt">&lt;/idmef:CreateTime&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;idmef:Source</span> <span class="na">ident=</span><span class="s">&quot;abc01&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;idmef:Node</span> <span class="na">ident=</span><span class="s">&quot;abc01-01&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:Address</span> <span class="na">ident=</span><span class="s">&quot;abc01-02&quot;</span> <span class="na">category=</span><span class="s">&quot;ipv4-addr&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>             <span class="nt">&lt;idmef:address&gt;</span>192.0.2.200<span class="nt">&lt;/idmef:address&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;/idmef:Address&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;/idmef:Node&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;/idmef:Source&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;idmef:Target</span> <span class="na">ident=</span><span class="s">&quot;def01&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;idmef:Node</span> <span class="na">ident=</span><span class="s">&quot;def01-01&quot;</span> <span class="na">category=</span><span class="s">&quot;dns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:name&gt;</span>www.example.com<span class="nt">&lt;/idmef:name&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:Address</span> <span class="na">ident=</span><span class="s">&quot;def01-02&quot;</span> <span class="na">category=</span><span class="s">&quot;ipv4-addr&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>             <span class="nt">&lt;idmef:address&gt;</span>192.0.2.50<span class="nt">&lt;/idmef:address&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;/idmef:Address&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;/idmef:Node&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;idmef:Service</span> <span class="na">ident=</span><span class="s">&quot;def01-03&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:portlist&gt;</span>5-25,37,42,43,53,69-119,123-514
+</span><span class='line'>           <span class="nt">&lt;/idmef:portlist&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;/idmef:Service&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;/idmef:Target&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;idmef:Classification</span> <span class="na">text=</span><span class="s">&quot;simple portscan&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;idmef:Reference</span> <span class="na">origin=</span><span class="s">&quot;vendor-specific&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:name&gt;</span>portscan<span class="nt">&lt;/idmef:name&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;idmef:url&gt;</span>http://www.vendor.com/portscan<span class="nt">&lt;/idmef:url&gt;</span>
+</span><span class='line'>         <span class="nt">&lt;/idmef:Reference&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;/idmef:Classification&gt;</span>
+</span><span class='line'>     <span class="nt">&lt;/idmef:Alert&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;/idmef:IDMEF-Message&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3 参考资料</h3>
+
+<pre><code>1. RFC4765 - The Intrusion Detection Message Exchange Format (IDMEF)
+2. RFC4767 - The Intrusion Detection Exchange Protocol (IDXP)
+</code></pre>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2010-04-13T19:35:00+08:00" data-updated="true" itemprop="datePublished">Apr 13<span>th</span>, 2010</time></div>
 		<div class="tags">
 
@@ -417,20 +745,22 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
+<span class='line-number'>16</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">import</span><span class="err"> </span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Stack</span><span class="o">;</span>
 </span><span class='line'>
 </span><span class='line'><span class="kd">public</span><span class="err"> </span><span class="n">class</span><span class="err"> </span><span class="n">StackTest</span><span class="err"> </span><span class="o">{</span>
-</span><span class='line'><span class="err"> </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="kt">void</span><span class="err"> </span><span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">argv</span><span class="o">[])</span><span class="err"> </span><span class="o">{</span>
-</span><span class='line'><span class="err">  </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="err"> </span><span class="n">stack</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="k">new</span><span class="err"> </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-</span><span class='line'><span class="err">  </span><span class="k">for</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">s</span><span class="err"> </span><span class="o">:</span><span class="err"> </span><span class="s">&quot;I have a round peach&quot;</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">))</span><span class="err"> </span><span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">s</span><span class="o">);</span><span class="c1">//按字符串原顺序压栈</span>
+</span><span class='line'>    <span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="kt">void</span><span class="err"> </span><span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">argv</span><span class="o">[])</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'>        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="err"> </span><span class="n">stack</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="k">new</span><span class="err"> </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'>        <span class="k">for</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">s</span><span class="err"> </span><span class="o">:</span><span class="err"> </span><span class="s">&quot;I have a round peach&quot;</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">))</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'>            <span class="c1">// 按字符串原顺序压栈</span>
+</span><span class='line'>            <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="o">}</span>
-</span><span class='line'><span class="err">  </span><span class="k">while</span><span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">empty</span><span class="o">())</span><span class="err"> </span><span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">()</span><span class="err"> </span><span class="o">+</span><span class="err"> </span><span class="s">&quot; &quot;</span><span class="o">);</span><span class="c1">//弹栈并输出</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="o">}</span>
-</span><span class='line'><span class="err"> </span><span class="o">}</span>
+</span><span class='line'>        <span class="k">while</span><span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">empty</span><span class="o">())</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'>            <span class="c1">// 弹栈并输出</span>
+</span><span class='line'><span class="err">   </span>         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">()</span><span class="err"> </span><span class="o">+</span><span class="err"> </span><span class="s">&quot; &quot;</span><span class="o">);</span>
+</span><span class='line'><span class="err">  </span>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -894,49 +1224,6 @@
 <p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
 
 <p>修改保存后重启终端或在执行&#8221;source ~/.bash_proxy&#8221;生效。</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-07-29T11:34:00+08:00" data-updated="true" itemprop="datePublished">Jul 29<span>th</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/linux/'>Linux</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9/" itemprop="url">Fedora 9 无法启动KDE的解决办法</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout->KDE，结果却报出个错误，说&#8221;Could not start kstartupconfig4. Check your installation&#8221;，无语，难道是我少装了什么东西？</p>
-
-<p>按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用&#8221;chown&#8221;改变&#8221;~/.kde&#8221;目录的所有者，哦？检查……&#8221;~/.kde&#8221;这个目录竟然是root的，原来是权限的问题。</p>
-
-<p>输入&#8221;chown -R owner ~/.kde&#8221;，为了保险，再加个&#8221;chgrp -R group ~/.kde&#8221;，这里面的&#8221;owner&#8221;和&#8221;group&#8221;分别是当前的用户名和用户所在的组名。</p>
-
-<p>之后重新进入KDE，一切正常！</p>
-
-<p>PS：新的KDE环境确实做的不错，桌面右上角的widget加上suse的主菜单非常赞</p>
 
 		
 		

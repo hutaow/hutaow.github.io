@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2010-04-13T23:11:05+08:00</updated>
+  <updated>2010-04-18T00:01:05+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -23,19 +23,26 @@
 <p>``` java
 import java.util.Stack;</p>
 
-<p>public class StackTest {
- public static void main(String argv[]) {
-  Stack<String> stack = new Stack<String>();
-  for(String s : "I have a round peach".split(&ldquo; &rdquo;)) {
-   stack.push(s);//按字符串原顺序压栈</p>
+<p>public class StackTest {</p>
 
-<p>  }
-  while(!stack.empty()) {
-   System.out.print(stack.pop() + " &ldquo;);//弹栈并输出</p>
+<pre><code>public static void main(String argv[]) {
+    Stack&lt;String&gt; stack = new Stack&lt;String&gt;();
+    for(String s : "I have a round peach".split(" ")) {
+        // 按字符串原顺序压栈
+        stack.push(s);
+    }
 
-<p>  }
- }
-}
+    while(!stack.empty()) {
+        // 弹栈并输出
+</code></pre>
+
+<p>            System.out.print(stack.pop() + " &ldquo;);
+        }</p>
+
+<pre><code>}
+</code></pre>
+
+<p>}
 ```</p>
 
 <p>运行后系统将输出 &ldquo;peach round a have I "。</p>
