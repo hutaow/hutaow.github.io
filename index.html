@@ -388,6 +388,76 @@
   
 
 
+<time datetime="2010-04-13T19:35:00+08:00" data-updated="true" itemprop="datePublished">Apr 13<span>th</span>, 2010</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/programming/'>Programming</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2010/04/13/reverse-order-of-words-in-a-string/" itemprop="url">字符串中单词逆序的实现</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>在Java中可以用压栈/弹栈的方式：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">import</span><span class="err"> </span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Stack</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span><span class="err"> </span><span class="n">class</span><span class="err"> </span><span class="n">StackTest</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err"> </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="kt">void</span><span class="err"> </span><span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">argv</span><span class="o">[])</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err">  </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="err"> </span><span class="n">stack</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="k">new</span><span class="err"> </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'><span class="err">  </span><span class="k">for</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">s</span><span class="err"> </span><span class="o">:</span><span class="err"> </span><span class="s">&quot;I have a round peach&quot;</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">))</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err">   </span><span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">s</span><span class="o">);</span><span class="c1">//按字符串原顺序压栈</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">  </span><span class="o">}</span>
+</span><span class='line'><span class="err">  </span><span class="k">while</span><span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">empty</span><span class="o">())</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err">   </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">()</span><span class="err"> </span><span class="o">+</span><span class="err"> </span><span class="s">&quot; &quot;</span><span class="o">);</span><span class="c1">//弹栈并输出</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">  </span><span class="o">}</span>
+</span><span class='line'><span class="err"> </span><span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行后系统将输出 &ldquo;peach round a have I &#8220;。</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2010-01-30T00:29:00+08:00" data-updated="true" itemprop="datePublished">Jan 30<span>th</span>, 2010</time></div>
 		<div class="tags">
 
@@ -867,52 +937,6 @@
 <p>之后重新进入KDE，一切正常！</p>
 
 <p>PS：新的KDE环境确实做的不错，桌面右上角的widget加上suse的主菜单非常赞</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-07-19T17:20:00+08:00" data-updated="true" itemprop="datePublished">Jul 19<span>th</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/linux/'>Linux</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/" itemprop="url">Linux下将.cue/.bin转换为.iso的方法</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫&#8221;bchunk&#8221;的小软件非常好用，而且小的可以，才几十K，很不错。</p>
-
-<p>在终端里输入如下命令：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>bchunk e-w2sp4ru1as.bin e-w2sp4ru1as.cue e-w2sp4ru1as.iso</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。</p>
-
-<p>等一小会儿，就像下面这幅图一样，会有一个进度条，进度到100%后转换就完成了。
-<img class="center" src="/images/articles/200807/convert_cue_and_bin_to_iso_format_in_linux.png" title="Convert CUE and BIN to ISO format" ></p>
 
 		
 		

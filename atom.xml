@@ -4,7 +4,7 @@
   <title><![CDATA[Tony Wang]]></title>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2010-01-30T22:28:48+08:00</updated>
+  <updated>2010-04-13T23:11:05+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -248,6 +248,50 @@
 
 <p>重启路由器，再次&#8221;df -h&#8221;一下，可以看到路由器的空间已经扩展成功了。
 <img class="center" src="http://hutaow.github.io/images/articles/201309/install_openwrt_03_df.png" title="DF Info" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[字符串中单词逆序的实现]]></title>
+    <link href="http://hutaow.github.io/blog/2010/04/13/reverse-order-of-words-in-a-string/"/>
+    <updated>2010-04-13T19:35:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2010/04/13/reverse-order-of-words-in-a-string</id>
+    <content type="html"><![CDATA[<p>在Java中可以用压栈/弹栈的方式：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">import</span><span class="err"> </span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Stack</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span><span class="err"> </span><span class="n">class</span><span class="err"> </span><span class="n">StackTest</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err"> </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="kt">void</span><span class="err"> </span><span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">argv</span><span class="o">[])</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err">  </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="err"> </span><span class="n">stack</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="k">new</span><span class="err"> </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'><span class="err">  </span><span class="k">for</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">s</span><span class="err"> </span><span class="o">:</span><span class="err"> </span><span class="s">&quot;I have a round peach&quot;</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">))</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err">   </span><span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">s</span><span class="o">);</span><span class="c1">//按字符串原顺序压栈</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">  </span><span class="o">}</span>
+</span><span class='line'><span class="err">  </span><span class="k">while</span><span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">empty</span><span class="o">())</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err">   </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">()</span><span class="err"> </span><span class="o">+</span><span class="err"> </span><span class="s">&quot; &quot;</span><span class="o">);</span><span class="c1">//弹栈并输出</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">  </span><span class="o">}</span>
+</span><span class='line'><span class="err"> </span><span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行后系统将输出 &ldquo;peach round a have I &#8220;。</p>
 ]]></content>
   </entry>
   
@@ -873,22 +917,6 @@ fuse: device not found, try 'modprobe fuse' first
 <li>如果想支持wma，需要gstreamer-ffmpeg</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用Android做了一个计算器]]></title>
-    <link href="http://hutaow.github.io/blog/2008/01/30/android-calculator/"/>
-    <updated>2008-01-30T11:50:00+08:00</updated>
-    <id>http://hutaow.github.io/blog/2008/01/30/android-calculator</id>
-    <content type="html"><![CDATA[<p>这两天一直在看xml，昨天简单的做了一个计算器，算是实地练习一下，熟悉一下Android的开发过程，不过有些小问题还没有顾及，还有就是界面可能稍显难看了一些。</p>
-
-<p>运行时的截图：
-<img class="center" src="http://hutaow.github.io/images/articles/200801/android_calculator.png" title="Android Calculator" ></p>
-
-<p>源代码地址：<a href="https://github.com/hutaow/AndroidCalculator">点击这里</a></p>
-
-<p>PS: 今天整理的时候发现一个问题，这个程序是我原来用Android SDK的m3版本生成编译的，现在SDK的最新版本是m5，结果在m5里竟然编译不通过。解决方法是可以重新创建一个项目，直接将源代码部分复制粘贴过去就可以了，新的项目仍然可以编译运行，我想应该是build.xml那个文件里的问题，版本、结构上google可能改了一些，不过不碍大事。</p>
 ]]></content>
   </entry>
   

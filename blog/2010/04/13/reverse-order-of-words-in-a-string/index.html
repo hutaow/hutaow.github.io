@@ -1,0 +1,233 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>字符串中单词逆序的实现 - Tony Wang</title>
+	<meta name="author" content="Wang Tao">
+
+	
+	<meta name="description" content="字符串中单词逆序的实现 在Java中可以用压栈/弹栈的方式： 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+import java.util.Stack; public class StackTest {
+ public static void main(String  &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Tony Wang" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://hutaow.github.io/blog/2010/04/13/reverse-order-of-words-in-a-string/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-17662168-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("hutaow (at) hotmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+</div>
+<hgroup>
+  <h1><a href="/">Tony Wang</a></h1>
+  
+    <h2>open source, world shares.</h2>
+  
+</hgroup>
+
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		<a class="weibo" href="http://www.weibo.com/hutaow" title="Weibo">Weibo</a>
+		
+		
+		<a class="facebook" href="http://www.facebook.com/hutaow" title="Facebook">Facebook</a>
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/hutaow" title="Twitter">Twitter</a>
+		
+		
+		
+		
+		
+		<a class="linkedin" href="http://www.linkedin.com/in/hutaow" title="LinkedIn">LinkedIn</a>
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">字符串中单词逆序的实现</h1>
+	<div class="entry-content" itemprop="articleBody"><p>在Java中可以用压栈/弹栈的方式：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">import</span><span class="err"> </span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Stack</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span><span class="err"> </span><span class="n">class</span><span class="err"> </span><span class="n">StackTest</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err"> </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="kt">void</span><span class="err"> </span><span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">argv</span><span class="o">[])</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err">  </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="err"> </span><span class="n">stack</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="k">new</span><span class="err"> </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'><span class="err">  </span><span class="k">for</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">s</span><span class="err"> </span><span class="o">:</span><span class="err"> </span><span class="s">&quot;I have a round peach&quot;</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">))</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err">   </span><span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">s</span><span class="o">);</span><span class="c1">//按字符串原顺序压栈</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">  </span><span class="o">}</span>
+</span><span class='line'><span class="err">  </span><span class="k">while</span><span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">empty</span><span class="o">())</span><span class="err"> </span><span class="o">{</span>
+</span><span class='line'><span class="err">   </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">()</span><span class="err"> </span><span class="o">+</span><span class="err"> </span><span class="s">&quot; &quot;</span><span class="o">);</span><span class="c1">//弹栈并输出</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">  </span><span class="o">}</span>
+</span><span class='line'><span class="err"> </span><span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行后系统将输出 &ldquo;peach round a have I &#8220;。</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2010 - Wang Tao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			
+
+<script type="text/javascript">
+      var disqus_shortname = 'hutaow';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hutaow.github.io/blog/2010/04/13/reverse-order-of-words-in-a-string/';
+        var disqus_url = 'http://hutaow.github.io/blog/2010/04/13/reverse-order-of-words-in-a-string/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>
