@@ -388,6 +388,73 @@
   
 
 
+<time datetime="2010-01-12T22:53:00+08:00" data-updated="true" itemprop="datePublished">Jan 12<span>th</span>, 2010</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/" itemprop="url">Xmarks(原Foxmarks)被墙之后更新的方法</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
+
+<h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&#8221;文件中添加如下内容：</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Xmarks
+</span><span class='line'>64.147.188.86 www.xmarks.com
+</span><span class='line'>64.147.188.92 api.xmarks.com
+</span><span class='line'>64.147.188.89 login.xmarks.com
+</span><span class='line'>64.147.188.87 sync.xmarks.com
+</span><span class='line'>64.147.188.86 static.xmarks.com
+</span><span class='line'>64.147.188.86 download.xmarks.com
+</span><span class='line'>64.147.188.86 my.xmarks.com</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>2. 设置Xmarks连接及传输数据过程中加密，即在&#8221;Connection Security&#8221;中选择&#8221;Encrypt All&#8221;。</h4>
+
+<p>以上两步即可解决Xmarks不能同步的问题。</p>
+
+<h4>分析原因：</h4>
+
+<ol>
+<li><p>第一步操作的原因在于GFW是根据URL而不是IP进行过滤的，所以在请求解析诸如&#8221;xmarks.com&#8221;等类似的域名时，返回结果被GFW拦截，所以要手动添加xmarks.com一系列服务器的域名IP；</p></li>
+<li><p>第二步操作让Xmarks在同步时对数据进行加密，GFW是无法认出加密的数据的，也就无法进一步拦截了。</p></li>
+</ol>
+
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2009-05-02T14:02:00+08:00" data-updated="true" itemprop="datePublished">May 2<span>nd</span>, 2009</time></div>
 		<div class="tags">
 
@@ -841,45 +908,6 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 
 </article>
 
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-20T15:08:00+08:00" data-updated="true" itemprop="datePublished">Mar 20<span>th</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/programming/'>Programming</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/03/20/compilation-failed-due-to-character-encoding/" itemprop="url">因字符编码导致的编译不通过</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>从网上下了QR标准的二维码库，打算直接调用里面的类来实现。在Fedora下Java编译通过，只是提示了一下使用了过时的方法。但我把代码复制到Windows里时，却编译不同过，出现了近1k个错误，代码完全一样，只是操作系统不同就会出问题？</p>
-
-<p>回想在Windows里用UltraEdit打开时，提示文件不是&#8221;DOS Format&#8221;，会不会和文字编码有关？Linux用的是UTF-8的编码，而Windows用的是GBK的编码，难道字符编码必须要和本地相同才能编译通过么？试一下，于是把代码用UltraEdit转换成了GBK编码，再次编译，终于正常通过。</p>
-
-<p>看来有时编译不通过不一定是语句问题，连文件的编码也有可能出问题，如果在不同系统中出现类似上面一个正常一个错误的情况，可以考虑看是不是因为文件的编码和系统默认的编码有差异而引起的。</p>
-
-		
-		
-	</div>
-
-</article>
-
 </div>
 <nav id="pagenavi">
     
@@ -890,7 +918,7 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 </nav></div>
 			</div>
 			<footer id="footer" class="inner"><p>
-  Copyright &copy; 2009 - Wang Tao -
+  Copyright &copy; 2010 - Wang Tao -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

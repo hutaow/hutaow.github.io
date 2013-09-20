@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Technology | Tony Wang]]></title>
+  <link href="http://hutaow.github.io/blog/categories/technology/atom.xml" rel="self"/>
+  <link href="http://hutaow.github.io/"/>
+  <updated>2010-01-12T21:45:26+08:00</updated>
+  <id>http://hutaow.github.io/</id>
+  <author>
+    <name><![CDATA[Wang Tao]]></name>
+    <email><![CDATA[hutaow (at) hotmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Xmarks(原Foxmarks)被墙之后更新的方法]]></title>
+    <link href="http://hutaow.github.io/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/"/>
+    <updated>2010-01-12T22:53:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw</id>
+    <content type="html"><![CDATA[<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
+
+<h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts"文件中添加如下内容：</h4>
+
+<p>```</p>
+
+<h1>Xmarks</h1>
+
+<p>64.147.188.86 www.xmarks.com
+64.147.188.92 api.xmarks.com
+64.147.188.89 login.xmarks.com
+64.147.188.87 sync.xmarks.com
+64.147.188.86 static.xmarks.com
+64.147.188.86 download.xmarks.com
+64.147.188.86 my.xmarks.com
+```</p>
+
+<h4>2. 设置Xmarks连接及传输数据过程中加密，即在"Connection Security"中选择"Encrypt All"。</h4>
+
+<p>以上两步即可解决Xmarks不能同步的问题。</p>
+
+<h4>分析原因：</h4>
+
+<ol>
+<li><p>第一步操作的原因在于GFW是根据URL而不是IP进行过滤的，所以在请求解析诸如"xmarks.com"等类似的域名时，返回结果被GFW拦截，所以要手动添加xmarks.com一系列服务器的域名IP；</p></li>
+<li><p>第二步操作让Xmarks在同步时对数据进行加密，GFW是无法认出加密的数据的，也就无法进一步拦截了。</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

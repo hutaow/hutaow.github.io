@@ -5,11 +5,11 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>二维条码终于有了突破! - Tony Wang</title>
+	<title>Xmarks(原Foxmarks)被墙之后更新的方法 - Tony Wang</title>
 	<meta name="author" content="Wang Tao">
 
 	
-	<meta name="description" content="二维条码终于有了突破! 自己改写了几个类，这几天不停的测试测试测试，今天终于成功解码，不过因为字符编码还没彻底弄好，所以解出来的还都是乱码，不过英文已经可以解析出来了，值得纪念的一天! Comments Please enable JavaScript to view the comments &hellip;">
+	<meta name="description" content="Xmarks(原Foxmarks)被墙之后更新的方法 最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下： 1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\ &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="Tony Wang" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://hutaow.github.io/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/">
+	<link rel="canonical" href="http://hutaow.github.io/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -107,10 +107,40 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name">二维条码终于有了突破!</h1>
-	<div class="entry-content" itemprop="articleBody"><p>自己改写了几个类，这几天不停的测试测试测试，今天终于成功解码，不过因为字符编码还没彻底弄好，所以解出来的还都是乱码，不过英文已经可以解析出来了，值得纪念的一天!</p>
+	<h1 class="title" itemprop="name">Xmarks(原Foxmarks)被墙之后更新的方法</h1>
+	<div class="entry-content" itemprop="articleBody"><p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
 
-<p><img class="center" src="/images/articles/200804/mark_breakthrough_for_dimensional_bar_code_decoder.png" title="Breakthrough for Dimensional Bar Code Decoder" ></p>
+<h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&#8221;文件中添加如下内容：</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Xmarks
+</span><span class='line'>64.147.188.86 www.xmarks.com
+</span><span class='line'>64.147.188.92 api.xmarks.com
+</span><span class='line'>64.147.188.89 login.xmarks.com
+</span><span class='line'>64.147.188.87 sync.xmarks.com
+</span><span class='line'>64.147.188.86 static.xmarks.com
+</span><span class='line'>64.147.188.86 download.xmarks.com
+</span><span class='line'>64.147.188.86 my.xmarks.com</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>2. 设置Xmarks连接及传输数据过程中加密，即在&#8221;Connection Security&#8221;中选择&#8221;Encrypt All&#8221;。</h4>
+
+<p>以上两步即可解决Xmarks不能同步的问题。</p>
+
+<h4>分析原因：</h4>
+
+<ol>
+<li><p>第一步操作的原因在于GFW是根据URL而不是IP进行过滤的，所以在请求解析诸如&#8221;xmarks.com&#8221;等类似的域名时，返回结果被GFW拦截，所以要手动添加xmarks.com一系列服务器的域名IP；</p></li>
+<li><p>第二步操作让Xmarks在同步时对数据进行加密，GFW是无法认出加密的数据的，也就无法进一步拦截了。</p></li>
+</ol>
+
 </div>
 
 </article>
@@ -149,8 +179,8 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://hutaow.github.io/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/';
-        var disqus_url = 'http://hutaow.github.io/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/';
+        var disqus_identifier = 'http://hutaow.github.io/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/';
+        var disqus_url = 'http://hutaow.github.io/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/';
         var disqus_script = 'embed.js';
       
     (function () {
