@@ -388,6 +388,136 @@
   
 
 
+<time datetime="2008-08-14T19:05:00+08:00" data-updated="true" itemprop="datePublished">Aug 14<span>th</span>, 2008</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/programming/'>Programming</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2008/08/14/convert-between-byte-array-and-hex-string/" itemprop="url">Java中十六进制字符串与字节数组的相互转换</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>原理很简单，直接贴源代码吧。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * @author wangtao</span>
+</span><span class='line'><span class="cm"> * @version 2008.8.14</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span><span class="err"> </span><span class="kd">class</span> <span class="nc">Util</span> <span class="o">{</span>
+</span><span class='line'><span class="err">    </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="kt">char</span><span class="o">[]</span> <span class="n">hexDigits</span> <span class="o">=</span><span class="err"> </span>
+</span><span class='line'><span class="err">   </span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;A&#39;</span><span class="o">,</span> <span class="sc">&#39;B&#39;</span><span class="o">,</span> <span class="sc">&#39;C&#39;</span><span class="o">,</span> <span class="sc">&#39;D&#39;</span><span class="o">,</span> <span class="sc">&#39;E&#39;</span><span class="o">,</span> <span class="sc">&#39;F&#39;</span><span class="o">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="cm">/**</span>
+</span><span class='line'><span class="cm">     * @notes 字节数组转化为字符串</span>
+</span><span class='line'><span class="cm">     * @param bytes</span>
+</span><span class='line'><span class="cm">     * @return String</span>
+</span><span class='line'><span class="cm">     */</span>
+</span><span class='line'><span class="err">    </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="n">String</span> <span class="n">toHexString</span><span class="o">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">bytes</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="mi">2</span><span class="o">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bytes</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">bytes</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">chars</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="n">Util</span><span class="o">.</span><span class="na">hexDigits</span><span class="o">[(</span><span class="n">b</span> <span class="o">&amp;</span> <span class="mh">0xF0</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="o">];</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">chars</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">Util</span><span class="o">.</span><span class="na">hexDigits</span><span class="o">[</span><span class="n">b</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="o">];</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">return</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">chars</span><span class="o">);</span>
+</span><span class='line'><span class="err">   </span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="cm">/**</span>
+</span><span class='line'><span class="cm">     * @notes 字符串转化为字节数组</span>
+</span><span class='line'><span class="cm">     * @param str</span>
+</span><span class='line'><span class="cm">     * @return byte[]</span>
+</span><span class='line'><span class="cm">     */</span>
+</span><span class='line'><span class="err">    </span><span class="kd">public</span> <span class="kd">static</span><span class="err"> </span><span class="kt">byte</span><span class="o">[]</span> <span class="n">toByteArray</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span><span class="err"> </span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">length</span><span class="o">];</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">source</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bytes</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span> <span class="n">bh</span> <span class="o">=</span> <span class="n">Byte</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="s">&quot;0x&quot;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="k">new</span> <span class="kt">byte</span><span class="o">[]{</span><span class="n">source</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="o">]})).</span><span class="na">byteValue</span><span class="o">();</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">bh</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)(</span><span class="n">bh</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="o">);</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span> <span class="n">bl</span> <span class="o">=</span> <span class="n">Byte</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="s">&quot;0x&quot;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="k">new</span> <span class="kt">byte</span><span class="o">[]{</span><span class="n">source</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]})).</span><span class="na">byteValue</span><span class="o">();</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">bytes</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)(</span><span class="n">bh</span> <span class="o">^</span> <span class="n">bl</span><span class="o">);</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">return</span> <span class="n">bytes</span><span class="o">;</span>
+</span><span class='line'><span class="err">   </span> <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2008-08-10T15:12:00+08:00" data-updated="true" itemprop="datePublished">Aug 10<span>th</span>, 2008</time></div>
 		<div class="tags">
 
@@ -756,166 +886,6 @@ fuse: device not found, try 'modprobe fuse' first
 
 
 <p>装好后再次执行mount命令，完成！</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-13T15:51:00+08:00" data-updated="true" itemprop="datePublished">Feb 13<span>th</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>Android</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/02/13/compile-android-project-in-command-line/" itemprop="url">Android命令行下的编译和运行</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>想学到东西还是要从命令行开始，真正学到之后再考虑用IDE。下面总结一下在命令行下android工程的创建、编译、运行和调试的方法。</p>
-
-<h3>1 工程的创建</h3>
-
-<p>在要存放工程的目录下用执行&#8221;activityCreator.py &mdash;out hutaow edu.bupt.hutaow.example&#8221; </p>
-
-<p>说明如下：</p>
-
-<ul>
-<li>activityCreator.py，创建工程的脚本文件，linux里使用&#8221;activityCreator.py&#8221;，如果是windows，则应当换成&#8221;activityCreator.bat&#8221;</li>
-<li>&mdash;out hutaow，其中hutaow是生成工程的输出目录，执行android工程的所有文件都会放在这个目录里</li>
-<li>edu.bupt.hutaow.example，这个是包的名称以及类的名称，其中最后一个字段是生成的类的名称，edu.bupt.hutaow是example类所在的包</li>
-</ul>
-
-
-<p>命令执行后会在hutaow目录下生成工程的所有文件。</p>
-
-<p>执行后终端输出如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>package: edu.bupt.hutaow
-</span><span class='line'>out_dir: hutaow
-</span><span class='line'>activity_name: example
-</span><span class='line'>Created directory hutaow/src/edu/bupt/hutaow
-</span><span class='line'>Added file hutaow/src/edu/bupt/hutaow/example.java
-</span><span class='line'>Created directory hutaow/bin
-</span><span class='line'>Created directory hutaow/res/values
-</span><span class='line'>Added file hutaow/res/values/strings.xml
-</span><span class='line'>Created directory hutaow/res/layout
-</span><span class='line'>Added file hutaow/res/layout/main.xml
-</span><span class='line'>Added file hutaow/AndroidManifest.xml
-</span><span class='line'>Added file hutaow/build.xml</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>2 工程的编译</h3>
-
-<p>这里编译需要用到Ant，Ant是Apache出的用于编译Java工程文件的工具，Android是基于Java设计的，所以这里要用到它，Ant可以在<a href="http://ant.apache.org">http://ant.apache.org</a>下载的到，具体安装过程和Java、Android差不多，都是解压出来后设置环境变量，可以参考Linux中设置Java环境变量。</p>
-
-<p>使用Ant编译直接在工程目录下执行简单的一条&#8221;ant&#8221;即可，不用任何参数，Ant会根据build.xml文件中的描述自动进行相关的语法检查、依赖分析等等一些工作，最终将编译好的文件输出在工程的bin目录下。</p>
-
-<p>执行后终端输出如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Buildfile: build.xml
-</span><span class='line'>
-</span><span class='line'>dirs:
-</span><span class='line'>    [mkdir] Created dir: /home/wangtao/Documents/android/hutaow/bin/classes
-</span><span class='line'>
-</span><span class='line'>resource-src:
-</span><span class='line'>     [echo] Generating R.java...
-</span><span class='line'>
-</span><span class='line'>aidl:
-</span><span class='line'>
-</span><span class='line'>compile:
-</span><span class='line'>    [javac] Compiling 2 source files to /home/wangtao/Documents/android/hutaow/bin/classes
-</span><span class='line'>
-</span><span class='line'>dex:
-</span><span class='line'>
-</span><span class='line'>package-res:
-</span><span class='line'>
-</span><span class='line'>package-res-no-assets:
-</span><span class='line'>     [echo] Packaging resources...
-</span><span class='line'>
-</span><span class='line'>package-dex:
-</span><span class='line'>     [echo] Packaging dex...
-</span><span class='line'>
-</span><span class='line'>package:
-</span><span class='line'>
-</span><span class='line'>BUILD SUCCESSFUL
-</span><span class='line'>Total time: 6 seconds</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>3 程序的运行及调试</h3>
-
-<p>这里要用到的工具是android的调试工具adb，由它来完成程序的安装工作。首先在命令行输入&#8221;emulator&#8221;启动android模拟器。</p>
-
-<p>然后等模拟器完全启动好后，执行&#8221;adb install bin/example.apk&#8221;，即将example.apk安装到模拟器中。</p>
-
-<p>最终在模拟器的&#8221;Applications&#8221;分类中找到&#8221;example&#8221;执行程序。</p>
-
-<p>执行后终端输出如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>* daemon not running. starting it now *
-</span><span class='line'>33 KB/s (4170 bytes in 0.120s)</span></code></pre></td></tr></table></div></figure>
-
-
-
 
 		
 		

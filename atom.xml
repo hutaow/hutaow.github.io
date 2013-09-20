@@ -4,7 +4,7 @@
   <title><![CDATA[Tony Wang]]></title>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2008-08-10T20:31:53+08:00</updated>
+  <updated>2008-08-14T20:54:30+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -248,6 +248,110 @@
 
 <p>重启路由器，再次&#8221;df -h&#8221;一下，可以看到路由器的空间已经扩展成功了。
 <img class="center" src="http://hutaow.github.io/images/articles/201309/install_openwrt_03_df.png" title="DF Info" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Java中十六进制字符串与字节数组的相互转换]]></title>
+    <link href="http://hutaow.github.io/blog/2008/08/14/convert-between-byte-array-and-hex-string/"/>
+    <updated>2008-08-14T19:05:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2008/08/14/convert-between-byte-array-and-hex-string</id>
+    <content type="html"><![CDATA[<p>原理很简单，直接贴源代码吧。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * @author wangtao</span>
+</span><span class='line'><span class="cm"> * @version 2008.8.14</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span><span class="err"> </span><span class="kd">class</span> <span class="nc">Util</span> <span class="o">{</span>
+</span><span class='line'><span class="err">    </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="kt">char</span><span class="o">[]</span> <span class="n">hexDigits</span> <span class="o">=</span><span class="err"> </span>
+</span><span class='line'><span class="err">   </span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;A&#39;</span><span class="o">,</span> <span class="sc">&#39;B&#39;</span><span class="o">,</span> <span class="sc">&#39;C&#39;</span><span class="o">,</span> <span class="sc">&#39;D&#39;</span><span class="o">,</span> <span class="sc">&#39;E&#39;</span><span class="o">,</span> <span class="sc">&#39;F&#39;</span><span class="o">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="cm">/**</span>
+</span><span class='line'><span class="cm">     * @notes 字节数组转化为字符串</span>
+</span><span class='line'><span class="cm">     * @param bytes</span>
+</span><span class='line'><span class="cm">     * @return String</span>
+</span><span class='line'><span class="cm">     */</span>
+</span><span class='line'><span class="err">    </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="n">String</span> <span class="n">toHexString</span><span class="o">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">bytes</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="mi">2</span><span class="o">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bytes</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">bytes</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">chars</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="n">Util</span><span class="o">.</span><span class="na">hexDigits</span><span class="o">[(</span><span class="n">b</span> <span class="o">&amp;</span> <span class="mh">0xF0</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="o">];</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">chars</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">Util</span><span class="o">.</span><span class="na">hexDigits</span><span class="o">[</span><span class="n">b</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="o">];</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">return</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">chars</span><span class="o">);</span>
+</span><span class='line'><span class="err">   </span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="cm">/**</span>
+</span><span class='line'><span class="cm">     * @notes 字符串转化为字节数组</span>
+</span><span class='line'><span class="cm">     * @param str</span>
+</span><span class='line'><span class="cm">     * @return byte[]</span>
+</span><span class='line'><span class="cm">     */</span>
+</span><span class='line'><span class="err">    </span><span class="kd">public</span> <span class="kd">static</span><span class="err"> </span><span class="kt">byte</span><span class="o">[]</span> <span class="n">toByteArray</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span><span class="err"> </span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">length</span><span class="o">];</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">source</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bytes</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span> <span class="n">bh</span> <span class="o">=</span> <span class="n">Byte</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="s">&quot;0x&quot;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="k">new</span> <span class="kt">byte</span><span class="o">[]{</span><span class="n">source</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="o">]})).</span><span class="na">byteValue</span><span class="o">();</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">bh</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)(</span><span class="n">bh</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="o">);</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span> <span class="n">bl</span> <span class="o">=</span> <span class="n">Byte</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="s">&quot;0x&quot;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="k">new</span> <span class="kt">byte</span><span class="o">[]{</span><span class="n">source</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]})).</span><span class="na">byteValue</span><span class="o">();</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">bytes</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)(</span><span class="n">bh</span> <span class="o">^</span> <span class="n">bl</span><span class="o">);</span>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">return</span> <span class="n">bytes</span><span class="o">;</span>
+</span><span class='line'><span class="err">   </span> <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   

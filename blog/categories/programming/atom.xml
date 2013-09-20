@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2008-08-10T20:31:53+08:00</updated>
+  <updated>2008-08-14T20:54:30+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Java中十六进制字符串与字节数组的相互转换]]></title>
+    <link href="http://hutaow.github.io/blog/2008/08/14/convert-between-byte-array-and-hex-string/"/>
+    <updated>2008-08-14T19:05:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2008/08/14/convert-between-byte-array-and-hex-string</id>
+    <content type="html"><![CDATA[<p>原理很简单，直接贴源代码吧。</p>
+
+<p>``` java
+/<em><em>
+ </em> @author wangtao
+ </em> @version 2008.8.14
+ */
+public class Util {
+    public static char[] hexDigits = 
+    {&lsquo;0&rsquo;, &lsquo;1&rsquo;, &lsquo;2&rsquo;, &lsquo;3&rsquo;, &lsquo;4&rsquo;, &lsquo;5&rsquo;, &lsquo;6&rsquo;, &lsquo;7&rsquo;, &lsquo;8&rsquo;, &lsquo;9&rsquo;, &lsquo;A&rsquo;, &lsquo;B&rsquo;, &lsquo;C&rsquo;, &rsquo;D', &lsquo;E&rsquo;, &lsquo;F&rsquo;};</p>
+
+<p>    /<em><em>
+     </em> @notes 字节数组转化为字符串
+     </em> @param bytes
+     <em> @return String
+     </em>/
+    public static String toHexString(byte[] bytes) {
+        char[] chars = new char[bytes.length * 2];</p>
+
+<p>        for (int i = 0; i &lt; bytes.length; i++) {
+            int b = bytes[i];
+            chars[i * 2] = Util.hexDigits[(b &amp; 0xF0) >> 4];
+            chars[i * 2 + 1] = Util.hexDigits[b &amp; 0x0F];
+        }</p>
+
+<p>        return new String(chars);
+    }</p>
+
+<p>    /<em><em>
+     </em> @notes 字符串转化为字节数组
+     </em> @param str
+     <em> @return byte[]
+     </em>/
+    public static byte[] toByteArray(String str) { 
+        int length = str.length() / 2;
+        byte[] bytes = new byte[length];
+        byte[] source = str.getBytes();</p>
+
+<p>        for (int i = 0; i &lt; bytes.length; ++i) {
+            byte bh = Byte.decode(&ldquo;0x&rdquo; + new String(new byte[]{source[i * 2]})).byteValue();
+            bh = (byte)(bh &lt;&lt; 4);
+            byte bl = Byte.decode(&ldquo;0x&rdquo; + new String(new byte[]{source[i * 2 + 1]})).byteValue();
+            bytes[i] = (byte)(bh ^ bl);
+        }</p>
+
+<p>        return bytes;
+    }
+}
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[因字符编码导致的编译不通过]]></title>
