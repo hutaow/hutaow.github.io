@@ -388,6 +388,48 @@
   
 
 
+<time datetime="2009-04-02T10:55:00+08:00" data-updated="true" itemprop="datePublished">Apr 2<span>nd</span>, 2009</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/database/'>Database</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2009/04/02/sql-statements-batch-replace-a-string/" itemprop="url">SQL语句实现某一字符串的替换</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>使用update+replace语句：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='mysql'><span class='line'><span class="k">update</span> <span class="n">table_name</span> <span class="kt">set</span> <span class="n">column_name</span> <span class="o">=</span> <span class="k">replace</span><span class="p">(</span><span class="n">column_name</span><span class="p">,</span><span class="err">’</span><span class="n">hutaow_original_string</span><span class="err">’</span><span class="p">,</span><span class="err">&#39;</span><span class="n">hutaow_new_string</span><span class="err">’</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中，table_name是表的名字，column_name是要替换数据的列的名字，hutaow_original_string是待替换的原始字符串，hutaow_new_string是新字符串，MySQL下验证成功。</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2008-08-14T19:05:00+08:00" data-updated="true" itemprop="datePublished">Aug 14<span>th</span>, 2008</time></div>
 		<div class="tags">
 
@@ -837,62 +879,6 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 
 </article>
 
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-15T20:16:00+08:00" data-updated="true" itemprop="datePublished">Feb 15<span>th</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/linux/'>Linux</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g/" itemprop="url">解决安装ntfs-3g时遇到的问题</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行&#8221;mount -t ntfs-3g /dev/hdc5 /media/wdata&#8221;，结果提示：</p>
-
-<pre><code>FATAL: Module fuse not found.
-fuse: device not found, try 'modprobe fuse' first
-</code></pre>
-
-<p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行&#8221;modprobe fuse&#8221;，结果又出来：</p>
-
-<pre><code>FATAL: Module fuse not found.
-</code></pre>
-
-<p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net</a>，看上面说明的意思是说fuse(Filesystem in Userspace)是个库，提供了API供用户开发文件系统，看样子通过它开发文件系统又会方便不少，最后只要连接到fuse库上就可以了。呵呵，不管怎么说先下载了安装再说，这些以后有时间再慢慢研究吧。下载后解压，执行下面的命令编译安装fuse：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./configure
-</span><span class='line'>make
-</span><span class='line'>make install</span></code></pre></td></tr></table></div></figure>
-
-
-<p>装好后再次执行mount命令，完成！</p>
-
-		
-		
-	</div>
-
-</article>
-
 </div>
 <nav id="pagenavi">
     
@@ -903,7 +889,7 @@ fuse: device not found, try 'modprobe fuse' first
 </nav></div>
 			</div>
 			<footer id="footer" class="inner"><p>
-  Copyright &copy; 2008 - Wang Tao -
+  Copyright &copy; 2009 - Wang Tao -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
