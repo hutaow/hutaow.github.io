@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2008-04-02T17:44:05+08:00</updated>
+  <updated>2008-07-18T19:26:43+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[新版VirtualBox在Fedora下不能启动虚拟机的解决办法]]></title>
+    <link href="http://hutaow.github.io/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora/"/>
+    <updated>2008-07-18T20:48:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora</id>
+    <content type="html"><![CDATA[<p>前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
+
+<pre><code>VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. 
+Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
+</code></pre>
+
+<p>于是按照提示在终端里执行"sudo /etc/init.d/vboxdrv setup"时，却又提示VirtualBox的内核模块无法编译，查看日志发现是没有安装内核源代码。</p>
+
+<p>于是执行"sudo yum install kernel-devel"，等待系统自动下载并安装。注意这里我用的Linux是Fedora，如果是其它发行版可以执行相应的安装命令，唯一相同的是软件包"kernel-devel"名字不变。</p>
+
+<p>安装完成后，再次执行"sudo /etc/init.d/vboxdrv setup"，搞定！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fedora禁止自动挂载分区的方法]]></title>
@@ -123,19 +142,6 @@ mii-tool -A 10baseT-FD eth0
 <li><p>接下来是字体编码，先要选择一个中文字体，"Font"选项卡中，在"Font"一栏选择一个中文字体(个人建议将自己的字体放在~/.fonts目录下，然后再到这个目录中选择相应的字体)。字体选择好后，在"Encoding"选单中选择"Unicode"，因为unicode是国际通用的字符编码标准，一般的字体编码都是unicode，所以此处要选择"Unicode"而不是"CP936"。</p></li>
 <li><p>确定保存后重新播放中文字幕就可以正常显示了。</p></li>
 </ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rhythmbox播放MP3和WMA所需要的解码器]]></title>
-    <link href="http://hutaow.github.io/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required/"/>
-    <updated>2008-02-02T08:45:00+08:00</updated>
-    <id>http://hutaow.github.io/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required</id>
-    <content type="html"><![CDATA[<ul>
-<li>如果想支持mp3，需要gstreamer-plugins-bad和gstreamer-plugins-ugly</li>
-<li>如果想支持wma，需要gstreamer-ffmpeg</li>
-</ul>
 
 ]]></content>
   </entry>
