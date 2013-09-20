@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2008-02-15T17:08:44+08:00</updated>
+  <updated>2008-02-17T17:19:13+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Fedora禁止自动挂载分区的方法]]></title>
+    <link href="http://hutaow.github.io/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora/"/>
+    <updated>2008-02-17T21:28:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora</id>
+    <content type="html"><![CDATA[<p>Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在"/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi"文件中。</p>
+
+<p>找到以下提示行</p>
+
+<p>```</p>
+
+<!-- Here follow volumes we specifically want to ignore - it is the -->
+
+
+<!-- responsibility of software higher in the stack (e.g. gnome-vfs) -->
+
+
+<!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore -->
+
+
+<p><merge key="volume.ignore" type="bool">false</merge>
+```</p>
+
+<p>按照说明在提示之后添加对磁盘挂载的策略即可，比如我自己的硬盘就是</p>
+
+<p><code>
+&lt;match key="volume.fstype" string="vfat"&gt;
+  &lt;match key="volume.label" string="DATA"&gt;
+    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
+  &lt;/match&gt;
+  &lt;match key="volume.label" string="MULTI"&gt;
+    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
+  &lt;/match&gt;
+  &lt;match key="volume.label" string="BACKUP"&gt;
+    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
+  &lt;/match&gt;
+&lt;/match&gt;
+</code></p>
+
+<p>其中"volume.fstype"后面的值就是匹配的文件系统，"volume.label"后面的值是匹配的卷标，"volume.ignore"中的参数是"true"，意思是忽略被匹配的分区。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[解决安装ntfs-3g时遇到的问题]]></title>
@@ -94,29 +137,6 @@ mii-tool -A 10baseT-FD eth0
 <li>如果想支持wma，需要gstreamer-ffmpeg</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Linux中设置java环境变量]]></title>
-    <link href="http://hutaow.github.io/blog/2007/09/22/config-java-environment-in-linux/"/>
-    <updated>2007-09-22T13:38:00+08:00</updated>
-    <id>http://hutaow.github.io/blog/2007/09/22/config-java-environment-in-linux</id>
-    <content type="html"><![CDATA[<p>从网上找资料，自己总结一下：</p>
-
-<ol>
-<li><p>从java.sun.com上下载jdk，解压到某个目录，比如"/usr/local/java/jdk1.x.x/"</p></li>
-<li><p>修改~/.bashrc文件，在文件末尾加入以下几行：</p></li>
-</ol>
-
-
-<p><code>
-export JAVA_HOME=/usr/java/j2sdk1.x.x
-export PATH=$JAVA_HOME/bin:$PATH
-export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:$CLASSPATH
-</code></p>
-
-<p>最后重启终端或执行source ~/.bashrc即可。</p>
 ]]></content>
   </entry>
   
