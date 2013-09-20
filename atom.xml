@@ -4,7 +4,7 @@
   <title><![CDATA[Tony Wang]]></title>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2008-07-18T19:26:43+08:00</updated>
+  <updated>2008-07-19T19:53:34+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -252,6 +252,26 @@
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Linux下将.cue/.bin转换为.iso的方法]]></title>
+    <link href="http://hutaow.github.io/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/"/>
+    <updated>2008-07-19T17:20:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux</id>
+    <content type="html"><![CDATA[<p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫&#8221;bchunk&#8221;的小软件非常好用，而且小的可以，才几十K，很不错。</p>
+
+<p>在终端里输入如下命令：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bchunk e-w2sp4ru1as.bin e-w2sp4ru1as.cue e-w2sp4ru1as.iso</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。</p>
+
+<p>等一小会儿，就像下面这幅图一样，会有一个进度条，进度到100%后转换就完成了。
+<img class="center" src="http://hutaow.github.io/images/articles/200807/convert_cue_and_bin_to_iso_format_in_linux.png" title="Convert CUE and BIN to ISO format" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[新版VirtualBox在Fedora下不能启动虚拟机的解决办法]]></title>
     <link href="http://hutaow.github.io/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora/"/>
     <updated>2008-07-18T20:48:00+08:00</updated>
@@ -282,7 +302,7 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[因字符编码导致的编译不同过]]></title>
+    <title type="html"><![CDATA[因字符编码导致的编译不通过]]></title>
     <link href="http://hutaow.github.io/blog/2008/03/20/compilation-failed-due-to-character-encoding/"/>
     <updated>2008-03-20T15:08:00+08:00</updated>
     <id>http://hutaow.github.io/blog/2008/03/20/compilation-failed-due-to-character-encoding</id>
