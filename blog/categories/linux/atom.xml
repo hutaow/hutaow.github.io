@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | Tony Wang]]></title>
+  <link href="http://hutaow.github.io/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://hutaow.github.io/"/>
+  <updated>2007-08-19T13:57:13+08:00</updated>
+  <id>http://hutaow.github.io/</id>
+  <author>
+    <name><![CDATA[Wang Tao]]></name>
+    <email><![CDATA[hutaow (at) hotmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[我的VI配置文件]]></title>
+    <link href="http://hutaow.github.io/blog/2007/08/19/my-vi-config/"/>
+    <updated>2007-08-19T14:02:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2007/08/19/my-vi-config</id>
+    <content type="html"><![CDATA[<p>```
+set nocompatible
+set history=1000
+filetype on
+set iskeyword+=_,$,@,%,#,&ndash;
+syntax on</p>
+
+<p>set ruler
+set shortmess=atI
+set noerrorbells</p>
+
+<p>set showmatch
+set incsearch</p>
+
+<p>set number
+set background=dark</p>
+
+<p>set autoindent
+set smartindent
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
