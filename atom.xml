@@ -4,7 +4,7 @@
   <title><![CDATA[Tony Wang]]></title>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2010-01-12T21:45:26+08:00</updated>
+  <updated>2010-01-14T21:53:13+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -248,6 +248,21 @@
 
 <p>重启路由器，再次&#8221;df -h&#8221;一下，可以看到路由器的空间已经扩展成功了。
 <img class="center" src="http://hutaow.github.io/images/articles/201309/install_openwrt_03_df.png" title="DF Info" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[HTC Diamond 两个有意思的功能]]></title>
+    <link href="http://hutaow.github.io/blog/2010/01/14/interesting-features-in-htc-diamond/"/>
+    <updated>2010-01-14T20:28:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2010/01/14/interesting-features-in-htc-diamond</id>
+    <content type="html"><![CDATA[<p>这两天一直折腾 HTC Diamond，发现了两个很有意思的功能：</p>
+
+<ol>
+<li><p>Diamond的手写笔不像其它手机那样有卡槽卡住，而是像有磁铁一样把笔&#8221;吸&#8221;进去，实际上功能远不止这个。在Diamond关闭屏幕时，拔出手写笔，屏幕会自动亮起，还有比这更神奇的，在打电话时，如果拔出手写笔，Diamond会打开便签，并且便签已经包含了通话对象、时间等信息，方便记录；</p></li>
+<li><p>Diamond的重力感应不仅用在玩游戏上，来电话时，只要把手机面向下放，就可以关闭铃声（静音）。这避免了在开会等类似场合突然遇到来电手忙脚乱情况的发生。</p></li>
+</ol>
+
 ]]></content>
   </entry>
   
@@ -922,29 +937,6 @@ res/drawable/ 存放的是一些图片什么的，当然图标也在这里
 
 
 <p>其他的布局方式可以在需要时查文档，这里不再列出。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[初学Android的一点问题]]></title>
-    <link href="http://hutaow.github.io/blog/2008/01/11/android-beginner-question/"/>
-    <updated>2008-01-11T11:33:00+08:00</updated>
-    <id>http://hutaow.github.io/blog/2008/01/11/android-beginner-question</id>
-    <content type="html"><![CDATA[<p>前几天一直在看Android的文档，有些收获但同时还是有问题。</p>
-
-<h4>1 问题：关于Android的Layout</h4>
-
-<p>似乎和java有很大的不同，Android引入了XML，从google所给的例子来看，控件的布局方式都是写在XML文件里，而主程序中需要的只是add并且引用XML文件中的布局方式。</p>
-
-<p>这种方法对我来说并不是很习惯，毕竟java用了那么长时间，在代码中直接setLayout感觉更舒服些。当然既然google采用了这种布局和代码分离的方式那就肯定有它的优点，看来还需要一点的时间来习惯这种布局方式。</p>
-
-<h4>2 总结：我自己对Android几个模块的理解</h4>
-
-<pre><code>Activity：类似java中的Applet或Frame，以我的理解，这个类提供了程序的最基本框架。
-Intent Receiver：翻译过来是“目的接收器”，和java中的listener类似，用于处理事件。
-Service：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。
-Content Provider：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。
-</code></pre>
 ]]></content>
   </entry>
   

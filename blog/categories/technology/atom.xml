@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Technology | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/technology/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2010-01-12T21:45:26+08:00</updated>
+  <updated>2010-01-14T21:53:13+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HTC Diamond 两个有意思的功能]]></title>
+    <link href="http://hutaow.github.io/blog/2010/01/14/interesting-features-in-htc-diamond/"/>
+    <updated>2010-01-14T20:28:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2010/01/14/interesting-features-in-htc-diamond</id>
+    <content type="html"><![CDATA[<p>这两天一直折腾 HTC Diamond，发现了两个很有意思的功能：</p>
+
+<ol>
+<li><p>Diamond的手写笔不像其它手机那样有卡槽卡住，而是像有磁铁一样把笔"吸"进去，实际上功能远不止这个。在Diamond关闭屏幕时，拔出手写笔，屏幕会自动亮起，还有比这更神奇的，在打电话时，如果拔出手写笔，Diamond会打开便签，并且便签已经包含了通话对象、时间等信息，方便记录；</p></li>
+<li><p>Diamond的重力感应不仅用在玩游戏上，来电话时，只要把手机面向下放，就可以关闭铃声（静音）。这避免了在开会等类似场合突然遇到来电手忙脚乱情况的发生。</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Xmarks(原Foxmarks)被墙之后更新的方法]]></title>
