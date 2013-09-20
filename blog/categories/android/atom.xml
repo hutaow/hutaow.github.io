@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2008-02-11T16:29:57+08:00</updated>
+  <updated>2008-02-13T16:51:23+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,100 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Android命令行下的编译和运行]]></title>
+    <link href="http://hutaow.github.io/blog/2008/02/13/compile-android-project-in-command-line/"/>
+    <updated>2008-02-13T15:51:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2008/02/13/compile-android-project-in-command-line</id>
+    <content type="html"><![CDATA[<p>想学到东西还是要从命令行开始，真正学到之后再考虑用IDE。下面总结一下在命令行下android工程的创建、编译、运行和调试的方法。</p>
+
+<h3>1 工程的创建</h3>
+
+<p>在要存放工程的目录下用执行"activityCreator.py &mdash;out hutaow edu.bupt.hutaow.example" </p>
+
+<p>说明如下：</p>
+
+<ul>
+<li>activityCreator.py，创建工程的脚本文件，linux里使用"activityCreator.py"，如果是windows，则应当换成"activityCreator.bat"</li>
+<li>&mdash;out hutaow，其中hutaow是生成工程的输出目录，执行android工程的所有文件都会放在这个目录里</li>
+<li>edu.bupt.hutaow.example，这个是包的名称以及类的名称，其中最后一个字段是生成的类的名称，edu.bupt.hutaow是example类所在的包</li>
+</ul>
+
+
+<p>命令执行后会在hutaow目录下生成工程的所有文件。</p>
+
+<p>执行后终端输出如下：</p>
+
+<p><code>
+package: edu.bupt.hutaow
+out_dir: hutaow
+activity_name: example
+Created directory hutaow/src/edu/bupt/hutaow
+Added file hutaow/src/edu/bupt/hutaow/example.java
+Created directory hutaow/bin
+Created directory hutaow/res/values
+Added file hutaow/res/values/strings.xml
+Created directory hutaow/res/layout
+Added file hutaow/res/layout/main.xml
+Added file hutaow/AndroidManifest.xml
+Added file hutaow/build.xml
+</code></p>
+
+<h3>2 工程的编译</h3>
+
+<p>这里编译需要用到Ant，Ant是Apache出的用于编译Java工程文件的工具，Android是基于Java设计的，所以这里要用到它，Ant可以在<a href="http://ant.apache.org">http://ant.apache.org</a>下载的到，具体安装过程和Java、Android差不多，都是解压出来后设置环境变量，可以参考Linux中设置Java环境变量。</p>
+
+<p>使用Ant编译直接在工程目录下执行简单的一条"ant"即可，不用任何参数，Ant会根据build.xml文件中的描述自动进行相关的语法检查、依赖分析等等一些工作，最终将编译好的文件输出在工程的bin目录下。</p>
+
+<p>执行后终端输出如下：</p>
+
+<p>```
+Buildfile: build.xml</p>
+
+<p>dirs:
+    [mkdir] Created dir: /home/wangtao/Documents/android/hutaow/bin/classes</p>
+
+<p>resource-src:
+     [echo] Generating R.java&hellip;</p>
+
+<p>aidl:</p>
+
+<p>compile:
+    [javac] Compiling 2 source files to /home/wangtao/Documents/android/hutaow/bin/classes</p>
+
+<p>dex:</p>
+
+<p>package-res:</p>
+
+<p>package-res-no-assets:
+     [echo] Packaging resources&hellip;</p>
+
+<p>package-dex:
+     [echo] Packaging dex&hellip;</p>
+
+<p>package:</p>
+
+<p>BUILD SUCCESSFUL
+Total time: 6 seconds
+```</p>
+
+<h3>3 程序的运行及调试</h3>
+
+<p>这里要用到的工具是android的调试工具adb，由它来完成程序的安装工作。首先在命令行输入"emulator"启动android模拟器。</p>
+
+<p>然后等模拟器完全启动好后，执行"adb install bin/example.apk"，即将example.apk安装到模拟器中。</p>
+
+<p>最终在模拟器的"Applications"分类中找到"example"执行程序。</p>
+
+<p>执行后终端输出如下：</p>
+
+<p><code>
+* daemon not running. starting it now *
+33 KB/s (4170 bytes in 0.120s)
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用Android做了一个计算器]]></title>

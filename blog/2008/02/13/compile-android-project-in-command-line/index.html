@@ -1,0 +1,307 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Android命令行下的编译和运行 - Tony Wang</title>
+	<meta name="author" content="Wang Tao">
+
+	
+	<meta name="description" content="Android命令行下的编译和运行 想学到东西还是要从命令行开始，真正学到之后再考虑用IDE。下面总结一下在命令行下android工程的创建、编译、运行和调试的方法。 1 工程的创建 在要存放工程的目录下用执行&#8221;activityCreator.py &mdash;out hutaow &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Tony Wang" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://hutaow.github.io/blog/2008/02/13/compile-android-project-in-command-line/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-17662168-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("hutaow (at) hotmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+</div>
+<hgroup>
+  <h1><a href="/">Tony Wang</a></h1>
+  
+    <h2>open source, world shares.</h2>
+  
+</hgroup>
+
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		<a class="weibo" href="http://www.weibo.com/hutaow" title="Weibo">Weibo</a>
+		
+		
+		<a class="facebook" href="http://www.facebook.com/hutaow" title="Facebook">Facebook</a>
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/hutaow" title="Twitter">Twitter</a>
+		
+		
+		
+		
+		
+		<a class="linkedin" href="http://www.linkedin.com/in/hutaow" title="LinkedIn">LinkedIn</a>
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Android命令行下的编译和运行</h1>
+	<div class="entry-content" itemprop="articleBody"><p>想学到东西还是要从命令行开始，真正学到之后再考虑用IDE。下面总结一下在命令行下android工程的创建、编译、运行和调试的方法。</p>
+
+<h3>1 工程的创建</h3>
+
+<p>在要存放工程的目录下用执行&#8221;activityCreator.py &mdash;out hutaow edu.bupt.hutaow.example&#8221; </p>
+
+<p>说明如下：</p>
+
+<ul>
+<li>activityCreator.py，创建工程的脚本文件，linux里使用&#8221;activityCreator.py&#8221;，如果是windows，则应当换成&#8221;activityCreator.bat&#8221;</li>
+<li>&mdash;out hutaow，其中hutaow是生成工程的输出目录，执行android工程的所有文件都会放在这个目录里</li>
+<li>edu.bupt.hutaow.example，这个是包的名称以及类的名称，其中最后一个字段是生成的类的名称，edu.bupt.hutaow是example类所在的包</li>
+</ul>
+
+
+<p>命令执行后会在hutaow目录下生成工程的所有文件。</p>
+
+<p>执行后终端输出如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>package: edu.bupt.hutaow
+</span><span class='line'>out_dir: hutaow
+</span><span class='line'>activity_name: example
+</span><span class='line'>Created directory hutaow/src/edu/bupt/hutaow
+</span><span class='line'>Added file hutaow/src/edu/bupt/hutaow/example.java
+</span><span class='line'>Created directory hutaow/bin
+</span><span class='line'>Created directory hutaow/res/values
+</span><span class='line'>Added file hutaow/res/values/strings.xml
+</span><span class='line'>Created directory hutaow/res/layout
+</span><span class='line'>Added file hutaow/res/layout/main.xml
+</span><span class='line'>Added file hutaow/AndroidManifest.xml
+</span><span class='line'>Added file hutaow/build.xml</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>2 工程的编译</h3>
+
+<p>这里编译需要用到Ant，Ant是Apache出的用于编译Java工程文件的工具，Android是基于Java设计的，所以这里要用到它，Ant可以在<a href="http://ant.apache.org">http://ant.apache.org</a>下载的到，具体安装过程和Java、Android差不多，都是解压出来后设置环境变量，可以参考Linux中设置Java环境变量。</p>
+
+<p>使用Ant编译直接在工程目录下执行简单的一条&#8221;ant&#8221;即可，不用任何参数，Ant会根据build.xml文件中的描述自动进行相关的语法检查、依赖分析等等一些工作，最终将编译好的文件输出在工程的bin目录下。</p>
+
+<p>执行后终端输出如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Buildfile: build.xml
+</span><span class='line'>
+</span><span class='line'>dirs:
+</span><span class='line'>    [mkdir] Created dir: /home/wangtao/Documents/android/hutaow/bin/classes
+</span><span class='line'>
+</span><span class='line'>resource-src:
+</span><span class='line'>     [echo] Generating R.java...
+</span><span class='line'>
+</span><span class='line'>aidl:
+</span><span class='line'>
+</span><span class='line'>compile:
+</span><span class='line'>    [javac] Compiling 2 source files to /home/wangtao/Documents/android/hutaow/bin/classes
+</span><span class='line'>
+</span><span class='line'>dex:
+</span><span class='line'>
+</span><span class='line'>package-res:
+</span><span class='line'>
+</span><span class='line'>package-res-no-assets:
+</span><span class='line'>     [echo] Packaging resources...
+</span><span class='line'>
+</span><span class='line'>package-dex:
+</span><span class='line'>     [echo] Packaging dex...
+</span><span class='line'>
+</span><span class='line'>package:
+</span><span class='line'>
+</span><span class='line'>BUILD SUCCESSFUL
+</span><span class='line'>Total time: 6 seconds</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3 程序的运行及调试</h3>
+
+<p>这里要用到的工具是android的调试工具adb，由它来完成程序的安装工作。首先在命令行输入&#8221;emulator&#8221;启动android模拟器。</p>
+
+<p>然后等模拟器完全启动好后，执行&#8221;adb install bin/example.apk&#8221;，即将example.apk安装到模拟器中。</p>
+
+<p>最终在模拟器的&#8221;Applications&#8221;分类中找到&#8221;example&#8221;执行程序。</p>
+
+<p>执行后终端输出如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>* daemon not running. starting it now *
+</span><span class='line'>33 KB/s (4170 bytes in 0.120s)</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2008 - Wang Tao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			
+
+<script type="text/javascript">
+      var disqus_shortname = 'hutaow';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hutaow.github.io/blog/2008/02/13/compile-android-project-in-command-line/';
+        var disqus_url = 'http://hutaow.github.io/blog/2008/02/13/compile-android-project-in-command-line/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>
