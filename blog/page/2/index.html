@@ -9,7 +9,7 @@
 	<meta name="author" content="Wang Tao">
 
 	
-	<meta name="description" content="Feb 15th, 2008 Linux 解决安装ntfs-3g时遇到的问题 今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去http://www.ntfs-3g.org下载ntfs-3g，安装好后，试图执行&#8221;mount -t &hellip;">
+	<meta name="description" content="Feb 17th, 2008 Linux Fedora禁止自动挂载分区的方法 Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在&#8221;/usr/share/hal/fdi/policy/10osvendor/20- &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,6 +108,81 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-17T21:28:00+08:00" data-updated="true" itemprop="datePublished">Feb 17<span>th</span>, 2008</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora/" itemprop="url">Fedora禁止自动挂载分区的方法</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在&#8221;/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi&#8221;文件中。</p>
+
+<p>找到以下提示行</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;
+</span><span class='line'>&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;
+</span><span class='line'>&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;
+</span><span class='line'>&lt;merge key="volume.ignore" type="bool"&gt;false&lt;/merge&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>按照说明在提示之后添加对磁盘挂载的策略即可，比如我自己的硬盘就是</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;match key="volume.fstype" string="vfat"&gt;
+</span><span class='line'>  &lt;match key="volume.label" string="DATA"&gt;
+</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
+</span><span class='line'>  &lt;/match&gt;
+</span><span class='line'>  &lt;match key="volume.label" string="MULTI"&gt;
+</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
+</span><span class='line'>  &lt;/match&gt;
+</span><span class='line'>  &lt;match key="volume.label" string="BACKUP"&gt;
+</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
+</span><span class='line'>  &lt;/match&gt;
+</span><span class='line'>&lt;/match&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中&#8221;volume.fstype&#8221;后面的值就是匹配的文件系统，&#8221;volume.label&#8221;后面的值是匹配的卷标，&#8221;volume.ignore&#8221;中的参数是&#8221;true&#8221;，意思是忽略被匹配的分区。</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -676,7 +751,7 @@ Content Provider：主要用在数据存贮和交换，根据官方文档所说�
 </div>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2007/09/22/config-java-environment-in-linux/" itemprop="url">Linux中设置java环境变量</a></h1>
+	<h1 class="title" itemprop="name"><a href="/blog/2007/09/22/config-java-environment-in-linux/" itemprop="url">Linux中设置Java环境变量</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<p>从网上找资料，自己总结一下：</p>
 
@@ -702,90 +777,13 @@ Content Provider：主要用在数据存贮和交换，根据官方文档所说�
 
 </article>
 
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-08-19T14:02:00+08:00" data-updated="true" itemprop="datePublished">Aug 19<span>th</span>, 2007</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/linux/'>Linux</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2007/08/19/my-vi-config/" itemprop="url">我的VI配置文件</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>set nocompatible
-</span><span class='line'>set history=1000
-</span><span class='line'>filetype on
-</span><span class='line'>set iskeyword+=_,$,@,%,#,-
-</span><span class='line'>syntax on
-</span><span class='line'>
-</span><span class='line'>set ruler
-</span><span class='line'>set shortmess=atI
-</span><span class='line'>set noerrorbells
-</span><span class='line'>
-</span><span class='line'>set showmatch
-</span><span class='line'>set incsearch
-</span><span class='line'>
-</span><span class='line'>set number
-</span><span class='line'>set background=dark
-</span><span class='line'>
-</span><span class='line'>set autoindent
-</span><span class='line'>set smartindent
-</span><span class='line'>set tabstop=4
-</span><span class='line'>set softtabstop=4
-</span><span class='line'>set shiftwidth=4
-</span><span class='line'>set expandtab</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-</article>
-
 </div>
 <nav id="pagenavi">
     
         <a href="/" class="prev">Prev</a>
     
+    
+        <a href="/blog/page/3/" class="next">Next</a>
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>

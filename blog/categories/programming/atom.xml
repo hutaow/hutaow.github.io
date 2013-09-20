@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2009-04-02T21:04:32+08:00</updated>
+  <updated>2009-05-02T21:16:02+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[标记ATL控件为安全控件]]></title>
+    <link href="http://hutaow.github.io/blog/2009/05/02/mark-atl-control-as-a-safe-control/"/>
+    <updated>2009-05-02T14:02:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2009/05/02/mark-atl-control-as-a-safe-control</id>
+    <content type="html"><![CDATA[<p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
+
+<p>实现方法如下：</p>
+
+<p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
+
+<p>``` c++
+class CHutaow : </p>
+
+<pre><code>// 添加到控件的派生类列表中
+public IObjectSafetyImpl&lt;CHutaow, INTERFACESAFE_FOR_UNTRUSTED_CALLER|INTERFACESAFE_FOR_UNTRUSTED_DATA&gt;
+...
+{
+    public:
+
+    BEGIN_COM_MAP(CHutaow)
+
+    COM_INTERFACE_ENTRY(IObjectSafety) //创建IObjectSafety的映射
+
+    ...
+
+    END_COM_MAP()
+    ...
+}
+</code></pre>
+
+<p>```</p>
+
+<p>PS: 如果出现"&lsquo;IObjectSafetyImpl&rsquo; : base class undefined"的错误，则需要添加"atlctl.h"头文件。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Java中十六进制字符串与字节数组的相互转换]]></title>

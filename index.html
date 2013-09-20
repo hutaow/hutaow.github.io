@@ -388,6 +388,82 @@
   
 
 
+<time datetime="2009-05-02T14:02:00+08:00" data-updated="true" itemprop="datePublished">May 2<span>nd</span>, 2009</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/programming/'>Programming</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2009/05/02/mark-atl-control-as-a-safe-control/" itemprop="url">标记ATL控件为安全控件</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
+
+<p>实现方法如下：</p>
+
+<p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">CHutaow</span> <span class="o">:</span><span class="err"> </span>
+</span><span class='line'>    <span class="c1">// 添加到控件的派生类列表中</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">IObjectSafetyImpl</span><span class="o">&lt;</span><span class="n">CHutaow</span><span class="p">,</span> <span class="n">INTERFACESAFE_FOR_UNTRUSTED_CALLER</span><span class="o">|</span><span class="n">INTERFACESAFE_FOR_UNTRUSTED_DATA</span><span class="o">&gt;</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">public</span><span class="o">:</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">BEGIN_COM_MAP</span><span class="p">(</span><span class="n">CHutaow</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">COM_INTERFACE_ENTRY</span><span class="p">(</span><span class="n">IObjectSafety</span><span class="p">)</span><span class="err"> </span><span class="c1">//创建IObjectSafety的映射</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">END_COM_MAP</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">...</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>PS: 如果出现&#8221;&lsquo;IObjectSafetyImpl&rsquo; : base class undefined&#8221;的错误，则需要添加&#8221;atlctl.h&#8221;头文件。</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2009-04-02T10:55:00+08:00" data-updated="true" itemprop="datePublished">Apr 2<span>nd</span>, 2009</time></div>
 		<div class="tags">
 
@@ -797,81 +873,6 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 <p>回想在Windows里用UltraEdit打开时，提示文件不是&#8221;DOS Format&#8221;，会不会和文字编码有关？Linux用的是UTF-8的编码，而Windows用的是GBK的编码，难道字符编码必须要和本地相同才能编译通过么？试一下，于是把代码用UltraEdit转换成了GBK编码，再次编译，终于正常通过。</p>
 
 <p>看来有时编译不通过不一定是语句问题，连文件的编码也有可能出问题，如果在不同系统中出现类似上面一个正常一个错误的情况，可以考虑看是不是因为文件的编码和系统默认的编码有差异而引起的。</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-17T21:28:00+08:00" data-updated="true" itemprop="datePublished">Feb 17<span>th</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/linux/'>Linux</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora/" itemprop="url">Fedora禁止自动挂载分区的方法</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在&#8221;/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi&#8221;文件中。</p>
-
-<p>找到以下提示行</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;
-</span><span class='line'>&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;
-</span><span class='line'>&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;
-</span><span class='line'>&lt;merge key="volume.ignore" type="bool"&gt;false&lt;/merge&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>按照说明在提示之后添加对磁盘挂载的策略即可，比如我自己的硬盘就是</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;match key="volume.fstype" string="vfat"&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="DATA"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="MULTI"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="BACKUP"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>&lt;/match&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其中&#8221;volume.fstype&#8221;后面的值就是匹配的文件系统，&#8221;volume.label&#8221;后面的值是匹配的卷标，&#8221;volume.ignore&#8221;中的参数是&#8221;true&#8221;，意思是忽略被匹配的分区。</p>
 
 		
 		
