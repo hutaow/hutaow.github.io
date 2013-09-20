@@ -388,6 +388,62 @@
   
 
 
+<time datetime="2008-02-15T20:16:00+08:00" data-updated="true" itemprop="datePublished">Feb 15<span>th</span>, 2008</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g/" itemprop="url">解决安装ntfs-3g时遇到的问题</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行&#8221;mount -t ntfs-3g /dev/hdc5 /media/wdata&#8221;，结果提示：</p>
+
+<pre><code>FATAL: Module fuse not found.
+fuse: device not found, try 'modprobe fuse' first
+</code></pre>
+
+<p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行&#8221;modprobe fuse&#8221;，结果又出来：</p>
+
+<pre><code>FATAL: Module fuse not found.
+</code></pre>
+
+<p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net</a>，看上面说明的意思是说fuse(Filesystem in Userspace)是个库，提供了API供用户开发文件系统，看样子通过它开发文件系统又会方便不少，最后只要连接到fuse库上就可以了。呵呵，不管怎么说先下载了安装再说，这些以后有时间再慢慢研究吧。下载后解压，执行下面的命令编译安装fuse：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./configure
+</span><span class='line'>make
+</span><span class='line'>make install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>装好后再次执行mount命令，完成！</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2008-02-13T15:51:00+08:00" data-updated="true" itemprop="datePublished">Feb 13<span>th</span>, 2008</time></div>
 		<div class="tags">
 
@@ -910,88 +966,11 @@ Content Provider：主要用在数据存贮和交换，根据官方文档所说�
 
 </article>
 
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-08-19T14:02:00+08:00" data-updated="true" itemprop="datePublished">Aug 19<span>th</span>, 2007</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/linux/'>Linux</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2007/08/19/my-vi-config/" itemprop="url">我的VI配置文件</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>set nocompatible
-</span><span class='line'>set history=1000
-</span><span class='line'>filetype on
-</span><span class='line'>set iskeyword+=_,$,@,%,#,-
-</span><span class='line'>syntax on
-</span><span class='line'>
-</span><span class='line'>set ruler
-</span><span class='line'>set shortmess=atI
-</span><span class='line'>set noerrorbells
-</span><span class='line'>
-</span><span class='line'>set showmatch
-</span><span class='line'>set incsearch
-</span><span class='line'>
-</span><span class='line'>set number
-</span><span class='line'>set background=dark
-</span><span class='line'>
-</span><span class='line'>set autoindent
-</span><span class='line'>set smartindent
-</span><span class='line'>set tabstop=4
-</span><span class='line'>set softtabstop=4
-</span><span class='line'>set shiftwidth=4
-</span><span class='line'>set expandtab</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-</article>
-
 </div>
 <nav id="pagenavi">
     
+    
+        <a href="/blog/page/2/" class="next">Next</a>
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>

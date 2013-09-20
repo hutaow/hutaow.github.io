@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2008-02-13T16:51:23+08:00</updated>
+  <updated>2008-02-15T17:08:44+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[解决安装ntfs-3g时遇到的问题]]></title>
+    <link href="http://hutaow.github.io/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g/"/>
+    <updated>2008-02-15T20:16:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g</id>
+    <content type="html"><![CDATA[<p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行"mount -t ntfs-3g /dev/hdc5 /media/wdata"，结果提示：</p>
+
+<pre><code>FATAL: Module fuse not found.
+fuse: device not found, try 'modprobe fuse' first
+</code></pre>
+
+<p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行"modprobe fuse"，结果又出来：</p>
+
+<pre><code>FATAL: Module fuse not found.
+</code></pre>
+
+<p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net</a>，看上面说明的意思是说fuse(Filesystem in Userspace)是个库，提供了API供用户开发文件系统，看样子通过它开发文件系统又会方便不少，最后只要连接到fuse库上就可以了。呵呵，不管怎么说先下载了安装再说，这些以后有时间再慢慢研究吧。下载后解压，执行下面的命令编译安装fuse：</p>
+
+<p><code>
+./configure
+make
+make install
+</code></p>
+
+<p>装好后再次执行mount命令，完成！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux中改变网卡的速度]]></title>
@@ -89,38 +117,6 @@ export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:$CLASSPATH
 </code></p>
 
 <p>最后重启终端或执行source ~/.bashrc即可。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[我的VI配置文件]]></title>
-    <link href="http://hutaow.github.io/blog/2007/08/19/my-vi-config/"/>
-    <updated>2007-08-19T14:02:00+08:00</updated>
-    <id>http://hutaow.github.io/blog/2007/08/19/my-vi-config</id>
-    <content type="html"><![CDATA[<p>```
-set nocompatible
-set history=1000
-filetype on
-set iskeyword+=_,$,@,%,#,&ndash;
-syntax on</p>
-
-<p>set ruler
-set shortmess=atI
-set noerrorbells</p>
-
-<p>set showmatch
-set incsearch</p>
-
-<p>set number
-set background=dark</p>
-
-<p>set autoindent
-set smartindent
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-```</p>
 ]]></content>
   </entry>
   
