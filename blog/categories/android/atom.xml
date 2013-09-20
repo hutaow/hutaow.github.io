@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2008-01-11T14:56:45+08:00</updated>
+  <updated>2008-01-28T15:22:39+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[对Android布局的理解]]></title>
+    <link href="http://hutaow.github.io/blog/2008/01/28/understanding-on-the-android-layout/"/>
+    <updated>2008-01-28T15:02:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2008/01/28/understanding-on-the-android-layout</id>
+    <content type="html"><![CDATA[<p>前一段时间一直在考试，现在放假了，有时间好好的看了一下Android的布局。</p>
+
+<p>之前对于XML的布局方法一直看着不爽，感觉很乱的样子，但时间长了我渐渐发现，这种程序代码与界面布局完全分开的方法非常顺手，该布局的地方都到main.xml里去写，甚至界面中显示的字符串都可以集中到string.xml文件中，而主程序的".java"文件中则完全用于编写代码，思路非常清晰。</p>
+
+<h3>1 首先按照程序的目录结构大致分析</h3>
+
+<pre><code>res/layout/   这个目录存放的就是布局用的xml文件，一般默认为main.xml
+res/values/   这个目录存放的是一堆常量的xml文件
+res/drawable/ 存放的是一些图片什么的，当然图标也在这里
+</code></pre>
+
+<h3>2 下面主要对layout下的xml文件做个介绍，顺便也把布局的方法总结一下</h3>
+
+<h4>2.1 文件的开头</h4>
+
+<p><code>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+</code>
+这是在说明xml版本及字符编码</p>
+
+<h4>2.2 布局框架</h4>
+
+<p><code>
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"&gt;
+&lt;/LinearLayout&gt;
+</code>
+其中开头的"LinearLayout"是布局的方式，可以有很多种，最常用的应该就是Linear了，其他的布局方法等下在后面总结。</p>
+
+<p>接着android:layout_width(height)=&ldquo;wrap_content"是在设置这部分布局的宽高，也可以是绝对值，当然设置为绝对值时要标上单位。</p>
+
+<h4>2.3 添加控件</h4>
+
+<p>在"&lt;LinearLayout>&ldquo;和&rdquo;&lt;/LinearLayout>&ldquo;之间就可以添加控件了，比如要添加一个名字为btn的Button控件，并且Button上显示的文字是"Test!"，可以这样写：</p>
+
+<p><code>
+&lt;Button id="@+id/btn"
+  android:text="Test!"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+/&gt;
+</code></p>
+
+<p>开头id后面的就是控件名称，在用于添加事件Listener时会用到，而下几行的android:xxx就是设置控件的属性了，这些属性在Android的文档中都有，不需要特别去记，一般现查就可以了。</p>
+
+<p><strong><em>有一点要说明的是，布局方法可以嵌套，有点像java中的Container，可以非常方便的把界面“堆”出来。</em></strong></p>
+
+<p>布局方式的简单说明：
+查了Android文档发现布局确实很多，只列出两个我自己认为较常用的：</p>
+
+<ul>
+<li>LinearLayout线性的布局方式，要么上下，要么左右的添加控件，很常用</li>
+<li>GridView中文翻译过来是网格布局，控件按照顺序依次填到每个格子里就好了，出来的界面会很整齐</li>
+</ul>
+
+
+<p>其他的布局方式可以在需要时查文档，这里不再列出。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[初学Android的一点问题]]></title>
