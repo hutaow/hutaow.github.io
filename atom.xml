@@ -4,7 +4,7 @@
   <title><![CDATA[Tony Wang]]></title>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2008-07-29T20:18:45+08:00</updated>
+  <updated>2008-08-10T20:31:53+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -248,6 +248,29 @@
 
 <p>重启路由器，再次&#8221;df -h&#8221;一下，可以看到路由器的空间已经扩展成功了。
 <img class="center" src="http://hutaow.github.io/images/articles/201309/install_openwrt_03_df.png" title="DF Info" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[终端下使用代理的方法]]></title>
+    <link href="http://hutaow.github.io/blog/2008/08/10/config-proxy-in-linux-terminal/"/>
+    <updated>2008-08-10T15:12:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2008/08/10/config-proxy-in-linux-terminal</id>
+    <content type="html"><![CDATA[<p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，&#8221;HTTP_PROXY&#8221;、&#8221;http_proxy&#8221;和&#8221;FTP_PROXY&#8221;、&#8221;ftp_proxy&#8221;，在&#8221;~/.bash_profile&#8221;中添加以下几行：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export HTTP_PROXY=http://username:password@proxy.server:8080
+</span><span class='line'>export FTP_PROXY=http://username:password@proxy.server:8080
+</span><span class='line'>export http_proxy=http://username:password@proxy.server:8080
+</span><span class='line'>export ftp_proxy=http://username:password@proxy.server:8080</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
+
+<p>修改保存后重启终端或在执行&#8221;source ~/.bash_proxy&#8221;生效。</p>
 ]]></content>
   </entry>
   

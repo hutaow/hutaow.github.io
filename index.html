@@ -388,6 +388,55 @@
   
 
 
+<time datetime="2008-08-10T15:12:00+08:00" data-updated="true" itemprop="datePublished">Aug 10<span>th</span>, 2008</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2008/08/10/config-proxy-in-linux-terminal/" itemprop="url">终端下使用代理的方法</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，&#8221;HTTP_PROXY&#8221;、&#8221;http_proxy&#8221;和&#8221;FTP_PROXY&#8221;、&#8221;ftp_proxy&#8221;，在&#8221;~/.bash_profile&#8221;中添加以下几行：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export HTTP_PROXY=http://username:password@proxy.server:8080
+</span><span class='line'>export FTP_PROXY=http://username:password@proxy.server:8080
+</span><span class='line'>export http_proxy=http://username:password@proxy.server:8080
+</span><span class='line'>export ftp_proxy=http://username:password@proxy.server:8080</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
+
+<p>修改保存后重启终端或在执行&#8221;source ~/.bash_proxy&#8221;生效。</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2008-07-29T11:34:00+08:00" data-updated="true" itemprop="datePublished">Jul 29<span>th</span>, 2008</time></div>
 		<div class="tags">
 
@@ -867,53 +916,6 @@ fuse: device not found, try 'modprobe fuse' first
 
 
 
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-11T18:28:00+08:00" data-updated="true" itemprop="datePublished">Feb 11<span>th</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/linux/'>Linux</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux/" itemprop="url">Linux中改变网卡的速度</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>今天又用到家里的那根20几米的超长网线了，因为太长了，之前windows里用它联网的时候要把网卡速度降到10Mbps才能用。如果自动配置的话会默认用100Mbps的速度连接，但这样的话就会时断时连很不稳定。</p>
-
-<p>我在Linux里试图在Network里直接配置速度，但没有找到，上网google发现需要手动修改，用到的工具是mii-tool。</p>
-
-<p>用管理员权限执行如下命令</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mii-tool -A 10baseT-FD eth0</span></code></pre></td></tr></table></div></figure>
-
-
-<p>eth0是网卡的名称，&#8221;10baseT-FD&#8221;是网卡的工作模式，如果要改回100Mbps的话这里填&#8221;100baseTx-FD&#8221;；</p>
-
-<p>FD指的是Full Duplex全双工，也可以是HD即Half Duplex半双工。</p>
 
 		
 		

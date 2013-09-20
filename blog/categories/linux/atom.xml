@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2008-07-29T20:18:45+08:00</updated>
+  <updated>2008-08-10T20:31:53+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[终端下使用代理的方法]]></title>
+    <link href="http://hutaow.github.io/blog/2008/08/10/config-proxy-in-linux-terminal/"/>
+    <updated>2008-08-10T15:12:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2008/08/10/config-proxy-in-linux-terminal</id>
+    <content type="html"><![CDATA[<p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，"HTTP_PROXY"、"http_proxy"和"FTP_PROXY"、"ftp_proxy"，在"~/.bash_profile"中添加以下几行：</p>
+
+<p><code>
+export HTTP_PROXY=http://username:password@proxy.server:8080
+export FTP_PROXY=http://username:password@proxy.server:8080
+export http_proxy=http://username:password@proxy.server:8080
+export ftp_proxy=http://username:password@proxy.server:8080
+</code></p>
+
+<p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
+
+<p>修改保存后重启终端或在执行"source ~/.bash_proxy"生效。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fedora 9 无法启动KDE的解决办法]]></title>
@@ -109,34 +129,6 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 </code></p>
 
 <p>其中"volume.fstype"后面的值就是匹配的文件系统，"volume.label"后面的值是匹配的卷标，"volume.ignore"中的参数是"true"，意思是忽略被匹配的分区。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[解决安装ntfs-3g时遇到的问题]]></title>
-    <link href="http://hutaow.github.io/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g/"/>
-    <updated>2008-02-15T20:16:00+08:00</updated>
-    <id>http://hutaow.github.io/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g</id>
-    <content type="html"><![CDATA[<p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行"mount -t ntfs-3g /dev/hdc5 /media/wdata"，结果提示：</p>
-
-<pre><code>FATAL: Module fuse not found.
-fuse: device not found, try 'modprobe fuse' first
-</code></pre>
-
-<p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行"modprobe fuse"，结果又出来：</p>
-
-<pre><code>FATAL: Module fuse not found.
-</code></pre>
-
-<p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net</a>，看上面说明的意思是说fuse(Filesystem in Userspace)是个库，提供了API供用户开发文件系统，看样子通过它开发文件系统又会方便不少，最后只要连接到fuse库上就可以了。呵呵，不管怎么说先下载了安装再说，这些以后有时间再慢慢研究吧。下载后解压，执行下面的命令编译安装fuse：</p>
-
-<p><code>
-./configure
-make
-make install
-</code></p>
-
-<p>装好后再次执行mount命令，完成！</p>
 ]]></content>
   </entry>
   

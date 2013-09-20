@@ -5,11 +5,11 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Categories - Tony Wang</title>
+	<title>终端下使用代理的方法 - Tony Wang</title>
 	<meta name="author" content="Wang Tao">
 
 	
-	<meta name="description" content=" Linux [ 11 ] Android [ 5 ] Programming [ 1 ] Openwrt [ 1 ] ">
+	<meta name="description" content="终端下使用代理的方法 很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，&#8221;HTTP_PROXY&#8221;、&#8221;http_proxy&#8221;和&#8221;FTP_PROXY&#8221;、&#8221;ftp_proxy&#8221;，在&#8221 &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="Tony Wang" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://hutaow.github.io/blog/categories/">
+	<link rel="canonical" href="http://hutaow.github.io/blog/2008/08/10/config-proxy-in-linux-terminal/">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -106,24 +106,39 @@
 				
 			
 			<div class="mid-col-container">
-				<div id="content" class="inner"><article class="page">
-    
-    <h1 class="title">Categories</h1>
-    
-    <div class="entry-content"><ul>
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">终端下使用代理的方法</h1>
+	<div class="entry-content" itemprop="articleBody"><p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，&#8221;HTTP_PROXY&#8221;、&#8221;http_proxy&#8221;和&#8221;FTP_PROXY&#8221;、&#8221;ftp_proxy&#8221;，在&#8221;~/.bash_profile&#8221;中添加以下几行：</p>
 
-    <li><a href="/blog/categories/Linux/">Linux</a> [ 11 ]</li>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export HTTP_PROXY=http://username:password@proxy.server:8080
+</span><span class='line'>export FTP_PROXY=http://username:password@proxy.server:8080
+</span><span class='line'>export http_proxy=http://username:password@proxy.server:8080
+</span><span class='line'>export ftp_proxy=http://username:password@proxy.server:8080</span></code></pre></td></tr></table></div></figure>
 
-    <li><a href="/blog/categories/Android/">Android</a> [ 5 ]</li>
 
-    <li><a href="/blog/categories/Programming/">Programming</a> [ 1 ]</li>
+<p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
 
-    <li><a href="/blog/categories/OpenWRT/">Openwrt</a> [ 1 ]</li>
-
-</ul>
-
+<p>修改保存后重启终端或在执行&#8221;source ~/.bash_proxy&#8221;生效。</p>
 </div>
+
 </article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
 
 
 <section id="comment">
@@ -131,7 +146,6 @@
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
 </section>
-
 </div>
 			</div>
 			<footer id="footer" class="inner"><p>
@@ -147,8 +161,8 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://hutaow.github.io/blog/categories/index.html';
-        var disqus_url = 'http://hutaow.github.io/blog/categories/index.html';
+        var disqus_identifier = 'http://hutaow.github.io/blog/2008/08/10/config-proxy-in-linux-terminal/';
+        var disqus_url = 'http://hutaow.github.io/blog/2008/08/10/config-proxy-in-linux-terminal/';
         var disqus_script = 'embed.js';
       
     (function () {
