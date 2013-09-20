@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Technology | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/technology/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2010-01-14T21:53:13+08:00</updated>
+  <updated>2010-01-30T22:28:48+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[正斜杠与反斜杠的分析]]></title>
+    <link href="http://hutaow.github.io/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/"/>
+    <updated>2010-01-30T00:29:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash</id>
+    <content type="html"><![CDATA[<p>　　正斜杠(左斜杠)，符号是"/&ldquo;；反斜杠(右斜杠)，符号是&rdquo;\&ldquo;。</p>
+
+<p>　　在Unix/Linux中，路径的分隔采用正斜杠"/&ldquo;，比如&rdquo;/home/hutaow"；而在Windows中，路径分隔采用反斜杠"\&ldquo;，比如"C:\Windows\System"。</p>
+
+<p>　　有时我们会看到这样的路径写法，"C:\\\Windows\\\System"，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用"C:/Windows/System"来代替，不会出错。但是如果写成了"C:\Windows\System"，那就可能会出现各种奇怪的错误了。</p>
+
+<p>　　至于上述问题出现的原因，要从字符串解析这方面来分析。</p>
+
+<p>　　学过编程的人都应该知道，在C里面，输出字符串时，如果想输出一个换行，那就要加上'\n'这个标志，类似的，输出一个TAB，就加上'\t'，也就是说，反斜杠(&ldquo;\&rdquo;)这个符号会把跟在它后面的字符结合起来转义成其它字符。根据这个原理，如果想输出双引号(&lsquo;&ldquo;&rsquo;)，就需要输入'\&rdquo;&lsquo;，这样才会将包含了双引号的字符串正确的写入内存中。那么如果想输入一个反斜杠呢？很简单，只要敲&rsquo;\\\&lsquo;就可以了。</p>
+
+<p>　　看到这里或许有些人已经看出眉目了，如果"C:\Windows\System"这个路径字符串交给C编译器编译，实际写入内存的字符串并没有包含反斜杠"\&ldquo;，甚至紧跟在反斜杠后面的字母也一起被转义成了其它的字符，再次调用的话势必会出问题。</p>
+
+<p>　　字符串解析不仅仅局限于C编译器，Java编译器、一些配置文件的解析、Web服务器等等，都会遇到对字符串进行解析的这个问题，由于传统的Windows采用的是单个斜杠的路径分隔形式，导致在对文件路径进行解析的时候可能发生不必要的错误，所以就出现了用双反斜杠"\\\&ldquo;分隔路径的形式。不管解析引擎是否将反斜杠解析成转义字符，最终在内存中得到的都是&rdquo;\&ldquo;，结果也就不会出问题了。</p>
+
+<p>　　由此也可以看出Windows或者说DOS在设计初期考虑不够周全，为了和Unix一些特征区别开来，将Unix中的正斜杠"/&ldquo;分隔路径方式改变成了反斜杠&rdquo;\&ldquo;。这样改变导致的一个问题就是在早期DOS命令行中，正常的文件名是不能包含空格的，如果包含了空格，会导致输入这样的文件名时，命令解析无法将其和参数区分开。例如，想要进入"hutaow yuan"这个目录（在此先忽略8.3命名规则），直接输入"cd hutaow yuan"，命令行会将其解析为进入"hutaow"目录，而后面的"yuan"做参数，这显然不是所期望的。</p>
+
+<p>　　而在Unix中，文件名如果包含空格，可以直接在空格前加上反斜杠"\&ldquo;进行转义，从而很好的和命令参数区别出来（参数之间一般使用空格分隔）。还是上面的例子，在Unix中，只要输入"cd hutaow\ yuan&rdquo;(在yuan前面的空格前加上"\&ldquo;)，命令行会正确的辨认出"hutaow yuan"并进入这个目录。</p>
+
+<p>　　当然，现在Windows的后续版本已经使用其它方法（比如文件名用双引号括住）解决了空格问题。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[HTC Diamond 两个有意思的功能]]></title>

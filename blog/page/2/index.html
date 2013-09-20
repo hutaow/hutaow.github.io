@@ -9,7 +9,7 @@
 	<meta name="author" content="Wang Tao">
 
 	
-	<meta name="description" content="Apr 2nd, 2008 Android 二维条码终于有了突破! 自己改写了几个类，这几天不停的测试测试测试，今天终于成功解码，不过因为字符编码还没彻底弄好，所以解出来的还都是乱码，不过英文已经可以解析出来了，值得纪念的一天! Mar 20th, 2008 Programming &hellip;">
+	<meta name="description" content="Jul 18th, 2008 Linux 新版VirtualBox在Fedora下不能启动虚拟机的解决办法 前一段时间突然发现VirtualBox被Sun收购了，改名成&#8221;Sun xVM VirtualBox&#8221;，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误 &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,6 +108,51 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-18T20:48:00+08:00" data-updated="true" itemprop="datePublished">Jul 18<span>th</span>, 2008</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora/" itemprop="url">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>前一段时间突然发现VirtualBox被Sun收购了，改名成&#8221;Sun xVM VirtualBox&#8221;，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
+
+<pre><code>VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. 
+Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
+</code></pre>
+
+<p>于是按照提示在终端里执行&#8221;sudo /etc/init.d/vboxdrv setup&#8221;时，却又提示VirtualBox的内核模块无法编译，查看日志发现是没有安装内核源代码。</p>
+
+<p>于是执行&#8221;sudo yum install kernel-devel&#8221;，等待系统自动下载并安装。注意这里我用的Linux是Fedora，如果是其它发行版可以执行相应的安装命令，唯一相同的是软件包&#8221;kernel-devel&#8221;名字不变。</p>
+
+<p>安装完成后，再次执行&#8221;sudo /etc/init.d/vboxdrv setup&#8221;，搞定！</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -645,107 +690,6 @@ fuse: device not found, try 'modprobe fuse' first
 <p>源代码地址：<a href="https://github.com/hutaow/AndroidCalculator">点击这里</a></p>
 
 <p>PS: 今天整理的时候发现一个问题，这个程序是我原来用Android SDK的m3版本生成编译的，现在SDK的最新版本是m5，结果在m5里竟然编译不通过。解决方法是可以重新创建一个项目，直接将源代码部分复制粘贴过去就可以了，新的项目仍然可以编译运行，我想应该是build.xml那个文件里的问题，版本、结构上google可能改了一些，不过不碍大事。</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-01-28T20:13:00+08:00" data-updated="true" itemprop="datePublished">Jan 28<span>th</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>Android</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/01/28/understanding-on-the-android-layout/" itemprop="url">对Android布局的理解</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>前一段时间一直在考试，现在放假了，有时间好好的看了一下Android的布局。</p>
-
-<p>之前对于XML的布局方法一直看着不爽，感觉很乱的样子，但时间长了我渐渐发现，这种程序代码与界面布局完全分开的方法非常顺手，该布局的地方都到main.xml里去写，甚至界面中显示的字符串都可以集中到string.xml文件中，而主程序的&#8221;.java&#8221;文件中则完全用于编写代码，思路非常清晰。</p>
-
-<h3>1 首先按照程序的目录结构大致分析</h3>
-
-<pre><code>res/layout/   这个目录存放的就是布局用的xml文件，一般默认为main.xml
-res/values/   这个目录存放的是一堆常量的xml文件
-res/drawable/ 存放的是一些图片什么的，当然图标也在这里
-</code></pre>
-
-<h3>2 下面主要对layout下的xml文件做个介绍，顺便也把布局的方法总结一下</h3>
-
-<h4>2.1 文件的开头</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这是在说明xml版本及字符编码</p>
-
-<h4>2.2 布局框架</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-</span><span class='line'>  android:layout_width="wrap_content"
-</span><span class='line'>  android:layout_height="wrap_content"&gt;
-</span><span class='line'>&lt;/LinearLayout&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其中开头的&#8221;LinearLayout&#8221;是布局的方式，可以有很多种，最常用的应该就是Linear了，其他的布局方法等下在后面总结。</p>
-
-<p>接着android:layout_width(height)=&ldquo;wrap_content&#8221;是在设置这部分布局的宽高，也可以是绝对值，当然设置为绝对值时要标上单位。</p>
-
-<h4>2.3 添加控件</h4>
-
-<p>在&#8221;&lt;LinearLayout>&ldquo;和&rdquo;&lt;/LinearLayout>&ldquo;之间就可以添加控件了，比如要添加一个名字为btn的Button控件，并且Button上显示的文字是&#8221;Test!&#8221;，可以这样写：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;Button id="@+id/btn" 
-</span><span class='line'>  android:text="Test!"
-</span><span class='line'>  android:layout_width="wrap_content"
-</span><span class='line'>  android:layout_height="wrap_content"
-</span><span class='line'>/&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>开头id后面的就是控件名称，在用于添加事件Listener时会用到，而下几行的android:xxx就是设置控件的属性了，这些属性在Android的文档中都有，不需要特别去记，一般现查就可以了。</p>
-
-<p><strong><em>有一点要说明的是，布局方法可以嵌套，有点像java中的Container，可以非常方便的把界面“堆”出来。</em></strong></p>
-
-<p>布局方式的简单说明：
-查了Android文档发现布局确实很多，只列出两个我自己认为较常用的：</p>
-
-<ul>
-<li>LinearLayout线性的布局方式，要么上下，要么左右的添加控件，很常用</li>
-<li>GridView中文翻译过来是网格布局，控件按照顺序依次填到每个格子里就好了，出来的界面会很整齐</li>
-</ul>
-
-
-<p>其他的布局方式可以在需要时查文档，这里不再列出。</p>
 
 		
 		

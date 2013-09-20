@@ -4,7 +4,7 @@
   <title><![CDATA[Tony Wang]]></title>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2010-01-14T21:53:13+08:00</updated>
+  <updated>2010-01-30T22:28:48+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -248,6 +248,33 @@
 
 <p>重启路由器，再次&#8221;df -h&#8221;一下，可以看到路由器的空间已经扩展成功了。
 <img class="center" src="http://hutaow.github.io/images/articles/201309/install_openwrt_03_df.png" title="DF Info" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[正斜杠与反斜杠的分析]]></title>
+    <link href="http://hutaow.github.io/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/"/>
+    <updated>2010-01-30T00:29:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash</id>
+    <content type="html"><![CDATA[<p>　　正斜杠(左斜杠)，符号是&#8221;/&ldquo;；反斜杠(右斜杠)，符号是&rdquo;\&ldquo;。</p>
+
+<p>　　在Unix/Linux中，路径的分隔采用正斜杠&#8221;/&ldquo;，比如&rdquo;/home/hutaow&#8221;；而在Windows中，路径分隔采用反斜杠&#8221;\&ldquo;，比如&#8221;C:\Windows\System&#8221;。</p>
+
+<p>　　有时我们会看到这样的路径写法，&#8221;C:&#92;\Windows&#92;\System&#8221;，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用&#8221;C:/Windows/System&#8221;来代替，不会出错。但是如果写成了&#8221;C:\Windows\System&#8221;，那就可能会出现各种奇怪的错误了。</p>
+
+<p>　　至于上述问题出现的原因，要从字符串解析这方面来分析。</p>
+
+<p>　　学过编程的人都应该知道，在C里面，输出字符串时，如果想输出一个换行，那就要加上&#8217;\n&#8217;这个标志，类似的，输出一个TAB，就加上&#8217;\t&#8217;，也就是说，反斜杠(&ldquo;\&rdquo;)这个符号会把跟在它后面的字符结合起来转义成其它字符。根据这个原理，如果想输出双引号(&lsquo;&ldquo;&rsquo;)，就需要输入&#8217;\&rdquo;&lsquo;，这样才会将包含了双引号的字符串正确的写入内存中。那么如果想输入一个反斜杠呢？很简单，只要敲&rsquo;&#92;\&lsquo;就可以了。</p>
+
+<p>　　看到这里或许有些人已经看出眉目了，如果&#8221;C:\Windows\System&#8221;这个路径字符串交给C编译器编译，实际写入内存的字符串并没有包含反斜杠&#8221;\&ldquo;，甚至紧跟在反斜杠后面的字母也一起被转义成了其它的字符，再次调用的话势必会出问题。</p>
+
+<p>　　字符串解析不仅仅局限于C编译器，Java编译器、一些配置文件的解析、Web服务器等等，都会遇到对字符串进行解析的这个问题，由于传统的Windows采用的是单个斜杠的路径分隔形式，导致在对文件路径进行解析的时候可能发生不必要的错误，所以就出现了用双反斜杠&#8221;&#92;\&ldquo;分隔路径的形式。不管解析引擎是否将反斜杠解析成转义字符，最终在内存中得到的都是&rdquo;\&ldquo;，结果也就不会出问题了。</p>
+
+<p>　　由此也可以看出Windows或者说DOS在设计初期考虑不够周全，为了和Unix一些特征区别开来，将Unix中的正斜杠&#8221;/&ldquo;分隔路径方式改变成了反斜杠&rdquo;\&ldquo;。这样改变导致的一个问题就是在早期DOS命令行中，正常的文件名是不能包含空格的，如果包含了空格，会导致输入这样的文件名时，命令解析无法将其和参数区分开。例如，想要进入&#8221;hutaow yuan&#8221;这个目录（在此先忽略8.3命名规则），直接输入&#8221;cd hutaow yuan&#8221;，命令行会将其解析为进入&#8221;hutaow&#8221;目录，而后面的&#8221;yuan&#8221;做参数，这显然不是所期望的。</p>
+
+<p>　　而在Unix中，文件名如果包含空格，可以直接在空格前加上反斜杠&#8221;\&ldquo;进行转义，从而很好的和命令参数区别出来（参数之间一般使用空格分隔）。还是上面的例子，在Unix中，只要输入&#8221;cd hutaow\ yuan&rdquo;(在yuan前面的空格前加上&#8221;\&ldquo;)，命令行会正确的辨认出&#8221;hutaow yuan&#8221;并进入这个目录。</p>
+
+<p>　　当然，现在Windows的后续版本已经使用其它方法（比如文件名用双引号括住）解决了空格问题。</p>
 ]]></content>
   </entry>
   
@@ -862,81 +889,6 @@ fuse: device not found, try 'modprobe fuse' first
 <p>源代码地址：<a href="https://github.com/hutaow/AndroidCalculator">点击这里</a></p>
 
 <p>PS: 今天整理的时候发现一个问题，这个程序是我原来用Android SDK的m3版本生成编译的，现在SDK的最新版本是m5，结果在m5里竟然编译不通过。解决方法是可以重新创建一个项目，直接将源代码部分复制粘贴过去就可以了，新的项目仍然可以编译运行，我想应该是build.xml那个文件里的问题，版本、结构上google可能改了一些，不过不碍大事。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[对Android布局的理解]]></title>
-    <link href="http://hutaow.github.io/blog/2008/01/28/understanding-on-the-android-layout/"/>
-    <updated>2008-01-28T20:13:00+08:00</updated>
-    <id>http://hutaow.github.io/blog/2008/01/28/understanding-on-the-android-layout</id>
-    <content type="html"><![CDATA[<p>前一段时间一直在考试，现在放假了，有时间好好的看了一下Android的布局。</p>
-
-<p>之前对于XML的布局方法一直看着不爽，感觉很乱的样子，但时间长了我渐渐发现，这种程序代码与界面布局完全分开的方法非常顺手，该布局的地方都到main.xml里去写，甚至界面中显示的字符串都可以集中到string.xml文件中，而主程序的&#8221;.java&#8221;文件中则完全用于编写代码，思路非常清晰。</p>
-
-<h3>1 首先按照程序的目录结构大致分析</h3>
-
-<pre><code>res/layout/   这个目录存放的就是布局用的xml文件，一般默认为main.xml
-res/values/   这个目录存放的是一堆常量的xml文件
-res/drawable/ 存放的是一些图片什么的，当然图标也在这里
-</code></pre>
-
-<h3>2 下面主要对layout下的xml文件做个介绍，顺便也把布局的方法总结一下</h3>
-
-<h4>2.1 文件的开头</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这是在说明xml版本及字符编码</p>
-
-<h4>2.2 布局框架</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-</span><span class='line'>  android:layout_width="wrap_content"
-</span><span class='line'>  android:layout_height="wrap_content"&gt;
-</span><span class='line'>&lt;/LinearLayout&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其中开头的&#8221;LinearLayout&#8221;是布局的方式，可以有很多种，最常用的应该就是Linear了，其他的布局方法等下在后面总结。</p>
-
-<p>接着android:layout_width(height)=&ldquo;wrap_content&#8221;是在设置这部分布局的宽高，也可以是绝对值，当然设置为绝对值时要标上单位。</p>
-
-<h4>2.3 添加控件</h4>
-
-<p>在&#8221;&lt;LinearLayout>&ldquo;和&rdquo;&lt;/LinearLayout>&ldquo;之间就可以添加控件了，比如要添加一个名字为btn的Button控件，并且Button上显示的文字是&#8221;Test!&#8221;，可以这样写：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;Button id="@+id/btn" 
-</span><span class='line'>  android:text="Test!"
-</span><span class='line'>  android:layout_width="wrap_content"
-</span><span class='line'>  android:layout_height="wrap_content"
-</span><span class='line'>/&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>开头id后面的就是控件名称，在用于添加事件Listener时会用到，而下几行的android:xxx就是设置控件的属性了，这些属性在Android的文档中都有，不需要特别去记，一般现查就可以了。</p>
-
-<p><strong><em>有一点要说明的是，布局方法可以嵌套，有点像java中的Container，可以非常方便的把界面“堆”出来。</em></strong></p>
-
-<p>布局方式的简单说明：
-查了Android文档发现布局确实很多，只列出两个我自己认为较常用的：</p>
-
-<ul>
-<li>LinearLayout线性的布局方式，要么上下，要么左右的添加控件，很常用</li>
-<li>GridView中文翻译过来是网格布局，控件按照顺序依次填到每个格子里就好了，出来的界面会很整齐</li>
-</ul>
-
-
-<p>其他的布局方式可以在需要时查文档，这里不再列出。</p>
 ]]></content>
   </entry>
   

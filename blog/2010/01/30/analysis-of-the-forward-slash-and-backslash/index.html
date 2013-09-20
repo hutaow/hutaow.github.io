@@ -1,0 +1,200 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>正斜杠与反斜杠的分析 - Tony Wang</title>
+	<meta name="author" content="Wang Tao">
+
+	
+	<meta name="description" content="正斜杠与反斜杠的分析 　　正斜杠(左斜杠)，符号是&#8221;/&ldquo;；反斜杠(右斜杠)，符号是&rdquo;\&ldquo;。 　　在Unix/Linux中，路径的分隔采用正斜杠&#8221;/&ldquo;，比如&rdquo;/home/hutaow&#8221;； &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Tony Wang" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://hutaow.github.io/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-17662168-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("hutaow (at) hotmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+</div>
+<hgroup>
+  <h1><a href="/">Tony Wang</a></h1>
+  
+    <h2>open source, world shares.</h2>
+  
+</hgroup>
+
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		<a class="weibo" href="http://www.weibo.com/hutaow" title="Weibo">Weibo</a>
+		
+		
+		<a class="facebook" href="http://www.facebook.com/hutaow" title="Facebook">Facebook</a>
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/hutaow" title="Twitter">Twitter</a>
+		
+		
+		
+		
+		
+		<a class="linkedin" href="http://www.linkedin.com/in/hutaow" title="LinkedIn">LinkedIn</a>
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">正斜杠与反斜杠的分析</h1>
+	<div class="entry-content" itemprop="articleBody"><p>　　正斜杠(左斜杠)，符号是&#8221;/&ldquo;；反斜杠(右斜杠)，符号是&rdquo;\&ldquo;。</p>
+
+<p>　　在Unix/Linux中，路径的分隔采用正斜杠&#8221;/&ldquo;，比如&rdquo;/home/hutaow&#8221;；而在Windows中，路径分隔采用反斜杠&#8221;\&ldquo;，比如&#8221;C:\Windows\System&#8221;。</p>
+
+<p>　　有时我们会看到这样的路径写法，&#8221;C:&#92;\Windows&#92;\System&#8221;，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用&#8221;C:/Windows/System&#8221;来代替，不会出错。但是如果写成了&#8221;C:\Windows\System&#8221;，那就可能会出现各种奇怪的错误了。</p>
+
+<p>　　至于上述问题出现的原因，要从字符串解析这方面来分析。</p>
+
+<p>　　学过编程的人都应该知道，在C里面，输出字符串时，如果想输出一个换行，那就要加上&#8217;\n&#8217;这个标志，类似的，输出一个TAB，就加上&#8217;\t&#8217;，也就是说，反斜杠(&ldquo;\&rdquo;)这个符号会把跟在它后面的字符结合起来转义成其它字符。根据这个原理，如果想输出双引号(&lsquo;&ldquo;&rsquo;)，就需要输入&#8217;\&rdquo;&lsquo;，这样才会将包含了双引号的字符串正确的写入内存中。那么如果想输入一个反斜杠呢？很简单，只要敲&rsquo;&#92;\&lsquo;就可以了。</p>
+
+<p>　　看到这里或许有些人已经看出眉目了，如果&#8221;C:\Windows\System&#8221;这个路径字符串交给C编译器编译，实际写入内存的字符串并没有包含反斜杠&#8221;\&ldquo;，甚至紧跟在反斜杠后面的字母也一起被转义成了其它的字符，再次调用的话势必会出问题。</p>
+
+<p>　　字符串解析不仅仅局限于C编译器，Java编译器、一些配置文件的解析、Web服务器等等，都会遇到对字符串进行解析的这个问题，由于传统的Windows采用的是单个斜杠的路径分隔形式，导致在对文件路径进行解析的时候可能发生不必要的错误，所以就出现了用双反斜杠&#8221;&#92;\&ldquo;分隔路径的形式。不管解析引擎是否将反斜杠解析成转义字符，最终在内存中得到的都是&rdquo;\&ldquo;，结果也就不会出问题了。</p>
+
+<p>　　由此也可以看出Windows或者说DOS在设计初期考虑不够周全，为了和Unix一些特征区别开来，将Unix中的正斜杠&#8221;/&ldquo;分隔路径方式改变成了反斜杠&rdquo;\&ldquo;。这样改变导致的一个问题就是在早期DOS命令行中，正常的文件名是不能包含空格的，如果包含了空格，会导致输入这样的文件名时，命令解析无法将其和参数区分开。例如，想要进入&#8221;hutaow yuan&#8221;这个目录（在此先忽略8.3命名规则），直接输入&#8221;cd hutaow yuan&#8221;，命令行会将其解析为进入&#8221;hutaow&#8221;目录，而后面的&#8221;yuan&#8221;做参数，这显然不是所期望的。</p>
+
+<p>　　而在Unix中，文件名如果包含空格，可以直接在空格前加上反斜杠&#8221;\&ldquo;进行转义，从而很好的和命令参数区别出来（参数之间一般使用空格分隔）。还是上面的例子，在Unix中，只要输入&#8221;cd hutaow\ yuan&rdquo;(在yuan前面的空格前加上&#8221;\&ldquo;)，命令行会正确的辨认出&#8221;hutaow yuan&#8221;并进入这个目录。</p>
+
+<p>　　当然，现在Windows的后续版本已经使用其它方法（比如文件名用双引号括住）解决了空格问题。</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2010 - Wang Tao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			
+
+<script type="text/javascript">
+      var disqus_shortname = 'hutaow';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hutaow.github.io/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/';
+        var disqus_url = 'http://hutaow.github.io/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>
