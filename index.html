@@ -388,6 +388,94 @@
   
 
 
+<time datetime="2013-06-16T22:54:00+08:00" data-updated="true" itemprop="datePublished">Jun 16<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/" itemprop="url">Linux中分区出现“Read-only File System”的解决办法</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mount -o remount,rw /media/TF  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>注：其中”/media/TF“是挂载的目录。</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-16T01:48:00+08:00" data-updated="true" itemprop="datePublished">Jun 16<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/06/16/batch-settings-directory-or-file-permissions/" itemprop="url">Linux中批量设置目录或文件权限的方法</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>find ./ -type d -exec chmod 755 {} \;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>find ./ -type f -exec chmod 644 {} \;</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2010-05-14T22:13:00+08:00" data-updated="true" itemprop="datePublished">May 14<span>th</span>, 2010</time></div>
 		<div class="tags">
 
@@ -1102,149 +1190,6 @@ Target Address: 192.168.0.19
 
 </article>
 
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-01-12T22:53:00+08:00" data-updated="true" itemprop="datePublished">Jan 12<span>th</span>, 2010</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/" itemprop="url">Xmarks(原Foxmarks)被墙之后更新的方法</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
-
-<h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&#8221;文件中添加如下内容：</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># Xmarks
-</span><span class='line'>64.147.188.86 www.xmarks.com
-</span><span class='line'>64.147.188.92 api.xmarks.com
-</span><span class='line'>64.147.188.89 login.xmarks.com
-</span><span class='line'>64.147.188.87 sync.xmarks.com
-</span><span class='line'>64.147.188.86 static.xmarks.com
-</span><span class='line'>64.147.188.86 download.xmarks.com
-</span><span class='line'>64.147.188.86 my.xmarks.com</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>2. 设置Xmarks连接及传输数据过程中加密，即在&#8221;Connection Security&#8221;中选择&#8221;Encrypt All&#8221;。</h4>
-
-<p>以上两步即可解决Xmarks不能同步的问题。</p>
-
-<h4>分析原因：</h4>
-
-<ol>
-<li><p>第一步操作的原因在于GFW是根据URL而不是IP进行过滤的，所以在请求解析诸如&#8221;xmarks.com&#8221;等类似的域名时，返回结果被GFW拦截，所以要手动添加xmarks.com一系列服务器的域名IP；</p></li>
-<li><p>第二步操作让Xmarks在同步时对数据进行加密，GFW是无法认出加密的数据的，也就无法进一步拦截了。</p></li>
-</ol>
-
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-05-02T14:02:00+08:00" data-updated="true" itemprop="datePublished">May 2<span>nd</span>, 2009</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/programming/'>Programming</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2009/05/02/mark-atl-control-as-a-safe-control/" itemprop="url">标记ATL控件为安全控件</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
-
-<p>实现方法如下：</p>
-
-<p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">CHutaow</span> <span class="o">:</span><span class="err"> </span>
-</span><span class='line'>    <span class="c1">// 添加到控件的派生类列表中</span>
-</span><span class='line'>    <span class="k">public</span> <span class="n">IObjectSafetyImpl</span><span class="o">&lt;</span><span class="n">CHutaow</span><span class="p">,</span> <span class="n">INTERFACESAFE_FOR_UNTRUSTED_CALLER</span><span class="o">|</span><span class="n">INTERFACESAFE_FOR_UNTRUSTED_DATA</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="p">...</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">public</span><span class="o">:</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">BEGIN_COM_MAP</span><span class="p">(</span><span class="n">CHutaow</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">COM_INTERFACE_ENTRY</span><span class="p">(</span><span class="n">IObjectSafety</span><span class="p">)</span><span class="err"> </span><span class="c1">//创建IObjectSafety的映射</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="p">...</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">END_COM_MAP</span><span class="p">()</span>
-</span><span class='line'>        <span class="p">...</span>
-</span><span class='line'>    <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>PS: 如果出现&#8221;&lsquo;IObjectSafetyImpl&rsquo; : base class undefined&#8221;的错误，则需要添加&#8221;atlctl.h&#8221;头文件。</p>
-
-		
-		
-	</div>
-
-</article>
-
 </div>
 <nav id="pagenavi">
     
@@ -1255,7 +1200,7 @@ Target Address: 192.168.0.19
 </nav></div>
 			</div>
 			<footer id="footer" class="inner"><p>
-  Copyright &copy; 2010 - Wang Tao -
+  Copyright &copy; 2013 - Wang Tao -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

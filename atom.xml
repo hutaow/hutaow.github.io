@@ -4,7 +4,7 @@
   <title><![CDATA[Tony Wang]]></title>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2010-05-14T22:29:05+08:00</updated>
+  <updated>2013-06-16T23:00:59+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -248,6 +248,42 @@
 
 <p>重启路由器，再次&#8221;df -h&#8221;一下，可以看到路由器的空间已经扩展成功了。
 <img class="center" src="http://hutaow.github.io/images/articles/201309/install_openwrt_03_df.png" title="DF Info" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux中分区出现“Read-only file system”的解决办法]]></title>
+    <link href="http://hutaow.github.io/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/"/>
+    <updated>2013-06-16T22:54:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux</id>
+    <content type="html"><![CDATA[<p>最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mount -o remount,rw /media/TF  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>注：其中”/media/TF“是挂载的目录。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux中批量设置目录或文件权限的方法]]></title>
+    <link href="http://hutaow.github.io/blog/2013/06/16/batch-settings-directory-or-file-permissions/"/>
+    <updated>2013-06-16T01:48:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2013/06/16/batch-settings-directory-or-file-permissions</id>
+    <content type="html"><![CDATA[<p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>find ./ -type d -exec chmod 755 {} \;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>find ./ -type f -exec chmod 644 {} \;</span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   
@@ -1109,85 +1145,6 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 <p>回想在Windows里用UltraEdit打开时，提示文件不是&#8221;DOS Format&#8221;，会不会和文字编码有关？Linux用的是UTF-8的编码，而Windows用的是GBK的编码，难道字符编码必须要和本地相同才能编译通过么？试一下，于是把代码用UltraEdit转换成了GBK编码，再次编译，终于正常通过。</p>
 
 <p>看来有时编译不通过不一定是语句问题，连文件的编码也有可能出问题，如果在不同系统中出现类似上面一个正常一个错误的情况，可以考虑看是不是因为文件的编码和系统默认的编码有差异而引起的。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Fedora禁止自动挂载分区的方法]]></title>
-    <link href="http://hutaow.github.io/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora/"/>
-    <updated>2008-02-17T21:28:00+08:00</updated>
-    <id>http://hutaow.github.io/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora</id>
-    <content type="html"><![CDATA[<p>Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在&#8221;/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi&#8221;文件中。</p>
-
-<p>找到以下提示行</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;
-</span><span class='line'>&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;
-</span><span class='line'>&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;
-</span><span class='line'>&lt;merge key="volume.ignore" type="bool"&gt;false&lt;/merge&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>按照说明在提示之后添加对磁盘挂载的策略即可，比如我自己的硬盘就是</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;match key="volume.fstype" string="vfat"&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="DATA"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="MULTI"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="BACKUP"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>&lt;/match&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其中&#8221;volume.fstype&#8221;后面的值就是匹配的文件系统，&#8221;volume.label&#8221;后面的值是匹配的卷标，&#8221;volume.ignore&#8221;中的参数是&#8221;true&#8221;，意思是忽略被匹配的分区。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[解决安装ntfs-3g时遇到的问题]]></title>
-    <link href="http://hutaow.github.io/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g/"/>
-    <updated>2008-02-15T20:16:00+08:00</updated>
-    <id>http://hutaow.github.io/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g</id>
-    <content type="html"><![CDATA[<p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行&#8221;mount -t ntfs-3g /dev/hdc5 /media/wdata&#8221;，结果提示：</p>
-
-<pre><code>FATAL: Module fuse not found.
-fuse: device not found, try 'modprobe fuse' first
-</code></pre>
-
-<p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行&#8221;modprobe fuse&#8221;，结果又出来：</p>
-
-<pre><code>FATAL: Module fuse not found.
-</code></pre>
-
-<p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net</a>，看上面说明的意思是说fuse(Filesystem in Userspace)是个库，提供了API供用户开发文件系统，看样子通过它开发文件系统又会方便不少，最后只要连接到fuse库上就可以了。呵呵，不管怎么说先下载了安装再说，这些以后有时间再慢慢研究吧。下载后解压，执行下面的命令编译安装fuse：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./configure
-</span><span class='line'>make
-</span><span class='line'>make install</span></code></pre></td></tr></table></div></figure>
-
-
-<p>装好后再次执行mount命令，完成！</p>
 ]]></content>
   </entry>
   

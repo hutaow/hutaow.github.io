@@ -9,8 +9,7 @@
 	<meta name="author" content="Wang Tao">
 
 	
-	<meta name="description" content="Apr 2nd, 2009 Database SQL语句实现某一字符串的替换 使用update+replace语句： 1
-update table_name set column_name = replace(column_name,’hutaow_original_string’,&#39; &hellip;">
+	<meta name="description" content="Jan 12th, 2010 Technology Xmarks(原Foxmarks)被墙之后更新的方法 最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下： 1. 手动添加域名解析的地址，即向“C:\ &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -109,6 +108,149 @@ update table_name set column_name = replace(column_name,’hutaow_original_strin
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-12T22:53:00+08:00" data-updated="true" itemprop="datePublished">Jan 12<span>th</span>, 2010</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/" itemprop="url">Xmarks(原Foxmarks)被墙之后更新的方法</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
+
+<h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&#8221;文件中添加如下内容：</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Xmarks
+</span><span class='line'>64.147.188.86 www.xmarks.com
+</span><span class='line'>64.147.188.92 api.xmarks.com
+</span><span class='line'>64.147.188.89 login.xmarks.com
+</span><span class='line'>64.147.188.87 sync.xmarks.com
+</span><span class='line'>64.147.188.86 static.xmarks.com
+</span><span class='line'>64.147.188.86 download.xmarks.com
+</span><span class='line'>64.147.188.86 my.xmarks.com</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>2. 设置Xmarks连接及传输数据过程中加密，即在&#8221;Connection Security&#8221;中选择&#8221;Encrypt All&#8221;。</h4>
+
+<p>以上两步即可解决Xmarks不能同步的问题。</p>
+
+<h4>分析原因：</h4>
+
+<ol>
+<li><p>第一步操作的原因在于GFW是根据URL而不是IP进行过滤的，所以在请求解析诸如&#8221;xmarks.com&#8221;等类似的域名时，返回结果被GFW拦截，所以要手动添加xmarks.com一系列服务器的域名IP；</p></li>
+<li><p>第二步操作让Xmarks在同步时对数据进行加密，GFW是无法认出加密的数据的，也就无法进一步拦截了。</p></li>
+</ol>
+
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-02T14:02:00+08:00" data-updated="true" itemprop="datePublished">May 2<span>nd</span>, 2009</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/programming/'>Programming</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2009/05/02/mark-atl-control-as-a-safe-control/" itemprop="url">标记ATL控件为安全控件</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
+
+<p>实现方法如下：</p>
+
+<p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">CHutaow</span> <span class="o">:</span><span class="err"> </span>
+</span><span class='line'>    <span class="c1">// 添加到控件的派生类列表中</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">IObjectSafetyImpl</span><span class="o">&lt;</span><span class="n">CHutaow</span><span class="p">,</span> <span class="n">INTERFACESAFE_FOR_UNTRUSTED_CALLER</span><span class="o">|</span><span class="n">INTERFACESAFE_FOR_UNTRUSTED_DATA</span><span class="o">&gt;</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">public</span><span class="o">:</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">BEGIN_COM_MAP</span><span class="p">(</span><span class="n">CHutaow</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">COM_INTERFACE_ENTRY</span><span class="p">(</span><span class="n">IObjectSafety</span><span class="p">)</span><span class="err"> </span><span class="c1">//创建IObjectSafety的映射</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">END_COM_MAP</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">...</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>PS: 如果出现&#8221;&lsquo;IObjectSafetyImpl&rsquo; : base class undefined&#8221;的错误，则需要添加&#8221;atlctl.h&#8221;头文件。</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -541,137 +683,6 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 
 </article>
 
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-17T21:28:00+08:00" data-updated="true" itemprop="datePublished">Feb 17<span>th</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/linux/'>Linux</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora/" itemprop="url">Fedora禁止自动挂载分区的方法</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在&#8221;/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi&#8221;文件中。</p>
-
-<p>找到以下提示行</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;
-</span><span class='line'>&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;
-</span><span class='line'>&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;
-</span><span class='line'>&lt;merge key="volume.ignore" type="bool"&gt;false&lt;/merge&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>按照说明在提示之后添加对磁盘挂载的策略即可，比如我自己的硬盘就是</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;match key="volume.fstype" string="vfat"&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="DATA"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="MULTI"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="BACKUP"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>&lt;/match&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其中&#8221;volume.fstype&#8221;后面的值就是匹配的文件系统，&#8221;volume.label&#8221;后面的值是匹配的卷标，&#8221;volume.ignore&#8221;中的参数是&#8221;true&#8221;，意思是忽略被匹配的分区。</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-15T20:16:00+08:00" data-updated="true" itemprop="datePublished">Feb 15<span>th</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/linux/'>Linux</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g/" itemprop="url">解决安装ntfs-3g时遇到的问题</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行&#8221;mount -t ntfs-3g /dev/hdc5 /media/wdata&#8221;，结果提示：</p>
-
-<pre><code>FATAL: Module fuse not found.
-fuse: device not found, try 'modprobe fuse' first
-</code></pre>
-
-<p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行&#8221;modprobe fuse&#8221;，结果又出来：</p>
-
-<pre><code>FATAL: Module fuse not found.
-</code></pre>
-
-<p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net</a>，看上面说明的意思是说fuse(Filesystem in Userspace)是个库，提供了API供用户开发文件系统，看样子通过它开发文件系统又会方便不少，最后只要连接到fuse库上就可以了。呵呵，不管怎么说先下载了安装再说，这些以后有时间再慢慢研究吧。下载后解压，执行下面的命令编译安装fuse：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./configure
-</span><span class='line'>make
-</span><span class='line'>make install</span></code></pre></td></tr></table></div></figure>
-
-
-<p>装好后再次执行mount命令，完成！</p>
-
-		
-		
-	</div>
-
-</article>
-
 </div>
 <nav id="pagenavi">
     
@@ -684,7 +695,7 @@ fuse: device not found, try 'modprobe fuse' first
 </nav></div>
 			</div>
 			<footer id="footer" class="inner"><p>
-  Copyright &copy; 2010 - Wang Tao -
+  Copyright &copy; 2013 - Wang Tao -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
