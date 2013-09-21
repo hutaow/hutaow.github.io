@@ -116,6 +116,9 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 
 <p>于是按照提示在终端里执行&#8221;sudo /etc/init.d/vboxdrv setup&#8221;时，却又提示VirtualBox的内核模块无法编译，查看日志发现是没有安装内核源代码。</p>
 
+<!-- more -->
+
+
 <p>于是执行&#8221;sudo yum install kernel-devel&#8221;，等待系统自动下载并安装。注意这里我用的Linux是Fedora，如果是其它发行版可以执行相应的安装命令，唯一相同的是软件包&#8221;kernel-devel&#8221;名字不变。</p>
 
 <p>安装完成后，再次执行&#8221;sudo /etc/init.d/vboxdrv setup&#8221;，搞定！</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Tony Wang]]></title>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2013-06-16T23:00:59+08:00</updated>
+  <updated>2013-09-21T23:55:25+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -27,6 +27,9 @@
 <p>如果之前已经安装过了OpenWRT，则直接更新sysupgrade固件即可，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin">点击这里下载</a>。</p>
 
 <p>注意升级的时候要将原配置删除，避免配置文件互相影响，固件刷新完成后，路由器会自动重启。</p>
+
+<!-- more -->
+
 
 <h4>1.2 登陆路由器</h4>
 
@@ -302,6 +305,11 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>Switch&gt;</span></code></pre></td></tr></table></div></figure>
 
 
+
+
+<!-- more -->
+
+
 <p>3) 依次进入特权模式和全局模式，输入如下命令：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -373,6 +381,9 @@
 
 
 <p>现在要读取消息源IP地址(192.168.0.1)和目的IP地址(192.168.0.19)。</p>
+
+<!-- more -->
+
 
 <p>根据上面XML文件的结构，查找路径为&#8221;/Message/Head/Source/Address&#8221;和&#8221;/Message/Head/Target/Address&#8221;，需要用到XPath的寻径方式，代码如下：</p>
 
@@ -453,8 +464,10 @@ Target Address: 192.168.0.19
 
 <p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 &ndash; The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 &ndash; IDMEF, RFC4766 &ndash; IDMER)、入侵检测交换协议(RFC4767 &ndash; IDXP)。</p>
 
-<p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。
-　</p>
+<p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
+
+<!-- more -->
+
 
 <h3>1 入侵检测消息交互过程</h3>
 
@@ -753,6 +766,11 @@ Target Address: 192.168.0.19
     <id>http://hutaow.github.io/blog/2010/04/13/reverse-order-of-words-in-a-string</id>
     <content type="html"><![CDATA[<p>在Java中可以用压栈/弹栈的方式：</p>
 
+<!-- more -->
+
+
+
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -803,6 +821,9 @@ Target Address: 192.168.0.19
 
 <p>　　有时我们会看到这样的路径写法，&#8221;C:&#92;\Windows&#92;\System&#8221;，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用&#8221;C:/Windows/System&#8221;来代替，不会出错。但是如果写成了&#8221;C:\Windows\System&#8221;，那就可能会出现各种奇怪的错误了。</p>
 
+<!-- more -->
+
+
 <p>　　至于上述问题出现的原因，要从字符串解析这方面来分析。</p>
 
 <p>　　学过编程的人都应该知道，在C里面，输出字符串时，如果想输出一个换行，那就要加上&#8217;\n&#8217;这个标志，类似的，输出一个TAB，就加上&#8217;\t&#8217;，也就是说，反斜杠(&ldquo;\&rdquo;)这个符号会把跟在它后面的字符结合起来转义成其它字符。根据这个原理，如果想输出双引号(&lsquo;&ldquo;&rsquo;)，就需要输入&#8217;\&rdquo;&lsquo;，这样才会将包含了双引号的字符串正确的写入内存中。那么如果想输入一个反斜杠呢？很简单，只要敲&rsquo;&#92;\&lsquo;就可以了。</p>
@@ -842,6 +863,11 @@ Target Address: 192.168.0.19
     <content type="html"><![CDATA[<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
 
 <h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&#8221;文件中添加如下内容：</h4>
+
+<!-- more -->
+
+
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -885,6 +911,11 @@ Target Address: 192.168.0.19
 <p>实现方法如下：</p>
 
 <p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
+
+<!-- more -->
+
+
+
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -947,6 +978,11 @@ Target Address: 192.168.0.19
     <updated>2008-08-14T19:05:00+08:00</updated>
     <id>http://hutaow.github.io/blog/2008/08/14/convert-between-byte-array-and-hex-string</id>
     <content type="html"><![CDATA[<p>原理很简单，直接贴源代码吧。</p>
+
+<!-- more -->
+
+
+
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1077,6 +1113,9 @@ Target Address: 192.168.0.19
 
 <p>按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用&#8221;chown&#8221;改变&#8221;~/.kde&#8221;目录的所有者，哦？检查……&#8221;~/.kde&#8221;这个目录竟然是root的，原来是权限的问题。</p>
 
+<!-- more -->
+
+
 <p>输入&#8221;chown -R owner ~/.kde&#8221;，为了保险，再加个&#8221;chgrp -R group ~/.kde&#8221;，这里面的&#8221;owner&#8221;和&#8221;group&#8221;分别是当前的用户名和用户所在的组名。</p>
 
 <p>之后重新进入KDE，一切正常！</p>
@@ -1096,6 +1135,11 @@ Target Address: 192.168.0.19
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>bchunk e-w2sp4ru1as.bin e-w2sp4ru1as.cue e-w2sp4ru1as.iso</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
 
 
 <p>其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。</p>
@@ -1118,6 +1162,9 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 
 <p>于是按照提示在终端里执行&#8221;sudo /etc/init.d/vboxdrv setup&#8221;时，却又提示VirtualBox的内核模块无法编译，查看日志发现是没有安装内核源代码。</p>
 
+<!-- more -->
+
+
 <p>于是执行&#8221;sudo yum install kernel-devel&#8221;，等待系统自动下载并安装。注意这里我用的Linux是Fedora，如果是其它发行版可以执行相应的安装命令，唯一相同的是软件包&#8221;kernel-devel&#8221;名字不变。</p>
 
 <p>安装完成后，再次执行&#8221;sudo /etc/init.d/vboxdrv setup&#8221;，搞定！</p>
@@ -1131,6 +1178,9 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
     <id>http://hutaow.github.io/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder</id>
     <content type="html"><![CDATA[<p>自己改写了几个类，这几天不停的测试测试测试，今天终于成功解码，不过因为字符编码还没彻底弄好，所以解出来的还都是乱码，不过英文已经可以解析出来了，值得纪念的一天!</p>
 
+<!-- more -->
+
+
 <p><img class="center" src="http://hutaow.github.io/images/articles/200804/mark_breakthrough_for_dimensional_bar_code_decoder.png" title="Breakthrough for Dimensional Bar Code Decoder" ></p>
 ]]></content>
   </entry>
@@ -1141,6 +1191,9 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
     <updated>2008-03-20T15:08:00+08:00</updated>
     <id>http://hutaow.github.io/blog/2008/03/20/compilation-failed-due-to-character-encoding</id>
     <content type="html"><![CDATA[<p>从网上下了QR标准的二维码库，打算直接调用里面的类来实现。在Fedora下Java编译通过，只是提示了一下使用了过时的方法。但我把代码复制到Windows里时，却编译不同过，出现了近1k个错误，代码完全一样，只是操作系统不同就会出问题？</p>
+
+<!-- more -->
+
 
 <p>回想在Windows里用UltraEdit打开时，提示文件不是&#8221;DOS Format&#8221;，会不会和文字编码有关？Linux用的是UTF-8的编码，而Windows用的是GBK的编码，难道字符编码必须要和本地相同才能编译通过么？试一下，于是把代码用UltraEdit转换成了GBK编码，再次编译，终于正常通过。</p>
 

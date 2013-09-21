@@ -140,38 +140,9 @@
 
 <h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&#8221;文件中添加如下内容：</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># Xmarks
-</span><span class='line'>64.147.188.86 www.xmarks.com
-</span><span class='line'>64.147.188.92 api.xmarks.com
-</span><span class='line'>64.147.188.89 login.xmarks.com
-</span><span class='line'>64.147.188.87 sync.xmarks.com
-</span><span class='line'>64.147.188.86 static.xmarks.com
-</span><span class='line'>64.147.188.86 download.xmarks.com
-</span><span class='line'>64.147.188.86 my.xmarks.com</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>2. 设置Xmarks连接及传输数据过程中加密，即在&#8221;Connection Security&#8221;中选择&#8221;Encrypt All&#8221;。</h4>
-
-<p>以上两步即可解决Xmarks不能同步的问题。</p>
-
-<h4>分析原因：</h4>
-
-<ol>
-<li><p>第一步操作的原因在于GFW是根据URL而不是IP进行过滤的，所以在请求解析诸如&#8221;xmarks.com&#8221;等类似的域名时，返回结果被GFW拦截，所以要手动添加xmarks.com一系列服务器的域名IP；</p></li>
-<li><p>第二步操作让Xmarks在同步时对数据进行加密，GFW是无法认出加密的数据的，也就无法进一步拦截了。</p></li>
-</ol>
-
 
 		
-		
+		<a href="/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -209,45 +180,9 @@
 
 <p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">CHutaow</span> <span class="o">:</span><span class="err"> </span>
-</span><span class='line'>    <span class="c1">// 添加到控件的派生类列表中</span>
-</span><span class='line'>    <span class="k">public</span> <span class="n">IObjectSafetyImpl</span><span class="o">&lt;</span><span class="n">CHutaow</span><span class="p">,</span> <span class="n">INTERFACESAFE_FOR_UNTRUSTED_CALLER</span><span class="o">|</span><span class="n">INTERFACESAFE_FOR_UNTRUSTED_DATA</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="p">...</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">public</span><span class="o">:</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">BEGIN_COM_MAP</span><span class="p">(</span><span class="n">CHutaow</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">COM_INTERFACE_ENTRY</span><span class="p">(</span><span class="n">IObjectSafety</span><span class="p">)</span><span class="err"> </span><span class="c1">//创建IObjectSafety的映射</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="p">...</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">END_COM_MAP</span><span class="p">()</span>
-</span><span class='line'>        <span class="p">...</span>
-</span><span class='line'>    <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>PS: 如果出现&#8221;&lsquo;IObjectSafetyImpl&rsquo; : base class undefined&#8221;的错误，则需要添加&#8221;atlctl.h&#8221;头文件。</p>
 
 		
-		
+		<a href="/blog/2009/05/02/mark-atl-control-as-a-safe-control/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -323,103 +258,9 @@
 	<div class="entry-content" itemprop="articleBody">
 		<p>原理很简单，直接贴源代码吧。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * @author wangtao</span>
-</span><span class='line'><span class="cm"> * @version 2008.8.14</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">public</span><span class="err"> </span><span class="kd">class</span> <span class="nc">Util</span> <span class="o">{</span>
-</span><span class='line'><span class="err">    </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="kt">char</span><span class="o">[]</span> <span class="n">hexDigits</span> <span class="o">=</span><span class="err"> </span>
-</span><span class='line'><span class="err">   </span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;A&#39;</span><span class="o">,</span> <span class="sc">&#39;B&#39;</span><span class="o">,</span> <span class="sc">&#39;C&#39;</span><span class="o">,</span> <span class="sc">&#39;D&#39;</span><span class="o">,</span> <span class="sc">&#39;E&#39;</span><span class="o">,</span> <span class="sc">&#39;F&#39;</span><span class="o">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">   </span> <span class="cm">/**</span>
-</span><span class='line'><span class="cm">     * @notes 字节数组转化为字符串</span>
-</span><span class='line'><span class="cm">     * @param bytes</span>
-</span><span class='line'><span class="cm">     * @return String</span>
-</span><span class='line'><span class="cm">     */</span>
-</span><span class='line'><span class="err">    </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="n">String</span> <span class="n">toHexString</span><span class="o">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">bytes</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="mi">2</span><span class="o">];</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bytes</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">bytes</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">chars</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="n">Util</span><span class="o">.</span><span class="na">hexDigits</span><span class="o">[(</span><span class="n">b</span> <span class="o">&amp;</span> <span class="mh">0xF0</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="o">];</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">chars</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">Util</span><span class="o">.</span><span class="na">hexDigits</span><span class="o">[</span><span class="n">b</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="o">];</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">return</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">chars</span><span class="o">);</span>
-</span><span class='line'><span class="err">   </span> <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">   </span> <span class="cm">/**</span>
-</span><span class='line'><span class="cm">     * @notes 字符串转化为字节数组</span>
-</span><span class='line'><span class="cm">     * @param str</span>
-</span><span class='line'><span class="cm">     * @return byte[]</span>
-</span><span class='line'><span class="cm">     */</span>
-</span><span class='line'><span class="err">    </span><span class="kd">public</span> <span class="kd">static</span><span class="err"> </span><span class="kt">byte</span><span class="o">[]</span> <span class="n">toByteArray</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span><span class="err"> </span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">length</span><span class="o">];</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">source</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bytes</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span> <span class="n">bh</span> <span class="o">=</span> <span class="n">Byte</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="s">&quot;0x&quot;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="k">new</span> <span class="kt">byte</span><span class="o">[]{</span><span class="n">source</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="o">]})).</span><span class="na">byteValue</span><span class="o">();</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">bh</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)(</span><span class="n">bh</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="o">);</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="kt">byte</span> <span class="n">bl</span> <span class="o">=</span> <span class="n">Byte</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="s">&quot;0x&quot;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="k">new</span> <span class="kt">byte</span><span class="o">[]{</span><span class="n">source</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]})).</span><span class="na">byteValue</span><span class="o">();</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="err">   </span> <span class="n">bytes</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)(</span><span class="n">bh</span> <span class="o">^</span> <span class="n">bl</span><span class="o">);</span>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">   </span> <span class="err">   </span> <span class="k">return</span> <span class="n">bytes</span><span class="o">;</span>
-</span><span class='line'><span class="err">   </span> <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 
 		
-		
+		<a href="/blog/2008/08/14/convert-between-byte-array-and-hex-string/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -504,14 +345,9 @@
 
 <p>按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用&#8221;chown&#8221;改变&#8221;~/.kde&#8221;目录的所有者，哦？检查……&#8221;~/.kde&#8221;这个目录竟然是root的，原来是权限的问题。</p>
 
-<p>输入&#8221;chown -R owner ~/.kde&#8221;，为了保险，再加个&#8221;chgrp -R group ~/.kde&#8221;，这里面的&#8221;owner&#8221;和&#8221;group&#8221;分别是当前的用户名和用户所在的组名。</p>
-
-<p>之后重新进入KDE，一切正常！</p>
-
-<p>PS：新的KDE环境确实做的不错，桌面右上角的widget加上suse的主菜单非常赞</p>
 
 		
-		
+		<a href="/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -551,13 +387,11 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>bchunk e-w2sp4ru1as.bin e-w2sp4ru1as.cue e-w2sp4ru1as.iso</span></code></pre></td></tr></table></div></figure>
 
 
-<p>其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。</p>
 
-<p>等一小会儿，就像下面这幅图一样，会有一个进度条，进度到100%后转换就完成了。
-<img class="center" src="/images/articles/200807/convert_cue_and_bin_to_iso_format_in_linux.png" title="Convert CUE and BIN to ISO format" ></p>
+
 
 		
-		
+		<a href="/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -597,12 +431,9 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 
 <p>于是按照提示在终端里执行&#8221;sudo /etc/init.d/vboxdrv setup&#8221;时，却又提示VirtualBox的内核模块无法编译，查看日志发现是没有安装内核源代码。</p>
 
-<p>于是执行&#8221;sudo yum install kernel-devel&#8221;，等待系统自动下载并安装。注意这里我用的Linux是Fedora，如果是其它发行版可以执行相应的安装命令，唯一相同的是软件包&#8221;kernel-devel&#8221;名字不变。</p>
-
-<p>安装完成后，再次执行&#8221;sudo /etc/init.d/vboxdrv setup&#8221;，搞定！</p>
 
 		
-		
+		<a href="/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -636,10 +467,9 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 	<div class="entry-content" itemprop="articleBody">
 		<p>自己改写了几个类，这几天不停的测试测试测试，今天终于成功解码，不过因为字符编码还没彻底弄好，所以解出来的还都是乱码，不过英文已经可以解析出来了，值得纪念的一天!</p>
 
-<p><img class="center" src="/images/articles/200804/mark_breakthrough_for_dimensional_bar_code_decoder.png" title="Breakthrough for Dimensional Bar Code Decoder" ></p>
 
 		
-		
+		<a href="/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -673,12 +503,9 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 	<div class="entry-content" itemprop="articleBody">
 		<p>从网上下了QR标准的二维码库，打算直接调用里面的类来实现。在Fedora下Java编译通过，只是提示了一下使用了过时的方法。但我把代码复制到Windows里时，却编译不同过，出现了近1k个错误，代码完全一样，只是操作系统不同就会出问题？</p>
 
-<p>回想在Windows里用UltraEdit打开时，提示文件不是&#8221;DOS Format&#8221;，会不会和文字编码有关？Linux用的是UTF-8的编码，而Windows用的是GBK的编码，难道字符编码必须要和本地相同才能编译通过么？试一下，于是把代码用UltraEdit转换成了GBK编码，再次编译，终于正常通过。</p>
-
-<p>看来有时编译不通过不一定是语句问题，连文件的编码也有可能出问题，如果在不同系统中出现类似上面一个正常一个错误的情况，可以考虑看是不是因为文件的编码和系统默认的编码有差异而引起的。</p>
 
 		
-		
+		<a href="/blog/2008/03/20/compilation-failed-due-to-character-encoding/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>

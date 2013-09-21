@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2013-06-16T23:00:59+08:00</updated>
+  <updated>2013-09-21T23:55:25+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -76,6 +76,9 @@ export ftp_proxy=http://username:password@proxy.server:8080
 
 <p>按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用"chown"改变"~/.kde"目录的所有者，哦？检查……"~/.kde"这个目录竟然是root的，原来是权限的问题。</p>
 
+<!-- more -->
+
+
 <p>输入"chown -R owner ~/.kde"，为了保险，再加个"chgrp -R group ~/.kde"，这里面的"owner"和"group"分别是当前的用户名和用户所在的组名。</p>
 
 <p>之后重新进入KDE，一切正常！</p>
@@ -96,6 +99,9 @@ export ftp_proxy=http://username:password@proxy.server:8080
 <p><code>
 bchunk e-w2sp4ru1as.bin e-w2sp4ru1as.cue e-w2sp4ru1as.iso
 </code></p>
+
+<!-- more -->
+
 
 <p>其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。</p>
 

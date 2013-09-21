@@ -138,48 +138,9 @@
 	<div class="entry-content" itemprop="articleBody">
 		<p>Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在&#8221;/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi&#8221;文件中。</p>
 
-<p>找到以下提示行</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;
-</span><span class='line'>&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;
-</span><span class='line'>&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;
-</span><span class='line'>&lt;merge key="volume.ignore" type="bool"&gt;false&lt;/merge&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>按照说明在提示之后添加对磁盘挂载的策略即可，比如我自己的硬盘就是</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;match key="volume.fstype" string="vfat"&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="DATA"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="MULTI"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>  &lt;match key="volume.label" string="BACKUP"&gt;
-</span><span class='line'>    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-</span><span class='line'>  &lt;/match&gt;
-</span><span class='line'>&lt;/match&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其中&#8221;volume.fstype&#8221;后面的值就是匹配的文件系统，&#8221;volume.label&#8221;后面的值是匹配的卷标，&#8221;volume.ignore&#8221;中的参数是&#8221;true&#8221;，意思是忽略被匹配的分区。</p>
 
 		
-		
+		<a href="/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -217,25 +178,9 @@
 fuse: device not found, try 'modprobe fuse' first
 </code></pre>
 
-<p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行&#8221;modprobe fuse&#8221;，结果又出来：</p>
-
-<pre><code>FATAL: Module fuse not found.
-</code></pre>
-
-<p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net</a>，看上面说明的意思是说fuse(Filesystem in Userspace)是个库，提供了API供用户开发文件系统，看样子通过它开发文件系统又会方便不少，最后只要连接到fuse库上就可以了。呵呵，不管怎么说先下载了安装再说，这些以后有时间再慢慢研究吧。下载后解压，执行下面的命令编译安装fuse：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./configure
-</span><span class='line'>make
-</span><span class='line'>make install</span></code></pre></td></tr></table></div></figure>
-
-
-<p>装好后再次执行mount命令，完成！</p>
 
 		
-		
+		<a href="/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -282,120 +227,9 @@ fuse: device not found, try 'modprobe fuse' first
 </ul>
 
 
-<p>命令执行后会在hutaow目录下生成工程的所有文件。</p>
-
-<p>执行后终端输出如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>package: edu.bupt.hutaow
-</span><span class='line'>out_dir: hutaow
-</span><span class='line'>activity_name: example
-</span><span class='line'>Created directory hutaow/src/edu/bupt/hutaow
-</span><span class='line'>Added file hutaow/src/edu/bupt/hutaow/example.java
-</span><span class='line'>Created directory hutaow/bin
-</span><span class='line'>Created directory hutaow/res/values
-</span><span class='line'>Added file hutaow/res/values/strings.xml
-</span><span class='line'>Created directory hutaow/res/layout
-</span><span class='line'>Added file hutaow/res/layout/main.xml
-</span><span class='line'>Added file hutaow/AndroidManifest.xml
-</span><span class='line'>Added file hutaow/build.xml</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>2 工程的编译</h3>
-
-<p>这里编译需要用到Ant，Ant是Apache出的用于编译Java工程文件的工具，Android是基于Java设计的，所以这里要用到它，Ant可以在<a href="http://ant.apache.org">http://ant.apache.org</a>下载的到，具体安装过程和Java、Android差不多，都是解压出来后设置环境变量，可以参考Linux中设置Java环境变量。</p>
-
-<p>使用Ant编译直接在工程目录下执行简单的一条&#8221;ant&#8221;即可，不用任何参数，Ant会根据build.xml文件中的描述自动进行相关的语法检查、依赖分析等等一些工作，最终将编译好的文件输出在工程的bin目录下。</p>
-
-<p>执行后终端输出如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Buildfile: build.xml
-</span><span class='line'>
-</span><span class='line'>dirs:
-</span><span class='line'>    [mkdir] Created dir: /home/wangtao/Documents/android/hutaow/bin/classes
-</span><span class='line'>
-</span><span class='line'>resource-src:
-</span><span class='line'>     [echo] Generating R.java...
-</span><span class='line'>
-</span><span class='line'>aidl:
-</span><span class='line'>
-</span><span class='line'>compile:
-</span><span class='line'>    [javac] Compiling 2 source files to /home/wangtao/Documents/android/hutaow/bin/classes
-</span><span class='line'>
-</span><span class='line'>dex:
-</span><span class='line'>
-</span><span class='line'>package-res:
-</span><span class='line'>
-</span><span class='line'>package-res-no-assets:
-</span><span class='line'>     [echo] Packaging resources...
-</span><span class='line'>
-</span><span class='line'>package-dex:
-</span><span class='line'>     [echo] Packaging dex...
-</span><span class='line'>
-</span><span class='line'>package:
-</span><span class='line'>
-</span><span class='line'>BUILD SUCCESSFUL
-</span><span class='line'>Total time: 6 seconds</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>3 程序的运行及调试</h3>
-
-<p>这里要用到的工具是android的调试工具adb，由它来完成程序的安装工作。首先在命令行输入&#8221;emulator&#8221;启动android模拟器。</p>
-
-<p>然后等模拟器完全启动好后，执行&#8221;adb install bin/example.apk&#8221;，即将example.apk安装到模拟器中。</p>
-
-<p>最终在模拟器的&#8221;Applications&#8221;分类中找到&#8221;example&#8221;执行程序。</p>
-
-<p>执行后终端输出如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>* daemon not running. starting it now *
-</span><span class='line'>33 KB/s (4170 bytes in 0.120s)</span></code></pre></td></tr></table></div></figure>
-
-
-
 
 		
-		
+		<a href="/blog/2008/02/13/compile-android-project-in-command-line/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -431,18 +265,9 @@ fuse: device not found, try 'modprobe fuse' first
 
 <p>我在Linux里试图在Network里直接配置速度，但没有找到，上网google发现需要手动修改，用到的工具是mii-tool。</p>
 
-<p>用管理员权限执行如下命令</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mii-tool -A 10baseT-FD eth0</span></code></pre></td></tr></table></div></figure>
-
-
-<p>eth0是网卡的名称，&#8221;10baseT-FD&#8221;是网卡的工作模式，如果要改回100Mbps的话这里填&#8221;100baseTx-FD&#8221;；</p>
-
-<p>FD指的是Full Duplex全双工，也可以是HD即Half Duplex半双工。</p>
 
 		
-		
+		<a href="/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -478,19 +303,9 @@ fuse: device not found, try 'modprobe fuse' first
 
 <p>在MPlayer的设置里有两个地方要对字符编码进行设置，一个是对显示字幕的编码进行设置，另一个是对字体文件的编码设置。</p>
 
-<p>对于字幕的编码，就是要显示中文、英文、法文还是其它文字；而对于字体的编码，则是需要根据提供的字体文件严格选择对应的编码。明白了以上两点，再进行设置就不难了。</p>
-
-<p>具体的设置过程如下：</p>
-
-<ol>
-<li><p>首先选择字幕编码，在MPlayer的设置中选择&#8221;Subtitle &amp; OSD&#8221;选项卡，在&#8221;Encoding&#8221;选单中选择&#8221;Simplified Chinese charset (CP936)&ldquo;。</p></li>
-<li><p>接下来是字体编码，先要选择一个中文字体，&#8221;Font&#8221;选项卡中，在&#8221;Font&#8221;一栏选择一个中文字体(个人建议将自己的字体放在~/.fonts目录下，然后再到这个目录中选择相应的字体)。字体选择好后，在&#8221;Encoding&#8221;选单中选择&#8221;Unicode&#8221;，因为unicode是国际通用的字符编码标准，一般的字体编码都是unicode，所以此处要选择&#8221;Unicode&#8221;而不是&#8221;CP936&#8221;。</p></li>
-<li><p>确定保存后重新播放中文字幕就可以正常显示了。</p></li>
-</ol>
-
 
 		
-		
+		<a href="/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -566,12 +381,9 @@ fuse: device not found, try 'modprobe fuse' first
 <p>运行时的截图：
 <img class="center" src="/images/articles/200801/android_calculator.png" title="Android Calculator" ></p>
 
-<p>源代码地址：<a href="https://github.com/hutaow/AndroidCalculator">点击这里</a></p>
-
-<p>PS: 今天整理的时候发现一个问题，这个程序是我原来用Android SDK的m3版本生成编译的，现在SDK的最新版本是m5，结果在m5里竟然编译不通过。解决方法是可以重新创建一个项目，直接将源代码部分复制粘贴过去就可以了，新的项目仍然可以编译运行，我想应该是build.xml那个文件里的问题，版本、结构上google可能改了一些，不过不碍大事。</p>
 
 		
-		
+		<a href="/blog/2008/01/30/android-calculator/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -607,72 +419,9 @@ fuse: device not found, try 'modprobe fuse' first
 
 <p>之前对于XML的布局方法一直看着不爽，感觉很乱的样子，但时间长了我渐渐发现，这种程序代码与界面布局完全分开的方法非常顺手，该布局的地方都到main.xml里去写，甚至界面中显示的字符串都可以集中到string.xml文件中，而主程序的&#8221;.java&#8221;文件中则完全用于编写代码，思路非常清晰。</p>
 
-<h3>1 首先按照程序的目录结构大致分析</h3>
-
-<pre><code>res/layout/   这个目录存放的就是布局用的xml文件，一般默认为main.xml
-res/values/   这个目录存放的是一堆常量的xml文件
-res/drawable/ 存放的是一些图片什么的，当然图标也在这里
-</code></pre>
-
-<h3>2 下面主要对layout下的xml文件做个介绍，顺便也把布局的方法总结一下</h3>
-
-<h4>2.1 文件的开头</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这是在说明xml版本及字符编码</p>
-
-<h4>2.2 布局框架</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-</span><span class='line'>  android:layout_width="wrap_content"
-</span><span class='line'>  android:layout_height="wrap_content"&gt;
-</span><span class='line'>&lt;/LinearLayout&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其中开头的&#8221;LinearLayout&#8221;是布局的方式，可以有很多种，最常用的应该就是Linear了，其他的布局方法等下在后面总结。</p>
-
-<p>接着android:layout_width(height)=&ldquo;wrap_content&#8221;是在设置这部分布局的宽高，也可以是绝对值，当然设置为绝对值时要标上单位。</p>
-
-<h4>2.3 添加控件</h4>
-
-<p>在&#8221;&lt;LinearLayout>&ldquo;和&rdquo;&lt;/LinearLayout>&ldquo;之间就可以添加控件了，比如要添加一个名字为btn的Button控件，并且Button上显示的文字是&#8221;Test!&#8221;，可以这样写：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;Button id="@+id/btn" 
-</span><span class='line'>  android:text="Test!"
-</span><span class='line'>  android:layout_width="wrap_content"
-</span><span class='line'>  android:layout_height="wrap_content"
-</span><span class='line'>/&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>开头id后面的就是控件名称，在用于添加事件Listener时会用到，而下几行的android:xxx就是设置控件的属性了，这些属性在Android的文档中都有，不需要特别去记，一般现查就可以了。</p>
-
-<p><strong><em>有一点要说明的是，布局方法可以嵌套，有点像java中的Container，可以非常方便的把界面“堆”出来。</em></strong></p>
-
-<p>布局方式的简单说明：
-查了Android文档发现布局确实很多，只列出两个我自己认为较常用的：</p>
-
-<ul>
-<li>LinearLayout线性的布局方式，要么上下，要么左右的添加控件，很常用</li>
-<li>GridView中文翻译过来是网格布局，控件按照顺序依次填到每个格子里就好了，出来的界面会很整齐</li>
-</ul>
-
-
-<p>其他的布局方式可以在需要时查文档，这里不再列出。</p>
 
 		
-		
+		<a href="/blog/2008/01/28/understanding-on-the-android-layout/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -710,18 +459,9 @@ res/drawable/ 存放的是一些图片什么的，当然图标也在这里
 
 <p>似乎和java有很大的不同，Android引入了XML，从google所给的例子来看，控件的布局方式都是写在XML文件里，而主程序中需要的只是add并且引用XML文件中的布局方式。</p>
 
-<p>这种方法对我来说并不是很习惯，毕竟java用了那么长时间，在代码中直接setLayout感觉更舒服些。当然既然google采用了这种布局和代码分离的方式那就肯定有它的优点，看来还需要一点的时间来习惯这种布局方式。</p>
-
-<h4>2 总结：我自己对Android几个模块的理解</h4>
-
-<pre><code>Activity：类似java中的Applet或Frame，以我的理解，这个类提供了程序的最基本框架。
-Intent Receiver：翻译过来是“目的接收器”，和java中的listener类似，用于处理事件。
-Service：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。
-Content Provider：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。
-</code></pre>
 
 		
-		
+		<a href="/blog/2008/01/11/android-beginner-question/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>

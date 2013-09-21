@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OpenWRT | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/openwrt/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2013-06-16T23:00:59+08:00</updated>
+  <updated>2013-09-21T23:55:25+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -27,6 +27,9 @@
 <p>如果之前已经安装过了OpenWRT，则直接更新sysupgrade固件即可，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin">点击这里下载</a>。</p>
 
 <p>注意升级的时候要将原配置删除，避免配置文件互相影响，固件刷新完成后，路由器会自动重启。</p>
+
+<!-- more -->
+
 
 <h4>1.2 登陆路由器</h4>
 

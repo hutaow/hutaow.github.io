@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2013-06-16T23:00:59+08:00</updated>
+  <updated>2013-09-21T23:55:25+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -37,6 +37,9 @@
 </code></p>
 
 <p>现在要读取消息源IP地址(192.168.0.1)和目的IP地址(192.168.0.19)。</p>
+
+<!-- more -->
+
 
 <p>根据上面XML文件的结构，查找路径为"/Message/Head/Source/Address"和"/Message/Head/Target/Address"，需要用到XPath的寻径方式，代码如下：</p>
 
@@ -73,6 +76,9 @@ Target Address: 192.168.0.19
     <updated>2010-04-13T19:35:00+08:00</updated>
     <id>http://hutaow.github.io/blog/2010/04/13/reverse-order-of-words-in-a-string</id>
     <content type="html"><![CDATA[<p>在Java中可以用压栈/弹栈的方式：</p>
+
+<!-- more -->
+
 
 <p>``` java
 import java.util.Stack;</p>
@@ -114,6 +120,9 @@ import java.util.Stack;</p>
 
 <p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
 
+<!-- more -->
+
+
 <p>``` c++
 class CHutaow : </p>
 
@@ -146,6 +155,9 @@ public IObjectSafetyImpl&lt;CHutaow, INTERFACESAFE_FOR_UNTRUSTED_CALLER|INTERFAC
     <updated>2008-08-14T19:05:00+08:00</updated>
     <id>http://hutaow.github.io/blog/2008/08/14/convert-between-byte-array-and-hex-string</id>
     <content type="html"><![CDATA[<p>原理很简单，直接贴源代码吧。</p>
+
+<!-- more -->
+
 
 <p>``` java
 /<em><em>
@@ -203,6 +215,9 @@ public class Util {
     <updated>2008-03-20T15:08:00+08:00</updated>
     <id>http://hutaow.github.io/blog/2008/03/20/compilation-failed-due-to-character-encoding</id>
     <content type="html"><![CDATA[<p>从网上下了QR标准的二维码库，打算直接调用里面的类来实现。在Fedora下Java编译通过，只是提示了一下使用了过时的方法。但我把代码复制到Windows里时，却编译不同过，出现了近1k个错误，代码完全一样，只是操作系统不同就会出问题？</p>
+
+<!-- more -->
+
 
 <p>回想在Windows里用UltraEdit打开时，提示文件不是"DOS Format"，会不会和文字编码有关？Linux用的是UTF-8的编码，而Windows用的是GBK的编码，难道字符编码必须要和本地相同才能编译通过么？试一下，于是把代码用UltraEdit转换成了GBK编码，再次编译，终于正常通过。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Technology | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/technology/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2013-06-16T23:00:59+08:00</updated>
+  <updated>2013-09-21T23:55:25+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -23,6 +23,9 @@
 <p>　　在Unix/Linux中，路径的分隔采用正斜杠"/&ldquo;，比如&rdquo;/home/hutaow"；而在Windows中，路径分隔采用反斜杠"\&ldquo;，比如"C:\Windows\System"。</p>
 
 <p>　　有时我们会看到这样的路径写法，"C:\\\Windows\\\System"，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用"C:/Windows/System"来代替，不会出错。但是如果写成了"C:\Windows\System"，那就可能会出现各种奇怪的错误了。</p>
+
+<!-- more -->
+
 
 <p>　　至于上述问题出现的原因，要从字符串解析这方面来分析。</p>
 
@@ -63,6 +66,9 @@
     <content type="html"><![CDATA[<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
 
 <h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts"文件中添加如下内容：</h4>
+
+<!-- more -->
+
 
 <p>```</p>
 
