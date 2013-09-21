@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Network | Tony Wang]]></title>
+  <link href="http://hutaow.github.io/blog/categories/network/atom.xml" rel="self"/>
+  <link href="http://hutaow.github.io/"/>
+  <updated>2010-05-14T22:29:05+08:00</updated>
+  <id>http://hutaow.github.io/</id>
+  <author>
+    <name><![CDATA[Wang Tao]]></name>
+    <email><![CDATA[hutaow (at) hotmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[配置 Cisco Catalyst 3560 交换机端口镜像]]></title>
+    <link href="http://hutaow.github.io/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/"/>
+    <updated>2010-05-14T22:13:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring</id>
+    <content type="html"><![CDATA[<p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
+
+<p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
+
+<p>2) 交换机上电自检然后登入后出现命令提示符：</p>
+
+<p><code>
+Switch&gt;
+</code></p>
+
+<p>3) 依次进入特权模式和全局模式，输入如下命令：</p>
+
+<p><code>
+Switch&gt;enable
+Password:
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+</code></p>
+
+<p>4) 在新session中，将端口19和27设置为被监听端口(source)，2号端口设置为监听端口(destination)，命令如下：</p>
+
+<p><code>
+Switch(config)#monitor session 1 source interface Fa0/19
+Switch(config)#monitor session 1 source interface Fa0/27
+Switch(config)#monitor session 1 destination interface Fa0/2
+Switch(config)#end
+Switch#
+03:30:52: %SYS-5-CONFIG_I: Configured from console by console
+</code></p>
+
+<p>5) 断开连接，完成。</p>
+]]></content>
+  </entry>
+  
+</feed>

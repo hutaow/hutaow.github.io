@@ -388,6 +388,81 @@
   
 
 
+<time datetime="2010-05-14T22:13:00+08:00" data-updated="true" itemprop="datePublished">May 14<span>th</span>, 2010</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/network/'>Network</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/" itemprop="url">配置 Cisco Catalyst 3560 交换机端口镜像</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
+
+<p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
+
+<p>2) 交换机上电自检然后登入后出现命令提示符：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Switch&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3) 依次进入特权模式和全局模式，输入如下命令：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Switch&gt;enable
+</span><span class='line'>Password:
+</span><span class='line'>Switch#configure terminal
+</span><span class='line'>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span class='line'>Switch(config)#</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4) 在新session中，将端口19和27设置为被监听端口(source)，2号端口设置为监听端口(destination)，命令如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Switch(config)#monitor session 1 source interface Fa0/19
+</span><span class='line'>Switch(config)#monitor session 1 source interface Fa0/27
+</span><span class='line'>Switch(config)#monitor session 1 destination interface Fa0/2
+</span><span class='line'>Switch(config)#end
+</span><span class='line'>Switch#
+</span><span class='line'>03:30:52: %SYS-5-CONFIG_I: Configured from console by console</span></code></pre></td></tr></table></div></figure>
+
+
+<p>5) 断开连接，完成。</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2010-04-27T12:43:00+08:00" data-updated="true" itemprop="datePublished">Apr 27<span>th</span>, 2010</time></div>
 		<div class="tags">
 
@@ -1163,48 +1238,6 @@ Target Address: 192.168.0.19
 
 
 <p>PS: 如果出现&#8221;&lsquo;IObjectSafetyImpl&rsquo; : base class undefined&#8221;的错误，则需要添加&#8221;atlctl.h&#8221;头文件。</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-02T10:55:00+08:00" data-updated="true" itemprop="datePublished">Apr 2<span>nd</span>, 2009</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/database/'>Database</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2009/04/02/sql-statements-batch-replace-a-string/" itemprop="url">SQL语句实现某一字符串的替换</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>使用update+replace语句：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='mysql'><span class='line'><span class="k">update</span> <span class="n">table_name</span> <span class="kt">set</span> <span class="n">column_name</span> <span class="o">=</span> <span class="k">replace</span><span class="p">(</span><span class="n">column_name</span><span class="p">,</span><span class="err">’</span><span class="n">hutaow_original_string</span><span class="err">’</span><span class="p">,</span><span class="err">&#39;</span><span class="n">hutaow_new_string</span><span class="err">’</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其中，table_name是表的名字，column_name是要替换数据的列的名字，hutaow_original_string是待替换的原始字符串，hutaow_new_string是新字符串，MySQL下验证成功。</p>
 
 		
 		
