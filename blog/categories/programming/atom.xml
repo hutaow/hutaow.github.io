@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2010-04-21T20:39:23+08:00</updated>
+  <updated>2010-04-27T21:20:14+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[C#获取XML文件指定节点的数据]]></title>
+    <link href="http://hutaow.github.io/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/"/>
+    <updated>2010-04-27T12:43:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2010/04/27/get-xml-node-value-with-c-sharp-language</id>
+    <content type="html"><![CDATA[<p>实例说明会更清楚些，假设有如下XML文件：</p>
+
+<p><code>xml message_hutaow.xml
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Message version="1.0"&gt;
+  &lt;Head&gt;
+    &lt;Date&gt;20080502&lt;/Date&gt;
+    &lt;Source&gt;
+      &lt;Address&gt;192.168.0.1&lt;/Address&gt;
+      &lt;Name&gt;hutaow&lt;/Name&gt;
+    &lt;/Source&gt;
+    &lt;Target&gt;
+      &lt;Address&gt;192.168.0.19&lt;/Address&gt;
+    &lt;/Target&gt;
+  &lt;/Head&gt;
+&lt;/Message&gt;
+</code></p>
+
+<p>现在要读取消息源IP地址(192.168.0.1)和目的IP地址(192.168.0.19)。</p>
+
+<p>根据上面XML文件的结构，查找路径为"/Message/Head/Source/Address"和"/Message/Head/Target/Address"，需要用到XPath的寻径方式，代码如下：</p>
+
+<p>``` c#
+// 需要引用System.Xml库
+using System.Xml;</p>
+
+<p>// 省略中间无关代码</p>
+
+<p>// 加载XML文件
+XmlDocument xmlDoc = new XmlDocument();
+xmlDoc.Load(&ldquo;message_hutaow.xml&rdquo;);</p>
+
+<p>// 使用XPath方式寻找源IP地址节点并输出
+xmlNode = xmlDoc.SelectSingleNode(&ldquo;/Message/Head/Source/Address&rdquo;);
+Console.WriteLine(&ldquo;Source Address: {0}&rdquo;,xmlNode.InnerText);</p>
+
+<p>// 使用XPath方式寻找目的IP地址节点并输出
+xmlNode = xmlDoc.SelectSingleNode(&ldquo;/Message/Head/Target/Address&rdquo;);
+Console.WriteLine(&ldquo;Target Address: {0}&rdquo;,xmlNode.InnerText);
+```</p>
+
+<p>控制台输出</p>
+
+<pre><code>Source Address: 192.168.0.1
+Target Address: 192.168.0.19
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[字符串中单词逆序的实现]]></title>

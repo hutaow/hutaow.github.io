@@ -4,7 +4,7 @@
   <title><![CDATA[Tony Wang]]></title>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2010-04-21T20:39:23+08:00</updated>
+  <updated>2010-04-27T21:20:14+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -248,6 +248,89 @@
 
 <p>重启路由器，再次&#8221;df -h&#8221;一下，可以看到路由器的空间已经扩展成功了。
 <img class="center" src="http://hutaow.github.io/images/articles/201309/install_openwrt_03_df.png" title="DF Info" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[C#获取XML文件指定节点的数据]]></title>
+    <link href="http://hutaow.github.io/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/"/>
+    <updated>2010-04-27T12:43:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2010/04/27/get-xml-node-value-with-c-sharp-language</id>
+    <content type="html"><![CDATA[<p>实例说明会更清楚些，假设有如下XML文件：</p>
+
+<figure class='code'><figcaption><span>message_hutaow.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;Message</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;Head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;Date&gt;</span>20080502<span class="nt">&lt;/Date&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;Source&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;Address&gt;</span>192.168.0.1<span class="nt">&lt;/Address&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;Name&gt;</span>hutaow<span class="nt">&lt;/Name&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/Source&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;Target&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;Address&gt;</span>192.168.0.19<span class="nt">&lt;/Address&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/Target&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/Head&gt;</span>
+</span><span class='line'><span class="nt">&lt;/Message&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>现在要读取消息源IP地址(192.168.0.1)和目的IP地址(192.168.0.19)。</p>
+
+<p>根据上面XML文件的结构，查找路径为&#8221;/Message/Head/Source/Address&#8221;和&#8221;/Message/Head/Target/Address&#8221;，需要用到XPath的寻径方式，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="c1">// 需要引用System.Xml库</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Xml</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 省略中间无关代码</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 加载XML文件</span>
+</span><span class='line'><span class="n">XmlDocument</span> <span class="n">xmlDoc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">XmlDocument</span><span class="p">();</span>
+</span><span class='line'><span class="n">xmlDoc</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="s">&quot;message_hutaow.xml&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 使用XPath方式寻找源IP地址节点并输出</span>
+</span><span class='line'><span class="n">xmlNode</span> <span class="p">=</span> <span class="n">xmlDoc</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s">&quot;/Message/Head/Source/Address&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Source Address: {0}&quot;</span><span class="p">,</span><span class="n">xmlNode</span><span class="p">.</span><span class="n">InnerText</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 使用XPath方式寻找目的IP地址节点并输出</span>
+</span><span class='line'><span class="n">xmlNode</span> <span class="p">=</span> <span class="n">xmlDoc</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s">&quot;/Message/Head/Target/Address&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Target Address: {0}&quot;</span><span class="p">,</span><span class="n">xmlNode</span><span class="p">.</span><span class="n">InnerText</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>控制台输出</p>
+
+<pre><code>Source Address: 192.168.0.1
+Target Address: 192.168.0.19
+</code></pre>
 ]]></content>
   </entry>
   
@@ -1190,27 +1273,6 @@ fuse: device not found, try 'modprobe fuse' first
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Linux中改变网卡的速度]]></title>
-    <link href="http://hutaow.github.io/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux/"/>
-    <updated>2008-02-11T18:28:00+08:00</updated>
-    <id>http://hutaow.github.io/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux</id>
-    <content type="html"><![CDATA[<p>今天又用到家里的那根20几米的超长网线了，因为太长了，之前windows里用它联网的时候要把网卡速度降到10Mbps才能用。如果自动配置的话会默认用100Mbps的速度连接，但这样的话就会时断时连很不稳定。</p>
-
-<p>我在Linux里试图在Network里直接配置速度，但没有找到，上网google发现需要手动修改，用到的工具是mii-tool。</p>
-
-<p>用管理员权限执行如下命令</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mii-tool -A 10baseT-FD eth0</span></code></pre></td></tr></table></div></figure>
-
-
-<p>eth0是网卡的名称，&#8221;10baseT-FD&#8221;是网卡的工作模式，如果要改回100Mbps的话这里填&#8221;100baseTx-FD&#8221;；</p>
-
-<p>FD指的是Full Duplex全双工，也可以是HD即Half Duplex半双工。</p>
 ]]></content>
   </entry>
   
