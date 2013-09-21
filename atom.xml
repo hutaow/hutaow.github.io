@@ -4,7 +4,7 @@
   <title><![CDATA[Tony Wang]]></title>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2010-04-18T00:01:05+08:00</updated>
+  <updated>2010-04-21T20:39:23+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -248,6 +248,31 @@
 
 <p>重启路由器，再次&#8221;df -h&#8221;一下，可以看到路由器的空间已经扩展成功了。
 <img class="center" src="http://hutaow.github.io/images/articles/201309/install_openwrt_03_df.png" title="DF Info" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Snort安装IDMEF插件]]></title>
+    <link href="http://hutaow.github.io/blog/2010/04/21/install-idmef-plugin-for-snort/"/>
+    <updated>2010-04-21T10:48:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2010/04/21/install-idmef-plugin-for-snort</id>
+    <content type="html"><![CDATA[<p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
+
+<ol>
+<li><p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef">libidmef</a>、<a href="http://xmlsoft.org">libxml2</a>及<a href="http://www.ntp.org">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p></li>
+<li><p>配置Snort时，需要加上&#8221;&mdash;enable-idmef&#8221;参数，如下所示：</p></li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./configure --enable-idmef
+</span><span class='line'>make
+</span><span class='line'>make install</span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   
@@ -1186,28 +1211,6 @@ fuse: device not found, try 'modprobe fuse' first
 <p>eth0是网卡的名称，&#8221;10baseT-FD&#8221;是网卡的工作模式，如果要改回100Mbps的话这里填&#8221;100baseTx-FD&#8221;；</p>
 
 <p>FD指的是Full Duplex全双工，也可以是HD即Half Duplex半双工。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[解决MPlayer中文字幕显示问题]]></title>
-    <link href="http://hutaow.github.io/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems/"/>
-    <updated>2008-02-02T21:44:00+08:00</updated>
-    <id>http://hutaow.github.io/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems</id>
-    <content type="html"><![CDATA[<p>MPlayer在播放电影时，中文字幕往往不能正确显示，自己简单分析了一下，之所以中文显示出乱码是由于字符的编码选择不正确造成的。</p>
-
-<p>在MPlayer的设置里有两个地方要对字符编码进行设置，一个是对显示字幕的编码进行设置，另一个是对字体文件的编码设置。</p>
-
-<p>对于字幕的编码，就是要显示中文、英文、法文还是其它文字；而对于字体的编码，则是需要根据提供的字体文件严格选择对应的编码。明白了以上两点，再进行设置就不难了。</p>
-
-<p>具体的设置过程如下：</p>
-
-<ol>
-<li><p>首先选择字幕编码，在MPlayer的设置中选择&#8221;Subtitle &amp; OSD&#8221;选项卡，在&#8221;Encoding&#8221;选单中选择&#8221;Simplified Chinese charset (CP936)&ldquo;。</p></li>
-<li><p>接下来是字体编码，先要选择一个中文字体，&#8221;Font&#8221;选项卡中，在&#8221;Font&#8221;一栏选择一个中文字体(个人建议将自己的字体放在~/.fonts目录下，然后再到这个目录中选择相应的字体)。字体选择好后，在&#8221;Encoding&#8221;选单中选择&#8221;Unicode&#8221;，因为unicode是国际通用的字符编码标准，一般的字体编码都是unicode，所以此处要选择&#8221;Unicode&#8221;而不是&#8221;CP936&#8221;。</p></li>
-<li><p>确定保存后重新播放中文字幕就可以正常显示了。</p></li>
-</ol>
-
 ]]></content>
   </entry>
   

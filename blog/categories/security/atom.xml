@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Security | Tony Wang]]></title>
   <link href="http://hutaow.github.io/blog/categories/security/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io/"/>
-  <updated>2010-04-18T00:01:05+08:00</updated>
+  <updated>2010-04-21T20:39:23+08:00</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Snort安装IDMEF插件]]></title>
+    <link href="http://hutaow.github.io/blog/2010/04/21/install-idmef-plugin-for-snort/"/>
+    <updated>2010-04-21T10:48:00+08:00</updated>
+    <id>http://hutaow.github.io/blog/2010/04/21/install-idmef-plugin-for-snort</id>
+    <content type="html"><![CDATA[<p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
+
+<ol>
+<li><p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef">libidmef</a>、<a href="http://xmlsoft.org">libxml2</a>及<a href="http://www.ntp.org">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p></li>
+<li><p>配置Snort时，需要加上"&mdash;enable-idmef"参数，如下所示：</p></li>
+</ol>
+
+
+<p><code>
+./configure --enable-idmef
+make
+make install
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[入侵检测与响应系统的信息共享]]></title>
