@@ -1,0 +1,588 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>胡桃夹子</title>
+  <meta name="author" content="Wang Tao">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="胡桃夹子"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="胡桃夹子" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17662168-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">胡桃夹子</a></h1>
+  <h2><a href="/">open source, world shares.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/blog/archives">所有文章</a></li>
+    
+      <li><a href="/atom.xml">订阅</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-06T15:16:00.000Z"><a href="/blog/2013/09/06/install-openwrt/">2013-09-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2013/09/06/install-openwrt/">TP-WR703n安装OpenWRT记录</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3>1 安装OpenWRT</h3>
+<h4>1.1 下载并刷新固件</h4>
+<p>如果以前没刷过OpenWRT，需要升级factory固件，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" target="_blank">点击这里下载</a>。</p>
+<p>如果之前已经安装过了OpenWRT，则直接更新sysupgrade固件即可，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin" target="_blank">点击这里下载</a>。</p>
+<p>注意升级的时候要将原配置删除，避免配置文件互相影响，固件刷新完成后，路由器会自动重启。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2013/09/06/install-openwrt/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-06-16T14:54:00.000Z"><a href="/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/">2013-06-16</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/">Linux中分区出现“Read-only file system”的解决办法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">mount</span> -o remount,rw /media/TF
+</pre></td></tr></table></figure>
+
+<p>注：其中”/media/TF“是挂载的目录。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-06-15T17:48:00.000Z"><a href="/blog/2013/06/16/batch-settings-directory-or-file-permissions/">2013-06-16</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2013/06/16/batch-settings-directory-or-file-permissions/">Linux中批量设置目录或文件权限的方法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">find</span> ./ -<span class="typedef"><span class="keyword">type</span> d -exec chmod 755 <span class="container">{}</span> \;</span>
+</pre></td></tr></table></figure>
+
+<p>递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">find</span> ./ -<span class="typedef"><span class="keyword">type</span> f -exec chmod 644 <span class="container">{}</span> \;</span>
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-05-14T14:13:00.000Z"><a href="/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/">2010-05-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/">配置 Cisco Catalyst 3560 交换机端口镜像</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
+<p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
+<p>2) 交换机上电自检然后登入后出现命令提示符：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="attribute">Switch&gt;
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-04-27T04:43:00.000Z"><a href="/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/">2010-04-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/">C#获取XML文件指定节点的数据</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>实例说明会更清楚些，假设有如下XML文件：</p>
+<figure class="highlight lang-xml"><figcaption><span>message_hutaow.xml</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="tag">&lt;<span class="title">Message version="1.0"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">Head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">Date</span>&gt;</span>20080502<span class="tag">&lt;/<span class="title">Date</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">Source</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">Address</span>&gt;</span>192.168.0.1<span class="tag">&lt;/<span class="title">Address</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">Name</span>&gt;</span>hutaow<span class="tag">&lt;/<span class="title">Name</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">Source</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">Target</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">Address</span>&gt;</span>192.168.0.19<span class="tag">&lt;/<span class="title">Address</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">Target</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">Head</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">Message</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>现在要读取消息源IP地址(192.168.0.1)和目的IP地址(192.168.0.19)。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-04-21T02:48:00.000Z"><a href="/blog/2010/04/21/install-idmef-plugin-for-snort/">2010-04-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2010/04/21/install-idmef-plugin-for-snort/">Snort安装IDMEF插件</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
+<ol>
+<li><p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef" target="_blank">libidmef</a>、<a href="http://xmlsoft.org" target="_blank">libxml2</a>及<a href="http://www.ntp.org" target="_blank">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p>
+</li>
+<li><p>配置Snort时，需要加上“—enable-idmef”参数，如下所示：</p>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="string">.</span><span class="comment">/configure</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span>-<span class="comment">idmef</span>
+<span class="comment">make</span>
+<span class="comment">make</span> <span class="comment">install
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-04-17T13:25:00.000Z"><a href="/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/">2010-04-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/">入侵检测与响应系统的信息共享</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3>引言</h3>
+<p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。</p>
+<p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-04-13T11:35:00.000Z"><a href="/blog/2010/04/13/reverse-order-of-words-in-a-string/">2010-04-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2010/04/13/reverse-order-of-words-in-a-string/">字符串中单词逆序的实现</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在Java中可以用压栈/弹栈的方式：</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2010/04/13/reverse-order-of-words-in-a-string/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-01-29T16:29:00.000Z"><a href="/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/">2010-01-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/">正斜杠与反斜杠的分析</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>正斜杠(左斜杠)，符号是“/”；反斜杠(右斜杠)，符号是&quot;\&quot;。</p>
+<p>　　在Unix/Linux中，路径的分隔采用正斜杠“/”，比如“/home/hutaow”；而在Windows中，路径分隔采用反斜杠&quot;\“，比如”C:\Windows\System&quot;。</p>
+<p>　　有时我们会看到这样的路径写法，&quot;C:\\\Windows\\\System“，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用”C:/Windows/System“来代替，不会出错。但是如果写成了”C:\Windows\System&quot;，那就可能会出现各种奇怪的错误了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-01-14T12:28:00.000Z"><a href="/blog/2010/01/14/interesting-features-in-htc-diamond/">2010-01-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2010/01/14/interesting-features-in-htc-diamond/">HTC Diamond 两个有意思的功能</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>这两天一直折腾 HTC Diamond，发现了两个很有意思的功能：</p>
+<ol>
+<li><p>Diamond的手写笔不像其它手机那样有卡槽卡住，而是像有磁铁一样把笔“吸”进去，实际上功能远不止这个。在Diamond关闭屏幕时，拔出手写笔，屏幕会自动亮起，还有比这更神奇的，在打电话时，如果拔出手写笔，Diamond会打开便签，并且便签已经包含了通话对象、时间等信息，方便记录；</p>
+</li>
+<li><p>Diamond的重力感应不仅用在玩游戏上，来电话时，只要把手机面向下放，就可以关闭铃声（静音）。这避免了在开会等类似场合突然遇到来电手忙脚乱情况的发生。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+<nav id="pagination">
+  
+  
+    <a href="/page/2/" class="alignright next">下一页</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:hutaow.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/blog/categories/Android/">Android</a><small>5</small></li>
+  
+    <li><a href="/blog/categories/Database/">Database</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Linux/">Linux</a><small>13</small></li>
+  
+    <li><a href="/blog/categories/Network/">Network</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/OpenWRT/">OpenWRT</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Programming/">Programming</a><small>5</small></li>
+  
+    <li><a href="/blog/categories/Security/">Security</a><small>2</small></li>
+  
+    <li><a href="/blog/categories/Technology/">Technology</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/blog/2013/09/06/install-openwrt/">TP-WR703n安装OpenWRT记录</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/">Linux中分区出现“Read-only file system”的解决办法</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/06/16/batch-settings-directory-or-file-permissions/">Linux中批量设置目录或文件权限的方法</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/">配置 Cisco Catalyst 3560 交换机端口镜像</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/">C#获取XML文件指定节点的数据</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Wang Tao
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hutaow';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

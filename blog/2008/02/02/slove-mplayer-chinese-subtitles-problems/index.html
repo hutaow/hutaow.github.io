@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>解决MPlayer中文字幕显示问题 | 胡桃夹子</title>
+  <meta name="author" content="Wang Tao">
+  
+  <meta name="description" content="MPlayer在播放电影时，中文字幕往往不能正确显示，自己简单分析了一下，之所以中文显示出乱码是由于字符的编码选择不正确造成的。
+在MPlayer的设置里有两个地方要对字符编码进行设置，一个是对显示字幕的编码进行设置，另一个是对字体文件的编码设置。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="解决MPlayer中文字幕显示问题"/>
+  <meta property="og:site_name" content="胡桃夹子"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="胡桃夹子" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17662168-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">胡桃夹子</a></h1>
+  <h2><a href="/">open source, world shares.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/blog/archives">所有文章</a></li>
+    
+      <li><a href="/atom.xml">订阅</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-02-02T13:44:00.000Z"><a href="/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems/">2008-02-02</a></time>
+      
+      
+  
+    <h1 class="title">解决MPlayer中文字幕显示问题</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>MPlayer在播放电影时，中文字幕往往不能正确显示，自己简单分析了一下，之所以中文显示出乱码是由于字符的编码选择不正确造成的。</p>
+<p>在MPlayer的设置里有两个地方要对字符编码进行设置，一个是对显示字幕的编码进行设置，另一个是对字体文件的编码设置。</p>
+<a id="more"></a>
+
+<p>对于字幕的编码，就是要显示中文、英文、法文还是其它文字；而对于字体的编码，则是需要根据提供的字体文件严格选择对应的编码。明白了以上两点，再进行设置就不难了。</p>
+<p>具体的设置过程如下：</p>
+<ol>
+<li><p>首先选择字幕编码，在MPlayer的设置中选择“Subtitle &amp; OSD”选项卡，在“Encoding”选单中选择“Simplified Chinese charset (CP936)”。</p>
+</li>
+<li><p>接下来是字体编码，先要选择一个中文字体，“Font”选项卡中，在“Font”一栏选择一个中文字体(个人建议将自己的字体放在~/.fonts目录下，然后再到这个目录中选择相应的字体)。字体选择好后，在“Encoding”选单中选择“Unicode”，因为unicode是国际通用的字符编码标准，一般的字体编码都是unicode，所以此处要选择“Unicode”而不是“CP936”。</p>
+</li>
+<li><p>确定保存后重新播放中文字幕就可以正常显示了。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/blog/categories/Linux/">Linux</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:hutaow.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/blog/categories/Android/">Android</a><small>5</small></li>
+  
+    <li><a href="/blog/categories/Database/">Database</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Linux/">Linux</a><small>13</small></li>
+  
+    <li><a href="/blog/categories/Network/">Network</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/OpenWRT/">OpenWRT</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Programming/">Programming</a><small>5</small></li>
+  
+    <li><a href="/blog/categories/Security/">Security</a><small>2</small></li>
+  
+    <li><a href="/blog/categories/Technology/">Technology</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/blog/2013/09/06/install-openwrt/">TP-WR703n安装OpenWRT记录</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/">Linux中分区出现“Read-only file system”的解决办法</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/06/16/batch-settings-directory-or-file-permissions/">Linux中批量设置目录或文件权限的方法</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/">配置 Cisco Catalyst 3560 交换机端口镜像</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/">C#获取XML文件指定节点的数据</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Wang Tao
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hutaow';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

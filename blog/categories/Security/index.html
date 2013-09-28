@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Security | 胡桃夹子</title>
+  <meta name="author" content="Wang Tao">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="胡桃夹子"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="胡桃夹子" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17662168-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">胡桃夹子</a></h1>
+  <h2><a href="/">open source, world shares.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/blog/archives">所有文章</a></li>
+    
+      <li><a href="/atom.xml">订阅</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title category">Security</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-04-21T02:48:00.000Z"><a href="/blog/2010/04/21/install-idmef-plugin-for-snort/">2010-04-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2010/04/21/install-idmef-plugin-for-snort/">Snort安装IDMEF插件</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
+<ol>
+<li><p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef" target="_blank">libidmef</a>、<a href="http://xmlsoft.org" target="_blank">libxml2</a>及<a href="http://www.ntp.org" target="_blank">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p>
+</li>
+<li><p>配置Snort时，需要加上“—enable-idmef”参数，如下所示：</p>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="string">.</span><span class="comment">/configure</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span>-<span class="comment">idmef</span>
+<span class="comment">make</span>
+<span class="comment">make</span> <span class="comment">install
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-04-17T13:25:00.000Z"><a href="/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/">2010-04-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/">入侵检测与响应系统的信息共享</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3>引言</h3>
+<p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。</p>
+<p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:hutaow.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/blog/categories/Android/">Android</a><small>5</small></li>
+  
+    <li><a href="/blog/categories/Database/">Database</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Linux/">Linux</a><small>13</small></li>
+  
+    <li><a href="/blog/categories/Network/">Network</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/OpenWRT/">OpenWRT</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Programming/">Programming</a><small>5</small></li>
+  
+    <li><a href="/blog/categories/Security/">Security</a><small>2</small></li>
+  
+    <li><a href="/blog/categories/Technology/">Technology</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/blog/2013/09/06/install-openwrt/">TP-WR703n安装OpenWRT记录</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/">Linux中分区出现“Read-only file system”的解决办法</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/06/16/batch-settings-directory-or-file-permissions/">Linux中批量设置目录或文件权限的方法</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/">配置 Cisco Catalyst 3560 交换机端口镜像</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/">C#获取XML文件指定节点的数据</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Wang Tao
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hutaow';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

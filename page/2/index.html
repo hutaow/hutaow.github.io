@@ -1,0 +1,550 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第 2 页 | 胡桃夹子</title>
+  <meta name="author" content="Wang Tao">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="胡桃夹子"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="胡桃夹子" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17662168-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">胡桃夹子</a></h1>
+  <h2><a href="/">open source, world shares.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/blog/archives">所有文章</a></li>
+    
+      <li><a href="/atom.xml">订阅</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-01-12T14:53:00.000Z"><a href="/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/">2010-01-12</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/">Xmarks(原Foxmarks)被墙之后更新的方法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
+<h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&quot;文件中添加如下内容：</h4>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-05-02T06:02:00.000Z"><a href="/blog/2009/05/02/mark-atl-control-as-a-safe-control/">2009-05-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2009/05/02/mark-atl-control-as-a-safe-control/">标记ATL控件为安全控件</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
+<p>实现方法如下：</p>
+<p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2009/05/02/mark-atl-control-as-a-safe-control/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-04-02T02:55:00.000Z"><a href="/blog/2009/04/02/sql-statements-batch-replace-a-string/">2009-04-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2009/04/02/sql-statements-batch-replace-a-string/">SQL语句实现某一字符串的替换</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>使用update+replace语句：</p>
+<figure class="highlight lang-mysql"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="operator"><span class="keyword">update</span> table_name <span class="keyword">set</span> column_name = <span class="keyword">replace</span>(column_name,’hutaow_original_string’,<span class="string">'hutaow_new_string’);
+</pre></td></tr></table></figure>
+
+<p>其中，table_name是表的名字，column_name是要替换数据的列的名字，hutaow_original_string是待替换的原始字符串，hutaow_new_string是新字符串，MySQL下验证成功。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-08-14T11:05:00.000Z"><a href="/blog/2008/08/14/convert-between-byte-array-and-hex-string/">2008-08-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2008/08/14/convert-between-byte-array-and-hex-string/">Java中十六进制字符串与字节数组的相互转换</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>原理很简单，直接贴源代码吧。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2008/08/14/convert-between-byte-array-and-hex-string/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-08-10T07:12:00.000Z"><a href="/blog/2008/08/10/config-proxy-in-linux-terminal/">2008-08-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2008/08/10/config-proxy-in-linux-terminal/">终端下使用代理的方法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，&quot;HTTP_PROXY“、”http_proxy“和”FTP_PROXY“、”ftp_proxy“，在”~/.bash_profile&quot;中添加以下几行：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>export <span class="class">HTTP_PROXY</span>=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
+export <span class="class">FTP_PROXY</span>=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
+export http_proxy=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
+export ftp_proxy=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
+</pre></td></tr></table></figure>
+
+<p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
+<p>修改保存后重启终端或在执行&quot;source ~/.bash_proxy&quot;生效。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-07-29T03:34:00.000Z"><a href="/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9/">2008-07-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9/">Fedora 9 无法启动KDE的解决办法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout-&gt;KDE，结果却报出个错误，说“Could not start kstartupconfig4. Check your installation”，无语，难道是我少装了什么东西？</p>
+<p>按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用“chown”改变&quot;~/.kde“目录的所有者，哦？检查……”~/.kde&quot;这个目录竟然是root的，原来是权限的问题。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-07-19T09:20:00.000Z"><a href="/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/">2008-07-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/">Linux下将.cue/.bin转换为.iso的方法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫“bchunk”的小软件非常好用，而且小的可以，才几十K，很不错。</p>
+<p>在终端里输入如下命令：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>bchunk e-w2sp4ru1as<span class="variable">.bin</span> e-w2sp4ru1as<span class="variable">.cue</span> e-w2sp4ru1as<span class="variable">.iso</span>
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-07-18T12:48:00.000Z"><a href="/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora/">2008-07-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora/">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>前一段时间突然发现VirtualBox被Sun收购了，改名成“Sun xVM VirtualBox”，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
+<pre><code>VirtualBox kernel driver <span class="keyword">not</span> installed. The vboxdrv kernel module was either <span class="keyword">not</span> loaded <span class="keyword">or</span> /dev/vboxdrv was <span class="keyword">not</span> created <span class="keyword">for</span> <span class="keyword">some</span> reason. 
+Re-setup <span class="keyword">the</span> kernel module <span class="keyword">by</span> executing ‘/etc/init.d/vboxdrv setup’ <span class="keyword">as</span> root.</code></pre>
+<p>于是按照提示在终端里执行“sudo /etc/init.d/vboxdrv setup”时，却又提示VirtualBox的内核模块无法编译，查看日志发现是没有安装内核源代码。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-04-02T04:21:00.000Z"><a href="/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/">2008-04-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/">二维条码终于有了突破!</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>自己改写了几个类，这几天不停的测试测试测试，今天终于成功解码，不过因为字符编码还没彻底弄好，所以解出来的还都是乱码，不过英文已经可以解析出来了，值得纪念的一天!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-03-20T07:08:00.000Z"><a href="/blog/2008/03/20/compilation-failed-due-to-character-encoding/">2008-03-20</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2008/03/20/compilation-failed-due-to-character-encoding/">因字符编码导致的编译不通过</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>从网上下了QR标准的二维码库，打算直接调用里面的类来实现。在Fedora下Java编译通过，只是提示了一下使用了过时的方法。但我把代码复制到Windows里时，却编译不同过，出现了近1k个错误，代码完全一样，只是操作系统不同就会出问题？</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2008/03/20/compilation-failed-due-to-character-encoding/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/" class="alignleft prev">上一页</a>
+  
+  
+    <a href="/page/3/" class="alignright next">下一页</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:hutaow.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/blog/categories/Android/">Android</a><small>5</small></li>
+  
+    <li><a href="/blog/categories/Database/">Database</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Linux/">Linux</a><small>13</small></li>
+  
+    <li><a href="/blog/categories/Network/">Network</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/OpenWRT/">OpenWRT</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Programming/">Programming</a><small>5</small></li>
+  
+    <li><a href="/blog/categories/Security/">Security</a><small>2</small></li>
+  
+    <li><a href="/blog/categories/Technology/">Technology</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/blog/2013/09/06/install-openwrt/">TP-WR703n安装OpenWRT记录</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/">Linux中分区出现“Read-only file system”的解决办法</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/06/16/batch-settings-directory-or-file-permissions/">Linux中批量设置目录或文件权限的方法</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/">配置 Cisco Catalyst 3560 交换机端口镜像</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/">C#获取XML文件指定节点的数据</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Wang Tao
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hutaow';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
