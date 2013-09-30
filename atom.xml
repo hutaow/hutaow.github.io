@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io"/>
-  <updated>2013-09-30T13:54:26.288Z</updated>
+  <updated>2013-09-30T15:01:47.803Z</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,7 +16,7 @@
     <link href="http://hutaow.github.io/blog/2013/09/06/install-openwrt/"/>
     <id>http://hutaow.github.io/blog/2013/09/06/install-openwrt/</id>
     <published>2013-09-06T15:16:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:42:56.000Z</updated>
     <content type="html"><![CDATA[<h3>1 安装OpenWRT</h3>
 <h4>1.1 下载并刷新固件</h4>
 <p>如果以前没刷过OpenWRT，需要升级factory固件，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" target="_blank">点击这里下载</a>。</p>
@@ -226,6 +226,8 @@ config swap
 <p>重启路由器，再次“df -h”一下，可以看到路由器的空间已经扩展成功了。</p>
 <img src="/images/articles/201309/install_openwrt_03_df.png" class="center" title="DF Info">
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/OpenWRT/" term="OpenWRT"/>
+    <category scheme="http://hutaow.github.io/blog/tags/路由器/" term="路由器"/>
     <category scheme="http://hutaow.github.io/blog/categories/OpenWRT/" term="OpenWRT"/>
   </entry>
   <entry>
@@ -233,7 +235,7 @@ config swap
     <link href="http://hutaow.github.io/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/"/>
     <id>http://hutaow.github.io/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/</id>
     <published>2013-06-16T14:54:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:39:17.000Z</updated>
     <content type="html"><![CDATA[<p>最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">mount</span> -o remount,rw /media/TF
@@ -241,6 +243,7 @@ config swap
 
 <p>注：其中”/media/TF“是挂载的目录。</p>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/Linux/" term="Linux"/>
     <category scheme="http://hutaow.github.io/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
@@ -248,7 +251,7 @@ config swap
     <link href="http://hutaow.github.io/blog/2013/06/16/batch-settings-directory-or-file-permissions/"/>
     <id>http://hutaow.github.io/blog/2013/06/16/batch-settings-directory-or-file-permissions/</id>
     <published>2013-06-15T17:48:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:37:15.000Z</updated>
     <content type="html"><![CDATA[<p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">find</span> ./ -<span class="typedef"><span class="keyword">type</span> d -exec chmod 755 <span class="container">{}</span> \;</span>
@@ -260,6 +263,7 @@ config swap
 </pre></td></tr></table></figure>
 
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/Linux/" term="Linux"/>
     <category scheme="http://hutaow.github.io/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
@@ -267,7 +271,7 @@ config swap
     <link href="http://hutaow.github.io/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/"/>
     <id>http://hutaow.github.io/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/</id>
     <published>2010-05-14T14:13:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:36:57.000Z</updated>
     <content type="html"><![CDATA[<p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
 <p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
 <p>2) 交换机上电自检然后登入后出现命令提示符：</p>
@@ -307,6 +311,7 @@ Enter configuration commands, one per line.  End with CNTL/Z.
 
 <p>5) 断开连接，完成。</p>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/交换机/" term="交换机"/>
     <category scheme="http://hutaow.github.io/blog/categories/Network/" term="Network"/>
   </entry>
   <entry>
@@ -314,7 +319,7 @@ Enter configuration commands, one per line.  End with CNTL/Z.
     <link href="http://hutaow.github.io/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/"/>
     <id>http://hutaow.github.io/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/</id>
     <published>2010-04-27T04:43:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:36:32.000Z</updated>
     <content type="html"><![CDATA[<p>实例说明会更清楚些，假设有如下XML文件：</p>
 <figure class="highlight lang-xml"><figcaption><span>message_hutaow.xml</span></figcaption><table><tr><td class="gutter"><pre>1
 2
@@ -384,6 +389,9 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 
 <p>控制台输出<br>    Source Address: 192.168.0.1<br>    Target Address: 192.168.0.19</p>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/C#/" term="C#"/>
+    <category scheme="http://hutaow.github.io/blog/tags/XML/" term="XML"/>
+    <category scheme="http://hutaow.github.io/blog/tags/开发/" term="开发"/>
     <category scheme="http://hutaow.github.io/blog/categories/Programming/" term="Programming"/>
   </entry>
   <entry>
@@ -391,7 +399,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.github.io/blog/2010/04/21/install-idmef-plugin-for-snort/"/>
     <id>http://hutaow.github.io/blog/2010/04/21/install-idmef-plugin-for-snort/</id>
     <published>2010-04-21T02:48:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:36:18.000Z</updated>
     <content type="html"><![CDATA[<p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
 <ol>
 <li><p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef" target="_blank">libidmef</a>、<a href="http://xmlsoft.org" target="_blank">libxml2</a>及<a href="http://www.ntp.org" target="_blank">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p>
@@ -408,6 +416,9 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 </pre></td></tr></table></figure>
 
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/IDS/" term="IDS"/>
+    <category scheme="http://hutaow.github.io/blog/tags/Snort/" term="Snort"/>
+    <category scheme="http://hutaow.github.io/blog/tags/入侵检测/" term="入侵检测"/>
     <category scheme="http://hutaow.github.io/blog/categories/Security/" term="Security"/>
   </entry>
   <entry>
@@ -415,7 +426,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.github.io/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/"/>
     <id>http://hutaow.github.io/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/</id>
     <published>2010-04-17T13:25:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:35:16.000Z</updated>
     <content type="html"><![CDATA[<h3>引言</h3>
 <p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。</p>
 <p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
@@ -665,6 +676,8 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 <pre><code><span class="comment">1</span>. <span class="comment">RFC4765</span> <span class="literal">-</span> <span class="comment">The</span> <span class="comment">Intrusion</span> <span class="comment">Detection</span> <span class="comment">Message</span> <span class="comment">Exchange</span> <span class="comment">Format</span> <span class="comment">(IDMEF)</span>
 <span class="comment">2</span>. <span class="comment">RFC4767</span> <span class="literal">-</span> <span class="comment">The</span> <span class="comment">Intrusion</span> <span class="comment">Detection</span> <span class="comment">Exchange</span> <span class="comment">Protocol</span> <span class="comment">(IDXP)</code></pre>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/IDS/" term="IDS"/>
+    <category scheme="http://hutaow.github.io/blog/tags/入侵检测/" term="入侵检测"/>
     <category scheme="http://hutaow.github.io/blog/categories/Security/" term="Security"/>
   </entry>
   <entry>
@@ -672,7 +685,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.github.io/blog/2010/04/13/reverse-order-of-words-in-a-string/"/>
     <id>http://hutaow.github.io/blog/2010/04/13/reverse-order-of-words-in-a-string/</id>
     <published>2010-04-13T11:35:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:45:25.000Z</updated>
     <content type="html"><![CDATA[<p>在Java中可以用压栈/弹栈的方式：</p>
 <a id="more"></a>
 
@@ -712,6 +725,8 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 
 <p>运行后系统将输出 “peach round a have I ”。</p>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/Java/" term="Java"/>
+    <category scheme="http://hutaow.github.io/blog/tags/开发/" term="开发"/>
     <category scheme="http://hutaow.github.io/blog/categories/Programming/" term="Programming"/>
   </entry>
   <entry>
@@ -719,16 +734,16 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.github.io/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/"/>
     <id>http://hutaow.github.io/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/</id>
     <published>2010-01-29T16:29:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:55:04.000Z</updated>
     <content type="html"><![CDATA[<p>正斜杠(左斜杠)，符号是“/”；反斜杠(右斜杠)，符号是&quot;\&quot;。</p>
 <p>　　在Unix/Linux中，路径的分隔采用正斜杠“/”，比如“/home/hutaow”；而在Windows中，路径分隔采用反斜杠&quot;\“，比如”C:\Windows\System&quot;。</p>
-<p>　　有时我们会看到这样的路径写法，&quot;C:\\\Windows\\\System“，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用”C:/Windows/System“来代替，不会出错。但是如果写成了”C:\Windows\System&quot;，那就可能会出现各种奇怪的错误了。</p>
+<p>　　有时我们会看到这样的路径写法，&quot;C:\\Windows\\System“，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用”C:/Windows/System“来代替，不会出错。但是如果写成了”C:\Windows\System&quot;，那就可能会出现各种奇怪的错误了。</p>
 <a id="more"></a>
 
 <p>　　至于上述问题出现的原因，要从字符串解析这方面来分析。</p>
-<p>　　学过编程的人都应该知道，在C里面，输出字符串时，如果想输出一个换行，那就要加上&#39;\n‘这个标志，类似的，输出一个TAB，就加上’\t&#39;，也就是说，反斜杠(&quot;\“)这个符号会把跟在它后面的字符结合起来转义成其它字符。根据这个原理，如果想输出双引号(‘”’)，就需要输入&#39;\&quot;‘，这样才会将包含了双引号的字符串正确的写入内存中。那么如果想输入一个反斜杠呢？很简单，只要敲’\\\&#39;就可以了。</p>
+<p>　　学过编程的人都应该知道，在C里面，输出字符串时，如果想输出一个换行，那就要加上&#39;\n‘这个标志，类似的，输出一个TAB，就加上’\t&#39;，也就是说，反斜杠(&quot;\“)这个符号会把跟在它后面的字符结合起来转义成其它字符。根据这个原理，如果想输出双引号(‘”’)，就需要输入&#39;\&quot;‘，这样才会将包含了双引号的字符串正确的写入内存中。那么如果想输入一个反斜杠呢？很简单，只要敲’\\&#39;就可以了。</p>
 <p>　　看到这里或许有些人已经看出眉目了，如果&quot;C:\Windows\System“这个路径字符串交给C编译器编译，实际写入内存的字符串并没有包含反斜杠”\&quot;，甚至紧跟在反斜杠后面的字母也一起被转义成了其它的字符，再次调用的话势必会出问题。</p>
-<p>　　字符串解析不仅仅局限于C编译器，Java编译器、一些配置文件的解析、Web服务器等等，都会遇到对字符串进行解析的这个问题，由于传统的Windows采用的是单个斜杠的路径分隔形式，导致在对文件路径进行解析的时候可能发生不必要的错误，所以就出现了用双反斜杠&quot;\\\“分隔路径的形式。不管解析引擎是否将反斜杠解析成转义字符，最终在内存中得到的都是”\&quot;，结果也就不会出问题了。</p>
+<p>　　字符串解析不仅仅局限于C编译器，Java编译器、一些配置文件的解析、Web服务器等等，都会遇到对字符串进行解析的这个问题，由于传统的Windows采用的是单个斜杠的路径分隔形式，导致在对文件路径进行解析的时候可能发生不必要的错误，所以就出现了用双反斜杠&quot;\\“分隔路径的形式。不管解析引擎是否将反斜杠解析成转义字符，最终在内存中得到的都是”\&quot;，结果也就不会出问题了。</p>
 <p>　　由此也可以看出Windows或者说DOS在设计初期考虑不够周全，为了和Unix一些特征区别开来，将Unix中的正斜杠“/”分隔路径方式改变成了反斜杠&quot;\“。这样改变导致的一个问题就是在早期DOS命令行中，正常的文件名是不能包含空格的，如果包含了空格，会导致输入这样的文件名时，命令解析无法将其和参数区分开。例如，想要进入”hutaow yuan“这个目录（在此先忽略8.3命名规则），直接输入”cd hutaow yuan“，命令行会将其解析为进入”hutaow“目录，而后面的”yuan&quot;做参数，这显然不是所期望的。</p>
 <p>　　而在Unix中，文件名如果包含空格，可以直接在空格前加上反斜杠&quot;\“进行转义，从而很好的和命令参数区别出来（参数之间一般使用空格分隔）。还是上面的例子，在Unix中，只要输入”cd hutaow\ yuan“(在yuan前面的空格前加上”\“)，命令行会正确的辨认出”hutaow yuan&quot;并进入这个目录。</p>
 <p>　　当然，现在Windows的后续版本已经使用其它方法（比如文件名用双引号括住）解决了空格问题。</p>
@@ -740,7 +755,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.github.io/blog/2010/01/14/interesting-features-in-htc-diamond/"/>
     <id>http://hutaow.github.io/blog/2010/01/14/interesting-features-in-htc-diamond/</id>
     <published>2010-01-14T12:28:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:18:03.000Z</updated>
     <content type="html"><![CDATA[<p>这两天一直折腾 HTC Diamond，发现了两个很有意思的功能：</p>
 <ol>
 <li><p>Diamond的手写笔不像其它手机那样有卡槽卡住，而是像有磁铁一样把笔“吸”进去，实际上功能远不止这个。在Diamond关闭屏幕时，拔出手写笔，屏幕会自动亮起，还有比这更神奇的，在打电话时，如果拔出手写笔，Diamond会打开便签，并且便签已经包含了通话对象、时间等信息，方便记录；</p>
@@ -749,6 +764,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 </li>
 </ol>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/手机/" term="手机"/>
     <category scheme="http://hutaow.github.io/blog/categories/Technology/" term="Technology"/>
   </entry>
   <entry>
@@ -756,7 +772,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.github.io/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/"/>
     <id>http://hutaow.github.io/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/</id>
     <published>2010-01-12T14:53:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:17:50.000Z</updated>
     <content type="html"><![CDATA[<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
 <h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&quot;文件中添加如下内容：</h4>
 <a id="more"></a>
@@ -789,6 +805,8 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 </li>
 </ol>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/Xmarks/" term="Xmarks"/>
+    <category scheme="http://hutaow.github.io/blog/tags/Foxmarks/" term="Foxmarks"/>
     <category scheme="http://hutaow.github.io/blog/categories/Technology/" term="Technology"/>
   </entry>
   <entry>
@@ -796,7 +814,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.github.io/blog/2009/05/02/mark-atl-control-as-a-safe-control/"/>
     <id>http://hutaow.github.io/blog/2009/05/02/mark-atl-control-as-a-safe-control/</id>
     <published>2009-05-02T06:02:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:48:19.000Z</updated>
     <content type="html"><![CDATA[<p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
 <p>实现方法如下：</p>
 <p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
@@ -838,6 +856,9 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 
 <p>PS: 如果出现“‘IObjectSafetyImpl’ : base class undefined”的错误，则需要添加“atlctl.h”头文件。</p>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/ATL/" term="ATL"/>
+    <category scheme="http://hutaow.github.io/blog/tags/开发/" term="开发"/>
+    <category scheme="http://hutaow.github.io/blog/tags/控件/" term="控件"/>
     <category scheme="http://hutaow.github.io/blog/categories/Programming/" term="Programming"/>
   </entry>
   <entry>
@@ -845,7 +866,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.github.io/blog/2009/04/02/sql-statements-batch-replace-a-string/"/>
     <id>http://hutaow.github.io/blog/2009/04/02/sql-statements-batch-replace-a-string/</id>
     <published>2009-04-02T02:55:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:55:18.000Z</updated>
     <content type="html"><![CDATA[<p>使用update+replace语句：</p>
 <figure class="highlight lang-mysql"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="operator"><span class="keyword">update</span> table_name <span class="keyword">set</span> column_name = <span class="keyword">replace</span>(column_name,’hutaow_original_string’,<span class="string">'hutaow_new_string’);
@@ -853,6 +874,9 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 
 <p>其中，table_name是表的名字，column_name是要替换数据的列的名字，hutaow_original_string是待替换的原始字符串，hutaow_new_string是新字符串，MySQL下验证成功。</p>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/数据库/" term="数据库"/>
+    <category scheme="http://hutaow.github.io/blog/tags/SQL/" term="SQL"/>
+    <category scheme="http://hutaow.github.io/blog/tags/MySQL/" term="MySQL"/>
     <category scheme="http://hutaow.github.io/blog/categories/Database/" term="Database"/>
   </entry>
   <entry>
@@ -860,7 +884,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.github.io/blog/2008/08/14/convert-between-byte-array-and-hex-string/"/>
     <id>http://hutaow.github.io/blog/2008/08/14/convert-between-byte-array-and-hex-string/</id>
     <published>2008-08-14T11:05:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:16:39.000Z</updated>
     <content type="html"><![CDATA[<p>原理很简单，直接贴源代码吧。</p>
 <a id="more"></a>
 
@@ -957,6 +981,8 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 </pre></td></tr></table></figure>
 
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/Java/" term="Java"/>
+    <category scheme="http://hutaow.github.io/blog/tags/开发/" term="开发"/>
     <category scheme="http://hutaow.github.io/blog/categories/Programming/" term="Programming"/>
   </entry>
   <entry>
@@ -964,7 +990,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.github.io/blog/2008/08/10/config-proxy-in-linux-terminal/"/>
     <id>http://hutaow.github.io/blog/2008/08/10/config-proxy-in-linux-terminal/</id>
     <published>2008-08-10T07:12:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:16:21.000Z</updated>
     <content type="html"><![CDATA[<p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，&quot;HTTP_PROXY“、”http_proxy“和”FTP_PROXY“、”ftp_proxy“，在”~/.bash_profile&quot;中添加以下几行：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -979,6 +1005,8 @@ export ftp_proxy=<span class="method">http:</span>//<span class="method">usernam
 <p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
 <p>修改保存后重启终端或在执行&quot;source ~/.bash_proxy&quot;生效。</p>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.github.io/blog/tags/代理/" term="代理"/>
     <category scheme="http://hutaow.github.io/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
@@ -986,7 +1014,7 @@ export ftp_proxy=<span class="method">http:</span>//<span class="method">usernam
     <link href="http://hutaow.github.io/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9/"/>
     <id>http://hutaow.github.io/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9/</id>
     <published>2008-07-29T03:34:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:16:12.000Z</updated>
     <content type="html"><![CDATA[<p>今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout-&gt;KDE，结果却报出个错误，说“Could not start kstartupconfig4. Check your installation”，无语，难道是我少装了什么东西？</p>
 <p>按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用“chown”改变&quot;~/.kde“目录的所有者，哦？检查……”~/.kde&quot;这个目录竟然是root的，原来是权限的问题。</p>
 <a id="more"></a>
@@ -995,6 +1023,8 @@ export ftp_proxy=<span class="method">http:</span>//<span class="method">usernam
 <p>之后重新进入KDE，一切正常！</p>
 <p>PS：新的KDE环境确实做的不错，桌面右上角的widget加上suse的主菜单非常赞</p>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.github.io/blog/tags/KDE/" term="KDE"/>
     <category scheme="http://hutaow.github.io/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
@@ -1002,7 +1032,7 @@ export ftp_proxy=<span class="method">http:</span>//<span class="method">usernam
     <link href="http://hutaow.github.io/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/"/>
     <id>http://hutaow.github.io/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/</id>
     <published>2008-07-19T09:20:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:16:05.000Z</updated>
     <content type="html"><![CDATA[<p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫“bchunk”的小软件非常好用，而且小的可以，才几十K，很不错。</p>
 <p>在终端里输入如下命令：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -1015,6 +1045,8 @@ export ftp_proxy=<span class="method">http:</span>//<span class="method">usernam
 <p>等一小会儿，就像下面这幅图一样，会有一个进度条，进度到100%后转换就完成了。</p>
 <img src="/images/articles/200807/convert_cue_and_bin_to_iso_format_in_linux.png" class="center" title="Convert CUE and BIN to ISO format">
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.github.io/blog/tags/工具/" term="工具"/>
     <category scheme="http://hutaow.github.io/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
@@ -1022,7 +1054,7 @@ export ftp_proxy=<span class="method">http:</span>//<span class="method">usernam
     <link href="http://hutaow.github.io/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora/"/>
     <id>http://hutaow.github.io/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora/</id>
     <published>2008-07-18T12:48:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:15:12.000Z</updated>
     <content type="html"><![CDATA[<p>前一段时间突然发现VirtualBox被Sun收购了，改名成“Sun xVM VirtualBox”，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
 <pre><code>VirtualBox kernel driver <span class="keyword">not</span> installed. The vboxdrv kernel module was either <span class="keyword">not</span> loaded <span class="keyword">or</span> /dev/vboxdrv was <span class="keyword">not</span> created <span class="keyword">for</span> <span class="keyword">some</span> reason. 
 Re-setup <span class="keyword">the</span> kernel module <span class="keyword">by</span> executing ‘/etc/init.d/vboxdrv setup’ <span class="keyword">as</span> root.</code></pre>
@@ -1032,6 +1064,9 @@ Re-setup <span class="keyword">the</span> kernel module <span class="keyword">by
 <p>于是执行“sudo yum install kernel-devel”，等待系统自动下载并安装。注意这里我用的Linux是Fedora，如果是其它发行版可以执行相应的安装命令，唯一相同的是软件包“kernel-devel”名字不变。</p>
 <p>安装完成后，再次执行“sudo /etc/init.d/vboxdrv setup”，搞定！</p>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.github.io/blog/tags/VirtualBox/" term="VirtualBox"/>
+    <category scheme="http://hutaow.github.io/blog/tags/Fedora/" term="Fedora"/>
     <category scheme="http://hutaow.github.io/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
@@ -1039,12 +1074,13 @@ Re-setup <span class="keyword">the</span> kernel module <span class="keyword">by
     <link href="http://hutaow.github.io/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/"/>
     <id>http://hutaow.github.io/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/</id>
     <published>2008-04-02T04:21:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:13:34.000Z</updated>
     <content type="html"><![CDATA[<p>自己改写了几个类，这几天不停的测试测试测试，今天终于成功解码，不过因为字符编码还没彻底弄好，所以解出来的还都是乱码，不过英文已经可以解析出来了，值得纪念的一天!</p>
 <a id="more"></a>
 
 <img src="/images/articles/200804/mark_breakthrough_for_dimensional_bar_code_decoder.png" class="center" title="Breakthrough for Dimensional Bar Code Decoder">
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/Android/" term="Android"/>
     <category scheme="http://hutaow.github.io/blog/categories/Android/" term="Android"/>
   </entry>
   <entry>
@@ -1052,13 +1088,17 @@ Re-setup <span class="keyword">the</span> kernel module <span class="keyword">by
     <link href="http://hutaow.github.io/blog/2008/03/20/compilation-failed-due-to-character-encoding/"/>
     <id>http://hutaow.github.io/blog/2008/03/20/compilation-failed-due-to-character-encoding/</id>
     <published>2008-03-20T07:08:00.000Z</published>
-    <updated>2013-09-30T13:47:27.000Z</updated>
+    <updated>2013-09-30T14:47:06.000Z</updated>
     <content type="html"><![CDATA[<p>从网上下了QR标准的二维码库，打算直接调用里面的类来实现。在Fedora下Java编译通过，只是提示了一下使用了过时的方法。但我把代码复制到Windows里时，却编译不同过，出现了近1k个错误，代码完全一样，只是操作系统不同就会出问题？</p>
 <a id="more"></a>
 
 <p>回想在Windows里用UltraEdit打开时，提示文件不是“DOS Format”，会不会和文字编码有关？Linux用的是UTF-8的编码，而Windows用的是GBK的编码，难道字符编码必须要和本地相同才能编译通过么？试一下，于是把代码用UltraEdit转换成了GBK编码，再次编译，终于正常通过。</p>
 <p>看来有时编译不通过不一定是语句问题，连文件的编码也有可能出问题，如果在不同系统中出现类似上面一个正常一个错误的情况，可以考虑看是不是因为文件的编码和系统默认的编码有差异而引起的。</p>
 ]]></content>
+    <category scheme="http://hutaow.github.io/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.github.io/blog/tags/Java/" term="Java"/>
+    <category scheme="http://hutaow.github.io/blog/tags/开发/" term="开发"/>
+    <category scheme="http://hutaow.github.io/blog/tags/字符编码/" term="字符编码"/>
     <category scheme="http://hutaow.github.io/blog/categories/Programming/" term="Programming"/>
   </entry>
 </feed>
