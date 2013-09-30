@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hutaow.github.io/blog/2013/09/06/install-openwrt/</loc>
+    <lastmod>2013-09-30T15:04:46.000Z</lastmod>
+  </url>
+  <url>
     <loc>http://hutaow.github.io/blog/2009/04/02/sql-statements-batch-replace-a-string/</loc>
     <lastmod>2013-09-30T14:55:18.000Z</lastmod>
   </url>
@@ -31,10 +35,6 @@
   <url>
     <loc>http://hutaow.github.io/blog/2008/01/11/android-beginner-question/</loc>
     <lastmod>2013-09-30T14:45:03.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.github.io/blog/2013/09/06/install-openwrt/</loc>
-    <lastmod>2013-09-30T14:42:56.000Z</lastmod>
   </url>
   <url>
     <loc>http://hutaow.github.io/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/</loc>

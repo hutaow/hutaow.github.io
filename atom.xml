@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.github.io/atom.xml" rel="self"/>
   <link href="http://hutaow.github.io"/>
-  <updated>2013-09-30T15:01:47.803Z</updated>
+  <updated>2013-09-30T15:05:28.343Z</updated>
   <id>http://hutaow.github.io/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,7 +16,7 @@
     <link href="http://hutaow.github.io/blog/2013/09/06/install-openwrt/"/>
     <id>http://hutaow.github.io/blog/2013/09/06/install-openwrt/</id>
     <published>2013-09-06T15:16:00.000Z</published>
-    <updated>2013-09-30T14:42:56.000Z</updated>
+    <updated>2013-09-30T15:04:46.000Z</updated>
     <content type="html"><![CDATA[<h3>1 安装OpenWRT</h3>
 <h4>1.1 下载并刷新固件</h4>
 <p>如果以前没刷过OpenWRT，需要升级factory固件，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" target="_blank">点击这里下载</a>。</p>
@@ -228,7 +228,7 @@ config swap
 ]]></content>
     <category scheme="http://hutaow.github.io/blog/tags/OpenWRT/" term="OpenWRT"/>
     <category scheme="http://hutaow.github.io/blog/tags/路由器/" term="路由器"/>
-    <category scheme="http://hutaow.github.io/blog/categories/OpenWRT/" term="OpenWRT"/>
+    <category scheme="http://hutaow.github.io/blog/categories/Network/" term="Network"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Linux中分区出现“Read-only file system”的解决办法]]></title>
