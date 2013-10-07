@@ -263,6 +263,100 @@ article header time {
   display: block;
   line-height: 1;
 }
+@media screen and (max-width: 600px) {
+  article header .date-wrapper {
+    display: none;
+  }
+}
+article header .dateTitle {
+  color: #fff;
+  background: #559bc8;
+  position: absolute;
+  height: 40px;
+  width: 80px;
+  left: -20px;
+  -webkit-border-radius: 6px 0 0 0;
+  -webkit-border-radius: 6px 0 0 0;
+  border-radius: 6px 0 0 0;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #258fb8), color-stop(0.2, #559bc8));
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #258fb8), color-stop(0.2, #559bc8));
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #258fb8), color-stop(0.2, #559bc8));
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #258fb8), color-stop(0.2, #559bc8));
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #258fb8), color-stop(0.2, #559bc8));
+  background-image: -webkit--webkit-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -webkit--moz-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -webkit--o-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -webkit--ms-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -webkit-linear-gradient(to right, #258fb8 0, #559bc8 20px);
+  background-image: -moz--webkit-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -moz--moz-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -moz--o-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -moz--ms-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -moz-linear-gradient(to right, #258fb8 0, #559bc8 20px);
+  background-image: -o--webkit-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -o--moz-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -o--o-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -o--ms-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -o-linear-gradient(to right, #258fb8 0, #559bc8 20px);
+  background-image: -ms--webkit-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -ms--moz-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -ms--o-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -ms--ms-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -ms-linear-gradient(to right, #258fb8 0, #559bc8 20px);
+  background-image: -webkit-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -moz-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -o-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: -ms-linear-gradient(left, #258fb8 0, #559bc8 20px);
+  background-image: linear-gradient(to right, #258fb8 0, #559bc8 20px);
+  line-height: 120%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: right;
+  font-size: 11px;
+  font-family: "MuseoSlabTumblr";
+}
+article header .dateTitle .d {
+  display: block;
+  text-align: right;
+  font-size: 20px;
+  padding-top: 8px;
+  padding-right: 6px;
+  text-shadow: -1px -1px 0 rgba(0,0,0,0.4);
+}
+article header .dateTitle .ym {
+  padding-right: 6px;
+  display: block;
+  line-height: 18px;
+  text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+}
+article header .date-shadow {
+  background: #258fb8;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  left: -12px;
+  top: 33px;
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+article header .date-mask {
+  background: #fff;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  left: 0;
+  top: 60px;
+}
 article header .title {
   font-weight: normal;
 }
