@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-10-10T15:24:03.196Z</updated>
+  <updated>2013-10-10T15:29:32.601Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -13,8 +13,8 @@
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
   <entry>
     <title type="html"><![CDATA[博客搬家完成，新域名正式上线]]></title>
-    <link href="http://hutaow.net/blog/2013/10/10/start-with-new-domain/"/>
-    <id>http://hutaow.net/blog/2013/10/10/start-with-new-domain/</id>
+    <link href="http://hutaow.net/blog/2013/10/10/starting-with-new-domain-name/"/>
+    <id>http://hutaow.net/blog/2013/10/10/starting-with-new-domain-name/</id>
     <published>2013-10-10T14:23:31.000Z</published>
     <updated>2013-10-10T15:22:28.000Z</updated>
     <content type="html"><![CDATA[<p>昨天注册了<a href="http://hutaow.net">hutaow.net</a>这个域名，决心把博客搬过来，恢复写博客的生活。</p>
