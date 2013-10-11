@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-10-11T14:59:44.106Z</updated>
+  <updated>2013-10-11T15:30:14.771Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,7 +16,7 @@
     <link href="http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/"/>
     <id>http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/</id>
     <published>2013-10-11T14:03:39.000Z</published>
-    <updated>2013-10-11T14:56:32.000Z</updated>
+    <updated>2013-10-11T15:20:55.000Z</updated>
     <content type="html"><![CDATA[<p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
 <figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
@@ -40,7 +40,7 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
 <a id="more"></a>
 
 <p>示例代码：</p>
-<figure class="highlight lang-c"><figcaption><span>Example of backtrace usage </span><a href="downloads/code/backtrace.c">download</a></figcaption><table><tr><td class="gutter"><pre>1
+<figure class="highlight lang-c"><figcaption><span>Example of backtrace usage </span><a href="/downloads/code/backtrace.c">download</a></figcaption><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -162,6 +162,7 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
 ]]></content>
     <category scheme="http://hutaow.net/blog/tags/C/" term="C"/>
     <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
     <category scheme="http://hutaow.net/blog/tags/调用栈/" term="调用栈"/>
     <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
   </entry>
@@ -480,7 +481,7 @@ Enter configuration commands, one per line.  End with CNTL/Z.
     <link href="http://hutaow.net/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/"/>
     <id>http://hutaow.net/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/</id>
     <published>2010-04-27T04:43:00.000Z</published>
-    <updated>2013-10-10T14:02:18.000Z</updated>
+    <updated>2013-10-11T15:21:27.000Z</updated>
     <content type="html"><![CDATA[<p>实例说明会更清楚些，假设有如下XML文件：</p>
 <figure class="highlight lang-xml"><figcaption><span>message_hutaow.xml</span></figcaption><table><tr><td class="gutter"><pre>1
 2
@@ -550,7 +551,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 
 <p>控制台输出<br>    Source Address: 192.168.0.1<br>    Target Address: 192.168.0.19</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/C#/" term="C#"/>
+    <category scheme="http://hutaow.net/blog/tags/CSharp/" term="CSharp"/>
     <category scheme="http://hutaow.net/blog/tags/XML/" term="XML"/>
     <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
     <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>

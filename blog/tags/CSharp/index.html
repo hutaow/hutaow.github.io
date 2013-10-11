@@ -3,22 +3,13 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Linux中批量设置目录或文件权限的方法 | 胡桃夹子</title>
+  <title>CSharp | 胡桃夹子</title>
   <meta name="author" content="Wang Tao">
-  
-  <meta name="description" content="递归方式将当前目录下所有的子目录设置为755权限（不包括文件）
-1
-find ./ -type d -exec chmod 755 {} \;
-
-
-递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）
-1
-find ./ -type f -exec chmod">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Linux中批量设置目录或文件权限的方法"/>
+  
   <meta property="og:site_name" content="胡桃夹子"/>
 
   
@@ -64,7 +55,12 @@ find ./ -type f -exec chmod">
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">CSharp</h2>
+
+
+  
+    <article class="post">
   
   <div class="post-content">
     <header>
@@ -74,8 +70,8 @@ find ./ -type f -exec chmod">
           <div class="date-shadow"></div>
           <div class="date-mask"></div>
           <div class="dateTitle">
-            <span class="d">16</span>
-            <span class="ym">6/2013</span>
+            <span class="d">27</span>
+            <span class="ym">4/2010</span>
           </div>
         </div>
         <!-- added by wangtao for new date style end -->
@@ -85,58 +81,53 @@ find ./ -type f -exec chmod">
       
       
   
-    <h1 class="title">Linux中批量设置目录或文件权限的方法</h1>
+    <h1 class="title"><a href="/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/">C#获取XML文件指定节点的数据</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="title">find</span> ./ -<span class="typedef"><span class="keyword">type</span> d -exec chmod 755 <span class="container">{}</span> \;</span>
+        <p>实例说明会更清楚些，假设有如下XML文件：</p>
+<figure class="highlight lang-xml"><figcaption><span>message_hutaow.xml</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="tag">&lt;<span class="title">Message version="1.0"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">Head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">Date</span>&gt;</span>20080502<span class="tag">&lt;/<span class="title">Date</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">Source</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">Address</span>&gt;</span>192.168.0.1<span class="tag">&lt;/<span class="title">Address</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">Name</span>&gt;</span>hutaow<span class="tag">&lt;/<span class="title">Name</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">Source</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">Target</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">Address</span>&gt;</span>192.168.0.19<span class="tag">&lt;/<span class="title">Address</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">Target</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">Head</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">Message</span>&gt;</span>
 </pre></td></tr></table></figure>
 
-<p>递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="title">find</span> ./ -<span class="typedef"><span class="keyword">type</span> f -exec chmod 644 <span class="container">{}</span> \;</span>
-</pre></td></tr></table></figure>
-
+<p>现在要读取消息源IP地址(192.168.0.1)和目的IP地址(192.168.0.19)。</p>
 
       
     </div>
     <footer>
       
         
-  
-  <div class="categories">
-    <a href="/blog/categories/Linux/">Linux</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/blog/tags/Linux/">Linux</a>
-  </div>
-
+          <div class="alignleft">
+            <a href="/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/" class="more-link">Read More</a>
+          </div>
         
         
-  <!-- Baidu Button BEGIN -->
-  <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
-    <span class="bds_more">分享到：</span>
-    <a class="bds_tsina">新浪微博</a>
-    <a class="bds_renren">人人网</a>
-    <a class="bds_youdao">有道云笔记</a>
-    <a class="bds_hi">百度空间</a>
-    <a class="bds_mail">邮件分享</a>
-    <a class="shareCount"></a>
-  </div>
-  <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3588804" ></script>
-  <script type="text/javascript" id="bdshell_js"></script>
-  <script type="text/javascript">
-    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
-  </script>
-  <!-- Baidu Button END -->
-
       
       <div class="clearfix"></div>
     </footer>
@@ -144,13 +135,14 @@ find ./ -type f -exec chmod">
 </article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
 
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
@@ -243,7 +235,7 @@ var disqus_shortname = 'hutaow';
   var dsq = document.createElement('script');
   dsq.type = 'text/javascript';
   dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 }());
 </script>
