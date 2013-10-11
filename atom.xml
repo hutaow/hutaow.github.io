@@ -4,13 +4,167 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-10-10T15:43:23.092Z</updated>
+  <updated>2013-10-11T14:59:44.106Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
     <email><![CDATA[hutaow@gmail.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[在Linux程序中输出函数调用栈]]></title>
+    <link href="http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/"/>
+    <id>http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/</id>
+    <published>2013-10-11T14:03:39.000Z</published>
+    <updated>2013-10-11T14:56:32.000Z</updated>
+    <content type="html"><![CDATA[<p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
+<p>Linux中提供了三个函数用来获取调用栈：</p>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="comment">/* 获取函数调用栈 */</span>
+<span class="keyword">int</span> backtrace(void <span class="variable">**</span>buffer, <span class="keyword">int</span> <span class="keyword">size</span>);
+
+<span class="comment">/* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */</span>
+char <span class="variable">**</span>backtrace_symbols(void <span class="variable">*const</span> <span class="variable">*buffer</span>, <span class="keyword">int</span> <span class="keyword">size</span>);
+
+<span class="comment">/* 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 */</span>
+void backtrace_symbols_fd(void <span class="variable">*const</span> <span class="variable">*buffer</span>, <span class="keyword">int</span> <span class="keyword">size</span>, <span class="keyword">int</span> fd);
+</pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>示例代码：</p>
+<figure class="highlight lang-c"><figcaption><span>Example of backtrace usage </span><a href="downloads/code/backtrace.c">download</a></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+</pre></td><td class="code"><pre><span class="preprocessor">#include &lt;execinfo.h&gt;</span>
+<span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+
+<span class="comment">/* 打印调用栈的最大深度 */</span>
+<span class="preprocessor">#define DUMP_STACK_DEPTH_MAX 16</span>
+
+<span class="comment">/* 打印调用栈函数 */</span>
+<span class="keyword">void</span> dump_trace() {
+    <span class="keyword">void</span> *stack_trace[DUMP_STACK_DEPTH_MAX] = {<span class="number">0</span>};
+    <span class="keyword">char</span> **stack_strings = NULL;
+    <span class="keyword">int</span> stack_depth = <span class="number">0</span>;
+    <span class="keyword">int</span> i = <span class="number">0</span>;
+
+    <span class="comment">/* 获取栈中各层调用函数地址 */</span>
+    stack_depth = backtrace(stack_trace, DUMP_STACK_DEPTH_MAX);
+    
+    <span class="comment">/* 查找符号表将函数调用地址转换为函数名称 */</span>
+    stack_strings = (<span class="keyword">char</span> **)backtrace_symbols(stack_trace, stack_depth);
+    if (NULL == stack_strings) {
+        printf(<span class="string">" Memory is not enough while dump Stack Trace! \r\n"</span>);
+        <span class="keyword">return</span>;
+    }
+
+    <span class="comment">/* 打印调用栈 */</span>
+    printf(<span class="string">" Stack Trace: \r\n"</span>);
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; stack_depth; ++i) {
+        printf(<span class="string">" [%d] %s \r\n"</span>, i, stack_strings[i]);
+    }
+
+    <span class="comment">/* 获取函数名称时申请的内存需要自行释放 */</span>
+    free(stack_strings);
+    stack_strings = NULL;
+
+    <span class="keyword">return</span>;
+}
+
+<span class="comment">/* 测试函数 2 */</span>
+<span class="keyword">void</span> test_meloner() {
+    dump_trace();
+    <span class="keyword">return</span>;
+}
+
+<span class="comment">/* 测试函数 1 */</span>
+<span class="keyword">void</span> test_hutaow() {
+    test_meloner();
+    <span class="keyword">return</span>;
+}
+
+<span class="comment">/* 主函数 */</span>
+<span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[]) {
+    test_hutaow();
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+
+
+</pre></td></tr></table></figure>
+
+
+<p>编译时需要加上<code>-rdynamic</code>参数，以得到符号名称，像下面这样：</p>
+<pre><code><span class="comment">gcc</span> <span class="literal">-</span><span class="comment">rdynamic</span> <span class="comment">backtrace</span>.<span class="comment">c</span> <span class="literal">-</span><span class="comment">o</span> <span class="comment">backtrace</code></pre>
+<p>执行<code>./backtrace</code>运行程序，输出如下：</p>
+<p><img src="/images/articles/201310/dump_stack_with_backtrace.png" alt="Dump stack with backtrace"></p>
+]]></content>
+    <category scheme="http://hutaow.net/blog/tags/C/" term="C"/>
+    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.net/blog/tags/调用栈/" term="调用栈"/>
+    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[博客搬家完成，新域名正式上线]]></title>
     <link href="http://hutaow.net/blog/2013/10/10/starting-with-new-domain-name/"/>
@@ -1071,19 +1225,5 @@ Re-setup <span class="keyword">the</span> kernel module <span class="keyword">by
     <category scheme="http://hutaow.net/blog/tags/VirtualBox/" term="VirtualBox"/>
     <category scheme="http://hutaow.net/blog/tags/Fedora/" term="Fedora"/>
     <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[二维条码终于有了突破!]]></title>
-    <link href="http://hutaow.net/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/"/>
-    <id>http://hutaow.net/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/</id>
-    <published>2008-04-02T04:21:00.000Z</published>
-    <updated>2013-10-10T14:02:18.000Z</updated>
-    <content type="html"><![CDATA[<p>自己改写了几个类，这几天不停的测试测试测试，今天终于成功解码，不过因为字符编码还没彻底弄好，所以解出来的还都是乱码，不过英文已经可以解析出来了，值得纪念的一天!</p>
-<a id="more"></a>
-
-<p><img src="/images/articles/200804/mark_breakthrough_for_dimensional_bar_code_decoder.png" alt="Breakthrough for Dimensional Bar Code Decoder"></p>
-]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Android/" term="Android"/>
-    <category scheme="http://hutaow.net/blog/categories/Android/" term="Android"/>
   </entry>
 </feed>

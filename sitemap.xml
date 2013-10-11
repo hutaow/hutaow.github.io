@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://hutaow.net/blog/2013/10/10/starting-with-new-domain-name/</loc>
-    <lastmod>2013-10-10T15:42:00.000Z</lastmod>
+    <loc>http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/</loc>
+    <lastmod>2013-10-11T14:56:32.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2007/08/19/my-vi-config/</loc>
-    <lastmod>2013-10-10T14:02:18.000Z</lastmod>
+    <loc>http://hutaow.net/blog/2013/10/10/starting-with-new-domain-name/</loc>
+    <lastmod>2013-10-10T15:42:00.000Z</lastmod>
   </url>
   <url>
     <loc>http://hutaow.net/blog/2008/01/11/android-beginner-question/</loc>
@@ -122,6 +122,10 @@
   </url>
   <url>
     <loc>http://hutaow.net/blog/2013/09/06/install-openwrt/</loc>
+    <lastmod>2013-10-10T14:02:18.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://hutaow.net/blog/2007/08/19/my-vi-config/</loc>
     <lastmod>2013-10-10T14:02:18.000Z</lastmod>
   </url>
   <url>

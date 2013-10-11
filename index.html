@@ -66,6 +66,73 @@
           <div class="date-shadow"></div>
           <div class="date-mask"></div>
           <div class="dateTitle">
+            <span class="d">11</span>
+            <span class="ym">10/2013</span>
+          </div>
+        </div>
+        <!-- added by wangtao for new date style end -->
+        <!-- removed by wangtao for new date style begin -->
+        
+        <!-- removed by wangtao for new date style end -->
+      
+      
+  
+    <h1 class="title"><a href="/blog/2013/10/11/dump-stack-with-backtrace/">在Linux程序中输出函数调用栈</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
+<p>Linux中提供了三个函数用来获取调用栈：</p>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="comment">/* 获取函数调用栈 */</span>
+<span class="keyword">int</span> backtrace(void <span class="variable">**</span>buffer, <span class="keyword">int</span> <span class="keyword">size</span>);
+
+<span class="comment">/* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */</span>
+char <span class="variable">**</span>backtrace_symbols(void <span class="variable">*const</span> <span class="variable">*buffer</span>, <span class="keyword">int</span> <span class="keyword">size</span>);
+
+<span class="comment">/* 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 */</span>
+void backtrace_symbols_fd(void <span class="variable">*const</span> <span class="variable">*buffer</span>, <span class="keyword">int</span> <span class="keyword">size</span>, <span class="keyword">int</span> fd);
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2013/10/11/dump-stack-with-backtrace/" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- added by wangtao for new date style begin -->
+        <div class="date-wrapper">
+          <div class="date-shadow"></div>
+          <div class="date-mask"></div>
+          <div class="dateTitle">
             <span class="d">10</span>
             <span class="ym">10/2013</span>
           </div>
@@ -545,56 +612,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- added by wangtao for new date style begin -->
-        <div class="date-wrapper">
-          <div class="date-shadow"></div>
-          <div class="date-mask"></div>
-          <div class="dateTitle">
-            <span class="d">30</span>
-            <span class="ym">1/2010</span>
-          </div>
-        </div>
-        <!-- added by wangtao for new date style end -->
-        <!-- removed by wangtao for new date style begin -->
-        
-        <!-- removed by wangtao for new date style end -->
-      
-      
-  
-    <h1 class="title"><a href="/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/">正斜杠与反斜杠的分析</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>正斜杠(左斜杠)，符号是“/”；反斜杠(右斜杠)，符号是&quot;\&quot;。</p>
-<p>　　在Unix/Linux中，路径的分隔采用正斜杠“/”，比如“/home/hutaow”；而在Windows中，路径分隔采用反斜杠&quot;\“，比如”C:\Windows\System&quot;。</p>
-<p>　　有时我们会看到这样的路径写法，&quot;C:\\Windows\\System“，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用”C:/Windows/System“来代替，不会出错。但是如果写成了”C:\Windows\System&quot;，那就可能会出现各种奇怪的错误了。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -626,7 +643,7 @@
   
     <li><a href="/blog/categories/Network/">Network</a><small>2</small></li>
   
-    <li><a href="/blog/categories/Programming/">Programming</a><small>5</small></li>
+    <li><a href="/blog/categories/Programming/">Programming</a><small>6</small></li>
   
     <li><a href="/blog/categories/Security/">Security</a><small>2</small></li>
   
@@ -640,7 +657,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 16.00px;">Android</a><a href="/blog/tags/C#/" style="font-size: 10.00px;">C#</a><a href="/blog/tags/Fedora/" style="font-size: 12.00px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/IDS/" style="font-size: 12.00px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 14.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 10.00px;">MySQL</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/VI/" style="font-size: 10.00px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/入侵检测/" style="font-size: 12.00px;">入侵检测</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a><a href="/blog/tags/工具/" style="font-size: 12.00px;">工具</a><a href="/blog/tags/开发/" style="font-size: 18.00px;">开发</a><a href="/blog/tags/折腾/" style="font-size: 10.00px;">折腾</a><a href="/blog/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/blog/tags/数据库/" style="font-size: 10.00px;">数据库</a><a href="/blog/tags/路由器/" style="font-size: 10.00px;">路由器</a>
+    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 16.00px;">Android</a><a href="/blog/tags/C/" style="font-size: 10.00px;">C</a><a href="/blog/tags/C#/" style="font-size: 10.00px;">C#</a><a href="/blog/tags/Fedora/" style="font-size: 12.00px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/IDS/" style="font-size: 12.00px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 14.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 10.00px;">MySQL</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/VI/" style="font-size: 10.00px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/入侵检测/" style="font-size: 12.00px;">入侵检测</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a><a href="/blog/tags/工具/" style="font-size: 12.00px;">工具</a><a href="/blog/tags/开发/" style="font-size: 18.00px;">开发</a><a href="/blog/tags/折腾/" style="font-size: 10.00px;">折腾</a><a href="/blog/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/blog/tags/数据库/" style="font-size: 10.00px;">数据库</a><a href="/blog/tags/调用栈/" style="font-size: 10.00px;">调用栈</a><a href="/blog/tags/路由器/" style="font-size: 10.00px;">路由器</a>
   </div>
 </div>
 
@@ -649,6 +666,10 @@
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/blog/2013/10/11/dump-stack-with-backtrace/">在Linux程序中输出函数调用栈</a>
+      </li>
     
       <li>
         <a href="/blog/2013/10/10/starting-with-new-domain-name/">博客搬家完成，新域名正式上线</a>
@@ -664,10 +685,6 @@
     
       <li>
         <a href="/blog/2013/06/16/batch-settings-directory-or-file-permissions/">Linux中批量设置目录或文件权限的方法</a>
-      </li>
-    
-      <li>
-        <a href="/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/">配置 Cisco Catalyst 3560 交换机端口镜像</a>
       </li>
     
   </ul>
