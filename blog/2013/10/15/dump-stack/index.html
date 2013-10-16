@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux调用栈的获取原理及实现方法 | 胡桃夹子</title>
+  <meta name="author" content="Wang Tao">
+  
+  <meta name="description" content="上一篇文章《在Linux程序中输出函数调用栈》，讲述了在Linux中利用backtrace函数获取调用栈的方法，本篇文章主要介绍一下获取调用栈的原理。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Linux调用栈的获取原理及实现方法"/>
+  <meta property="og:site_name" content="胡桃夹子"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="胡桃夹子" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17662168-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">胡桃夹子</a></h1>
+  <h2><a href="/">open source, world shares.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/blog/archives">所有文章</a></li>
+    
+      <li><a href="/atom.xml">订阅</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- added by wangtao for new date style begin -->
+        <div class="date-wrapper">
+          <div class="date-shadow"></div>
+          <div class="date-mask"></div>
+          <div class="dateTitle">
+            <span class="d">15</span>
+            <span class="ym">10/2013</span>
+          </div>
+        </div>
+        <!-- added by wangtao for new date style end -->
+        <!-- removed by wangtao for new date style begin -->
+        
+        <!-- removed by wangtao for new date style end -->
+      
+      
+  
+    <h1 class="title">Linux调用栈的获取原理及实现方法</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中利用backtrace函数获取调用栈的方法，本篇文章主要介绍一下获取调用栈的原理。</p>
+<a id="more"></a>
+
+<p>要了解调用栈，首先需要了解函数的调用过程，下面写一段简单的函数调用代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre><span class="comment">#include &lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> add(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {
+    <span class="keyword">int</span> result = <span class="number">0</span>;
+
+    result = a + b;
+
+    <span class="keyword">return</span> result;
+}
+
+<span class="keyword">int</span> main(<span class="keyword">int</span> argc, char <span class="variable">*argv</span>[]) {
+    <span class="keyword">int</span> result = <span class="number">0</span>;
+
+    result = test(<span class="number">1</span>, <span class="number">2</span>);
+
+    <span class="keyword">printf</span>(<span class="string">"result = <span class="variable">%d</span> \r\n"</span>, result);
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>
+
+<p>使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre><span class="xml">(gdb) disassemble main 
+Dump of assembler code for function main:局部变量result
+   </span><span class="number">0x08048439</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">0</span><span class="xml">&gt;:     push   %ebp
+   </span><span class="number">0x0804843a</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">1</span><span class="xml">&gt;:     mov    %esp,%ebp
+   </span><span class="number">0x0804843c</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">3</span><span class="xml">&gt;:     and    </span><span class="variable">$0xfffffff0</span><span class="xml">,%esp
+   </span><span class="number">0x0804843f</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">6</span><span class="xml">&gt;:     sub    </span><span class="variable">$0x20</span><span class="xml">,%esp
+   </span><span class="number">0x08048442</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">9</span><span class="xml">&gt;:     movl   </span><span class="variable">$0x0</span><span class="xml">,</span><span class="number">0x1c</span><span class="xml">(%esp)  # 给result变量赋</span><span class="number">0</span><span class="xml">值
+   </span><span class="number">0x0804844a</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">17</span><span class="xml">&gt;:    movl   </span><span class="variable">$0x2</span><span class="xml">,</span><span class="number">0x4</span><span class="xml">(%esp)   # 将第</span><span class="number">2</span><span class="xml">个参数压栈(该参数偏移为esp+</span><span class="number">0x04</span><span class="xml">)
+   </span><span class="number">0x08048452</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">25</span><span class="xml">&gt;:    movl   </span><span class="variable">$0x1</span><span class="xml">,(%esp)      # 将第</span><span class="number">1</span><span class="xml">个参数压栈(该参数偏移为esp+</span><span class="number">0x00</span><span class="xml">)
+   </span><span class="number">0x08048459</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">32</span><span class="xml">&gt;:    call   </span><span class="number">0x804841c</span><span class="xml"> <span class="tag">&lt;<span class="title">add</span>&gt;</span>  # 调用add函数
+   </span><span class="number">0x0804845e</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">37</span><span class="xml">&gt;:    mov    %eax,</span><span class="number">0x1c</span><span class="xml">(%esp)  # 将add函数的返回值赋给result变量
+   </span><span class="number">0x08048462</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">41</span><span class="xml">&gt;:    mov    </span><span class="number">0x1c</span><span class="xml">(%esp),%eax
+   </span><span class="number">0x08048466</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">45</span><span class="xml">&gt;:    mov    %eax,</span><span class="number">0x4</span><span class="xml">(%esp)
+   </span><span class="number">0x0804846a</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">49</span><span class="xml">&gt;:    movl   </span><span class="variable">$0x8048510</span><span class="xml">,(%esp)
+   </span><span class="number">0x08048471</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">56</span><span class="xml">&gt;:    call   </span><span class="number">0x80482f0</span><span class="xml"> <span class="tag">&lt;<span class="title">printf@plt</span>&gt;</span>
+   </span><span class="number">0x08048476</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">61</span><span class="xml">&gt;:    mov    </span><span class="variable">$0x0</span><span class="xml">,%eax
+   </span><span class="number">0x0804847b</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">66</span><span class="xml">&gt;:    leave  
+   </span><span class="number">0x0804847c</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">67</span><span class="xml">&gt;:    ret    
+End of assembler dump.</span>
+</pre></td></tr></table></figure>
+
+<p>可以看到，参数是在add函数调用前压栈，换句话说，参数压栈由调用者进行，下面再看一下进入add函数后都做了什么：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre><span class="xml">(gdb) disassemble add
+Dump of assembler code for function add:
+   </span><span class="number">0x0804841c</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">0</span><span class="xml">&gt;:     push   %ebp             # 将ebp压栈(保存函数调用者的栈基址)
+   </span><span class="number">0x0804841d</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">1</span><span class="xml">&gt;:     mov    %esp,%ebp        # 将ebp指向栈顶esp(设置当前函数的栈基址)
+   </span><span class="number">0x0804841f</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">3</span><span class="xml">&gt;:     sub    </span><span class="variable">$0x10</span><span class="xml">,%esp       # 分配栈空间(栈向低地址方向生长)
+   </span><span class="number">0x08048422</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">6</span><span class="xml">&gt;:     movl   </span><span class="variable">$0x0</span><span class="xml">,-</span><span class="number">0x4</span><span class="xml">(%ebp)  # 给result变量赋</span><span class="number">0</span><span class="xml">值(该变量偏移为ebp-</span><span class="number">0x04</span><span class="xml">)
+   </span><span class="number">0x08048429</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">13</span><span class="xml">&gt;:    mov    </span><span class="number">0xc</span><span class="xml">(%ebp),%eax   # 将第</span><span class="number">2</span><span class="xml">个参数的值赋给eax(准备运算)
+   </span><span class="number">0x0804842c</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">16</span><span class="xml">&gt;:    mov    </span><span class="number">0x8</span><span class="xml">(%ebp),%edx   # 将第</span><span class="number">1</span><span class="xml">个参数的值赋给edx(准备运算)
+   </span><span class="number">0x0804842f</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">19</span><span class="xml">&gt;:    add    %edx,%eax        # 加法运算(edx+eax)，结果保存在eax中
+   </span><span class="number">0x08048431</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">21</span><span class="xml">&gt;:    mov    %eax,-</span><span class="number">0x4</span><span class="xml">(%ebp)  # 将运算结果eax赋给result变量
+   </span><span class="number">0x08048434</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">24</span><span class="xml">&gt;:    mov    -</span><span class="number">0x4</span><span class="xml">(%ebp),%eax  # 将result变量的值赋给eax(此时eax将作为函数返回值)
+   </span><span class="number">0x08048437</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">27</span><span class="xml">&gt;:    leave                   # 恢复函数调用者的栈基址(pop %ebp)
+   </span><span class="number">0x08048438</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">28</span><span class="xml">&gt;:    ret                     # 返回(准备执行下条指令)
+End of assembler dump.</span>
+</pre></td></tr></table></figure>
+
+<p>这里只说关键的：<br>进入add函数后，首先进行的操作就是将当前的栈基址ebp压栈(此栈基址是调用者main函数的)，然后将ebp指向栈顶esp，接下来再进行函数内的处理流程。函数内部处理完成后，会将函数调用者的栈基址恢复，然后返回准备执行下一指令。这个过程中，栈上的空间会是下面的样子：</p>
+<p><img src="/images/articles/201310/function_stack.png" alt="函数调用过程中栈的情况"></p>
+<p>可以发现，每调用一次函数，都会对调用者的栈基址(ebp)进行压栈操作，并且由于栈基址是由当时栈顶指针(esp)而来，会发现，各层函数的栈基址很巧妙的构成了一个链，即当前的栈基址指向下一个层栈基址所在的位置，如下图所示：</p>
+<p><img src="/images/articles/201310/dump_stack.png" alt="调用栈中各层函数栈基址间的关系"></p>
+<p>了解了函数的调用过程，想要回溯调用栈也就很简单了，根据前面各层函数的栈基址的压栈原理，只需获取到当前函数的栈基址(寄存器ebp)的值，然后获取该地址中的值，获取到的值也就是下一层函数的栈基址，然后再到该值所指向的地址中获取值，新取到的值就是下下层的栈基址，如此反复，即可以将每一层函数的栈基址都找出来，这也就是我们所需要的调用栈了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/blog/categories/Programming/">Programming</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/blog/tags/C/">C</a>, <a href="/blog/tags/Linux/">Linux</a>, <a href="/blog/tags/开发/">开发</a>, <a href="/blog/tags/调用栈/">调用栈</a>, <a href="/blog/tags/调试/">调试</a>, <a href="/blog/tags/定位/">定位</a>
+  </div>
+
+        
+        
+  <!-- Baidu Button BEGIN -->
+  <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+    <span class="bds_more">分享到：</span>
+    <a class="bds_tsina">新浪微博</a>
+    <a class="bds_renren">人人网</a>
+    <a class="bds_youdao">有道云笔记</a>
+    <a class="bds_hi">百度空间</a>
+    <a class="bds_mail">邮件分享</a>
+    <a class="shareCount"></a>
+  </div>
+  <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3588804" ></script>
+  <script type="text/javascript" id="bdshell_js"></script>
+  <script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+  </script>
+  <!-- Baidu Button END -->
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:hutaow.net">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/blog/categories/Android/">Android</a><small>5</small></li>
+  
+    <li><a href="/blog/categories/Database/">Database</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Life/">Life</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Linux/">Linux</a><small>13</small></li>
+  
+    <li><a href="/blog/categories/Network/">Network</a><small>2</small></li>
+  
+    <li><a href="/blog/categories/Programming/">Programming</a><small>7</small></li>
+  
+    <li><a href="/blog/categories/Security/">Security</a><small>2</small></li>
+  
+    <li><a href="/blog/categories/Technology/">Technology</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 16.00px;">Android</a><a href="/blog/tags/C/" style="font-size: 12.00px;">C</a><a href="/blog/tags/CSharp/" style="font-size: 10.00px;">CSharp</a><a href="/blog/tags/Fedora/" style="font-size: 12.00px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/IDS/" style="font-size: 12.00px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 14.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 10.00px;">MySQL</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/VI/" style="font-size: 10.00px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/入侵检测/" style="font-size: 12.00px;">入侵检测</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a><a href="/blog/tags/定位/" style="font-size: 12.00px;">定位</a><a href="/blog/tags/工具/" style="font-size: 12.00px;">工具</a><a href="/blog/tags/开发/" style="font-size: 18.00px;">开发</a><a href="/blog/tags/折腾/" style="font-size: 10.00px;">折腾</a><a href="/blog/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/blog/tags/数据库/" style="font-size: 10.00px;">数据库</a><a href="/blog/tags/调用栈/" style="font-size: 12.00px;">调用栈</a><a href="/blog/tags/调试/" style="font-size: 12.00px;">调试</a><a href="/blog/tags/路由器/" style="font-size: 10.00px;">路由器</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/blog/2013/10/15/dump-stack/">Linux调用栈的获取原理及实现方法</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/10/11/dump-stack-with-backtrace/">在Linux程序中输出函数调用栈</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/10/10/starting-with-new-domain-name/">博客搬家完成，新域名正式上线</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/09/06/install-openwrt/">TP-WR703n安装OpenWRT记录</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/">Linux中分区出现“Read-only file system”的解决办法</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Wang Tao
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hutaow';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

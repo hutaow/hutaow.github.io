@@ -3,16 +3,13 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Rhythmbox播放MP3和WMA所需要的解码器 | 胡桃夹子</title>
+  <title>定位 | 胡桃夹子</title>
   <meta name="author" content="Wang Tao">
-  
-  <meta name="description" content="如果想支持mp3，需要gstreamer-plugins-bad和gstreamer-plugins-ugly
-如果想支持wma，需要gstreamer-ffmpeg">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Rhythmbox播放MP3和WMA所需要的解码器"/>
+  
   <meta property="og:site_name" content="胡桃夹子"/>
 
   
@@ -58,7 +55,12 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">定位</h2>
+
+
+  
+    <article class="post">
   
   <div class="post-content">
     <header>
@@ -68,8 +70,8 @@
           <div class="date-shadow"></div>
           <div class="date-mask"></div>
           <div class="dateTitle">
-            <span class="d">2</span>
-            <span class="ym">2/2008</span>
+            <span class="d">15</span>
+            <span class="ym">10/2013</span>
           </div>
         </div>
         <!-- added by wangtao for new date style end -->
@@ -79,52 +81,24 @@
       
       
   
-    <h1 class="title">Rhythmbox播放MP3和WMA所需要的解码器</h1>
+    <h1 class="title"><a href="/blog/2013/10/15/dump-stack/">Linux调用栈的获取原理及实现方法</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <ul>
-<li>如果想支持mp3，需要gstreamer-plugins-bad和gstreamer-plugins-ugly</li>
-<li>如果想支持wma，需要gstreamer-ffmpeg</li>
-</ul>
+        <p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中利用backtrace函数获取调用栈的方法，本篇文章主要介绍一下获取调用栈的原理。</p>
 
       
     </div>
     <footer>
       
         
-  
-  <div class="categories">
-    <a href="/blog/categories/Linux/">Linux</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/blog/tags/Linux/">Linux</a>, <a href="/blog/tags/Rhythmbox/">Rhythmbox</a>
-  </div>
-
+          <div class="alignleft">
+            <a href="/blog/2013/10/15/dump-stack/" class="more-link">Read More</a>
+          </div>
         
         
-  <!-- Baidu Button BEGIN -->
-  <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
-    <span class="bds_more">分享到：</span>
-    <a class="bds_tsina">新浪微博</a>
-    <a class="bds_renren">人人网</a>
-    <a class="bds_youdao">有道云笔记</a>
-    <a class="bds_hi">百度空间</a>
-    <a class="bds_mail">邮件分享</a>
-    <a class="shareCount"></a>
-  </div>
-  <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3588804" ></script>
-  <script type="text/javascript" id="bdshell_js"></script>
-  <script type="text/javascript">
-    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
-  </script>
-  <!-- Baidu Button END -->
-
       
       <div class="clearfix"></div>
     </footer>
@@ -132,13 +106,81 @@
 </article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
 
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- added by wangtao for new date style begin -->
+        <div class="date-wrapper">
+          <div class="date-shadow"></div>
+          <div class="date-mask"></div>
+          <div class="dateTitle">
+            <span class="d">11</span>
+            <span class="ym">10/2013</span>
+          </div>
+        </div>
+        <!-- added by wangtao for new date style end -->
+        <!-- removed by wangtao for new date style begin -->
+        
+        <!-- removed by wangtao for new date style end -->
+      
+      
+  
+    <h1 class="title"><a href="/blog/2013/10/11/dump-stack-with-backtrace/">在Linux程序中输出函数调用栈</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
+<p>Linux中提供了三个函数用来获取调用栈：</p>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="comment">/* 获取函数调用栈 */</span>
+<span class="keyword">int</span> backtrace(void <span class="variable">**</span>buffer, <span class="keyword">int</span> <span class="keyword">size</span>);
+
+<span class="comment">/* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */</span>
+char <span class="variable">**</span>backtrace_symbols(void <span class="variable">*const</span> <span class="variable">*buffer</span>, <span class="keyword">int</span> <span class="keyword">size</span>);
+
+<span class="comment">/* 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 */</span>
+void backtrace_symbols_fd(void <span class="variable">*const</span> <span class="variable">*buffer</span>, <span class="keyword">int</span> <span class="keyword">size</span>, <span class="keyword">int</span> fd);
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2013/10/11/dump-stack-with-backtrace/" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
@@ -231,7 +273,7 @@ var disqus_shortname = 'hutaow';
   var dsq = document.createElement('script');
   dsq.type = 'text/javascript';
   dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 }());
 </script>
