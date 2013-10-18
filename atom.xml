@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-10-17T17:46:43.909Z</updated>
+  <updated>2013-10-18T12:54:07.026Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,7 +16,7 @@
     <link href="http://hutaow.net/blog/2013/10/15/dump-stack/"/>
     <id>http://hutaow.net/blog/2013/10/15/dump-stack/</id>
     <published>2013-10-15T15:32:31.000Z</published>
-    <updated>2013-10-17T17:45:24.000Z</updated>
+    <updated>2013-10-18T12:53:47.000Z</updated>
     <content type="html"><![CDATA[<p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。</p>
 <a id="more"></a>
 
@@ -82,7 +82,7 @@
 18
 19
 </pre></td><td class="code"><pre><span class="xml">(gdb) disassemble main 
-Dump of assembler code for function main:局部变量result
+Dump of assembler code for function main:
    </span><span class="number">0x08048439</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">0</span><span class="xml">&gt;:     push   %ebp
    </span><span class="number">0x0804843a</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">1</span><span class="xml">&gt;:     mov    %esp,%ebp
    </span><span class="number">0x0804843c</span><span class="xml"> <span class="tag">&lt;<span class="title">+</span></span><span class="number">3</span><span class="xml">&gt;:     and    </span><span class="variable">$0xfffffff0</span><span class="xml">,%esp
