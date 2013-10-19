@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hutaow.net/blog/2007/08/19/my-vi-config/</loc>
+    <lastmod>2013-10-19T13:15:22.000Z</lastmod>
+  </url>
+  <url>
     <loc>http://hutaow.net/blog/2013/10/15/dump-stack/</loc>
     <lastmod>2013-10-18T12:53:47.000Z</lastmod>
   </url>
@@ -9,11 +13,7 @@
     <lastmod>2013-10-14T14:49:53.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2008/01/11/android-beginner-question/</loc>
-    <lastmod>2013-10-14T14:35:22.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2008/01/28/understanding-on-the-android-layout/</loc>
+    <loc>http://hutaow.net/blog/2009/04/02/sql-statements-batch-replace-a-string/</loc>
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
@@ -73,7 +73,7 @@
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2009/04/02/sql-statements-batch-replace-a-string/</loc>
+    <loc>http://hutaow.net/blog/2008/01/28/understanding-on-the-android-layout/</loc>
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
@@ -129,7 +129,7 @@
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2007/08/19/my-vi-config/</loc>
+    <loc>http://hutaow.net/blog/2008/01/11/android-beginner-question/</loc>
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
