@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档：2008/8 | 胡桃夹子</title>
+  <title>信号 | 胡桃夹子</title>
   <meta name="author" content="Wang Tao">
   
   
@@ -56,7 +56,7 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2008/8</h2>
+<h2 class="archive-title tag">信号</h2>
 
 
   
@@ -70,8 +70,8 @@
           <div class="date-shadow"></div>
           <div class="date-mask"></div>
           <div class="dateTitle">
-            <span class="d">14</span>
-            <span class="ym">8/2008</span>
+            <span class="d">19</span>
+            <span class="ym">10/2013</span>
           </div>
         </div>
         <!-- added by wangtao for new date style end -->
@@ -81,13 +81,24 @@
       
       
   
-    <h1 class="title"><a href="/blog/2008/08/14/convert-between-byte-array-and-hex-string/">Java中十六进制字符串与字节数组的相互转换</a></h1>
+    <h1 class="title"><a href="/blog/2013/10/19/linux-signal/">Linux信号介绍</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>原理很简单，直接贴源代码吧。</p>
+        <p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步通知机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
+<p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
+<h3>1 信号的响应动作</h3>
+<p>每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种：</p>
+<ul>
+<li>中止进程(Term)</li>
+<li>忽略信号(Ign)</li>
+<li>中止进程并保存内存信息(Core)</li>
+<li>停止进程(Stop)</li>
+<li>继续运行进程(Cont)</li>
+</ul>
+<p>用户可以通过<code>signal</code>或<code>sigaction</code>函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。</p>
 
       
     </div>
@@ -95,64 +106,8 @@
       
         
           <div class="alignleft">
-            <a href="/blog/2008/08/14/convert-between-byte-array-and-hex-string/" class="more-link">Read More</a>
+            <a href="/blog/2013/10/19/linux-signal/" class="more-link">Read More</a>
           </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- added by wangtao for new date style begin -->
-        <div class="date-wrapper">
-          <div class="date-shadow"></div>
-          <div class="date-mask"></div>
-          <div class="dateTitle">
-            <span class="d">10</span>
-            <span class="ym">8/2008</span>
-          </div>
-        </div>
-        <!-- added by wangtao for new date style end -->
-        <!-- removed by wangtao for new date style begin -->
-        
-        <!-- removed by wangtao for new date style end -->
-      
-      
-  
-    <h1 class="title"><a href="/blog/2008/08/10/config-proxy-in-linux-terminal/">终端下使用代理的方法</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，&quot;HTTP_PROXY“、”http_proxy“和”FTP_PROXY“、”ftp_proxy“，在”~/.bash_profile&quot;中添加以下几行：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>export <span class="class">HTTP_PROXY</span>=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-export <span class="class">FTP_PROXY</span>=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-export http_proxy=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-export ftp_proxy=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-</pre></td></tr></table></figure>
-
-<p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
-<p>修改保存后重启终端或在执行&quot;source ~/.bash_proxy&quot;生效。</p>
-
-      
-    </div>
-    <footer>
-      
         
         
       
