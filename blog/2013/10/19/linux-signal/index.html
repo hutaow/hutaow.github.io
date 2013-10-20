@@ -475,7 +475,7 @@ sighandler_t signal(int signum, sighandler_t handler);
 ^CGet <span class="keyword">signal</span> SIGINT. 
 ^CGet <span class="keyword">signal</span> SIGINT.</code></pre>
 <p>会发现，原本按下<code>Ctrl+C</code>会结束进程的，现在只是打印了一下提示信息，而程序还在继续运行。这是因为我们已经将<code>SIGINT</code>信号的动作接管所致。</p>
-<p>信号的用法示例介绍完了，但是那个示例程序还在运行，怎么把它退出呢？步骤如下：先按下<code>Ctrl+Z</code>将程序转到后台运行，然后执行<code>ps</code>命令查一下程序的PID是多少，再执行<code>kill -9 XXX</code>，其中“XXX”是进程的PID号，另外一定要加上<code>-9</code>这个参数，表示向进程发送SIGKILL(9)信号将其无条件中止（这个信号用户是不能捕获或忽略的）。</p>
+<p>信号的用法示例介绍完了，但是刚才的示例程序还在运行，怎么把它退出呢？步骤如下：先按下<code>Ctrl+Z</code>将程序转到后台运行，然后执行<code>ps</code>命令查一下程序的PID，再执行<code>kill -9 XXX</code>，其中“XXX”是进程的PID号，另外一定要加上<code>-9</code>这个参数，表示向进程发送SIGKILL(9)信号将其无条件中止（这个信号用户是不能捕获或忽略的）。</p>
 
       
     </div>
