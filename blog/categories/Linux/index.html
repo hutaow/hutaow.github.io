@@ -856,6 +856,7 @@ export <span class="class">CLASSPATH</span>=.:<span class="char">$J</span>AVA_HO
 95
 96
 97
+98
 </pre></td><td class="code"><pre>" 设置字符编码
 <span class="keyword">set</span> encoding=utf-<span class="number">8</span>
 <span class="keyword">set</span> termencoding=utf-<span class="number">8</span>
@@ -867,6 +868,7 @@ export <span class="class">CLASSPATH</span>=.:<span class="char">$J</span>AVA_HO
 <span class="keyword">set</span> fileformats=unix,dos,mac
 
 " 提示信息语言
+<span class="keyword">set</span> langmenu=en_US.utf-<span class="number">8</span>
 language messages en_US.utf-<span class="number">8</span>
 
 " 开启文件类型检测
@@ -936,7 +938,7 @@ syntax on
 colorscheme desert 
 
 " 状态行显示内容
-<span class="keyword">set</span> statusline=<span class="envvar">%F%</span>m<span class="envvar">%r%</span>h%w\ [FORMAT=%{&amp;ff}]\ [TYPE=%Y]\ [POS=<span class="envvar">%l,%</span>v][<span class="envvar">%p%</span>%]\ <span class="envvar">%{strftime(\"%</span>Y/<span class="envvar">%m/%</span>d\ <span class="envvar">%H:%</span>M\")}
+<span class="keyword">set</span> statusline=<span class="envvar">%F%</span>m<span class="envvar">%r%</span>h%w\ [FORMAT=<span class="envvar">%{&amp;ff}:%</span>{&amp;fenc!=''?&amp;fenc:&amp;enc}]\ [TYPE=%Y]\ <span class="envvar">%r%</span>h<span class="envvar">%=[POS=%</span>l,<span class="envvar">%v][%</span>p<span class="envvar">%%]</span>\ [<span class="envvar">%{strftime(\"%</span>Y/<span class="envvar">%m/%</span>d\ <span class="envvar">%H:%</span>M\")}]
 
 " 状态行显示模式(<span class="number">0</span>=不显示,<span class="number">1</span>=两个窗口以上显示,<span class="number">2</span>=始终显示)
 <span class="keyword">set</span> laststatus=<span class="number">2</span>

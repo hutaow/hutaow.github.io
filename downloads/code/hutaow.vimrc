@@ -9,6 +9,7 @@ set fileformat=unix
 set fileformats=unix,dos,mac
 
 " 提示信息语言
+set langmenu=en_US.utf-8
 language messages en_US.utf-8
 
 " 开启文件类型检测
@@ -78,7 +79,7 @@ set background=dark
 colorscheme desert 
 
 " 状态行显示内容
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%Y/%m/%d\ %H:%M\")}
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}:%{&fenc!=''?&fenc:&enc}]\ [TYPE=%Y]\ %r%h%=[POS=%l,%v][%p%%]\ [%{strftime(\"%Y/%m/%d\ %H:%M\")}]
 
 " 状态行显示模式(0=不显示,1=两个窗口以上显示,2=始终显示)
 set laststatus=2
