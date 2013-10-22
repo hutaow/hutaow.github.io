@@ -541,14 +541,8 @@ article footer .addthis iframe {
   margin-top: 0;
 }
 article table th {
-  color: #039;
-  border-bottom: 2px solid #6678b1;
-}
-article table tbody td {
-  color: #669;
-}
-article table tbody tr:hover td {
-  color: #009;
+  border-bottom: 2px solid;
+  min-width: 100px;
 }
 #comment {
   padding: 20px;
