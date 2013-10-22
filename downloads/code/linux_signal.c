@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <signal.h>
+#include <unistd.h>
 
 /* 信号处理函数 */
 void sig_callback(int signum) {
@@ -20,13 +21,17 @@ void sig_callback(int signum) {
 
 /* 主函数 */
 int main(int argc, char *argv[]) {
+    printf("Register SIGINT(%u) Signal Action. \r\n", SIGINT);
+
     /* 注册SIGINT信号的处理函数 */
     signal(SIGINT, sig_callback);
 
-    /* 阻塞在这里 等待信号触发 */
-    do {
-        sleep(1);
-    } while (1);
+    printf("Waitting for Signal ... \r\n");
+
+    /* 等待信号触发 */
+    pause();
+
+    printf("Process Continue. \r\n");
 
     return 0;
 }
