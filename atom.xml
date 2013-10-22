@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-10-22T14:28:26.440Z</updated>
+  <updated>2013-10-22T15:46:22.142Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,7 +16,7 @@
     <link href="http://hutaow.net/blog/2013/10/19/linux-signal/"/>
     <id>http://hutaow.net/blog/2013/10/19/linux-signal/</id>
     <published>2013-10-19T13:47:22.000Z</published>
-    <updated>2013-10-21T15:47:58.000Z</updated>
+    <updated>2013-10-22T15:44:20.000Z</updated>
     <content type="html"><![CDATA[<p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步通知机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <a id="more"></a>
@@ -33,7 +33,7 @@
 <p>用户可以通过<code>signal</code>或<code>sigaction</code>函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。</p>
 <h3>2 信号类型</h3>
 <p>Linux支持的信号类型可以参考下面给出的列表。</p>
-<h4>2.1 在POSIX.1-1990标准中的信号列表：</h4>
+<h4>2.1 在POSIX.1-1990标准中的信号列表</h4>
 <table>
 <thead>
 <tr>
@@ -48,120 +48,120 @@
 <td>SIGHUP</td>
 <td>1</td>
 <td>Term</td>
-<td>Hangup detected on controlling terminal or death of controlling process</td>
+<td>终端控制进程结束(终端连接断开)</td>
 </tr>
 <tr>
 <td>SIGINT</td>
 <td>2</td>
 <td>Term</td>
-<td>Interrupt from keyboard</td>
+<td>用户发送INTR字符(Ctrl+C)触发</td>
 </tr>
 <tr>
 <td>SIGQUIT</td>
 <td>3</td>
 <td>Core</td>
-<td>Quit from keyboard</td>
+<td>用户发送QUIT字符(Ctrl+/)触发</td>
 </tr>
 <tr>
 <td>SIGILL</td>
 <td>4</td>
 <td>Core</td>
-<td>Illegal Instruction</td>
+<td>非法指令(程序错误、试图执行数据段、栈溢出等)</td>
 </tr>
 <tr>
 <td>SIGABRT</td>
 <td>6</td>
 <td>Core</td>
-<td>Abort signal from abort(3)</td>
+<td>调用abort函数触发</td>
 </tr>
 <tr>
 <td>SIGFPE</td>
 <td>8</td>
 <td>Core</td>
-<td>Floating point exception</td>
+<td>算术运行错误(浮点运算错误、除数为零等)</td>
 </tr>
 <tr>
 <td>SIGKILL</td>
 <td>9</td>
 <td>Term</td>
-<td>Kill signal</td>
+<td>无条件结束程序(不能被捕获、阻塞或忽略)</td>
 </tr>
 <tr>
 <td>SIGSEGV</td>
 <td>11</td>
 <td>Core</td>
-<td>Invalid memory reference</td>
+<td>无效内存引用(试图访问不属于自己的内存空间、对只读内存空间进行写操作)</td>
 </tr>
 <tr>
 <td>SIGPIPE</td>
 <td>13</td>
 <td>Term</td>
-<td>Broken pipe: write to pipe with no readers</td>
+<td>消息管道损坏(FIFO/Socket通信时，管道未打开而进行写操作)</td>
 </tr>
 <tr>
 <td>SIGALRM</td>
 <td>14</td>
 <td>Term</td>
-<td>Timer signal from alarm(2)</td>
+<td>时钟定时信号</td>
 </tr>
 <tr>
 <td>SIGTERM</td>
 <td>15</td>
 <td>Term</td>
-<td>Termination signal</td>
+<td>结束程序(可以被捕获、阻塞或忽略)</td>
 </tr>
 <tr>
 <td>SIGUSR1</td>
 <td>30,10,16</td>
 <td>Term</td>
-<td>User-defined signal 1</td>
+<td>用户保留</td>
 </tr>
 <tr>
 <td>SIGUSR2</td>
 <td>31,12,17</td>
 <td>Term</td>
-<td>User-defined signal 2</td>
+<td>用户保留</td>
 </tr>
 <tr>
 <td>SIGCHLD</td>
 <td>20,17,18</td>
 <td>Ign</td>
-<td>Child stopped or terminated</td>
+<td>子进程结束(由父进程接收)</td>
 </tr>
 <tr>
 <td>SIGCONT</td>
 <td>19,18,25</td>
 <td>Cont</td>
-<td>Continue if stopped</td>
+<td>继续执行已经停止的进程(不能被阻塞)</td>
 </tr>
 <tr>
 <td>SIGSTOP</td>
 <td>17,19,23</td>
 <td>Stop</td>
-<td>Stop process</td>
+<td>停止进程(不能被捕获、阻塞或忽略)</td>
 </tr>
 <tr>
 <td>SIGTSTP</td>
 <td>18,20,24</td>
 <td>Stop</td>
-<td>Stop typed at terminal</td>
+<td>停止进程(可以被捕获、阻塞或忽略)</td>
 </tr>
 <tr>
 <td>SIGTTIN</td>
 <td>21,21,26</td>
 <td>Stop</td>
-<td>Terminal input for background process</td>
+<td>后台程序从终端中读取数据时触发</td>
 </tr>
 <tr>
 <td>SIGTTOU</td>
 <td>22,22,27</td>
 <td>Stop</td>
-<td>Terminal output for background process</td>
+<td>后台程序向终端中写数据时触发</td>
 </tr>
 </tbody>
 </table>
-<p>其中<code>SIGKILL</code>和<code>SIGSTOP</code>信号不能被捕获、阻塞或忽略。</p>
-<h4>2.2 在SUSv2和POSIX.1-2001标准中的信号列表：</h4>
+<p><strong>注</strong>：其中<code>SIGKILL</code>和<code>SIGSTOP</code>信号不能被捕获、阻塞或忽略。</p>
+<h4>2.2 在SUSv2和POSIX.1-2001标准中的信号列表</h4>
 <table>
 <thead>
 <tr>
@@ -173,10 +173,16 @@
 </thead>
 <tbody>
 <tr>
+<td>SIGTRAP</td>
+<td>5</td>
+<td>Core</td>
+<td>Trap指令触发(如断点，在调试器中使用)</td>
+</tr>
+<tr>
 <td>SIGBUS</td>
 <td>0,7,10</td>
 <td>Core</td>
-<td>Bus error (bad memory access)</td>
+<td>非法地址(内存地址对齐错误)</td>
 </tr>
 <tr>
 <td>SIGPOLL</td>
@@ -188,48 +194,42 @@
 <td>SIGPROF</td>
 <td>27,27,29</td>
 <td>Term</td>
-<td>Profiling timer expired</td>
+<td>性能时钟信号(包含系统调用时间和进程占用CPU的时间)</td>
 </tr>
 <tr>
 <td>SIGSYS</td>
 <td>12,31,12</td>
 <td>Core</td>
-<td>Bad argument to routine (SVr4)</td>
-</tr>
-<tr>
-<td>SIGTRAP</td>
-<td>5</td>
-<td>Core</td>
-<td>Trace/breakpoint trap</td>
+<td>无效的系统调用(SVr4)</td>
 </tr>
 <tr>
 <td>SIGURG</td>
 <td>16,23,21</td>
 <td>Ign</td>
-<td>Urgent condition on socket (4.2BSD)</td>
+<td>有紧急数据到达Socket(4.2BSD)</td>
 </tr>
 <tr>
 <td>SIGVTALRM</td>
 <td>26,26,28</td>
 <td>Term</td>
-<td>Virtual alarm clock (4.2BSD)</td>
+<td>虚拟时钟信号(进程占用CPU的时间)(4.2BSD)</td>
 </tr>
 <tr>
 <td>SIGXCPU</td>
 <td>24,24,30</td>
 <td>Core</td>
-<td>CPU time limit exceeded (4.2BSD)</td>
+<td>超过CPU时间资源限制(4.2BSD)</td>
 </tr>
 <tr>
 <td>SIGXFSZ</td>
 <td>25,25,31</td>
 <td>Core</td>
-<td>File size limit exceeded (4.2BSD)</td>
+<td>超过文件大小资源限制(4.2BSD)</td>
 </tr>
 </tbody>
 </table>
-<p>在Linux 2.2版本之前，<code>SIGSYS</code>、<code>SIGXCPU</code>、<code>SIGXFSZ</code>以及<code>SIGBUS</code>的默认响应动作为Term，Linux 2.4版本之后这三个信号的默认响应动作改为Core。</p>
-<h4>2.3 其它信号：</h4>
+<p><strong>注</strong>：在Linux 2.2版本之前，<code>SIGSYS</code>、<code>SIGXCPU</code>、<code>SIGXFSZ</code>以及<code>SIGBUS</code>的默认响应动作为Term，Linux 2.4版本之后这三个信号的默认响应动作改为Core。</p>
+<h4>2.3 其它信号</h4>
 <table>
 <thead>
 <tr>
@@ -244,65 +244,65 @@
 <td>SIGIOT</td>
 <td>6</td>
 <td>Core</td>
-<td>IOT trap. A synonym for SIGABRT</td>
+<td>IOT捕获信号(同SIGABRT信号)</td>
 </tr>
 <tr>
 <td>SIGEMT</td>
 <td>7,-,7</td>
 <td>Term</td>
-<td></td>
+<td>实时硬件发生错误</td>
 </tr>
 <tr>
 <td>SIGSTKFLT</td>
 <td>-,16,-</td>
 <td>Term</td>
-<td>Stack fault on coprocessor (unused)</td>
+<td>协同处理器栈错误(未使用)</td>
 </tr>
 <tr>
 <td>SIGIO</td>
 <td>23,29,22</td>
 <td>Term</td>
-<td>I/O now possible (4.2BSD)</td>
+<td>文件描述符准备就绪(可以开始进行输入/输出操作)(4.2BSD)</td>
 </tr>
 <tr>
 <td>SIGCLD</td>
 <td>-,-,18</td>
 <td>Ign</td>
-<td>A synonym for SIGCHLD</td>
+<td>子进程结束(由父进程接收)(同SIGCHLD信号)</td>
 </tr>
 <tr>
 <td>SIGPWR</td>
 <td>29,30,19</td>
 <td>Term</td>
-<td>Power failure (System V)</td>
+<td>电源错误(System V)</td>
 </tr>
 <tr>
 <td>SIGINFO</td>
 <td>29,-,-</td>
 <td></td>
-<td>A synonym for SIGPWR</td>
+<td>电源错误(同SIGPWR信号)</td>
 </tr>
 <tr>
 <td>SIGLOST</td>
 <td>-,-,-</td>
 <td>Term</td>
-<td>File lock lost (unused)</td>
+<td>文件锁丢失(未使用)</td>
 </tr>
 <tr>
 <td>SIGWINCH</td>
 <td>28,28,20</td>
 <td>Ign</td>
-<td>Window resize signal (4.3BSD, Sun)</td>
+<td>窗口大小改变时触发(4.3BSD, Sun)</td>
 </tr>
 <tr>
 <td>SIGUNUSED</td>
 <td>-,31,-</td>
 <td>Core</td>
-<td>Synonymous with SIGSYS</td>
+<td>无效的系统调用(同SIGSYS信号)</td>
 </tr>
 </tbody>
 </table>
-<p>注意：列表中有的信号有三个值，这是因为部分信号的值和CPU架构有关，这些信号的值在不同架构的CPU中是不同的，三个值的排列顺序为：1，Alpha/Sparc；2，x86/ARM/Others；3，MIPS。</p>
+<p><strong>注意</strong>：列表中有的信号有三个值，这是因为部分信号的值和CPU架构有关，这些信号的值在不同架构的CPU中是不同的，三个值的排列顺序为：1，Alpha/Sparc；2，x86/ARM/Others；3，MIPS。</p>
 <p>例如<code>SIGSTOP</code>这个信号，它有三种可能的值，分别是17、19、23，其中第一个值（17）是用在Alpha和Sparc架构中，第二个值（19）用在x86、ARM等其它架构中，第三个值（23）则是用在MIPS架构中的。</p>
 <h3>3 信号的使用</h3>
 <p>用户可以自己重新定义某个信号的处理方式，即前面提到的修改信号的默认响应动作，也可以理解为对信号的注册，可以通过<code>signal</code>或<code>sigaction</code>函数进行，这里以<code>signal</code>函数举例说明。</p>
@@ -396,8 +396,7 @@ sighandler_t signal(int signum, sighandler_t handler);
 <pre><code>./linux_signal_example
 ^CGet <span class="keyword">signal</span> SIGINT. 
 ^CGet <span class="keyword">signal</span> SIGINT.</code></pre>
-<p>会发现，原本按下<code>Ctrl+C</code>会结束进程的，现在只是打印了一下提示信息，而程序还在继续运行。这是因为我们已经将<code>SIGINT</code>信号的动作接管所致。</p>
-<p>信号的用法示例介绍完了，但是刚才的示例程序还在运行，怎么把它退出呢？步骤如下：先按下<code>Ctrl+Z</code>将程序转到后台运行，然后执行<code>ps</code>命令查一下程序的PID，再执行<code>kill -9 XXX</code>，其中“XXX”是进程的PID号，另外一定要加上<code>-9</code>这个参数，表示向进程发送SIGKILL(9)信号将其无条件中止（这个信号用户是不能捕获或忽略的）。</p>
+<p>会发现，原本按下<code>Ctrl+C</code>会结束进程的，现在只是打印了一下提示信息，而程序还在继续运行。这是因为我们已经将<code>SIGINT</code>信号的动作接管所致。<br>结束该进程的步骤：先按下<code>Ctrl+Z</code>将程序转到后台运行，然后执行<code>ps</code>命令查一下程序的PID，再执行<code>kill -9 XXX</code>，其中“XXX”是进程的PID号，另外一定要加上<code>-9</code>这个参数，表示向进程发送SIGKILL(9)信号将其无条件中止。</p>
 ]]></content>
     <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
     <category scheme="http://hutaow.net/blog/tags/C/" term="C"/>
