@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-10-22T17:13:59.702Z</updated>
+  <updated>2013-10-23T19:15:22.852Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,12 +12,12 @@
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
   <entry>
-    <title type="html"><![CDATA[Linux信号介绍]]></title>
+    <title type="html"><![CDATA[Linux信号处理机制]]></title>
     <link href="http://hutaow.net/blog/2013/10/19/linux-signal/"/>
     <id>http://hutaow.net/blog/2013/10/19/linux-signal/</id>
     <published>2013-10-19T13:47:22.000Z</published>
-    <updated>2013-10-22T17:11:40.000Z</updated>
-    <content type="html"><![CDATA[<p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步通知机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
+    <updated>2013-10-23T19:14:16.000Z</updated>
+    <content type="html"><![CDATA[<p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <a id="more"></a>
 
@@ -304,8 +304,28 @@
 </table>
 <p><strong>注意</strong>：列表中有的信号有三个值，这是因为部分信号的值和CPU架构有关，这些信号的值在不同架构的CPU中是不同的，三个值的排列顺序为：1，Alpha/Sparc；2，x86/ARM/Others；3，MIPS。</p>
 <p>例如<code>SIGSTOP</code>这个信号，它有三种可能的值，分别是17、19、23，其中第一个值（17）是用在Alpha和Sparc架构中，第二个值（19）用在x86、ARM等其它架构中，第三个值（23）则是用在MIPS架构中的。</p>
-<h3>3 信号的使用</h3>
-<h4>3.1 发送信号</h4>
+<h3>3 信号机制</h3>
+<p>文章的前面提到过，信号是异步的，这就涉及信号何时接收、何时处理的问题。</p>
+<p>我们知道，函数运行在用户态，当遇到系统调用、中断或是异常的情况时，程序会进入内核态。信号涉及到了这两种状态之间的转换，过程可以先看一下下面的示意图：</p>
+<p><img src="/images/articles/201310/linux_signal_flow.png" alt="信号处理机制示意图"></p>
+<p>接下来围绕示意图，将信号分成接收、检测和处理三个部分，逐一讲解每一步的处理流程。</p>
+<h4>3.1 信号的接收</h4>
+<p>接收信号的任务是由内核代理的，当内核接收到信号后，会将其放到对应进程的信号队列中，同时向进程发送一个中断，使其陷入内核态。</p>
+<p>注意，此时信号还只是在队列中，对进程来说暂时是不知道有信号到来的。</p>
+<h4>3.2 信号的检测</h4>
+<p>进程陷入内核态后，有两种场景会对信号进行检测：</p>
+<ul>
+<li>进程从内核态返回到用户态前进行信号检测</li>
+<li>进程在内核态中，从睡眠状态被唤醒的时候进行信号检测</li>
+</ul>
+<p>当发现有新信号时，便会进入下一步，信号的处理。</p>
+<h4>3.3 信号的处理</h4>
+<p>信号处理函数是运行在用户态的，调用处理函数前，内核会将当前内核栈的内容备份拷贝到用户栈上，并且修改指令寄存器（eip）将其指向信号处理函数。</p>
+<p>接下来进程返回到用户态中，执行相应的信号处理函数。</p>
+<p>信号处理函数执行完成后，还需要返回内核态，检查是否还有其它信号未处理。如果所有信号都处理完成，就会将内核栈恢复（从用户栈的备份拷贝回来），同时恢复指令寄存器（eip）将其指向中断前的运行位置，最后回到用户态继续执行进程。</p>
+<p>至此，一个完整的信号处理流程便结束了，如果同时有多个信号到达，上面的处理流程会在第2步和第3步骤间重复进行。</p>
+<h3>4 信号的使用</h3>
+<h4>4.1 发送信号</h4>
 <p>用于发送信号的函数有<code>raise</code>、<code>kill</code>、<code>killpg</code>、<code>pthread_kill</code>、<code>tgkill</code>、<code>sigqueue</code>，这几个函数的含义和用法都大同小异，这里主要介绍一下常用的<code>raise</code>和<code>kill</code>函数。</p>
 <p><strong>raise函数</strong>：向进程本身发送信号</p>
 <p>函数声明如下：</p>
@@ -339,7 +359,7 @@ int kill(pid_t pid, int sig);
 <li>pid &lt; -1 ：向进程组号为-pid的所有进程发送信号</li>
 </ul>
 <p>另外，当<code>sig</code>值为零时，实际不发送任何信号，但函数返回值依然有效，可以用于检查进程是否存在。</p>
-<h4>3.2 等待信号被捕获</h4>
+<h4>4.2 等待信号被捕获</h4>
 <p>等待信号的过程，其实就是将当前进程(线程)暂停，直到有信号发到当前进程(线程)上并被捕获，函数有<code>pause</code>和<code>sigsuspend</code>。</p>
 <p><strong>pause函数</strong>：将进程(或线程)转入睡眠状态，直到接收到信号</p>
 <p>函数声明如下：</p>
@@ -363,7 +383,7 @@ int kill(pid_t pid, int sig);
 </pre></td></tr></table></figure>
 
 <p>该函数调用后，会将进程的信号掩码临时修改(参数<code>mask</code>)，然后暂停进程，直到收到符合条件的信号为止，函数返回前会将调用前的信号掩码恢复。该函数的返回值始终为-1，并且调用结束后，错误代码(errno)会被置为EINTR。</p>
-<h4>3.3 修改信号的响应动作</h4>
+<h4>4.3 修改信号的响应动作</h4>
 <p>用户可以自己重新定义某个信号的处理方式，即前面提到的修改信号的默认响应动作，也可以理解为对信号的注册，可以通过<code>signal</code>或<code>sigaction</code>函数进行，这里以<code>signal</code>函数举例说明。</p>
 <p>首先看一下函数声明：</p>
 <figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1

@@ -81,13 +81,13 @@
       
       
   
-    <h1 class="title"><a href="/blog/2013/10/19/linux-signal/">Linux信号介绍</a></h1>
+    <h1 class="title"><a href="/blog/2013/10/19/linux-signal/">Linux信号处理机制</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步通知机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
+        <p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 
       
@@ -481,7 +481,7 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
   <ul class="entry">
     
       <li>
-        <a href="/blog/2013/10/19/linux-signal/">Linux信号介绍</a>
+        <a href="/blog/2013/10/19/linux-signal/">Linux信号处理机制</a>
       </li>
     
       <li>
