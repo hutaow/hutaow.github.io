@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hutaow.net/blog/2013/10/25/linux-core-dump/</loc>
+    <lastmod>2013-10-26T14:13:25.000Z</lastmod>
+  </url>
+  <url>
     <loc>http://hutaow.net/blog/2013/10/19/linux-signal/</loc>
     <lastmod>2013-10-23T19:14:16.000Z</lastmod>
   </url>
@@ -17,11 +21,7 @@
     <lastmod>2013-10-14T14:49:53.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2009/04/02/sql-statements-batch-replace-a-string/</loc>
-    <lastmod>2013-10-14T14:35:22.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required/</loc>
+    <loc>http://hutaow.net/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/</loc>
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
@@ -69,11 +69,11 @@
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2007/09/22/config-java-environment-in-linux/</loc>
+    <loc>http://hutaow.net/blog/2008/08/14/convert-between-byte-array-and-hex-string/</loc>
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2008/01/28/understanding-on-the-android-layout/</loc>
+    <loc>http://hutaow.net/blog/2007/09/22/config-java-environment-in-linux/</loc>
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
@@ -81,7 +81,7 @@
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/</loc>
+    <loc>http://hutaow.net/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required/</loc>
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
@@ -129,7 +129,7 @@
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2008/01/11/android-beginner-question/</loc>
+    <loc>http://hutaow.net/blog/2008/01/28/understanding-on-the-android-layout/</loc>
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
@@ -137,7 +137,11 @@
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2008/08/14/convert-between-byte-array-and-hex-string/</loc>
+    <loc>http://hutaow.net/blog/2008/01/11/android-beginner-question/</loc>
+    <lastmod>2013-10-14T14:35:22.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://hutaow.net/blog/2009/04/02/sql-statements-batch-replace-a-string/</loc>
     <lastmod>2013-10-14T14:35:22.000Z</lastmod>
   </url>
 </urlset>

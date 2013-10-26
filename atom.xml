@@ -4,13 +4,118 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-10-23T19:15:22.852Z</updated>
+  <updated>2013-10-26T14:14:13.909Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
     <email><![CDATA[hutaow@gmail.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[Linux中生成 Core Dump 文件的方法]]></title>
+    <link href="http://hutaow.net/blog/2013/10/25/linux-core-dump/"/>
+    <id>http://hutaow.net/blog/2013/10/25/linux-core-dump/</id>
+    <published>2013-10-25T15:19:39.000Z</published>
+    <updated>2013-10-26T14:13:25.000Z</updated>
+    <content type="html"><![CDATA[<h3>1 什么是 Core Dump</h3>
+<p>Core Dump 又叫核心转储。在程序运行过程中发生异常退出时，将其所使用的内存数据保存到文件中，这个过程叫做 Core Dump。</p>
+<h3>2 Core Dump 的作用</h3>
+<p>在开发过程中，难免会遇到程序运行过程中异常退出的情况，这时候想要定位哪里出了问题，仅仅依靠程序自身的信息打印（日志记录）往往是不够的，这个时候就需要 Core Dump 文件来帮忙了。</p>
+<p>一个完整的 Core Dump 文件实际上相当于恢复了异常现场，利用 Core Dump 文件，可以查看到程序异常时的所有信息，变量值、栈信息、内存数据，程序异常时的运行位置（甚至记录代码行号）等等，定位所需要的一切信息都可以从 Core Dump文件获取到，能够非常有效的提高定位效率。</p>
+<a id="more"></a>
+
+<h3>3 如何生成 Core Dump</h3>
+<h4>3.1 Core Dump 文件生成开关</h4>
+<p>Core Dump 文件的生成是由Core文件大小限制，Linux中默认的Core文件大小设置为零，也就是不生成 Core Dump 文件，可以使用<code>ulimit -c</code>命令来查看当前的Core文件大小限制。</p>
+<p>要生成 Core Dump 文件，只需要执行下面的命令设置Core文件的大小即可（其中<code>filesize</code>参数的单位为KByte）：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">ulimit</span> -c filesize
+</pre></td></tr></table></figure>
+
+<p>如果要设置Core文件大小无限制（即把程序完整的运行内存都保存下来），则执行如下命令：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">ulimit</span> -c unlimited
+</pre></td></tr></table></figure>
+
+<h4>3.2 Core Dump 文件名设置</h4>
+<p>Core Dump 文件默认的名字为<code>core</code>，而且新的Core文件会把老的覆盖，这样我们只能看到最后一次的 Core Dump 信息，可以通过设置Core文件名称模板，使每次生成的 Core Dump 文件区分开来。</p>
+<p>Core Dump 文件的命名规则定义在<code>/proc/sys/kernel/core_pattern</code>文件中，规则中还可以加入预设的变量来更好的区分Core文件，支持的变量列表如下：</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%%</td>
+<td><code>%</code>字符</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>进程ID(PID)</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>用户ID(UID)</td>
+</tr>
+<tr>
+<td>%g</td>
+<td>用户组ID</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>触发 Core Dump 的信号</td>
+</tr>
+<tr>
+<td>%t</td>
+<td>触发 Core Dump 的时间(单位为秒，从 1970-01-01 00:00:00 开始计算)</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>主机名称(主机名可以通过<code>uname</code>命令来查看)</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>程序名称(无路径信息)</td>
+</tr>
+<tr>
+<td>%E</td>
+<td>程序的路径名称(路径中的<code>/</code>会被<code>!</code>替代)</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>Core文件的限制大小值(Linux 2.6.24版本后开始支持)</td>
+</tr>
+</tbody>
+</table>
+<p>注：Core Dump 文件名的最大长度为128字节（在 Linux 2.6.19 版本前，最大长度为64字节）。</p>
+<p>例如：可以通过下面的命令，生成文件名为<code>core-程序名称-进程ID-时间</code>的 Core Dump 文件：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>echo <span class="string">"core-<span class="variable">%e</span>-<span class="variable">%p</span>-<span class="variable">%t</span>"</span> &gt; <span class="regexp">/proc/sys</span><span class="regexp">/kernel/core</span>_pattern
+</pre></td></tr></table></figure>
+
+<p>从 Linux 2.4 版本开始，提供了一种比较原始的Core文件名设置方式，直接设置<code>/proc/sys/kernel/core_uses_pid</code>文件中的值为1，生成的Core文件名中便会自动加上<code>.PID</code>后缀，即生成的文件名为<code>core.PID</code>这种形式。执行下面的命令可以设置该值：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>echo <span class="string">"1"</span> &gt; <span class="regexp">/proc/sys</span><span class="regexp">/kernel/core</span>_uses_pid
+</pre></td></tr></table></figure>
+
+<h3>4 如何使用 Core Dump</h3>
+<p>有了 Core Dump 文件后，可以使用GDB来加载分析，执行如下命令（假设可执行程序名称及路径为<code>/home/hutaow/test_dump</code>，生成的Core文件名为<code>core</code>）：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">gdb</span> /home/hutaow/test_dump -c core
+</pre></td></tr></table></figure>
+
+<p>加载完成后，即可以在GDB中查看程序异常时的各种运行信息了（查看变量值、线程信息、调用栈、反汇编等等）。</p>
+]]></content>
+    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.net/blog/tags/CoreDump/" term="CoreDump"/>
+    <category scheme="http://hutaow.net/blog/tags/GDB/" term="GDB"/>
+    <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
+    <category scheme="http://hutaow.net/blog/tags/定位/" term="定位"/>
+    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[Linux信号处理机制]]></title>
     <link href="http://hutaow.net/blog/2013/10/19/linux-signal/"/>
@@ -1920,24 +2025,6 @@ export ftp_proxy=<span class="method">http:</span>//<span class="method">usernam
 ]]></content>
     <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
     <category scheme="http://hutaow.net/blog/tags/代理/" term="代理"/>
-    <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[Fedora 9 无法启动KDE的解决办法]]></title>
-    <link href="http://hutaow.net/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9/"/>
-    <id>http://hutaow.net/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9/</id>
-    <published>2008-07-29T03:34:00.000Z</published>
-    <updated>2013-10-14T14:35:22.000Z</updated>
-    <content type="html"><![CDATA[<p>今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout-&gt;KDE，结果却报出个错误，说“Could not start kstartupconfig4. Check your installation”，无语，难道是我少装了什么东西？</p>
-<p>按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用“chown”改变&quot;~/.kde“目录的所有者，哦？检查……”~/.kde&quot;这个目录竟然是root的，原来是权限的问题。</p>
-<a id="more"></a>
-
-<p>输入&quot;chown -R owner ~/.kde“，为了保险，再加个”chgrp -R group ~/.kde“，这里面的”owner“和”group&quot;分别是当前的用户名和用户所在的组名。</p>
-<p>之后重新进入KDE，一切正常！</p>
-<p>PS：新的KDE环境确实做的不错，桌面右上角的widget加上suse的主菜单非常赞</p>
-]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
-    <category scheme="http://hutaow.net/blog/tags/KDE/" term="KDE"/>
     <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
   </entry>
 </feed>

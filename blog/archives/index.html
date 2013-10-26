@@ -70,6 +70,58 @@
           <div class="date-shadow"></div>
           <div class="date-mask"></div>
           <div class="dateTitle">
+            <span class="d">25</span>
+            <span class="ym">10/2013</span>
+          </div>
+        </div>
+        <!-- added by wangtao for new date style end -->
+        <!-- removed by wangtao for new date style begin -->
+        
+        <!-- removed by wangtao for new date style end -->
+      
+      
+  
+    <h1 class="title"><a href="/blog/2013/10/25/linux-core-dump/">Linux中生成 Core Dump 文件的方法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3>1 什么是 Core Dump</h3>
+<p>Core Dump 又叫核心转储。在程序运行过程中发生异常退出时，将其所使用的内存数据保存到文件中，这个过程叫做 Core Dump。</p>
+<h3>2 Core Dump 的作用</h3>
+<p>在开发过程中，难免会遇到程序运行过程中异常退出的情况，这时候想要定位哪里出了问题，仅仅依靠程序自身的信息打印（日志记录）往往是不够的，这个时候就需要 Core Dump 文件来帮忙了。</p>
+<p>一个完整的 Core Dump 文件实际上相当于恢复了异常现场，利用 Core Dump 文件，可以查看到程序异常时的所有信息，变量值、栈信息、内存数据，程序异常时的运行位置（甚至记录代码行号）等等，定位所需要的一切信息都可以从 Core Dump文件获取到，能够非常有效的提高定位效率。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2013/10/25/linux-core-dump/" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- added by wangtao for new date style begin -->
+        <div class="date-wrapper">
+          <div class="date-shadow"></div>
+          <div class="date-mask"></div>
+          <div class="dateTitle">
             <span class="d">19</span>
             <span class="ym">10/2013</span>
           </div>
@@ -557,64 +609,6 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
 
 
   
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- added by wangtao for new date style begin -->
-        <div class="date-wrapper">
-          <div class="date-shadow"></div>
-          <div class="date-mask"></div>
-          <div class="dateTitle">
-            <span class="d">21</span>
-            <span class="ym">4/2010</span>
-          </div>
-        </div>
-        <!-- added by wangtao for new date style end -->
-        <!-- removed by wangtao for new date style begin -->
-        
-        <!-- removed by wangtao for new date style end -->
-      
-      
-  
-    <h1 class="title"><a href="/blog/2010/04/21/install-idmef-plugin-for-snort/">Snort安装IDMEF插件</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
-<ol>
-<li><p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef" target="_blank">libidmef</a>、<a href="http://xmlsoft.org" target="_blank">libxml2</a>及<a href="http://www.ntp.org" target="_blank">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p>
-</li>
-<li><p>配置Snort时，需要加上“—enable-idmef”参数，如下所示：</p>
-</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="string">.</span><span class="comment">/configure</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span>-<span class="comment">idmef</span>
-<span class="comment">make</span>
-<span class="comment">make</span> <span class="comment">install
-</pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  
 
   <nav id="pagination">
   
@@ -647,7 +641,7 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
   
     <li><a href="/blog/categories/Network/">Network</a><small>2</small></li>
   
-    <li><a href="/blog/categories/Programming/">Programming</a><small>7</small></li>
+    <li><a href="/blog/categories/Programming/">Programming</a><small>8</small></li>
   
     <li><a href="/blog/categories/Security/">Security</a><small>2</small></li>
   
@@ -661,7 +655,7 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 16.67px;">Android</a><a href="/blog/tags/C/" style="font-size: 13.33px;">C</a><a href="/blog/tags/CSharp/" style="font-size: 10.00px;">CSharp</a><a href="/blog/tags/Fedora/" style="font-size: 11.67px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/IDS/" style="font-size: 11.67px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 10.00px;">MySQL</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/VI/" style="font-size: 10.00px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/信号/" style="font-size: 10.00px;">信号</a><a href="/blog/tags/入侵检测/" style="font-size: 11.67px;">入侵检测</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a><a href="/blog/tags/定位/" style="font-size: 11.67px;">定位</a><a href="/blog/tags/工具/" style="font-size: 11.67px;">工具</a><a href="/blog/tags/开发/" style="font-size: 18.33px;">开发</a><a href="/blog/tags/折腾/" style="font-size: 10.00px;">折腾</a><a href="/blog/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/blog/tags/数据库/" style="font-size: 10.00px;">数据库</a><a href="/blog/tags/调用栈/" style="font-size: 11.67px;">调用栈</a><a href="/blog/tags/调试/" style="font-size: 11.67px;">调试</a><a href="/blog/tags/路由器/" style="font-size: 10.00px;">路由器</a>
+    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 16.67px;">Android</a><a href="/blog/tags/C/" style="font-size: 13.33px;">C</a><a href="/blog/tags/CSharp/" style="font-size: 10.00px;">CSharp</a><a href="/blog/tags/CoreDump/" style="font-size: 10.00px;">CoreDump</a><a href="/blog/tags/Fedora/" style="font-size: 11.67px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/GDB/" style="font-size: 10.00px;">GDB</a><a href="/blog/tags/IDS/" style="font-size: 11.67px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 10.00px;">MySQL</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/VI/" style="font-size: 10.00px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/信号/" style="font-size: 10.00px;">信号</a><a href="/blog/tags/入侵检测/" style="font-size: 11.67px;">入侵检测</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a><a href="/blog/tags/定位/" style="font-size: 13.33px;">定位</a><a href="/blog/tags/工具/" style="font-size: 11.67px;">工具</a><a href="/blog/tags/开发/" style="font-size: 18.33px;">开发</a><a href="/blog/tags/折腾/" style="font-size: 10.00px;">折腾</a><a href="/blog/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/blog/tags/数据库/" style="font-size: 10.00px;">数据库</a><a href="/blog/tags/调用栈/" style="font-size: 11.67px;">调用栈</a><a href="/blog/tags/调试/" style="font-size: 11.67px;">调试</a><a href="/blog/tags/路由器/" style="font-size: 10.00px;">路由器</a>
   </div>
 </div>
 
@@ -670,6 +664,10 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/blog/2013/10/25/linux-core-dump/">Linux中生成 Core Dump 文件的方法</a>
+      </li>
     
       <li>
         <a href="/blog/2013/10/19/linux-signal/">Linux信号处理机制</a>
@@ -685,10 +683,6 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
     
       <li>
         <a href="/blog/2013/10/10/starting-with-new-domain-name/">博客搬家完成，新域名正式上线</a>
-      </li>
-    
-      <li>
-        <a href="/blog/2013/09/06/install-openwrt/">TP-WR703n安装OpenWRT记录</a>
       </li>
     
   </ul>
