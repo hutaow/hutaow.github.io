@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-10-26T14:14:13.909Z</updated>
+  <updated>2013-10-26T14:19:32.790Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,9 +16,9 @@
     <link href="http://hutaow.net/blog/2013/10/25/linux-core-dump/"/>
     <id>http://hutaow.net/blog/2013/10/25/linux-core-dump/</id>
     <published>2013-10-25T15:19:39.000Z</published>
-    <updated>2013-10-26T14:13:25.000Z</updated>
+    <updated>2013-10-26T14:17:57.000Z</updated>
     <content type="html"><![CDATA[<h3>1 什么是 Core Dump</h3>
-<p>Core Dump 又叫核心转储。在程序运行过程中发生异常退出时，将其所使用的内存数据保存到文件中，这个过程叫做 Core Dump。</p>
+<p>Core Dump 又叫核心转储。在程序运行过程中发生异常时，将其内存数据保存到文件中，这个过程就叫做 Core Dump。</p>
 <h3>2 Core Dump 的作用</h3>
 <p>在开发过程中，难免会遇到程序运行过程中异常退出的情况，这时候想要定位哪里出了问题，仅仅依靠程序自身的信息打印（日志记录）往往是不够的，这个时候就需要 Core Dump 文件来帮忙了。</p>
 <p>一个完整的 Core Dump 文件实际上相当于恢复了异常现场，利用 Core Dump 文件，可以查看到程序异常时的所有信息，变量值、栈信息、内存数据，程序异常时的运行位置（甚至记录代码行号）等等，定位所需要的一切信息都可以从 Core Dump文件获取到，能够非常有效的提高定位效率。</p>
