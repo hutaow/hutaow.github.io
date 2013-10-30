@@ -4,13 +4,69 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-10-29T16:20:39.759Z</updated>
+  <updated>2013-10-30T17:56:01.631Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
     <email><![CDATA[hutaow@gmail.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[通过PXE方式安装Linux系统]]></title>
+    <link href="http://hutaow.net/blog/2013/10/30/install-linux-with-pxe/"/>
+    <id>http://hutaow.net/blog/2013/10/30/install-linux-with-pxe/</id>
+    <published>2013-10-30T15:30:57.000Z</published>
+    <updated>2013-10-30T17:52:29.000Z</updated>
+    <content type="html"><![CDATA[<h3>1 准备工作</h3>
+<ul>
+<li>Linux安装镜像（本文以CentOS为例）</li>
+<li>TFTP+DHCP服务程序(Windows环境中推荐Tftpd32，<a href="http://tftpd32.jounin.net" target="_blank">点击此处进入下载页面</a>)</li>
+<li>FTP服务程序(推荐FileZilla，<a href="http://filezilla-project.org" target="_blank">点击此处进入下载页面</a>)</li>
+</ul>
+<a id="more"></a>
+
+<h3>2 建立PXE启动目录</h3>
+<ul>
+<li>创建<code>E:\Server\PXE</code>目录，将Linux光盘镜像<code>/images/pxeboot</code>文件夹中的<code>initrd.img</code>和<code>vmlinux</code>文件拷贝到该目录中</li>
+<li>在<code>E:\Server\PXE</code>中创建<code>pxelinux.cfg</code>目录，将光盘镜像<code>/isolinux</code>文件夹中的<code>isolinux.cfg</code>文件拷贝到该目录中，并重命名为<code>default</code></li>
+<li>将syslinux的PXE启动加载程序<code>pxelinux.0</code>拷贝到<code>E:\Server\PXE</code>目录中（可以从一个现有的Linux中拷贝一个，一般在<code>/usr/lib/syslinux</code>或<code>/usr/share/syslinux</code>目录中，如果找不到现成的Linux，可以<a href="/downloads/linux/pxelinux.0">点击这里下载</a>一个）</li>
+</ul>
+<p>PXE目录建立好后，结构应该是下面的样子：</p>
+<pre><code>/PXE/
+    <span class="string">|- pxelinux.cfg/</span>
+    <span class="string">|              |- default</span>
+    <span class="string">|- pxelinux.0</span>
+    <span class="string">|- initrd.img</span>
+    <span class="string">|- vmlinuz</span></code></pre>
+<h3>3 软件配置</h3>
+<h4>3.1 配置DHCP服务</h4>
+<p>配置DHCP主要有以下几个关键点：</p>
+<ul>
+<li><strong>IP Pool Starting Address</strong>：192.168.0.100 <em>（配置DHCP分配IP的起始地址）</em></li>
+<li><strong>Size of Pool</strong>：100 <em>（配置DHCP的地址池大小）</em></li>
+<li><strong>Boot File</strong>：pxelinux.0 <em>（配置启动文件）</em></li>
+</ul>
+<p>另外还有一个选项开关“<strong>Ping address before assignation</strong>”（分配地址前进行Ping操作），最好将其关闭，因为打开它的情况下客户端可能出现无法及时加载启动文件的情况。</p>
+<p>配置完成后，Tftpd32应该是类似下图的样子：</p>
+<p><img src="/images/articles/201310/install_linux_with_pxe_dhcp.png" alt="Tftpd32配置DHCP选项"></p>
+<h4>3.2 配置TFTP服务</h4>
+<p>配置TFTP服务只需要将TFTP的目录设置对即可，其它选项用默认参数，这里目录设置为<code>E:\Server\PXE</code>。</p>
+<p>配置完成后，Tftpd32应该是类似下图的样子：</p>
+<p><img src="/images/articles/201310/install_linux_with_pxe_tftp.png" alt="Tftpd32配置TFTP目录"></p>
+<h4>3.3 配置FTP服务</h4>
+<p>配置FTP比较简单，将Linux的光盘镜像解压，并将FTP服务指向解压目录即可</p>
+<h3>4 启动安装</h3>
+<ul>
+<li>将待安装Linux的电脑设置为PXE引导方式，并等待电脑启动</li>
+<li>PXE启动成功后，屏幕上可以看到<code>Boot</code>的提示符，输入<code>linux</code>或直接按回车加载内核</li>
+<li>Linux内核加载后，会显示Linux的安装初始界面，选择FTP安装方式，并将前面配置好的FTP地址输入进去</li>
+<li>稍等片刻，就可以进入Linux的安装界面了</li>
+</ul>
+]]></content>
+    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.net/blog/tags/PXE/" term="PXE"/>
+    <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[Linux中生成 Core Dump 文件的方法]]></title>
     <link href="http://hutaow.net/blog/2013/10/25/linux-core-dump/"/>
@@ -2002,29 +2058,5 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <category scheme="http://hutaow.net/blog/tags/Java/" term="Java"/>
     <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
     <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[终端下使用代理的方法]]></title>
-    <link href="http://hutaow.net/blog/2008/08/10/config-proxy-in-linux-terminal/"/>
-    <id>http://hutaow.net/blog/2008/08/10/config-proxy-in-linux-terminal/</id>
-    <published>2008-08-10T07:12:00.000Z</published>
-    <updated>2013-10-29T16:11:17.000Z</updated>
-    <content type="html"><![CDATA[<p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，&quot;HTTP_PROXY“、”http_proxy“和”FTP_PROXY“、”ftp_proxy“，在”~/.bash_profile&quot;中添加以下几行：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>export <span class="class">HTTP_PROXY</span>=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-export <span class="class">FTP_PROXY</span>=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-export http_proxy=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-export ftp_proxy=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-</pre></td></tr></table></figure>
-
-<p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
-<p>修改保存后重启终端或在执行&quot;source ~/.bash_proxy&quot;生效。</p>
-]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
-    <category scheme="http://hutaow.net/blog/tags/代理/" term="代理"/>
-    <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
   </entry>
 </feed>

@@ -66,6 +66,83 @@
           <div class="date-shadow"></div>
           <div class="date-mask"></div>
           <div class="dateTitle">
+            <span class="d">27</span>
+            <span class="ym">4/2010</span>
+          </div>
+        </div>
+        <!-- added by wangtao for new date style end -->
+        <!-- removed by wangtao for new date style begin -->
+        
+        <!-- removed by wangtao for new date style end -->
+      
+      
+  
+    <h1 class="title"><a href="/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/">C#获取XML文件指定节点的数据</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>实例说明会更清楚些，假设有如下XML文件：</p>
+<figure class="highlight lang-xml"><figcaption><span>message_hutaow.xml</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="tag">&lt;<span class="title">Message version="1.0"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">Head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">Date</span>&gt;</span>20080502<span class="tag">&lt;/<span class="title">Date</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">Source</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">Address</span>&gt;</span>192.168.0.1<span class="tag">&lt;/<span class="title">Address</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">Name</span>&gt;</span>hutaow<span class="tag">&lt;/<span class="title">Name</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">Source</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">Target</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">Address</span>&gt;</span>192.168.0.19<span class="tag">&lt;/<span class="title">Address</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">Target</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">Head</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">Message</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>现在要读取消息源IP地址(192.168.0.1)和目的IP地址(192.168.0.19)。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- added by wangtao for new date style begin -->
+        <div class="date-wrapper">
+          <div class="date-shadow"></div>
+          <div class="date-mask"></div>
+          <div class="dateTitle">
             <span class="d">21</span>
             <span class="ym">4/2010</span>
           </div>
@@ -508,62 +585,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- added by wangtao for new date style begin -->
-        <div class="date-wrapper">
-          <div class="date-shadow"></div>
-          <div class="date-mask"></div>
-          <div class="dateTitle">
-            <span class="d">10</span>
-            <span class="ym">8/2008</span>
-          </div>
-        </div>
-        <!-- added by wangtao for new date style end -->
-        <!-- removed by wangtao for new date style begin -->
-        
-        <!-- removed by wangtao for new date style end -->
-      
-      
-  
-    <h1 class="title"><a href="/blog/2008/08/10/config-proxy-in-linux-terminal/">终端下使用代理的方法</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，&quot;HTTP_PROXY“、”http_proxy“和”FTP_PROXY“、”ftp_proxy“，在”~/.bash_profile&quot;中添加以下几行：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>export <span class="class">HTTP_PROXY</span>=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-export <span class="class">FTP_PROXY</span>=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-export http_proxy=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-export ftp_proxy=<span class="method">http:</span>//<span class="method">username:</span>password@proxy.<span class="method">server:</span><span class="number">8080</span>
-</pre></td></tr></table></figure>
-
-<p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
-<p>修改保存后重启终端或在执行&quot;source ~/.bash_proxy&quot;生效。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -591,7 +612,7 @@ export ftp_proxy=<span class="method">http:</span>//<span class="method">usernam
   
     <li><a href="/blog/categories/Life/">Life</a><small>1</small></li>
   
-    <li><a href="/blog/categories/Linux/">Linux</a><small>14</small></li>
+    <li><a href="/blog/categories/Linux/">Linux</a><small>15</small></li>
   
     <li><a href="/blog/categories/Network/">Network</a><small>2</small></li>
   
@@ -609,7 +630,7 @@ export ftp_proxy=<span class="method">http:</span>//<span class="method">usernam
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 16.67px;">Android</a><a href="/blog/tags/C/" style="font-size: 13.33px;">C</a><a href="/blog/tags/CSharp/" style="font-size: 10.00px;">CSharp</a><a href="/blog/tags/CoreDump/" style="font-size: 10.00px;">CoreDump</a><a href="/blog/tags/Fedora/" style="font-size: 11.67px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/GDB/" style="font-size: 10.00px;">GDB</a><a href="/blog/tags/IDS/" style="font-size: 11.67px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 10.00px;">MySQL</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/VI/" style="font-size: 10.00px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/信号/" style="font-size: 10.00px;">信号</a><a href="/blog/tags/入侵检测/" style="font-size: 11.67px;">入侵检测</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a><a href="/blog/tags/定位/" style="font-size: 13.33px;">定位</a><a href="/blog/tags/工具/" style="font-size: 11.67px;">工具</a><a href="/blog/tags/开发/" style="font-size: 18.33px;">开发</a><a href="/blog/tags/折腾/" style="font-size: 10.00px;">折腾</a><a href="/blog/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/blog/tags/数据库/" style="font-size: 10.00px;">数据库</a><a href="/blog/tags/调用栈/" style="font-size: 11.67px;">调用栈</a><a href="/blog/tags/调试/" style="font-size: 11.67px;">调试</a><a href="/blog/tags/路由器/" style="font-size: 10.00px;">路由器</a>
+    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 16.67px;">Android</a><a href="/blog/tags/C/" style="font-size: 13.33px;">C</a><a href="/blog/tags/CSharp/" style="font-size: 10.00px;">CSharp</a><a href="/blog/tags/CoreDump/" style="font-size: 10.00px;">CoreDump</a><a href="/blog/tags/Fedora/" style="font-size: 11.67px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/GDB/" style="font-size: 10.00px;">GDB</a><a href="/blog/tags/IDS/" style="font-size: 11.67px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 10.00px;">MySQL</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/PXE/" style="font-size: 10.00px;">PXE</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/VI/" style="font-size: 10.00px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/信号/" style="font-size: 10.00px;">信号</a><a href="/blog/tags/入侵检测/" style="font-size: 11.67px;">入侵检测</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a><a href="/blog/tags/定位/" style="font-size: 13.33px;">定位</a><a href="/blog/tags/工具/" style="font-size: 11.67px;">工具</a><a href="/blog/tags/开发/" style="font-size: 18.33px;">开发</a><a href="/blog/tags/折腾/" style="font-size: 10.00px;">折腾</a><a href="/blog/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/blog/tags/数据库/" style="font-size: 10.00px;">数据库</a><a href="/blog/tags/调用栈/" style="font-size: 11.67px;">调用栈</a><a href="/blog/tags/调试/" style="font-size: 11.67px;">调试</a><a href="/blog/tags/路由器/" style="font-size: 10.00px;">路由器</a>
   </div>
 </div>
 
@@ -618,6 +639,10 @@ export ftp_proxy=<span class="method">http:</span>//<span class="method">usernam
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/blog/2013/10/30/install-linux-with-pxe/">通过PXE方式安装Linux系统</a>
+      </li>
     
       <li>
         <a href="/blog/2013/10/25/linux-core-dump/">Linux中生成 Core Dump 文件的方法</a>
@@ -633,10 +658,6 @@ export ftp_proxy=<span class="method">http:</span>//<span class="method">usernam
     
       <li>
         <a href="/blog/2013/10/11/dump-stack-with-backtrace/">在Linux程序中输出函数调用栈</a>
-      </li>
-    
-      <li>
-        <a href="/blog/2013/10/10/starting-with-new-domain-name/">博客搬家完成，新域名正式上线</a>
       </li>
     
   </ul>
