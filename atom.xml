@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-10-30T17:56:01.631Z</updated>
+  <updated>2013-11-01T13:22:17.381Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,12 +16,12 @@
     <link href="http://hutaow.net/blog/2013/10/30/install-linux-with-pxe/"/>
     <id>http://hutaow.net/blog/2013/10/30/install-linux-with-pxe/</id>
     <published>2013-10-30T15:30:57.000Z</published>
-    <updated>2013-10-30T17:52:29.000Z</updated>
+    <updated>2013-11-01T13:21:12.000Z</updated>
     <content type="html"><![CDATA[<h3>1 准备工作</h3>
 <ul>
 <li>Linux安装镜像（本文以CentOS为例）</li>
-<li>TFTP+DHCP服务程序(Windows环境中推荐Tftpd32，<a href="http://tftpd32.jounin.net" target="_blank">点击此处进入下载页面</a>)</li>
-<li>FTP服务程序(推荐FileZilla，<a href="http://filezilla-project.org" target="_blank">点击此处进入下载页面</a>)</li>
+<li>TFTP+DHCP服务程序（Windows环境中推荐Tftpd32，<a href="http://tftpd32.jounin.net" target="_blank">点击此处进入下载页面</a>）</li>
+<li>FTP服务程序（推荐FileZilla，<a href="http://filezilla-project.org" target="_blank">点击此处进入下载页面</a>）</li>
 </ul>
 <a id="more"></a>
 

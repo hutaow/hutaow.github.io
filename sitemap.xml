@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://hutaow.net/blog/2013/10/30/install-linux-with-pxe/</loc>
-    <lastmod>2013-10-30T17:52:29.000Z</lastmod>
+    <lastmod>2013-11-01T13:21:12.000Z</lastmod>
   </url>
   <url>
     <loc>http://hutaow.net/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/</loc>
@@ -25,15 +25,11 @@
     <lastmod>2013-10-29T16:15:37.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2009/04/02/sql-statements-batch-replace-a-string/</loc>
+    <loc>http://hutaow.net/blog/2008/08/14/convert-between-byte-array-and-hex-string/</loc>
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems/</loc>
-    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g/</loc>
+    <loc>http://hutaow.net/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux/</loc>
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
@@ -41,23 +37,11 @@
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
+    <loc>http://hutaow.net/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g/</loc>
+    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
+  </url>
+  <url>
     <loc>http://hutaow.net/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora/</loc>
-    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2007/08/19/my-vi-config/</loc>
-    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora/</loc>
-    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/</loc>
-    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9/</loc>
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
@@ -65,7 +49,19 @@
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2008/08/14/convert-between-byte-array-and-hex-string/</loc>
+    <loc>http://hutaow.net/blog/2007/08/19/my-vi-config/</loc>
+    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://hutaow.net/blog/2009/04/02/sql-statements-batch-replace-a-string/</loc>
+    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://hutaow.net/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/</loc>
+    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://hutaow.net/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora/</loc>
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
@@ -73,11 +69,15 @@
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
+    <loc>http://hutaow.net/blog/2009/05/02/mark-atl-control-as-a-safe-control/</loc>
+    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
+  </url>
+  <url>
     <loc>http://hutaow.net/blog/2007/09/22/config-java-environment-in-linux/</loc>
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2009/05/02/mark-atl-control-as-a-safe-control/</loc>
+    <loc>http://hutaow.net/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9/</loc>
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
@@ -85,19 +85,19 @@
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
+    <loc>http://hutaow.net/blog/2010/04/13/reverse-order-of-words-in-a-string/</loc>
+    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://hutaow.net/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems/</loc>
+    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
+  </url>
+  <url>
     <loc>http://hutaow.net/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/</loc>
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/</loc>
-    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/</loc>
-    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2010/04/13/reverse-order-of-words-in-a-string/</loc>
+    <loc>http://hutaow.net/blog/2013/06/16/batch-settings-directory-or-file-permissions/</loc>
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
@@ -109,7 +109,15 @@
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2013/06/16/batch-settings-directory-or-file-permissions/</loc>
+    <loc>http://hutaow.net/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/</loc>
+    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://hutaow.net/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/</loc>
+    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://hutaow.net/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/</loc>
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
@@ -121,23 +129,7 @@
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/</loc>
-    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/</loc>
-    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
-  </url>
-  <url>
     <loc>http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/</loc>
-    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux/</loc>
-    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2013/10/19/linux-signal/</loc>
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
@@ -145,7 +137,15 @@
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
   <url>
+    <loc>http://hutaow.net/blog/2013/10/19/linux-signal/</loc>
+    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
+  </url>
+  <url>
     <loc>http://hutaow.net/blog/2013/10/15/dump-stack/</loc>
+    <lastmod>2013-10-29T16:11:17.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://hutaow.net/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/</loc>
     <lastmod>2013-10-29T16:11:17.000Z</lastmod>
   </url>
 </urlset>
