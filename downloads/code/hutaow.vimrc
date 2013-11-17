@@ -38,6 +38,9 @@ set history=1000
 " 设置关键字符(遇到以下字符连接的单词时不进行换行)
 set iskeyword+=_,$,@,%,#,-
 
+" 设置退格键模式
+set backspace=indent,eol,start
+
 " 设置列提示(右下角)
 set ruler
 
