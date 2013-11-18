@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-11-18T15:50:49.337Z</updated>
+  <updated>2013-11-18T16:00:58.031Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,8 +16,10 @@
     <link href="http://hutaow.net/blog/2013/11/18/configure-the-fcitx-in-archlinux/"/>
     <id>http://hutaow.net/blog/2013/11/18/configure-the-fcitx-in-archlinux/</id>
     <published>2013-11-18T14:37:16.000Z</published>
-    <updated>2013-11-18T15:34:10.000Z</updated>
-    <content type="html"><![CDATA[<p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。本文主要记录Fcitx在ArchLinux中的配置方式。</p>
+    <updated>2013-11-18T15:58:14.000Z</updated>
+    <content type="html"><![CDATA[<p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。本文主要记录Fcitx在ArchLinux中的安装配置方式。</p>
+<a id="more"></a>
+
 <h3>安装输入法</h3>
 <p>执行下面的命令安装FCITX：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1

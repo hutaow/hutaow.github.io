@@ -87,29 +87,16 @@
     </header>
     <div class="entry">
       
-        <p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。本文主要记录Fcitx在ArchLinux中的配置方式。</p>
-<h3>安装输入法</h3>
-<p>执行下面的命令安装FCITX：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="title">pacman</span> -S fcitx-im
-</pre></td></tr></table></figure>
-
-<h3>配置环境变量</h3>
-<p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="keyword">export</span> GTK_IM_MODULE=fcitx
-<span class="keyword">export</span> QT_IM_MODULE=fcitx
-<span class="keyword">export</span> XMODIFIERS=<span class="string">"@im=fcitx"</span>
-</pre></td></tr></table></figure>
-
-<p>配置后重新登录生效，使用<code>CTRL+空格</code>激活输入法，如果发现fcitx没有运行，则直接在命令行里执行<code>fcitx</code>即可。</p>
+        <p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。本文主要记录Fcitx在ArchLinux中的安装配置方式。</p>
 
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/blog/2013/11/18/configure-the-fcitx-in-archlinux/" class="more-link">阅读全文</a>
+          </div>
         
         
       
