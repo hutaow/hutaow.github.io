@@ -70,6 +70,59 @@
           <div class="date-shadow"></div>
           <div class="date-mask"></div>
           <div class="dateTitle">
+            <span class="d">16</span>
+            <span class="ym">6/2013</span>
+          </div>
+        </div>
+        <!-- added by wangtao for new date style end -->
+        <!-- removed by wangtao for new date style begin -->
+        
+        <!-- removed by wangtao for new date style end -->
+      
+      
+  
+    <h1 class="title"><a href="/blog/2013/06/16/batch-settings-directory-or-file-permissions/">Linux中批量设置目录或文件权限的方法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">find</span> ./ -<span class="typedef"><span class="keyword">type</span> d -exec chmod 755 <span class="container">{}</span> \;</span>
+</pre></td></tr></table></figure>
+
+<p>递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">find</span> ./ -<span class="typedef"><span class="keyword">type</span> f -exec chmod 644 <span class="container">{}</span> \;</span>
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- added by wangtao for new date style begin -->
+        <div class="date-wrapper">
+          <div class="date-shadow"></div>
+          <div class="date-mask"></div>
+          <div class="dateTitle">
             <span class="d">14</span>
             <span class="ym">5/2010</span>
           </div>
@@ -546,55 +599,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- added by wangtao for new date style begin -->
-        <div class="date-wrapper">
-          <div class="date-shadow"></div>
-          <div class="date-mask"></div>
-          <div class="dateTitle">
-            <span class="d">2</span>
-            <span class="ym">4/2009</span>
-          </div>
-        </div>
-        <!-- added by wangtao for new date style end -->
-        <!-- removed by wangtao for new date style begin -->
-        
-        <!-- removed by wangtao for new date style end -->
-      
-      
-  
-    <h1 class="title"><a href="/blog/2009/04/02/sql-statements-batch-replace-a-string/">SQL语句实现某一字符串的替换</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>使用update+replace语句：</p>
-<figure class="highlight lang-mysql"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="operator"><span class="keyword">update</span> table_name <span class="keyword">set</span> column_name = <span class="keyword">replace</span>(column_name,’hutaow_original_string’,<span class="string">'hutaow_new_string’);
-</pre></td></tr></table></figure>
-
-<p>其中，table_name是表的名字，column_name是要替换数据的列的名字，hutaow_original_string是待替换的原始字符串，hutaow_new_string是新字符串，MySQL下验证成功。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -622,7 +626,7 @@
   
     <li><a href="/blog/categories/Life/">Life</a><small>1</small></li>
   
-    <li><a href="/blog/categories/Linux/">Linux</a><small>15</small></li>
+    <li><a href="/blog/categories/Linux/">Linux</a><small>16</small></li>
   
     <li><a href="/blog/categories/Network/">Network</a><small>2</small></li>
   
@@ -642,7 +646,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 16.67px;">Android</a><a href="/blog/tags/C/" style="font-size: 13.33px;">C</a><a href="/blog/tags/CSharp/" style="font-size: 10.00px;">CSharp</a><a href="/blog/tags/CoreDump/" style="font-size: 10.00px;">CoreDump</a><a href="/blog/tags/Fedora/" style="font-size: 11.67px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/GDB/" style="font-size: 10.00px;">GDB</a><a href="/blog/tags/IDS/" style="font-size: 11.67px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 11.67px;">MySQL</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/PXE/" style="font-size: 10.00px;">PXE</a><a href="/blog/tags/Protocol/" style="font-size: 10.00px;">Protocol</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/VI/" style="font-size: 10.00px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/信号/" style="font-size: 10.00px;">信号</a><a href="/blog/tags/入侵检测/" style="font-size: 11.67px;">入侵检测</a><a href="/blog/tags/协议分析/" style="font-size: 10.00px;">协议分析</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a><a href="/blog/tags/定位/" style="font-size: 13.33px;">定位</a><a href="/blog/tags/工具/" style="font-size: 11.67px;">工具</a><a href="/blog/tags/开发/" style="font-size: 18.33px;">开发</a><a href="/blog/tags/折腾/" style="font-size: 10.00px;">折腾</a><a href="/blog/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/blog/tags/数据库/" style="font-size: 11.67px;">数据库</a><a href="/blog/tags/调用栈/" style="font-size: 11.67px;">调用栈</a><a href="/blog/tags/调试/" style="font-size: 11.67px;">调试</a><a href="/blog/tags/路由器/" style="font-size: 10.00px;">路由器</a>
+    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 16.67px;">Android</a><a href="/blog/tags/ArchLinux/" style="font-size: 10.00px;">ArchLinux</a><a href="/blog/tags/C/" style="font-size: 13.33px;">C</a><a href="/blog/tags/CSharp/" style="font-size: 10.00px;">CSharp</a><a href="/blog/tags/CoreDump/" style="font-size: 10.00px;">CoreDump</a><a href="/blog/tags/Fcitx/" style="font-size: 10.00px;">Fcitx</a><a href="/blog/tags/Fedora/" style="font-size: 11.67px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/GDB/" style="font-size: 10.00px;">GDB</a><a href="/blog/tags/IDS/" style="font-size: 11.67px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 11.67px;">MySQL</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/PXE/" style="font-size: 10.00px;">PXE</a><a href="/blog/tags/Protocol/" style="font-size: 10.00px;">Protocol</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/VI/" style="font-size: 10.00px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/信号/" style="font-size: 10.00px;">信号</a><a href="/blog/tags/入侵检测/" style="font-size: 11.67px;">入侵检测</a><a href="/blog/tags/协议分析/" style="font-size: 10.00px;">协议分析</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a><a href="/blog/tags/定位/" style="font-size: 13.33px;">定位</a><a href="/blog/tags/工具/" style="font-size: 11.67px;">工具</a><a href="/blog/tags/开发/" style="font-size: 18.33px;">开发</a><a href="/blog/tags/折腾/" style="font-size: 10.00px;">折腾</a><a href="/blog/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/blog/tags/数据库/" style="font-size: 11.67px;">数据库</a><a href="/blog/tags/调用栈/" style="font-size: 11.67px;">调用栈</a><a href="/blog/tags/调试/" style="font-size: 11.67px;">调试</a>
   </div>
 </div>
 
@@ -651,6 +655,10 @@
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/blog/2013/11/18/configure-the-fcitx-in-archlinux/">在 ArchLinux 中使用 Fcitx 输入法</a>
+      </li>
     
       <li>
         <a href="/blog/2013/11/06/mysql-protocol-analysis/">MySQL协议分析</a>
@@ -666,10 +674,6 @@
     
       <li>
         <a href="/blog/2013/10/19/linux-signal/">Linux信号处理机制</a>
-      </li>
-    
-      <li>
-        <a href="/blog/2013/10/15/dump-stack/">函数调用栈的获取原理分析</a>
       </li>
     
   </ul>

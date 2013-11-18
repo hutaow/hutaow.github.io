@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hutaow.net/blog/2013/11/18/configure-the-fcitx-in-archlinux/</loc>
+    <lastmod>2013-11-18T15:34:10.000Z</lastmod>
+  </url>
+  <url>
     <loc>http://hutaow.net/about/index.html</loc>
-    <lastmod>2013-11-17T16:30:58.000Z</lastmod>
+    <lastmod>2013-11-18T14:25:06.000Z</lastmod>
   </url>
   <url>
     <loc>http://hutaow.net/copyright/index.html</loc>
@@ -11,10 +15,6 @@
   <url>
     <loc>http://hutaow.net/blog/2013/11/06/mysql-protocol-analysis/</loc>
     <lastmod>2013-11-17T12:06:50.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2008/01/28/understanding-on-the-android-layout/</loc>
-    <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
   <url>
     <loc>http://hutaow.net/blog/2008/01/30/android-calculator/</loc>
@@ -49,7 +49,7 @@
     <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/</loc>
+    <loc>http://hutaow.net/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/</loc>
     <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
   <url>
@@ -57,7 +57,7 @@
     <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder/</loc>
+    <loc>http://hutaow.net/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux/</loc>
     <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
   <url>
@@ -81,7 +81,7 @@
     <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2007/08/19/my-vi-config/</loc>
+    <loc>http://hutaow.net/blog/2007/09/22/config-java-environment-in-linux/</loc>
     <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
   <url>
@@ -133,6 +133,10 @@
     <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
   <url>
+    <loc>http://hutaow.net/blog/2013/10/15/dump-stack/</loc>
+    <lastmod>2013-11-09T13:58:22.000Z</lastmod>
+  </url>
+  <url>
     <loc>http://hutaow.net/blog/2013/10/19/linux-signal/</loc>
     <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
@@ -145,15 +149,15 @@
     <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
   <url>
-    <loc>http://hutaow.net/blog/2007/09/22/config-java-environment-in-linux/</loc>
-    <lastmod>2013-11-09T13:58:22.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://hutaow.net/blog/2013/10/15/dump-stack/</loc>
+    <loc>http://hutaow.net/blog/2007/08/19/my-vi-config/</loc>
     <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
   <url>
     <loc>http://hutaow.net/blog/2008/01/11/android-beginner-question/</loc>
+    <lastmod>2013-11-09T13:58:22.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://hutaow.net/blog/2008/01/28/understanding-on-the-android-layout/</loc>
     <lastmod>2013-11-09T13:58:22.000Z</lastmod>
   </url>
   <url>

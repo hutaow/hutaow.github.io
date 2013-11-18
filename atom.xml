@@ -4,13 +4,43 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-11-17T16:32:01.254Z</updated>
+  <updated>2013-11-18T15:50:49.337Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
     <email><![CDATA[hutaow@gmail.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[在 ArchLinux 中使用 Fcitx 输入法]]></title>
+    <link href="http://hutaow.net/blog/2013/11/18/configure-the-fcitx-in-archlinux/"/>
+    <id>http://hutaow.net/blog/2013/11/18/configure-the-fcitx-in-archlinux/</id>
+    <published>2013-11-18T14:37:16.000Z</published>
+    <updated>2013-11-18T15:34:10.000Z</updated>
+    <content type="html"><![CDATA[<p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。本文主要记录Fcitx在ArchLinux中的配置方式。</p>
+<h3>安装输入法</h3>
+<p>执行下面的命令安装FCITX：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">pacman</span> -S fcitx-im
+</pre></td></tr></table></figure>
+
+<h3>配置环境变量</h3>
+<p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="keyword">export</span> GTK_IM_MODULE=fcitx
+<span class="keyword">export</span> QT_IM_MODULE=fcitx
+<span class="keyword">export</span> XMODIFIERS=<span class="string">"@im=fcitx"</span>
+</pre></td></tr></table></figure>
+
+<p>配置后重新登录生效，使用<code>CTRL+空格</code>激活输入法，如果发现fcitx没有运行，则直接在命令行里执行<code>fcitx</code>即可。</p>
+]]></content>
+    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.net/blog/tags/ArchLinux/" term="ArchLinux"/>
+    <category scheme="http://hutaow.net/blog/tags/Fcitx/" term="Fcitx"/>
+    <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[MySQL协议分析]]></title>
     <link href="http://hutaow.net/blog/2013/11/06/mysql-protocol-analysis/"/>
@@ -3770,23 +3800,5 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
     <category scheme="http://hutaow.net/blog/tags/控件/" term="控件"/>
     <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[SQL语句实现某一字符串的替换]]></title>
-    <link href="http://hutaow.net/blog/2009/04/02/sql-statements-batch-replace-a-string/"/>
-    <id>http://hutaow.net/blog/2009/04/02/sql-statements-batch-replace-a-string/</id>
-    <published>2009-04-02T02:55:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
-    <content type="html"><![CDATA[<p>使用update+replace语句：</p>
-<figure class="highlight lang-mysql"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="operator"><span class="keyword">update</span> table_name <span class="keyword">set</span> column_name = <span class="keyword">replace</span>(column_name,’hutaow_original_string’,<span class="string">'hutaow_new_string’);
-</pre></td></tr></table></figure>
-
-<p>其中，table_name是表的名字，column_name是要替换数据的列的名字，hutaow_original_string是待替换的原始字符串，hutaow_new_string是新字符串，MySQL下验证成功。</p>
-]]></content>
-    <category scheme="http://hutaow.net/blog/tags/数据库/" term="数据库"/>
-    <category scheme="http://hutaow.net/blog/tags/SQL/" term="SQL"/>
-    <category scheme="http://hutaow.net/blog/tags/MySQL/" term="MySQL"/>
-    <category scheme="http://hutaow.net/blog/categories/Database/" term="Database"/>
   </entry>
 </feed>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档：2010/5 | 胡桃夹子</title>
+  <title>Fcitx | 胡桃夹子</title>
   <meta name="author" content="Wang Tao">
   
   
@@ -60,24 +60,77 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2010/5</h2>
+<h2 class="archive-title tag">Fcitx</h2>
 
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2010-05-14T14:13:00.000Z"><a href="/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/">2010-05-14</a></time>
-            
-              <h1 class="title"><a href="/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/">配置 Cisco Catalyst 3560 交换机端口镜像</a></h1>
-            
-          </header>
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- added by wangtao for new date style begin -->
+        <div class="date-wrapper">
+          <div class="date-shadow"></div>
+          <div class="date-mask"></div>
+          <div class="dateTitle">
+            <span class="d">18</span>
+            <span class="ym">11/2013</span>
+          </div>
         </div>
-      </article>
-    
+        <!-- added by wangtao for new date style end -->
+        <!-- removed by wangtao for new date style begin -->
+        
+        <!-- removed by wangtao for new date style end -->
+      
+      
+  
+    <h1 class="title"><a href="/blog/2013/11/18/configure-the-fcitx-in-archlinux/">在 ArchLinux 中使用 Fcitx 输入法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。本文主要记录Fcitx在ArchLinux中的配置方式。</p>
+<h3>安装输入法</h3>
+<p>执行下面的命令安装FCITX：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">pacman</span> -S fcitx-im
+</pre></td></tr></table></figure>
+
+<h3>配置环境变量</h3>
+<p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="keyword">export</span> GTK_IM_MODULE=fcitx
+<span class="keyword">export</span> QT_IM_MODULE=fcitx
+<span class="keyword">export</span> XMODIFIERS=<span class="string">"@im=fcitx"</span>
+</pre></td></tr></table></figure>
+
+<p>配置后重新登录生效，使用<code>CTRL+空格</code>激活输入法，如果发现fcitx没有运行，则直接在命令行里执行<code>fcitx</code>即可。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
   </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
