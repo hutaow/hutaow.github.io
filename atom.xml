@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-11-18T16:19:09.532Z</updated>
+  <updated>2013-11-19T15:55:29.512Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,7 +16,7 @@
     <link href="http://hutaow.net/blog/2013/11/18/configure-the-fcitx-in-archlinux/"/>
     <id>http://hutaow.net/blog/2013/11/18/configure-the-fcitx-in-archlinux/</id>
     <published>2013-11-18T14:37:16.000Z</published>
-    <updated>2013-11-18T16:18:07.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。</p>
 <a id="more"></a>
 
@@ -48,7 +48,7 @@
     <link href="http://hutaow.net/blog/2013/11/06/mysql-protocol-analysis/"/>
     <id>http://hutaow.net/blog/2013/11/06/mysql-protocol-analysis/</id>
     <published>2013-11-05T16:34:54.000Z</published>
-    <updated>2013-11-17T12:06:50.000Z</updated>
+    <updated>2013-11-19T14:57:39.000Z</updated>
     <content type="html"><![CDATA[<h2>1 交互过程</h2>
 <p>MySQL客户端与服务器的交互主要分为两个阶段：握手认证阶段和命令执行阶段。</p>
 <h3>1.1 握手认证阶段</h3>
@@ -798,7 +798,7 @@
 <tbody>
 <tr>
 <td>4</td>
-<td>连接ID号（小字节续）</td>
+<td>连接ID号（小字节序）</td>
 </tr>
 </tbody>
 </table>
@@ -1884,7 +1884,7 @@
     <link href="http://hutaow.net/blog/2013/10/30/install-linux-with-pxe/"/>
     <id>http://hutaow.net/blog/2013/10/30/install-linux-with-pxe/</id>
     <published>2013-10-30T15:30:57.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<h3>1 准备工作</h3>
 <ul>
 <li>Linux安装镜像（本文以CentOS为例）</li>
@@ -1940,7 +1940,7 @@
     <link href="http://hutaow.net/blog/2013/10/25/linux-core-dump/"/>
     <id>http://hutaow.net/blog/2013/10/25/linux-core-dump/</id>
     <published>2013-10-25T15:19:39.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<h3>1 什么是 Core Dump</h3>
 <p>Core Dump 又叫核心转储。在程序运行过程中发生异常时，将其内存数据保存到文件中，这个过程叫做 Core Dump。</p>
 <h3>2 Core Dump 的作用</h3>
@@ -2045,7 +2045,7 @@
     <link href="http://hutaow.net/blog/2013/10/19/linux-signal/"/>
     <id>http://hutaow.net/blog/2013/10/19/linux-signal/</id>
     <published>2013-10-19T13:47:22.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <a id="more"></a>
@@ -2529,7 +2529,7 @@ Process Continue.</code></pre>
     <link href="http://hutaow.net/blog/2013/10/15/dump-stack/"/>
     <id>http://hutaow.net/blog/2013/10/15/dump-stack/</id>
     <published>2013-10-15T15:32:31.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。</p>
 <a id="more"></a>
 
@@ -2797,7 +2797,7 @@ End of assembler dump.</span>
     <link href="http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/"/>
     <id>http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/</id>
     <published>2013-10-11T14:03:39.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
 <figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
@@ -2954,7 +2954,7 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
     <link href="http://hutaow.net/blog/2013/10/10/starting-with-new-domain-name/"/>
     <id>http://hutaow.net/blog/2013/10/10/starting-with-new-domain-name/</id>
     <published>2013-10-10T14:23:31.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>昨天注册了<a href="http://hutaow.net">hutaow.net</a>这个域名，决心把博客搬过来，恢复写博客的生活。</p>
 <p>算下来差不多有两年时间都没有更新过了，其中一个最主要借口是找不到合适的落脚点，时间最长地方要数ChinaUNIX了，早期的时候用着还是蛮不错的，但是随着时间的推移，ChinaUNIX的系统更新实在是跟不上节奏，想到过搬家但是由于ChinaUNIX的订阅数据实在太蹩脚，连搬都不好搬，更不用说评论等等了，博客搬家的计划也就一直搁置了。后来有试过CSDN无奈上面的广告太多，百度也试过但是它贴代码的效果实在太差，WordPress又悲催的被墙等等。</p>
 <p>另一个借口就是工作太忙没时间，一回家就不太想写东西了，但是最近开始意识到挥挥衣袖什么都没有留下的感觉很不好，没有积累，没有思考，需要改变一下了。</p>
@@ -2968,7 +2968,7 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
     <link href="http://hutaow.net/blog/2013/09/06/install-openwrt/"/>
     <id>http://hutaow.net/blog/2013/09/06/install-openwrt/</id>
     <published>2013-09-06T15:16:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<h3>1 安装OpenWRT</h3>
 <h4>1.1 下载并刷新固件</h4>
 <p>如果以前没刷过OpenWRT，需要升级factory固件，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" target="_blank">点击这里下载</a>。</p>
@@ -3180,7 +3180,7 @@ config swap
     <link href="http://hutaow.net/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/"/>
     <id>http://hutaow.net/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/</id>
     <published>2013-06-16T14:54:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">mount</span> -o remount,rw /media/TF
@@ -3196,7 +3196,7 @@ config swap
     <link href="http://hutaow.net/blog/2013/06/16/batch-settings-directory-or-file-permissions/"/>
     <id>http://hutaow.net/blog/2013/06/16/batch-settings-directory-or-file-permissions/</id>
     <published>2013-06-15T17:48:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">find</span> ./ -<span class="typedef"><span class="keyword">type</span> d -exec chmod 755 <span class="container">{}</span> \;</span>
@@ -3216,7 +3216,7 @@ config swap
     <link href="http://hutaow.net/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/"/>
     <id>http://hutaow.net/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/</id>
     <published>2010-05-14T14:13:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
 <p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
 <p>2) 交换机上电自检然后登入后出现命令提示符：</p>
@@ -3264,7 +3264,7 @@ Enter configuration commands, one per line.  End with CNTL/Z.
     <link href="http://hutaow.net/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/"/>
     <id>http://hutaow.net/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/</id>
     <published>2010-04-27T04:43:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>实例说明会更清楚些，假设有如下XML文件：</p>
 <figure class="highlight lang-xml"><figcaption><span>message_hutaow.xml</span></figcaption><table><tr><td class="gutter"><pre>1
 2
@@ -3344,7 +3344,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/04/21/install-idmef-plugin-for-snort/"/>
     <id>http://hutaow.net/blog/2010/04/21/install-idmef-plugin-for-snort/</id>
     <published>2010-04-21T02:48:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
 <ol>
 <li><p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef" target="_blank">libidmef</a>、<a href="http://xmlsoft.org" target="_blank">libxml2</a>及<a href="http://www.ntp.org" target="_blank">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p>
@@ -3371,7 +3371,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/"/>
     <id>http://hutaow.net/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/</id>
     <published>2010-04-17T13:25:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<h3>引言</h3>
 <p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。</p>
 <p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
@@ -3627,7 +3627,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/04/13/reverse-order-of-words-in-a-string/"/>
     <id>http://hutaow.net/blog/2010/04/13/reverse-order-of-words-in-a-string/</id>
     <published>2010-04-13T11:35:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>在Java中可以用压栈/弹栈的方式：</p>
 <a id="more"></a>
 
@@ -3676,7 +3676,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/"/>
     <id>http://hutaow.net/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/</id>
     <published>2010-01-29T16:29:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>正斜杠(左斜杠)，符号是“/”；反斜杠(右斜杠)，符号是&quot;\&quot;。</p>
 <p>　　在Unix/Linux中，路径的分隔采用正斜杠“/”，比如“/home/hutaow”；而在Windows中，路径分隔采用反斜杠&quot;\“，比如”C:\Windows\System&quot;。</p>
 <p>　　有时我们会看到这样的路径写法，&quot;C:\\Windows\\System“，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用”C:/Windows/System“来代替，不会出错。但是如果写成了”C:\Windows\System&quot;，那就可能会出现各种奇怪的错误了。</p>
@@ -3697,7 +3697,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/01/14/interesting-features-in-htc-diamond/"/>
     <id>http://hutaow.net/blog/2010/01/14/interesting-features-in-htc-diamond/</id>
     <published>2010-01-14T12:28:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>这两天一直折腾 HTC Diamond，发现了两个很有意思的功能：</p>
 <ol>
 <li><p>Diamond的手写笔不像其它手机那样有卡槽卡住，而是像有磁铁一样把笔“吸”进去，实际上功能远不止这个。在Diamond关闭屏幕时，拔出手写笔，屏幕会自动亮起，还有比这更神奇的，在打电话时，如果拔出手写笔，Diamond会打开便签，并且便签已经包含了通话对象、时间等信息，方便记录；</p>
@@ -3714,7 +3714,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/"/>
     <id>http://hutaow.net/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/</id>
     <published>2010-01-12T14:53:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
 <h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&quot;文件中添加如下内容：</h4>
 <a id="more"></a>
@@ -3756,7 +3756,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2009/05/02/mark-atl-control-as-a-safe-control/"/>
     <id>http://hutaow.net/blog/2009/05/02/mark-atl-control-as-a-safe-control/</id>
     <published>2009-05-02T06:02:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2013-11-19T14:56:30.000Z</updated>
     <content type="html"><![CDATA[<p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
 <p>实现方法如下：</p>
 <p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
