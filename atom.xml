@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-11-19T15:55:29.512Z</updated>
+  <updated>2013-11-23T17:16:18.320Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,11 +12,111 @@
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
   <entry>
+    <title type="html"><![CDATA[配置 VIM 开发环境]]></title>
+    <link href="http://hutaow.net/blog/2013/11/22/vim-development-environment/"/>
+    <id>http://hutaow.net/blog/2013/11/22/vim-development-environment/</id>
+    <published>2013-11-22T14:43:22.000Z</published>
+    <updated>2013-11-23T17:13:48.000Z</updated>
+    <content type="html"><![CDATA[<h3>1 插件列表</h3>
+<h4>1.1 CTags</h4>
+<p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
+<p>下载地址：<a href="http://ctags.sourceforge.net" target="_blank"><a href="http://ctags.sourceforge.net">http://ctags.sourceforge.net</a></a></p>
+<p>使用方式：在代码的根目录执行如下命令即可生成tag文件：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">ctags</span> <span class="literal">-</span><span class="comment">R</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">c</span>+<span class="literal">+</span><span class="literal">-</span><span class="comment">kinds=</span>+<span class="comment">p</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">fields=</span>+<span class="comment">iaS</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">extra=</span>+<span class="comment">q</span> <span class="string">.</span>
+</pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>这个命令有点长，可以在<code>.vimrc</code>的文件中加个键盘映射，像下面的样子，这样只需要按下<code>CTRL+F12</code>即可生成tag文件了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="stl_container"><span class="built_in">map</span> &lt;C-F12&gt;</span> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+</pre></td></tr></table></figure>
+
+<p>另外，如果需要指明源代码的语言，则需要加上<code>--languages=c</code>（使用C语言）的参数。</p>
+<h4>1.2 TagList</h4>
+<p>TagList是一款基于CTags的VIM插件，用来显示代码的结构概况。</p>
+<p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=273" target="_blank"><a href="http://www.vim.org/scripts/script.php?script_id=273">http://www.vim.org/scripts/script.php?script_id=273</a></a></p>
+<p>配置方式：在<code>~/.vimrc</code>文件中，增加如下配置：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="keyword">let</span> <span class="variable">Tlist_Auto_Open</span> = <span class="number">1</span>
+<span class="keyword">let</span> <span class="variable">Tlist_Show_One_File</span> = <span class="number">1</span>
+<span class="keyword">let</span> <span class="variable">Tlist_Exit_OnlyWindow</span> = <span class="number">1</span>
+</pre></td></tr></table></figure>
+
+<p>其中第一行配置为当发现开启的文件为源代码时，则自动打开TagList，建议打开这个选项，不然每次都都手动执行<code>TlistToggle</code>来开关TagList窗口。</p>
+<h4>1.3 CScope</h4>
+<p>CScope是一个C语言的浏览工具，可以快速找到函数、变量的定义位置及调用信息。</p>
+<p>下载地址：<a href="http://cscope.sourceforge.net" target="_blank"><a href="http://cscope.sourceforge.net">http://cscope.sourceforge.net</a></a></p>
+<p>使用方式：在代码的根目录执行下面的命令，即可生成CScope的索引文件：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">cscope</span> -Rbkq
+</pre></td></tr></table></figure>
+
+<p>其中，<code>-R</code>表示递归建立索引，<code>-b</code>表示不启动CScope的用户界面，<code>-k</code>表示生成索引文件时不搜索<code>/usr/include</code>目录，<code>-q</code>表示生成<code>cscope.in.out</code>和<code>cscope.po.out</code>文件，以加快索引速度。</p>
+<h4>1.4 OmniCppComplete</h4>
+<p>OmniCppComplete是VIM中对结构体的成员变量、类的属性或方法提供实时提示及补全功能的插件，依赖CTags工具生成的索引文件。</p>
+<p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=1520" target="_blank"><a href="http://www.vim.org/scripts/script.php?script_id=1520">http://www.vim.org/scripts/script.php?script_id=1520</a></a></p>
+<p>配置方式：无需配置，插件安装后即自动生效，在写代码时，输入一个结构体变量的名称后，当继续输入<code>.</code>或<code>-&gt;</code>字符后，会自动弹出该结构体中的所有变量列表，可以上下选择，然后按回车自动补全。</p>
+<h4>1.5 SuperTab</h4>
+<p>SuperTab可以简化补全代码的方式，直接按<code>TAB</code>键即可（之前需要按<code>CTRL+X</code>和<code>CTRL+O</code>）。</p>
+<p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=1643" target="_blank"><a href="http://www.vim.org/scripts/script.php?script_id=1643">http://www.vim.org/scripts/script.php?script_id=1643</a></a></p>
+<p>配置方式：SuperTab插件是Vimball的安装格式，不需要手动拷贝插件，直接用VIM打开，然后执行<code>:so %</code>即可完成安装。安装后需要在<code>~/.vimrc</code>文件中增加如下配置：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>let g:SuperTabRetainCompletionType=2
+let g:SuperTabDefaultCompletionType="<span class="tag">&lt;<span class="title">C-X</span>&gt;</span><span class="tag">&lt;<span class="title">C-O</span>&gt;</span>"
+</pre></td></tr></table></figure>
+
+<h4>1.6 MiniBufExplorer</h4>
+<p>当需要同时编辑多个文件的时候，MiniBufExplorer可以在VIM顶部以标签形式显示当前打开的文件列表，并可以在各文件间快速切换。</p>
+<p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=159" target="_blank"><a href="http://www.vim.org/scripts/script.php?script_id=159">http://www.vim.org/scripts/script.php?script_id=159</a></a></p>
+<p>配置方式：在<code>~/.vimrc</code>文件中增加如下配置：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="keyword">let</span> g:mini<span class="variable">BufExplMapWindowNavVim</span> = <span class="number">1</span> 
+<span class="keyword">let</span> g:mini<span class="variable">BufExplMapWindowNavArrows</span> = <span class="number">1</span> 
+<span class="keyword">let</span> g:mini<span class="variable">BufExplMapCTabSwitchBufs</span> = <span class="number">1</span> 
+<span class="keyword">let</span> g:mini<span class="variable">BufExplModSelTarget</span> = <span class="number">1</span>
+</pre></td></tr></table></figure>
+
+<h4>1.7 Command-T</h4>
+<p>Command-T用于在VIM快速定位文件，通过<code>:CommandT</code>呼出Command-T窗口，然后直接输入文件名，在输入的过程中文件列表会逐渐缩小范围，并可以通过<code>CTRL+k</code>和<code>CTRL+j</code>上下选择文件，选定后按回车即可打开文件。</p>
+<p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=3025" target="_blank"><a href="http://www.vim.org/scripts/script.php?script_id=3025">http://www.vim.org/scripts/script.php?script_id=3025</a></a></p>
+<p>安装方式：Command-T插件为Vimball安装格式，首先用VIM打开安装文件，执行<code>:so %</code>安装插件，然后执行下面的命令：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="title">cd</span> ~/.vim/ruby/command-t
+<span class="title">ruby</span> extconf.rb
+<span class="title">make</span>
+</pre></td></tr></table></figure>
+
+<p>注：后面的安装需要Ruby开发环境。</p>
+<h4>1.9 A.VIM</h4>
+<p>A.VIM是用于<code>.c</code>和<code>.h</code>文件间的快速切换的插件。</p>
+<p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=31" target="_blank"><a href="http://www.vim.org/scripts/script.php?script_id=31">http://www.vim.org/scripts/script.php?script_id=31</a></a></p>
+<p>配置方式：无需配置，插件安装后执行<code>:A</code>即可完成<code>.c</code>和<code>.h</code>文件间的切换。</p>
+<h3>2 运行效果</h3>
+<p><img src="/images/articles/201311/vim_development_environment.png" alt="VIM开发环境配置效果"></p>
+<p>注：图中的效果除了上面的插件配置，还包括了其它对VIM的基本配置，见<a href="/blog/2007/08/19/my-vi-config">《我的VI配置文件》</a>。</p>
+]]></content>
+    <category scheme="http://hutaow.net/blog/tags/VI/" term="VI"/>
+    <category scheme="http://hutaow.net/blog/tags/CTags/" term="CTags"/>
+    <category scheme="http://hutaow.net/blog/tags/TagList/" term="TagList"/>
+    <category scheme="http://hutaow.net/blog/tags/CScope/" term="CScope"/>
+    <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
+  </entry>
+  <entry>
     <title type="html"><![CDATA[在 ArchLinux 中使用 Fcitx 输入法]]></title>
     <link href="http://hutaow.net/blog/2013/11/18/configure-the-fcitx-in-archlinux/"/>
     <id>http://hutaow.net/blog/2013/11/18/configure-the-fcitx-in-archlinux/</id>
     <published>2013-11-18T14:37:16.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-18T16:18:07.000Z</updated>
     <content type="html"><![CDATA[<p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。</p>
 <a id="more"></a>
 
@@ -48,7 +148,7 @@
     <link href="http://hutaow.net/blog/2013/11/06/mysql-protocol-analysis/"/>
     <id>http://hutaow.net/blog/2013/11/06/mysql-protocol-analysis/</id>
     <published>2013-11-05T16:34:54.000Z</published>
-    <updated>2013-11-19T14:57:39.000Z</updated>
+    <updated>2013-11-22T14:28:42.000Z</updated>
     <content type="html"><![CDATA[<h2>1 交互过程</h2>
 <p>MySQL客户端与服务器的交互主要分为两个阶段：握手认证阶段和命令执行阶段。</p>
 <h3>1.1 握手认证阶段</h3>
@@ -1884,7 +1984,7 @@
     <link href="http://hutaow.net/blog/2013/10/30/install-linux-with-pxe/"/>
     <id>http://hutaow.net/blog/2013/10/30/install-linux-with-pxe/</id>
     <published>2013-10-30T15:30:57.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<h3>1 准备工作</h3>
 <ul>
 <li>Linux安装镜像（本文以CentOS为例）</li>
@@ -1940,7 +2040,7 @@
     <link href="http://hutaow.net/blog/2013/10/25/linux-core-dump/"/>
     <id>http://hutaow.net/blog/2013/10/25/linux-core-dump/</id>
     <published>2013-10-25T15:19:39.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<h3>1 什么是 Core Dump</h3>
 <p>Core Dump 又叫核心转储。在程序运行过程中发生异常时，将其内存数据保存到文件中，这个过程叫做 Core Dump。</p>
 <h3>2 Core Dump 的作用</h3>
@@ -2045,7 +2145,7 @@
     <link href="http://hutaow.net/blog/2013/10/19/linux-signal/"/>
     <id>http://hutaow.net/blog/2013/10/19/linux-signal/</id>
     <published>2013-10-19T13:47:22.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <a id="more"></a>
@@ -2529,7 +2629,7 @@ Process Continue.</code></pre>
     <link href="http://hutaow.net/blog/2013/10/15/dump-stack/"/>
     <id>http://hutaow.net/blog/2013/10/15/dump-stack/</id>
     <published>2013-10-15T15:32:31.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。</p>
 <a id="more"></a>
 
@@ -2797,7 +2897,7 @@ End of assembler dump.</span>
     <link href="http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/"/>
     <id>http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/</id>
     <published>2013-10-11T14:03:39.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
 <figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
@@ -2954,7 +3054,7 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
     <link href="http://hutaow.net/blog/2013/10/10/starting-with-new-domain-name/"/>
     <id>http://hutaow.net/blog/2013/10/10/starting-with-new-domain-name/</id>
     <published>2013-10-10T14:23:31.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>昨天注册了<a href="http://hutaow.net">hutaow.net</a>这个域名，决心把博客搬过来，恢复写博客的生活。</p>
 <p>算下来差不多有两年时间都没有更新过了，其中一个最主要借口是找不到合适的落脚点，时间最长地方要数ChinaUNIX了，早期的时候用着还是蛮不错的，但是随着时间的推移，ChinaUNIX的系统更新实在是跟不上节奏，想到过搬家但是由于ChinaUNIX的订阅数据实在太蹩脚，连搬都不好搬，更不用说评论等等了，博客搬家的计划也就一直搁置了。后来有试过CSDN无奈上面的广告太多，百度也试过但是它贴代码的效果实在太差，WordPress又悲催的被墙等等。</p>
 <p>另一个借口就是工作太忙没时间，一回家就不太想写东西了，但是最近开始意识到挥挥衣袖什么都没有留下的感觉很不好，没有积累，没有思考，需要改变一下了。</p>
@@ -2968,7 +3068,7 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
     <link href="http://hutaow.net/blog/2013/09/06/install-openwrt/"/>
     <id>http://hutaow.net/blog/2013/09/06/install-openwrt/</id>
     <published>2013-09-06T15:16:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<h3>1 安装OpenWRT</h3>
 <h4>1.1 下载并刷新固件</h4>
 <p>如果以前没刷过OpenWRT，需要升级factory固件，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" target="_blank">点击这里下载</a>。</p>
@@ -3180,7 +3280,7 @@ config swap
     <link href="http://hutaow.net/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/"/>
     <id>http://hutaow.net/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/</id>
     <published>2013-06-16T14:54:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">mount</span> -o remount,rw /media/TF
@@ -3196,7 +3296,7 @@ config swap
     <link href="http://hutaow.net/blog/2013/06/16/batch-settings-directory-or-file-permissions/"/>
     <id>http://hutaow.net/blog/2013/06/16/batch-settings-directory-or-file-permissions/</id>
     <published>2013-06-15T17:48:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">find</span> ./ -<span class="typedef"><span class="keyword">type</span> d -exec chmod 755 <span class="container">{}</span> \;</span>
@@ -3216,7 +3316,7 @@ config swap
     <link href="http://hutaow.net/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/"/>
     <id>http://hutaow.net/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/</id>
     <published>2010-05-14T14:13:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
 <p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
 <p>2) 交换机上电自检然后登入后出现命令提示符：</p>
@@ -3264,7 +3364,7 @@ Enter configuration commands, one per line.  End with CNTL/Z.
     <link href="http://hutaow.net/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/"/>
     <id>http://hutaow.net/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/</id>
     <published>2010-04-27T04:43:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>实例说明会更清楚些，假设有如下XML文件：</p>
 <figure class="highlight lang-xml"><figcaption><span>message_hutaow.xml</span></figcaption><table><tr><td class="gutter"><pre>1
 2
@@ -3344,7 +3444,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/04/21/install-idmef-plugin-for-snort/"/>
     <id>http://hutaow.net/blog/2010/04/21/install-idmef-plugin-for-snort/</id>
     <published>2010-04-21T02:48:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
 <ol>
 <li><p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef" target="_blank">libidmef</a>、<a href="http://xmlsoft.org" target="_blank">libxml2</a>及<a href="http://www.ntp.org" target="_blank">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p>
@@ -3371,7 +3471,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/"/>
     <id>http://hutaow.net/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/</id>
     <published>2010-04-17T13:25:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<h3>引言</h3>
 <p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。</p>
 <p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
@@ -3627,7 +3727,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/04/13/reverse-order-of-words-in-a-string/"/>
     <id>http://hutaow.net/blog/2010/04/13/reverse-order-of-words-in-a-string/</id>
     <published>2010-04-13T11:35:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>在Java中可以用压栈/弹栈的方式：</p>
 <a id="more"></a>
 
@@ -3676,7 +3776,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/"/>
     <id>http://hutaow.net/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/</id>
     <published>2010-01-29T16:29:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>正斜杠(左斜杠)，符号是“/”；反斜杠(右斜杠)，符号是&quot;\&quot;。</p>
 <p>　　在Unix/Linux中，路径的分隔采用正斜杠“/”，比如“/home/hutaow”；而在Windows中，路径分隔采用反斜杠&quot;\“，比如”C:\Windows\System&quot;。</p>
 <p>　　有时我们会看到这样的路径写法，&quot;C:\\Windows\\System“，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用”C:/Windows/System“来代替，不会出错。但是如果写成了”C:\Windows\System&quot;，那就可能会出现各种奇怪的错误了。</p>
@@ -3697,7 +3797,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/01/14/interesting-features-in-htc-diamond/"/>
     <id>http://hutaow.net/blog/2010/01/14/interesting-features-in-htc-diamond/</id>
     <published>2010-01-14T12:28:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>这两天一直折腾 HTC Diamond，发现了两个很有意思的功能：</p>
 <ol>
 <li><p>Diamond的手写笔不像其它手机那样有卡槽卡住，而是像有磁铁一样把笔“吸”进去，实际上功能远不止这个。在Diamond关闭屏幕时，拔出手写笔，屏幕会自动亮起，还有比这更神奇的，在打电话时，如果拔出手写笔，Diamond会打开便签，并且便签已经包含了通话对象、时间等信息，方便记录；</p>
@@ -3714,7 +3814,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.net/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/"/>
     <id>http://hutaow.net/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/</id>
     <published>2010-01-12T14:53:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
+    <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
 <h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&quot;文件中添加如下内容：</h4>
 <a id="more"></a>
@@ -3750,57 +3850,5 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <category scheme="http://hutaow.net/blog/tags/Xmarks/" term="Xmarks"/>
     <category scheme="http://hutaow.net/blog/tags/Foxmarks/" term="Foxmarks"/>
     <category scheme="http://hutaow.net/blog/categories/Technology/" term="Technology"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[标记ATL控件为安全控件]]></title>
-    <link href="http://hutaow.net/blog/2009/05/02/mark-atl-control-as-a-safe-control/"/>
-    <id>http://hutaow.net/blog/2009/05/02/mark-atl-control-as-a-safe-control/</id>
-    <published>2009-05-02T06:02:00.000Z</published>
-    <updated>2013-11-19T14:56:30.000Z</updated>
-    <content type="html"><![CDATA[<p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
-<p>实现方法如下：</p>
-<p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
-<a id="more"></a>
-
-<figure class="highlight lang-c++"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="code"><pre>class CHutaow : 
-    // 添加到控件的派生类列表中
-    public IObjectSafetyImpl&lt;CHutaow, INTERFACESAFE_FOR_UNTRUSTED_CALLER|INTERFACESAFE_FOR_UNTRUSTED_DATA&gt;
-    <span class="keyword">...</span>
-    {
-        public:
-
-        BEGIN_COM_MAP(CHutaow)
-        
-        COM_INTERFACE_ENTRY(IObjectSafety) //创建IObjectSafety的映射
-        
-        <span class="keyword">...</span>
-
-        END_COM_MAP()
-        <span class="keyword">...</span>
-    }
-</pre></td></tr></table></figure>
-
-<p>PS: 如果出现“‘IObjectSafetyImpl’ : base class undefined”的错误，则需要添加“atlctl.h”头文件。</p>
-]]></content>
-    <category scheme="http://hutaow.net/blog/tags/ATL/" term="ATL"/>
-    <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
-    <category scheme="http://hutaow.net/blog/tags/控件/" term="控件"/>
-    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
   </entry>
 </feed>
