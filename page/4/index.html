@@ -70,6 +70,54 @@
           <div class="date-shadow"></div>
           <div class="date-mask"></div>
           <div class="dateTitle">
+            <span class="d">17</span>
+            <span class="ym">2/2008</span>
+          </div>
+        </div>
+        <!-- added by wangtao for new date style end -->
+        <!-- removed by wangtao for new date style begin -->
+        
+        <!-- removed by wangtao for new date style end -->
+      
+      
+  
+    <h1 class="title"><a href="/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora/">Fedora禁止自动挂载分区的方法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在“/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi”文件中。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora/" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- added by wangtao for new date style begin -->
+        <div class="date-wrapper">
+          <div class="date-shadow"></div>
+          <div class="date-mask"></div>
+          <div class="dateTitle">
             <span class="d">15</span>
             <span class="ym">2/2008</span>
           </div>
@@ -519,257 +567,13 @@ export <span class="class">CLASSPATH</span>=.:<span class="char">$J</span>AVA_HO
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- added by wangtao for new date style begin -->
-        <div class="date-wrapper">
-          <div class="date-shadow"></div>
-          <div class="date-mask"></div>
-          <div class="dateTitle">
-            <span class="d">19</span>
-            <span class="ym">8/2007</span>
-          </div>
-        </div>
-        <!-- added by wangtao for new date style end -->
-        <!-- removed by wangtao for new date style begin -->
-        
-        <!-- removed by wangtao for new date style end -->
-      
-      
-  
-    <h1 class="title"><a href="/blog/2007/08/19/my-vi-config/">我的VI配置文件</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <figure class="highlight lang-vimrc"><figcaption><span>Config of VIM</span><a href="/downloads/code/hutaow.vimrc">download</a></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-</pre></td><td class="code"><pre>" 设置字符编码
-<span class="keyword">set</span> encoding=utf-<span class="number">8</span>
-<span class="keyword">set</span> termencoding=utf-<span class="number">8</span>
-<span class="keyword">set</span> fileencoding=utf-<span class="number">8</span>
-<span class="keyword">set</span> fileencodings=utf-<span class="number">8</span>,ucs-bom,gb2312,gb18030,gbk,cp936
-
-" 设置文件格式(unix=LF,dos=CRLF,mac=CR)
-<span class="keyword">set</span> fileformat=unix
-<span class="keyword">set</span> fileformats=unix,dos,mac
-
-" 提示信息语言
-<span class="keyword">set</span> langmenu=en_US.utf-<span class="number">8</span>
-language messages en_US.utf-<span class="number">8</span>
-
-" 开启文件类型检测
-filetype on
-
-" 开启语法高亮
-syntax on
-
-" 显示行号
-<span class="keyword">set</span> number
-
-" 设置缩进大小
-<span class="keyword">set</span> tabstop=<span class="number">4</span>
-<span class="keyword">set</span> softtabstop=<span class="number">4</span>
-<span class="keyword">set</span> shiftwidth=<span class="number">4</span>
-
-" 将制表符用空格代替
-<span class="keyword">set</span> expandtab
-
-" 关闭兼容模式(使用VIM的键盘模式)
-<span class="keyword">set</span> nocompatible
-
-" 历史记录数量
-<span class="keyword">set</span> history=<span class="number">1000</span>
-
-" 设置关键字符(遇到以下字符连接的单词时不进行换行)
-<span class="keyword">set</span> iskeyword+=_,$,@,%,#,-
-
-" 设置退格键模式
-<span class="keyword">set</span> backspace=indent,eol,start
-
-" 设置列提示(右下角)
-<span class="keyword">set</span> ruler
-
-" 设置状态提示(左下角)
-<span class="keyword">set</span> showmode
-
-" 启动的时候不显示提示信息
-<span class="keyword">set</span> shortmess=atI
-
-" 关闭错误信息响铃
-<span class="keyword">set</span> noerrorbells
-
-" 设置(括号)匹配模式
-<span class="keyword">set</span> showmatch
-
-" 搜索时实时匹配关键字
-<span class="keyword">set</span> incsearch
-
-" 搜索时高亮关键字
-<span class="keyword">set</span> hlsearch
-
-" 设置自动缩进
-<span class="keyword">set</span> autoindent
-
-" 设置结构缩进(换行时缩进与当前行相同)
-<span class="keyword">set</span> smartindent
-
-" 关闭自动备份
-<span class="keyword">set</span> nobackup
-
-" 设置当前行/列高亮
-<span class="keyword">set</span> cursorline
-" <span class="keyword">set</span> cursorcolumn
-
-" 设置背景色主题
-<span class="keyword">set</span> background=dark
-
-" 主题颜色
-colorscheme desert 
-
-" 状态行显示内容
-<span class="keyword">set</span> statusline=<span class="envvar">%F%</span>m<span class="envvar">%r%</span>h%w\ [FORMAT=<span class="envvar">%{&amp;ff}:%</span>{&amp;fenc!=''?&amp;fenc:&amp;enc}]\ [TYPE=%Y]\ <span class="envvar">%r%</span>h<span class="envvar">%=[POS=%</span>l,<span class="envvar">%v][%</span>p<span class="envvar">%%]</span>\ [<span class="envvar">%{strftime(\"%</span>Y/<span class="envvar">%m/%</span>d\ <span class="envvar">%H:%</span>M\")}]
-
-" 状态行显示模式(<span class="number">0</span>=不显示,<span class="number">1</span>=两个窗口以上显示,<span class="number">2</span>=始终显示)
-<span class="keyword">set</span> laststatus=<span class="number">2</span>
-
-" 设置字体
-<span class="keyword">set</span> guifont=Terminus:h10:cANSI
-
-" 设置窗口大小
-" <span class="keyword">set</span> lines=<span class="number">35</span> columns=<span class="number">128</span>
-
-" GUI 隐藏菜单栏
-" <span class="keyword">set</span> guioptions-=m
-
-" GUI 隐藏工具栏
-<span class="keyword">set</span> guioptions-=T
-
-</pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
     <a href="/page/3/" class="alignleft prev">上一页</a>
   
+  
+    <a href="/page/5/" class="alignright next">下一页</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -794,7 +598,7 @@ colorscheme desert
   
     <li><a href="/blog/categories/Network/">Network</a><small>2</small></li>
   
-    <li><a href="/blog/categories/Programming/">Programming</a><small>13</small></li>
+    <li><a href="/blog/categories/Programming/">Programming</a><small>14</small></li>
   
     <li><a href="/blog/categories/Protocol/">Protocol</a><small>1</small></li>
   
@@ -810,7 +614,7 @@ colorscheme desert
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 16.67px;">Android</a><a href="/blog/tags/ArchLinux/" style="font-size: 10.00px;">ArchLinux</a><a href="/blog/tags/C/" style="font-size: 13.33px;">C</a><a href="/blog/tags/CScope/" style="font-size: 10.00px;">CScope</a><a href="/blog/tags/CSharp/" style="font-size: 10.00px;">CSharp</a><a href="/blog/tags/CTags/" style="font-size: 10.00px;">CTags</a><a href="/blog/tags/CoreDump/" style="font-size: 10.00px;">CoreDump</a><a href="/blog/tags/Fcitx/" style="font-size: 10.00px;">Fcitx</a><a href="/blog/tags/Fedora/" style="font-size: 11.67px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/GDB/" style="font-size: 10.00px;">GDB</a><a href="/blog/tags/IDS/" style="font-size: 11.67px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 11.67px;">MySQL</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/PXE/" style="font-size: 10.00px;">PXE</a><a href="/blog/tags/Protocol/" style="font-size: 10.00px;">Protocol</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/TagList/" style="font-size: 10.00px;">TagList</a><a href="/blog/tags/VI/" style="font-size: 11.67px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/信号/" style="font-size: 10.00px;">信号</a><a href="/blog/tags/入侵检测/" style="font-size: 11.67px;">入侵检测</a><a href="/blog/tags/协议分析/" style="font-size: 10.00px;">协议分析</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a><a href="/blog/tags/定位/" style="font-size: 13.33px;">定位</a><a href="/blog/tags/工具/" style="font-size: 11.67px;">工具</a><a href="/blog/tags/开发/" style="font-size: 18.33px;">开发</a><a href="/blog/tags/折腾/" style="font-size: 10.00px;">折腾</a><a href="/blog/tags/控件/" style="font-size: 10.00px;">控件</a>
+    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 16.67px;">Android</a><a href="/blog/tags/ArchLinux/" style="font-size: 10.00px;">ArchLinux</a><a href="/blog/tags/C/" style="font-size: 15.00px;">C</a><a href="/blog/tags/CScope/" style="font-size: 10.00px;">CScope</a><a href="/blog/tags/CSharp/" style="font-size: 10.00px;">CSharp</a><a href="/blog/tags/CTags/" style="font-size: 10.00px;">CTags</a><a href="/blog/tags/CoreDump/" style="font-size: 10.00px;">CoreDump</a><a href="/blog/tags/Fcitx/" style="font-size: 10.00px;">Fcitx</a><a href="/blog/tags/Fedora/" style="font-size: 11.67px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/GDB/" style="font-size: 10.00px;">GDB</a><a href="/blog/tags/IDS/" style="font-size: 11.67px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 11.67px;">MySQL</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/PXE/" style="font-size: 10.00px;">PXE</a><a href="/blog/tags/Protocol/" style="font-size: 10.00px;">Protocol</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/TagList/" style="font-size: 10.00px;">TagList</a><a href="/blog/tags/VI/" style="font-size: 11.67px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/信号/" style="font-size: 10.00px;">信号</a><a href="/blog/tags/入侵检测/" style="font-size: 11.67px;">入侵检测</a><a href="/blog/tags/协议分析/" style="font-size: 10.00px;">协议分析</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a><a href="/blog/tags/定位/" style="font-size: 13.33px;">定位</a><a href="/blog/tags/工具/" style="font-size: 11.67px;">工具</a><a href="/blog/tags/开发/" style="font-size: 18.33px;">开发</a><a href="/blog/tags/折腾/" style="font-size: 10.00px;">折腾</a><a href="/blog/tags/控件/" style="font-size: 10.00px;">控件</a>
   </div>
 </div>
 
@@ -819,6 +623,10 @@ colorscheme desert
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/blog/2013/12/05/string-size-calculation/">类型转换导致字符串大小计算错误的问题</a>
+      </li>
     
       <li>
         <a href="/blog/2013/11/22/vim-development-environment/">配置 VIM 开发环境</a>
@@ -834,10 +642,6 @@ colorscheme desert
     
       <li>
         <a href="/blog/2013/10/30/install-linux-with-pxe/">通过PXE方式安装Linux系统</a>
-      </li>
-    
-      <li>
-        <a href="/blog/2013/10/25/linux-core-dump/">Linux中生成 Core Dump 文件的方法</a>
       </li>
     
   </ul>

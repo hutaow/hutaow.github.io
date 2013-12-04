@@ -4,13 +4,67 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-12-03T16:10:28.495Z</updated>
+  <updated>2013-12-04T18:31:03.210Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
     <email><![CDATA[hutaow@gmail.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[类型转换导致字符串大小计算错误的问题]]></title>
+    <link href="http://hutaow.net/blog/2013/12/05/string-size-calculation/"/>
+    <id>http://hutaow.net/blog/2013/12/05/string-size-calculation/</id>
+    <published>2013-12-04T17:17:30.000Z</published>
+    <updated>2013-12-04T18:29:37.000Z</updated>
+    <content type="html"><![CDATA[<p>今天在定位问题时，发现有一个字符串关键字在搜索时死活不命中，但实际那个关键字在数据中是存在的，跟踪发现是一个不起眼的细节导致的。</p>
+<a id="more"></a>
+
+<p>用一段简短的代码来说明一下问题出在哪里：</p>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre><span class="comment">#include &lt;stdio.h&gt;</span>
+
+<span class="comment">#define M_STRING_1 "test"</span>
+<span class="comment">#define M_STRING_2 (char *)"test"</span>
+
+<span class="keyword">int</span> main(<span class="keyword">int</span> argc, char <span class="variable">*argv</span>[])
+{
+    char <span class="variable">*pcStr</span> = M_STRING_1;
+
+    <span class="keyword">printf</span>(<span class="string">"Size of string macro 1      : <span class="variable">%u</span> bytes \r\n"</span>, sizeof(M_STRING_1));
+    <span class="keyword">printf</span>(<span class="string">"Size of string pointer 1    : <span class="variable">%u</span> bytes \r\n"</span>, sizeof(pcStr));
+    <span class="keyword">printf</span>(<span class="string">"Size of string macro 2      : <span class="variable">%u</span> bytes \r\n"</span>, sizeof(M_STRING_2));
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>
+
+<p>程序运行结果：</p>
+<pre><code>Size <span class="keyword">of</span> <span class="typename">string</span> macro <span class="number">1</span>      : <span class="number">5</span> bytes 
+Size <span class="keyword">of</span> <span class="typename">string</span> pointer <span class="number">1</span>    : <span class="number">8</span> bytes 
+Size <span class="keyword">of</span> <span class="typename">string</span> macro <span class="number">2</span>      : <span class="number">8</span> bytes</code></pre>
+<p><strong>第一行</strong>：宏定义字符串长度为4字节，<code>sizeof(M_STRING_1)</code>加上<code>0x00</code>结束符，大小是5字节没问题。<br><strong>第二行</strong>：<code>sizeof(pcStr)</code>是在计算指针的长度，计算出的值和CPU寄存器的宽度有关，我的机器是64位，所以得到的大小是8字节，这个也是在预料之中。<br><strong>第三行</strong>：问题就发生在这里，本来以为会和第一行计算结果一样是5字节，实际结果却是预料之外的8字节（指针长度）！</p>
+<p>分析发现，<code>M_STRING_2</code>宏定义中的字符串多了一个<code>(char *)</code>的强制转换，正是这个转换导致<code>sizeof</code>的入参从字符串常量变成了指针，从而计算出的大小为指针的长度而非字符串的大小。</p>
+<p>开头提到的关键字不匹配问题，也正是由于关键字长度超出实际值，导致访问越界，而越界部分的值是不可预知的，最终造成了无法命中的问题。</p>
+]]></content>
+    <category scheme="http://hutaow.net/blog/tags/C/" term="C"/>
+    <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
+    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[配置 VIM 开发环境]]></title>
     <link href="http://hutaow.net/blog/2013/11/22/vim-development-environment/"/>
@@ -3807,48 +3861,6 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 </ol>
 ]]></content>
     <category scheme="http://hutaow.net/blog/tags/折腾/" term="折腾"/>
-    <category scheme="http://hutaow.net/blog/categories/Technology/" term="Technology"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[Xmarks(原Foxmarks)被墙之后更新的方法]]></title>
-    <link href="http://hutaow.net/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/"/>
-    <id>http://hutaow.net/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw/</id>
-    <published>2010-01-12T14:53:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
-    <content type="html"><![CDATA[<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
-<h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&quot;文件中添加如下内容：</h4>
-<a id="more"></a>
-
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre><span class="preprocessor"># Xmarks</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.86</span> www<span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.92</span> api<span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.89</span> login<span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.87</span> sync<span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.86</span> <span class="keyword">static</span><span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.86</span> download<span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.86</span> my<span class="variable">.xmarks</span><span class="variable">.com</span>
-</pre></td></tr></table></figure>
-
-<h4>2. 设置Xmarks连接及传输数据过程中加密，即在“Connection Security”中选择“Encrypt All”。</h4>
-<p>以上两步即可解决Xmarks不能同步的问题。</p>
-<h4>分析原因：</h4>
-<ol>
-<li><p>第一步操作的原因在于GFW是根据URL而不是IP进行过滤的，所以在请求解析诸如“xmarks.com”等类似的域名时，返回结果被GFW拦截，所以要手动添加xmarks.com一系列服务器的域名IP；</p>
-</li>
-<li><p>第二步操作让Xmarks在同步时对数据进行加密，GFW是无法认出加密的数据的，也就无法进一步拦截了。</p>
-</li>
-</ol>
-]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Xmarks/" term="Xmarks"/>
-    <category scheme="http://hutaow.net/blog/tags/Foxmarks/" term="Foxmarks"/>
     <category scheme="http://hutaow.net/blog/categories/Technology/" term="Technology"/>
   </entry>
 </feed>
