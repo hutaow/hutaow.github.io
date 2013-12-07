@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-12-04T18:31:03.210Z</updated>
+  <updated>2013-12-07T17:04:37.970Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -70,7 +70,7 @@ Size <span class="keyword">of</span> <span class="typename">string</span> macro 
     <link href="http://hutaow.net/blog/2013/11/22/vim-development-environment/"/>
     <id>http://hutaow.net/blog/2013/11/22/vim-development-environment/</id>
     <published>2013-11-22T14:43:22.000Z</published>
-    <updated>2013-11-23T17:13:48.000Z</updated>
+    <updated>2013-12-07T17:03:15.000Z</updated>
     <content type="html"><![CDATA[<h3>1 插件列表</h3>
 <h4>1.1 CTags</h4>
 <p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
@@ -150,7 +150,39 @@ let g:SuperTabDefaultCompletionType="<span class="tag">&lt;<span class="title">C
 <span class="title">make</span>
 </pre></td></tr></table></figure>
 
-<p>注：后面的安装需要Ruby开发环境。</p>
+<p>注：安装需要Ruby开发环境。</p>
+<h4>1.8 CtrlP</h4>
+<p>CtrlP是另一个快速定位文件的插件，通过<code>:CtrlP</code>呼出查找窗口，用法和Command-T一样，而且支持正则，另外不需要Ruby运行环境，安装起来更方便。</p>
+<p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=3736" target="_blank"><a href="http://www.vim.org/scripts/script.php?script_id=3736">http://www.vim.org/scripts/script.php?script_id=3736</a></a></p>
+<p>配置方式：在<code>~/.vimrc</code>中增加如下配置选项：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre>let g:ctrlp_working_path_mode = 'ra'
+
+"" MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+"" Windows
+set wildignore+=*<span class="command">\\</span>tmp<span class="command">\\</span>*,*.swp,*.zip,*.exe
+
+let g:ctrlp_custom_ignore = <span class="special">{</span>
+  <span class="command">\ </span>'dir':  '<span class="command">\v</span><span class="special">[</span><span class="command">\/</span><span class="special">]</span><span class="command">\.</span>(git|hg|svn)<span class="formula">$',
+  <span class="command">\ </span>'file': '<span class="command">\v</span><span class="command">\.</span>(exe|so|dll)$</span>',
+  <span class="command">\ </span>'link': 'some_bad_symbolic_links',
+  <span class="command">\ </span><span class="special">}</span>
+</pre></td></tr></table></figure>
+
 <h4>1.9 A.VIM</h4>
 <p>A.VIM是用于<code>.c</code>和<code>.h</code>文件间的快速切换的插件。</p>
 <p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=31" target="_blank"><a href="http://www.vim.org/scripts/script.php?script_id=31">http://www.vim.org/scripts/script.php?script_id=31</a></a></p>
