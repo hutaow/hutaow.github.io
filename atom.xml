@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-12-23T17:25:07.776Z</updated>
+  <updated>2013-12-23T17:41:20.008Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,7 +16,7 @@
     <link href="http://hutaow.net/blog/2013/12/24/convert-python-script-to-executable-program/"/>
     <id>http://hutaow.net/blog/2013/12/24/convert-python-script-to-executable-program/</id>
     <published>2013-12-23T16:00:01.000Z</published>
-    <updated>2013-12-23T17:24:19.000Z</updated>
+    <updated>2013-12-23T17:40:27.000Z</updated>
     <content type="html"><![CDATA[<p>本文所使用的工具是cx_Freeze，相对py2exe和PyInstaller来说，cx_Freeze的兼容性更好，支持最新的Python 3.X，支持PyQT，并且可以跨平台支持Windows和Linux系统。</p>
 <p>cx_Freeze的官方主页为<a href="http://cx-freeze.sourceforge.net" target="_blank"><a href="http://cx-freeze.sourceforge.net">http://cx-freeze.sourceforge.net</a></a>，下面以Windows系统为例介绍一下它的使用方法。</p>
 <a id="more"></a>
@@ -50,7 +50,7 @@ setup(  name = <span class="string">"MyApp"</span>,
 </pre></td></tr></table></figure>
 
 
-<p>其中<code>MyApp</code>为生成后的程序名称，<code>pyqt_example.py</code>为将要转换的脚本文件，其它字段为描述信息，根据实际情况修改即可。</p>
+<p>其中<code>pyqt_example.py</code>为将要转换的脚本文件，其它字段为描述信息，根据实际情况修改即可。</p>
 <h3>2 执行转换脚本</h3>
 <p>在脚本所在的目录执行下面的命令，其中<code>build</code>为转换后的程序存放目录：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
