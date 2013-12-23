@@ -4,13 +4,64 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.net/atom.xml" rel="self"/>
   <link href="http://hutaow.net"/>
-  <updated>2013-12-20T15:40:38.389Z</updated>
+  <updated>2013-12-23T17:11:42.282Z</updated>
   <id>http://hutaow.net/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
     <email><![CDATA[hutaow@gmail.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[将Python脚本转换为可执行程序]]></title>
+    <link href="http://hutaow.net/blog/2013/12/24/convert-python-script-to-executable-program/"/>
+    <id>http://hutaow.net/blog/2013/12/24/convert-python-script-to-executable-program/</id>
+    <published>2013-12-23T16:00:01.000Z</published>
+    <updated>2013-12-23T17:10:15.000Z</updated>
+    <content type="html"><![CDATA[<p>本文所使用的工具是cx_Freeze，相对py2exe和PyInstaller来说，cx_Freeze的兼容性更好，且支持最新的Python 3.X，支持PyQT，并且可以跨平台支持Windows和Linux系统。</p>
+<p>cx_Freeze的官方主页为<a href="http://cx-freeze.sourceforge.net" target="_blank"><a href="http://cx-freeze.sourceforge.net">http://cx-freeze.sourceforge.net</a></a>，下面以Windows系统为例介绍一下它的使用方法。</p>
+<a id="more"></a>
+
+<h3>1 配置转换脚本</h3>
+<p>新建一个Python脚本文件，如<code>setup.py</code>，内容如下：</p>
+<figure class="highlight lang-python"><figcaption><span>Setup Script </span><a href="/downloads/code/setup.py">download</a></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="keyword">import</span> sys
+<span class="keyword">from</span> cx_Freeze <span class="keyword">import</span> setup, Executable
+
+base = <span class="built_in">None</span>
+<span class="keyword">if</span> sys.platform == <span class="string">"win32"</span>:
+    base = <span class="string">"Win32GUI"</span>
+
+setup(  name = <span class="string">"MyApp"</span>,
+        version = <span class="string">"0.1"</span>,
+        description = <span class="string">"My PyQT application!"</span>,
+        executables = [Executable(<span class="string">"pyqt_example.py"</span>, base=base)])
+
+</pre></td></tr></table></figure>
+
+
+<p>其中<code>MyApp</code>为生成后的程序名称，<code>pyqt_example.py</code>为将要转换的脚本文件，其它字段为描述信息，根据实际情况修改即可。</p>
+<h3>2 执行转换脚本</h3>
+<p>在脚本所在的目录执行下面的命令，其中<code>build</code>为转换后的程序存放目录：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">python</span> setup.py build
+</pre></td></tr></table></figure>
+
+<p>执行后即会在<code>build</code>目录中生成对应的可执行程序了，并且程序运行过程中依赖的库文件也自动拷贝好了。</p>
+]]></content>
+    <category scheme="http://hutaow.net/blog/tags/Python/" term="Python"/>
+    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[使用 PyQT 作为 Python 的图形界面]]></title>
     <link href="http://hutaow.net/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python/"/>
@@ -4251,26 +4302,5 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <category scheme="http://hutaow.net/blog/tags/Java/" term="Java"/>
     <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
     <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[正斜杠与反斜杠的分析]]></title>
-    <link href="http://hutaow.net/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/"/>
-    <id>http://hutaow.net/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash/</id>
-    <published>2010-01-29T16:29:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
-    <content type="html"><![CDATA[<p>正斜杠(左斜杠)，符号是“/”；反斜杠(右斜杠)，符号是&quot;\&quot;。</p>
-<p>　　在Unix/Linux中，路径的分隔采用正斜杠“/”，比如“/home/hutaow”；而在Windows中，路径分隔采用反斜杠&quot;\“，比如”C:\Windows\System&quot;。</p>
-<p>　　有时我们会看到这样的路径写法，&quot;C:\\Windows\\System“，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用”C:/Windows/System“来代替，不会出错。但是如果写成了”C:\Windows\System&quot;，那就可能会出现各种奇怪的错误了。</p>
-<a id="more"></a>
-
-<p>　　至于上述问题出现的原因，要从字符串解析这方面来分析。</p>
-<p>　　学过编程的人都应该知道，在C里面，输出字符串时，如果想输出一个换行，那就要加上&#39;\n‘这个标志，类似的，输出一个TAB，就加上’\t&#39;，也就是说，反斜杠(&quot;\“)这个符号会把跟在它后面的字符结合起来转义成其它字符。根据这个原理，如果想输出双引号(‘”’)，就需要输入&#39;\&quot;‘，这样才会将包含了双引号的字符串正确的写入内存中。那么如果想输入一个反斜杠呢？很简单，只要敲’\\&#39;就可以了。</p>
-<p>　　看到这里或许有些人已经看出眉目了，如果&quot;C:\Windows\System“这个路径字符串交给C编译器编译，实际写入内存的字符串并没有包含反斜杠”\&quot;，甚至紧跟在反斜杠后面的字母也一起被转义成了其它的字符，再次调用的话势必会出问题。</p>
-<p>　　字符串解析不仅仅局限于C编译器，Java编译器、一些配置文件的解析、Web服务器等等，都会遇到对字符串进行解析的这个问题，由于传统的Windows采用的是单个斜杠的路径分隔形式，导致在对文件路径进行解析的时候可能发生不必要的错误，所以就出现了用双反斜杠&quot;\\“分隔路径的形式。不管解析引擎是否将反斜杠解析成转义字符，最终在内存中得到的都是”\&quot;，结果也就不会出问题了。</p>
-<p>　　由此也可以看出Windows或者说DOS在设计初期考虑不够周全，为了和Unix一些特征区别开来，将Unix中的正斜杠“/”分隔路径方式改变成了反斜杠&quot;\“。这样改变导致的一个问题就是在早期DOS命令行中，正常的文件名是不能包含空格的，如果包含了空格，会导致输入这样的文件名时，命令解析无法将其和参数区分开。例如，想要进入”hutaow yuan“这个目录（在此先忽略8.3命名规则），直接输入”cd hutaow yuan“，命令行会将其解析为进入”hutaow“目录，而后面的”yuan&quot;做参数，这显然不是所期望的。</p>
-<p>　　而在Unix中，文件名如果包含空格，可以直接在空格前加上反斜杠&quot;\“进行转义，从而很好的和命令参数区别出来（参数之间一般使用空格分隔）。还是上面的例子，在Unix中，只要输入”cd hutaow\ yuan“(在yuan前面的空格前加上”\“)，命令行会正确的辨认出”hutaow yuan&quot;并进入这个目录。</p>
-<p>　　当然，现在Windows的后续版本已经使用其它方法（比如文件名用双引号括住）解决了空格问题。</p>
-]]></content>
-    <category scheme="http://hutaow.net/blog/categories/Technology/" term="Technology"/>
   </entry>
 </feed>

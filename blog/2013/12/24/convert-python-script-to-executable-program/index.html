@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档：2007 | 胡桃夹子</title>
+  <title>将Python脚本转换为可执行程序 | 胡桃夹子</title>
   <meta name="author" content="Wang Tao">
+  
+  <meta name="description" content="本文所使用的工具是cx_Freeze，相对py2exe和PyInstaller来说，cx_Freeze的兼容性更好，且支持最新的Python 3.X，支持PyQT，并且可以跨平台支持Windows和Linux系统。
+cx_Freeze的官方主页为http://cx-freeze.sourceforge.net，下面以Windows系统为例介绍一下它的使用方法。">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="将Python脚本转换为可执行程序"/>
   <meta property="og:site_name" content="胡桃夹子"/>
 
   
@@ -59,37 +62,124 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2007</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- added by wangtao for new date style begin -->
+        <div class="date-wrapper">
+          <div class="date-shadow"></div>
+          <div class="date-mask"></div>
+          <div class="dateTitle">
+            <span class="d">24</span>
+            <span class="ym">12/2013</span>
+          </div>
+        </div>
+        <!-- added by wangtao for new date style end -->
+        <!-- removed by wangtao for new date style begin -->
+        
+        <!-- removed by wangtao for new date style end -->
+      
+      
+  
+    <h1 class="title">将Python脚本转换为可执行程序</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>本文所使用的工具是cx_Freeze，相对py2exe和PyInstaller来说，cx_Freeze的兼容性更好，且支持最新的Python 3.X，支持PyQT，并且可以跨平台支持Windows和Linux系统。</p>
+<p>cx_Freeze的官方主页为<a href="http://cx-freeze.sourceforge.net" target="_blank"><a href="http://cx-freeze.sourceforge.net">http://cx-freeze.sourceforge.net</a></a>，下面以Windows系统为例介绍一下它的使用方法。</p>
+<a id="more"></a>
+
+<h3>1 配置转换脚本</h3>
+<p>新建一个Python脚本文件，如<code>setup.py</code>，内容如下：</p>
+<figure class="highlight lang-python"><figcaption><span>Setup Script </span><a href="/downloads/code/setup.py">download</a></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="keyword">import</span> sys
+<span class="keyword">from</span> cx_Freeze <span class="keyword">import</span> setup, Executable
+
+base = <span class="built_in">None</span>
+<span class="keyword">if</span> sys.platform == <span class="string">"win32"</span>:
+    base = <span class="string">"Win32GUI"</span>
+
+setup(  name = <span class="string">"MyApp"</span>,
+        version = <span class="string">"0.1"</span>,
+        description = <span class="string">"My PyQT application!"</span>,
+        executables = [Executable(<span class="string">"pyqt_example.py"</span>, base=base)])
+
+</pre></td></tr></table></figure>
 
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2007-09-22T05:38:00.000Z"><a href="/blog/2007/09/22/config-java-environment-in-linux/">2007-09-22</a></time>
-            
-              <h1 class="title"><a href="/blog/2007/09/22/config-java-environment-in-linux/">Linux中设置Java环境变量</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2007-08-19T06:02:00.000Z"><a href="/blog/2007/08/19/my-vi-config/">2007-08-19</a></time>
-            
-              <h1 class="title"><a href="/blog/2007/08/19/my-vi-config/">我的VI配置文件</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+<p>其中<code>MyApp</code>为生成后的程序名称，<code>pyqt_example.py</code>为将要转换的脚本文件，其它字段为描述信息，根据实际情况修改即可。</p>
+<h3>2 执行转换脚本</h3>
+<p>在脚本所在的目录执行下面的命令，其中<code>build</code>为转换后的程序存放目录：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">python</span> setup.py build
+</pre></td></tr></table></figure>
+
+<p>执行后即会在<code>build</code>目录中生成对应的可执行程序了，并且程序运行过程中依赖的库文件也自动拷贝好了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/blog/categories/Programming/">Programming</a>
   </div>
+
+        
+  
+  <div class="tags">
+    <a href="/blog/tags/Python/">Python</a>
+  </div>
+
+        
+        
+  <!-- Baidu Button BEGIN -->
+  <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+    <span class="bds_more">分享到：</span>
+    <a class="bds_tsina">新浪微博</a>
+    <a class="bds_renren">人人网</a>
+    <a class="bds_youdao">有道云笔记</a>
+    <a class="bds_hi">百度空间</a>
+    <a class="bds_mail">邮件分享</a>
+    <a class="shareCount"></a>
+  </div>
+  <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3588804" ></script>
+  <script type="text/javascript" id="bdshell_js"></script>
+  <script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+  </script>
+  <!-- Baidu Button END -->
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
@@ -203,7 +293,7 @@ var disqus_shortname = 'hutaow';
   var dsq = document.createElement('script');
   dsq.type = 'text/javascript';
   dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 }());
 </script>
