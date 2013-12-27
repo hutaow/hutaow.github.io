@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[胡桃夹子]]></title>
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
-  <link href="http://hutaow.net/atom.xml" rel="self"/>
-  <link href="http://hutaow.net"/>
-  <updated>2013-12-23T17:41:20.008Z</updated>
-  <id>http://hutaow.net/</id>
+  <link href="http://hutaow.com/atom.xml" rel="self"/>
+  <link href="http://hutaow.com"/>
+  <updated>2013-12-27T17:53:54.821Z</updated>
+  <id>http://hutaow.com/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
     <email><![CDATA[hutaow@gmail.com]]></email>
@@ -13,8 +13,8 @@
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
   <entry>
     <title type="html"><![CDATA[将 Python 脚本转换为可执行程序]]></title>
-    <link href="http://hutaow.net/blog/2013/12/24/convert-python-script-to-executable-program/"/>
-    <id>http://hutaow.net/blog/2013/12/24/convert-python-script-to-executable-program/</id>
+    <link href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program/"/>
+    <id>http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program/</id>
     <published>2013-12-23T16:00:01.000Z</published>
     <updated>2013-12-23T17:40:27.000Z</updated>
     <content type="html"><![CDATA[<p>本文所使用的工具是cx_Freeze，相对py2exe和PyInstaller来说，cx_Freeze的兼容性更好，支持最新的Python 3.X，支持PyQT，并且可以跨平台支持Windows和Linux系统。</p>
@@ -59,13 +59,13 @@ setup(  name = <span class="string">"MyApp"</span>,
 
 <p>执行后即会在<code>build</code>目录中生成对应的可执行程序了，并且程序运行过程中依赖的库文件也自动拷贝好了。</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Python/" term="Python"/>
-    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+    <category scheme="http://hutaow.com/blog/tags/Python/" term="Python"/>
+    <category scheme="http://hutaow.com/blog/categories/Programming/" term="Programming"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[使用 PyQT 作为 Python 的图形界面]]></title>
-    <link href="http://hutaow.net/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python/"/>
-    <id>http://hutaow.net/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python/</id>
+    <link href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python/"/>
+    <id>http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python/</id>
     <published>2013-12-16T15:02:24.000Z</published>
     <updated>2013-12-20T15:39:28.000Z</updated>
     <content type="html"><![CDATA[<p>以前Python写出来的脚本都是靠命令行执行，输入要是复杂点就得靠加参数，甚至加配置文件来搞定，自己用下还行，给别人用的时候总是不太方便，就一直想找个好用的图形界面库。</p>
@@ -451,16 +451,16 @@ setup(  name = <span class="string">"MyApp"</span>,
 <h3>6 后记</h3>
 <p>完成上述步骤后，就可以运行Python脚本了，运行后界面功能和开头中的例子基本相同，只不过这个是用QT设计器辅助完成的，相比手写界面代码来说，效率高了不少。</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Python/" term="Python"/>
-    <category scheme="http://hutaow.net/blog/tags/QT/" term="QT"/>
-    <category scheme="http://hutaow.net/blog/tags/PyQT/" term="PyQT"/>
-    <category scheme="http://hutaow.net/blog/tags/脚本/" term="脚本"/>
-    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+    <category scheme="http://hutaow.com/blog/tags/Python/" term="Python"/>
+    <category scheme="http://hutaow.com/blog/tags/QT/" term="QT"/>
+    <category scheme="http://hutaow.com/blog/tags/PyQT/" term="PyQT"/>
+    <category scheme="http://hutaow.com/blog/tags/脚本/" term="脚本"/>
+    <category scheme="http://hutaow.com/blog/categories/Programming/" term="Programming"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[类型转换导致字符串大小计算错误的问题]]></title>
-    <link href="http://hutaow.net/blog/2013/12/05/string-size-calculation/"/>
-    <id>http://hutaow.net/blog/2013/12/05/string-size-calculation/</id>
+    <link href="http://hutaow.com/blog/2013/12/05/string-size-calculation/"/>
+    <id>http://hutaow.com/blog/2013/12/05/string-size-calculation/</id>
     <published>2013-12-04T17:17:30.000Z</published>
     <updated>2013-12-04T18:29:37.000Z</updated>
     <content type="html"><![CDATA[<p>今天在定位问题时，发现有一个字符串关键字在搜索时死活不命中，但实际那个关键字在数据中是存在的，跟踪发现是一个不起眼的细节导致的。</p>
@@ -507,14 +507,14 @@ Size <span class="keyword">of</span> <span class="typename">string</span> macro 
 <p>分析发现，<code>M_STRING_2</code>宏定义中的字符串多了一个<code>(char *)</code>的强制转换，正是这个转换导致<code>sizeof</code>的入参从字符串常量变成了指针，从而计算出的大小为指针的长度而非字符串的大小。</p>
 <p>开头提到的关键字不匹配问题，也正是由于关键字长度超出实际值，导致访问越界，而越界部分的值是不可预知的，最终造成了无法命中的问题。</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/C/" term="C"/>
-    <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
-    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+    <category scheme="http://hutaow.com/blog/tags/C/" term="C"/>
+    <category scheme="http://hutaow.com/blog/tags/开发/" term="开发"/>
+    <category scheme="http://hutaow.com/blog/categories/Programming/" term="Programming"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[配置 VIM 开发环境]]></title>
-    <link href="http://hutaow.net/blog/2013/11/22/vim-development-environment/"/>
-    <id>http://hutaow.net/blog/2013/11/22/vim-development-environment/</id>
+    <link href="http://hutaow.com/blog/2013/11/22/vim-development-environment/"/>
+    <id>http://hutaow.com/blog/2013/11/22/vim-development-environment/</id>
     <published>2013-11-22T14:43:22.000Z</published>
     <updated>2013-12-07T17:03:15.000Z</updated>
     <content type="html"><![CDATA[<h3>1 插件列表</h3>
@@ -637,16 +637,16 @@ let g:ctrlp_custom_ignore = <span class="special">{</span>
 <p><img src="/images/articles/201311/vim_development_environment.png" alt="VIM开发环境配置效果"></p>
 <p>注：图中的效果除了上面的插件配置，还包括了其它对VIM的基本配置，见<a href="/blog/2007/08/19/my-vi-config">《我的VI配置文件》</a>。</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/VI/" term="VI"/>
-    <category scheme="http://hutaow.net/blog/tags/CTags/" term="CTags"/>
-    <category scheme="http://hutaow.net/blog/tags/TagList/" term="TagList"/>
-    <category scheme="http://hutaow.net/blog/tags/CScope/" term="CScope"/>
-    <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/VI/" term="VI"/>
+    <category scheme="http://hutaow.com/blog/tags/CTags/" term="CTags"/>
+    <category scheme="http://hutaow.com/blog/tags/TagList/" term="TagList"/>
+    <category scheme="http://hutaow.com/blog/tags/CScope/" term="CScope"/>
+    <category scheme="http://hutaow.com/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[在 ArchLinux 中使用 Fcitx 输入法]]></title>
-    <link href="http://hutaow.net/blog/2013/11/18/configure-the-fcitx-in-archlinux/"/>
-    <id>http://hutaow.net/blog/2013/11/18/configure-the-fcitx-in-archlinux/</id>
+    <link href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux/"/>
+    <id>http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux/</id>
     <published>2013-11-18T14:37:16.000Z</published>
     <updated>2013-11-18T16:18:07.000Z</updated>
     <content type="html"><![CDATA[<p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。</p>
@@ -670,15 +670,15 @@ let g:ctrlp_custom_ignore = <span class="special">{</span>
 
 <p>配置后重新登录生效，使用<code>CTRL+空格</code>激活输入法，如果发现fcitx没有运行，则直接在命令行里执行<code>fcitx</code>即可。</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
-    <category scheme="http://hutaow.net/blog/tags/ArchLinux/" term="ArchLinux"/>
-    <category scheme="http://hutaow.net/blog/tags/Fcitx/" term="Fcitx"/>
-    <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/ArchLinux/" term="ArchLinux"/>
+    <category scheme="http://hutaow.com/blog/tags/Fcitx/" term="Fcitx"/>
+    <category scheme="http://hutaow.com/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[MySQL协议分析]]></title>
-    <link href="http://hutaow.net/blog/2013/11/06/mysql-protocol-analysis/"/>
-    <id>http://hutaow.net/blog/2013/11/06/mysql-protocol-analysis/</id>
+    <link href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis/"/>
+    <id>http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis/</id>
     <published>2013-11-05T16:34:54.000Z</published>
     <updated>2013-11-22T14:28:42.000Z</updated>
     <content type="html"><![CDATA[<h2>1 交互过程</h2>
@@ -2505,16 +2505,16 @@ let g:ctrlp_custom_ignore = <span class="special">{</span>
 <h2>5 参考资料</h2>
 <p>《<a href="http://dev.mysql.com/doc/internals/en/index.html" target="_blank">MySQL Internals Manual</a>: <a href="http://dev.mysql.com/doc/internals/en/client-server-protocol.html" target="_blank">MySQL Client/Server Protocol</a>》</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Protocol/" term="Protocol"/>
-    <category scheme="http://hutaow.net/blog/tags/MySQL/" term="MySQL"/>
-    <category scheme="http://hutaow.net/blog/tags/协议分析/" term="协议分析"/>
-    <category scheme="http://hutaow.net/blog/tags/数据库/" term="数据库"/>
-    <category scheme="http://hutaow.net/blog/categories/Protocol/" term="Protocol"/>
+    <category scheme="http://hutaow.com/blog/tags/Protocol/" term="Protocol"/>
+    <category scheme="http://hutaow.com/blog/tags/MySQL/" term="MySQL"/>
+    <category scheme="http://hutaow.com/blog/tags/协议分析/" term="协议分析"/>
+    <category scheme="http://hutaow.com/blog/tags/数据库/" term="数据库"/>
+    <category scheme="http://hutaow.com/blog/categories/Protocol/" term="Protocol"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[通过PXE方式安装Linux系统]]></title>
-    <link href="http://hutaow.net/blog/2013/10/30/install-linux-with-pxe/"/>
-    <id>http://hutaow.net/blog/2013/10/30/install-linux-with-pxe/</id>
+    <link href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe/"/>
+    <id>http://hutaow.com/blog/2013/10/30/install-linux-with-pxe/</id>
     <published>2013-10-30T15:30:57.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<h3>1 准备工作</h3>
@@ -2563,14 +2563,14 @@ let g:ctrlp_custom_ignore = <span class="special">{</span>
 <li>稍等片刻，就可以进入Linux的安装界面了</li>
 </ul>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
-    <category scheme="http://hutaow.net/blog/tags/PXE/" term="PXE"/>
-    <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/PXE/" term="PXE"/>
+    <category scheme="http://hutaow.com/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Linux中生成 Core Dump 文件的方法]]></title>
-    <link href="http://hutaow.net/blog/2013/10/25/linux-core-dump/"/>
-    <id>http://hutaow.net/blog/2013/10/25/linux-core-dump/</id>
+    <link href="http://hutaow.com/blog/2013/10/25/linux-core-dump/"/>
+    <id>http://hutaow.com/blog/2013/10/25/linux-core-dump/</id>
     <published>2013-10-25T15:19:39.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<h3>1 什么是 Core Dump</h3>
@@ -2665,17 +2665,17 @@ let g:ctrlp_custom_ignore = <span class="special">{</span>
 
 <p>加载完成后，即可以在GDB中查看程序异常时的各种运行信息了（查看变量值、线程信息、调用栈、反汇编等等）。</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
-    <category scheme="http://hutaow.net/blog/tags/CoreDump/" term="CoreDump"/>
-    <category scheme="http://hutaow.net/blog/tags/GDB/" term="GDB"/>
-    <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
-    <category scheme="http://hutaow.net/blog/tags/定位/" term="定位"/>
-    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+    <category scheme="http://hutaow.com/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/CoreDump/" term="CoreDump"/>
+    <category scheme="http://hutaow.com/blog/tags/GDB/" term="GDB"/>
+    <category scheme="http://hutaow.com/blog/tags/开发/" term="开发"/>
+    <category scheme="http://hutaow.com/blog/tags/定位/" term="定位"/>
+    <category scheme="http://hutaow.com/blog/categories/Programming/" term="Programming"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Linux信号处理机制]]></title>
-    <link href="http://hutaow.net/blog/2013/10/19/linux-signal/"/>
-    <id>http://hutaow.net/blog/2013/10/19/linux-signal/</id>
+    <link href="http://hutaow.com/blog/2013/10/19/linux-signal/"/>
+    <id>http://hutaow.com/blog/2013/10/19/linux-signal/</id>
     <published>2013-10-19T13:47:22.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
@@ -3150,16 +3150,16 @@ Waitting <span class="keyword">for</span> Signal <span class="keyword">...</span
 Process Continue.</code></pre>
 <p>进程收到<code>SIGINT</code>信号后，触发响应动作，将提示信息打印出来，然后从暂停的地方继续运行。这里需要注意的是，因为我们修改了<code>SIGINT</code>信号的响应动作（只打印信息，不做进程退出处理），所以我们按下<code>Ctrl+C</code>后，程序并没有直接退出，而是继续运行并将“Process Continue.”打印出来，直至程序正常结束。</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
-    <category scheme="http://hutaow.net/blog/tags/C/" term="C"/>
-    <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
-    <category scheme="http://hutaow.net/blog/tags/信号/" term="信号"/>
-    <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/C/" term="C"/>
+    <category scheme="http://hutaow.com/blog/tags/开发/" term="开发"/>
+    <category scheme="http://hutaow.com/blog/tags/信号/" term="信号"/>
+    <category scheme="http://hutaow.com/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[函数调用栈的获取原理分析]]></title>
-    <link href="http://hutaow.net/blog/2013/10/15/dump-stack/"/>
-    <id>http://hutaow.net/blog/2013/10/15/dump-stack/</id>
+    <link href="http://hutaow.com/blog/2013/10/15/dump-stack/"/>
+    <id>http://hutaow.com/blog/2013/10/15/dump-stack/</id>
     <published>2013-10-15T15:32:31.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。</p>
@@ -3416,18 +3416,18 @@ End of assembler dump.</span>
  <span class="attr_selector">[2]</span> 0<span class="tag">x804855c</span> 
  <span class="attr_selector">[3]</span> 0<span class="tag">x804856a</span></code></pre>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/C/" term="C"/>
-    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
-    <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
-    <category scheme="http://hutaow.net/blog/tags/调用栈/" term="调用栈"/>
-    <category scheme="http://hutaow.net/blog/tags/调试/" term="调试"/>
-    <category scheme="http://hutaow.net/blog/tags/定位/" term="定位"/>
-    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+    <category scheme="http://hutaow.com/blog/tags/C/" term="C"/>
+    <category scheme="http://hutaow.com/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/开发/" term="开发"/>
+    <category scheme="http://hutaow.com/blog/tags/调用栈/" term="调用栈"/>
+    <category scheme="http://hutaow.com/blog/tags/调试/" term="调试"/>
+    <category scheme="http://hutaow.com/blog/tags/定位/" term="定位"/>
+    <category scheme="http://hutaow.com/blog/categories/Programming/" term="Programming"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[在Linux程序中输出函数调用栈]]></title>
-    <link href="http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/"/>
-    <id>http://hutaow.net/blog/2013/10/11/dump-stack-with-backtrace/</id>
+    <link href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace/"/>
+    <id>http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace/</id>
     <published>2013-10-11T14:03:39.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
@@ -3573,32 +3573,32 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
 <p>执行<code>./backtrace</code>运行程序，输出如下：</p>
 <p><img src="/images/articles/201310/dump_stack_with_backtrace.png" alt="Dump stack with backtrace"></p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/C/" term="C"/>
-    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
-    <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
-    <category scheme="http://hutaow.net/blog/tags/调用栈/" term="调用栈"/>
-    <category scheme="http://hutaow.net/blog/tags/调试/" term="调试"/>
-    <category scheme="http://hutaow.net/blog/tags/定位/" term="定位"/>
-    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+    <category scheme="http://hutaow.com/blog/tags/C/" term="C"/>
+    <category scheme="http://hutaow.com/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/开发/" term="开发"/>
+    <category scheme="http://hutaow.com/blog/tags/调用栈/" term="调用栈"/>
+    <category scheme="http://hutaow.com/blog/tags/调试/" term="调试"/>
+    <category scheme="http://hutaow.com/blog/tags/定位/" term="定位"/>
+    <category scheme="http://hutaow.com/blog/categories/Programming/" term="Programming"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[博客搬家完成，新域名正式上线]]></title>
-    <link href="http://hutaow.net/blog/2013/10/10/starting-with-new-domain-name/"/>
-    <id>http://hutaow.net/blog/2013/10/10/starting-with-new-domain-name/</id>
+    <link href="http://hutaow.com/blog/2013/10/10/starting-with-new-domain-name/"/>
+    <id>http://hutaow.com/blog/2013/10/10/starting-with-new-domain-name/</id>
     <published>2013-10-10T14:23:31.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
-    <content type="html"><![CDATA[<p>昨天注册了<a href="http://hutaow.net">hutaow.net</a>这个域名，决心把博客搬过来，恢复写博客的生活。</p>
+    <content type="html"><![CDATA[<p>昨天注册了<a href="http://hutaow.net" target="_blank">hutaow.net</a>这个域名，决心把博客搬过来，恢复写博客的生活。</p>
 <p>算下来差不多有两年时间都没有更新过了，其中一个最主要借口是找不到合适的落脚点，时间最长地方要数ChinaUNIX了，早期的时候用着还是蛮不错的，但是随着时间的推移，ChinaUNIX的系统更新实在是跟不上节奏，想到过搬家但是由于ChinaUNIX的订阅数据实在太蹩脚，连搬都不好搬，更不用说评论等等了，博客搬家的计划也就一直搁置了。后来有试过CSDN无奈上面的广告太多，百度也试过但是它贴代码的效果实在太差，WordPress又悲催的被墙等等。</p>
 <p>另一个借口就是工作太忙没时间，一回家就不太想写东西了，但是最近开始意识到挥挥衣袖什么都没有留下的感觉很不好，没有积累，没有思考，需要改变一下了。</p>
 <p>博客一方面作为记录，把了解的知识积累下来，方便自己以后回忆；另一方面作为分享，将解决问题过程中吸取的经验写下来，供大家参考，这样遇到同样问题时可以更迅速的解决。</p>
 <p>不多说，坚持就好。</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/categories/Life/" term="Life"/>
+    <category scheme="http://hutaow.com/blog/categories/Life/" term="Life"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[TP-WR703n安装OpenWRT记录]]></title>
-    <link href="http://hutaow.net/blog/2013/09/06/install-openwrt/"/>
-    <id>http://hutaow.net/blog/2013/09/06/install-openwrt/</id>
+    <link href="http://hutaow.com/blog/2013/09/06/install-openwrt/"/>
+    <id>http://hutaow.com/blog/2013/09/06/install-openwrt/</id>
     <published>2013-09-06T15:16:00.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<h3>1 安装OpenWRT</h3>
@@ -3803,14 +3803,14 @@ config swap
 <h4>2.6 重启路由器，完成OpenWRT的扩展</h4>
 <p>重启路由器，再次“df -h”一下，可以看到路由器的空间已经扩展成功了。<br><img src="/images/articles/201309/install_openwrt_03_df.png" alt="DF Info"></p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/OpenWRT/" term="OpenWRT"/>
-    <category scheme="http://hutaow.net/blog/tags/路由器/" term="路由器"/>
-    <category scheme="http://hutaow.net/blog/categories/Network/" term="Network"/>
+    <category scheme="http://hutaow.com/blog/tags/OpenWRT/" term="OpenWRT"/>
+    <category scheme="http://hutaow.com/blog/tags/路由器/" term="路由器"/>
+    <category scheme="http://hutaow.com/blog/categories/Network/" term="Network"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Linux中分区出现“Read-only file system”的解决办法]]></title>
-    <link href="http://hutaow.net/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/"/>
-    <id>http://hutaow.net/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/</id>
+    <link href="http://hutaow.com/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/"/>
+    <id>http://hutaow.com/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/</id>
     <published>2013-06-16T14:54:00.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：</p>
@@ -3820,13 +3820,13 @@ config swap
 
 <p>注：其中”/media/TF“是挂载的目录。</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
-    <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Linux中批量设置目录或文件权限的方法]]></title>
-    <link href="http://hutaow.net/blog/2013/06/16/batch-settings-directory-or-file-permissions/"/>
-    <id>http://hutaow.net/blog/2013/06/16/batch-settings-directory-or-file-permissions/</id>
+    <link href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions/"/>
+    <id>http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions/</id>
     <published>2013-06-15T17:48:00.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
@@ -3840,13 +3840,13 @@ config swap
 </pre></td></tr></table></figure>
 
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Linux/" term="Linux"/>
-    <category scheme="http://hutaow.net/blog/categories/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/tags/Linux/" term="Linux"/>
+    <category scheme="http://hutaow.com/blog/categories/Linux/" term="Linux"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[配置 Cisco Catalyst 3560 交换机端口镜像]]></title>
-    <link href="http://hutaow.net/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/"/>
-    <id>http://hutaow.net/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/</id>
+    <link href="http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/"/>
+    <id>http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/</id>
     <published>2010-05-14T14:13:00.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
@@ -3888,13 +3888,13 @@ Enter configuration commands, one per line.  End with CNTL/Z.
 
 <p>5) 断开连接，完成。</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/交换机/" term="交换机"/>
-    <category scheme="http://hutaow.net/blog/categories/Network/" term="Network"/>
+    <category scheme="http://hutaow.com/blog/tags/交换机/" term="交换机"/>
+    <category scheme="http://hutaow.com/blog/categories/Network/" term="Network"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[C#获取XML文件指定节点的数据]]></title>
-    <link href="http://hutaow.net/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/"/>
-    <id>http://hutaow.net/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/</id>
+    <link href="http://hutaow.com/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/"/>
+    <id>http://hutaow.com/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/</id>
     <published>2010-04-27T04:43:00.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>实例说明会更清楚些，假设有如下XML文件：</p>
@@ -3966,15 +3966,15 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 
 <p>控制台输出<br>    Source Address: 192.168.0.1<br>    Target Address: 192.168.0.19</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/CSharp/" term="CSharp"/>
-    <category scheme="http://hutaow.net/blog/tags/XML/" term="XML"/>
-    <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
-    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+    <category scheme="http://hutaow.com/blog/tags/CSharp/" term="CSharp"/>
+    <category scheme="http://hutaow.com/blog/tags/XML/" term="XML"/>
+    <category scheme="http://hutaow.com/blog/tags/开发/" term="开发"/>
+    <category scheme="http://hutaow.com/blog/categories/Programming/" term="Programming"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Snort安装IDMEF插件]]></title>
-    <link href="http://hutaow.net/blog/2010/04/21/install-idmef-plugin-for-snort/"/>
-    <id>http://hutaow.net/blog/2010/04/21/install-idmef-plugin-for-snort/</id>
+    <link href="http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort/"/>
+    <id>http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort/</id>
     <published>2010-04-21T02:48:00.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
@@ -3993,15 +3993,15 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 </pre></td></tr></table></figure>
 
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/IDS/" term="IDS"/>
-    <category scheme="http://hutaow.net/blog/tags/Snort/" term="Snort"/>
-    <category scheme="http://hutaow.net/blog/tags/入侵检测/" term="入侵检测"/>
-    <category scheme="http://hutaow.net/blog/categories/Security/" term="Security"/>
+    <category scheme="http://hutaow.com/blog/tags/IDS/" term="IDS"/>
+    <category scheme="http://hutaow.com/blog/tags/Snort/" term="Snort"/>
+    <category scheme="http://hutaow.com/blog/tags/入侵检测/" term="入侵检测"/>
+    <category scheme="http://hutaow.com/blog/categories/Security/" term="Security"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[入侵检测与响应系统的信息共享]]></title>
-    <link href="http://hutaow.net/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/"/>
-    <id>http://hutaow.net/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/</id>
+    <link href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/"/>
+    <id>http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing/</id>
     <published>2010-04-17T13:25:00.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<h3>引言</h3>
@@ -4250,14 +4250,14 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 <pre><code><span class="comment">1</span>. <span class="comment">RFC4765</span> <span class="literal">-</span> <span class="comment">The</span> <span class="comment">Intrusion</span> <span class="comment">Detection</span> <span class="comment">Message</span> <span class="comment">Exchange</span> <span class="comment">Format</span> <span class="comment">(IDMEF)</span>
 <span class="comment">2</span>. <span class="comment">RFC4767</span> <span class="literal">-</span> <span class="comment">The</span> <span class="comment">Intrusion</span> <span class="comment">Detection</span> <span class="comment">Exchange</span> <span class="comment">Protocol</span> <span class="comment">(IDXP)</code></pre>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/IDS/" term="IDS"/>
-    <category scheme="http://hutaow.net/blog/tags/入侵检测/" term="入侵检测"/>
-    <category scheme="http://hutaow.net/blog/categories/Security/" term="Security"/>
+    <category scheme="http://hutaow.com/blog/tags/IDS/" term="IDS"/>
+    <category scheme="http://hutaow.com/blog/tags/入侵检测/" term="入侵检测"/>
+    <category scheme="http://hutaow.com/blog/categories/Security/" term="Security"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[字符串中单词逆序的实现]]></title>
-    <link href="http://hutaow.net/blog/2010/04/13/reverse-order-of-words-in-a-string/"/>
-    <id>http://hutaow.net/blog/2010/04/13/reverse-order-of-words-in-a-string/</id>
+    <link href="http://hutaow.com/blog/2010/04/13/reverse-order-of-words-in-a-string/"/>
+    <id>http://hutaow.com/blog/2010/04/13/reverse-order-of-words-in-a-string/</id>
     <published>2010-04-13T11:35:00.000Z</published>
     <updated>2013-11-09T13:58:22.000Z</updated>
     <content type="html"><![CDATA[<p>在Java中可以用压栈/弹栈的方式：</p>
@@ -4299,8 +4299,8 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
 
 <p>运行后系统将输出 “peach round a have I ”。</p>
 ]]></content>
-    <category scheme="http://hutaow.net/blog/tags/Java/" term="Java"/>
-    <category scheme="http://hutaow.net/blog/tags/开发/" term="开发"/>
-    <category scheme="http://hutaow.net/blog/categories/Programming/" term="Programming"/>
+    <category scheme="http://hutaow.com/blog/tags/Java/" term="Java"/>
+    <category scheme="http://hutaow.com/blog/tags/开发/" term="开发"/>
+    <category scheme="http://hutaow.com/blog/categories/Programming/" term="Programming"/>
   </entry>
 </feed>
