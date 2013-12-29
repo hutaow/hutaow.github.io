@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.com/atom.xml" rel="self"/>
   <link href="http://hutaow.com"/>
-  <updated>2013-12-29T17:23:48.048Z</updated>
+  <updated>2013-12-29T17:26:27.362Z</updated>
   <id>http://hutaow.com/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,9 +16,9 @@
     <link href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile/"/>
     <id>http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile/</id>
     <published>2013-12-29T11:09:33.000Z</published>
-    <updated>2013-12-29T17:23:16.000Z</updated>
+    <updated>2013-12-29T17:26:00.000Z</updated>
     <content type="html"><![CDATA[<h3>1 介绍</h3>
-<p>OProfile是Linux上的性能监控工具，通过CPU硬件提供的性能计数器对事件（如CPU Cycle、Cache Miss等）进行采样，可以帮助开发者从代码层面分析程序的性能消耗情况，很方便的找出影响程序性能的问题点。</p>
+<p>OProfile是Linux上的性能监测工具，通过CPU硬件提供的性能计数器对事件（如CPU Cycle、Cache Miss等）进行采样，可以帮助开发者从代码层面分析程序的性能消耗情况，很方便的找出影响程序性能的问题点。</p>
 <p>硬件上，OProfile支持多种架构的CPU，包括Alpha、MIPS、ARM、x86/x86-64、Sparc64、PowerPC等；软件上，OProfile支持Linux 2.2、2.4、2.6多种版本的内核，并且所占用的系统开销较小，一般在1%-8%范围内，具体数值依赖于采样频率。</p>
 <a id="more"></a>
 
