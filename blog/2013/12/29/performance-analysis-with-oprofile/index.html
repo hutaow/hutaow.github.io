@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Xmarks(原Foxmarks)被墙之后更新的方法 | 胡桃夹子</title>
+  <title>使用OProfile进行性能分析 | 胡桃夹子</title>
   <meta name="author" content="Wang Tao">
   
-  <meta name="description" content="最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：
-1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&quot;文件中添加如下内容：">
+  <meta name="description" content="1 介绍
+OProfile是Linux上的性能监控工具，通过CPU硬件提供的性能计数器对事件（如CPU Cycle、Cache Miss等）进行采样，可以帮助开发者从代码层面分析程序的性能消耗情况，很方便的找出影响程序性能的问题点。
+硬件上，OProfile支持多种架构的CPU，包括Alpha、MIPS、ARM、x86/x86-64、Sparc64、PowerPC等；软件上，OProfile支持Linux 2.2、2.4、2.6多种版本的内核，并且所占用的系统开销较小，一般在1%-8%范围内，具体数值依赖于采样频率。">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Xmarks(原Foxmarks)被墙之后更新的方法"/>
+  <meta property="og:title" content="使用OProfile进行性能分析"/>
   <meta property="og:site_name" content="胡桃夹子"/>
 
   
@@ -72,8 +73,8 @@
           <div class="date-shadow"></div>
           <div class="date-mask"></div>
           <div class="dateTitle">
-            <span class="d">12</span>
-            <span class="ym">1/2010</span>
+            <span class="d">29</span>
+            <span class="ym">12/2013</span>
           </div>
         </div>
         <!-- added by wangtao for new date style end -->
@@ -83,43 +84,147 @@
       
       
   
-    <h1 class="title">Xmarks(原Foxmarks)被墙之后更新的方法</h1>
+    <h1 class="title">使用OProfile进行性能分析</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
-<h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&quot;文件中添加如下内容：</h4>
+        <h3>1 介绍</h3>
+<p>OProfile是Linux上的性能监控工具，通过CPU硬件提供的性能计数器对事件（如CPU Cycle、Cache Miss等）进行采样，可以帮助开发者从代码层面分析程序的性能消耗情况，很方便的找出影响程序性能的问题点。</p>
+<p>硬件上，OProfile支持多种架构的CPU，包括Alpha、MIPS、ARM、x86/x86-64、Sparc64、PowerPC等；软件上，OProfile支持Linux 2.2、2.4、2.6多种版本的内核，并且所占用的系统开销较小，一般在1%-8%范围内，具体数值依赖于采样频率。</p>
 <a id="more"></a>
 
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre><span class="preprocessor"># Xmarks</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.86</span> www<span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.92</span> api<span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.89</span> login<span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.87</span> sync<span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.86</span> <span class="keyword">static</span><span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.86</span> download<span class="variable">.xmarks</span><span class="variable">.com</span>
-<span class="number">64.147</span><span class="number">.188</span><span class="number">.86</span> my<span class="variable">.xmarks</span><span class="variable">.com</span>
+<h3>2 环境准备</h3>
+<h4>2.1 编译Linux内核</h4>
+<p>OProfile需要Linux内核的支持，到Linux内核源代码目录中（一般为<code>/usr/src/linux-xxx</code>）执行下面的命令：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>make menuconfig
 </pre></td></tr></table></figure>
 
-<h4>2. 设置Xmarks连接及传输数据过程中加密，即在“Connection Security”中选择“Encrypt All”。</h4>
-<p>以上两步即可解决Xmarks不能同步的问题。</p>
-<h4>分析原因：</h4>
-<ol>
-<li><p>第一步操作的原因在于GFW是根据URL而不是IP进行过滤的，所以在请求解析诸如“xmarks.com”等类似的域名时，返回结果被GFW拦截，所以要手动添加xmarks.com一系列服务器的域名IP；</p>
-</li>
-<li><p>第二步操作让Xmarks在同步时对数据进行加密，GFW是无法认出加密的数据的，也就无法进一步拦截了。</p>
-</li>
-</ol>
+<p>在配置菜单中找到OProfile的选项并将其打开，然后保存退出。</p>
+<p>如果不想用<code>make menuconfig</code>的方式配置，可以直接修改<code>.config</code>文件，把下面两个选项打开即可：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="setting">CONFIG_PROFILING=<span class="value">y</span></span>
+<span class="setting">CONFIG_OPROFILE=<span class="value">y</span></span>
+</pre></td></tr></table></figure>
+
+<p>配置完成后，依次执行下面的命令编译内核：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>make dep
+make clean
+make bzImage
+</pre></td></tr></table></figure>
+
+<p>编译完成后，会生成内核文件<code>bzImage</code>，将其拷贝到<code>/boot</code>目录中（最好重命名一下，和其它内核文件区别开，比如<code>vmlinuz-linux-with-oprofile</code>）。最后将启动菜单中的内核引导文件换成新的内核，完成后重新启动Linux。</p>
+<h4>2.2 安装OProfile</h4>
+<p>如果所使用的Linux发行版中已经自带了软件管理器，则直接在相应的管理器中搜索并安装<code>oprofile</code>即可。</p>
+<p>如果没有软件管理器，或是在管理器中没有搜到OProfile，可以直接访问<a href="http://oprofile.sourceforge.net" target="_blank">OProfile官网</a>下载一个，下载解压后执行标准的三步曲完成安装：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>./configure
+make
+make install
+</pre></td></tr></table></figure>
+
+<h3>3 性能监测</h3>
+<h4>3.1 设置监测参数</h4>
+<p>这里只列出了最常用的设置，详细参数可以通过<code>opcontrol --help</code>查看。</p>
+<p><strong>1) 设置监测事件</strong></p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>opcontrol --event=eventspec
+</pre></td></tr></table></figure>
+
+<p>其中<code>eventspec</code>即为需要监测的事件，参数格式为<code>name:count:unitmask:kernel:user</code>，各字段含义如下：</p>
+<ul>
+<li>name - 事件名称，如<code>CPU_CLK_UNHALTED</code>，支持的事件列表可以通过<code>opcontrol --list-events</code>命令列出</li>
+<li>count - 计数器最大值，如100000</li>
+<li>unitmask - 硬件单元掩码，如0x0F</li>
+<li>kernel - 是否对内核进行监测，取值0或1</li>
+<li>user - 是否对用户空间进行监测，取值0或1</li>
+</ul>
+<p><strong>2) 设置内核文件</strong></p>
+<p>当要对内核进行监测时，需要指定内核的文件路径，使用下面的命令（其中<code>file</code>为内核文件完整路径）：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>opcontrol --vmlinux=file
+</pre></td></tr></table></figure>
+
+<p>如果不需要对内核进行性能监测，则此处直接使用<code>--no-vmlinux</code>参数：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>opcontrol --no-vmlinux
+</pre></td></tr></table></figure>
+
+<p><strong>3) 设置监测数据分离方式</strong></p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>opcontrol --separate=type[,types]
+</pre></td></tr></table></figure>
+
+<p>其中，<code>type</code>的参数选项如下：</p>
+<ul>
+<li>none - 不分离监测数据</li>
+<li>library - 为每个应用程序分离出动态库的监测数据</li>
+<li>kernel - 在library的基础上分离内核的监测数据</li>
+<li>thread - 分离出每个线程的监测数据</li>
+<li>cpu - 分离出每个CPU的监测数据</li>
+<li>all - 分离以上全部监测数据</li>
+</ul>
+<p><strong> 4) 设置待监测的二进制文件名称</strong></p>
+<p>可以设置多个（逗号分隔），如果不设置则默认为全部：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>opcontrol --image=name[,names]
+</pre></td></tr></table></figure>
+
+<h4>3.2 开始监测</h4>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>opcontrol --init
+opcontrol --start
+</pre></td></tr></table></figure>
+
+<h4>3.3 执行待监测的业务功能</h4>
+<p>监测器已开始运行，现在可以执行相应程序的业务功能了。</p>
+<h4>3.3 保存监测数据</h4>
+<p>程序业务执行完成后，使用下面的命令将监测数据转储下来：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>opcontrol --dump
+</pre></td></tr></table></figure>
+
+<h4>3.4 停止监测</h4>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>opcontrol --stop
+opcontrol --shutdown
+opcontrol --deinit
+</pre></td></tr></table></figure>
+
+<h3>4 性能数据分析</h3>
+<p>监测数据转储后，即可以通过<code>opreport</code>和<code>opannotate</code>命令查看性能消耗情况了。</p>
+<p><strong>1) 显示各模块整体的性能消耗情况</strong></p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>opreport
+</pre></td></tr></table></figure>
+
+<p><strong>2) 显示各函数的性能消耗情况</strong></p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>opreport -l
+</pre></td></tr></table></figure>
+
+<p><strong>3) 显示代码级别的性能消息情况</strong></p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>opannotate -s
+</pre></td></tr></table></figure>
+
+<p><strong>注</strong>：该功能需要在用户程序编译的时候加上调试选项（gcc编译器需要加上<code>-g</code>选项）。</p>
+<p><strong>4) 显示反汇编代码的性能消耗情况</strong></p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>opannotate -a
+</pre></td></tr></table></figure>
+
 
       
     </div>
@@ -128,13 +233,13 @@
         
   
   <div class="categories">
-    <a href="/blog/categories/Technology/">Technology</a>
+    <a href="/blog/categories/Programming/">Programming</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/blog/tags/Xmarks/">Xmarks</a>, <a href="/blog/tags/Foxmarks/">Foxmarks</a>
+    <a href="/blog/tags/OProfile/">OProfile</a>, <a href="/blog/tags/性能/">性能</a>
   </div>
 
         
