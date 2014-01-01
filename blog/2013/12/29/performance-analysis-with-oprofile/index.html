@@ -142,7 +142,7 @@ make install
 <p>其中<code>eventspec</code>即为需要监测的事件，参数格式为<code>name:count:unitmask:kernel:user</code>，各字段含义如下：</p>
 <ul>
 <li>name - 事件名称，如<code>CPU_CLK_UNHALTED</code>，支持的事件列表可以通过<code>opcontrol --list-events</code>命令列出</li>
-<li>count - 计数器最大值，如100000</li>
+<li>count - 触发一次采样的事件计数值，如100000</li>
 <li>unitmask - 硬件单元掩码，如0x0F</li>
 <li>kernel - 是否对内核进行监测，取值0或1</li>
 <li>user - 是否对用户空间进行监测，取值0或1</li>
@@ -225,6 +225,217 @@ opcontrol --deinit
 </pre></td><td class="code"><pre>opannotate -a
 </pre></td></tr></table></figure>
 
+<h3>5 实例</h3>
+<p>下面举一个利用OProfile对程序性能进行优化的例子。</p>
+<h4>5.1 优化前性能监测</h4>
+<p>首先看一下下面这段代码，其中<code>reverser</code>函数的功能是将输入的数据以字节为单位做逆序处理。</p>
+<figure class="highlight lang-c"><figcaption><span>Source Code of Reverser </span><a href="/downloads/code/reverser.c">download</a></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+</pre></td><td class="code"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;string.h&gt;</span>
+
+<span class="preprocessor">#define OK          (0)</span>
+<span class="preprocessor">#define ERR         (1)</span>
+
+<span class="preprocessor">#define BUF_SIZE    (0x100)</span>
+
+<span class="comment">/* 交换两个变量的值 */</span>
+<span class="preprocessor">#define SWAP(a, b)  \</span>
+    <span class="keyword">do</span> { \
+        <span class="keyword">char</span> x; \
+        x = (a); \
+        (a) = (b); \
+        (b) = x; \
+    } <span class="keyword">while</span> (<span class="number">0</span>)
+
+<span class="comment">/* 将数据逆序处理 */</span>
+<span class="keyword">int</span> reverser(<span class="keyword">char</span> *data, unsigned <span class="keyword">int</span> len)
+{
+    <span class="keyword">int</span> i;
+
+    if (NULL == data)
+    {
+        <span class="keyword">return</span> ERR;
+    }
+
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len / <span class="number">2</span>; ++i)
+    {
+        SWAP(*(data + i), *(data + len - i - <span class="number">1</span>));
+    }
+
+    <span class="keyword">return</span> OK;
+}
+
+<span class="comment">/* 主函数 */</span>
+<span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])
+{
+    <span class="keyword">char</span> str[BUF_SIZE] = {<span class="number">0</span>};
+    <span class="keyword">int</span> ret = OK;
+    <span class="keyword">int</span> i = <span class="number">0</span>;
+
+    strcpy(str, <span class="string">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"</span>);
+
+    printf(<span class="string">"original string : %s \r\n"</span>, str);
+
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">0x800001</span>; ++i)
+    {
+        ret = reverser(str, strlen(str));
+    }
+
+    printf(<span class="string">"reversely string : %s \r\n"</span>, str);
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+
+
+</pre></td></tr></table></figure>
+
+
+<p>然后对该代码进行编译并生成可执行文件，注意编译的时候加上<code>-g</code>选项，这样会生成带调试信息的程序，后面显示监测报告的时候会用到：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>gcc reverser.c -g -o reverser
+</pre></td></tr></table></figure>
+
+<p>接下来对OProfile的参数进行设置：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>opcontrol --event=CPU_CLK_UNHALTED:100000:0:0:1
+opcontrol --no-vmlinux
+opcontrol --image=reverser
+</pre></td></tr></table></figure>
+
+<p>启动OProfile监测守护进程，同时将之前的监测数据清空：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>opcontrol --init
+opcontrol --start
+opcontrol --reset
+</pre></td></tr></table></figure>
+
+<p>运行待监测程序：<br><img src="/images/articles/201401/run_reverser.png" alt="Run the Reverser"></p>
+<p>转储OProfile监测数据：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>opcontrol --dump
+</pre></td></tr></table></figure>
+
+<p>停止OProfile监测守护进程：</p>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>opcontrol --stop
+opcontrol --shutdown
+opcontrol --deinit
+</pre></td></tr></table></figure>
+
+<p>执行<code>opreport</code>命令，查看监测统计数据：<br><img src="/images/articles/201401/opreport_reverser.png" alt="Result of OPReport for Reverser"></p>
+<p>执行<code>opannotate -s</code>命令，查看详细的监测统计数据（代码级）：<br><img src="/images/articles/201401/opannotate_reverser.png" alt="Result of OPAnnotate for Reverser"></p>
+<h4>5.2 性能优化</h4>
+<p>从上面的报告中可以看到，<code>reverser</code>函数共触发了近6万5千次采样，其中<code>for (i = 0; i &lt; len / 2; ++i)</code>这一行占用了1万6千多次，消耗了约25%的性能，而实际可以发现<code>len / 2</code>这个操作不需要每次循环都要计算一次，完全可以把它提取到循环外部，于是这段代码可以改成这个样子：</p>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre><span class="title">int</span> reverser(char *<span class="typedef"><span class="keyword">data</span>, unsigned int len)</span>
+{
+    int i;
+    int cnt;
+
+    <span class="keyword">if</span> (<span class="type">NULL</span> == <span class="typedef"><span class="keyword">data</span>)</span>
+    {
+        return <span class="type">ERR</span>;
+    }
+
+    /* 优化: 将循环总数放到循环体外 这样只进行一次计算即可 */
+    cnt = len / <span class="number">2</span>;
+    for (i = <span class="number">0</span>; i &lt; cnt; ++i)
+    {
+        <span class="type">SWAP</span>(*(<span class="typedef"><span class="keyword">data</span> + i), *<span class="container">(<span class="title">data</span> + <span class="title">len</span> - <span class="title">i</span> - 1)</span>);</span>
+    }
+
+    return <span class="type">OK</span>;
+}
+</pre></td></tr></table></figure>
+
+<h4>5.3 优化后性能监测</h4>
+<p>代码优化后重复上面的监测动作，检查优化后的性能监测数据。</p>
+<p>执行<code>opreport</code>命令：<br><img src="/images/articles/201401/opreport_reverser_optimize.png" alt="Result of OPReport for Reverser (Optimize)"></p>
+<p>执行<code>opannotate -s</code>命令：<br><img src="/images/articles/201401/opannotate_reverser_optimize.png" alt="Result of OPAnnotate for Reverser (Optimize)"></p>
+<h4>5.4 性能优化对比</h4>
+<p>从优化前后的报告中可以对比出，<code>reverser</code>函数从6万5千次采样降低到了4万8千次左右，总体性能提升了约25%，其中for循环条件的优化直接贡献了15%左右的性能提升，另外循环条件的改变也影响了编译器对代码编译时的流程优化，这也间接带来了10%左右的性能提升。</p>
+<h3>6 后记</h3>
+<p>本文讲述了OProfile的基本用法，以最常见的CPU Cycle作为例子演示了性能优化的过程。事实上，OProfile还可以用到的统计计数事件还有很多（具体依赖CPU硬件的支持），像Cache Miss、TLB Miss等等，这些在性能优化中都会涉及到，这需要开发者在实际环境中不断的操作和体会，从而逐渐学习并掌握性能优化中的各种技巧。</p>
 
       
     </div>
@@ -372,7 +583,7 @@ opcontrol --deinit
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2013 Wang Tao
+  &copy; 2014 Wang Tao
   
 </div>
 <div class="clearfix"></div></footer>
