@@ -1,0 +1,491 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>我的 RXVT 配置文件 | 胡桃夹子</title>
+  <meta name="author" content="Wang Tao">
+  
+  <meta name="description" content="最近发现了个轻量级的Linux终端 —— RXVT，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="我的 RXVT 配置文件"/>
+  <meta property="og:site_name" content="胡桃夹子"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="胡桃夹子" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17662168-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?468180fb1dabd18b0fa314e09b728e22";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">胡桃夹子</a></h1>
+  <h2><a href="/">open source, world shares.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/blog/archives">文章列表</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+      <li><a href="/copyright">版权声明</a></li>
+    
+      <li><a href="/atom.xml">订阅</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- added by wangtao for new date style begin -->
+        <div class="date-wrapper">
+          <div class="date-shadow"></div>
+          <div class="date-mask"></div>
+          <div class="dateTitle">
+            <span class="d">3</span>
+            <span class="ym">1/2014</span>
+          </div>
+        </div>
+        <!-- added by wangtao for new date style end -->
+        <!-- removed by wangtao for new date style begin -->
+        
+        <!-- removed by wangtao for new date style end -->
+      
+      
+  
+    <h1 class="title">我的 RXVT 配置文件</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net" target="_blank">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
+<a id="more"></a>
+
+<figure class="highlight lang-Xdefaults"><figcaption><span>Config of RXVT</span><a href="/downloads/code/hutaow.Xdefaults">download</a></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+</pre></td><td class="code"><pre>!!$HOME/<span class="variable">.Xdefaults</span>
+Rxvt<span class="variable">.preeditType</span>: root
+
+!!窗口大小及标题
+Rxvt<span class="variable">.geometry</span>: <span class="number">80</span>x25
+Rxvt<span class="variable">.title</span>: hutaow-rxvt
+
+!!输入法设置
+Rxvt<span class="variable">.inputMethod</span>: fcitx
+
+!!透明度设置
+!Rxvt<span class="variable">.transparent</span>: <span class="literal">true</span>
+!Rxvt<span class="variable">.shading</span>: <span class="number">110</span>
+!Rxvt<span class="variable">.tintColor</span>: grey
+!Rxvt<span class="variable">.inheritPixmap</span>: <span class="literal">false</span>
+
+!!扩展设置
+Rxvt<span class="variable">.perl</span>-ext-common: <span class="keyword">default</span>, matcher, fullscreen
+
+!!URL操作
+Rxvt<span class="variable">.urlLauncher</span>: /usr/bin/chromium
+Rxvt<span class="variable">.matcher</span><span class="variable">.button</span>: <span class="number">1</span>
+
+!!标签设置
+!Rxvt<span class="variable">.per</span>-ext-common: ..., tabbed, ...
+!Rxvt<span class="variable">.tabbed</span><span class="variable">.tabbar</span>-fg: <span class="number">2</span>
+!Rxvt<span class="variable">.tabbed</span><span class="variable">.tabbar</span>-bg: <span class="number">0</span>
+!Rxvt<span class="variable">.tabbed</span><span class="variable">.tab</span>-fg: <span class="number">3</span>
+!Rxvt<span class="variable">.tabbed</span><span class="variable">.tab</span>-bg: <span class="number">0</span>
+!Rxvt<span class="variable">.tabbed</span><span class="variable">.new</span>-button: <span class="literal">false</span>
+!Rxvt<span class="variable">.tabbed</span><span class="variable">.autohide</span>: <span class="literal">true</span>
+!RXvt<span class="variable">.tabbed</span><span class="variable">.reopen</span>-on-close: no
+!Rxvt<span class="variable">.keysym</span><span class="variable">.Control</span>-t: perl:tabbedex:new_tab
+!Rxvt<span class="variable">.keysym</span><span class="variable">.Control</span>-Tab: perl:tabbedex:next_tab
+!Rxvt<span class="variable">.keysym</span><span class="variable">.Control</span>-Shift-Tab: perl:tabbedex:prev_tab
+!Rxvt<span class="variable">.keysym</span><span class="variable">.Control</span>-Shift-Left: perl:tabbex:move_tab_left
+!Rxvt<span class="variable">.keysym</span><span class="variable">.Control</span>-Shift-Right: perl:tabbex:move_tab_right
+!Rxvt<span class="variable">.keysym</span><span class="variable">.Control</span>-Shift-R: perl:tabbex:rename_tab
+
+!!全屏模式
+!Rxvt<span class="variable">.perl</span>-ext-common: ..., fullscreen, ...
+Rxvt<span class="variable">.keysym</span><span class="variable">.F11</span>: perl:fullscreen:<span class="keyword">switch</span>
+
+!!滚动条设置
+Rxvt<span class="variable">.scrollBar</span>: <span class="literal">true</span>
+Rxvt<span class="variable">.scrollBar_right</span>: <span class="literal">true</span>
+Rxvt<span class="variable">.scrollBar_floating</span>: <span class="literal">false</span>
+Rxvt<span class="variable">.scrollstyle</span>: plain
+
+!!滚屏设置
+Rxvt<span class="variable">.mouseWheelScrollPage</span>: <span class="literal">false</span>
+Rxvt<span class="variable">.scrollTtyOutput</span>: <span class="literal">false</span>
+Rxvt<span class="variable">.scrollWithBuffer</span>: <span class="literal">true</span>
+Rxvt<span class="variable">.scrollTtyKeypress</span>: <span class="literal">true</span>
+
+!!光标闪烁
+Rxvt<span class="variable">.cursorBlink</span>: <span class="literal">true</span>
+
+!!缓存行数
+Rxvt<span class="variable">.saveLines</span>: <span class="number">5000</span>
+
+!!边框设置
+Rxvt<span class="variable">.borderLess</span>: <span class="literal">false</span>
+
+!!字体设置
+Rxvt<span class="variable">.dpi</span>: <span class="number">96</span>
+Rxvt.*font: xft:Terminus,xft:WenQuanYi Bitmap Song
+
+!!颜色设置
+Rxvt<span class="variable">.depth</span>: <span class="number">32</span>
+Rxvt<span class="variable">.background</span>: <span class="preprocessor">#2C2C2C</span>
+Rxvt<span class="variable">.foreground</span>: <span class="number">7</span>
+Rxvt<span class="variable">.colorBD</span>: <span class="number">7</span>
+Rxvt<span class="variable">.colorUL</span>: <span class="number">7</span>
+
+!!基本颜色
+!Black
+Rxvt<span class="variable">.color0</span>: <span class="preprocessor">#3F3F3F</span>
+Rxvt<span class="variable">.color8</span>: <span class="preprocessor">#709080</span>
+!red
+Rxvt<span class="variable">.color1</span>: <span class="preprocessor">#705050</span>
+Rxvt<span class="variable">.color9</span>: <span class="preprocessor">#DCA3A3</span>
+!Green
+Rxvt<span class="variable">.color2</span>: <span class="preprocessor">#60B48A</span>
+Rxvt<span class="variable">.color10</span>: <span class="preprocessor">#72D5A3</span>
+!Yellow
+Rxvt<span class="variable">.color3</span>: <span class="preprocessor">#DFAF8F</span>
+Rxvt<span class="variable">.color11</span>: <span class="preprocessor">#F0DFAF</span>
+!Blue
+Rxvt<span class="variable">.color4</span>: <span class="preprocessor">#9AB8D7</span>
+Rxvt<span class="variable">.color12</span>: <span class="preprocessor">#94BFF3</span>
+!Magenta
+Rxvt<span class="variable">.color5</span>: <span class="preprocessor">#DC8CC3</span>
+Rxvt<span class="variable">.color13</span>: <span class="preprocessor">#EC93D3</span>
+!Cyan
+Rxvt<span class="variable">.color6</span>: <span class="preprocessor">#8CD0D3</span>
+Rxvt<span class="variable">.color14</span>: <span class="preprocessor">#93E0E3</span>
+!White
+Rxvt<span class="variable">.color7</span>: <span class="preprocessor">#DCDCDC</span>
+Rxvt<span class="variable">.color15</span>: <span class="preprocessor">#FFFFFF</span>
+
+</pre></td></tr></table></figure>
+
+
+<p>配置后的终端运行效果如下图：<br><img src="/images/articles/201401/rxvt.png" alt="Interface of RXVT"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/blog/categories/Linux/">Linux</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/blog/tags/Linux/">Linux</a>, <a href="/blog/tags/RXVT/">RXVT</a>, <a href="/blog/tags/配置文件/">配置文件</a>
+  </div>
+
+        
+        
+  <!-- Baidu Button BEGIN -->
+  <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+    <span class="bds_more">分享到：</span>
+    <a class="bds_tsina">新浪微博</a>
+    <a class="bds_renren">人人网</a>
+    <a class="bds_youdao">有道云笔记</a>
+    <a class="bds_hi">百度空间</a>
+    <a class="bds_mail">邮件分享</a>
+    <a class="shareCount"></a>
+  </div>
+  <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3588804" ></script>
+  <script type="text/javascript" id="bdshell_js"></script>
+  <script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+  </script>
+  <!-- Baidu Button END -->
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:hutaow.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/blog/categories/Database/">Database</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Life/">Life</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Linux/">Linux</a><small>18</small></li>
+  
+    <li><a href="/blog/categories/Network/">Network</a><small>2</small></li>
+  
+    <li><a href="/blog/categories/Programming/">Programming</a><small>17</small></li>
+  
+    <li><a href="/blog/categories/Protocol/">Protocol</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Security/">Security</a><small>2</small></li>
+  
+    <li><a href="/blog/categories/Technology/">Technology</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/blog/tags/ATL/" style="font-size: 10.00px;">ATL</a><a href="/blog/tags/Android/" style="font-size: 17.50px;">Android</a><a href="/blog/tags/ArchLinux/" style="font-size: 10.00px;">ArchLinux</a><a href="/blog/tags/C/" style="font-size: 15.00px;">C</a><a href="/blog/tags/CScope/" style="font-size: 10.00px;">CScope</a><a href="/blog/tags/CSharp/" style="font-size: 10.00px;">CSharp</a><a href="/blog/tags/CTags/" style="font-size: 10.00px;">CTags</a><a href="/blog/tags/CoreDump/" style="font-size: 10.00px;">CoreDump</a><a href="/blog/tags/Fcitx/" style="font-size: 10.00px;">Fcitx</a><a href="/blog/tags/Fedora/" style="font-size: 12.50px;">Fedora</a><a href="/blog/tags/Foxmarks/" style="font-size: 10.00px;">Foxmarks</a><a href="/blog/tags/GDB/" style="font-size: 10.00px;">GDB</a><a href="/blog/tags/IDS/" style="font-size: 12.50px;">IDS</a><a href="/blog/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/blog/tags/KDE/" style="font-size: 10.00px;">KDE</a><a href="/blog/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/blog/tags/MPlayer/" style="font-size: 10.00px;">MPlayer</a><a href="/blog/tags/MySQL/" style="font-size: 12.50px;">MySQL</a><a href="/blog/tags/OProfile/" style="font-size: 10.00px;">OProfile</a><a href="/blog/tags/OpenWRT/" style="font-size: 10.00px;">OpenWRT</a><a href="/blog/tags/PXE/" style="font-size: 10.00px;">PXE</a><a href="/blog/tags/Protocol/" style="font-size: 10.00px;">Protocol</a><a href="/blog/tags/PyQT/" style="font-size: 10.00px;">PyQT</a><a href="/blog/tags/Python/" style="font-size: 12.50px;">Python</a><a href="/blog/tags/QT/" style="font-size: 10.00px;">QT</a><a href="/blog/tags/RXVT/" style="font-size: 10.00px;">RXVT</a><a href="/blog/tags/Rhythmbox/" style="font-size: 10.00px;">Rhythmbox</a><a href="/blog/tags/SQL/" style="font-size: 10.00px;">SQL</a><a href="/blog/tags/Snort/" style="font-size: 10.00px;">Snort</a><a href="/blog/tags/TagList/" style="font-size: 10.00px;">TagList</a><a href="/blog/tags/VI/" style="font-size: 12.50px;">VI</a><a href="/blog/tags/VirtualBox/" style="font-size: 10.00px;">VirtualBox</a><a href="/blog/tags/XML/" style="font-size: 10.00px;">XML</a><a href="/blog/tags/Xmarks/" style="font-size: 10.00px;">Xmarks</a><a href="/blog/tags/交换机/" style="font-size: 10.00px;">交换机</a><a href="/blog/tags/代理/" style="font-size: 10.00px;">代理</a><a href="/blog/tags/信号/" style="font-size: 10.00px;">信号</a><a href="/blog/tags/入侵检测/" style="font-size: 12.50px;">入侵检测</a><a href="/blog/tags/协议分析/" style="font-size: 10.00px;">协议分析</a><a href="/blog/tags/字符编码/" style="font-size: 10.00px;">字符编码</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/blog/2014/01/03/my-rxvt-config/">我的 RXVT 配置文件</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/12/29/performance-analysis-with-oprofile/">使用 OProfile 进行性能分析</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/12/24/convert-python-script-to-executable-program/">将 Python 脚本转换为可执行程序</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python/">使用 PyQT 作为 Python 的图形界面</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/12/05/string-size-calculation/">类型转换导致字符串大小计算错误的问题</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/11/22/vim-development-environment/">配置 VIM 开发环境</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/11/18/configure-the-fcitx-in-archlinux/">在 ArchLinux 中使用 Fcitx 输入法</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/11/06/mysql-protocol-analysis/">MySQL协议分析</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/10/30/install-linux-with-pxe/">通过PXE方式安装Linux系统</a>
+      </li>
+    
+      <li>
+        <a href="/blog/2013/10/25/linux-core-dump/">Linux中生成 Core Dump 文件的方法</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Wang Tao
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hutaow';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
