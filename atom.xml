@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.com/atom.xml" rel="self"/>
   <link href="http://hutaow.com"/>
-  <updated>2014-01-04T07:32:51.306Z</updated>
+  <updated>2014-02-18T16:47:08.941Z</updated>
   <id>http://hutaow.com/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -16,7 +16,7 @@
     <link href="http://hutaow.com/blog/2014/01/03/my-rxvt-config/"/>
     <id>http://hutaow.com/blog/2014/01/03/my-rxvt-config/</id>
     <published>2014-01-03T06:28:23.000Z</published>
-    <updated>2014-01-04T07:32:30.000Z</updated>
+    <updated>2014-02-06T07:06:57.000Z</updated>
     <content type="html"><![CDATA[<p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net" target="_blank">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是配置文件的内容，具体选项说明直接写在注释中了。</p>
 <a id="more"></a>
 
