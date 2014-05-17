@@ -4,7 +4,7 @@
   <subtitle><![CDATA[open source, world shares.]]></subtitle>
   <link href="http://hutaow.com/atom.xml" rel="self"/>
   <link href="http://hutaow.com"/>
-  <updated>2014-02-18T16:47:08.941Z</updated>
+  <updated>2014-05-17T14:46:03.387Z</updated>
   <id>http://hutaow.com/</id>
   <author>
     <name><![CDATA[Wang Tao]]></name>
@@ -12,12 +12,12 @@
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
   <entry>
-    <title type="html"><![CDATA[Linux 终端 RXVT 的配置]]></title>
+    <title type="html"><![CDATA[轻量级的 Linux 终端软件 —— RXVT]]></title>
     <link href="http://hutaow.com/blog/2014/01/03/my-rxvt-config/"/>
     <id>http://hutaow.com/blog/2014/01/03/my-rxvt-config/</id>
     <published>2014-01-03T06:28:23.000Z</published>
-    <updated>2014-02-06T07:06:57.000Z</updated>
-    <content type="html"><![CDATA[<p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net" target="_blank">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是配置文件的内容，具体选项说明直接写在注释中了。</p>
+    <updated>2014-05-17T13:30:58.000Z</updated>
+    <content type="html"><![CDATA[<p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net" target="_blank">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <a id="more"></a>
 
 <figure class="highlight lang-Xdefaults"><figcaption><span>Config of RXVT</span><a href="/downloads/code/hutaow.Xdefaults">download</a></figcaption><table><tr><td class="gutter"><pre>1
@@ -237,7 +237,7 @@ Rxvt<span class="variable">.color15</span>: <span class="preprocessor">#FFFFFF</
     <link href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile/"/>
     <id>http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile/</id>
     <published>2013-12-29T11:09:33.000Z</published>
-    <updated>2014-01-04T07:01:24.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<h3>1 介绍</h3>
 <p>OProfile是Linux上的性能监测工具，通过CPU硬件提供的性能计数器对事件（如CPU Cycle、Cache Miss等）进行采样，可以帮助开发者从代码层面分析程序的性能消耗情况，很方便的找出影响程序性能的问题点。</p>
 <p>硬件上，OProfile支持多种架构的CPU，包括Alpha、MIPS、ARM、x86/x86-64、Sparc64、PowerPC等；软件上，OProfile支持Linux 2.2、2.4、2.6多种版本的内核，并且所占用的系统开销较小，一般在1%-8%范围内，具体数值依赖于采样频率。</p>
@@ -594,7 +594,7 @@ opcontrol --deinit
     <link href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program/"/>
     <id>http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program/</id>
     <published>2013-12-23T16:00:01.000Z</published>
-    <updated>2013-12-23T17:40:27.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>本文所使用的工具是cx_Freeze，相对py2exe和PyInstaller来说，cx_Freeze的兼容性更好，支持最新的Python 3.X，支持PyQT，并且可以跨平台支持Windows和Linux系统。</p>
 <p>cx_Freeze的官方主页为<a href="http://cx-freeze.sourceforge.net" target="_blank"><a href="http://cx-freeze.sourceforge.net">http://cx-freeze.sourceforge.net</a></a>，下面以Windows系统为例介绍一下它的使用方法。</p>
 <a id="more"></a>
@@ -645,7 +645,7 @@ setup(  name = <span class="string">"MyApp"</span>,
     <link href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python/"/>
     <id>http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python/</id>
     <published>2013-12-16T15:02:24.000Z</published>
-    <updated>2013-12-20T15:39:28.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>以前Python写出来的脚本都是靠命令行执行，输入要是复杂点就得靠加参数，甚至加配置文件来搞定，自己用下还行，给别人用的时候总是不太方便，就一直想找个好用的图形界面库。</p>
 <p>有试过Python内置的Tkinter，部署倒是挺简单，不需要额外安装库，但是开发效率还是不够高，而且需要手写不少界面相关的重复代码，用起来不太方便。</p>
 <p>最近开始尝试第三方的界面库，几经权衡，最终在PyGTK、wxPython、PyQT中选择了PyQT，试了一下，确实很不错，下面就介绍一下PyQT的使用方法。</p>
@@ -1040,7 +1040,7 @@ setup(  name = <span class="string">"MyApp"</span>,
     <link href="http://hutaow.com/blog/2013/12/05/string-size-calculation/"/>
     <id>http://hutaow.com/blog/2013/12/05/string-size-calculation/</id>
     <published>2013-12-04T17:17:30.000Z</published>
-    <updated>2013-12-04T18:29:37.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>今天在定位问题时，发现有一个字符串关键字在搜索时死活不命中，但实际那个关键字在数据中是存在的，跟踪发现是一个不起眼的细节导致的。</p>
 <a id="more"></a>
 
@@ -1094,7 +1094,7 @@ Size <span class="keyword">of</span> <span class="typename">string</span> macro 
     <link href="http://hutaow.com/blog/2013/11/22/vim-development-environment/"/>
     <id>http://hutaow.com/blog/2013/11/22/vim-development-environment/</id>
     <published>2013-11-22T14:43:22.000Z</published>
-    <updated>2013-12-07T17:03:15.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<h3>1 插件列表</h3>
 <h4>1.1 CTags</h4>
 <p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
@@ -1226,7 +1226,7 @@ let g:ctrlp_custom_ignore = <span class="special">{</span>
     <link href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux/"/>
     <id>http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux/</id>
     <published>2013-11-18T14:37:16.000Z</published>
-    <updated>2013-11-18T16:18:07.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。</p>
 <a id="more"></a>
 
@@ -1258,7 +1258,7 @@ let g:ctrlp_custom_ignore = <span class="special">{</span>
     <link href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis/"/>
     <id>http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis/</id>
     <published>2013-11-05T16:34:54.000Z</published>
-    <updated>2013-11-22T14:28:42.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<h2>1 交互过程</h2>
 <p>MySQL客户端与服务器的交互主要分为两个阶段：握手认证阶段和命令执行阶段。</p>
 <h3>1.1 握手认证阶段</h3>
@@ -3094,7 +3094,7 @@ let g:ctrlp_custom_ignore = <span class="special">{</span>
     <link href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe/"/>
     <id>http://hutaow.com/blog/2013/10/30/install-linux-with-pxe/</id>
     <published>2013-10-30T15:30:57.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<h3>1 准备工作</h3>
 <ul>
 <li>Linux安装镜像（本文以CentOS为例）</li>
@@ -3150,7 +3150,7 @@ let g:ctrlp_custom_ignore = <span class="special">{</span>
     <link href="http://hutaow.com/blog/2013/10/25/linux-core-dump/"/>
     <id>http://hutaow.com/blog/2013/10/25/linux-core-dump/</id>
     <published>2013-10-25T15:19:39.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<h3>1 什么是 Core Dump</h3>
 <p>Core Dump 又叫核心转储。在程序运行过程中发生异常时，将其内存数据保存到文件中，这个过程叫做 Core Dump。</p>
 <h3>2 Core Dump 的作用</h3>
@@ -3255,7 +3255,7 @@ let g:ctrlp_custom_ignore = <span class="special">{</span>
     <link href="http://hutaow.com/blog/2013/10/19/linux-signal/"/>
     <id>http://hutaow.com/blog/2013/10/19/linux-signal/</id>
     <published>2013-10-19T13:47:22.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <a id="more"></a>
@@ -3739,7 +3739,7 @@ Process Continue.</code></pre>
     <link href="http://hutaow.com/blog/2013/10/15/dump-stack/"/>
     <id>http://hutaow.com/blog/2013/10/15/dump-stack/</id>
     <published>2013-10-15T15:32:31.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。</p>
 <a id="more"></a>
 
@@ -4007,7 +4007,7 @@ End of assembler dump.</span>
     <link href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace/"/>
     <id>http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace/</id>
     <published>2013-10-11T14:03:39.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
 <figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
@@ -4164,7 +4164,7 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
     <link href="http://hutaow.com/blog/2013/10/10/starting-with-new-domain-name/"/>
     <id>http://hutaow.com/blog/2013/10/10/starting-with-new-domain-name/</id>
     <published>2013-10-10T14:23:31.000Z</published>
-    <updated>2013-12-28T12:53:04.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>昨天注册了<code>hutaow.net</code>这个域名，决心把博客搬过来，恢复写博客的生活。</p>
 <p>算下来差不多有两年时间都没有更新过了，其中一个最主要借口是找不到合适的落脚点，时间最长地方要数ChinaUNIX了，早期的时候用着还是蛮不错的，但是随着时间的推移，ChinaUNIX的系统更新实在是跟不上节奏，想到过搬家但是由于ChinaUNIX的订阅数据实在太蹩脚，连搬都不好搬，更不用说评论等等了，博客搬家的计划也就一直搁置了。后来有试过CSDN无奈上面的广告太多，百度也试过但是它贴代码的效果实在太差，WordPress又悲催的被墙等等。</p>
 <p>另一个借口就是工作太忙没时间，一回家就不太想写东西了，但是最近开始意识到挥挥衣袖什么都没有留下的感觉很不好，没有积累，没有思考，需要改变一下了。</p>
@@ -4178,7 +4178,7 @@ void backtrace_symbols_fd(void <span class="variable">*const</span> <span class=
     <link href="http://hutaow.com/blog/2013/09/06/install-openwrt/"/>
     <id>http://hutaow.com/blog/2013/09/06/install-openwrt/</id>
     <published>2013-09-06T15:16:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<h3>1 安装OpenWRT</h3>
 <h4>1.1 下载并刷新固件</h4>
 <p>如果以前没刷过OpenWRT，需要升级factory固件，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" target="_blank">点击这里下载</a>。</p>
@@ -4390,7 +4390,7 @@ config swap
     <link href="http://hutaow.com/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/"/>
     <id>http://hutaow.com/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux/</id>
     <published>2013-06-16T14:54:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">mount</span> -o remount,rw /media/TF
@@ -4406,7 +4406,7 @@ config swap
     <link href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions/"/>
     <id>http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions/</id>
     <published>2013-06-15T17:48:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">find</span> ./ -<span class="typedef"><span class="keyword">type</span> d -exec chmod 755 <span class="container">{}</span> \;</span>
@@ -4426,7 +4426,7 @@ config swap
     <link href="http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/"/>
     <id>http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring/</id>
     <published>2010-05-14T14:13:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
 <p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
 <p>2) 交换机上电自检然后登入后出现命令提示符：</p>
@@ -4474,7 +4474,7 @@ Enter configuration commands, one per line.  End with CNTL/Z.
     <link href="http://hutaow.com/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/"/>
     <id>http://hutaow.com/blog/2010/04/27/get-xml-node-value-with-c-sharp-language/</id>
     <published>2010-04-27T04:43:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>实例说明会更清楚些，假设有如下XML文件：</p>
 <figure class="highlight lang-xml"><figcaption><span>message_hutaow.xml</span></figcaption><table><tr><td class="gutter"><pre>1
 2
@@ -4554,7 +4554,7 @@ Console<span class="preprocessor">.WriteLine</span>(<span class="string">"Target
     <link href="http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort/"/>
     <id>http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort/</id>
     <published>2010-04-21T02:48:00.000Z</published>
-    <updated>2013-11-09T13:58:22.000Z</updated>
+    <updated>2014-05-17T13:30:58.000Z</updated>
     <content type="html"><![CDATA[<p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
 <ol>
 <li><p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef" target="_blank">libidmef</a>、<a href="http://xmlsoft.org" target="_blank">libxml2</a>及<a href="http://www.ntp.org" target="_blank">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p>
