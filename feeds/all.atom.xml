@@ -4235,106 +4235,106 @@ opcontrol --deinit
 
 
 &lt;p&gt;最后重启终端或执行source ~/.bashrc即可。&lt;/p&gt;</summary><category term="Linux"></category><category term="Java"></category></entry><entry><title>我的VI配置文件</title><link href="http://hutaow.com/blog/2007/08/19/my-vi-config" rel="alternate"></link><updated>2007-08-19T14:02:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2007-08-19:blog/2007/08/19/my-vi-config</id><summary type="html">&lt;hr /&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="s2"&gt;&amp;quot; 设置字符编码&lt;/span&gt;
-&lt;span class="s2"&gt;set encoding=utf-8&lt;/span&gt;
-&lt;span class="s2"&gt;set termencoding=utf-8&lt;/span&gt;
-&lt;span class="s2"&gt;set fileencoding=utf-8&lt;/span&gt;
-&lt;span class="s2"&gt;set fileencodings=utf-8,ucs-bom,gb2312,gb18030,gbk,cp936&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="s"&gt;&amp;quot; 设置字符编码&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;termencoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;fileencoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;fileencodings&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;ucs&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bom&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;gb2312&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;gb18030&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;gbk&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;cp936&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 设置文件格式&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;unix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;LF,dos&lt;span class="o"&gt;=&lt;/span&gt;CRLF,mac&lt;span class="o"&gt;=&lt;/span&gt;CR&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;span class="nb"&gt;set &lt;/span&gt;&lt;span class="nv"&gt;fileformat&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;unix
-&lt;span class="nb"&gt;set &lt;/span&gt;&lt;span class="nv"&gt;fileformats&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;unix,dos,mac
+&lt;span class="s"&gt;&amp;quot; 设置文件格式(unix=LF,dos=CRLF,mac=CR)&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;fileformat&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;unix&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;fileformats&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;unix&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;dos&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;mac&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 提示信息语言&lt;/span&gt;
-&lt;span class="s2"&gt;set langmenu=en_US.utf-8&lt;/span&gt;
-&lt;span class="s2"&gt;language messages en_US.utf-8&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 提示信息语言&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;langmenu&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;en_US&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="n"&gt;language&lt;/span&gt; &lt;span class="n"&gt;messages&lt;/span&gt; &lt;span class="n"&gt;en_US&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 开启文件类型检测
-filetype on
+&lt;span class="s"&gt;&amp;quot; 开启文件类型检测&lt;/span&gt;
+&lt;span class="n"&gt;filetype&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 开启语法高亮&lt;/span&gt;
-&lt;span class="s2"&gt;syntax on&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 开启语法高亮&lt;/span&gt;
+&lt;span class="n"&gt;syntax&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 显示行号
-&lt;span class="nb"&gt;set &lt;/span&gt;number
+&lt;span class="s"&gt;&amp;quot; 显示行号&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 设置缩进大小&lt;/span&gt;
-&lt;span class="s2"&gt;set tabstop=4&lt;/span&gt;
-&lt;span class="s2"&gt;set softtabstop=4&lt;/span&gt;
-&lt;span class="s2"&gt;set shiftwidth=4&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 设置缩进大小&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;tabstop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;softtabstop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;shiftwidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 将制表符用空格代替
-&lt;span class="nb"&gt;set &lt;/span&gt;expandtab
+&lt;span class="s"&gt;&amp;quot; 将制表符用空格代替&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;expandtab&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 关闭兼容模式(使用VIM的键盘模式)&lt;/span&gt;
-&lt;span class="s2"&gt;set nocompatible&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 关闭兼容模式(使用VIM的键盘模式)&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;nocompatible&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 历史记录数量
-&lt;span class="nb"&gt;set history&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1000
+&lt;span class="s"&gt;&amp;quot; 历史记录数量&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;history&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 设置关键字符(遇到以下字符连接的单词时不进行换行)&lt;/span&gt;
-&lt;span class="s2"&gt;set iskeyword+=_,$,@,%,#,-&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 设置关键字符(遇到以下字符连接的单词时不进行换行)&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;iskeyword&lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 设置退格键模式
-&lt;span class="nb"&gt;set &lt;/span&gt;&lt;span class="nv"&gt;backspace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;indent,eol,start
+&lt;span class="s"&gt;&amp;quot; 设置退格键模式&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;backspace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;indent&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;eol&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 设置列提示(右下角)&lt;/span&gt;
-&lt;span class="s2"&gt;set ruler&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 设置列提示(右下角)&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;ruler&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 设置状态提示&lt;span class="o"&gt;(&lt;/span&gt;左下角&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;span class="nb"&gt;set &lt;/span&gt;showmode
+&lt;span class="s"&gt;&amp;quot; 设置状态提示(左下角)&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;showmode&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 启动的时候不显示提示信息&lt;/span&gt;
-&lt;span class="s2"&gt;set shortmess=atI&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 启动的时候不显示提示信息&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;shortmess&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;atI&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 关闭错误信息响铃
-&lt;span class="nb"&gt;set &lt;/span&gt;noerrorbells
+&lt;span class="s"&gt;&amp;quot; 关闭错误信息响铃&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;noerrorbells&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 设置(括号)匹配模式&lt;/span&gt;
-&lt;span class="s2"&gt;set showmatch&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 设置(括号)匹配模式&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;showmatch&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 搜索时实时匹配关键字
-&lt;span class="nb"&gt;set &lt;/span&gt;incsearch
+&lt;span class="s"&gt;&amp;quot; 搜索时实时匹配关键字&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;incsearch&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 搜索时高亮关键字&lt;/span&gt;
-&lt;span class="s2"&gt;set hlsearch&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 搜索时高亮关键字&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;hlsearch&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 设置自动缩进
-&lt;span class="nb"&gt;set &lt;/span&gt;autoindent
+&lt;span class="s"&gt;&amp;quot; 设置自动缩进&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;autoindent&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 设置结构缩进(换行时缩进与当前行相同)&lt;/span&gt;
-&lt;span class="s2"&gt;set smartindent&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 设置结构缩进(换行时缩进与当前行相同)&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;smartindent&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 关闭自动备份
-&lt;span class="nb"&gt;set &lt;/span&gt;nobackup
+&lt;span class="s"&gt;&amp;quot; 关闭自动备份&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;nobackup&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 设置当前行/列高亮&lt;/span&gt;
-&lt;span class="s2"&gt;set cursorline&lt;/span&gt;
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nb"&gt;set &lt;/span&gt;cursorcolumn
+&lt;span class="s"&gt;&amp;quot; 设置当前行/列高亮&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;cursorline&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; set cursorcolumn&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 设置背景色主题&lt;/span&gt;
-&lt;span class="s2"&gt;set background=dark&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 设置背景色主题&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;background&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dark&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 主题颜色
-colorscheme desert 
+&lt;span class="s"&gt;&amp;quot; 主题颜色&lt;/span&gt;
+&lt;span class="n"&gt;colorscheme&lt;/span&gt; &lt;span class="n"&gt;desert&lt;/span&gt; 
 
-&lt;span class="s2"&gt;&amp;quot; 状态行显示内容&lt;/span&gt;
-&lt;span class="s2"&gt;set statusline=%F%m%r%h%w\ [FORMAT=%{&amp;amp;ff}:%{&amp;amp;fenc!=&amp;#39;&amp;#39;?&amp;amp;fenc:&amp;amp;enc}]\ [TYPE=%Y]\ %r%h%=[POS=%l,%v][%p%%]\ [%{strftime(\&amp;quot;%Y/%m/%d\ %H:%M\&amp;quot;)}]&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 状态行显示内容&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;statusline&lt;/span&gt;&lt;span class="o"&gt;=%&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;FORMAT&lt;/span&gt;&lt;span class="o"&gt;=%&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;ff&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;:%&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;fenc&lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;?&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;fenc&lt;/span&gt;&lt;span class="o"&gt;:&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;enc&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;TYPE&lt;/span&gt;&lt;span class="o"&gt;=%&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="o"&gt;%=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;POS&lt;/span&gt;&lt;span class="o"&gt;=%&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%Y/%m/%d\ %H:%M&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;)}]&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 状态行显示模式&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;0&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;不显示,1&lt;span class="o"&gt;=&lt;/span&gt;两个窗口以上显示,2&lt;span class="o"&gt;=&lt;/span&gt;始终显示&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;span class="nb"&gt;set &lt;/span&gt;&lt;span class="nv"&gt;laststatus&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2
+&lt;span class="s"&gt;&amp;quot; 状态行显示模式(0=不显示,1=两个窗口以上显示,2=始终显示)&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;laststatus&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot; 设置字体&lt;/span&gt;
-&lt;span class="s2"&gt;set guifont=Terminus:h10:cANSI&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 设置字体&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;guifont&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Terminus&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;h10&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;cANSI&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 设置窗口大小
-&lt;span class="s2"&gt;&amp;quot; set lines=35 columns=128&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; 设置窗口大小&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; set lines=35 columns=128&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; GUI 隐藏菜单栏
-&lt;span class="s2"&gt;&amp;quot; set guioptions-=m&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; GUI 隐藏菜单栏&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot; set guioptions-=m&lt;/span&gt;
 
-&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; GUI 隐藏工具栏
-&lt;span class="nb"&gt;set &lt;/span&gt;guioptions-&lt;span class="o"&gt;=&lt;/span&gt;T
+&lt;span class="s"&gt;&amp;quot; GUI 隐藏工具栏&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;guioptions&lt;/span&gt;&lt;span class="o"&gt;-=&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
