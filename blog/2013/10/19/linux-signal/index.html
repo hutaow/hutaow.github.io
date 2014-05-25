@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>Linux信号处理机制 - 胡桃夹子</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="胡桃夹子" />
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="Linux信号处理机制"/>
+            <meta property="og:url" content="http://hutaow.com/blog/2013/10/19/linux-signal"/>
+            <meta property="og:description" content="在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。 需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。 1 信号的响应动作 每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种： 中止进程(Term) 忽略信号(Ign) 中止进程并保存内存信息(Core) 停止进程(Stop) 继续运行进程(Cont) 用户可以通过signal或sigaction函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。 2 信号类型 Linux支持的信号类型可以参考下面给出的列表。 2.1 在POSIX.1-1990标准中的信号列表 信号 值 动作 说明 ..."/>
+            <meta property="article:published_time" content="2013-10-19" />
+                <meta property="article:section" content="Linux" />
+                <meta property="article:tag" content="Linux" />
+                <meta property="article:tag" content="C" />
+                <meta property="article:tag" content="开发" />
+                <meta property="article:tag" content="信号" />
+                <meta property="article:author" content="hutaow" />
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://hutaow.com/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://hutaow.com/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://hutaow.com/theme/css/style.css" type="text/css"/>
+
+        <link href="http://hutaow.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="胡桃夹子 ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://hutaow.com/" class="navbar-brand">
+胡桃夹子            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="http://hutaow.com/about/index.html">
+                             关于我
+                          </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://hutaow.com/blog/archives/index.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://hutaow.com/blog/2013/10/19/linux-signal"
+                       rel="bookmark"
+                       title="Permalink to Linux信号处理机制">
+                        Linux信号处理机制
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-10-19T21:47:22"> Sat 19 October 2013</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/linux/index.html">Linux</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/linux/index.html">Linux</a>
+        /
+	<a href="http://hutaow.com/blog/tags/c/index.html">C</a>
+        /
+	<a href="http://hutaow.com/blog/tags/kai-fa/index.html">开发</a>
+        /
+	<a href="http://hutaow.com/blog/tags/xin-hao/index.html">信号</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <hr />
+<p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
+<p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
+<!-- more -->
+
+<h3>1 信号的响应动作</h3>
+<p>每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种：</p>
+<ul>
+<li>中止进程(Term)</li>
+<li>忽略信号(Ign)</li>
+<li>中止进程并保存内存信息(Core)</li>
+<li>停止进程(Stop)</li>
+<li>继续运行进程(Cont)</li>
+</ul>
+<p>用户可以通过<code>signal</code>或<code>sigaction</code>函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。</p>
+<h3>2 信号类型</h3>
+<p>Linux支持的信号类型可以参考下面给出的列表。</p>
+<h4>2.1 在POSIX.1-1990标准中的信号列表</h4>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>值</th>
+<th>动作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIGHUP</td>
+<td>1</td>
+<td>Term</td>
+<td>终端控制进程结束(终端连接断开)</td>
+</tr>
+<tr>
+<td>SIGINT</td>
+<td>2</td>
+<td>Term</td>
+<td>用户发送INTR字符(Ctrl+C)触发</td>
+</tr>
+<tr>
+<td>SIGQUIT</td>
+<td>3</td>
+<td>Core</td>
+<td>用户发送QUIT字符(Ctrl+/)触发</td>
+</tr>
+<tr>
+<td>SIGILL</td>
+<td>4</td>
+<td>Core</td>
+<td>非法指令(程序错误、试图执行数据段、栈溢出等)</td>
+</tr>
+<tr>
+<td>SIGABRT</td>
+<td>6</td>
+<td>Core</td>
+<td>调用abort函数触发</td>
+</tr>
+<tr>
+<td>SIGFPE</td>
+<td>8</td>
+<td>Core</td>
+<td>算术运行错误(浮点运算错误、除数为零等)</td>
+</tr>
+<tr>
+<td>SIGKILL</td>
+<td>9</td>
+<td>Term</td>
+<td>无条件结束程序(不能被捕获、阻塞或忽略)</td>
+</tr>
+<tr>
+<td>SIGSEGV</td>
+<td>11</td>
+<td>Core</td>
+<td>无效内存引用(试图访问不属于自己的内存空间、对只读内存空间进行写操作)</td>
+</tr>
+<tr>
+<td>SIGPIPE</td>
+<td>13</td>
+<td>Term</td>
+<td>消息管道损坏(FIFO/Socket通信时，管道未打开而进行写操作)</td>
+</tr>
+<tr>
+<td>SIGALRM</td>
+<td>14</td>
+<td>Term</td>
+<td>时钟定时信号</td>
+</tr>
+<tr>
+<td>SIGTERM</td>
+<td>15</td>
+<td>Term</td>
+<td>结束程序(可以被捕获、阻塞或忽略)</td>
+</tr>
+<tr>
+<td>SIGUSR1</td>
+<td>30,10,16</td>
+<td>Term</td>
+<td>用户保留</td>
+</tr>
+<tr>
+<td>SIGUSR2</td>
+<td>31,12,17</td>
+<td>Term</td>
+<td>用户保留</td>
+</tr>
+<tr>
+<td>SIGCHLD</td>
+<td>20,17,18</td>
+<td>Ign</td>
+<td>子进程结束(由父进程接收)</td>
+</tr>
+<tr>
+<td>SIGCONT</td>
+<td>19,18,25</td>
+<td>Cont</td>
+<td>继续执行已经停止的进程(不能被阻塞)</td>
+</tr>
+<tr>
+<td>SIGSTOP</td>
+<td>17,19,23</td>
+<td>Stop</td>
+<td>停止进程(不能被捕获、阻塞或忽略)</td>
+</tr>
+<tr>
+<td>SIGTSTP</td>
+<td>18,20,24</td>
+<td>Stop</td>
+<td>停止进程(可以被捕获、阻塞或忽略)</td>
+</tr>
+<tr>
+<td>SIGTTIN</td>
+<td>21,21,26</td>
+<td>Stop</td>
+<td>后台程序从终端中读取数据时触发</td>
+</tr>
+<tr>
+<td>SIGTTOU</td>
+<td>22,22,27</td>
+<td>Stop</td>
+<td>后台程序向终端中写数据时触发</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注</strong>：其中<code>SIGKILL</code>和<code>SIGSTOP</code>信号不能被捕获、阻塞或忽略。</p>
+<h4>2.2 在SUSv2和POSIX.1-2001标准中的信号列表</h4>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>值</th>
+<th>动作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIGTRAP</td>
+<td>5</td>
+<td>Core</td>
+<td>Trap指令触发(如断点，在调试器中使用)</td>
+</tr>
+<tr>
+<td>SIGBUS</td>
+<td>0,7,10</td>
+<td>Core</td>
+<td>非法地址(内存地址对齐错误)</td>
+</tr>
+<tr>
+<td>SIGPOLL</td>
+<td></td>
+<td>Term</td>
+<td>Pollable event (Sys V). Synonym for SIGIO</td>
+</tr>
+<tr>
+<td>SIGPROF</td>
+<td>27,27,29</td>
+<td>Term</td>
+<td>性能时钟信号(包含系统调用时间和进程占用CPU的时间)</td>
+</tr>
+<tr>
+<td>SIGSYS</td>
+<td>12,31,12</td>
+<td>Core</td>
+<td>无效的系统调用(SVr4)</td>
+</tr>
+<tr>
+<td>SIGURG</td>
+<td>16,23,21</td>
+<td>Ign</td>
+<td>有紧急数据到达Socket(4.2BSD)</td>
+</tr>
+<tr>
+<td>SIGVTALRM</td>
+<td>26,26,28</td>
+<td>Term</td>
+<td>虚拟时钟信号(进程占用CPU的时间)(4.2BSD)</td>
+</tr>
+<tr>
+<td>SIGXCPU</td>
+<td>24,24,30</td>
+<td>Core</td>
+<td>超过CPU时间资源限制(4.2BSD)</td>
+</tr>
+<tr>
+<td>SIGXFSZ</td>
+<td>25,25,31</td>
+<td>Core</td>
+<td>超过文件大小资源限制(4.2BSD)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注</strong>：在Linux 2.2版本之前，<code>SIGSYS</code>、<code>SIGXCPU</code>、<code>SIGXFSZ</code>以及<code>SIGBUS</code>的默认响应动作为Term，Linux 2.4版本之后这三个信号的默认响应动作改为Core。</p>
+<h4>2.3 其它信号</h4>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>值</th>
+<th>动作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIGIOT</td>
+<td>6</td>
+<td>Core</td>
+<td>IOT捕获信号(同SIGABRT信号)</td>
+</tr>
+<tr>
+<td>SIGEMT</td>
+<td>7,-,7</td>
+<td>Term</td>
+<td>实时硬件发生错误</td>
+</tr>
+<tr>
+<td>SIGSTKFLT</td>
+<td>-,16,-</td>
+<td>Term</td>
+<td>协同处理器栈错误(未使用)</td>
+</tr>
+<tr>
+<td>SIGIO</td>
+<td>23,29,22</td>
+<td>Term</td>
+<td>文件描述符准备就绪(可以开始进行输入/输出操作)(4.2BSD)</td>
+</tr>
+<tr>
+<td>SIGCLD</td>
+<td>-,-,18</td>
+<td>Ign</td>
+<td>子进程结束(由父进程接收)(同SIGCHLD信号)</td>
+</tr>
+<tr>
+<td>SIGPWR</td>
+<td>29,30,19</td>
+<td>Term</td>
+<td>电源错误(System V)</td>
+</tr>
+<tr>
+<td>SIGINFO</td>
+<td>29,-,-</td>
+<td></td>
+<td>电源错误(同SIGPWR信号)</td>
+</tr>
+<tr>
+<td>SIGLOST</td>
+<td>-,-,-</td>
+<td>Term</td>
+<td>文件锁丢失(未使用)</td>
+</tr>
+<tr>
+<td>SIGWINCH</td>
+<td>28,28,20</td>
+<td>Ign</td>
+<td>窗口大小改变时触发(4.3BSD, Sun)</td>
+</tr>
+<tr>
+<td>SIGUNUSED</td>
+<td>-,31,-</td>
+<td>Core</td>
+<td>无效的系统调用(同SIGSYS信号)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意</strong>：列表中有的信号有三个值，这是因为部分信号的值和CPU架构有关，这些信号的值在不同架构的CPU中是不同的，三个值的排列顺序为：1，Alpha/Sparc；2，x86/ARM/Others；3，MIPS。</p>
+<p>例如<code>SIGSTOP</code>这个信号，它有三种可能的值，分别是17、19、23，其中第一个值（17）是用在Alpha和Sparc架构中，第二个值（19）用在x86、ARM等其它架构中，第三个值（23）则是用在MIPS架构中的。</p>
+<h3>3 信号机制</h3>
+<p>文章的前面提到过，信号是异步的，这就涉及信号何时接收、何时处理的问题。</p>
+<p>我们知道，函数运行在用户态，当遇到系统调用、中断或是异常的情况时，程序会进入内核态。信号涉及到了这两种状态之间的转换，过程可以先看一下下面的示意图：</p>
+<p><img alt="信号处理机制示意图" src="/images/articles/201310/linux_signal_flow.png" /></p>
+<p>接下来围绕示意图，将信号分成接收、检测和处理三个部分，逐一讲解每一步的处理流程。</p>
+<h4>3.1 信号的接收</h4>
+<p>接收信号的任务是由内核代理的，当内核接收到信号后，会将其放到对应进程的信号队列中，同时向进程发送一个中断，使其陷入内核态。</p>
+<p>注意，此时信号还只是在队列中，对进程来说暂时是不知道有信号到来的。</p>
+<h4>3.2 信号的检测</h4>
+<p>进程陷入内核态后，有两种场景会对信号进行检测：</p>
+<ul>
+<li>进程从内核态返回到用户态前进行信号检测</li>
+<li>进程在内核态中，从睡眠状态被唤醒的时候进行信号检测</li>
+</ul>
+<p>当发现有新信号时，便会进入下一步，信号的处理。</p>
+<h4>3.3 信号的处理</h4>
+<p>信号处理函数是运行在用户态的，调用处理函数前，内核会将当前内核栈的内容备份拷贝到用户栈上，并且修改指令寄存器（eip）将其指向信号处理函数。</p>
+<p>接下来进程返回到用户态中，执行相应的信号处理函数。</p>
+<p>信号处理函数执行完成后，还需要返回内核态，检查是否还有其它信号未处理。如果所有信号都处理完成，就会将内核栈恢复（从用户栈的备份拷贝回来），同时恢复指令寄存器（eip）将其指向中断前的运行位置，最后回到用户态继续执行进程。</p>
+<p>至此，一个完整的信号处理流程便结束了，如果同时有多个信号到达，上面的处理流程会在第2步和第3步骤间重复进行。</p>
+<h3>4 信号的使用</h3>
+<h4>4.1 发送信号</h4>
+<p>用于发送信号的函数有<code>raise</code>、<code>kill</code>、<code>killpg</code>、<code>pthread_kill</code>、<code>tgkill</code>、<code>sigqueue</code>，这几个函数的含义和用法都大同小异，这里主要介绍一下常用的<code>raise</code>和<code>kill</code>函数。</p>
+<p><strong>raise函数</strong>：向进程本身发送信号</p>
+<p>函数声明如下：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;signal.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">raise</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
+</pre></div>
+
+
+<p>函数功能是向当前程序(自身)发送信号，其中参数<code>sig</code>为信号值。</p>
+<p><strong>kill函数</strong>：向指定进程发送信号</p>
+<p>函数声明如下：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;sys/types.h&gt;</span>
+<span class="cp">#include &lt;signal.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">kill</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
+</pre></div>
+
+
+<p>函数功能是向特定的进程发送信号，其中参数<code>pid</code>为进程号，<code>sig</code>为信号值。</p>
+<p>在这里的参数<code>pid</code>，根据取值范围不同，含义也不同，具体说明如下：</p>
+<ul>
+<li>pid &gt; 0  ：向进程号为pid的进程发送信号</li>
+<li>pid = 0  ：向当前进程所在的进程组发送信号</li>
+<li>pid = -1 ：向所有进程(除PID=1外)发送信号(权限范围内)</li>
+<li>pid &lt; -1 ：向进程组号为-pid的所有进程发送信号</li>
+</ul>
+<p>另外，当<code>sig</code>值为零时，实际不发送任何信号，但函数返回值依然有效，可以用于检查进程是否存在。</p>
+<h4>4.2 等待信号被捕获</h4>
+<p>等待信号的过程，其实就是将当前进程(线程)暂停，直到有信号发到当前进程(线程)上并被捕获，函数有<code>pause</code>和<code>sigsuspend</code>。</p>
+<p><strong>pause函数</strong>：将进程(或线程)转入睡眠状态，直到接收到信号</p>
+<p>函数声明如下：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;unistd.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">pause</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+
+
+<p>该函数调用后，调用者(进程或线程)会进入睡眠(Sleep)状态，直到捕获到(任意)信号为止。该函数的返回值始终为-1，并且调用结束后，错误代码(errno)会被置为EINTR。</p>
+<p><strong>sigsuspend函数</strong>：将进程(或线程)转入睡眠状态，直到接收到特定信号</p>
+<p>函数声明如下：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;signal.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">sigsuspend</span><span class="p">(</span><span class="k">const</span> <span class="kt">sigset_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span>
+</pre></div>
+
+
+<p>该函数调用后，会将进程的信号掩码临时修改(参数<code>mask</code>)，然后暂停进程，直到收到符合条件的信号为止，函数返回前会将调用前的信号掩码恢复。该函数的返回值始终为-1，并且调用结束后，错误代码(errno)会被置为EINTR。</p>
+<h4>4.3 修改信号的响应动作</h4>
+<p>用户可以自己重新定义某个信号的处理方式，即前面提到的修改信号的默认响应动作，也可以理解为对信号的注册，可以通过<code>signal</code>或<code>sigaction</code>函数进行，这里以<code>signal</code>函数举例说明。</p>
+<p>首先看一下函数声明：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;signal.h&gt;</span>
+
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="kt">sighandler_t</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>
+
+<span class="kt">sighandler_t</span> <span class="nf">signal</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">,</span> <span class="kt">sighandler_t</span> <span class="n">handler</span><span class="p">);</span>
+</pre></div>
+
+
+<p>第一个参数<code>signum</code>是信号值，可以从前面的信号列表中查到，第二个参数<code>handler</code>为处理函数，通过回调方式在信号触发时调用。</p>
+<p>下面为示例代码：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;signal.h&gt;</span>
+<span class="cp">#include &lt;unistd.h&gt;</span>
+
+<span class="cm">/* 信号处理函数 */</span>
+<span class="kt">void</span> <span class="nf">sig_callback</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">signum</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">SIGINT</span>:
+            <span class="cm">/* SIGINT: Ctrl+C 按下时触发 */</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Get signal SIGINT. </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="cm">/* 多个信号可以放到同一个函数中进行 通过信号值来区分 */</span>
+        <span class="nl">default:</span>
+            <span class="cm">/* 其它信号 */</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Unknown signal %d. </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">signum</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* 主函数 */</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Register SIGINT(%u) Signal Action. </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">SIGINT</span><span class="p">);</span>
+
+    <span class="cm">/* 注册SIGINT信号的处理函数 */</span>
+    <span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">sig_callback</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Waitting for Signal ... </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+    <span class="cm">/* 等待信号触发 */</span>
+    <span class="n">pause</span><span class="p">();</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Process Continue. </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>源文件下载：<a href="/downloads/code/linux_signal.c">链接</a></p>
+<p>例子中，将<code>SIGINT</code>信号（<code>Ctrl+C</code>触发）的动作接管(打印提示信息)，程序运行后，按下<code>Ctrl+C</code>，命令行输出如下：</p>
+<div class="highlight"><pre><span class="p">.</span><span class="o">/</span><span class="n">linux_signal_example</span>
+<span class="n">Register</span> <span class="n">SIGINT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">Signal</span> <span class="n">Action</span><span class="p">.</span> 
+<span class="n">Waitting</span> <span class="k">for</span> <span class="n">Signal</span> <span class="p">...</span> 
+<span class="o">^</span><span class="n">CGet</span> <span class="n">signal</span> <span class="n">SIGINT</span><span class="p">.</span> 
+<span class="n">Process</span> <span class="n">Continue</span><span class="p">.</span>
+</pre></div>
+
+
+<p>进程收到<code>SIGINT</code>信号后，触发响应动作，将提示信息打印出来，然后从暂停的地方继续运行。这里需要注意的是，因为我们修改了<code>SIGINT</code>信号的响应动作（只打印信息，不做进程退出处理），所以我们按下<code>Ctrl+C</code>后，程序并没有直接退出，而是继续运行并将"Process Continue."打印出来，直至程序正常结束。</p>
+            </div>
+            <!-- /.entry-content -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'hutaow'; // required: replace example with your forum shortname
+
+                    var disqus_identifier = 'linux-signal';
+                var disqus_url = 'http://hutaow.com/blog/2013/10/19/linux-signal';
+
+            var disqus_config = function () {
+                this.language = "en";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+                    <li class="list-group-item"><a href="https://plus.google.com/101629371795609143038"><i
+                            class="fa fa-google-plus-square fa-lg"></i> Google+
+                    </a></li>
+                    <li class="list-group-item"><a href="http://twitter.com/hutaow"><i
+                            class="fa fa-twitter-square fa-lg"></i> Twitter
+                    </a></li>
+                    <li class="list-group-item"><a href="http://www.linkedin.com/in/hutaow"><i
+                            class="fa fa-linkedin-square fa-lg"></i> LinkedIn
+                    </a></li>
+                    <li class="list-group-item"><a href="http://www.weibo.com/hutaow"><i
+                            class="fa fa-weibo-square fa-lg"></i> Weibo
+                    </a></li>
+                    <li class="list-group-item"><a href="/feeds/all.atom.xml"><i
+                            class="fa fa-rss-square fa-lg"></i> RSS
+                    </a></li>
+                  </ul>
+                </li>
+
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                    <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
+                                轻量级的 Linux 终端软件 —— RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
+                                使用 OProfile 进行性能分析
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
+                                将 Python 脚本转换为可执行程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
+                                使用 PyQT 作为 Python 的图形界面
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
+                                类型转换导致字符串大小计算错误的问题
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item"><a href="http://hutaow.com/blog/categories/index.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
+                    <ul class="list-group" id="categories">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/database/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Database
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/life/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Life
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/linux/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Linux
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/network/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Network
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/programming/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Programming
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/protocol/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Protocol
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/security/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Security
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/technology/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Technology
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item"><a href="http://hutaow.com/blog/tags/index.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group list-inline tagcloud" id="tags">
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags//index.html">
+                                
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/android/index.html">
+                                Android
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/archlinux/index.html">
+                                ArchLinux
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/atl/index.html">
+                                ATL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/c/index.html">
+                                C
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/coredump/index.html">
+                                CoreDump
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cscope/index.html">
+                                CScope
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/csharp/index.html">
+                                CSharp
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/ctags/index.html">
+                                CTags
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/dai-li/index.html">
+                                代理
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/diao-shi/index.html">
+                                调试
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/diao-yong-zhan/index.html">
+                                调用栈
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
+                                定位
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/fcitx/index.html">
+                                Fcitx
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/fedora/index.html">
+                                Fedora
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/foxmarks/index.html">
+                                Foxmarks
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/gdb/index.html">
+                                GDB
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/gong-ju/index.html">
+                                工具
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/ids/index.html">
+                                IDS
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/java/index.html">
+                                Java
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/jiao-ben/index.html">
+                                脚本
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/jiao-huan-ji/index.html">
+                                交换机
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/kai-fa/index.html">
+                                开发
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/kde/index.html">
+                                KDE
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
+                                控件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/linux/index.html">
+                                Linux
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">
+                                路由器
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/mplayer/index.html">
+                                MPlayer
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/mysql/index.html">
+                                MySQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/openwrt/index.html">
+                                OpenWRT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/oprofile/index.html">
+                                OProfile
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
+                                配置文件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/protocol/index.html">
+                                Protocol
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/pxe/index.html">
+                                PXE
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/pyqt/index.html">
+                                PyQT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/python/index.html">
+                                Python
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/qt/index.html">
+                                QT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/rhythmbox/index.html">
+                                Rhythmbox
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">
+                                入侵检测
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/rxvt/index.html">
+                                RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
+                                数据库
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/snort/index.html">
+                                Snort
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/sql/index.html">
+                                SQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/taglist/index.html">
+                                TagList
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/vi/index.html">
+                                VI
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/virtualbox/index.html">
+                                VirtualBox
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xie-yi-fen-xi/index.html">
+                                协议分析
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
+                                信号
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">
+                                性能优化
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xmarks/index.html">
+                                Xmarks
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xml/index.html">
+                                XML
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/zhe-teng/index.html">
+                                折腾
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/zi-fu-bian-ma/index.html">
+                                字符编码
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 hutaow
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    &quot;<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">胡桃夹子</span>&quot; by <a xmlns:cc="http://creativecommons.org/ns#" href="http://hutaow.com" property="cc:attributionName" rel="cc:attributionURL">hutaow</a> is
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://hutaow.com/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://hutaow.com/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://hutaow.com/theme/js/respond.min.js"></script>
+
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'hutaow'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-17662168-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+</body>
+</html>

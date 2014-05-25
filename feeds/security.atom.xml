@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/security.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2010-04-21T10:48:00+08:00</updated><entry><title>Snort安装IDMEF插件</title><link href="http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort" rel="alternate"></link><updated>2010-04-21T10:48:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2010-04-21:blog/2010/04/21/install-idmef-plugin-for-snort</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;IDMEF插件依赖于&lt;a href="http://sourceforge.net/projects/libidmef"&gt;libidmef&lt;/a&gt;、&lt;a href="http://xmlsoft.org"&gt;libxml2&lt;/a&gt;及&lt;a href="http://www.ntp.org"&gt;libntp&lt;/a&gt;库，所以在安装Snort之前，需要首先安装这三个库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置Snort时，需要加上"--enable-idmef"参数，如下所示：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;enable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;idmef&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="IDS"></category><category term="Snort"></category><category term="入侵检测"></category></entry><entry><title>入侵检测与响应系统的信息共享</title><link href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing" rel="alternate"></link><updated>2010-04-17T21:25:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2010-04-17:blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing</id><summary type="html">&lt;hr /&gt;
+&lt;h3&gt;引言&lt;/h3&gt;
+&lt;p&gt;入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。&lt;/p&gt;
+&lt;p&gt;值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;h3&gt;1 入侵检测消息交互过程&lt;/h3&gt;
+&lt;h4&gt;1.1 建立连接&lt;/h4&gt;
+&lt;p&gt;使用IDXP传输数据的入侵检测实体被称为IDXP对等体。对等体只能成对出现，这些对等体通过BEEP会话中的一个或多个BEEP信道进行数据传输。对等体可能是管理器或分析器。&lt;/p&gt;
+&lt;p&gt;在分析器和管理器之间很可能是多对多的关系。即一个分析器可以和多个管理器通信，同样，一个管理器也可以和多个分析器通信；在不同的管理器之间也可以是多对多的关系。所以，一个管理器可以通过多个中间管理器接收大量的来自分析器的报警信息。但是，各个分析器之间禁止建立IDXP连接，避免重复报警情况的发生。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;对等体"Alice"和"Bob"建立IDXP交换的过程&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;IDXP对等体之间通过打开一个BEEP信道进行通信。在打开BEEP信道之前，需要首先建立BEEP会话，然后就安全特性等问题进行协商。BEEP安全轮廓协商成功后，再经互相确认应答，然后开始IDXP交换。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Alice                                               Bob
+  &lt;span class="o"&gt;-------------------&lt;/span&gt; 建立连接&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;--------------------&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;----------------------&lt;/span&gt; 问候 &lt;span class="o"&gt;------------------------&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;------------------&lt;/span&gt; 启动安全轮廓&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;------------------&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;----------------------&lt;/span&gt; 问候 &lt;span class="o"&gt;------------------------&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;-------------------&lt;/span&gt; 启动 IDXP&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-------------------&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;交互过程:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;"Alice"建立一个到'Bob'的连接, 并触发交换二者BEEP问候消息&lt;/li&gt;
+&lt;li&gt;两个实体协商BEEP安全轮廓&lt;/li&gt;
+&lt;li&gt;两个实体协商IDXP轮廓&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;对等体"Alice"和"Bob"通过代理服务器建立IDXP交换&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在一对IDXP对等体之间可以存在多个代理，这些代理可能是因为管理的需要。比如透过防火墙进行受限访问，或是将公司各部门分析器的数据转发到公司总管理器。&lt;/p&gt;
+&lt;p&gt;在使用代理转发数据时，会使用BEEP协调轮廓建立一个应用层的隧道。隧道轮廓(详细见"RFC3620 - The TUNNEL profile")即在此时发挥作用。在创建应用层隧道时，必须建立一个作为协调轮廓的隧道，并且该隧道轮廓需要进行SASL认证。隧道建立完成后，BEEP安全轮廓才可以提供IDXP协商时需要的各项安全特性。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Alice              proxy1               proxy2               Bob
+  &lt;span class="o"&gt;-----&lt;/span&gt; 建立连接 &lt;span class="o"&gt;----&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;------&lt;/span&gt; 问候 &lt;span class="o"&gt;-------&amp;gt;&lt;/span&gt;
+  &lt;span class="o"&gt;----&lt;/span&gt; 启动隧道 &lt;span class="o"&gt;-----&amp;gt;&lt;/span&gt;
+                      &lt;span class="o"&gt;---&lt;/span&gt; 建立连接&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;----&amp;gt;&lt;/span&gt;
+                    &lt;span class="o"&gt;&amp;lt;-------&lt;/span&gt; 问候 &lt;span class="o"&gt;-------&amp;gt;&lt;/span&gt;
+                      &lt;span class="o"&gt;-----&lt;/span&gt; 启动隧道 &lt;span class="o"&gt;-----&amp;gt;&lt;/span&gt;
+                                           &lt;span class="o"&gt;-----&lt;/span&gt; 建立连接 &lt;span class="o"&gt;-----&amp;gt;&lt;/span&gt;
+                                         &lt;span class="o"&gt;&amp;lt;-------&lt;/span&gt; 问候 &lt;span class="o"&gt;-------&amp;gt;&lt;/span&gt;
+                                           &lt;span class="o"&gt;-----&lt;/span&gt; 启动隧道 &lt;span class="o"&gt;-----&amp;gt;&lt;/span&gt;
+                                         &lt;span class="o"&gt;&amp;lt;----&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;确认&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-----&lt;/span&gt;
+                    &lt;span class="o"&gt;&amp;lt;------&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;确认&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;------&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;-----&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;确认&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;------&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;---------------------------&lt;/span&gt; 问候 &lt;span class="o"&gt;----------------------------&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;-----------------------&lt;/span&gt; 启动安全轮廓 &lt;span class="o"&gt;-------------------------&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;---------------------------&lt;/span&gt; 问候 &lt;span class="o"&gt;----------------------------&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;-------------------------&lt;/span&gt; 启动 IDXP &lt;span class="o"&gt;-------------------------&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;交互过程:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;收到"Alice"启动隧道的消息后，"proxy1"并没有立即返回确认消息，而是先试图和"proxy"连接以建立隧道。同样的，"proxy2"也不会立即给"proxy1"返回确认消息&lt;/li&gt;
+&lt;li&gt;"Bob"的确认信息首先到达"proxy2"并且与之启动隧道，然后确认消息会传递下去最终返回给"Alice"，最终"Alice"和"Bob"之间就成功建立了应用层的隧道&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;1.2 数据传输&lt;/h4&gt;
+&lt;p&gt;在一对入侵检测实体通过BEEP会话进行通信时，会使用IDXP轮廓打开一个或多个BEEP信道。如果需要，可以用IDXP轮廓建立更多的BEEP会话，以提供额外的信道。但是在多数情况下，还是应该在已有的BEEP会话中添加新的信道，尽量避免用新建BEEP会话的方式添加信道。&lt;/p&gt;
+&lt;p&gt;在每条信道中，对等体都是以客户端/服务器形式进行通信。客户端和服务器的角色扮演决定于建立BEEP会话的发起者和监听者。即发起者为客户端，监听者为服务器。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;+----------+&lt;/span&gt;&lt;span class="err"&gt;                         &lt;/span&gt; &lt;span class="o"&gt;+----------+&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;                         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|********&lt;/span&gt; &lt;span class="n"&gt;BEEP&lt;/span&gt; &lt;span class="err"&gt;会话&lt;/span&gt; &lt;span class="o"&gt;********|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;                         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt;分析器 &lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;-------&lt;/span&gt; &lt;span class="n"&gt;IDXP&lt;/span&gt; &lt;span class="err"&gt;轮廓&lt;/span&gt; &lt;span class="o"&gt;------&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt;管理器 &lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;客户端&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;                         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;服务端&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;                         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|**************************|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;                         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;+----------+&lt;/span&gt;&lt;span class="err"&gt;                         &lt;/span&gt; &lt;span class="o"&gt;+----------+&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在一个BEEP会话中使用多个BEEP信道的方式对IDXP对等体之间传输数据的分类和优先级的管理非常有利。例如，管理器"M1"向"M2"发送报警数据时，可以将不同类型的信息使用单独的信道进行传输。"M1"在这些信道中扮演了客户端的角色，"M2"则对接收到的报警信息根据其不同类型进行相应处理。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;+----------+&lt;/span&gt;&lt;span class="err"&gt;                                           &lt;/span&gt; &lt;span class="o"&gt;+----------+&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;                                           &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|****************&lt;/span&gt; &lt;span class="n"&gt;BEEP&lt;/span&gt; &lt;span class="err"&gt;会话&lt;/span&gt; &lt;span class="o"&gt;******************|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;                                           &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;-------&lt;/span&gt; &lt;span class="n"&gt;IDXP&lt;/span&gt; &lt;span class="err"&gt;轮廓&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;基于网络的报警信息&lt;/span&gt; &lt;span class="o"&gt;-------&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt;管理器 &lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;                                           &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt;管理器 &lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;  &lt;/span&gt; &lt;span class="n"&gt;M1&lt;/span&gt;&lt;span class="err"&gt;   &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;-------&lt;/span&gt; &lt;span class="n"&gt;IDXP&lt;/span&gt; &lt;span class="err"&gt;轮廓&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;基于主机的报警信息&lt;/span&gt; &lt;span class="o"&gt;-------&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;   &lt;/span&gt; &lt;span class="n"&gt;M2&lt;/span&gt;&lt;span class="err"&gt;   &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;客户端&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;                                           &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;服务端&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;----------&lt;/span&gt; &lt;span class="n"&gt;IDXP&lt;/span&gt; &lt;span class="err"&gt;轮廓&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;其它报警信息&lt;/span&gt; &lt;span class="o"&gt;---------&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;                                           &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|********************************************|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;                                           &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="err"&gt;         &lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;+----------+&lt;/span&gt;&lt;span class="err"&gt;                                           &lt;/span&gt; &lt;span class="o"&gt;+----------+&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;1.3 断开连接&lt;/h4&gt;
+&lt;p&gt;在一些情况下(如处理过程中出现错误)，IDXP对等体可以关闭某个IDXP信道。要关闭某条信道，需要在零号信道上发送一条"关闭"的指令，并且指明所关闭的信道。如果想要关闭整个BEEP会话，只需在零号信道上发送一条要求"关闭"零信道的指令即可。&lt;/p&gt;
+&lt;p&gt;由于应用层隧道和BEEP安全轮廓会经常使用，所以凡是包含IDXP信道的BEEP会话将会一直存活下去。同时，为了避免IDXP信道被反复的建立，系统会一直保持这些IDXP信道的连接，即使当前已经没有数据在上面传输。建议当IDXP对等体在合适的时候，手动关闭并重建BEEP会话。&lt;/p&gt;
+&lt;h4&gt;1.4 可信模型&lt;/h4&gt;
+&lt;p&gt;在以上的模型中，BEEP安全轮廓是建立在IDXP对等体之间从而实现的端到端安全，而无需对中间代理建立信任。因此，只有在安全轮廓下经过协商后的IDXP对等体之间是相互信任的，而代理始终被看作是不可信的。&lt;/p&gt;
+&lt;h3&gt;2 入侵检测消息交换格式&lt;/h3&gt;
+&lt;h4&gt;2.1 IDMEF数据模型&lt;/h4&gt;
+&lt;p&gt;IDMEF数据模型的各主要部分关系如下图所示（这里省略了事件指示器和属性）。
+&lt;img alt="数据模型" src="/images/articles/201004/intrusion_dedection_and_response_system_for_information_sharing.png" /&gt;&lt;/p&gt;
+&lt;p&gt;IDMEF消息的最高层类是"IDMEF-Message"，其它各类型消息都是该类的子类。目前IDMEF定义了两种消息："Alerts"和"Heartbeats"。其中这两个消息各自携带不同的子类，各子类又描述了更加详细的信息。&lt;/p&gt;
+&lt;p&gt;需要注意的是，数据模型并没有指明警报信息如何分类和识别。例如，端口扫描这一行为，它可能被分析器识别为一次单点对多目标的攻击，同时被另一分析器识别为多次的单点攻击。所有，只有在分析器确定了报警类型之后，数据模型才能确定如何对报警数据进行格式化。&lt;/p&gt;
+&lt;h4&gt;2.2 示例&lt;/h4&gt;
+&lt;p&gt;IDMEF数据模型最终是以XML形式实现，XML跨平台、跨语言以及强扩展性的特点保证了IDS设备之间共享信息时良好的兼容性。&lt;/p&gt;
+&lt;p&gt;下面用实例说明IDMEF对报警信息封装的格式。这些例子只是为说明用，不具备代表性。&lt;/p&gt;
+&lt;p&gt;``` xml 基于网络检测到的某次泪滴攻击报警信息
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+   &lt;idmef:IDMEF-Message xmlns:idmef="http://iana.org/idmef" version="1.0"&gt;
+     &lt;idmef:Alert messageid="abc123456789"&gt;
+       &lt;idmef:Analyzer analyzerid="hq-dmz-analyzer01"&gt;
+         &lt;idmef:Node category="dns"&gt;
+           &lt;idmef:location&gt;Headquarters DMZ Network&lt;/idmef:location&gt;
+           &lt;idmef:name&gt;analyzer01.example.com&lt;/idmef:name&gt;
+         &lt;/idmef:Node&gt;
+       &lt;/idmef:Analyzer&gt;
+       &lt;idmef:CreateTime ntpstamp="0xbc723b45.0xef449129"&gt;
+         2000-03-09T10:01:25.93464-05:00
+       &lt;/idmef:CreateTime&gt;
+       &lt;idmef:Source ident="a1b2c3d4"&gt;
+         &lt;idmef:Node ident="a1b2c3d4-001" category="dns"&gt;
+           &lt;idmef:name&gt;badguy.example.net&lt;/idmef:name&gt;
+           &lt;idmef:Address ident="a1b2c3d4-002" category="ipv4-net-mask"&gt;
+             &lt;idmef:address&gt;192.0.2.50&lt;/idmef:address&gt;
+             &lt;idmef:netmask&gt;255.255.255.255&lt;/idmef:netmask&gt;
+           &lt;/idmef:Address&gt;
+         &lt;/idmef:Node&gt;
+       &lt;/idmef:Source&gt;
+       &lt;idmef:Target ident="d1c2b3a4"&gt;
+         &lt;idmef:Node ident="d1c2b3a4-001" category="dns"&gt;
+           &lt;idmef:Address category="ipv4-addr-hex"&gt;
+             &lt;idmef:address&gt;0xde796f70&lt;/idmef:address&gt;
+           &lt;/idmef:Address&gt;
+         &lt;/idmef:Node&gt;
+       &lt;/idmef:Target&gt;
+       &lt;idmef:Classification text="Teardrop detected"&gt;
+         &lt;idmef:Reference origin="bugtraqid"&gt;
+           &lt;idmef:name&gt;124&lt;/idmef:name&gt;
+           &lt;idmef:url&gt;http://www.securityfocus.com/bid/124&lt;/idmef:url&gt;
+         &lt;/idmef:Reference&gt;
+       &lt;/idmef:Classification&gt;
+     &lt;/idmef:Alert&gt;
+   &lt;/idmef:IDMEF-Message&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sb"&gt;``&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt; &lt;span class="kt"&gt;xml&lt;/span&gt; &lt;span class="err"&gt;基于网络检测到的某个端口扫描行为（注意&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;portlist&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="err"&gt;中记录了被扫描的端口列表）&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="kt"&gt;xml&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;UTF-8&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;idmef:IDMEF-Message&lt;/span&gt; &lt;span class="na"&gt;version=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;xmlns:idmef=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://iana.org/idmef&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+     &lt;span class="nt"&gt;&amp;lt;idmef:Alert&lt;/span&gt; &lt;span class="na"&gt;messageid=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;abc123456789&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+       &lt;span class="nt"&gt;&amp;lt;idmef:Analyzer&lt;/span&gt; &lt;span class="na"&gt;analyzerid=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hq-dmz-analyzer62&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+         &lt;span class="nt"&gt;&amp;lt;idmef:Node&lt;/span&gt; &lt;span class="na"&gt;category=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;dns&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+           &lt;span class="nt"&gt;&amp;lt;idmef:location&amp;gt;&lt;/span&gt;Headquarters Web Server&lt;span class="nt"&gt;&amp;lt;/idmef:location&amp;gt;&lt;/span&gt;
+           &lt;span class="nt"&gt;&amp;lt;idmef:name&amp;gt;&lt;/span&gt;analyzer62.example.com&lt;span class="nt"&gt;&amp;lt;/idmef:name&amp;gt;&lt;/span&gt;
+         &lt;span class="nt"&gt;&amp;lt;/idmef:Node&amp;gt;&lt;/span&gt;
+       &lt;span class="nt"&gt;&amp;lt;/idmef:Analyzer&amp;gt;&lt;/span&gt;
+       &lt;span class="nt"&gt;&amp;lt;idmef:CreateTime&lt;/span&gt; &lt;span class="na"&gt;ntpstamp=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0xbc72b2b4.0x00000000&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+         2000-03-09T15:31:00-08:00
+       &lt;span class="nt"&gt;&amp;lt;/idmef:CreateTime&amp;gt;&lt;/span&gt;
+       &lt;span class="nt"&gt;&amp;lt;idmef:Source&lt;/span&gt; &lt;span class="na"&gt;ident=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;abc01&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+         &lt;span class="nt"&gt;&amp;lt;idmef:Node&lt;/span&gt; &lt;span class="na"&gt;ident=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;abc01-01&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+           &lt;span class="nt"&gt;&amp;lt;idmef:Address&lt;/span&gt; &lt;span class="na"&gt;ident=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;abc01-02&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;category=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ipv4-addr&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+             &lt;span class="nt"&gt;&amp;lt;idmef:address&amp;gt;&lt;/span&gt;192.0.2.200&lt;span class="nt"&gt;&amp;lt;/idmef:address&amp;gt;&lt;/span&gt;
+           &lt;span class="nt"&gt;&amp;lt;/idmef:Address&amp;gt;&lt;/span&gt;
+         &lt;span class="nt"&gt;&amp;lt;/idmef:Node&amp;gt;&lt;/span&gt;
+       &lt;span class="nt"&gt;&amp;lt;/idmef:Source&amp;gt;&lt;/span&gt;
+       &lt;span class="nt"&gt;&amp;lt;idmef:Target&lt;/span&gt; &lt;span class="na"&gt;ident=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;def01&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+         &lt;span class="nt"&gt;&amp;lt;idmef:Node&lt;/span&gt; &lt;span class="na"&gt;ident=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;def01-01&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;category=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;dns&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+           &lt;span class="nt"&gt;&amp;lt;idmef:name&amp;gt;&lt;/span&gt;www.example.com&lt;span class="nt"&gt;&amp;lt;/idmef:name&amp;gt;&lt;/span&gt;
+           &lt;span class="nt"&gt;&amp;lt;idmef:Address&lt;/span&gt; &lt;span class="na"&gt;ident=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;def01-02&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;category=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ipv4-addr&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+             &lt;span class="nt"&gt;&amp;lt;idmef:address&amp;gt;&lt;/span&gt;192.0.2.50&lt;span class="nt"&gt;&amp;lt;/idmef:address&amp;gt;&lt;/span&gt;
+           &lt;span class="nt"&gt;&amp;lt;/idmef:Address&amp;gt;&lt;/span&gt;
+         &lt;span class="nt"&gt;&amp;lt;/idmef:Node&amp;gt;&lt;/span&gt;
+         &lt;span class="nt"&gt;&amp;lt;idmef:Service&lt;/span&gt; &lt;span class="na"&gt;ident=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;def01-03&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+           &lt;span class="nt"&gt;&amp;lt;idmef:portlist&amp;gt;&lt;/span&gt;5-25,37,42,43,53,69-119,123-514
+           &lt;span class="nt"&gt;&amp;lt;/idmef:portlist&amp;gt;&lt;/span&gt;
+         &lt;span class="nt"&gt;&amp;lt;/idmef:Service&amp;gt;&lt;/span&gt;
+       &lt;span class="nt"&gt;&amp;lt;/idmef:Target&amp;gt;&lt;/span&gt;
+       &lt;span class="nt"&gt;&amp;lt;idmef:Classification&lt;/span&gt; &lt;span class="na"&gt;text=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;simple portscan&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+         &lt;span class="nt"&gt;&amp;lt;idmef:Reference&lt;/span&gt; &lt;span class="na"&gt;origin=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;vendor-specific&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+           &lt;span class="nt"&gt;&amp;lt;idmef:name&amp;gt;&lt;/span&gt;portscan&lt;span class="nt"&gt;&amp;lt;/idmef:name&amp;gt;&lt;/span&gt;
+           &lt;span class="nt"&gt;&amp;lt;idmef:url&amp;gt;&lt;/span&gt;http://www.vendor.com/portscan&lt;span class="nt"&gt;&amp;lt;/idmef:url&amp;gt;&lt;/span&gt;
+         &lt;span class="nt"&gt;&amp;lt;/idmef:Reference&amp;gt;&lt;/span&gt;
+       &lt;span class="nt"&gt;&amp;lt;/idmef:Classification&amp;gt;&lt;/span&gt;
+     &lt;span class="nt"&gt;&amp;lt;/idmef:Alert&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;/idmef:IDMEF-Message&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;3 参考资料&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="n"&gt;RFC4765&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;Intrusion&lt;/span&gt; &lt;span class="n"&gt;Detection&lt;/span&gt; &lt;span class="n"&gt;Message&lt;/span&gt; &lt;span class="n"&gt;Exchange&lt;/span&gt; &lt;span class="n"&gt;Format&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IDMEF&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="n"&gt;RFC4767&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;Intrusion&lt;/span&gt; &lt;span class="n"&gt;Detection&lt;/span&gt; &lt;span class="n"&gt;Exchange&lt;/span&gt; &lt;span class="n"&gt;Protocol&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IDXP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="IDS"></category><category term="入侵检测"></category></entry></feed>

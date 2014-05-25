@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/technology.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2010-01-30T00:29:00+08:00</updated><entry><title>正斜杠与反斜杠的分析</title><link href="http://hutaow.com/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash" rel="alternate"></link><updated>2010-01-30T00:29:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2010-01-30:blog/2010/01/30/analysis-of-the-forward-slash-and-backslash</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;正斜杠(左斜杠)，符号是"/"；反斜杠(右斜杠)，符号是"\"。&lt;/p&gt;
+&lt;p&gt;在Unix/Linux中，路径的分隔采用正斜杠"/"，比如"/home/hutaow"；而在Windows中，路径分隔采用反斜杠"\"，比如"C:\Windows\System"。&lt;/p&gt;
+&lt;p&gt;有时我们会看到这样的路径写法，"C:\\Windows\\System"，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用"C:/Windows/System"来代替，不会出错。但是如果写成了"C:\Windows\System"，那就可能会出现各种奇怪的错误了。&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;p&gt;至于上述问题出现的原因，要从字符串解析这方面来分析。&lt;/p&gt;
+&lt;p&gt;学过编程的人都应该知道，在C里面，输出字符串时，如果想输出一个换行，那就要加上'\n'这个标志，类似的，输出一个TAB，就加上'\t'，也就是说，反斜杠("\")这个符号会把跟在它后面的字符结合起来转义成其它字符。根据这个原理，如果想输出双引号('"')，就需要输入'\"'，这样才会将包含了双引号的字符串正确的写入内存中。那么如果想输入一个反斜杠呢？很简单，只要敲'\\'就可以了。&lt;/p&gt;
+&lt;p&gt;看到这里或许有些人已经看出眉目了，如果"C:\Windows\System"这个路径字符串交给C编译器编译，实际写入内存的字符串并没有包含反斜杠"\"，甚至紧跟在反斜杠后面的字母也一起被转义成了其它的字符，再次调用的话势必会出问题。&lt;/p&gt;
+&lt;p&gt;字符串解析不仅仅局限于C编译器，Java编译器、一些配置文件的解析、Web服务器等等，都会遇到对字符串进行解析的这个问题，由于传统的Windows采用的是单个斜杠的路径分隔形式，导致在对文件路径进行解析的时候可能发生不必要的错误，所以就出现了用双反斜杠"\\"分隔路径的形式。不管解析引擎是否将反斜杠解析成转义字符，最终在内存中得到的都是"\"，结果也就不会出问题了。&lt;/p&gt;
+&lt;p&gt;由此也可以看出Windows或者说DOS在设计初期考虑不够周全，为了和Unix一些特征区别开来，将Unix中的正斜杠"/"分隔路径方式改变成了反斜杠"\"。这样改变导致的一个问题就是在早期DOS命令行中，正常的文件名是不能包含空格的，如果包含了空格，会导致输入这样的文件名时，命令解析无法将其和参数区分开。例如，想要进入"hutaow yuan"这个目录（在此先忽略8.3命名规则），直接输入"cd hutaow yuan"，命令行会将其解析为进入"hutaow"目录，而后面的"yuan"做参数，这显然不是所期望的。&lt;/p&gt;
+&lt;p&gt;而在Unix中，文件名如果包含空格，可以直接在空格前加上反斜杠"\"进行转义，从而很好的和命令参数区别出来（参数之间一般使用空格分隔）。还是上面的例子，在Unix中，只要输入"cd hutaow\ yuan"(在yuan前面的空格前加上"\")，命令行会正确的辨认出"hutaow yuan"并进入这个目录。&lt;/p&gt;
+&lt;p&gt;当然，现在Windows的后续版本已经使用其它方法（比如文件名用双引号括住）解决了空格问题。&lt;/p&gt;</summary></entry><entry><title>HTC Diamond 两个有意思的功能</title><link href="http://hutaow.com/blog/2010/01/14/interesting-features-in-htc-diamond" rel="alternate"></link><updated>2010-01-14T20:28:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2010-01-14:blog/2010/01/14/interesting-features-in-htc-diamond</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;这两天一直折腾 HTC Diamond，发现了两个很有意思的功能：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Diamond的手写笔不像其它手机那样有卡槽卡住，而是像有磁铁一样把笔"吸"进去，实际上功能远不止这个。在Diamond关闭屏幕时，拔出手写笔，屏幕会自动亮起，还有比这更神奇的，在打电话时，如果拔出手写笔，Diamond会打开便签，并且便签已经包含了通话对象、时间等信息，方便记录；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Diamond的重力感应不仅用在玩游戏上，来电话时，只要把手机面向下放，就可以关闭铃声（静音）。这避免了在开会等类似场合突然遇到来电手忙脚乱情况的发生。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="折腾"></category></entry><entry><title>Xmarks(原Foxmarks)被墙之后更新的方法</title><link href="http://hutaow.com/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw" rel="alternate"></link><updated>2010-01-12T22:53:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2010-01-12:blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：&lt;/p&gt;
+&lt;h4&gt;1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts"文件中添加如下内容：&lt;/h4&gt;
+&lt;!-- more --&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# Xmarks&lt;/span&gt;
+&lt;span class="mf"&gt;64.147.188.86&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xmarks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;span class="mf"&gt;64.147.188.92&lt;/span&gt; &lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xmarks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;span class="mf"&gt;64.147.188.89&lt;/span&gt; &lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xmarks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;span class="mf"&gt;64.147.188.87&lt;/span&gt; &lt;span class="n"&gt;sync&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xmarks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;span class="mf"&gt;64.147.188.86&lt;/span&gt; &lt;span class="k"&gt;static&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xmarks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;span class="mf"&gt;64.147.188.86&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xmarks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;span class="mf"&gt;64.147.188.86&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xmarks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;2. 设置Xmarks连接及传输数据过程中加密，即在"Connection Security"中选择"Encrypt All"。&lt;/h4&gt;
+&lt;p&gt;以上两步即可解决Xmarks不能同步的问题。&lt;/p&gt;
+&lt;h4&gt;分析原因：&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;第一步操作的原因在于GFW是根据URL而不是IP进行过滤的，所以在请求解析诸如"xmarks.com"等类似的域名时，返回结果被GFW拦截，所以要手动添加xmarks.com一系列服务器的域名IP；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第二步操作让Xmarks在同步时对数据进行加密，GFW是无法认出加密的数据的，也就无法进一步拦截了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="Xmarks"></category><category term="Foxmarks"></category></entry></feed>

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>Articles by hutaow - 胡桃夹子</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="胡桃夹子" />
+            <meta property="og:type" content="website"/>
+            <meta property="og:title" content="胡桃夹子"/>
+            <meta property="og:url" content="http://hutaow.com"/>
+            <meta property="og:description" content="胡桃夹子"/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://hutaow.com/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://hutaow.com/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://hutaow.com/theme/css/style.css" type="text/css"/>
+
+        <link href="http://hutaow.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="胡桃夹子 ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://hutaow.com/" class="navbar-brand">
+胡桃夹子            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="http://hutaow.com/about/index.html">
+                             关于我
+                          </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://hutaow.com/blog/archives/index.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+            <article>
+                <h2><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 —— RXVT</a></h2>
+                <div class="summary"><hr />
+<p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
+<!-- more -->
+
+<div class="highlight"><pre>!!<span class="nv">$HOME</span>/.Xdefaults
+Rxvt.preeditType: root
+
+!!窗口大小及标题
+Rxvt.geometry: 80x25
+Rxvt.title: hutaow-rxvt
+
+!!输入法设置
+Rxvt.inputMethod: fcitx
+
+!!透明度设置
+!Rxvt.transparent: <span class="nb">true</span>
+!Rxvt.shading: 110
+!Rxvt.tintColor: grey
+!Rxvt.inheritPixmap: <span class="nb">false</span>
+
+!!扩展设置
+Rxvt.perl-ext-common: default, matcher, fullscreen
+
+!!URL操作
+Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
+                    <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">使用 OProfile 进行性能分析</a></h2>
+                <div class="summary"><hr />
+<h3>1 介绍</h3>
+<p>OProfile是Linux上的性能监测工具，通过CPU硬件提供的性能计数器对事件（如CPU Cycle、Cache Miss等）进行采样，可以帮助开发者从代码层面分析程序的性能消耗情况，很方便的找出影响程序性能的问题点。</p>
+<p>硬件上，OProfile支持多种架构的CPU，包括Alpha、MIPS、ARM、x86/x86-64、Sparc64、PowerPC等；软件上，OProfile支持Linux 2.2、2.4、2.6多种版本的内核，并且所占用的系统开销较小，一般在1%-8%范围内，具体数值依赖于采样频率。</p>
+<!-- more -->
+
+<h3>2 环境准备</h3>
+<h4>2.1 编译Linux内核</h4>
+<p>OProfile需要Linux内核的支持，到Linux内核源代码目录中（一般为<code>/usr/src/linux-xxx</code>）执行下面的命令：</p>
+<div class="highlight"><pre>make menuconfig
+</pre></div>
+
+
+<p>在配置菜单中找到OProfile的选项并将其打开，然后保存退出。</p>
+<p>如果不想用 ...</p></!-->
+                    <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">将 Python 脚本转换为可执行程序</a></h2>
+                <div class="summary"><hr />
+<p>本文所使用的工具是cx_Freeze，相对py2exe和PyInstaller来说，cx_Freeze的兼容性更好，支持最新的Python 3.X，支持PyQT，并且可以跨平台支持Windows和Linux系统。</p>
+<p>cx_Freeze的官方主页为<a href="http://cx-freeze.sourceforge.net">http://cx-freeze.sourceforge.net</a>，下面以Windows系统为例介绍一下它的使用方法。</p>
+<!-- more -->
+
+<h3>1 配置转换脚本</h3>
+<p>新建一个Python脚本文件，如<code>setup.py</code>，内容如下：</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">cx_Freeze</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Executable</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;win32&quot;</span><span class="p">:</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="s">&quot;Win32GUI&quot;</span>
+
+<span class="n">setup</span><span class="p">(</span>  <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;MyApp&quot;</span><span class="p">,</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;My PyQT application!&quot;</span><span class="p">,</span>
+        <span class="n">executables</span> <span class="o">=</span> <span class="p">[</span><span class="n">Executable</span><span class="p">(</span><span class="s">&quot;pyqt_example.py ...</span></pre></div></!-->
+                    <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">使用 PyQT 作为 Python 的图形界面</a></h2>
+                <div class="summary"><hr />
+<p>以前Python写出来的脚本都是靠命令行执行，输入要是复杂点就得靠加参数，甚至加配置文件来搞定，自己用下还行，给别人用的时候总是不太方便，就一直想找个好用的图形界面库。</p>
+<p>有试过Python内置的Tkinter，部署倒是挺简单，不需要额外安装库，但是开发效率还是不够高，而且需要手写不少界面相关的重复代码，用起来不太方便。</p>
+<p>最近开始尝试第三方的界面库，几经权衡，最终在PyGTK、wxPython、PyQT中选择了PyQT，试了一下，确实很不错，下面就介绍一下PyQT的使用方法。</p>
+<!-- more -->
+
+<h3>1 介绍</h3>
+<p>PyQT以QT为基础，跨平台（可以运行在Windows、Linux/Unix、MacOS等操作系统上），同时PyQT的界面可以直接用QT Designer做出来，可以很容易移植到其它语言上（C++、C#、Java、Perl等）。</p>
+<h3>2 例子</h3>
+<p>为了更好了了解PyQT，先写一段简单的示例代码，例子中通过点击按钮，来改变文本框所显示的内容，具体代码含义直接通过注释说明了。</p>
+<div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtCore ...</span></pre></div></!-->
+                    <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">类型转换导致字符串大小计算错误的问题</a></h2>
+                <div class="summary"><hr />
+<p>今天在定位问题时，发现有一个字符串关键字在搜索时死活不命中，但实际那个关键字在数据中是存在的，跟踪发现是一个不起眼的细节导致的。</p>
+<!-- more -->
+
+<p>用一段简短的代码来说明一下问题出在哪里：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="cp">#define M_STRING_1 &quot;test&quot;</span>
+<span class="cp">#define M_STRING_2 (char *)&quot;test&quot;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">pcStr</span> <span class="o">=</span> <span class="n">M_STRING_1</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size of string macro 1      : %u bytes </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">M_STRING_1</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size of string pointer 1    : %u bytes </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">pcStr</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size ...</span></pre></div></!-->
+                    <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/05/string-size-calculation">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">配置 VIM 开发环境</a></h2>
+                <div class="summary"><hr />
+<h3>1 插件列表</h3>
+<h4>1.1 CTags</h4>
+<p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
+<p>下载地址：<a href="http://ctags.sourceforge.net">http://ctags.sourceforge.net</a></p>
+<p>使用方式：在代码的根目录执行如下命令即可生成tag文件：</p>
+<div class="highlight"><pre><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
+</pre></div>
+
+
+<!-- more -->
+
+<p>这个命令有点长，可以在<code>.vimrc</code>的文件中加个键盘映射，像下面的样子，这样只需要按下<code>CTRL+F12</code>即可生成tag文件了。</p>
+<div class="highlight"><pre><span class="n">map</span> <span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">F12</span><span class="o">&gt;</span> <span class="o">:!</span><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
+</pre></div>
+
+
+<p>另外，如果需要指明源代码的语言，则需要加上 ...</p></!-->
+                    <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/22/vim-development-environment">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">在 ArchLinux 中使用 Fcitx 输入法</a></h2>
+                <div class="summary"><hr />
+<p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。</p>
+<!-- more -->
+
+<h3>安装输入法</h3>
+<p>执行下面的命令安装FCITX：</p>
+<div class="highlight"><pre><span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">fcitx</span><span class="o">-</span><span class="n">im</span>
+</pre></div>
+
+
+<h3>配置环境变量</h3>
+<p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
+<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="s">&quot;@im=fcitx&quot;</span>
+</pre></div>
+
+
+<p>配置后重新登录生效，使用<code>CTRL+空格</code>激活输入法，如果发现fcitx没有运行，则直接在命令行里执行<code>fcitx</code>即可。</p>
+                    <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">MySQL协议分析</a></h2>
+                <div class="summary"><hr />
+<h2>1 交互过程</h2>
+<p>MySQL客户端与服务器的交互主要分为两个阶段：握手认证阶段和命令执行阶段。</p>
+<h3>1.1 握手认证阶段</h3>
+<p>握手认证阶段为客户端与服务器建立连接后进行，交互过程如下：</p>
+<ul>
+<li>服务器 -&gt; 客户端：握手初始化消息</li>
+<li>客户端 -&gt; 服务器：登陆认证消息</li>
+<li>服务器 -&gt; 客户端：认证结果消息</li>
+</ul>
+<h3>1.2 命令执行阶段</h3>
+<p>客户端认证成功后，会进入命令执行阶段，交互过程如下：</p>
+<ul>
+<li>客户端 -&gt; 服务器：执行命令消息</li>
+<li>服务器 -&gt; 客户端：命令执行结果</li>
+</ul>
+<!-- more -->
+
+<p><strong>MySQL客户端与服务器的完整交互过程如下</strong>：</p>
+<p><img alt="MySQL客户端与服务器交互示意图" src="/images/articles/201311/mysql_protocol_message.png" /></p>
+<h2>2 基本类型</h2>
+<h3>2.1 整型值</h3>
+<p>MySQL报文中整型值分别有1、2、3、4、8字节长度，使用小字节序传输。</p>
+<h3>2.2 字符串（以NULL结尾）（Null-Terminated String）</h3>
+<p>字符串长度不固定，当遇到 ...</p></!-->
+                    <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">通过PXE方式安装Linux系统</a></h2>
+                <div class="summary"><hr />
+<h3>1 准备工作</h3>
+<ul>
+<li>Linux安装镜像（本文以CentOS为例）</li>
+<li>TFTP+DHCP服务程序（Windows环境中推荐Tftpd32，<a href="http://tftpd32.jounin.net">点击此处进入下载页面</a>）</li>
+<li>FTP服务程序（推荐FileZilla，<a href="http://filezilla-project.org">点击此处进入下载页面</a>）</li>
+</ul>
+<!-- more -->
+
+<h3>2 建立PXE启动目录</h3>
+<ul>
+<li>创建<code>E:\Server\PXE</code>目录，将Linux光盘镜像<code>/images/pxeboot</code>文件夹中的<code>initrd.img</code>和<code>vmlinux</code>文件拷贝到该目录中</li>
+<li>在<code>E:\Server\PXE</code>中创建<code>pxelinux.cfg</code>目录，将光盘镜像<code>/isolinux</code>文件夹中的<code>isolinux.cfg</code>文件拷贝到该目录中，并重命名为<code>default</code></li>
+<li>将syslinux的PXE启动加载程序<code>pxelinux.0</code>拷贝到<code>E:\Server\PXE ...</code></li></ul></!-->
+                    <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></h2>
+                <div class="summary"><hr />
+<h3>1 什么是 Core Dump</h3>
+<p>Core Dump 又叫核心转储。在程序运行过程中发生异常时，将其内存数据保存到文件中，这个过程叫做 Core Dump。</p>
+<h3>2 Core Dump 的作用</h3>
+<p>在开发过程中，难免会遇到程序运行过程中异常退出的情况，这时候想要定位哪里出了问题，仅仅依靠程序自身的信息打印（日志记录）往往是不够的，这个时候就需要 Core Dump 文件来帮忙了。</p>
+<p>一个完整的 Core Dump 文件实际上相当于恢复了异常现场，利用 Core Dump 文件，可以查看到程序异常时的所有信息，变量值、栈信息、内存数据，程序异常时的运行位置（甚至记录代码行号）等等，定位所需要的一切信息都可以从 Core Dump文件获取到，能够非常有效的提高定位效率。</p>
+<!-- more -->
+
+<h3>3 如何生成 Core Dump</h3>
+<h4>3 ...</h4></!-->
+                    <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/25/linux-core-dump">more ...</a>
+                </div>
+            </article>
+            <hr/>
+
+        <ul class="pagination">
+                <li class="prev disabled"><a href="#">&laquo;</a></li>
+                    <li class="active"><a
+                            href="http://hutaow.com/blog/authors/hutaow/index.html">1</a></li>
+                    <li class=""><a
+                            href="http://hutaow.com/blog/authors/hutaow/index2.html">2</a></li>
+                    <li class=""><a
+                            href="http://hutaow.com/blog/authors/hutaow/index3.html">3</a></li>
+                    <li class=""><a
+                            href="http://hutaow.com/blog/authors/hutaow/index4.html">4</a></li>
+                    <li class=""><a
+                            href="http://hutaow.com/blog/authors/hutaow/index5.html">5</a></li>
+                <li class="next"><a
+                        href="http://hutaow.com/blog/authors/hutaow/index2.html">&raquo;</a></li>
+        </ul>
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+                    <li class="list-group-item"><a href="https://plus.google.com/101629371795609143038"><i
+                            class="fa fa-google-plus-square fa-lg"></i> Google+
+                    </a></li>
+                    <li class="list-group-item"><a href="http://twitter.com/hutaow"><i
+                            class="fa fa-twitter-square fa-lg"></i> Twitter
+                    </a></li>
+                    <li class="list-group-item"><a href="http://www.linkedin.com/in/hutaow"><i
+                            class="fa fa-linkedin-square fa-lg"></i> LinkedIn
+                    </a></li>
+                    <li class="list-group-item"><a href="http://www.weibo.com/hutaow"><i
+                            class="fa fa-weibo-square fa-lg"></i> Weibo
+                    </a></li>
+                    <li class="list-group-item"><a href="/feeds/all.atom.xml"><i
+                            class="fa fa-rss-square fa-lg"></i> RSS
+                    </a></li>
+                  </ul>
+                </li>
+
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                    <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
+                                轻量级的 Linux 终端软件 —— RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
+                                使用 OProfile 进行性能分析
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
+                                将 Python 脚本转换为可执行程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
+                                使用 PyQT 作为 Python 的图形界面
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
+                                类型转换导致字符串大小计算错误的问题
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item"><a href="http://hutaow.com/blog/categories/index.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
+                    <ul class="list-group" id="categories">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/database/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Database
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/life/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Life
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/linux/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Linux
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/network/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Network
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/programming/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Programming
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/protocol/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Protocol
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/security/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Security
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/technology/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Technology
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item"><a href="http://hutaow.com/blog/tags/index.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group list-inline tagcloud" id="tags">
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags//index.html">
+                                
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/android/index.html">
+                                Android
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/archlinux/index.html">
+                                ArchLinux
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/atl/index.html">
+                                ATL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/c/index.html">
+                                C
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/coredump/index.html">
+                                CoreDump
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cscope/index.html">
+                                CScope
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/csharp/index.html">
+                                CSharp
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/ctags/index.html">
+                                CTags
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/dai-li/index.html">
+                                代理
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/diao-shi/index.html">
+                                调试
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/diao-yong-zhan/index.html">
+                                调用栈
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
+                                定位
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/fcitx/index.html">
+                                Fcitx
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/fedora/index.html">
+                                Fedora
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/foxmarks/index.html">
+                                Foxmarks
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/gdb/index.html">
+                                GDB
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/gong-ju/index.html">
+                                工具
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/ids/index.html">
+                                IDS
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/java/index.html">
+                                Java
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/jiao-ben/index.html">
+                                脚本
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/jiao-huan-ji/index.html">
+                                交换机
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/kai-fa/index.html">
+                                开发
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/kde/index.html">
+                                KDE
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
+                                控件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/linux/index.html">
+                                Linux
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">
+                                路由器
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/mplayer/index.html">
+                                MPlayer
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/mysql/index.html">
+                                MySQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/openwrt/index.html">
+                                OpenWRT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/oprofile/index.html">
+                                OProfile
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
+                                配置文件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/protocol/index.html">
+                                Protocol
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/pxe/index.html">
+                                PXE
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/pyqt/index.html">
+                                PyQT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/python/index.html">
+                                Python
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/qt/index.html">
+                                QT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/rhythmbox/index.html">
+                                Rhythmbox
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">
+                                入侵检测
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/rxvt/index.html">
+                                RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
+                                数据库
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/snort/index.html">
+                                Snort
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/sql/index.html">
+                                SQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/taglist/index.html">
+                                TagList
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/vi/index.html">
+                                VI
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/virtualbox/index.html">
+                                VirtualBox
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xie-yi-fen-xi/index.html">
+                                协议分析
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
+                                信号
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">
+                                性能优化
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xmarks/index.html">
+                                Xmarks
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xml/index.html">
+                                XML
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/zhe-teng/index.html">
+                                折腾
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/zi-fu-bian-ma/index.html">
+                                字符编码
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 hutaow
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    &quot;<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">胡桃夹子</span>&quot; by <a xmlns:cc="http://creativecommons.org/ns#" href="http://hutaow.com" property="cc:attributionName" rel="cc:attributionURL">hutaow</a> is
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://hutaow.com/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://hutaow.com/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://hutaow.com/theme/js/respond.min.js"></script>
+
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'hutaow'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-17662168-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+</body>
+</html>

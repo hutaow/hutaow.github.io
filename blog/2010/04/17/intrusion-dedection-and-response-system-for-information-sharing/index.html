@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>入侵检测与响应系统的信息共享 - 胡桃夹子</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="胡桃夹子" />
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="入侵检测与响应系统的信息共享"/>
+            <meta property="og:url" content="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing"/>
+            <meta property="og:description" content="引言 入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。 值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。 1 入侵检测消息交互过程 1.1 建立连接 使用IDXP传输数据的入侵检测实体被称为IDXP对等体。对等体只能成对出现，这些对等体通过BEEP会话中的一个或多个BEEP信道进行数据传输。对等体可能是管理器或分析器。 在分析器和管理器之间很可能是多对多的关系。即一个分析器可以和多个管理器通信，同样，一个管理器也可以和多个分析器通信；在不同的管理器之间也可以是多对多的关系。所以，一个管理器可以通过多个中间管理器接收大量的来自分析器的报警信息。但是 ..."/>
+            <meta property="article:published_time" content="2010-04-17" />
+                <meta property="article:section" content="Security" />
+                <meta property="article:tag" content="IDS" />
+                <meta property="article:tag" content="入侵检测" />
+                <meta property="article:author" content="hutaow" />
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://hutaow.com/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://hutaow.com/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://hutaow.com/theme/css/style.css" type="text/css"/>
+
+        <link href="http://hutaow.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="胡桃夹子 ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://hutaow.com/" class="navbar-brand">
+胡桃夹子            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="http://hutaow.com/about/index.html">
+                             关于我
+                          </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://hutaow.com/blog/archives/index.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing"
+                       rel="bookmark"
+                       title="Permalink to 入侵检测与响应系统的信息共享">
+                        入侵检测与响应系统的信息共享
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2010-04-17T21:25:00"> Sat 17 April 2010</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/security/index.html">Security</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/ids/index.html">IDS</a>
+        /
+	<a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">入侵检测</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <hr />
+<h3>引言</h3>
+<p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。</p>
+<p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
+<!-- more -->
+
+<h3>1 入侵检测消息交互过程</h3>
+<h4>1.1 建立连接</h4>
+<p>使用IDXP传输数据的入侵检测实体被称为IDXP对等体。对等体只能成对出现，这些对等体通过BEEP会话中的一个或多个BEEP信道进行数据传输。对等体可能是管理器或分析器。</p>
+<p>在分析器和管理器之间很可能是多对多的关系。即一个分析器可以和多个管理器通信，同样，一个管理器也可以和多个分析器通信；在不同的管理器之间也可以是多对多的关系。所以，一个管理器可以通过多个中间管理器接收大量的来自分析器的报警信息。但是，各个分析器之间禁止建立IDXP连接，避免重复报警情况的发生。</p>
+<p><strong>对等体"Alice"和"Bob"建立IDXP交换的过程</strong></p>
+<p>IDXP对等体之间通过打开一个BEEP信道进行通信。在打开BEEP信道之前，需要首先建立BEEP会话，然后就安全特性等问题进行协商。BEEP安全轮廓协商成功后，再经互相确认应答，然后开始IDXP交换。</p>
+<div class="highlight"><pre>Alice                                               Bob
+  <span class="o">-------------------</span> 建立连接<span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="o">--------------------&gt;</span>
+<span class="o">&lt;----------------------</span> 问候 <span class="o">------------------------&gt;</span>
+<span class="o">&lt;------------------</span> 启动安全轮廓<span class="p">(</span><span class="m">2</span><span class="p">)</span> <span class="o">------------------&gt;</span>
+<span class="o">&lt;----------------------</span> 问候 <span class="o">------------------------&gt;</span>
+<span class="o">&lt;-------------------</span> 启动 IDXP<span class="p">(</span><span class="m">3</span><span class="p">)</span> <span class="o">-------------------&gt;</span>
+</pre></div>
+
+
+<p>交互过程:</p>
+<ul>
+<li>"Alice"建立一个到'Bob'的连接, 并触发交换二者BEEP问候消息</li>
+<li>两个实体协商BEEP安全轮廓</li>
+<li>两个实体协商IDXP轮廓</li>
+</ul>
+<p><strong>对等体"Alice"和"Bob"通过代理服务器建立IDXP交换</strong></p>
+<p>在一对IDXP对等体之间可以存在多个代理，这些代理可能是因为管理的需要。比如透过防火墙进行受限访问，或是将公司各部门分析器的数据转发到公司总管理器。</p>
+<p>在使用代理转发数据时，会使用BEEP协调轮廓建立一个应用层的隧道。隧道轮廓(详细见"RFC3620 - The TUNNEL profile")即在此时发挥作用。在创建应用层隧道时，必须建立一个作为协调轮廓的隧道，并且该隧道轮廓需要进行SASL认证。隧道建立完成后，BEEP安全轮廓才可以提供IDXP协商时需要的各项安全特性。</p>
+<div class="highlight"><pre>Alice              proxy1               proxy2               Bob
+  <span class="o">-----</span> 建立连接 <span class="o">----&gt;</span>
+<span class="o">&lt;------</span> 问候 <span class="o">-------&gt;</span>
+  <span class="o">----</span> 启动隧道 <span class="o">-----&gt;</span>
+                      <span class="o">---</span> 建立连接<span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="o">----&gt;</span>
+                    <span class="o">&lt;-------</span> 问候 <span class="o">-------&gt;</span>
+                      <span class="o">-----</span> 启动隧道 <span class="o">-----&gt;</span>
+                                           <span class="o">-----</span> 建立连接 <span class="o">-----&gt;</span>
+                                         <span class="o">&lt;-------</span> 问候 <span class="o">-------&gt;</span>
+                                           <span class="o">-----</span> 启动隧道 <span class="o">-----&gt;</span>
+                                         <span class="o">&lt;----</span> <span class="o">&lt;</span>确认<span class="o">&gt;</span><span class="p">(</span><span class="m">2</span><span class="p">)</span> <span class="o">-----</span>
+                    <span class="o">&lt;------</span> <span class="o">&lt;</span>确认<span class="o">&gt;</span> <span class="o">------</span>
+<span class="o">&lt;-----</span> <span class="o">&lt;</span>确认<span class="o">&gt;</span> <span class="o">------</span>
+<span class="o">&lt;---------------------------</span> 问候 <span class="o">----------------------------&gt;</span>
+<span class="o">&lt;-----------------------</span> 启动安全轮廓 <span class="o">-------------------------&gt;</span>
+<span class="o">&lt;---------------------------</span> 问候 <span class="o">----------------------------&gt;</span>
+<span class="o">&lt;-------------------------</span> 启动 IDXP <span class="o">-------------------------&gt;</span>
+</pre></div>
+
+
+<p>交互过程:</p>
+<ul>
+<li>收到"Alice"启动隧道的消息后，"proxy1"并没有立即返回确认消息，而是先试图和"proxy"连接以建立隧道。同样的，"proxy2"也不会立即给"proxy1"返回确认消息</li>
+<li>"Bob"的确认信息首先到达"proxy2"并且与之启动隧道，然后确认消息会传递下去最终返回给"Alice"，最终"Alice"和"Bob"之间就成功建立了应用层的隧道</li>
+</ul>
+<h4>1.2 数据传输</h4>
+<p>在一对入侵检测实体通过BEEP会话进行通信时，会使用IDXP轮廓打开一个或多个BEEP信道。如果需要，可以用IDXP轮廓建立更多的BEEP会话，以提供额外的信道。但是在多数情况下，还是应该在已有的BEEP会话中添加新的信道，尽量避免用新建BEEP会话的方式添加信道。</p>
+<p>在每条信道中，对等体都是以客户端/服务器形式进行通信。客户端和服务器的角色扮演决定于建立BEEP会话的发起者和监听者。即发起者为客户端，监听者为服务器。</p>
+<div class="highlight"><pre><span class="o">+----------+</span><span class="err">                         </span> <span class="o">+----------+</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|</span><span class="err">                         </span> <span class="o">|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|********</span> <span class="n">BEEP</span> <span class="err">会话</span> <span class="o">********|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|</span><span class="err">                         </span> <span class="o">|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err"> </span> <span class="err">分析器 </span>  <span class="o">|</span> <span class="o">-------</span> <span class="n">IDXP</span> <span class="err">轮廓</span> <span class="o">------&gt;</span> <span class="o">|</span><span class="err"> </span> <span class="err">管理器 </span>  <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="err">客户端</span><span class="p">)</span>  <span class="o">|</span><span class="err">                         </span> <span class="o">|</span> <span class="p">(</span><span class="err">服务端</span><span class="p">)</span>  <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|</span><span class="err">                         </span> <span class="o">|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|**************************|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|</span><span class="err">                         </span> <span class="o">|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">+----------+</span><span class="err">                         </span> <span class="o">+----------+</span>
+</pre></div>
+
+
+<p>在一个BEEP会话中使用多个BEEP信道的方式对IDXP对等体之间传输数据的分类和优先级的管理非常有利。例如，管理器"M1"向"M2"发送报警数据时，可以将不同类型的信息使用单独的信道进行传输。"M1"在这些信道中扮演了客户端的角色，"M2"则对接收到的报警信息根据其不同类型进行相应处理。</p>
+<div class="highlight"><pre><span class="o">+----------+</span><span class="err">                                           </span> <span class="o">+----------+</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|</span><span class="err">                                           </span> <span class="o">|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|****************</span> <span class="n">BEEP</span> <span class="err">会话</span> <span class="o">******************|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|</span><span class="err">                                           </span> <span class="o">|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|</span> <span class="o">-------</span> <span class="n">IDXP</span> <span class="err">轮廓</span><span class="p">,</span> <span class="err">基于网络的报警信息</span> <span class="o">-------&gt;</span> <span class="o">|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err"> </span> <span class="err">管理器 </span>  <span class="o">|</span><span class="err">                                           </span> <span class="o">|</span><span class="err"> </span> <span class="err">管理器 </span>  <span class="o">|</span>
+<span class="o">|</span> <span class="err">  </span> <span class="n">M1</span><span class="err">   </span> <span class="o">|</span> <span class="o">-------</span> <span class="n">IDXP</span> <span class="err">轮廓</span><span class="p">,</span> <span class="err">基于主机的报警信息</span> <span class="o">-------&gt;</span> <span class="o">|</span><span class="err">   </span> <span class="n">M2</span><span class="err">   </span> <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="err">客户端</span><span class="p">)</span>  <span class="o">|</span><span class="err">                                           </span> <span class="o">|</span> <span class="p">(</span><span class="err">服务端</span><span class="p">)</span>  <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|</span> <span class="o">----------</span> <span class="n">IDXP</span> <span class="err">轮廓</span><span class="p">,</span> <span class="err">其它报警信息</span> <span class="o">---------&gt;</span> <span class="o">|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|</span><span class="err">                                           </span> <span class="o">|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|********************************************|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">|</span><span class="err">         </span> <span class="o">|</span><span class="err">                                           </span> <span class="o">|</span><span class="err">         </span> <span class="o">|</span>
+<span class="o">+----------+</span><span class="err">                                           </span> <span class="o">+----------+</span>
+</pre></div>
+
+
+<h4>1.3 断开连接</h4>
+<p>在一些情况下(如处理过程中出现错误)，IDXP对等体可以关闭某个IDXP信道。要关闭某条信道，需要在零号信道上发送一条"关闭"的指令，并且指明所关闭的信道。如果想要关闭整个BEEP会话，只需在零号信道上发送一条要求"关闭"零信道的指令即可。</p>
+<p>由于应用层隧道和BEEP安全轮廓会经常使用，所以凡是包含IDXP信道的BEEP会话将会一直存活下去。同时，为了避免IDXP信道被反复的建立，系统会一直保持这些IDXP信道的连接，即使当前已经没有数据在上面传输。建议当IDXP对等体在合适的时候，手动关闭并重建BEEP会话。</p>
+<h4>1.4 可信模型</h4>
+<p>在以上的模型中，BEEP安全轮廓是建立在IDXP对等体之间从而实现的端到端安全，而无需对中间代理建立信任。因此，只有在安全轮廓下经过协商后的IDXP对等体之间是相互信任的，而代理始终被看作是不可信的。</p>
+<h3>2 入侵检测消息交换格式</h3>
+<h4>2.1 IDMEF数据模型</h4>
+<p>IDMEF数据模型的各主要部分关系如下图所示（这里省略了事件指示器和属性）。
+<img alt="数据模型" src="/images/articles/201004/intrusion_dedection_and_response_system_for_information_sharing.png" /></p>
+<p>IDMEF消息的最高层类是"IDMEF-Message"，其它各类型消息都是该类的子类。目前IDMEF定义了两种消息："Alerts"和"Heartbeats"。其中这两个消息各自携带不同的子类，各子类又描述了更加详细的信息。</p>
+<p>需要注意的是，数据模型并没有指明警报信息如何分类和识别。例如，端口扫描这一行为，它可能被分析器识别为一次单点对多目标的攻击，同时被另一分析器识别为多次的单点攻击。所有，只有在分析器确定了报警类型之后，数据模型才能确定如何对报警数据进行格式化。</p>
+<h4>2.2 示例</h4>
+<p>IDMEF数据模型最终是以XML形式实现，XML跨平台、跨语言以及强扩展性的特点保证了IDS设备之间共享信息时良好的兼容性。</p>
+<p>下面用实例说明IDMEF对报警信息封装的格式。这些例子只是为说明用，不具备代表性。</p>
+<p>``` xml 基于网络检测到的某次泪滴攻击报警信息
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+   <idmef:IDMEF-Message xmlns:idmef="http://iana.org/idmef" version="1.0">
+     <idmef:Alert messageid="abc123456789">
+       <idmef:Analyzer analyzerid="hq-dmz-analyzer01">
+         <idmef:Node category="dns">
+           <idmef:location>Headquarters DMZ Network</idmef:location>
+           <idmef:name>analyzer01.example.com</idmef:name>
+         </idmef:Node>
+       </idmef:Analyzer>
+       <idmef:CreateTime ntpstamp="0xbc723b45.0xef449129">
+         2000-03-09T10:01:25.93464-05:00
+       </idmef:CreateTime>
+       <idmef:Source ident="a1b2c3d4">
+         <idmef:Node ident="a1b2c3d4-001" category="dns">
+           <idmef:name>badguy.example.net</idmef:name>
+           <idmef:Address ident="a1b2c3d4-002" category="ipv4-net-mask">
+             <idmef:address>192.0.2.50</idmef:address>
+             <idmef:netmask>255.255.255.255</idmef:netmask>
+           </idmef:Address>
+         </idmef:Node>
+       </idmef:Source>
+       <idmef:Target ident="d1c2b3a4">
+         <idmef:Node ident="d1c2b3a4-001" category="dns">
+           <idmef:Address category="ipv4-addr-hex">
+             <idmef:address>0xde796f70</idmef:address>
+           </idmef:Address>
+         </idmef:Node>
+       </idmef:Target>
+       <idmef:Classification text="Teardrop detected">
+         <idmef:Reference origin="bugtraqid">
+           <idmef:name>124</idmef:name>
+           <idmef:url>http://www.securityfocus.com/bid/124</idmef:url>
+         </idmef:Reference>
+       </idmef:Classification>
+     </idmef:Alert>
+   </idmef:IDMEF-Message></p>
+<div class="highlight"><pre><span class="sb">``</span><span class="err">`</span> <span class="kt">xml</span> <span class="err">基于网络检测到的某个端口扫描行为（注意</span><span class="o">&lt;</span><span class="nx">portlist</span><span class="o">&gt;</span><span class="err">中记录了被扫描的端口列表）</span>
+<span class="o">&lt;?</span><span class="kt">xml</span><span class="err"> </span><span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="err"> </span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span><span class="cp">?&gt;</span>
+   <span class="nt">&lt;idmef:IDMEF-Message</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span> <span class="na">xmlns:idmef=</span><span class="s">&quot;http://iana.org/idmef&quot;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;idmef:Alert</span> <span class="na">messageid=</span><span class="s">&quot;abc123456789&quot;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;idmef:Analyzer</span> <span class="na">analyzerid=</span><span class="s">&quot;hq-dmz-analyzer62&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;idmef:Node</span> <span class="na">category=</span><span class="s">&quot;dns&quot;</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;idmef:location&gt;</span>Headquarters Web Server<span class="nt">&lt;/idmef:location&gt;</span>
+           <span class="nt">&lt;idmef:name&gt;</span>analyzer62.example.com<span class="nt">&lt;/idmef:name&gt;</span>
+         <span class="nt">&lt;/idmef:Node&gt;</span>
+       <span class="nt">&lt;/idmef:Analyzer&gt;</span>
+       <span class="nt">&lt;idmef:CreateTime</span> <span class="na">ntpstamp=</span><span class="s">&quot;0xbc72b2b4.0x00000000&quot;</span><span class="nt">&gt;</span>
+         2000-03-09T15:31:00-08:00
+       <span class="nt">&lt;/idmef:CreateTime&gt;</span>
+       <span class="nt">&lt;idmef:Source</span> <span class="na">ident=</span><span class="s">&quot;abc01&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;idmef:Node</span> <span class="na">ident=</span><span class="s">&quot;abc01-01&quot;</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;idmef:Address</span> <span class="na">ident=</span><span class="s">&quot;abc01-02&quot;</span> <span class="na">category=</span><span class="s">&quot;ipv4-addr&quot;</span><span class="nt">&gt;</span>
+             <span class="nt">&lt;idmef:address&gt;</span>192.0.2.200<span class="nt">&lt;/idmef:address&gt;</span>
+           <span class="nt">&lt;/idmef:Address&gt;</span>
+         <span class="nt">&lt;/idmef:Node&gt;</span>
+       <span class="nt">&lt;/idmef:Source&gt;</span>
+       <span class="nt">&lt;idmef:Target</span> <span class="na">ident=</span><span class="s">&quot;def01&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;idmef:Node</span> <span class="na">ident=</span><span class="s">&quot;def01-01&quot;</span> <span class="na">category=</span><span class="s">&quot;dns&quot;</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;idmef:name&gt;</span>www.example.com<span class="nt">&lt;/idmef:name&gt;</span>
+           <span class="nt">&lt;idmef:Address</span> <span class="na">ident=</span><span class="s">&quot;def01-02&quot;</span> <span class="na">category=</span><span class="s">&quot;ipv4-addr&quot;</span><span class="nt">&gt;</span>
+             <span class="nt">&lt;idmef:address&gt;</span>192.0.2.50<span class="nt">&lt;/idmef:address&gt;</span>
+           <span class="nt">&lt;/idmef:Address&gt;</span>
+         <span class="nt">&lt;/idmef:Node&gt;</span>
+         <span class="nt">&lt;idmef:Service</span> <span class="na">ident=</span><span class="s">&quot;def01-03&quot;</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;idmef:portlist&gt;</span>5-25,37,42,43,53,69-119,123-514
+           <span class="nt">&lt;/idmef:portlist&gt;</span>
+         <span class="nt">&lt;/idmef:Service&gt;</span>
+       <span class="nt">&lt;/idmef:Target&gt;</span>
+       <span class="nt">&lt;idmef:Classification</span> <span class="na">text=</span><span class="s">&quot;simple portscan&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;idmef:Reference</span> <span class="na">origin=</span><span class="s">&quot;vendor-specific&quot;</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;idmef:name&gt;</span>portscan<span class="nt">&lt;/idmef:name&gt;</span>
+           <span class="nt">&lt;idmef:url&gt;</span>http://www.vendor.com/portscan<span class="nt">&lt;/idmef:url&gt;</span>
+         <span class="nt">&lt;/idmef:Reference&gt;</span>
+       <span class="nt">&lt;/idmef:Classification&gt;</span>
+     <span class="nt">&lt;/idmef:Alert&gt;</span>
+   <span class="nt">&lt;/idmef:IDMEF-Message&gt;</span>
+</pre></div>
+
+
+<h3>3 参考资料</h3>
+<div class="highlight"><pre><span class="mf">1.</span> <span class="n">RFC4765</span> <span class="o">-</span> <span class="n">The</span> <span class="n">Intrusion</span> <span class="n">Detection</span> <span class="n">Message</span> <span class="n">Exchange</span> <span class="n">Format</span> <span class="p">(</span><span class="n">IDMEF</span><span class="p">)</span>
+<span class="mf">2.</span> <span class="n">RFC4767</span> <span class="o">-</span> <span class="n">The</span> <span class="n">Intrusion</span> <span class="n">Detection</span> <span class="n">Exchange</span> <span class="n">Protocol</span> <span class="p">(</span><span class="n">IDXP</span><span class="p">)</span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'hutaow'; // required: replace example with your forum shortname
+
+                    var disqus_identifier = 'intrusion-dedection-and-response-system-for-information-sharing';
+                var disqus_url = 'http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing';
+
+            var disqus_config = function () {
+                this.language = "en";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+                    <li class="list-group-item"><a href="https://plus.google.com/101629371795609143038"><i
+                            class="fa fa-google-plus-square fa-lg"></i> Google+
+                    </a></li>
+                    <li class="list-group-item"><a href="http://twitter.com/hutaow"><i
+                            class="fa fa-twitter-square fa-lg"></i> Twitter
+                    </a></li>
+                    <li class="list-group-item"><a href="http://www.linkedin.com/in/hutaow"><i
+                            class="fa fa-linkedin-square fa-lg"></i> LinkedIn
+                    </a></li>
+                    <li class="list-group-item"><a href="http://www.weibo.com/hutaow"><i
+                            class="fa fa-weibo-square fa-lg"></i> Weibo
+                    </a></li>
+                    <li class="list-group-item"><a href="/feeds/all.atom.xml"><i
+                            class="fa fa-rss-square fa-lg"></i> RSS
+                    </a></li>
+                  </ul>
+                </li>
+
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                    <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
+                                轻量级的 Linux 终端软件 —— RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
+                                使用 OProfile 进行性能分析
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
+                                将 Python 脚本转换为可执行程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
+                                使用 PyQT 作为 Python 的图形界面
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
+                                类型转换导致字符串大小计算错误的问题
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item"><a href="http://hutaow.com/blog/categories/index.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
+                    <ul class="list-group" id="categories">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/database/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Database
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/life/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Life
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/linux/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Linux
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/network/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Network
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/programming/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Programming
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/protocol/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Protocol
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/security/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Security
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/technology/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Technology
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item"><a href="http://hutaow.com/blog/tags/index.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group list-inline tagcloud" id="tags">
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags//index.html">
+                                
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/android/index.html">
+                                Android
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/archlinux/index.html">
+                                ArchLinux
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/atl/index.html">
+                                ATL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/c/index.html">
+                                C
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/coredump/index.html">
+                                CoreDump
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cscope/index.html">
+                                CScope
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/csharp/index.html">
+                                CSharp
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/ctags/index.html">
+                                CTags
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/dai-li/index.html">
+                                代理
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/diao-shi/index.html">
+                                调试
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/diao-yong-zhan/index.html">
+                                调用栈
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
+                                定位
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/fcitx/index.html">
+                                Fcitx
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/fedora/index.html">
+                                Fedora
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/foxmarks/index.html">
+                                Foxmarks
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/gdb/index.html">
+                                GDB
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/gong-ju/index.html">
+                                工具
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/ids/index.html">
+                                IDS
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/java/index.html">
+                                Java
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/jiao-ben/index.html">
+                                脚本
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/jiao-huan-ji/index.html">
+                                交换机
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/kai-fa/index.html">
+                                开发
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/kde/index.html">
+                                KDE
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
+                                控件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/linux/index.html">
+                                Linux
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">
+                                路由器
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/mplayer/index.html">
+                                MPlayer
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/mysql/index.html">
+                                MySQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/openwrt/index.html">
+                                OpenWRT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/oprofile/index.html">
+                                OProfile
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
+                                配置文件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/protocol/index.html">
+                                Protocol
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/pxe/index.html">
+                                PXE
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/pyqt/index.html">
+                                PyQT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/python/index.html">
+                                Python
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/qt/index.html">
+                                QT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/rhythmbox/index.html">
+                                Rhythmbox
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">
+                                入侵检测
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/rxvt/index.html">
+                                RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
+                                数据库
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/snort/index.html">
+                                Snort
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/sql/index.html">
+                                SQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/taglist/index.html">
+                                TagList
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/vi/index.html">
+                                VI
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/virtualbox/index.html">
+                                VirtualBox
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xie-yi-fen-xi/index.html">
+                                协议分析
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
+                                信号
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">
+                                性能优化
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xmarks/index.html">
+                                Xmarks
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xml/index.html">
+                                XML
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/zhe-teng/index.html">
+                                折腾
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/zi-fu-bian-ma/index.html">
+                                字符编码
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 hutaow
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    &quot;<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">胡桃夹子</span>&quot; by <a xmlns:cc="http://creativecommons.org/ns#" href="http://hutaow.com" property="cc:attributionName" rel="cc:attributionURL">hutaow</a> is
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://hutaow.com/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://hutaow.com/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://hutaow.com/theme/js/respond.min.js"></script>
+
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'hutaow'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-17662168-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+</body>
+</html>

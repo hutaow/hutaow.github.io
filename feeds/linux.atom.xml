@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/linux.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-01-03T14:28:23+08:00</updated><entry><title>轻量级的 Linux 终端软件 —— RXVT</title><link href="http://hutaow.com/blog/2014/01/03/my-rxvt-config" rel="alternate"></link><updated>2014-01-03T14:28:23+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-01-03:blog/2014/01/03/my-rxvt-config</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;最近发现了个轻量级的Linux终端 —— &lt;a href="http://rxvt.sourceforge.net"&gt;RXVT&lt;/a&gt;，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;!!&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.Xdefaults
+Rxvt.preeditType: root
+
+!!窗口大小及标题
+Rxvt.geometry: 80x25
+Rxvt.title: hutaow-rxvt
+
+!!输入法设置
+Rxvt.inputMethod: fcitx
+
+!!透明度设置
+!Rxvt.transparent: &lt;span class="nb"&gt;true&lt;/span&gt;
+!Rxvt.shading: 110
+!Rxvt.tintColor: grey
+!Rxvt.inheritPixmap: &lt;span class="nb"&gt;false&lt;/span&gt;
+
+!!扩展设置
+Rxvt.perl-ext-common: default, matcher, fullscreen
+
+!!URL操作
+Rxvt.urlLauncher: /usr/bin/chromium
+Rxvt.matcher.button: 1
+
+!!标签设置
+!Rxvt.per-ext-common: ..., tabbed, ...
+!Rxvt.tabbed.tabbar-fg: 2
+!Rxvt.tabbed.tabbar-bg: 0
+!Rxvt.tabbed.tab-fg: 3
+!Rxvt.tabbed.tab-bg: 0
+!Rxvt.tabbed.new-button: &lt;span class="nb"&gt;false&lt;/span&gt;
+!Rxvt.tabbed.autohide: &lt;span class="nb"&gt;true&lt;/span&gt;
+!RXvt.tabbed.reopen-on-close: no
+!Rxvt.keysym.Control-t: perl:tabbedex:new_tab
+!Rxvt.keysym.Control-Tab: perl:tabbedex:next_tab
+!Rxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
+!Rxvt.keysym.Control-Shift-Left: perl:tabbex:move_tab_left
+!Rxvt.keysym.Control-Shift-Right: perl:tabbex:move_tab_right
+!Rxvt.keysym.Control-Shift-R: perl:tabbex:rename_tab
+
+!!全屏模式
+!Rxvt.perl-ext-common: ..., fullscreen, ...
+Rxvt.keysym.F11: perl:fullscreen:switch
+
+!!滚动条设置
+Rxvt.scrollBar: &lt;span class="nb"&gt;true&lt;/span&gt;
+Rxvt.scrollBar_right: &lt;span class="nb"&gt;true&lt;/span&gt;
+Rxvt.scrollBar_floating: &lt;span class="nb"&gt;false&lt;/span&gt;
+Rxvt.scrollstyle: plain
+
+!!滚屏设置
+Rxvt.mouseWheelScrollPage: &lt;span class="nb"&gt;false&lt;/span&gt;
+Rxvt.scrollTtyOutput: &lt;span class="nb"&gt;false&lt;/span&gt;
+Rxvt.scrollWithBuffer: &lt;span class="nb"&gt;true&lt;/span&gt;
+Rxvt.scrollTtyKeypress: &lt;span class="nb"&gt;true&lt;/span&gt;
+
+!!光标闪烁
+Rxvt.cursorBlink: &lt;span class="nb"&gt;true&lt;/span&gt;
+
+!!缓存行数
+Rxvt.saveLines: 5000
+
+!!边框设置
+Rxvt.borderLess: &lt;span class="nb"&gt;false&lt;/span&gt;
+
+!!字体设置
+Rxvt.dpi: 96
+Rxvt.*font: xft:Terminus,xft:WenQuanYi Bitmap Song
+
+!!颜色设置
+Rxvt.depth: 32
+Rxvt.background: &lt;span class="c"&gt;#2C2C2C&lt;/span&gt;
+Rxvt.foreground: 7
+Rxvt.colorBD: 7
+Rxvt.colorUL: 7
+
+!!基本颜色
+!Black
+Rxvt.color0: &lt;span class="c"&gt;#3F3F3F&lt;/span&gt;
+Rxvt.color8: &lt;span class="c"&gt;#709080&lt;/span&gt;
+!red
+Rxvt.color1: &lt;span class="c"&gt;#705050&lt;/span&gt;
+Rxvt.color9: &lt;span class="c"&gt;#DCA3A3&lt;/span&gt;
+!Green
+Rxvt.color2: &lt;span class="c"&gt;#60B48A&lt;/span&gt;
+Rxvt.color10: &lt;span class="c"&gt;#72D5A3&lt;/span&gt;
+!Yellow
+Rxvt.color3: &lt;span class="c"&gt;#DFAF8F&lt;/span&gt;
+Rxvt.color11: &lt;span class="c"&gt;#F0DFAF&lt;/span&gt;
+!Blue
+Rxvt.color4: &lt;span class="c"&gt;#9AB8D7&lt;/span&gt;
+Rxvt.color12: &lt;span class="c"&gt;#94BFF3&lt;/span&gt;
+!Magenta
+Rxvt.color5: &lt;span class="c"&gt;#DC8CC3&lt;/span&gt;
+Rxvt.color13: &lt;span class="c"&gt;#EC93D3&lt;/span&gt;
+!Cyan
+Rxvt.color6: &lt;span class="c"&gt;#8CD0D3&lt;/span&gt;
+Rxvt.color14: &lt;span class="c"&gt;#93E0E3&lt;/span&gt;
+!White
+Rxvt.color7: &lt;span class="c"&gt;#DCDCDC&lt;/span&gt;
+Rxvt.color15: &lt;span class="c"&gt;#FFFFFF&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;源文件下载：&lt;a href="/downloads/code/hutaow.Xdefaults"&gt;链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;配置后的终端运行效果如下图：
+&lt;img alt="Interface of RXVT" src="/images/articles/201401/rxvt.png" /&gt;&lt;/p&gt;</summary><category term="Linux"></category><category term="RXVT"></category><category term="配置文件"></category></entry><entry><title>配置 VIM 开发环境</title><link href="http://hutaow.com/blog/2013/11/22/vim-development-environment" rel="alternate"></link><updated>2013-11-22T22:43:22+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2013-11-22:blog/2013/11/22/vim-development-environment</id><summary type="html">&lt;hr /&gt;
+&lt;h3&gt;1 插件列表&lt;/h3&gt;
+&lt;h4&gt;1.1 CTags&lt;/h4&gt;
+&lt;p&gt;CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="http://ctags.sourceforge.net"&gt;http://ctags.sourceforge.net&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用方式：在代码的根目录执行如下命令即可生成tag文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ctags&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;++-&lt;/span&gt;&lt;span class="n"&gt;kinds&lt;/span&gt;&lt;span class="o"&gt;=+&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;=+&lt;/span&gt;&lt;span class="n"&gt;iaS&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;extra&lt;/span&gt;&lt;span class="o"&gt;=+&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;这个命令有点长，可以在&lt;code&gt;.vimrc&lt;/code&gt;的文件中加个键盘映射，像下面的样子，这样只需要按下&lt;code&gt;CTRL+F12&lt;/code&gt;即可生成tag文件了。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;F12&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;:!&lt;/span&gt;&lt;span class="n"&gt;ctags&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;++-&lt;/span&gt;&lt;span class="n"&gt;kinds&lt;/span&gt;&lt;span class="o"&gt;=+&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;=+&lt;/span&gt;&lt;span class="n"&gt;iaS&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;extra&lt;/span&gt;&lt;span class="o"&gt;=+&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;另外，如果需要指明源代码的语言，则需要加上&lt;code&gt;--languages=c&lt;/code&gt;（使用C语言）的参数。&lt;/p&gt;
+&lt;h4&gt;1.2 TagList&lt;/h4&gt;
+&lt;p&gt;TagList是一款基于CTags的VIM插件，用来显示代码的结构概况。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="http://www.vim.org/scripts/script.php?script_id=273"&gt;http://www.vim.org/scripts/script.php?script_id=273&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;配置方式：在&lt;code&gt;~/.vimrc&lt;/code&gt;文件中，增加如下配置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;Tlist_Auto_Open&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;Tlist_Show_One_File&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;Tlist_Exit_OnlyWindow&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中第一行配置为当发现开启的文件为源代码时，则自动打开TagList，建议打开这个选项，不然每次都都手动执行&lt;code&gt;TlistToggle&lt;/code&gt;来开关TagList窗口。&lt;/p&gt;
+&lt;h4&gt;1.3 CScope&lt;/h4&gt;
+&lt;p&gt;CScope是一个C语言的浏览工具，可以快速找到函数、变量的定义位置及调用信息。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="http://cscope.sourceforge.net"&gt;http://cscope.sourceforge.net&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用方式：在代码的根目录执行下面的命令，即可生成CScope的索引文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cscope&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Rbkq&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中，&lt;code&gt;-R&lt;/code&gt;表示递归建立索引，&lt;code&gt;-b&lt;/code&gt;表示不启动CScope的用户界面，&lt;code&gt;-k&lt;/code&gt;表示生成索引文件时不搜索&lt;code&gt;/usr/include&lt;/code&gt;目录，&lt;code&gt;-q&lt;/code&gt;表示生成&lt;code&gt;cscope.in.out&lt;/code&gt;和&lt;code&gt;cscope.po.out&lt;/code&gt;文件，以加快索引速度。&lt;/p&gt;
+&lt;h4&gt;1.4 OmniCppComplete&lt;/h4&gt;
+&lt;p&gt;OmniCppComplete是VIM中对结构体的成员变量、类的属性或方法提供实时提示及补全功能的插件，依赖CTags工具生成的索引文件。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="http://www.vim.org/scripts/script.php?script_id=1520"&gt;http://www.vim.org/scripts/script.php?script_id=1520&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;配置方式：无需配置，插件安装后即自动生效，在写代码时，输入一个结构体变量的名称后，当继续输入&lt;code&gt;.&lt;/code&gt;或&lt;code&gt;-&amp;gt;&lt;/code&gt;字符后，会自动弹出该结构体中的所有变量列表，可以上下选择，然后按回车自动补全。&lt;/p&gt;
+&lt;h4&gt;1.5 SuperTab&lt;/h4&gt;
+&lt;p&gt;SuperTab可以简化补全代码的方式，直接按&lt;code&gt;TAB&lt;/code&gt;键即可（之前需要按&lt;code&gt;CTRL+X&lt;/code&gt;和&lt;code&gt;CTRL+O&lt;/code&gt;）。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="http://www.vim.org/scripts/script.php?script_id=1643"&gt;http://www.vim.org/scripts/script.php?script_id=1643&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;配置方式：SuperTab插件是Vimball的安装格式，不需要手动拷贝插件，直接用VIM打开，然后执行&lt;code&gt;:so %&lt;/code&gt;即可完成安装。安装后需要在&lt;code&gt;~/.vimrc&lt;/code&gt;文件中增加如下配置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;SuperTabRetainCompletionType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;SuperTabDefaultCompletionType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;C-X&amp;gt;&amp;lt;C-O&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;1.6 MiniBufExplorer&lt;/h4&gt;
+&lt;p&gt;当需要同时编辑多个文件的时候，MiniBufExplorer可以在VIM顶部以标签形式显示当前打开的文件列表，并可以在各文件间快速切换。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="http://www.vim.org/scripts/script.php?script_id=159"&gt;http://www.vim.org/scripts/script.php?script_id=159&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;配置方式：在&lt;code&gt;~/.vimrc&lt;/code&gt;文件中增加如下配置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;miniBufExplMapWindowNavVim&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; 
+&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;miniBufExplMapWindowNavArrows&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; 
+&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;miniBufExplMapCTabSwitchBufs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; 
+&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;miniBufExplModSelTarget&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;1.7 Command-T&lt;/h4&gt;
+&lt;p&gt;Command-T用于在VIM快速定位文件，通过&lt;code&gt;:CommandT&lt;/code&gt;呼出Command-T窗口，然后直接输入文件名，在输入的过程中文件列表会逐渐缩小范围，并可以通过&lt;code&gt;CTRL+k&lt;/code&gt;和&lt;code&gt;CTRL+j&lt;/code&gt;上下选择文件，选定后按回车即可打开文件。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="http://www.vim.org/scripts/script.php?script_id=3025"&gt;http://www.vim.org/scripts/script.php?script_id=3025&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;安装方式：Command-T插件为Vimball安装格式，首先用VIM打开安装文件，执行&lt;code&gt;:so %&lt;/code&gt;安装插件，然后执行下面的命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vim&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ruby&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;
+&lt;span class="n"&gt;ruby&lt;/span&gt; &lt;span class="n"&gt;extconf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rb&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注：安装需要Ruby开发环境。&lt;/p&gt;
+&lt;h4&gt;1.8 CtrlP&lt;/h4&gt;
+&lt;p&gt;CtrlP是另一个快速定位文件的插件，通过&lt;code&gt;:CtrlP&lt;/code&gt;呼出查找窗口，用法和Command-T一样，而且支持正则，另外不需要Ruby运行环境，安装起来更方便。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="http://www.vim.org/scripts/script.php?script_id=3736"&gt;http://www.vim.org/scripts/script.php?script_id=3736&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;配置方式：在&lt;code&gt;~/.vimrc&lt;/code&gt;中增加如下配置选项：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;ctrlp_working_path_mode&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;ra&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+
+&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;MacOSX&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;wildignore&lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="err"&gt;*/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;so&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;swp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zip&lt;/span&gt;
+
+&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;Windows&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;wildignore&lt;/span&gt;&lt;span class="o"&gt;+=*&lt;/span&gt;&lt;span class="err"&gt;\\&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="err"&gt;\\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;swp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;
+
+&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;ctrlp_custom_ignore&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="err"&gt;\&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;dir&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="err"&gt;&amp;#39;\&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.(&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;hg&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;svn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="err"&gt;\&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;\&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.(&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;so&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="err"&gt;\&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;some_bad_symbolic_links&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="err"&gt;\&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;1.9 A.VIM&lt;/h4&gt;
+&lt;p&gt;A.VIM是用于&lt;code&gt;.c&lt;/code&gt;和&lt;code&gt;.h&lt;/code&gt;文件间的快速切换的插件。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="http://www.vim.org/scripts/script.php?script_id=31"&gt;http://www.vim.org/scripts/script.php?script_id=31&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;配置方式：无需配置，插件安装后执行&lt;code&gt;:A&lt;/code&gt;即可完成&lt;code&gt;.c&lt;/code&gt;和&lt;code&gt;.h&lt;/code&gt;文件间的切换。&lt;/p&gt;
+&lt;h3&gt;2 运行效果&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="VIM开发环境配置效果" src="/images/articles/201311/vim_development_environment.png" /&gt;&lt;/p&gt;
+&lt;p&gt;注：图中的效果除了上面的插件配置，还包括了其它对VIM的基本配置，见&lt;a href="/blog/2007/08/19/my-vi-config"&gt;《我的VI配置文件》&lt;/a&gt;。&lt;/p&gt;</summary><category term="VI"></category><category term="CTags"></category><category term="TagList"></category><category term="CScope"></category></entry><entry><title>在 ArchLinux 中使用 Fcitx 输入法</title><link href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux" rel="alternate"></link><updated>2013-11-18T22:37:16+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2013-11-18:blog/2013/11/18/configure-the-fcitx-in-archlinux</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;h3&gt;安装输入法&lt;/h3&gt;
+&lt;p&gt;执行下面的命令安装FCITX：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pacman&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;S&lt;/span&gt; &lt;span class="n"&gt;fcitx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;im&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;配置环境变量&lt;/h3&gt;
+&lt;p&gt;将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为&lt;code&gt;~/.xprofile&lt;/code&gt;，startx、Slim的配置文件为&lt;code&gt;~/.xinitrc&lt;/code&gt;）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fcitx&lt;/span&gt;
+&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fcitx&lt;/span&gt;
+&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;XMODIFIERS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@im=fcitx&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;配置后重新登录生效，使用&lt;code&gt;CTRL+空格&lt;/code&gt;激活输入法，如果发现fcitx没有运行，则直接在命令行里执行&lt;code&gt;fcitx&lt;/code&gt;即可。&lt;/p&gt;</summary><category term="Linux"></category><category term="ArchLinux"></category><category term="Fcitx"></category></entry><entry><title>通过PXE方式安装Linux系统</title><link href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe" rel="alternate"></link><updated>2013-10-30T23:30:57+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2013-10-30:blog/2013/10/30/install-linux-with-pxe</id><summary type="html">&lt;hr /&gt;
+&lt;h3&gt;1 准备工作&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Linux安装镜像（本文以CentOS为例）&lt;/li&gt;
+&lt;li&gt;TFTP+DHCP服务程序（Windows环境中推荐Tftpd32，&lt;a href="http://tftpd32.jounin.net"&gt;点击此处进入下载页面&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;FTP服务程序（推荐FileZilla，&lt;a href="http://filezilla-project.org"&gt;点击此处进入下载页面&lt;/a&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- more --&gt;
+
+&lt;h3&gt;2 建立PXE启动目录&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;创建&lt;code&gt;E:\Server\PXE&lt;/code&gt;目录，将Linux光盘镜像&lt;code&gt;/images/pxeboot&lt;/code&gt;文件夹中的&lt;code&gt;initrd.img&lt;/code&gt;和&lt;code&gt;vmlinux&lt;/code&gt;文件拷贝到该目录中&lt;/li&gt;
+&lt;li&gt;在&lt;code&gt;E:\Server\PXE&lt;/code&gt;中创建&lt;code&gt;pxelinux.cfg&lt;/code&gt;目录，将光盘镜像&lt;code&gt;/isolinux&lt;/code&gt;文件夹中的&lt;code&gt;isolinux.cfg&lt;/code&gt;文件拷贝到该目录中，并重命名为&lt;code&gt;default&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;将syslinux的PXE启动加载程序&lt;code&gt;pxelinux.0&lt;/code&gt;拷贝到&lt;code&gt;E:\Server\PXE&lt;/code&gt;目录中（可以从一个现有的Linux中拷贝一个，一般在&lt;code&gt;/usr/lib/syslinux&lt;/code&gt;或&lt;code&gt;/usr/share/syslinux&lt;/code&gt;目录中，如果找不到现成的Linux，可以&lt;a href="/downloads/linux/pxelinux.0"&gt;点击这里下载&lt;/a&gt;一个）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PXE目录建立好后，结构应该是下面的样子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;PXE&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+    &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;pxelinux&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cfg&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+    &lt;span class="o"&gt;|&lt;/span&gt;              &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt;
+    &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;pxelinux&lt;/span&gt;&lt;span class="mf"&gt;.0&lt;/span&gt;
+    &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;initrd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;
+    &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;vmlinuz&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;3 软件配置&lt;/h3&gt;
+&lt;h4&gt;3.1 配置DHCP服务&lt;/h4&gt;
+&lt;p&gt;配置DHCP主要有以下几个关键点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;IP Pool Starting Address&lt;/strong&gt;：192.168.0.100 &lt;em&gt;（配置DHCP分配IP的起始地址）&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Size of Pool&lt;/strong&gt;：100 &lt;em&gt;（配置DHCP的地址池大小）&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Boot File&lt;/strong&gt;：pxelinux.0 &lt;em&gt;（配置启动文件）&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;另外还有一个选项开关“&lt;strong&gt;Ping address before assignation&lt;/strong&gt;”（分配地址前进行Ping操作），最好将其关闭，因为打开它的情况下客户端可能出现无法及时加载启动文件的情况。&lt;/p&gt;
+&lt;p&gt;配置完成后，Tftpd32应该是类似下图的样子：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Tftpd32配置DHCP选项" src="/images/articles/201310/install_linux_with_pxe_dhcp.png" /&gt;&lt;/p&gt;
+&lt;h4&gt;3.2 配置TFTP服务&lt;/h4&gt;
+&lt;p&gt;配置TFTP服务只需要将TFTP的目录设置对即可，其它选项用默认参数，这里目录设置为&lt;code&gt;E:\Server\PXE&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;配置完成后，Tftpd32应该是类似下图的样子：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Tftpd32配置TFTP目录" src="/images/articles/201310/install_linux_with_pxe_tftp.png" /&gt;&lt;/p&gt;
+&lt;h4&gt;3.3 配置FTP服务&lt;/h4&gt;
+&lt;p&gt;配置FTP比较简单，将Linux的光盘镜像解压，并将FTP服务指向解压目录即可&lt;/p&gt;
+&lt;h3&gt;4 启动安装&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;将待安装Linux的电脑设置为PXE引导方式，并等待电脑启动&lt;/li&gt;
+&lt;li&gt;PXE启动成功后，屏幕上可以看到&lt;code&gt;Boot&lt;/code&gt;的提示符，输入&lt;code&gt;linux&lt;/code&gt;或直接按回车加载内核&lt;/li&gt;
+&lt;li&gt;Linux内核加载后，会显示Linux的安装初始界面，选择FTP安装方式，并将前面配置好的FTP地址输入进去&lt;/li&gt;
+&lt;li&gt;稍等片刻，就可以进入Linux的安装界面了&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Linux"></category><category term="PXE"></category></entry><entry><title>Linux信号处理机制</title><link href="http://hutaow.com/blog/2013/10/19/linux-signal" rel="alternate"></link><updated>2013-10-19T21:47:22+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2013-10-19:blog/2013/10/19/linux-signal</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。&lt;/p&gt;
+&lt;p&gt;需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;h3&gt;1 信号的响应动作&lt;/h3&gt;
+&lt;p&gt;每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;中止进程(Term)&lt;/li&gt;
+&lt;li&gt;忽略信号(Ign)&lt;/li&gt;
+&lt;li&gt;中止进程并保存内存信息(Core)&lt;/li&gt;
+&lt;li&gt;停止进程(Stop)&lt;/li&gt;
+&lt;li&gt;继续运行进程(Cont)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户可以通过&lt;code&gt;signal&lt;/code&gt;或&lt;code&gt;sigaction&lt;/code&gt;函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。&lt;/p&gt;
+&lt;h3&gt;2 信号类型&lt;/h3&gt;
+&lt;p&gt;Linux支持的信号类型可以参考下面给出的列表。&lt;/p&gt;
+&lt;h4&gt;2.1 在POSIX.1-1990标准中的信号列表&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;信号&lt;/th&gt;
+&lt;th&gt;值&lt;/th&gt;
+&lt;th&gt;动作&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGHUP&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;终端控制进程结束(终端连接断开)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGINT&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;用户发送INTR字符(Ctrl+C)触发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGQUIT&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;用户发送QUIT字符(Ctrl+/)触发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGILL&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;非法指令(程序错误、试图执行数据段、栈溢出等)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGABRT&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;调用abort函数触发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGFPE&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;算术运行错误(浮点运算错误、除数为零等)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGKILL&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;无条件结束程序(不能被捕获、阻塞或忽略)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGSEGV&lt;/td&gt;
+&lt;td&gt;11&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;无效内存引用(试图访问不属于自己的内存空间、对只读内存空间进行写操作)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGPIPE&lt;/td&gt;
+&lt;td&gt;13&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;消息管道损坏(FIFO/Socket通信时，管道未打开而进行写操作)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGALRM&lt;/td&gt;
+&lt;td&gt;14&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;时钟定时信号&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGTERM&lt;/td&gt;
+&lt;td&gt;15&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;结束程序(可以被捕获、阻塞或忽略)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGUSR1&lt;/td&gt;
+&lt;td&gt;30,10,16&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;用户保留&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGUSR2&lt;/td&gt;
+&lt;td&gt;31,12,17&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;用户保留&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGCHLD&lt;/td&gt;
+&lt;td&gt;20,17,18&lt;/td&gt;
+&lt;td&gt;Ign&lt;/td&gt;
+&lt;td&gt;子进程结束(由父进程接收)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGCONT&lt;/td&gt;
+&lt;td&gt;19,18,25&lt;/td&gt;
+&lt;td&gt;Cont&lt;/td&gt;
+&lt;td&gt;继续执行已经停止的进程(不能被阻塞)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGSTOP&lt;/td&gt;
+&lt;td&gt;17,19,23&lt;/td&gt;
+&lt;td&gt;Stop&lt;/td&gt;
+&lt;td&gt;停止进程(不能被捕获、阻塞或忽略)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGTSTP&lt;/td&gt;
+&lt;td&gt;18,20,24&lt;/td&gt;
+&lt;td&gt;Stop&lt;/td&gt;
+&lt;td&gt;停止进程(可以被捕获、阻塞或忽略)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGTTIN&lt;/td&gt;
+&lt;td&gt;21,21,26&lt;/td&gt;
+&lt;td&gt;Stop&lt;/td&gt;
+&lt;td&gt;后台程序从终端中读取数据时触发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGTTOU&lt;/td&gt;
+&lt;td&gt;22,22,27&lt;/td&gt;
+&lt;td&gt;Stop&lt;/td&gt;
+&lt;td&gt;后台程序向终端中写数据时触发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：其中&lt;code&gt;SIGKILL&lt;/code&gt;和&lt;code&gt;SIGSTOP&lt;/code&gt;信号不能被捕获、阻塞或忽略。&lt;/p&gt;
+&lt;h4&gt;2.2 在SUSv2和POSIX.1-2001标准中的信号列表&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;信号&lt;/th&gt;
+&lt;th&gt;值&lt;/th&gt;
+&lt;th&gt;动作&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGTRAP&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;Trap指令触发(如断点，在调试器中使用)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGBUS&lt;/td&gt;
+&lt;td&gt;0,7,10&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;非法地址(内存地址对齐错误)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGPOLL&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;Pollable event (Sys V). Synonym for SIGIO&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGPROF&lt;/td&gt;
+&lt;td&gt;27,27,29&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;性能时钟信号(包含系统调用时间和进程占用CPU的时间)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGSYS&lt;/td&gt;
+&lt;td&gt;12,31,12&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;无效的系统调用(SVr4)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGURG&lt;/td&gt;
+&lt;td&gt;16,23,21&lt;/td&gt;
+&lt;td&gt;Ign&lt;/td&gt;
+&lt;td&gt;有紧急数据到达Socket(4.2BSD)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGVTALRM&lt;/td&gt;
+&lt;td&gt;26,26,28&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;虚拟时钟信号(进程占用CPU的时间)(4.2BSD)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGXCPU&lt;/td&gt;
+&lt;td&gt;24,24,30&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;超过CPU时间资源限制(4.2BSD)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGXFSZ&lt;/td&gt;
+&lt;td&gt;25,25,31&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;超过文件大小资源限制(4.2BSD)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：在Linux 2.2版本之前，&lt;code&gt;SIGSYS&lt;/code&gt;、&lt;code&gt;SIGXCPU&lt;/code&gt;、&lt;code&gt;SIGXFSZ&lt;/code&gt;以及&lt;code&gt;SIGBUS&lt;/code&gt;的默认响应动作为Term，Linux 2.4版本之后这三个信号的默认响应动作改为Core。&lt;/p&gt;
+&lt;h4&gt;2.3 其它信号&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;信号&lt;/th&gt;
+&lt;th&gt;值&lt;/th&gt;
+&lt;th&gt;动作&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGIOT&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;IOT捕获信号(同SIGABRT信号)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGEMT&lt;/td&gt;
+&lt;td&gt;7,-,7&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;实时硬件发生错误&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGSTKFLT&lt;/td&gt;
+&lt;td&gt;-,16,-&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;协同处理器栈错误(未使用)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGIO&lt;/td&gt;
+&lt;td&gt;23,29,22&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;文件描述符准备就绪(可以开始进行输入/输出操作)(4.2BSD)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGCLD&lt;/td&gt;
+&lt;td&gt;-,-,18&lt;/td&gt;
+&lt;td&gt;Ign&lt;/td&gt;
+&lt;td&gt;子进程结束(由父进程接收)(同SIGCHLD信号)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGPWR&lt;/td&gt;
+&lt;td&gt;29,30,19&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;电源错误(System V)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGINFO&lt;/td&gt;
+&lt;td&gt;29,-,-&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;电源错误(同SIGPWR信号)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGLOST&lt;/td&gt;
+&lt;td&gt;-,-,-&lt;/td&gt;
+&lt;td&gt;Term&lt;/td&gt;
+&lt;td&gt;文件锁丢失(未使用)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGWINCH&lt;/td&gt;
+&lt;td&gt;28,28,20&lt;/td&gt;
+&lt;td&gt;Ign&lt;/td&gt;
+&lt;td&gt;窗口大小改变时触发(4.3BSD, Sun)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIGUNUSED&lt;/td&gt;
+&lt;td&gt;-,31,-&lt;/td&gt;
+&lt;td&gt;Core&lt;/td&gt;
+&lt;td&gt;无效的系统调用(同SIGSYS信号)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：列表中有的信号有三个值，这是因为部分信号的值和CPU架构有关，这些信号的值在不同架构的CPU中是不同的，三个值的排列顺序为：1，Alpha/Sparc；2，x86/ARM/Others；3，MIPS。&lt;/p&gt;
+&lt;p&gt;例如&lt;code&gt;SIGSTOP&lt;/code&gt;这个信号，它有三种可能的值，分别是17、19、23，其中第一个值（17）是用在Alpha和Sparc架构中，第二个值（19）用在x86、ARM等其它架构中，第三个值（23）则是用在MIPS架构中的。&lt;/p&gt;
+&lt;h3&gt;3 信号机制&lt;/h3&gt;
+&lt;p&gt;文章的前面提到过，信号是异步的，这就涉及信号何时接收、何时处理的问题。&lt;/p&gt;
+&lt;p&gt;我们知道，函数运行在用户态，当遇到系统调用、中断或是异常的情况时，程序会进入内核态。信号涉及到了这两种状态之间的转换，过程可以先看一下下面的示意图：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="信号处理机制示意图" src="/images/articles/201310/linux_signal_flow.png" /&gt;&lt;/p&gt;
+&lt;p&gt;接下来围绕示意图，将信号分成接收、检测和处理三个部分，逐一讲解每一步的处理流程。&lt;/p&gt;
+&lt;h4&gt;3.1 信号的接收&lt;/h4&gt;
+&lt;p&gt;接收信号的任务是由内核代理的，当内核接收到信号后，会将其放到对应进程的信号队列中，同时向进程发送一个中断，使其陷入内核态。&lt;/p&gt;
+&lt;p&gt;注意，此时信号还只是在队列中，对进程来说暂时是不知道有信号到来的。&lt;/p&gt;
+&lt;h4&gt;3.2 信号的检测&lt;/h4&gt;
+&lt;p&gt;进程陷入内核态后，有两种场景会对信号进行检测：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;进程从内核态返回到用户态前进行信号检测&lt;/li&gt;
+&lt;li&gt;进程在内核态中，从睡眠状态被唤醒的时候进行信号检测&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当发现有新信号时，便会进入下一步，信号的处理。&lt;/p&gt;
+&lt;h4&gt;3.3 信号的处理&lt;/h4&gt;
+&lt;p&gt;信号处理函数是运行在用户态的，调用处理函数前，内核会将当前内核栈的内容备份拷贝到用户栈上，并且修改指令寄存器（eip）将其指向信号处理函数。&lt;/p&gt;
+&lt;p&gt;接下来进程返回到用户态中，执行相应的信号处理函数。&lt;/p&gt;
+&lt;p&gt;信号处理函数执行完成后，还需要返回内核态，检查是否还有其它信号未处理。如果所有信号都处理完成，就会将内核栈恢复（从用户栈的备份拷贝回来），同时恢复指令寄存器（eip）将其指向中断前的运行位置，最后回到用户态继续执行进程。&lt;/p&gt;
+&lt;p&gt;至此，一个完整的信号处理流程便结束了，如果同时有多个信号到达，上面的处理流程会在第2步和第3步骤间重复进行。&lt;/p&gt;
+&lt;h3&gt;4 信号的使用&lt;/h3&gt;
+&lt;h4&gt;4.1 发送信号&lt;/h4&gt;
+&lt;p&gt;用于发送信号的函数有&lt;code&gt;raise&lt;/code&gt;、&lt;code&gt;kill&lt;/code&gt;、&lt;code&gt;killpg&lt;/code&gt;、&lt;code&gt;pthread_kill&lt;/code&gt;、&lt;code&gt;tgkill&lt;/code&gt;、&lt;code&gt;sigqueue&lt;/code&gt;，这几个函数的含义和用法都大同小异，这里主要介绍一下常用的&lt;code&gt;raise&lt;/code&gt;和&lt;code&gt;kill&lt;/code&gt;函数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;raise函数&lt;/strong&gt;：向进程本身发送信号&lt;/p&gt;
+&lt;p&gt;函数声明如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;signal.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;raise&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sig&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;函数功能是向当前程序(自身)发送信号，其中参数&lt;code&gt;sig&lt;/code&gt;为信号值。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;kill函数&lt;/strong&gt;：向指定进程发送信号&lt;/p&gt;
+&lt;p&gt;函数声明如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;sys/types.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include &amp;lt;signal.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;kill&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;pid_t&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sig&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;函数功能是向特定的进程发送信号，其中参数&lt;code&gt;pid&lt;/code&gt;为进程号，&lt;code&gt;sig&lt;/code&gt;为信号值。&lt;/p&gt;
+&lt;p&gt;在这里的参数&lt;code&gt;pid&lt;/code&gt;，根据取值范围不同，含义也不同，具体说明如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pid &amp;gt; 0  ：向进程号为pid的进程发送信号&lt;/li&gt;
+&lt;li&gt;pid = 0  ：向当前进程所在的进程组发送信号&lt;/li&gt;
+&lt;li&gt;pid = -1 ：向所有进程(除PID=1外)发送信号(权限范围内)&lt;/li&gt;
+&lt;li&gt;pid &amp;lt; -1 ：向进程组号为-pid的所有进程发送信号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;另外，当&lt;code&gt;sig&lt;/code&gt;值为零时，实际不发送任何信号，但函数返回值依然有效，可以用于检查进程是否存在。&lt;/p&gt;
+&lt;h4&gt;4.2 等待信号被捕获&lt;/h4&gt;
+&lt;p&gt;等待信号的过程，其实就是将当前进程(线程)暂停，直到有信号发到当前进程(线程)上并被捕获，函数有&lt;code&gt;pause&lt;/code&gt;和&lt;code&gt;sigsuspend&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pause函数&lt;/strong&gt;：将进程(或线程)转入睡眠状态，直到接收到信号&lt;/p&gt;
+&lt;p&gt;函数声明如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;unistd.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;pause&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;该函数调用后，调用者(进程或线程)会进入睡眠(Sleep)状态，直到捕获到(任意)信号为止。该函数的返回值始终为-1，并且调用结束后，错误代码(errno)会被置为EINTR。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;sigsuspend函数&lt;/strong&gt;：将进程(或线程)转入睡眠状态，直到接收到特定信号&lt;/p&gt;
+&lt;p&gt;函数声明如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;signal.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;sigsuspend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;sigset_t&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;该函数调用后，会将进程的信号掩码临时修改(参数&lt;code&gt;mask&lt;/code&gt;)，然后暂停进程，直到收到符合条件的信号为止，函数返回前会将调用前的信号掩码恢复。该函数的返回值始终为-1，并且调用结束后，错误代码(errno)会被置为EINTR。&lt;/p&gt;
+&lt;h4&gt;4.3 修改信号的响应动作&lt;/h4&gt;
+&lt;p&gt;用户可以自己重新定义某个信号的处理方式，即前面提到的修改信号的默认响应动作，也可以理解为对信号的注册，可以通过&lt;code&gt;signal&lt;/code&gt;或&lt;code&gt;sigaction&lt;/code&gt;函数进行，这里以&lt;code&gt;signal&lt;/code&gt;函数举例说明。&lt;/p&gt;
+&lt;p&gt;首先看一下函数声明：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;signal.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="nf"&gt;void&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="kt"&gt;sighandler_t&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kt"&gt;sighandler_t&lt;/span&gt; &lt;span class="nf"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;signum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;sighandler_t&lt;/span&gt; &lt;span class="n"&gt;handler&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;第一个参数&lt;code&gt;signum&lt;/code&gt;是信号值，可以从前面的信号列表中查到，第二个参数&lt;code&gt;handler&lt;/code&gt;为处理函数，通过回调方式在信号触发时调用。&lt;/p&gt;
+&lt;p&gt;下面为示例代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include &amp;lt;signal.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include &amp;lt;unistd.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="cm"&gt;/* 信号处理函数 */&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;sig_callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;signum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;switch&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;signum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="n"&gt;SIGINT&lt;/span&gt;:
+            &lt;span class="cm"&gt;/* SIGINT: Ctrl+C 按下时触发 */&lt;/span&gt;
+            &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Get signal SIGINT. &lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="cm"&gt;/* 多个信号可以放到同一个函数中进行 通过信号值来区分 */&lt;/span&gt;
+        &lt;span class="nl"&gt;default:&lt;/span&gt;
+            &lt;span class="cm"&gt;/* 其它信号 */&lt;/span&gt;
+            &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Unknown signal %d. &lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;signum&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="cm"&gt;/* 主函数 */&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Register SIGINT(%u) Signal Action. &lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SIGINT&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/* 注册SIGINT信号的处理函数 */&lt;/span&gt;
+    &lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SIGINT&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sig_callback&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Waitting for Signal ... &lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/* 等待信号触发 */&lt;/span&gt;
+    &lt;span class="n"&gt;pause&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Process Continue. &lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;源文件下载：&lt;a href="/downloads/code/linux_signal.c"&gt;链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;例子中，将&lt;code&gt;SIGINT&lt;/code&gt;信号（&lt;code&gt;Ctrl+C&lt;/code&gt;触发）的动作接管(打印提示信息)，程序运行后，按下&lt;code&gt;Ctrl+C&lt;/code&gt;，命令行输出如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;linux_signal_example&lt;/span&gt;
+&lt;span class="n"&gt;Register&lt;/span&gt; &lt;span class="n"&gt;SIGINT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Signal&lt;/span&gt; &lt;span class="n"&gt;Action&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; 
+&lt;span class="n"&gt;Waitting&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;Signal&lt;/span&gt; &lt;span class="p"&gt;...&lt;/span&gt; 
+&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;CGet&lt;/span&gt; &lt;span class="n"&gt;signal&lt;/span&gt; &lt;span class="n"&gt;SIGINT&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; 
+&lt;span class="n"&gt;Process&lt;/span&gt; &lt;span class="n"&gt;Continue&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;进程收到&lt;code&gt;SIGINT&lt;/code&gt;信号后，触发响应动作，将提示信息打印出来，然后从暂停的地方继续运行。这里需要注意的是，因为我们修改了&lt;code&gt;SIGINT&lt;/code&gt;信号的响应动作（只打印信息，不做进程退出处理），所以我们按下&lt;code&gt;Ctrl+C&lt;/code&gt;后，程序并没有直接退出，而是继续运行并将"Process Continue."打印出来，直至程序正常结束。&lt;/p&gt;</summary><category term="Linux"></category><category term="C"></category><category term="开发"></category><category term="信号"></category></entry><entry><title>Linux中分区出现“Read-only file system”的解决办法</title><link href="http://hutaow.com/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux" rel="alternate"></link><updated>2013-06-16T22:54:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2013-06-16:blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mount&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;remount&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;rw&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;TF&lt;/span&gt;  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注：其中”/media/TF“是挂载的目录。&lt;/p&gt;</summary><category term="Linux"></category></entry><entry><title>Linux中批量设置目录或文件权限的方法</title><link href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions" rel="alternate"></link><updated>2013-06-16T01:48:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2013-06-16:blog/2013/06/16/batch-settings-directory-or-file-permissions</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;递归方式将当前目录下所有的子目录设置为755权限（不包括文件）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;exec&lt;/span&gt; &lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="mi"&gt;755&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;exec&lt;/span&gt; &lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="mi"&gt;644&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category></entry><entry><title>终端下使用代理的方法</title><link href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal" rel="alternate"></link><updated>2008-08-10T15:12:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2008-08-10:blog/2008/08/10/config-proxy-in-linux-terminal</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，"HTTP_PROXY"、"http_proxy"和"FTP_PROXY"、"ftp_proxy"，在"~/.bash_profile"中添加以下几行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;HTTP_PROXY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//username:password@proxy.server:8080&lt;/span&gt;
+&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;FTP_PROXY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//username:password@proxy.server:8080&lt;/span&gt;
+&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;http_proxy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//username:password@proxy.server:8080&lt;/span&gt;
+&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;ftp_proxy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//username:password@proxy.server:8080&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。&lt;/p&gt;
+&lt;p&gt;修改保存后重启终端或在执行"source ~/.bash_proxy"生效。&lt;/p&gt;</summary><category term="Linux"></category><category term="代理"></category></entry><entry><title>Fedora 9 无法启动KDE的解决办法</title><link href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9" rel="alternate"></link><updated>2008-07-29T11:34:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2008-07-29:blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout-&amp;gt;KDE，结果却报出个错误，说"Could not start kstartupconfig4. Check your installation"，无语，难道是我少装了什么东西？&lt;/p&gt;
+&lt;p&gt;按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用"chown"改变"~/.kde"目录的所有者，哦？检查……"~/.kde"这个目录竟然是root的，原来是权限的问题。&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;p&gt;输入"chown -R owner ~/.kde"，为了保险，再加个"chgrp -R group ~/.kde"，这里面的"owner"和"group"分别是当前的用户名和用户所在的组名。&lt;/p&gt;
+&lt;p&gt;之后重新进入KDE，一切正常！&lt;/p&gt;
+&lt;p&gt;PS：新的KDE环境确实做的不错，桌面右上角的widget加上suse的主菜单非常赞&lt;/p&gt;</summary><category term="Linux"></category><category term="KDE"></category></entry><entry><title>Linux下将.cue/.bin转换为.iso的方法</title><link href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux" rel="alternate"></link><updated>2008-07-19T17:20:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2008-07-19:blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫"bchunk"的小软件非常好用，而且小的可以，才几十K，很不错。&lt;/p&gt;
+&lt;p&gt;在终端里输入如下命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;bchunk&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w2sp4ru1as&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w2sp4ru1as&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cue&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w2sp4ru1as&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iso&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。&lt;/p&gt;
+&lt;p&gt;等一小会儿，就像下面这幅图一样，会有一个进度条，进度到100%后转换就完成了。
+&lt;img alt="Convert CUE and BIN to ISO format" src="/images/articles/200807/convert_cue_and_bin_to_iso_format_in_linux.png" /&gt;&lt;/p&gt;</summary><category term="Linux"></category><category term="工具"></category></entry><entry><title>新版VirtualBox在Fedora下不能启动虚拟机的解决办法</title><link href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora" rel="alternate"></link><updated>2008-07-18T20:48:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2008-07-18:blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;VirtualBox&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="n"&gt;driver&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;installed&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;vboxdrv&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;was&lt;/span&gt; &lt;span class="n"&gt;either&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;loaded&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vboxdrv&lt;/span&gt; &lt;span class="n"&gt;was&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;created&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;some&lt;/span&gt; &lt;span class="n"&gt;reason&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;
+&lt;span class="n"&gt;Re&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;setup&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;executing&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vboxdrv&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;于是按照提示在终端里执行"sudo /etc/init.d/vboxdrv setup"时，却又提示VirtualBox的内核模块无法编译，查看日志发现是没有安装内核源代码。&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;p&gt;于是执行"sudo yum install kernel-devel"，等待系统自动下载并安装。注意这里我用的Linux是Fedora，如果是其它发行版可以执行相应的安装命令，唯一相同的是软件包"kernel-devel"名字不变。&lt;/p&gt;
+&lt;p&gt;安装完成后，再次执行"sudo /etc/init.d/vboxdrv setup"，搞定！&lt;/p&gt;</summary><category term="Linux"></category><category term="VirtualBox"></category><category term="Fedora"></category></entry><entry><title>Fedora禁止自动挂载分区的方法</title><link href="http://hutaow.com/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora" rel="alternate"></link><updated>2008-02-17T21:28:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2008-02-17:blog/2008/02/17/disable-automatically-mount-partitions-under-fedora</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在"/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi"文件中。&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;p&gt;找到以下提示行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;&amp;lt;!-- Here follow volumes we specifically want to ignore - it is the --&amp;gt;&lt;/span&gt;
+&lt;span class="c"&gt;&amp;lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&amp;gt;&lt;/span&gt;
+&lt;span class="c"&gt;&amp;lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;merge&lt;/span&gt; &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;volume.ignore&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;bool&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;false&lt;span class="nt"&gt;&amp;lt;/merge&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;按照说明在提示之后添加对磁盘挂载的策略即可，比如我自己的硬盘就是&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;match&lt;/span&gt; &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;volume.fstype&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;string=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;vfat&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;match&lt;/span&gt; &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;volume.label&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;string=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;DATA&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;merge&lt;/span&gt; &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;volume.ignore&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;bool&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;true&lt;span class="nt"&gt;&amp;lt;/merge&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/match&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;match&lt;/span&gt; &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;volume.label&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;string=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;MULTI&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;merge&lt;/span&gt; &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;volume.ignore&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;bool&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;true&lt;span class="nt"&gt;&amp;lt;/merge&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/match&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;match&lt;/span&gt; &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;volume.label&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;string=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;BACKUP&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;merge&lt;/span&gt; &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;volume.ignore&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;bool&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;true&lt;span class="nt"&gt;&amp;lt;/merge&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/match&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/match&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中"volume.fstype"后面的值就是匹配的文件系统，"volume.label"后面的值是匹配的卷标，"volume.ignore"中的参数是"true"，意思是忽略被匹配的分区。&lt;/p&gt;</summary><category term="Linux"></category><category term="Fedora"></category></entry><entry><title>解决安装ntfs-3g时遇到的问题</title><link href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g" rel="alternate"></link><updated>2008-02-15T20:16:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2008-02-15:blog/2008/02/15/slove-the-problem-on-install-ntfs-3g</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去&lt;a href="http://www.ntfs-3g.org"&gt;http://www.ntfs-3g.org&lt;/a&gt;下载ntfs-3g，安装好后，试图执行"mount -t ntfs-3g /dev/hdc5 /media/wdata"，结果提示：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;FATAL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Module&lt;/span&gt; &lt;span class="n"&gt;fuse&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;found&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;fuse&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;found&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;modprobe fuse&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行"modprobe fuse"，结果又出来：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;FATAL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Module&lt;/span&gt; &lt;span class="n"&gt;fuse&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;found&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;没有fuse模块？用Google搜到了&lt;a href="http://fuse.sourceforge.net"&gt;http://fuse.sourceforge.net&lt;/a&gt;，看上面说明的意思是说fuse(Filesystem in Userspace)是个库，提供了API供用户开发文件系统，看样子通过它开发文件系统又会方便不少，最后只要连接到fuse库上就可以了。呵呵，不管怎么说先下载了安装再说，这些以后有时间再慢慢研究吧。下载后解压，执行下面的命令编译安装fuse：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;装好后再次执行mount命令，完成！&lt;/p&gt;</summary><category term="Linux"></category></entry><entry><title>Linux中改变网卡的速度</title><link href="http://hutaow.com/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux" rel="alternate"></link><updated>2008-02-11T18:28:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2008-02-11:blog/2008/02/11/change-the-spped-of-network-adapter-under-linux</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;今天又用到家里的那根20几米的超长网线了，因为太长了，之前windows里用它联网的时候要把网卡速度降到10Mbps才能用。如果自动配置的话会默认用100Mbps的速度连接，但这样的话就会时断时连很不稳定。&lt;/p&gt;
+&lt;p&gt;我在Linux里试图在Network里直接配置速度，但没有找到，上网google发现需要手动修改，用到的工具是mii-tool。&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;p&gt;用管理员权限执行如下命令&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mii&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tool&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="n"&gt;baseT&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;FD&lt;/span&gt; &lt;span class="n"&gt;eth0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;eth0是网卡的名称，"10baseT-FD"是网卡的工作模式，如果要改回100Mbps的话这里填"100baseTx-FD"；&lt;/p&gt;
+&lt;p&gt;FD指的是Full Duplex全双工，也可以是HD即Half Duplex半双工。&lt;/p&gt;</summary><category term="Linux"></category><category term="工具"></category></entry><entry><title>解决MPlayer中文字幕显示问题</title><link href="http://hutaow.com/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems" rel="alternate"></link><updated>2008-02-02T21:44:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2008-02-02:blog/2008/02/02/slove-mplayer-chinese-subtitles-problems</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;MPlayer在播放电影时，中文字幕往往不能正确显示，自己简单分析了一下，之所以中文显示出乱码是由于字符的编码选择不正确造成的。&lt;/p&gt;
+&lt;p&gt;在MPlayer的设置里有两个地方要对字符编码进行设置，一个是对显示字幕的编码进行设置，另一个是对字体文件的编码设置。&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;p&gt;对于字幕的编码，就是要显示中文、英文、法文还是其它文字；而对于字体的编码，则是需要根据提供的字体文件严格选择对应的编码。明白了以上两点，再进行设置就不难了。&lt;/p&gt;
+&lt;p&gt;具体的设置过程如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;首先选择字幕编码，在MPlayer的设置中选择"Subtitle &amp;amp; OSD"选项卡，在"Encoding"选单中选择"Simplified Chinese charset (CP936)"。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;接下来是字体编码，先要选择一个中文字体，"Font"选项卡中，在"Font"一栏选择一个中文字体(个人建议将自己的字体放在~/.fonts目录下，然后再到这个目录中选择相应的字体)。字体选择好后，在"Encoding"选单中选择"Unicode"，因为unicode是国际通用的字符编码标准，一般的字体编码都是unicode，所以此处要选择"Unicode"而不是"CP936"。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;确定保存后重新播放中文字幕就可以正常显示了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="Linux"></category><category term="MPlayer"></category></entry><entry><title>Rhythmbox播放MP3和WMA所需要的解码器</title><link href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required" rel="alternate"></link><updated>2008-02-02T08:45:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2008-02-02:blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required</id><summary type="html">&lt;hr /&gt;
+&lt;ul&gt;
+&lt;li&gt;如果想支持mp3，需要gstreamer-plugins-bad和gstreamer-plugins-ugly&lt;/li&gt;
+&lt;li&gt;如果想支持wma，需要gstreamer-ffmpeg&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Linux"></category><category term="Rhythmbox"></category></entry><entry><title>Linux中设置Java环境变量</title><link href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux" rel="alternate"></link><updated>2007-09-22T13:38:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2007-09-22:blog/2007/09/22/config-java-environment-in-linux</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;从网上找资料，自己总结一下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;从java.sun.com上下载jdk，解压到某个目录，比如"/usr/local/java/jdk1.x.x/"&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改~/.bashrc文件，在文件末尾加入以下几行：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;JAVA_HOME&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;j2sdk1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
+&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;JAVA_HOME&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PATH&lt;/span&gt;
+&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;CLASSPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;JAVA_HOME&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tools&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jar&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;JAVA_HOME&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jar&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;CLASSPATH&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;最后重启终端或执行source ~/.bashrc即可。&lt;/p&gt;</summary><category term="Linux"></category><category term="Java"></category></entry><entry><title>我的VI配置文件</title><link href="http://hutaow.com/blog/2007/08/19/my-vi-config" rel="alternate"></link><updated>2007-08-19T14:02:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2007-08-19:blog/2007/08/19/my-vi-config</id><summary type="html">&lt;hr /&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="s2"&gt;&amp;quot; 设置字符编码&lt;/span&gt;
+&lt;span class="s2"&gt;set encoding=utf-8&lt;/span&gt;
+&lt;span class="s2"&gt;set termencoding=utf-8&lt;/span&gt;
+&lt;span class="s2"&gt;set fileencoding=utf-8&lt;/span&gt;
+&lt;span class="s2"&gt;set fileencodings=utf-8,ucs-bom,gb2312,gb18030,gbk,cp936&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 设置文件格式&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;unix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;LF,dos&lt;span class="o"&gt;=&lt;/span&gt;CRLF,mac&lt;span class="o"&gt;=&lt;/span&gt;CR&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;set &lt;/span&gt;&lt;span class="nv"&gt;fileformat&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;unix
+&lt;span class="nb"&gt;set &lt;/span&gt;&lt;span class="nv"&gt;fileformats&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;unix,dos,mac
+
+&lt;span class="s2"&gt;&amp;quot; 提示信息语言&lt;/span&gt;
+&lt;span class="s2"&gt;set langmenu=en_US.utf-8&lt;/span&gt;
+&lt;span class="s2"&gt;language messages en_US.utf-8&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 开启文件类型检测
+filetype on
+
+&lt;span class="s2"&gt;&amp;quot; 开启语法高亮&lt;/span&gt;
+&lt;span class="s2"&gt;syntax on&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 显示行号
+&lt;span class="nb"&gt;set &lt;/span&gt;number
+
+&lt;span class="s2"&gt;&amp;quot; 设置缩进大小&lt;/span&gt;
+&lt;span class="s2"&gt;set tabstop=4&lt;/span&gt;
+&lt;span class="s2"&gt;set softtabstop=4&lt;/span&gt;
+&lt;span class="s2"&gt;set shiftwidth=4&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 将制表符用空格代替
+&lt;span class="nb"&gt;set &lt;/span&gt;expandtab
+
+&lt;span class="s2"&gt;&amp;quot; 关闭兼容模式(使用VIM的键盘模式)&lt;/span&gt;
+&lt;span class="s2"&gt;set nocompatible&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 历史记录数量
+&lt;span class="nb"&gt;set history&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1000
+
+&lt;span class="s2"&gt;&amp;quot; 设置关键字符(遇到以下字符连接的单词时不进行换行)&lt;/span&gt;
+&lt;span class="s2"&gt;set iskeyword+=_,$,@,%,#,-&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 设置退格键模式
+&lt;span class="nb"&gt;set &lt;/span&gt;&lt;span class="nv"&gt;backspace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;indent,eol,start
+
+&lt;span class="s2"&gt;&amp;quot; 设置列提示(右下角)&lt;/span&gt;
+&lt;span class="s2"&gt;set ruler&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 设置状态提示&lt;span class="o"&gt;(&lt;/span&gt;左下角&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;set &lt;/span&gt;showmode
+
+&lt;span class="s2"&gt;&amp;quot; 启动的时候不显示提示信息&lt;/span&gt;
+&lt;span class="s2"&gt;set shortmess=atI&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 关闭错误信息响铃
+&lt;span class="nb"&gt;set &lt;/span&gt;noerrorbells
+
+&lt;span class="s2"&gt;&amp;quot; 设置(括号)匹配模式&lt;/span&gt;
+&lt;span class="s2"&gt;set showmatch&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 搜索时实时匹配关键字
+&lt;span class="nb"&gt;set &lt;/span&gt;incsearch
+
+&lt;span class="s2"&gt;&amp;quot; 搜索时高亮关键字&lt;/span&gt;
+&lt;span class="s2"&gt;set hlsearch&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 设置自动缩进
+&lt;span class="nb"&gt;set &lt;/span&gt;autoindent
+
+&lt;span class="s2"&gt;&amp;quot; 设置结构缩进(换行时缩进与当前行相同)&lt;/span&gt;
+&lt;span class="s2"&gt;set smartindent&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 关闭自动备份
+&lt;span class="nb"&gt;set &lt;/span&gt;nobackup
+
+&lt;span class="s2"&gt;&amp;quot; 设置当前行/列高亮&lt;/span&gt;
+&lt;span class="s2"&gt;set cursorline&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nb"&gt;set &lt;/span&gt;cursorcolumn
+
+&lt;span class="s2"&gt;&amp;quot; 设置背景色主题&lt;/span&gt;
+&lt;span class="s2"&gt;set background=dark&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 主题颜色
+colorscheme desert 
+
+&lt;span class="s2"&gt;&amp;quot; 状态行显示内容&lt;/span&gt;
+&lt;span class="s2"&gt;set statusline=%F%m%r%h%w\ [FORMAT=%{&amp;amp;ff}:%{&amp;amp;fenc!=&amp;#39;&amp;#39;?&amp;amp;fenc:&amp;amp;enc}]\ [TYPE=%Y]\ %r%h%=[POS=%l,%v][%p%%]\ [%{strftime(\&amp;quot;%Y/%m/%d\ %H:%M\&amp;quot;)}]&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 状态行显示模式&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;0&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;不显示,1&lt;span class="o"&gt;=&lt;/span&gt;两个窗口以上显示,2&lt;span class="o"&gt;=&lt;/span&gt;始终显示&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;set &lt;/span&gt;&lt;span class="nv"&gt;laststatus&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2
+
+&lt;span class="s2"&gt;&amp;quot; 设置字体&lt;/span&gt;
+&lt;span class="s2"&gt;set guifont=Terminus:h10:cANSI&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; 设置窗口大小
+&lt;span class="s2"&gt;&amp;quot; set lines=35 columns=128&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; GUI 隐藏菜单栏
+&lt;span class="s2"&gt;&amp;quot; set guioptions-=m&lt;/span&gt;
+
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; GUI 隐藏工具栏
+&lt;span class="nb"&gt;set &lt;/span&gt;guioptions-&lt;span class="o"&gt;=&lt;/span&gt;T
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;源文件下载：&lt;a href="/downloads/code/hutaow.vimrc"&gt;链接&lt;/a&gt;&lt;/p&gt;</summary><category term="Linux"></category><category term="VI"></category><category term="配置文件"></category></entry></feed>

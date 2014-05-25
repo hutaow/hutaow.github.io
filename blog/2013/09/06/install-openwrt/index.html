@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>TP-WR703n安装OpenWRT记录 - 胡桃夹子</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="胡桃夹子" />
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="TP-WR703n安装OpenWRT记录"/>
+            <meta property="og:url" content="http://hutaow.com/blog/2013/09/06/install-openwrt"/>
+            <meta property="og:description" content="1 安装OpenWRT 1.1 下载并刷新固件 如果以前没刷过OpenWRT，需要升级factory固件，点击这里下载。 如果之前已经安装过了OpenWRT，则直接更新sysupgrade固件即可，点击这里下载。 注意升级的时候要将原配置删除，避免配置文件互相影响，固件刷新完成后，路由器会自动重启。 1.2 登陆路由器 OpenWRT主线固件的无线信号是默认关闭的，这个时候需要找跟网线将电脑和路由器连接上，然后将电脑的IP地址设置为静态的&#34;192.168.1.100&#34;，然后用Telnet访问&#34;192.168.1.1&#34;，正确的情况下，会看到如下界面： 1.3 打开无线信号 编辑&#34;/etc/config/wireless&#34;文件，将&#34;option disabled 1&#34;这一行注掉，或者直接删除。 config wifi-device radio0 ..."/>
+            <meta property="article:published_time" content="2013-09-06" />
+                <meta property="article:section" content="Network" />
+                <meta property="article:tag" content="OpenWRT" />
+                <meta property="article:tag" content="路由器" />
+                <meta property="article:author" content="hutaow" />
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://hutaow.com/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://hutaow.com/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://hutaow.com/theme/css/style.css" type="text/css"/>
+
+        <link href="http://hutaow.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="胡桃夹子 ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://hutaow.com/" class="navbar-brand">
+胡桃夹子            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="http://hutaow.com/about/index.html">
+                             关于我
+                          </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://hutaow.com/blog/archives/index.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://hutaow.com/blog/2013/09/06/install-openwrt"
+                       rel="bookmark"
+                       title="Permalink to TP-WR703n安装OpenWRT记录">
+                        TP-WR703n安装OpenWRT记录
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-09-06T23:16:00"> Fri 06 September 2013</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/network/index.html">Network</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/openwrt/index.html">OpenWRT</a>
+        /
+	<a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">路由器</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <hr />
+<h3>1 安装OpenWRT</h3>
+<h4>1.1 下载并刷新固件</h4>
+<p>如果以前没刷过OpenWRT，需要升级factory固件，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin">点击这里下载</a>。</p>
+<p>如果之前已经安装过了OpenWRT，则直接更新sysupgrade固件即可，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin">点击这里下载</a>。</p>
+<p>注意升级的时候要将原配置删除，避免配置文件互相影响，固件刷新完成后，路由器会自动重启。</p>
+<!-- more -->
+
+<h4>1.2 登陆路由器</h4>
+<p>OpenWRT主线固件的无线信号是默认关闭的，这个时候需要找跟网线将电脑和路由器连接上，然后将电脑的IP地址设置为静态的"192.168.1.100"，然后用Telnet访问"192.168.1.1"，正确的情况下，会看到如下界面：
+<img alt="First Login" src="/images/articles/201309/install_openwrt_01_first_login.png" /></p>
+<h4>1.3 打开无线信号</h4>
+<p>编辑"/etc/config/wireless"文件，将"option disabled 1"这一行注掉，或者直接删除。</p>
+<div class="highlight"><pre><span class="n">config</span> <span class="n">wifi</span><span class="o">-</span><span class="n">device</span> <span class="n">radio0</span>
+    <span class="n">option</span> <span class="n">type</span>     <span class="n">mac80211</span>
+    <span class="n">option</span> <span class="n">channel</span>  <span class="mi">11</span>
+    <span class="n">option</span> <span class="n">hwmode</span>   <span class="mi">11</span><span class="n">ng</span>
+    <span class="n">option</span> <span class="n">path</span>     <span class="err">&#39;</span><span class="n">platform</span><span class="o">/</span><span class="n">ar933x_wmac</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">htmode</span>   <span class="n">HT20</span>
+    <span class="n">list</span> <span class="n">ht_capab</span>   <span class="n">SHORT</span><span class="o">-</span><span class="n">GI</span><span class="o">-</span><span class="mi">20</span>
+    <span class="n">list</span> <span class="n">ht_capab</span>   <span class="n">SHORT</span><span class="o">-</span><span class="n">GI</span><span class="o">-</span><span class="mi">40</span>
+    <span class="n">list</span> <span class="n">ht_capab</span>   <span class="n">RX</span><span class="o">-</span><span class="n">STBC1</span>
+    <span class="n">list</span> <span class="n">ht_capab</span>   <span class="n">DSSS_CCK</span><span class="o">-</span><span class="mi">40</span>
+    <span class="err">#</span> <span class="n">REMOVE</span> <span class="n">THIS</span> <span class="n">LINE</span> <span class="n">TO</span> <span class="n">ENABLE</span> <span class="n">WIFI</span><span class="o">:</span>
+    <span class="err">#</span> <span class="n">option</span> <span class="n">disabled</span> <span class="mi">1</span>
+
+<span class="n">config</span> <span class="n">wifi</span><span class="o">-</span><span class="n">iface</span>
+    <span class="n">option</span> <span class="n">device</span>   <span class="n">radio0</span>
+    <span class="n">option</span> <span class="n">network</span>  <span class="n">lan</span>
+    <span class="n">option</span> <span class="n">mode</span>     <span class="n">ap</span>
+    <span class="n">option</span> <span class="n">ssid</span>     <span class="n">OpenWrt</span>
+    <span class="n">option</span> <span class="n">encryption</span> <span class="n">none</span>
+</pre></div>
+
+
+<h4>1.4 外网接入配置</h4>
+<p>编辑"/etc/config/network"文件，将原"lan"区段中的"ifname"注掉，新增"wan"段，如果是用宽带拨号上网，则配置成下面的样子（其中USERNAME和PASSWORD分别是拨号的用户名和密码）：</p>
+<div class="highlight"><pre><span class="n">config</span> <span class="n">interface</span> <span class="err">&#39;</span><span class="n">loopback</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">ifname</span> <span class="err">&#39;</span><span class="n">lo</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">proto</span> <span class="err">&#39;</span><span class="k">static</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">ipaddr</span> <span class="err">&#39;</span><span class="mf">127.0.0.1</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">netmask</span> <span class="err">&#39;</span><span class="mf">255.0.0.0</span><span class="err">&#39;</span>
+
+<span class="n">config</span> <span class="n">globals</span> <span class="err">&#39;</span><span class="n">globals</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">ula_prefix</span> <span class="err">&#39;</span><span class="n">fd4f</span><span class="o">:</span><span class="mf">26f</span><span class="n">b</span><span class="o">:</span><span class="mi">9</span><span class="n">d78</span><span class="o">::/</span><span class="mi">48</span><span class="err">&#39;</span>
+
+<span class="n">config</span> <span class="n">interface</span> <span class="err">&#39;</span><span class="n">lan</span><span class="err">&#39;</span>
+    <span class="err">#</span> <span class="n">option</span> <span class="n">ifname</span> <span class="err">&#39;</span><span class="n">eth0</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">type</span> <span class="err">&#39;</span><span class="n">bridge</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">proto</span> <span class="err">&#39;</span><span class="k">static</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">ipaddr</span> <span class="err">&#39;</span><span class="mf">192.168.1.1</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">netmask</span> <span class="err">&#39;</span><span class="mf">255.255.255.0</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">ip6assign</span> <span class="err">&#39;</span><span class="mi">60</span><span class="err">&#39;</span>
+
+<span class="n">config</span> <span class="n">interface</span> <span class="err">&#39;</span><span class="n">wan</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">ifname</span> <span class="err">&#39;</span><span class="n">eth0</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">proto</span> <span class="err">&#39;</span><span class="n">pppoe</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">username</span> <span class="err">&#39;</span><span class="n">USERNAME</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">password</span> <span class="err">&#39;</span><span class="n">PASSWORD</span><span class="err">&#39;</span>
+</pre></div>
+
+
+<p>如果不需要拨号，直接通过其它路由器连接，则将"wan"区段配置成下面的样子：</p>
+<div class="highlight"><pre><span class="n">config</span> <span class="n">interface</span> <span class="err">&#39;</span><span class="n">wan</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">ifname</span> <span class="err">&#39;</span><span class="n">eth0</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">proto</span> <span class="err">&#39;</span><span class="n">dhcp</span><span class="err">&#39;</span>
+</pre></div>
+
+
+<h4>1.5 重启路由器，完成OpenWRT的安装</h4>
+<p>执行reboot命令重启路由器，将外网线连上，重启后搜索无线信号，就可以看到"OpenWRT"的信号了，连接上去，不出意外的话，这个时候电脑已经可以上网了。</p>
+<h3>2 将OpenWRT扩展至U盘</h3>
+<h4>2.1 安装基本软件</h4>
+<p>再次用Telnet访问"192.168.1.1"，执行下面的命令，将挂载U盘相关的基本软件安装上。</p>
+<div class="highlight"><pre><span class="n">opkg</span> <span class="n">update</span>
+<span class="n">opkg</span> <span class="n">install</span> <span class="n">block</span><span class="o">-</span><span class="n">mount</span> <span class="n">kmod</span><span class="o">-</span><span class="n">fs</span><span class="o">-</span><span class="n">ext4</span> <span class="n">kmod</span><span class="o">-</span><span class="n">usb</span><span class="o">-</span><span class="n">ohci</span> <span class="n">kmod</span><span class="o">-</span><span class="n">usb</span><span class="o">-</span><span class="n">storage</span> <span class="n">e2fsprogs</span>
+</pre></div>
+
+
+<h4>2.2 准备挂载U盘</h4>
+<p>将U盘插上，执行"block info"命令，看下U盘是否已被识别，如下图，其中中sda1、sda2、sda5为U盘分区：
+<img alt="Block Info" src="/images/articles/201309/install_openwrt_02_block_info.png" /></p>
+<h4>2.3 拷贝系统文件</h4>
+<p>执行如下命令，将路由器ROM中的系统文件全部拷贝到U盘中：</p>
+<div class="highlight"><pre><span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span> <span class="o">/</span><span class="n">mnt</span> 
+<span class="n">mkdir</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vroot</span> 
+<span class="n">mount</span> <span class="o">--</span><span class="n">bind</span> <span class="o">/</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vroot</span> 
+<span class="n">cp</span> <span class="o">-</span><span class="n">a</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vroot</span><span class="o">/*</span> <span class="o">/</span><span class="n">mnt</span> 
+<span class="n">sync</span> 
+<span class="n">umount</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vroot</span>
+</pre></div>
+
+
+<h4>2.4 设置交换空间（可选）</h4>
+<p>U盘在分区时可以预留一个交换分区，防止路由器内存不足，这里预留的交换分区是sda5，执行下面的命令：</p>
+<div class="highlight"><pre><span class="n">swapon</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda5</span>
+</pre></div>
+
+
+<h4>2.5 保存挂载信息</h4>
+<p>将当前挂载状态写入fstab文件中：</p>
+<div class="highlight"><pre><span class="n">block</span> <span class="n">detect</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">fstab</span>
+</pre></div>
+
+
+<p>然后修改"/etc/config/fstab"文件，将sda1的挂载点设置为"/"，并将"option enabled"置1，配置类似下面的样子：</p>
+<div class="highlight"><pre><span class="n">config</span> <span class="n">global</span>
+    <span class="n">option</span> <span class="n">anon_swap</span> <span class="sc">&#39;0&#39;</span>
+    <span class="n">option</span> <span class="n">anon_mount</span> <span class="sc">&#39;0&#39;</span>
+    <span class="n">option</span> <span class="n">auto_swap</span> <span class="sc">&#39;1&#39;</span>
+    <span class="n">option</span> <span class="n">auto_mount</span> <span class="sc">&#39;1&#39;</span>
+    <span class="n">option</span> <span class="n">delay_root</span> <span class="sc">&#39;5&#39;</span>
+    <span class="n">option</span> <span class="n">check_fs</span> <span class="sc">&#39;0&#39;</span>
+
+<span class="n">config</span> <span class="n">mount</span>
+    <span class="n">option</span> <span class="n">target</span> <span class="sc">&#39;/&#39;</span>
+    <span class="n">option</span> <span class="n">uuid</span> <span class="err">&#39;</span><span class="mi">413</span><span class="n">b964c</span><span class="o">-</span><span class="mi">9</span><span class="n">c9c</span><span class="o">-</span><span class="mi">4</span><span class="n">af4</span><span class="o">-</span><span class="mi">8966</span><span class="o">-</span><span class="n">daf04ee53414</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">enabled</span> <span class="sc">&#39;1&#39;</span>
+    <span class="n">option</span> <span class="n">fstype</span> <span class="err">&#39;</span><span class="n">ext4</span><span class="err">&#39;</span>
+
+<span class="n">config</span> <span class="n">mount</span>
+    <span class="n">option</span> <span class="n">target</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">home</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">uuid</span> <span class="err">&#39;</span><span class="n">e7052ed0</span><span class="o">-</span><span class="n">b883</span><span class="o">-</span><span class="mi">4375</span><span class="o">-</span><span class="mf">9f</span><span class="mi">31</span><span class="o">-</span><span class="mi">5648</span><span class="n">ea8f2948</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">enabled</span> <span class="sc">&#39;1&#39;</span>
+    <span class="n">option</span> <span class="n">fstype</span> <span class="err">&#39;</span><span class="n">ext4</span><span class="err">&#39;</span>
+
+<span class="n">config</span> <span class="n">swap</span>
+    <span class="n">option</span> <span class="n">uuid</span> <span class="err">&#39;</span><span class="mi">58713</span><span class="n">d02</span><span class="o">-</span><span class="n">e9de</span><span class="o">-</span><span class="mi">4</span><span class="n">c23</span><span class="o">-</span><span class="n">a56b</span><span class="o">-</span><span class="n">a5ea3d3dfcf0</span><span class="err">&#39;</span>
+    <span class="n">option</span> <span class="n">enabled</span> <span class="sc">&#39;1&#39;</span>
+</pre></div>
+
+
+<p>如果U盘只有一个分区，会只看到一个sda1("/")，其它诸如sda2("/home")、sda5("swap")需要额外分区才能看到。</p>
+<h4>2.6 重启路由器，完成OpenWRT的扩展</h4>
+<p>重启路由器，再次"df -h"一下，可以看到路由器的空间已经扩展成功了。
+<img alt="DF Info" src="/images/articles/201309/install_openwrt_03_df.png" /></p>
+            </div>
+            <!-- /.entry-content -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'hutaow'; // required: replace example with your forum shortname
+
+                    var disqus_identifier = 'install-openwrt';
+                var disqus_url = 'http://hutaow.com/blog/2013/09/06/install-openwrt';
+
+            var disqus_config = function () {
+                this.language = "en";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+                    <li class="list-group-item"><a href="https://plus.google.com/101629371795609143038"><i
+                            class="fa fa-google-plus-square fa-lg"></i> Google+
+                    </a></li>
+                    <li class="list-group-item"><a href="http://twitter.com/hutaow"><i
+                            class="fa fa-twitter-square fa-lg"></i> Twitter
+                    </a></li>
+                    <li class="list-group-item"><a href="http://www.linkedin.com/in/hutaow"><i
+                            class="fa fa-linkedin-square fa-lg"></i> LinkedIn
+                    </a></li>
+                    <li class="list-group-item"><a href="http://www.weibo.com/hutaow"><i
+                            class="fa fa-weibo-square fa-lg"></i> Weibo
+                    </a></li>
+                    <li class="list-group-item"><a href="/feeds/all.atom.xml"><i
+                            class="fa fa-rss-square fa-lg"></i> RSS
+                    </a></li>
+                  </ul>
+                </li>
+
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                    <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
+                                轻量级的 Linux 终端软件 —— RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
+                                使用 OProfile 进行性能分析
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
+                                将 Python 脚本转换为可执行程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
+                                使用 PyQT 作为 Python 的图形界面
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
+                                类型转换导致字符串大小计算错误的问题
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item"><a href="http://hutaow.com/blog/categories/index.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
+                    <ul class="list-group" id="categories">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/database/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Database
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/life/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Life
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/linux/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Linux
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/network/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Network
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/programming/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Programming
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/protocol/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Protocol
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/security/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Security
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/technology/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Technology
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item"><a href="http://hutaow.com/blog/tags/index.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group list-inline tagcloud" id="tags">
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags//index.html">
+                                
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/android/index.html">
+                                Android
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/archlinux/index.html">
+                                ArchLinux
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/atl/index.html">
+                                ATL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/c/index.html">
+                                C
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/coredump/index.html">
+                                CoreDump
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cscope/index.html">
+                                CScope
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/csharp/index.html">
+                                CSharp
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/ctags/index.html">
+                                CTags
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/dai-li/index.html">
+                                代理
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/diao-shi/index.html">
+                                调试
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/diao-yong-zhan/index.html">
+                                调用栈
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
+                                定位
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/fcitx/index.html">
+                                Fcitx
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/fedora/index.html">
+                                Fedora
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/foxmarks/index.html">
+                                Foxmarks
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/gdb/index.html">
+                                GDB
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/gong-ju/index.html">
+                                工具
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/ids/index.html">
+                                IDS
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/java/index.html">
+                                Java
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/jiao-ben/index.html">
+                                脚本
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/jiao-huan-ji/index.html">
+                                交换机
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/kai-fa/index.html">
+                                开发
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/kde/index.html">
+                                KDE
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
+                                控件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/linux/index.html">
+                                Linux
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">
+                                路由器
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/mplayer/index.html">
+                                MPlayer
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/mysql/index.html">
+                                MySQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/openwrt/index.html">
+                                OpenWRT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/oprofile/index.html">
+                                OProfile
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
+                                配置文件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/protocol/index.html">
+                                Protocol
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/pxe/index.html">
+                                PXE
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/pyqt/index.html">
+                                PyQT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/python/index.html">
+                                Python
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/qt/index.html">
+                                QT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/rhythmbox/index.html">
+                                Rhythmbox
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">
+                                入侵检测
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/rxvt/index.html">
+                                RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
+                                数据库
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/snort/index.html">
+                                Snort
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/sql/index.html">
+                                SQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/taglist/index.html">
+                                TagList
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/vi/index.html">
+                                VI
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/virtualbox/index.html">
+                                VirtualBox
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xie-yi-fen-xi/index.html">
+                                协议分析
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
+                                信号
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">
+                                性能优化
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xmarks/index.html">
+                                Xmarks
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xml/index.html">
+                                XML
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/zhe-teng/index.html">
+                                折腾
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/zi-fu-bian-ma/index.html">
+                                字符编码
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 hutaow
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    &quot;<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">胡桃夹子</span>&quot; by <a xmlns:cc="http://creativecommons.org/ns#" href="http://hutaow.com" property="cc:attributionName" rel="cc:attributionURL">hutaow</a> is
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://hutaow.com/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://hutaow.com/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://hutaow.com/theme/js/respond.min.js"></script>
+
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'hutaow'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-17662168-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+</body>
+</html>
