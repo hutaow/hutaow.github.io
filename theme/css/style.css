@@ -157,3 +157,23 @@ figure.floatcenter, .align-center {
 .tagcloud li {
     padding: 0px;
 }
+
+table
+{
+	margin: 2%;
+	width: 96%;
+	border-collapse: collapse;
+}
+table th
+{
+	font-weight: bold;
+	padding: 10px 8px;
+	border-bottom: 2px solid;
+    min-width: 100px;
+}
+table td
+{
+	border-bottom: 1px solid #ccc;
+	padding: 6px 8px;
+}
+
