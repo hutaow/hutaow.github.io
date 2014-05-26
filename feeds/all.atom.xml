@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/all.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-01-03T14:28:23+08:00</updated><entry><title>轻量级的 Linux 终端软件 —— RXVT</title><link href="http://hutaow.com/blog/2014/01/03/my-rxvt-config" rel="alternate"></link><updated>2014-01-03T14:28:23+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-01-03:blog/2014/01/03/my-rxvt-config</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/all.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-05-26T23:36:27+08:00</updated><entry><title>在多个文件中批量查找/替换字符串</title><link href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files" rel="alternate"></link><updated>2014-05-26T23:36:27+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-05-26:blog/2014/05/26/batch-replace-string-in-files</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;grep string -rl /path
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在目录中查找并替换指定的字符串（如下所示，将path目录中将所有文件中的oldstring字符串替换成newstring）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sed -i &lt;span class="s2"&gt;&amp;quot;s/oldstring/newstring/g&amp;quot;&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;grep oldstring -rl /path&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="sed"></category><category term="grep"></category></entry><entry><title>轻量级的 Linux 终端软件 —— RXVT</title><link href="http://hutaow.com/blog/2014/01/03/my-rxvt-config" rel="alternate"></link><updated>2014-01-03T14:28:23+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-01-03:blog/2014/01/03/my-rxvt-config</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;最近发现了个轻量级的Linux终端 —— &lt;a href="http://rxvt.sourceforge.net"&gt;RXVT&lt;/a&gt;，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。&lt;/p&gt;
 &lt;!-- more --&gt;
 

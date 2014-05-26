@@ -58,6 +58,28 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort">Snort安装IDMEF插件</a></h2>
+                <div class="summary"><hr />
+<p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
+<ol>
+<li>
+<p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef">libidmef</a>、<a href="http://xmlsoft.org">libxml2</a>及<a href="http://www.ntp.org">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p>
+</li>
+<li>
+<p>配置Snort时，需要加上"--enable-idmef"参数，如下所示：</p>
+</li>
+</ol>
+<div class="highlight"><pre><span class="p">.</span><span class="o">/</span><span class="n">configure</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">idmef</span>
+<span class="n">make</span>
+<span class="n">make</span> <span class="n">install</span>
+</pre></div>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing">入侵检测与响应系统的信息共享</a></h2>
                 <div class="summary"><hr />
 <h3>引言</h3>
@@ -255,21 +277,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">Fedora 9 无法启动KDE的解决办法</a></h2>
-                <div class="summary"><hr />
-<p>今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout-&gt;KDE，结果却报出个错误，说"Could not start kstartupconfig4. Check your installation"，无语，难道是我少装了什么东西？</p>
-<p>按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用"chown"改变"~/.kde"目录的所有者，哦？检查……"~/.kde"这个目录竟然是root的，原来是权限的问题。</p>
-<!-- more -->
-
-<p>输入"chown -R owner ~/.kde"，为了保险，再加个"chgrp -R group ~/.kde"，这里面的"owner"和"group"分别是当前的用户名和用户所在的组名。</p>
-<p>之后重新进入KDE，一切正常 ...</p></!-->
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/index2.html">&laquo;</a>
@@ -316,6 +323,11 @@
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
+                                在多个文件中批量查找/替换字符串
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 —— RXVT
                             </a>
@@ -333,11 +345,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
                                 使用 PyQT 作为 Python 的图形界面
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
-                                类型转换导致字符串大小计算错误的问题
                             </a>
                         </li>
                     </ul>
@@ -480,6 +487,11 @@
                                 工具
                             </a>
                         </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/grep/index.html">
+                                grep
+                            </a>
+                        </li>
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/ids/index.html">
                                 IDS
@@ -588,6 +600,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/rxvt/index.html">
                                 RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/sed/index.html">
+                                sed
                             </a>
                         </li>
                         <li class="list-group-item tag-3">

@@ -58,6 +58,23 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">在多个文件中批量查找/替换字符串</a></h2>
+                <div class="summary"><hr />
+<p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
+<div class="highlight"><pre>grep string -rl /path
+</pre></div>
+
+
+<p>在目录中查找并替换指定的字符串（如下所示，将path目录中将所有文件中的oldstring字符串替换成newstring）</p>
+<div class="highlight"><pre>sed -i <span class="s2">&quot;s/oldstring/newstring/g&quot;</span> <span class="sb">`</span>grep oldstring -rl /path<span class="sb">`</span>
+</pre></div>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 —— RXVT</a></h2>
                 <div class="summary"><hr />
 <p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
@@ -264,26 +281,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux">Linux下将.cue/.bin转换为.iso的方法</a></h2>
-                <div class="summary"><hr />
-<p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫"bchunk"的小软件非常好用，而且小的可以，才几十K，很不错。</p>
-<p>在终端里输入如下命令：</p>
-<div class="highlight"><pre><span class="n">bchunk</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">bin</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">cue</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">iso</span>
-</pre></div>
-
-
-<!-- more -->
-
-<p>其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。</p>
-<p>等一小会儿，就像下面这幅图一样，会有一个进度条，进度到100%后转换就完成了。
-<img alt="Convert CUE and BIN to ISO format" src="/images/articles/200807/convert_cue_and_bin_to_iso_format_in_linux.png" /></p>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -323,6 +320,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
+                                在多个文件中批量查找/替换字符串
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 —— RXVT
                             </a>
@@ -340,11 +342,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">
                                 通过PXE方式安装Linux系统
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/10/19/linux-signal">
-                                Linux信号处理机制
                             </a>
                         </li>
                     </ul>
@@ -487,6 +484,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                                 工具
                             </a>
                         </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/grep/index.html">
+                                grep
+                            </a>
+                        </li>
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/ids/index.html">
                                 IDS
@@ -595,6 +597,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/rxvt/index.html">
                                 RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/sed/index.html">
+                                sed
                             </a>
                         </li>
                         <li class="list-group-item tag-3">

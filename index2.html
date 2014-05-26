@@ -58,6 +58,24 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></h2>
+                <div class="summary"><hr />
+<h3>1 什么是 Core Dump</h3>
+<p>Core Dump 又叫核心转储。在程序运行过程中发生异常时，将其内存数据保存到文件中，这个过程叫做 Core Dump。</p>
+<h3>2 Core Dump 的作用</h3>
+<p>在开发过程中，难免会遇到程序运行过程中异常退出的情况，这时候想要定位哪里出了问题，仅仅依靠程序自身的信息打印（日志记录）往往是不够的，这个时候就需要 Core Dump 文件来帮忙了。</p>
+<p>一个完整的 Core Dump 文件实际上相当于恢复了异常现场，利用 Core Dump 文件，可以查看到程序异常时的所有信息，变量值、栈信息、内存数据，程序异常时的运行位置（甚至记录代码行号）等等，定位所需要的一切信息都可以从 Core Dump文件获取到，能够非常有效的提高定位效率。</p>
+<!-- more -->
+
+<h3>3 如何生成 Core Dump</h3>
+<h4>3 ...</h4></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/25/linux-core-dump">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/19/linux-signal">Linux信号处理机制</a></h2>
                 <div class="summary"><hr />
 <p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
@@ -288,28 +306,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort">Snort安装IDMEF插件</a></h2>
-                <div class="summary"><hr />
-<p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
-<ol>
-<li>
-<p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef">libidmef</a>、<a href="http://xmlsoft.org">libxml2</a>及<a href="http://www.ntp.org">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p>
-</li>
-<li>
-<p>配置Snort时，需要加上"--enable-idmef"参数，如下所示：</p>
-</li>
-</ol>
-<div class="highlight"><pre><span class="p">.</span><span class="o">/</span><span class="n">configure</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">idmef</span>
-<span class="n">make</span>
-<span class="n">make</span> <span class="n">install</span>
-</pre></div>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/index.html">&laquo;</a>
@@ -356,6 +352,11 @@
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
+                                在多个文件中批量查找/替换字符串
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 —— RXVT
                             </a>
@@ -373,11 +374,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
                                 使用 PyQT 作为 Python 的图形界面
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
-                                类型转换导致字符串大小计算错误的问题
                             </a>
                         </li>
                     </ul>
@@ -520,6 +516,11 @@
                                 工具
                             </a>
                         </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/grep/index.html">
+                                grep
+                            </a>
+                        </li>
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/ids/index.html">
                                 IDS
@@ -628,6 +629,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/rxvt/index.html">
                                 RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/sed/index.html">
+                                sed
                             </a>
                         </li>
                         <li class="list-group-item tag-3">
