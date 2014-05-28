@@ -75,7 +75,7 @@
             </article>
             <hr/>
             <article>
-                <h2><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 —— RXVT</a></h2>
+                <h2><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 RXVT</a></h2>
                 <div class="summary"><hr />
 <p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <!-- more -->
@@ -231,6 +231,23 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
             </article>
             <hr/>
             <article>
+                <h2><a href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions">Linux中批量设置目录或文件权限的方法</a></h2>
+                <div class="summary"><hr />
+<p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
+<div class="highlight"><pre><span class="n">find</span> <span class="p">.</span><span class="o">/</span> <span class="o">-</span><span class="n">type</span> <span class="n">d</span> <span class="o">-</span><span class="n">exec</span> <span class="n">chmod</span> <span class="mi">755</span> <span class="p">{}</span> <span class="err">\</span><span class="p">;</span>
+</pre></div>
+
+
+<p>递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）</p>
+<div class="highlight"><pre><span class="n">find</span> <span class="p">.</span><span class="o">/</span> <span class="o">-</span><span class="n">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">exec</span> <span class="n">chmod</span> <span class="mi">644</span> <span class="p">{}</span> <span class="err">\</span><span class="p">;</span>
+</pre></div>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">终端下使用代理的方法</a></h2>
                 <div class="summary"><hr />
 <p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，"HTTP_PROXY"、"http_proxy"和"FTP_PROXY"、"ftp_proxy"，在"~/.bash_profile"中添加以下几行：</p>
@@ -264,26 +281,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux">Linux下将.cue/.bin转换为.iso的方法</a></h2>
-                <div class="summary"><hr />
-<p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫"bchunk"的小软件非常好用，而且小的可以，才几十K，很不错。</p>
-<p>在终端里输入如下命令：</p>
-<div class="highlight"><pre><span class="n">bchunk</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">bin</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">cue</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">iso</span>
-</pre></div>
-
-
-<!-- more -->
-
-<p>其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。</p>
-<p>等一小会儿，就像下面这幅图一样，会有一个进度条，进度到100%后转换就完成了。
-<img alt="Convert CUE and BIN to ISO format" src="/images/articles/200807/convert_cue_and_bin_to_iso_format_in_linux.png" /></p>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -302,12 +299,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
         <ul class="list-group list-group-flush">
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
                   <ul class="list-group" id="social">
-                    <li class="list-group-item"><a href="https://plus.google.com/101629371795609143038"><i
-                            class="fa fa-google-plus-square fa-lg"></i> Google+
-                    </a></li>
-                    <li class="list-group-item"><a href="http://twitter.com/hutaow"><i
-                            class="fa fa-twitter-square fa-lg"></i> Twitter
-                    </a></li>
                     <li class="list-group-item"><a href="http://www.linkedin.com/in/hutaow"><i
                             class="fa fa-linkedin-square fa-lg"></i> LinkedIn
                     </a></li>
@@ -329,7 +320,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
-                                轻量级的 Linux 终端软件 —— RXVT
+                                轻量级的 Linux 终端软件 RXVT
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -345,6 +336,31 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">
                                 通过PXE方式安装Linux系统
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/10/19/linux-signal">
+                                Linux信号处理机制
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux">
+                                Linux中分区出现“Read-only file system”的解决办法
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions">
+                                Linux中批量设置目录或文件权限的方法
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">
+                                终端下使用代理的方法
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">
+                                Fedora 9 无法启动KDE的解决办法
                             </a>
                         </li>
                     </ul>
@@ -365,11 +381,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/categories/linux/index.html">
                                 <i class="fa fa-folder-open fa-lg"></i> Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/linuxfindchmod/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Linux,find,chmod
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -428,6 +439,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/chmod/index.html">
+                                chmod
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/coredump/index.html">
                                 CoreDump
                             </a>
@@ -475,6 +491,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/fedora/index.html">
                                 Fedora
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/find/index.html">
+                                find
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -679,6 +700,15 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         </li>
                     </ul>
                 </li>    
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://www.yuanyin.org" target="_blank">
+                小糊涂园
+            </a>
+        </li>
+      </ul>
+    </li>
 
         </ul>
     </section>

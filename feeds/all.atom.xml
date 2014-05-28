@@ -7,7 +7,7 @@
 
 &lt;p&gt;在目录中查找并替换指定的字符串（如下所示，将path目录中将所有文件中的oldstring字符串替换成newstring）&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sed -i &lt;span class="s2"&gt;&amp;quot;s/oldstring/newstring/g&amp;quot;&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;grep oldstring -rl /path&lt;span class="sb"&gt;`&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="sed"></category><category term="grep"></category></entry><entry><title>轻量级的 Linux 终端软件 —— RXVT</title><link href="http://hutaow.com/blog/2014/01/03/my-rxvt-config" rel="alternate"></link><updated>2014-01-03T14:28:23+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-01-03:blog/2014/01/03/my-rxvt-config</id><summary type="html">&lt;hr /&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="sed"></category><category term="grep"></category></entry><entry><title>轻量级的 Linux 终端软件 RXVT</title><link href="http://hutaow.com/blog/2014/01/03/my-rxvt-config" rel="alternate"></link><updated>2014-01-03T14:28:23+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-01-03:blog/2014/01/03/my-rxvt-config</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;最近发现了个轻量级的Linux终端 —— &lt;a href="http://rxvt.sourceforge.net"&gt;RXVT&lt;/a&gt;，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。&lt;/p&gt;
 &lt;!-- more --&gt;
 
@@ -3541,7 +3541,7 @@ opcontrol --deinit
 
 &lt;p&gt;递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;exec&lt;/span&gt; &lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="mi"&gt;644&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category></entry><entry><title>配置 Cisco Catalyst 3560 交换机端口镜像</title><link href="http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring" rel="alternate"></link><updated>2010-05-14T22:13:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2010-05-14:blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring</id><summary type="html">&lt;hr /&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="find"></category><category term="chmod"></category></entry><entry><title>配置 Cisco Catalyst 3560 交换机端口镜像</title><link href="http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring" rel="alternate"></link><updated>2010-05-14T22:13:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2010-05-14:blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：&lt;/p&gt;
 &lt;p&gt;1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。&lt;/p&gt;
 &lt;p&gt;2) 交换机上电自检然后登入后出现命令提示符：&lt;/p&gt;
