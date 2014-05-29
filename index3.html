@@ -58,6 +58,35 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2010/04/27/get-xml-node-value-with-c-sharp-language">C#获取XML文件指定节点的数据</a></h2>
+                <div class="summary"><hr />
+<p>实例说明会更清楚些，假设有如下XML文件：</p>
+<p>``` xml message_hutaow.xml
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+<Message version="1.0">
+  <Head>
+    <Date>20080502</Date>
+    <Source>
+      <Address>192.168.0.1</Address>
+      <Name>hutaow</Name>
+    </Source>
+    <Target>
+      <Address>192.168.0.19</Address>
+    </Target>
+  </Head>
+</Message></p>
+<div class="highlight"><pre><span class="err">现在要读取消息源</span><span class="n">IP</span><span class="err">地址</span><span class="p">(</span><span class="mf">192.168.0.1</span><span class="p">)</span><span class="err">和目的</span><span class="n">IP</span><span class="err">地址</span><span class="p">(</span><span class="mf">192.168.0.19</span><span class="p">)</span><span class="err">。</span>
+
+<span class="o">&lt;!--</span> <span class="n">more</span> <span class="o">--&gt;</span>
+
+<span class="err">根据上面</span><span class="n">XML</span><span class="err">文件的结构，查找路径为</span><span class="s">&quot;/Message/Head/Source/Address&quot;</span><span class="err">和</span><span class="s">&quot;/Message/Head/Target/Address&quot;</span><span class="err">，需要用到 ...</span></pre></div>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/04/27/get-xml-node-value-with-c-sharp-language">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort">Snort安装IDMEF插件</a></h2>
                 <div class="summary"><hr />
 <p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
@@ -258,25 +287,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">终端下使用代理的方法</a></h2>
-                <div class="summary"><hr />
-<p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，"HTTP_PROXY"、"http_proxy"和"FTP_PROXY"、"ftp_proxy"，在"~/.bash_profile"中添加以下几行：</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">HTTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
-<span class="n">export</span> <span class="n">FTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
-<span class="n">export</span> <span class="n">http_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
-<span class="n">export</span> <span class="n">ftp_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
-</pre></div>
-
-
-<p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
-<p>修改保存后重启终端或在执行 ...</p>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/index2.html">&laquo;</a>
@@ -316,6 +326,11 @@
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">
+                                基于libpcap的开发实例
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
                                 在多个文件中批量查找/替换字符串
@@ -359,11 +374,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">
                                 MySQL协议分析
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">
-                                通过PXE方式安装Linux系统
                             </a>
                         </li>
                     </ul>
@@ -554,6 +564,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
                                 控件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/libpcap/index.html">
+                                libpcap
                             </a>
                         </li>
                         <li class="list-group-item tag-1">

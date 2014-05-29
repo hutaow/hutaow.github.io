@@ -58,6 +58,28 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">通过PXE方式安装Linux系统</a></h2>
+                <div class="summary"><hr />
+<h3>1 准备工作</h3>
+<ul>
+<li>Linux安装镜像（本文以CentOS为例）</li>
+<li>TFTP+DHCP服务程序（Windows环境中推荐Tftpd32，<a href="http://tftpd32.jounin.net">点击此处进入下载页面</a>）</li>
+<li>FTP服务程序（推荐FileZilla，<a href="http://filezilla-project.org">点击此处进入下载页面</a>）</li>
+</ul>
+<!-- more -->
+
+<h3>2 建立PXE启动目录</h3>
+<ul>
+<li>创建<code>E:\Server\PXE</code>目录，将Linux光盘镜像<code>/images/pxeboot</code>文件夹中的<code>initrd.img</code>和<code>vmlinux</code>文件拷贝到该目录中</li>
+<li>在<code>E:\Server\PXE</code>中创建<code>pxelinux.cfg</code>目录，将光盘镜像<code>/isolinux</code>文件夹中的<code>isolinux.cfg</code>文件拷贝到该目录中，并重命名为<code>default</code></li>
+<li>将syslinux的PXE启动加载程序<code>pxelinux.0</code>拷贝到<code>E:\Server\PXE ...</code></li></ul></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></h2>
                 <div class="summary"><hr />
 <h3>1 什么是 Core Dump</h3>
@@ -277,35 +299,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2010/04/27/get-xml-node-value-with-c-sharp-language">C#获取XML文件指定节点的数据</a></h2>
-                <div class="summary"><hr />
-<p>实例说明会更清楚些，假设有如下XML文件：</p>
-<p>``` xml message_hutaow.xml
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-<Message version="1.0">
-  <Head>
-    <Date>20080502</Date>
-    <Source>
-      <Address>192.168.0.1</Address>
-      <Name>hutaow</Name>
-    </Source>
-    <Target>
-      <Address>192.168.0.19</Address>
-    </Target>
-  </Head>
-</Message></p>
-<div class="highlight"><pre><span class="err">现在要读取消息源</span><span class="n">IP</span><span class="err">地址</span><span class="p">(</span><span class="mf">192.168.0.1</span><span class="p">)</span><span class="err">和目的</span><span class="n">IP</span><span class="err">地址</span><span class="p">(</span><span class="mf">192.168.0.19</span><span class="p">)</span><span class="err">。</span>
-
-<span class="o">&lt;!--</span> <span class="n">more</span> <span class="o">--&gt;</span>
-
-<span class="err">根据上面</span><span class="n">XML</span><span class="err">文件的结构，查找路径为</span><span class="s">&quot;/Message/Head/Source/Address&quot;</span><span class="err">和</span><span class="s">&quot;/Message/Head/Target/Address&quot;</span><span class="err">，需要用到 ...</span></pre></div>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/04/27/get-xml-node-value-with-c-sharp-language">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/index.html">&laquo;</a>
@@ -345,6 +338,11 @@
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">
+                                基于libpcap的开发实例
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
                                 在多个文件中批量查找/替换字符串
@@ -388,11 +386,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">
                                 MySQL协议分析
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">
-                                通过PXE方式安装Linux系统
                             </a>
                         </li>
                     </ul>
@@ -583,6 +576,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
                                 控件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/libpcap/index.html">
+                                libpcap
                             </a>
                         </li>
                         <li class="list-group-item tag-1">

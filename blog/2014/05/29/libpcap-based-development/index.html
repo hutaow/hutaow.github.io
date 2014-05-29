@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>基于libpcap的开发实例 - 胡桃夹子</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="胡桃夹子" />
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="基于libpcap的开发实例"/>
+            <meta property="og:url" content="http://hutaow.com/blog/2014/05/29/libpcap-based-development"/>
+            <meta property="og:description" content="libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。 1 安装libpcap库 从TCPDUMP官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。 ./configure make make install 2 实例代码 代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。 首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下： #ifndef _BASETYPE_H_ #define _BASETYPE_H_ #define OK (0) #define ERROR (1) #define YES (1) #define NO (0) typedef void VOID; typedef char CHAR; typedef char ..."/>
+            <meta property="article:published_time" content="2014-05-29" />
+                <meta property="article:section" content="Programming" />
+                <meta property="article:tag" content="Linux" />
+                <meta property="article:tag" content="libpcap" />
+                <meta property="article:author" content="hutaow" />
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://hutaow.com/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://hutaow.com/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://hutaow.com/theme/css/style.css" type="text/css"/>
+
+        <link href="http://hutaow.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="胡桃夹子 ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://hutaow.com/" class="navbar-brand">
+胡桃夹子            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://hutaow.com/blog/archives/index.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development"
+                       rel="bookmark"
+                       title="Permalink to 基于libpcap的开发实例">
+                        基于libpcap的开发实例
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-05-29T23:25:19"> Thu 29 May 2014</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/programming/index.html">Programming</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/linux/index.html">Linux</a>
+        /
+	<a href="http://hutaow.com/blog/tags/libpcap/index.html">libpcap</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <hr />
+<p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
+<h3>1 安装libpcap库</h3>
+<p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
+<div class="highlight"><pre>./configure
+make
+make install
+</pre></div>
+
+
+<h3>2 实例代码</h3>
+<p>代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。</p>
+<p>首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下：</p>
+<div class="highlight"><pre><span class="cp">#ifndef _BASETYPE_H_</span>
+<span class="cp">#define _BASETYPE_H_</span>
+
+<span class="cp">#define OK (0)</span>
+<span class="cp">#define ERROR (1)</span>
+
+<span class="cp">#define YES (1)</span>
+<span class="cp">#define NO (0)</span>
+
+<span class="k">typedef</span> <span class="kt">void</span> <span class="n">VOID</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="kt">char</span> <span class="n">CHAR</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">char</span> <span class="n">INT8</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">short</span> <span class="n">INT16</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">int</span> <span class="n">INT32</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">INT64</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="n">LONG</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">UCHAR</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">UINT8</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">UINT16</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">UINT32</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">UINT64</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">ULONG</span><span class="p">;</span>
+
+<span class="cp">#define DEBUG_INFO(fmt, ...) printf(&quot;[Info] &quot;fmt&quot;\r\n&quot;, ##__VA_ARGS__)</span>
+<span class="cp">#define DEBUG_EVENT(fmt, ...) printf(&quot;[Event] &quot;fmt&quot;\r\n&quot;, ##__VA_ARGS__)</span>
+<span class="cp">#define DEBUG_ERROR(fmt, ...) printf(&quot;[Error] &quot;fmt&quot;\r\n&quot;, ##__VA_ARGS__)</span>
+
+<span class="cp">#endif </span><span class="cm">/* _BASETYPE_H__ */</span><span class="cp"></span>
+</pre></div>
+
+
+<p>接下来是源文件（traffic.c），libpcap的接口调用过程都在这里，具体说明可以参考代码注释：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;string.h&gt;</span>
+<span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;pcap.h&gt;</span>
+
+<span class="cp">#include &quot;basetype.h&quot;</span>
+
+<span class="cm">/* 网卡名称最大长度 */</span>
+<span class="cp">#define DEVICE_NAME_LEN (1024)</span>
+
+<span class="cm">/* 过滤条件最大长度 */</span>
+<span class="cp">#define FILTER_LEN (10 * 1024)</span>
+
+<span class="cm">/* 当前选择抓包的网卡索引及名称 */</span>
+<span class="n">UINT32</span> <span class="n">g_uiDeviceIndex</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">CHAR</span> <span class="n">g_acDeviceName</span><span class="p">[</span><span class="n">DEVICE_NAME_LEN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+
+<span class="cm">/* 条件过滤器 */</span>
+<span class="n">CHAR</span> <span class="n">g_acFilter</span><span class="p">[</span><span class="n">FILTER_LEN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+
+<span class="cm">/* 报文处理回调函数 */</span>
+<span class="n">VOID</span> <span class="nf">traffic_callback</span><span class="p">(</span><span class="n">UINT8</span> <span class="o">*</span><span class="n">pucCntx</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">pcap_pkthdr</span> <span class="o">*</span><span class="n">pstPktHdr</span><span class="p">,</span> <span class="k">const</span> <span class="n">UINT8</span> <span class="o">*</span><span class="n">pucPacket</span><span class="p">);</span>
+
+<span class="cm">/* 主函数 */</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">CHAR</span> <span class="o">*</span><span class="n">pcDev</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">CHAR</span> <span class="n">acErrBuff</span><span class="p">[</span><span class="n">PCAP_ERRBUF_SIZE</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="n">INT32</span> <span class="n">iLoop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">UINT32</span> <span class="n">uiShowUsageOnly</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
+    <span class="n">INT32</span> <span class="n">iRet</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="kt">pcap_t</span> <span class="o">*</span><span class="n">pstHandle</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="kt">pcap_if_t</span> <span class="o">*</span><span class="n">pstAllDevices</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="kt">pcap_if_t</span> <span class="o">*</span><span class="n">pstDevice</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+    <span class="k">struct</span> <span class="n">bpf_program</span> <span class="n">stFilter</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="n">bpf_u_int32</span> <span class="n">uiIP</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">bpf_u_int32</span> <span class="n">uiNetmask</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="cm">/* 0.命令行参数处理 */</span>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">argc</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">uiShowUsageOnly</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="mi">2</span> <span class="o">==</span> <span class="n">argc</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">g_uiDeviceIndex</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="cm">/* 3 &lt;= argc */</span>
+    <span class="p">{</span>
+        <span class="n">g_uiDeviceIndex</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="n">strncpy</span><span class="p">(</span><span class="n">g_acFilter</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">FILTER_LEN</span><span class="p">);</span>
+        <span class="n">DEBUG_EVENT</span><span class="p">(</span><span class="s">&quot;Set filter: %s&quot;</span><span class="p">,</span> <span class="n">g_acFilter</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* 1.查找所有的网卡接口 */</span>
+    <span class="n">iRet</span> <span class="o">=</span> <span class="n">pcap_findalldevs</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pstAllDevices</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">OK</span> <span class="o">!=</span> <span class="n">iRet</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not find any device! (%s)&quot;</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* 2.打印网卡接口列表 */</span>
+    <span class="n">iLoop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">pstDevice</span> <span class="o">=</span> <span class="n">pstAllDevices</span><span class="p">;</span>
+    <span class="n">DEBUG_INFO</span><span class="p">(</span><span class="s">&quot;Device list:&quot;</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">!=</span> <span class="n">pstDevice</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">g_uiDeviceIndex</span> <span class="o">==</span> <span class="n">iLoop</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">DEBUG_INFO</span><span class="p">(</span><span class="s">&quot; -&gt; (%d) %s (%s)&quot;</span><span class="p">,</span> <span class="n">iLoop</span><span class="p">,</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">description</span><span class="p">);</span>
+            <span class="n">strncpy</span><span class="p">(</span><span class="n">g_acDeviceName</span><span class="p">,</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">DEVICE_NAME_LEN</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">DEBUG_INFO</span><span class="p">(</span><span class="s">&quot;    (%d) %s (%s)&quot;</span><span class="p">,</span> <span class="n">iLoop</span><span class="p">,</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">description</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">pstDevice</span> <span class="o">=</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="o">++</span><span class="n">iLoop</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">pcap_freealldevs</span><span class="p">(</span><span class="n">pstAllDevices</span><span class="p">);</span>
+    <span class="n">pstAllDevices</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">YES</span> <span class="o">==</span> <span class="n">uiShowUsageOnly</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_INFO</span><span class="p">(</span><span class="s">&quot;Usage:&quot;</span><span class="p">);</span>
+        <span class="n">DEBUG_INFO</span><span class="p">(</span><span class="s">&quot;    traffic &lt;Device Index&gt; [Filter] &quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">strlen</span><span class="p">(</span><span class="n">g_acDeviceName</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not found the selected device(%u)!&quot;</span><span class="p">,</span> <span class="n">g_uiDeviceIndex</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">DEBUG_EVENT</span><span class="p">(</span><span class="s">&quot;Select device: (%u) %s&quot;</span><span class="p">,</span> <span class="n">g_uiDeviceIndex</span><span class="p">,</span> <span class="n">g_acDeviceName</span><span class="p">);</span>
+
+    <span class="cm">/* 3.查询网卡信息(IP/Mask) */</span>
+    <span class="n">iRet</span> <span class="o">=</span> <span class="n">pcap_lookupnet</span><span class="p">(</span><span class="n">g_acDeviceName</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">uiIP</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">uiNetmask</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">OK</span> <span class="o">!=</span> <span class="n">iRet</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not get the device infomation! (%s)&quot;</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+        <span class="n">uiIP</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">uiNetmask</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="cm">/* 查询网卡信息失败不影响业务功能 继续处理 */</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* 4.打开指定的网卡 */</span>
+    <span class="cm">/*   参数1:网卡名称 参数2:最大数据长度 参数3:超时时间(ms) 参数4:错误信息 */</span>
+    <span class="n">pstHandle</span> <span class="o">=</span> <span class="n">pcap_open_live</span><span class="p">(</span><span class="n">g_acDeviceName</span><span class="p">,</span> <span class="mi">65535</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">pstHandle</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not open device %s! (%s)&quot;</span><span class="p">,</span> <span class="n">g_acDeviceName</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* 5.设置过滤条件 */</span>
+    <span class="cm">/*   参数1:网卡句柄 参数2:过滤器 参数3:过滤条件字符串 参数4:是否优化 参数5:网络掩码 */</span>
+    <span class="n">iRet</span> <span class="o">=</span> <span class="n">pcap_compile</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">stFilter</span><span class="p">,</span> <span class="n">g_acFilter</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">uiNetmask</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">OK</span> <span class="o">!=</span> <span class="n">iRet</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not parse the filter </span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;</span><span class="s">! (%s)&quot;</span><span class="p">,</span> <span class="n">g_acFilter</span><span class="p">,</span> <span class="n">pcap_geterr</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">iRet</span> <span class="o">=</span> <span class="n">pcap_setfilter</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">stFilter</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">OK</span> <span class="o">!=</span> <span class="n">iRet</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not set the filter </span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;</span><span class="s">! (%s)&quot;</span><span class="p">,</span> <span class="n">g_acFilter</span><span class="p">,</span> <span class="n">pcap_geterr</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* 6.抓包处理（阻塞） */</span>
+    <span class="cm">/*   参数1:网卡句柄 参数2:报文个数 参数3:回调函数 参数4:上下文信息 */</span>
+    <span class="n">pcap_loop</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">traffic_callback</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="cm">/* 7.关闭网卡 */</span>
+    <span class="n">pcap_close</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">);</span>
+    <span class="n">pstHandle</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* 报文处理回调函数 */</span>
+<span class="n">VOID</span> <span class="nf">traffic_callback</span><span class="p">(</span><span class="n">UINT8</span> <span class="o">*</span><span class="n">pucCntx</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">pcap_pkthdr</span> <span class="o">*</span><span class="n">pstPktHdr</span><span class="p">,</span> <span class="k">const</span> <span class="n">UINT8</span> <span class="o">*</span><span class="n">pucPacket</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">DEBUG_EVENT</span><span class="p">(</span><span class="s">&quot;Receives a packet (%u bytes).&quot;</span><span class="p">,</span> <span class="n">pstPktHdr</span><span class="o">-&gt;</span><span class="n">len</span><span class="p">);</span>
+
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>另外补充一句，源文件中的<code>traffic_callback</code>为捕获报文后的回调处理函数，对报文的处理操作均可以在这里进行，<code>pstPktHdr</code>为报文头信息，<code>pucPacket</code>为报文数据指针。</p>
+<h3>3 编译</h3>
+<p>执行gcc编译，注意需要加上<code>-lpcap</code>选项，因为需要用到libpcap的库函数：</p>
+<div class="highlight"><pre>gcc -o traffic traffic.c -lpcap
+</pre></div>
+
+
+<p>或者可以直接写个Makefile方便后续编译：</p>
+<div class="highlight"><pre><span class="nv">CC</span><span class="o">=</span>gcc
+<span class="nv">LIBS</span><span class="o">=</span>-lpcap
+<span class="nv">OPTS</span><span class="o">=</span>-ggdb3 -rdynamic
+
+<span class="nf">traffic</span><span class="o">:</span>
+    <span class="k">$(</span>CC<span class="k">)</span> -o traffic *.c <span class="k">$(</span>LIBS<span class="k">)</span> <span class="k">$(</span>OPTS<span class="k">)</span>
+
+<span class="nf">all</span><span class="o">:</span> <span class="m">traffic</span>
+<span class="nv">CC</span><span class="o">=</span>gcc
+<span class="nv">LIBS</span><span class="o">=</span>-lpcap
+<span class="nv">OPTS</span><span class="o">=</span>-ggdb3 -rdynamic
+
+<span class="nf">traffic</span><span class="o">:</span>
+    <span class="k">$(</span>CC<span class="k">)</span> -o traffic *.c <span class="k">$(</span>LIBS<span class="k">)</span> <span class="k">$(</span>OPTS<span class="k">)</span>
+
+<span class="nf">all</span><span class="o">:</span> <span class="m">traffic</span>
+
+<span class="nf">clean</span><span class="o">:</span>
+    rm traffic
+
+<span class="nf">clean</span><span class="o">:</span>
+    rm traffic
+</pre></div>
+
+
+<h3>4 运行</h3>
+<p>直接执行<code>./traffic</code>显示可用的网卡列表，这里我们选择6号（无线网卡）进行抓包，运行效果如下图：</p>
+<p><img alt="Traffic Running with Filter" src="/images/articles/201405/traffic_running_with_filter.png" /></p>
+<p>另外，第二个参数"port 53"（该端口为DNS协议），是在设置报文捕获的过滤条件（通过代码中的<code>pcap_compile</code>和<code>pcap_setfilter</code>结合来实现）。</p>
+<p>注意这里的操作需要root用户权限，因为需要将网卡设置为混杂模式。</p>
+<h3>5 结尾</h3>
+<p>本文中的示例代码可以<a href="https://github.com/hutaow/TrafficCapture">点击此处链接</a>获取下载。</p>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
+        <li><a href="http://hutaow.com/blog/2013/10/19/linux-signal">Linux信号处理机制</a></li>
+        <li><a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">在 ArchLinux 中使用 Fcitx 输入法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux">Linux下将.cue/.bin转换为.iso的方法</a></li>
+    </ul>
+</section>
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'hutaow'; // required: replace example with your forum shortname
+
+                    var disqus_identifier = 'libpcap-based-development';
+                var disqus_url = 'http://hutaow.com/blog/2014/05/29/libpcap-based-development';
+
+            var disqus_config = function () {
+                this.language = "en";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+                    <li class="list-group-item"><a href="http://www.linkedin.com/in/hutaow"><i
+                            class="fa fa-linkedin-square fa-lg"></i> LinkedIn
+                    </a></li>
+                    <li class="list-group-item"><a href="http://www.weibo.com/hutaow"><i
+                            class="fa fa-weibo-square fa-lg"></i> Weibo
+                    </a></li>
+                    <li class="list-group-item"><a href="/feeds/all.atom.xml"><i
+                            class="fa fa-rss-square fa-lg"></i> RSS
+                    </a></li>
+                  </ul>
+                </li>
+
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                    <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">
+                                基于libpcap的开发实例
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
+                                在多个文件中批量查找/替换字符串
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
+                                轻量级的 Linux 终端软件 RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
+                                使用 OProfile 进行性能分析
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
+                                将 Python 脚本转换为可执行程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
+                                使用 PyQT 作为 Python 的图形界面
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
+                                类型转换导致字符串大小计算错误的问题
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">
+                                配置 VIM 开发环境
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">
+                                在 ArchLinux 中使用 Fcitx 输入法
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">
+                                MySQL协议分析
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item"><a href="http://hutaow.com/blog/categories/index.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
+                    <ul class="list-group" id="categories">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/database/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Database
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/life/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Life
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/linux/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Linux
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/network/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Network
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/programming/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Programming
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/protocol/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Protocol
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/security/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Security
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/categories/technology/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Technology
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item"><a href="http://hutaow.com/blog/tags/index.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group list-inline tagcloud" id="tags">
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags//index.html">
+                                
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/android/index.html">
+                                Android
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/archlinux/index.html">
+                                ArchLinux
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/atl/index.html">
+                                ATL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/c/index.html">
+                                C
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/chmod/index.html">
+                                chmod
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/coredump/index.html">
+                                CoreDump
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cscope/index.html">
+                                CScope
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/csharp/index.html">
+                                CSharp
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/ctags/index.html">
+                                CTags
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/dai-li/index.html">
+                                代理
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/diao-shi/index.html">
+                                调试
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/diao-yong-zhan/index.html">
+                                调用栈
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
+                                定位
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/fcitx/index.html">
+                                Fcitx
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/fedora/index.html">
+                                Fedora
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/find/index.html">
+                                find
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/foxmarks/index.html">
+                                Foxmarks
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/gdb/index.html">
+                                GDB
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/gong-ju/index.html">
+                                工具
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/grep/index.html">
+                                grep
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/ids/index.html">
+                                IDS
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://hutaow.com/blog/tags/java/index.html">
+                                Java
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/jiao-ben/index.html">
+                                脚本
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/jiao-huan-ji/index.html">
+                                交换机
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/kai-fa/index.html">
+                                开发
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/kde/index.html">
+                                KDE
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
+                                控件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/libpcap/index.html">
+                                libpcap
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/linux/index.html">
+                                Linux
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">
+                                路由器
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/mplayer/index.html">
+                                MPlayer
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/mysql/index.html">
+                                MySQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/openwrt/index.html">
+                                OpenWRT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/oprofile/index.html">
+                                OProfile
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
+                                配置文件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/protocol/index.html">
+                                Protocol
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/pxe/index.html">
+                                PXE
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/pyqt/index.html">
+                                PyQT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/python/index.html">
+                                Python
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/qt/index.html">
+                                QT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/rhythmbox/index.html">
+                                Rhythmbox
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">
+                                入侵检测
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/rxvt/index.html">
+                                RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/sed/index.html">
+                                sed
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
+                                数据库
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/snort/index.html">
+                                Snort
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/sql/index.html">
+                                SQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/taglist/index.html">
+                                TagList
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/vi/index.html">
+                                VI
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/virtualbox/index.html">
+                                VirtualBox
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xie-yi-fen-xi/index.html">
+                                协议分析
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
+                                信号
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">
+                                性能优化
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xmarks/index.html">
+                                Xmarks
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/xml/index.html">
+                                XML
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/zhe-teng/index.html">
+                                折腾
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/zi-fu-bian-ma/index.html">
+                                字符编码
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://www.yuanyin.org" target="_blank">
+                小糊涂园
+            </a>
+        </li>
+      </ul>
+    </li>
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 hutaow
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    &quot;<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">胡桃夹子</span>&quot; by <a xmlns:cc="http://creativecommons.org/ns#" href="http://hutaow.com" property="cc:attributionName" rel="cc:attributionURL">hutaow</a> is
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://hutaow.com/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://hutaow.com/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://hutaow.com/theme/js/respond.min.js"></script>
+
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'hutaow'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-17662168-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+</body>
+</html>
