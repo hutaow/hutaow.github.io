@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>KDE - 胡桃夹子</title>
+    <title>删除Git的提交记录 - 胡桃夹子</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -12,10 +12,14 @@
 
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="胡桃夹子" />
-            <meta property="og:type" content="website"/>
-            <meta property="og:title" content="胡桃夹子"/>
-            <meta property="og:url" content="http://hutaow.com"/>
-            <meta property="og:description" content="胡桃夹子"/>
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="删除Git的提交记录"/>
+            <meta property="og:url" content="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git"/>
+            <meta property="og:description" content="不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志，）。 删除最后一次的提交记录： git reset --hard HEAD^ 删除最后3次的提交记录： git reset --hard HEAD~3 已经提交到远端库上了？那就还需要将本地库强行同步到远端库上（注意执行这个命令前先检查一下有没有别人的提交记录，不然会覆盖他人的修改）： git push --force"/>
+            <meta property="article:published_time" content="2014-06-02" />
+                <meta property="article:section" content="Technology" />
+                <meta property="article:tag" content="Git" />
+                <meta property="article:author" content="hutaow" />
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
@@ -57,21 +61,86 @@
     <div class="row">
         <div class="col-sm-9">
 
-            <article>
-                <h2><a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">Fedora 9 无法启动KDE的解决办法</a></h2>
-                <div class="summary"><hr />
-<p>今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout-&gt;KDE，结果却报出个错误，说"Could not start kstartupconfig4. Check your installation"，无语，难道是我少装了什么东西？</p>
-<p>按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用"chown"改变"~/.kde"目录的所有者，哦？检查……"~/.kde"这个目录竟然是root的，原来是权限的问题。</p>
-<!-- more -->
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git"
+                       rel="bookmark"
+                       title="Permalink to 删除Git的提交记录">
+                        删除Git的提交记录
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-06-02T15:38:56"> Mon 02 June 2014</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
 
-<p>输入"chown -R owner ~/.kde"，为了保险，再加个"chgrp -R group ~/.kde"，这里面的"owner"和"group"分别是当前的用户名和用户所在的组名。</p>
-<p>之后重新进入KDE，一切正常 ...</p></!-->
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">阅读全文</a>
-                    </div>
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/technology/index.html">Technology</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/git/index.html">Git</a>
+    
+</footer><!-- /.post-info -->                    </div>
                 </div>
-            </article>
-            <hr/>
+                <hr />
+<p>不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志，）。</p>
+<p>删除最后一次的提交记录：</p>
+<div class="highlight"><pre>git reset --hard HEAD^
+</pre></div>
+
+
+<p>删除最后3次的提交记录：</p>
+<div class="highlight"><pre>git reset --hard HEAD~3
+</pre></div>
+
+
+<p>已经提交到远端库上了？那就还需要将本地库强行同步到远端库上（注意执行这个命令前先检查一下有没有别人的提交记录，不然会覆盖他人的修改）：</p>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="n">force</span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'hutaow'; // required: replace example with your forum shortname
+
+                    var disqus_identifier = 'undo-commits-permanently-in-git';
+                var disqus_url = 'http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git';
+
+            var disqus_config = function () {
+                this.language = "en";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
@@ -96,8 +165,53 @@
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">
-                                Fedora 9 无法启动KDE的解决办法
+                            <a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">
+                                删除Git的提交记录
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">
+                                基于libpcap的开发实例
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
+                                在多个文件中批量查找/替换字符串
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
+                                轻量级的 Linux 终端软件 RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
+                                使用 OProfile 进行性能分析
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
+                                将 Python 脚本转换为可执行程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
+                                使用 PyQT 作为 Python 的图形界面
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
+                                类型转换导致字符串大小计算错误的问题
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">
+                                配置 VIM 开发环境
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">
+                                在 ArchLinux 中使用 Fcitx 输入法
                             </a>
                         </li>
                     </ul>
@@ -467,7 +581,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2008 hutaow
+         <div class="col-xs-10">&copy; 2014 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

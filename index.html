@@ -18,7 +18,7 @@
             <meta property="og:description" content="胡桃夹子"/>
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
     <link href="http://hutaow.com/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="http://hutaow.com/theme/css/pygments/native.css" rel="stylesheet">
@@ -57,6 +57,29 @@
     <div class="row">
         <div class="col-sm-9">
 
+            <article>
+                <h2><a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">删除Git的提交记录</a></h2>
+                <div class="summary"><hr />
+<p>不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志，）。</p>
+<p>删除最后一次的提交记录：</p>
+<div class="highlight"><pre>git reset --hard HEAD^
+</pre></div>
+
+
+<p>删除最后3次的提交记录：</p>
+<div class="highlight"><pre>git reset --hard HEAD~3
+</pre></div>
+
+
+<p>已经提交到远端库上了？那就还需要将本地库强行同步到远端库上（注意执行这个命令前先检查一下有没有别人的提交记录，不然会覆盖他人的修改）：</p>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="n">force</span>
+</pre></div>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></h2>
                 <div class="summary"><hr />
@@ -290,39 +313,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">MySQL协议分析</a></h2>
-                <div class="summary"><hr />
-<h2>1 交互过程</h2>
-<p>MySQL客户端与服务器的交互主要分为两个阶段：握手认证阶段和命令执行阶段。</p>
-<h3>1.1 握手认证阶段</h3>
-<p>握手认证阶段为客户端与服务器建立连接后进行，交互过程如下：</p>
-<ul>
-<li>服务器 -&gt; 客户端：握手初始化消息</li>
-<li>客户端 -&gt; 服务器：登陆认证消息</li>
-<li>服务器 -&gt; 客户端：认证结果消息</li>
-</ul>
-<h3>1.2 命令执行阶段</h3>
-<p>客户端认证成功后，会进入命令执行阶段，交互过程如下：</p>
-<ul>
-<li>客户端 -&gt; 服务器：执行命令消息</li>
-<li>服务器 -&gt; 客户端：命令执行结果</li>
-</ul>
-<!-- more -->
-
-<p><strong>MySQL客户端与服务器的完整交互过程如下</strong>：</p>
-<p><img alt="MySQL客户端与服务器交互示意图" src="/images/articles/201311/mysql_protocol_message.png" /></p>
-<h2>2 基本类型</h2>
-<h3>2.1 整型值</h3>
-<p>MySQL报文中整型值分别有1、2、3、4、8字节长度，使用小字节序传输。</p>
-<h3>2.2 字符串（以NULL结尾）（Null-Terminated String）</h3>
-<p>字符串长度不固定，当遇到 ...</p></!-->
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -361,6 +351,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">
+                                删除Git的提交记录
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">
                                 基于libpcap的开发实例
@@ -404,11 +399,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">
                                 在 ArchLinux 中使用 Fcitx 输入法
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">
-                                MySQL协议分析
                             </a>
                         </li>
                     </ul>
@@ -554,6 +544,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/gdb/index.html">
                                 GDB
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/git/index.html">
+                                Git
                             </a>
                         </li>
                         <li class="list-group-item tag-3">

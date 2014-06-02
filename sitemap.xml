@@ -5,9 +5,16 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/index.html</loc>
-<lastmod>2014-05-30T01:39:22-00:00</lastmod>
+<lastmod>2014-06-03T01:15:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git</loc>
+<lastmod>2014-06-02T15:38:56-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -390,7 +397,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/blog/categories/technology/index.html</loc>
-<lastmod>2010-01-30T00:29:00-00:00</lastmod>
+<lastmod>2014-06-02T15:38:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -524,6 +531,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://hutaow.com/blog/tags/pyqt/index.html</loc>
 <lastmod>2013-12-16T23:02:24-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hutaow.com/blog/tags/git/index.html</loc>
+<lastmod>2014-06-02T15:38:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -803,7 +817,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/blog/authors/hutaow/index.html</loc>
-<lastmod>2014-05-29T23:25:19-00:00</lastmod>
+<lastmod>2014-06-02T15:38:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

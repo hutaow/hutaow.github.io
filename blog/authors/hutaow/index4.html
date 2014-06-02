@@ -18,7 +18,7 @@
             <meta property="og:description" content="胡桃夹子"/>
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
     <link href="http://hutaow.com/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="http://hutaow.com/theme/css/pygments/native.css" rel="stylesheet">
@@ -57,6 +57,33 @@
     <div class="row">
         <div class="col-sm-9">
 
+            <article>
+                <h2><a href="http://hutaow.com/blog/2008/08/14/convert-between-byte-array-and-hex-string">Java中十六进制字符串与字节数组的相互转换</a></h2>
+                <div class="summary"><hr />
+<p>原理很简单，直接贴源代码吧。</p>
+<!-- more -->
+
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @author wangtao</span>
+<span class="cm"> * @version 2008.8.14</span>
+<span class="cm"> */</span>
+<span class="kd">public</span><span class="err"> </span><span class="kd">class</span> <span class="nc">Util</span> <span class="o">{</span>
+<span class="err">    </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="kt">char</span><span class="o">[]</span> <span class="n">hexDigits</span> <span class="o">=</span><span class="err"> </span>
+<span class="err">   </span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;A&#39;</span><span class="o">,</span> <span class="sc">&#39;B&#39;</span><span class="o">,</span> <span class="sc">&#39;C&#39;</span><span class="o">,</span> <span class="sc">&#39;D&#39;</span><span class="o">,</span> <span class="sc">&#39;E&#39;</span><span class="o">,</span> <span class="sc">&#39;F&#39;</span><span class="o">};</span>
+
+<span class="err">   </span> <span class="cm">/**</span>
+<span class="cm">     * @notes 字节数组转化为字符串</span>
+<span class="cm">     * @param bytes</span>
+<span class="cm">     * @return String</span>
+<span class="cm">     */</span>
+<span class="err">    </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="n">String</span> <span class="n">toHexString</span><span class="o">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">)</span> <span class="o">{</span>
+<span class="err">   </span> <span class="err">   </span> <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">bytes</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="mi">2 ...</span></pre></div></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/08/14/convert-between-byte-array-and-hex-string">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">终端下使用代理的方法</a></h2>
                 <div class="summary"><hr />
@@ -219,26 +246,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux">Linux中改变网卡的速度</a></h2>
-                <div class="summary"><hr />
-<p>今天又用到家里的那根20几米的超长网线了，因为太长了，之前windows里用它联网的时候要把网卡速度降到10Mbps才能用。如果自动配置的话会默认用100Mbps的速度连接，但这样的话就会时断时连很不稳定。</p>
-<p>我在Linux里试图在Network里直接配置速度，但没有找到，上网google发现需要手动修改，用到的工具是mii-tool。</p>
-<!-- more -->
-
-<p>用管理员权限执行如下命令</p>
-<div class="highlight"><pre><span class="n">mii</span><span class="o">-</span><span class="n">tool</span> <span class="o">-</span><span class="n">A</span> <span class="mi">10</span><span class="n">baseT</span><span class="o">-</span><span class="n">FD</span> <span class="n">eth0</span>
-</pre></div>
-
-
-<p>eth0是网卡的名称，"10baseT-FD"是网卡的工作模式，如果要改回100Mbps的话这里填"100baseTx-FD"；</p>
-<p>FD指的是Full Duplex全双工，也可以是HD即Half Duplex半双工。</p>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/blog/authors/hutaow/index3.html">&laquo;</a>
@@ -278,6 +285,11 @@
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">
+                                删除Git的提交记录
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">
                                 基于libpcap的开发实例
@@ -321,11 +333,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">
                                 在 ArchLinux 中使用 Fcitx 输入法
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">
-                                MySQL协议分析
                             </a>
                         </li>
                     </ul>
@@ -471,6 +478,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/gdb/index.html">
                                 GDB
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/git/index.html">
+                                Git
                             </a>
                         </li>
                         <li class="list-group-item tag-3">

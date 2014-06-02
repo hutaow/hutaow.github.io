@@ -18,7 +18,7 @@
             <meta property="og:description" content="胡桃夹子"/>
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="http://hutaow.com/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
     <link href="http://hutaow.com/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="http://hutaow.com/theme/css/pygments/native.css" rel="stylesheet">
@@ -57,6 +57,39 @@
     <div class="row">
         <div class="col-sm-9">
 
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">MySQL协议分析</a></h2>
+                <div class="summary"><hr />
+<h2>1 交互过程</h2>
+<p>MySQL客户端与服务器的交互主要分为两个阶段：握手认证阶段和命令执行阶段。</p>
+<h3>1.1 握手认证阶段</h3>
+<p>握手认证阶段为客户端与服务器建立连接后进行，交互过程如下：</p>
+<ul>
+<li>服务器 -&gt; 客户端：握手初始化消息</li>
+<li>客户端 -&gt; 服务器：登陆认证消息</li>
+<li>服务器 -&gt; 客户端：认证结果消息</li>
+</ul>
+<h3>1.2 命令执行阶段</h3>
+<p>客户端认证成功后，会进入命令执行阶段，交互过程如下：</p>
+<ul>
+<li>客户端 -&gt; 服务器：执行命令消息</li>
+<li>服务器 -&gt; 客户端：命令执行结果</li>
+</ul>
+<!-- more -->
+
+<p><strong>MySQL客户端与服务器的完整交互过程如下</strong>：</p>
+<p><img alt="MySQL客户端与服务器交互示意图" src="/images/articles/201311/mysql_protocol_message.png" /></p>
+<h2>2 基本类型</h2>
+<h3>2.1 整型值</h3>
+<p>MySQL报文中整型值分别有1、2、3、4、8字节长度，使用小字节序传输。</p>
+<h3>2.2 字符串（以NULL结尾）（Null-Terminated String）</h3>
+<p>字符串长度不固定，当遇到 ...</p></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">通过PXE方式安装Linux系统</a></h2>
                 <div class="summary"><hr />
@@ -270,35 +303,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring">配置 Cisco Catalyst 3560 交换机端口镜像</a></h2>
-                <div class="summary"><hr />
-<p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
-<p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
-<p>2) 交换机上电自检然后登入后出现命令提示符：</p>
-<div class="highlight"><pre><span class="n">Switch</span><span class="o">&gt;</span>
-</pre></div>
-
-
-<!-- more -->
-
-<p>3) 依次进入特权模式和全局模式，输入如下命令：</p>
-<div class="highlight"><pre><span class="n">Switch</span><span class="o">&gt;</span><span class="n">enable</span>
-<span class="nl">Password:</span>
-<span class="n">Switch</span><span class="err">#</span><span class="n">configure</span> <span class="n">terminal</span>
-<span class="n">Enter</span> <span class="n">configuration</span> <span class="n">commands</span><span class="p">,</span> <span class="n">one</span> <span class="n">per</span> <span class="n">line</span><span class="p">.</span>  <span class="n">End</span> <span class="n">with</span> <span class="n">CNTL</span><span class="o">/</span><span class="n">Z</span><span class="p">.</span>
-<span class="n">Switch</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="err">#</span>
-</pre></div>
-
-
-<p>4) 在新session中，将端口19和27设置为被监听端口(source)，2号端口设置为监听端口(destination)，命令如下：</p>
-<div class="highlight"><pre><span class="n">Switch</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="err">#</span><span class="n">monitor</span> <span class="n">session</span> <span class="mi">1</span> <span class="n">source</span> <span class="n">interface</span> <span class="n">Fa0</span><span class="o">/</span><span class="mi">19 ...</span></pre></div></!-->
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/blog/authors/hutaow/index.html">&laquo;</a>
@@ -338,6 +342,11 @@
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">
+                                删除Git的提交记录
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">
                                 基于libpcap的开发实例
@@ -381,11 +390,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">
                                 在 ArchLinux 中使用 Fcitx 输入法
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">
-                                MySQL协议分析
                             </a>
                         </li>
                     </ul>
@@ -531,6 +535,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/gdb/index.html">
                                 GDB
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/git/index.html">
+                                Git
                             </a>
                         </li>
                         <li class="list-group-item tag-3">
