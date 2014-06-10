@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/all.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-06-02T15:38:56+08:00</updated><entry><title>删除Git的提交记录</title><link href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git" rel="alternate"></link><updated>2014-06-02T15:38:56+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-06-02:blog/2014/06/02/undo-commits-permanently-in-git</id><summary type="html">&lt;hr /&gt;
-&lt;p&gt;不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志，）。&lt;/p&gt;
+&lt;p&gt;不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志）。&lt;/p&gt;
 &lt;p&gt;删除最后一次的提交记录：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;git reset --hard HEAD^
 &lt;/pre&gt;&lt;/div&gt;
