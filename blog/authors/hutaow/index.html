@@ -58,6 +58,24 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></h2>
+                <div class="summary"><hr />
+<p>回答论坛上的一个问题，感觉比较实用的，顺手记下来。</p>
+<p>只允许某用户8:00-12:00登陆，设置个定时任务（执行<code>crontab -e</code>编辑任务列表）：</p>
+<div class="highlight"><pre><span class="mi">0</span> <span class="mi">8</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">u</span> <span class="n">username</span>
+<span class="mi">0</span> <span class="mi">12</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">l</span> <span class="n">username</span>
+</pre></div>
+
+
+<p>其中<code>username</code>替换成想限制的用户名；命令<code>passwd -u</code>是锁定用户，<code>passwd -l</code>解锁。</p>
+<p>附：设置cron定时任务列表的格式：<code>分 时 日 月 星期 命令</code>，如果时间字段是<code>*</code>则表示所有，还可以加上<code>/n</code>表示每隔n个单位时间执行一次；最后跟需要执行的命令。</p>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">删除Git的提交记录</a></h2>
                 <div class="summary"><hr />
 <p>不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志）。</p>
@@ -286,33 +304,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">在 ArchLinux 中使用 Fcitx 输入法</a></h2>
-                <div class="summary"><hr />
-<p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。</p>
-<!-- more -->
-
-<h3>安装输入法</h3>
-<p>执行下面的命令安装FCITX：</p>
-<div class="highlight"><pre><span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">fcitx</span><span class="o">-</span><span class="n">im</span>
-</pre></div>
-
-
-<h3>配置环境变量</h3>
-<p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="s">&quot;@im=fcitx&quot;</span>
-</pre></div>
-
-
-<p>配置后重新登录生效，使用<code>CTRL+空格</code>激活输入法，如果发现fcitx没有运行，则直接在命令行里执行<code>fcitx</code>即可。</p>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -351,6 +342,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">
+                                限制用户登陆Linux的时间
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">
                                 删除Git的提交记录
@@ -394,11 +390,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">
                                 配置 VIM 开发环境
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">
-                                在 ArchLinux 中使用 Fcitx 输入法
                             </a>
                         </li>
                     </ul>
@@ -484,6 +475,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/coredump/index.html">
                                 CoreDump
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cron/index.html">
+                                cron
                             </a>
                         </li>
                         <li class="list-group-item tag-4">

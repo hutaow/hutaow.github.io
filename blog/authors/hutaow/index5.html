@@ -58,6 +58,31 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2008/02/13/compile-android-project-in-command-line">Android命令行下的编译和运行</a></h2>
+                <div class="summary"><hr />
+<p>想学到东西还是要从命令行开始，真正学到之后再考虑用IDE。下面总结一下在命令行下android工程的创建、编译、运行和调试的方法。</p>
+<h3>1 工程的创建</h3>
+<p>在要存放工程的目录下用执行"activityCreator.py --out hutaow edu.bupt.hutaow.example" </p>
+<p>说明如下：</p>
+<ul>
+<li>activityCreator.py，创建工程的脚本文件，linux里使用"activityCreator.py"，如果是windows，则应当换成"activityCreator.bat"</li>
+<li>--out hutaow，其中hutaow是生成工程的输出目录，执行android工程的所有文件都会放在这个目录里</li>
+<li>edu.bupt.hutaow.example，这个是包的名称以及类的名称，其中最后一个字段是生成的类的名称，edu.bupt.hutaow是example类所在的包</li>
+</ul>
+<!-- more -->
+
+<p>命令执行后会在hutaow目录下生成工程的所有文件。</p>
+<p>执行后终端输出如下：</p>
+<div class="highlight"><pre><span class="kd">package</span><span class="o">:</span> <span class="n">edu</span><span class="o">.</span><span class="na">bupt</span><span class="o">.</span><span class="na">hutaow</span>
+<span class="n">out_dir</span><span class="o">:</span> <span class="n">hutaow</span>
+<span class="n">activity_name</span><span class="o">:</span> <span class="n">example ...</span></pre></div></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/13/compile-android-project-in-command-line">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux">Linux中改变网卡的速度</a></h2>
                 <div class="summary"><hr />
 <p>今天又用到家里的那根20几米的超长网线了，因为太长了，之前windows里用它联网的时候要把网卡速度降到10Mbps才能用。如果自动配置的话会默认用100Mbps的速度连接，但这样的话就会时断时连很不稳定。</p>
@@ -269,6 +294,11 @@
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">
+                                限制用户登陆Linux的时间
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">
                                 删除Git的提交记录
                             </a>
@@ -311,11 +341,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">
                                 配置 VIM 开发环境
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">
-                                在 ArchLinux 中使用 Fcitx 输入法
                             </a>
                         </li>
                     </ul>
@@ -401,6 +426,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/coredump/index.html">
                                 CoreDump
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cron/index.html">
+                                cron
                             </a>
                         </li>
                         <li class="list-group-item tag-4">

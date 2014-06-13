@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/linux.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-05-26T23:36:27+08:00</updated><entry><title>在多个文件中批量查找/替换字符串</title><link href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files" rel="alternate"></link><updated>2014-05-26T23:36:27+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-05-26:blog/2014/05/26/batch-replace-string-in-files</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/linux.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-06-13T22:50:12+08:00</updated><entry><title>限制用户登陆Linux的时间</title><link href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time" rel="alternate"></link><updated>2014-06-13T22:50:12+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-06-13:blog/2014/06/13/restrict-user-login-linux-time</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;回答论坛上的一个问题，感觉比较实用的，顺手记下来。&lt;/p&gt;
+&lt;p&gt;只允许某用户8:00-12:00登陆，设置个定时任务（执行&lt;code&gt;crontab -e&lt;/code&gt;编辑任务列表）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;passwd&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;
+&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;passwd&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中&lt;code&gt;username&lt;/code&gt;替换成想限制的用户名；命令&lt;code&gt;passwd -u&lt;/code&gt;是锁定用户，&lt;code&gt;passwd -l&lt;/code&gt;解锁。&lt;/p&gt;
+&lt;p&gt;附：设置cron定时任务列表的格式：&lt;code&gt;分 时 日 月 星期 命令&lt;/code&gt;，如果时间字段是&lt;code&gt;*&lt;/code&gt;则表示所有，还可以加上&lt;code&gt;/n&lt;/code&gt;表示每隔n个单位时间执行一次；最后跟需要执行的命令。&lt;/p&gt;</summary><category term="Linux"></category><category term="cron"></category></entry><entry><title>在多个文件中批量查找/替换字符串</title><link href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files" rel="alternate"></link><updated>2014-05-26T23:36:27+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-05-26:blog/2014/05/26/batch-replace-string-in-files</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;grep string -rl /path
 &lt;/pre&gt;&lt;/div&gt;
