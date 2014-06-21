@@ -266,7 +266,7 @@ make install
 &lt;p&gt;另外，第二个参数"port 53"（该端口为DNS协议），是在设置报文捕获的过滤条件（通过代码中的&lt;code&gt;pcap_compile&lt;/code&gt;和&lt;code&gt;pcap_setfilter&lt;/code&gt;结合来实现）。&lt;/p&gt;
 &lt;p&gt;注意这里的操作需要root用户权限，因为需要将网卡设置为混杂模式。&lt;/p&gt;
 &lt;h3&gt;5 结尾&lt;/h3&gt;
-&lt;p&gt;本文中的示例代码可以&lt;a href="https://github.com/hutaow/TrafficCapture"&gt;点击此处链接&lt;/a&gt;获取下载。&lt;/p&gt;</summary><category term="Linux"></category><category term="C"></category><category term="libpcap"></category><category term="开发"></category></entry><entry><title>在多个文件中批量查找/替换字符串</title><link href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files" rel="alternate"></link><updated>2014-05-26T23:36:27+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-05-26:blog/2014/05/26/batch-replace-string-in-files</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;本文中的示例代码可以&lt;a href="/downloads/code/libpcap-based-development-example.zip"&gt;点击此处链接&lt;/a&gt;获取下载。&lt;/p&gt;</summary><category term="Linux"></category><category term="C"></category><category term="libpcap"></category><category term="开发"></category></entry><entry><title>在多个文件中批量查找/替换字符串</title><link href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files" rel="alternate"></link><updated>2014-05-26T23:36:27+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-05-26:blog/2014/05/26/batch-replace-string-in-files</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;grep string -rl /path
 &lt;/pre&gt;&lt;/div&gt;
