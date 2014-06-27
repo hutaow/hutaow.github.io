@@ -220,17 +220,6 @@ make install
     &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; -o traffic *.c &lt;span class="k"&gt;$(&lt;/span&gt;LIBS&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;OPTS&lt;span class="k"&gt;)&lt;/span&gt;
 
 &lt;span class="nf"&gt;all&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;traffic&lt;/span&gt;
-&lt;span class="nv"&gt;CC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;gcc
-&lt;span class="nv"&gt;LIBS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;-lpcap
-&lt;span class="nv"&gt;OPTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;-ggdb3 -rdynamic
-
-&lt;span class="nf"&gt;traffic&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; -o traffic *.c &lt;span class="k"&gt;$(&lt;/span&gt;LIBS&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;OPTS&lt;span class="k"&gt;)&lt;/span&gt;
-
-&lt;span class="nf"&gt;all&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;traffic&lt;/span&gt;
-
-&lt;span class="nf"&gt;clean&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    rm traffic
 
 &lt;span class="nf"&gt;clean&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
     rm traffic

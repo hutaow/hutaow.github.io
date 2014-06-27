@@ -322,17 +322,6 @@ make install
     <span class="k">$(</span>CC<span class="k">)</span> -o traffic *.c <span class="k">$(</span>LIBS<span class="k">)</span> <span class="k">$(</span>OPTS<span class="k">)</span>
 
 <span class="nf">all</span><span class="o">:</span> <span class="m">traffic</span>
-<span class="nv">CC</span><span class="o">=</span>gcc
-<span class="nv">LIBS</span><span class="o">=</span>-lpcap
-<span class="nv">OPTS</span><span class="o">=</span>-ggdb3 -rdynamic
-
-<span class="nf">traffic</span><span class="o">:</span>
-    <span class="k">$(</span>CC<span class="k">)</span> -o traffic *.c <span class="k">$(</span>LIBS<span class="k">)</span> <span class="k">$(</span>OPTS<span class="k">)</span>
-
-<span class="nf">all</span><span class="o">:</span> <span class="m">traffic</span>
-
-<span class="nf">clean</span><span class="o">:</span>
-    rm traffic
 
 <span class="nf">clean</span><span class="o">:</span>
     rm traffic
@@ -351,11 +340,11 @@ make install
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
+        <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/19/linux-signal">Linux信号处理机制</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
-        <li><a href="http://hutaow.com/blog/2008/03/20/compilation-failed-due-to-character-encoding">因字符编码导致的编译不通过</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/03/20/compilation-failed-due-to-character-encoding">因字符编码导致的编译不通过</a></li>
     </ul>
 </section>
     <hr/>
