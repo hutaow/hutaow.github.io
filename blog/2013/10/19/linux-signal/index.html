@@ -17,7 +17,7 @@
             <meta property="og:url" content="http://hutaow.com/blog/2013/10/19/linux-signal"/>
             <meta property="og:description" content="在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。 需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。 1 信号的响应动作 每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种： 中止进程(Term) 忽略信号(Ign) 中止进程并保存内存信息(Core) 停止进程(Stop) 继续运行进程(Cont) 用户可以通过signal或sigaction函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。 2 信号类型 Linux支持的信号类型可以参考下面给出的列表。 2.1 在POSIX.1-1990标准中的信号列表 信号 值 动作 说明 ..."/>
             <meta property="article:published_time" content="2013-10-19" />
-                <meta property="article:section" content="Technology" />
+                <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
                 <meta property="article:tag" content="Signal" />
                 <meta property="article:tag" content="C" />
@@ -88,7 +88,7 @@
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
 
         <span class="label label-default">Category</span>
-        <a href="http://hutaow.com/blog/categories/technology/index.html">Technology</a>
+        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
 
 
 <span class="label label-default">Tags</span>
@@ -531,8 +531,8 @@
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
+        <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
         <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
         <li><a href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">标记ATL控件为安全控件</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></li>
@@ -649,13 +649,13 @@
                 <li class="list-group-item"><a href="http://hutaow.com/blog/categories/index.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
                     <ul class="list-group" id="categories">
                         <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/life/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Life
+                            <a href="http://hutaow.com/blog/categories/living/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Living
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/technology/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Technology
+                            <a href="http://hutaow.com/blog/categories/tech/index.html">
+                                <i class="fa fa-folder-open fa-lg"></i> Tech
                             </a>
                         </li>
                     </ul>
