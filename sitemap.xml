@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/index.html</loc>
-<lastmod>2014-06-28T00:12:57-00:00</lastmod>
+<lastmod>2014-07-29T00:06:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -354,13 +354,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/categories/database/index.html</loc>
-<lastmod>2009-04-02T10:55:00-00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>http://hutaow.com/blog/categories/life/index.html</loc>
 <lastmod>2013-10-10T22:23:31-00:00</lastmod>
 <changefreq>daily</changefreq>
@@ -368,43 +361,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/categories/linux/index.html</loc>
-<lastmod>2014-06-13T22:50:12-00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://hutaow.com/blog/categories/network/index.html</loc>
-<lastmod>2013-09-06T23:16:00-00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://hutaow.com/blog/categories/programming/index.html</loc>
-<lastmod>2014-05-29T23:25:19-00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://hutaow.com/blog/categories/protocol/index.html</loc>
-<lastmod>2013-11-06T00:34:54-00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://hutaow.com/blog/categories/security/index.html</loc>
-<lastmod>2010-04-21T10:48:00-00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>http://hutaow.com/blog/categories/technology/index.html</loc>
-<lastmod>2014-06-02T15:38:56-00:00</lastmod>
+<lastmod>2014-06-13T22:50:12-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -438,22 +396,29 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/rxvt/index.html</loc>
-<lastmod>2014-01-03T14:28:23-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/cisco/index.html</loc>
+<lastmod>2010-05-14T22:13:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/vi/index.html</loc>
-<lastmod>2013-11-22T22:43:22-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/kde/index.html</loc>
+<lastmod>2008-07-29T11:34:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/linux/index.html</loc>
-<lastmod>2014-06-13T22:50:12-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/atl/index.html</loc>
+<lastmod>2009-05-02T14:02:00-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hutaow.com/blog/tags/csharp/index.html</loc>
+<lastmod>2010-04-27T12:43:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -487,8 +452,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/fcitx/index.html</loc>
-<lastmod>2013-11-18T22:37:16-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/sed/index.html</loc>
+<lastmod>2014-05-26T23:36:27-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -501,8 +466,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/csharp/index.html</loc>
-<lastmod>2010-04-27T12:43:00-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/linux/index.html</loc>
+<lastmod>2014-06-13T22:50:12-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hutaow.com/blog/tags/xie-yi/index.html</loc>
+<lastmod>2013-11-06T00:34:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -564,8 +536,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/fedora/index.html</loc>
-<lastmod>2008-07-18T20:48:00-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/network/index.html</loc>
+<lastmod>2013-09-06T23:16:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -578,15 +550,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/kai-fa/index.html</loc>
-<lastmod>2014-05-29T23:25:19-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/script/index.html</loc>
+<lastmod>2013-12-16T23:02:24-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/xie-yi-fen-xi/index.html</loc>
-<lastmod>2013-11-06T00:34:54-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/kai-fa/index.html</loc>
+<lastmod>2014-05-29T23:25:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -627,8 +599,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/kde/index.html</loc>
-<lastmod>2008-07-29T11:34:00-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/vi/index.html</loc>
+<lastmod>2013-11-22T22:43:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -643,6 +615,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://hutaow.com/blog/tags/android/index.html</loc>
 <lastmod>2008-04-02T12:21:00-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hutaow.com/blog/tags/kong-jian/index.html</loc>
+<lastmod>2009-05-02T14:02:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -683,8 +662,22 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://hutaow.com/blog/tags/rxvt/index.html</loc>
+<lastmod>2014-01-03T14:28:23-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://hutaow.com/blog/tags/python/index.html</loc>
 <lastmod>2013-12-24T00:00:01-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hutaow.com/blog/tags/oprofile/index.html</loc>
+<lastmod>2013-12-29T19:09:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -725,8 +718,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/kong-jian/index.html</loc>
-<lastmod>2009-05-02T14:02:00-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/fedora/index.html</loc>
+<lastmod>2008-07-18T20:48:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -753,6 +746,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://hutaow.com/blog/tags/database/index.html</loc>
+<lastmod>2013-11-06T00:34:54-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://hutaow.com/blog/tags/mysql/index.html</loc>
 <lastmod>2013-11-06T00:34:54-00:00</lastmod>
 <changefreq>daily</changefreq>
@@ -774,6 +774,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://hutaow.com/blog/tags/programming/index.html</loc>
+<lastmod>2014-05-29T23:25:19-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://hutaow.com/blog/tags/ids/index.html</loc>
 <lastmod>2010-04-21T10:48:00-00:00</lastmod>
 <changefreq>daily</changefreq>
@@ -788,8 +795,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/sed/index.html</loc>
-<lastmod>2014-05-26T23:36:27-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/fcitx/index.html</loc>
+<lastmod>2013-11-18T22:37:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -809,8 +816,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/oprofile/index.html</loc>
-<lastmod>2013-12-29T19:09:33-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/xin-xi-an-quan/index.html</loc>
+<lastmod>2010-04-21T10:48:00-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hutaow.com/blog/tags/security/index.html</loc>
+<lastmod>2010-04-21T10:48:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -823,8 +837,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/atl/index.html</loc>
-<lastmod>2009-05-02T14:02:00-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/signal/index.html</loc>
+<lastmod>2013-10-19T21:47:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

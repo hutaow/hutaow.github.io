@@ -221,6 +221,40 @@ make install
                 </div>
             </article>
             <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">标记ATL控件为安全控件</a></h2>
+                <div class="summary"><hr />
+<p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
+<p>实现方法如下：</p>
+<p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
+<!-- more -->
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">CHutaow</span> <span class="o">:</span><span class="err"> </span>
+    <span class="c1">// 添加到控件的派生类列表中</span>
+    <span class="k">public</span> <span class="n">IObjectSafetyImpl</span><span class="o">&lt;</span><span class="n">CHutaow</span><span class="p">,</span> <span class="n">INTERFACESAFE_FOR_UNTRUSTED_CALLER</span><span class="o">|</span><span class="n">INTERFACESAFE_FOR_UNTRUSTED_DATA</span><span class="o">&gt;</span>
+    <span class="p">...</span>
+    <span class="p">{</span>
+        <span class="nl">public:</span>
+
+        <span class="n">BEGIN_COM_MAP</span><span class="p">(</span><span class="n">CHutaow</span><span class="p">)</span>
+
+        <span class="n">COM_INTERFACE_ENTRY</span><span class="p">(</span><span class="n">IObjectSafety</span><span class="p">)</span><span class="err"> </span><span class="c1">//创建IObjectSafety的映射</span>
+
+        <span class="p">...</span>
+
+        <span class="n">END_COM_MAP</span><span class="p">()</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>PS: 如果出现"'IObjectSafetyImpl' : base class undefined"的错误，则需要添加"atlctl.h"头文件。</p>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
@@ -269,44 +303,19 @@ make install
                                 在Linux程序中输出函数调用栈
                             </a>
                         </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">
+                                标记ATL控件为安全控件
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
                 <li class="list-group-item"><a href="http://hutaow.com/blog/categories/index.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
                     <ul class="list-group" id="categories">
                         <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/database/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Database
-                            </a>
-                        </li>
-                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/categories/life/index.html">
                                 <i class="fa fa-folder-open fa-lg"></i> Life
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/linux/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/network/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Network
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/programming/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Programming
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/protocol/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Protocol
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/security/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Security
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -350,6 +359,11 @@ make install
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cisco/index.html">
+                                CISCO
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/coredump/index.html">
                                 CoreDump
                             </a>
@@ -377,6 +391,11 @@ make install
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/dai-li/index.html">
                                 代理
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/database/index.html">
+                                Database
                             </a>
                         </li>
                         <li class="list-group-item tag-3">
@@ -494,6 +513,11 @@ make install
                                 MySQL
                             </a>
                         </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/network/index.html">
+                                Network
+                            </a>
+                        </li>
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/openwrt/index.html">
                                 OpenWRT
@@ -507,6 +531,11 @@ make install
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
                                 配置文件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/programming/index.html">
+                                Programming
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -550,6 +579,16 @@ make install
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/script/index.html">
+                                Script
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/security/index.html">
+                                Security
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/sed/index.html">
                                 sed
                             </a>
@@ -557,6 +596,11 @@ make install
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
                                 数据库
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/signal/index.html">
+                                Signal
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -585,13 +629,18 @@ make install
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xie-yi-fen-xi/index.html">
-                                协议分析
+                            <a href="http://hutaow.com/blog/tags/xie-yi/index.html">
+                                协议
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
                                 信号
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">
+                                信息安全
                             </a>
                         </li>
                         <li class="list-group-item tag-4">

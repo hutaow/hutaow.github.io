@@ -17,7 +17,8 @@
             <meta property="og:url" content="http://hutaow.com/blog/2013/10/15/dump-stack"/>
             <meta property="og:description" content="上一篇文章《在Linux程序中输出函数调用栈》，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。 要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子： #include &lt;stdio.h&gt; int add(int a, int b) { int result = 0; result = a + b; return result; } int main(int argc, char *argv[]) { int result = 0; result = test(1, 2); printf(&#34;result = %d \r\n&#34;, result); return 0; } 使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的： (gdb ..."/>
             <meta property="article:published_time" content="2013-10-15" />
-                <meta property="article:section" content="Programming" />
+                <meta property="article:section" content="Technology" />
+                <meta property="article:tag" content="Programming" />
                 <meta property="article:tag" content="C" />
                 <meta property="article:tag" content="Linux" />
                 <meta property="article:tag" content="开发" />
@@ -89,10 +90,12 @@
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
 
         <span class="label label-default">Category</span>
-        <a href="http://hutaow.com/blog/categories/programming/index.html">Programming</a>
+        <a href="http://hutaow.com/blog/categories/technology/index.html">Technology</a>
 
 
 <span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/programming/index.html">Programming</a>
+        /
 	<a href="http://hutaow.com/blog/tags/c/index.html">C</a>
         /
 	<a href="http://hutaow.com/blog/tags/linux/index.html">Linux</a>
@@ -259,7 +262,7 @@
         <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></li>
         <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/19/linux-signal">Linux信号处理机制</a></li>
+        <li><a href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">标记ATL控件为安全控件</a></li>
         <li><a href="http://hutaow.com/blog/2008/03/20/compilation-failed-due-to-character-encoding">因字符编码导致的编译不通过</a></li>
     </ul>
 </section>
@@ -374,38 +377,8 @@
                 <li class="list-group-item"><a href="http://hutaow.com/blog/categories/index.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
                     <ul class="list-group" id="categories">
                         <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/database/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Database
-                            </a>
-                        </li>
-                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/categories/life/index.html">
                                 <i class="fa fa-folder-open fa-lg"></i> Life
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/linux/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/network/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Network
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/programming/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Programming
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/protocol/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Protocol
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/security/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Security
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -449,6 +422,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cisco/index.html">
+                                CISCO
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/coredump/index.html">
                                 CoreDump
                             </a>
@@ -476,6 +454,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/dai-li/index.html">
                                 代理
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/database/index.html">
+                                Database
                             </a>
                         </li>
                         <li class="list-group-item tag-3">
@@ -593,6 +576,11 @@
                                 MySQL
                             </a>
                         </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/network/index.html">
+                                Network
+                            </a>
+                        </li>
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/openwrt/index.html">
                                 OpenWRT
@@ -606,6 +594,11 @@
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
                                 配置文件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/programming/index.html">
+                                Programming
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -649,6 +642,16 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/script/index.html">
+                                Script
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/security/index.html">
+                                Security
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/sed/index.html">
                                 sed
                             </a>
@@ -656,6 +659,11 @@
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
                                 数据库
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/signal/index.html">
+                                Signal
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -684,13 +692,18 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xie-yi-fen-xi/index.html">
-                                协议分析
+                            <a href="http://hutaow.com/blog/tags/xie-yi/index.html">
+                                协议
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
                                 信号
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">
+                                信息安全
                             </a>
                         </li>
                         <li class="list-group-item tag-4">

@@ -58,6 +58,24 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></h2>
+                <div class="summary"><hr />
+<p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
+<p>设置个定时任务（执行<code>crontab -e</code>编辑任务列表）：</p>
+<div class="highlight"><pre><span class="mi">0</span> <span class="mi">8</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">u</span> <span class="n">username</span>
+<span class="mi">0</span> <span class="mi">12</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">l</span> <span class="n">username</span>
+</pre></div>
+
+
+<p>其中<code>username</code>替换成想限制的用户名；命令<code>passwd -u</code>是锁定用户，<code>passwd -l</code>解锁。</p>
+<p>附：设置cron定时任务列表的格式：<code>分 时 日 月 星期 命令</code>，如果时间字段是<code>*</code>则表示所有，还可以加上<code>/n</code>表示每隔n个单位时间执行一次；最后跟需要执行的命令。</p>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">删除Git的提交记录</a></h2>
                 <div class="summary"><hr />
 <p>不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志）。</p>
@@ -81,59 +99,227 @@
             </article>
             <hr/>
             <article>
-                <h2><a href="http://hutaow.com/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash">正斜杠与反斜杠的分析</a></h2>
+                <h2><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></h2>
                 <div class="summary"><hr />
-<p>正斜杠(左斜杠)，符号是"/"；反斜杠(右斜杠)，符号是"\"。</p>
-<p>在Unix/Linux中，路径的分隔采用正斜杠"/"，比如"/home/hutaow"；而在Windows中，路径分隔采用反斜杠"\"，比如"C:\Windows\System"。</p>
-<p>有时我们会看到这样的路径写法，"C:\\Windows\\System"，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用"C:/Windows/System"来代替，不会出错。但是如果写成了"C:\Windows\System"，那就可能会出现各种奇怪的错误了。</p>
-<!-- more -->
+<p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
+<h3>1 安装libpcap库</h3>
+<p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
+<div class="highlight"><pre>./configure
+make
+make install
+</pre></div>
 
-<p>至于上述问题出现的原因，要从字符串解析这方面来分析。</p>
-<p>学过编程的人都应该知道，在C里面，输出字符串时，如果想输出一个换行，那就要加上'\n'这个标志，类似的，输出一个TAB，就加上'\t'，也就是说 ...</p></!-->
+
+<h3>2 实例代码</h3>
+<p>代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。</p>
+<p>首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下：</p>
+<div class="highlight"><pre><span class="cp">#ifndef _BASETYPE_H_</span>
+<span class="cp">#define _BASETYPE_H_</span>
+
+<span class="cp">#define OK (0)</span>
+<span class="cp">#define ERROR (1)</span>
+
+<span class="cp">#define YES (1)</span>
+<span class="cp">#define NO (0)</span>
+
+<span class="k">typedef</span> <span class="kt">void</span> <span class="n">VOID</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="kt">char</span> <span class="n">CHAR</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">char ...</span></pre></div>
                     <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash">阅读全文</a>
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">阅读全文</a>
                     </div>
                 </div>
             </article>
             <hr/>
             <article>
-                <h2><a href="http://hutaow.com/blog/2010/01/14/interesting-features-in-htc-diamond">HTC Diamond 两个有意思的功能</a></h2>
+                <h2><a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">在多个文件中批量查找/替换字符串</a></h2>
                 <div class="summary"><hr />
-<p>这两天一直折腾 HTC Diamond，发现了两个很有意思的功能：</p>
-<ol>
-<li>
-<p>Diamond的手写笔不像其它手机那样有卡槽卡住，而是像有磁铁一样把笔"吸"进去，实际上功能远不止这个。在Diamond关闭屏幕时，拔出手写笔，屏幕会自动亮起，还有比这更神奇的，在打电话时，如果拔出手写笔，Diamond会打开便签，并且便签已经包含了通话对象、时间等信息，方便记录；</p>
-</li>
-<li>
-<p>Diamond的重力感应不仅用在玩游戏上，来电话时，只要把手机面向下放，就可以关闭铃声（静音）。这避免了在开会等类似场合突然遇到来电手忙脚乱情况的发生。</p>
-</li>
-</ol>
+<p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
+<div class="highlight"><pre>grep string -rl /path
+</pre></div>
+
+
+<p>在目录中查找并替换指定的字符串（如下所示，将path目录中将所有文件中的oldstring字符串替换成newstring）</p>
+<div class="highlight"><pre>sed -i <span class="s2">&quot;s/oldstring/newstring/g&quot;</span> <span class="sb">`</span>grep oldstring -rl /path<span class="sb">`</span>
+</pre></div>
                     <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/01/14/interesting-features-in-htc-diamond">阅读全文</a>
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">阅读全文</a>
                     </div>
                 </div>
             </article>
             <hr/>
             <article>
-                <h2><a href="http://hutaow.com/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw">Xmarks(原Foxmarks)被墙之后更新的方法</a></h2>
+                <h2><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 RXVT</a></h2>
                 <div class="summary"><hr />
-<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
-<h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts"文件中添加如下内容：</h4>
+<p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <!-- more -->
 
-<div class="highlight"><pre><span class="cp"># Xmarks</span>
-<span class="mf">64.147.188.86</span><span class="err"> </span><span class="n">www</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">64.147.188.92</span> <span class="n">api</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">64.147.188.89</span> <span class="n">login</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">64.147.188.87</span> <span class="n">sync</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">64.147.188.86 ...</span></pre></div></!-->
+<div class="highlight"><pre>!!<span class="nv">$HOME</span>/.Xdefaults
+Rxvt.preeditType: root
+
+!!窗口大小及标题
+Rxvt.geometry: 80x25
+Rxvt.title: hutaow-rxvt
+
+!!输入法设置
+Rxvt.inputMethod: fcitx
+
+!!透明度设置
+!Rxvt.transparent: <span class="nb">true</span>
+!Rxvt.shading: 110
+!Rxvt.tintColor: grey
+!Rxvt.inheritPixmap: <span class="nb">false</span>
+
+!!扩展设置
+Rxvt.perl-ext-common: default, matcher, fullscreen
+
+!!URL操作
+Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                     <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw">阅读全文</a>
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">使用 OProfile 进行性能分析</a></h2>
+                <div class="summary"><hr />
+<h3>1 介绍</h3>
+<p>OProfile是Linux上的性能监测工具，通过CPU硬件提供的性能计数器对事件（如CPU Cycle、Cache Miss等）进行采样，可以帮助开发者从代码层面分析程序的性能消耗情况，很方便的找出影响程序性能的问题点。</p>
+<p>硬件上，OProfile支持多种架构的CPU，包括Alpha、MIPS、ARM、x86/x86-64、Sparc64、PowerPC等；软件上，OProfile支持Linux 2.2、2.4、2.6多种版本的内核，并且所占用的系统开销较小，一般在1%-8%范围内，具体数值依赖于采样频率。</p>
+<!-- more -->
+
+<h3>2 环境准备</h3>
+<h4>2.1 编译Linux内核</h4>
+<p>OProfile需要Linux内核的支持，到Linux内核源代码目录中（一般为<code>/usr/src/linux-xxx</code>）执行下面的命令：</p>
+<div class="highlight"><pre>make menuconfig
+</pre></div>
+
+
+<p>在配置菜单中找到OProfile的选项并将其打开，然后保存退出。</p>
+<p>如果不想用 ...</p></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">将 Python 脚本转换为可执行程序</a></h2>
+                <div class="summary"><hr />
+<p>本文所使用的工具是cx_Freeze，相对py2exe和PyInstaller来说，cx_Freeze的兼容性更好，支持最新的Python 3.X，支持PyQT，并且可以跨平台支持Windows和Linux系统。</p>
+<p>cx_Freeze的官方主页为<a href="http://cx-freeze.sourceforge.net">http://cx-freeze.sourceforge.net</a>，下面以Windows系统为例介绍一下它的使用方法。</p>
+<!-- more -->
+
+<h3>1 配置转换脚本</h3>
+<p>新建一个Python脚本文件，如<code>setup.py</code>，内容如下：</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">cx_Freeze</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Executable</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;win32&quot;</span><span class="p">:</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="s">&quot;Win32GUI&quot;</span>
+
+<span class="n">setup</span><span class="p">(</span>  <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;MyApp&quot;</span><span class="p">,</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;My PyQT application!&quot;</span><span class="p">,</span>
+        <span class="n">executables</span> <span class="o">=</span> <span class="p">[</span><span class="n">Executable</span><span class="p">(</span><span class="s">&quot;pyqt_example.py ...</span></pre></div></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">使用 PyQT 作为 Python 的图形界面</a></h2>
+                <div class="summary"><hr />
+<p>以前Python写出来的脚本都是靠命令行执行，输入要是复杂点就得靠加参数，甚至加配置文件来搞定，自己用下还行，给别人用的时候总是不太方便，就一直想找个好用的图形界面库。</p>
+<p>有试过Python内置的Tkinter，部署倒是挺简单，不需要额外安装库，但是开发效率还是不够高，而且需要手写不少界面相关的重复代码，用起来不太方便。</p>
+<p>最近开始尝试第三方的界面库，几经权衡，最终在PyGTK、wxPython、PyQT中选择了PyQT，试了一下，确实很不错，下面就介绍一下PyQT的使用方法。</p>
+<!-- more -->
+
+<h3>1 介绍</h3>
+<p>PyQT以QT为基础，跨平台（可以运行在Windows、Linux/Unix、MacOS等操作系统上），同时PyQT的界面可以直接用QT Designer做出来，可以很容易移植到其它语言上（C++、C#、Java、Perl等）。</p>
+<h3>2 例子</h3>
+<p>为了更好了了解PyQT，先写一段简单的示例代码，例子中通过点击按钮，来改变文本框所显示的内容，具体代码含义直接通过注释说明了。</p>
+<div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtCore ...</span></pre></div></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">类型转换导致字符串大小计算错误的问题</a></h2>
+                <div class="summary"><hr />
+<p>今天在定位问题时，发现有一个字符串关键字在搜索时死活不命中，但实际那个关键字在数据中是存在的，跟踪发现是一个不起眼的细节导致的。</p>
+<!-- more -->
+
+<p>用一段简短的代码来说明一下问题出在哪里：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="cp">#define M_STRING_1 &quot;test&quot;</span>
+<span class="cp">#define M_STRING_2 (char *)&quot;test&quot;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">pcStr</span> <span class="o">=</span> <span class="n">M_STRING_1</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size of string macro 1      : %u bytes </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">M_STRING_1</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size of string pointer 1    : %u bytes </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">pcStr</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size ...</span></pre></div></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/05/string-size-calculation">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">配置 VIM 开发环境</a></h2>
+                <div class="summary"><hr />
+<h3>1 插件列表</h3>
+<h4>1.1 CTags</h4>
+<p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
+<p>下载地址：<a href="http://ctags.sourceforge.net">http://ctags.sourceforge.net</a></p>
+<p>使用方式：在代码的根目录执行如下命令即可生成tag文件：</p>
+<div class="highlight"><pre><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
+</pre></div>
+
+
+<!-- more -->
+
+<p>这个命令有点长，可以在<code>.vimrc</code>的文件中加个键盘映射，像下面的样子，这样只需要按下<code>CTRL+F12</code>即可生成tag文件了。</p>
+<div class="highlight"><pre><span class="n">map</span> <span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">F12</span><span class="o">&gt;</span> <span class="o">:!</span><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
+</pre></div>
+
+
+<p>另外，如果需要指明源代码的语言，则需要加上 ...</p></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/22/vim-development-environment">阅读全文</a>
                     </div>
                 </div>
             </article>
             <hr/>
 
+        <ul class="pagination">
+                <li class="prev disabled"><a href="#">&laquo;</a></li>
+                    <li class="active"><a
+                            href="http://hutaow.com/blog/categories/technology/index.html">1</a></li>
+                    <li class=""><a
+                            href="http://hutaow.com/blog/categories/technology/index2.html">2</a></li>
+                    <li class=""><a
+                            href="http://hutaow.com/blog/categories/technology/index3.html">3</a></li>
+                    <li class=""><a
+                            href="http://hutaow.com/blog/categories/technology/index4.html">4</a></li>
+                    <li class=""><a
+                            href="http://hutaow.com/blog/categories/technology/index5.html">5</a></li>
+                <li class="next"><a
+                        href="http://hutaow.com/blog/categories/technology/index2.html">&raquo;</a></li>
+        </ul>
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
 
@@ -157,23 +343,53 @@
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">
+                                限制用户登陆Linux的时间
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">
                                 删除Git的提交记录
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash">
-                                正斜杠与反斜杠的分析
+                            <a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">
+                                基于libpcap的开发实例
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2010/01/14/interesting-features-in-htc-diamond">
-                                HTC Diamond 两个有意思的功能
+                            <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
+                                在多个文件中批量查找/替换字符串
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw">
-                                Xmarks(原Foxmarks)被墙之后更新的方法
+                            <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
+                                轻量级的 Linux 终端软件 RXVT
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
+                                使用 OProfile 进行性能分析
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
+                                将 Python 脚本转换为可执行程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
+                                使用 PyQT 作为 Python 的图形界面
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
+                                类型转换导致字符串大小计算错误的问题
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">
+                                配置 VIM 开发环境
                             </a>
                         </li>
                     </ul>
@@ -182,38 +398,8 @@
                 <li class="list-group-item"><a href="http://hutaow.com/blog/categories/index.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
                     <ul class="list-group" id="categories">
                         <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/database/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Database
-                            </a>
-                        </li>
-                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/categories/life/index.html">
                                 <i class="fa fa-folder-open fa-lg"></i> Life
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/linux/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/network/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Network
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/programming/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Programming
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/protocol/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Protocol
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/security/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Security
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -257,6 +443,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cisco/index.html">
+                                CISCO
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/coredump/index.html">
                                 CoreDump
                             </a>
@@ -284,6 +475,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/dai-li/index.html">
                                 代理
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/database/index.html">
+                                Database
                             </a>
                         </li>
                         <li class="list-group-item tag-3">
@@ -401,6 +597,11 @@
                                 MySQL
                             </a>
                         </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/network/index.html">
+                                Network
+                            </a>
+                        </li>
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/openwrt/index.html">
                                 OpenWRT
@@ -414,6 +615,11 @@
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
                                 配置文件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/programming/index.html">
+                                Programming
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -457,6 +663,16 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/script/index.html">
+                                Script
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/security/index.html">
+                                Security
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/sed/index.html">
                                 sed
                             </a>
@@ -464,6 +680,11 @@
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
                                 数据库
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/signal/index.html">
+                                Signal
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -492,13 +713,18 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xie-yi-fen-xi/index.html">
-                                协议分析
+                            <a href="http://hutaow.com/blog/tags/xie-yi/index.html">
+                                协议
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
                                 信号
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">
+                                信息安全
                             </a>
                         </li>
                         <li class="list-group-item tag-4">

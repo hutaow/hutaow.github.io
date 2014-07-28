@@ -17,8 +17,10 @@
             <meta property="og:url" content="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing"/>
             <meta property="og:description" content="引言 入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。 值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。 1 入侵检测消息交互过程 1.1 建立连接 使用IDXP传输数据的入侵检测实体被称为IDXP对等体。对等体只能成对出现，这些对等体通过BEEP会话中的一个或多个BEEP信道进行数据传输。对等体可能是管理器或分析器。 在分析器和管理器之间很可能是多对多的关系。即一个分析器可以和多个管理器通信，同样，一个管理器也可以和多个分析器通信；在不同的管理器之间也可以是多对多的关系。所以，一个管理器可以通过多个中间管理器接收大量的来自分析器的报警信息。但是 ..."/>
             <meta property="article:published_time" content="2010-04-17" />
-                <meta property="article:section" content="Security" />
+                <meta property="article:section" content="Technology" />
+                <meta property="article:tag" content="Security" />
                 <meta property="article:tag" content="IDS" />
+                <meta property="article:tag" content="信息安全" />
                 <meta property="article:tag" content="入侵检测" />
                 <meta property="article:author" content="hutaow" />
 
@@ -85,11 +87,15 @@
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
 
         <span class="label label-default">Category</span>
-        <a href="http://hutaow.com/blog/categories/security/index.html">Security</a>
+        <a href="http://hutaow.com/blog/categories/technology/index.html">Technology</a>
 
 
 <span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/security/index.html">Security</a>
+        /
 	<a href="http://hutaow.com/blog/tags/ids/index.html">IDS</a>
+        /
+	<a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">信息安全</a>
         /
 	<a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">入侵检测</a>
     
@@ -400,38 +406,8 @@
                 <li class="list-group-item"><a href="http://hutaow.com/blog/categories/index.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
                     <ul class="list-group" id="categories">
                         <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/database/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Database
-                            </a>
-                        </li>
-                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/categories/life/index.html">
                                 <i class="fa fa-folder-open fa-lg"></i> Life
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/linux/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/network/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Network
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/programming/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Programming
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/protocol/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Protocol
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/security/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Security
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -475,6 +451,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cisco/index.html">
+                                CISCO
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/coredump/index.html">
                                 CoreDump
                             </a>
@@ -502,6 +483,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/dai-li/index.html">
                                 代理
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/database/index.html">
+                                Database
                             </a>
                         </li>
                         <li class="list-group-item tag-3">
@@ -619,6 +605,11 @@
                                 MySQL
                             </a>
                         </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/network/index.html">
+                                Network
+                            </a>
+                        </li>
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/openwrt/index.html">
                                 OpenWRT
@@ -632,6 +623,11 @@
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
                                 配置文件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/programming/index.html">
+                                Programming
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -675,6 +671,16 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/script/index.html">
+                                Script
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/security/index.html">
+                                Security
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/sed/index.html">
                                 sed
                             </a>
@@ -682,6 +688,11 @@
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
                                 数据库
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/signal/index.html">
+                                Signal
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -710,13 +721,18 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xie-yi-fen-xi/index.html">
-                                协议分析
+                            <a href="http://hutaow.com/blog/tags/xie-yi/index.html">
+                                协议
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
                                 信号
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">
+                                信息安全
                             </a>
                         </li>
                         <li class="list-group-item tag-4">

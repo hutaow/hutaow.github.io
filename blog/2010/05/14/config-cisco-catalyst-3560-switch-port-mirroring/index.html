@@ -17,7 +17,9 @@
             <meta property="og:url" content="http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring"/>
             <meta property="og:description" content="假设要将19和27号端口的数据镜像到2号端口，按如下操作进行： 1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。 2) 交换机上电自检然后登入后出现命令提示符： Switch&gt; 3) 依次进入特权模式和全局模式，输入如下命令： Switch&gt;enable Password: Switch#configure terminal Enter configuration commands, one per line. End with CNTL/Z. Switch(config)# 4) 在新session中，将端口19和27设置为被监听端口(source)，2号端口设置为监听端口(destination)，命令如下： Switch(config)#monitor session 1 source interface Fa0/19 ..."/>
             <meta property="article:published_time" content="2010-05-14" />
-                <meta property="article:section" content="Network" />
+                <meta property="article:section" content="Technology" />
+                <meta property="article:tag" content="Network" />
+                <meta property="article:tag" content="CISCO" />
                 <meta property="article:tag" content="交换机" />
                 <meta property="article:author" content="hutaow" />
 
@@ -84,10 +86,14 @@
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
 
         <span class="label label-default">Category</span>
-        <a href="http://hutaow.com/blog/categories/network/index.html">Network</a>
+        <a href="http://hutaow.com/blog/categories/technology/index.html">Technology</a>
 
 
 <span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/network/index.html">Network</a>
+        /
+	<a href="http://hutaow.com/blog/tags/cisco/index.html">CISCO</a>
+        /
 	<a href="http://hutaow.com/blog/tags/jiao-huan-ji/index.html">交换机</a>
     
 </footer><!-- /.post-info -->                    </div>
@@ -124,6 +130,12 @@
 <p>5) 断开连接，完成。</p>
             </div>
             <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://hutaow.com/blog/2013/09/06/install-openwrt">TP-WR703n安装OpenWRT记录</a></li>
+    </ul>
+</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -235,38 +247,8 @@
                 <li class="list-group-item"><a href="http://hutaow.com/blog/categories/index.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
                     <ul class="list-group" id="categories">
                         <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/database/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Database
-                            </a>
-                        </li>
-                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/categories/life/index.html">
                                 <i class="fa fa-folder-open fa-lg"></i> Life
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/linux/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/network/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Network
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/programming/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Programming
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/protocol/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Protocol
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/security/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Security
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -310,6 +292,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cisco/index.html">
+                                CISCO
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/coredump/index.html">
                                 CoreDump
                             </a>
@@ -337,6 +324,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/dai-li/index.html">
                                 代理
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/database/index.html">
+                                Database
                             </a>
                         </li>
                         <li class="list-group-item tag-3">
@@ -454,6 +446,11 @@
                                 MySQL
                             </a>
                         </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/network/index.html">
+                                Network
+                            </a>
+                        </li>
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/openwrt/index.html">
                                 OpenWRT
@@ -467,6 +464,11 @@
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
                                 配置文件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://hutaow.com/blog/tags/programming/index.html">
+                                Programming
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -510,6 +512,16 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/script/index.html">
+                                Script
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/security/index.html">
+                                Security
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/sed/index.html">
                                 sed
                             </a>
@@ -517,6 +529,11 @@
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
                                 数据库
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/signal/index.html">
+                                Signal
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -545,13 +562,18 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xie-yi-fen-xi/index.html">
-                                协议分析
+                            <a href="http://hutaow.com/blog/tags/xie-yi/index.html">
+                                协议
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
                                 信号
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-3">
+                            <a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">
+                                信息安全
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
