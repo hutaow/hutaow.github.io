@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/hutaow.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-08-01T23:50:27+08:00</updated><entry><title>一种延长音乐e栈服务有效期的方法</title><link href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic" rel="alternate"></link><updated>2014-08-01T23:50:27+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-08-01:blog/2014/08/01/cracking-svautomusic</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;音乐e栈是德赛西威和虾米音乐合作的一项音乐服务，可以在下载电台和专辑到TF卡或U盘上，然后放到车上听，带专辑信息及歌词，效果很好也很方便，不过一般只有一年的试用时间，过期之后就需要付费使用，并且以前下载过的歌曲也不能播放。&lt;/p&gt;
-&lt;p&gt;前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是音乐e栈的认证机制略显简陋，本文主要从技术角度来说明破解过程，仅供参考学习。&lt;/p&gt;
+&lt;p&gt;前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是音乐e栈的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。&lt;/p&gt;
 &lt;!-- more --&gt;
 
 &lt;h4&gt;1 原始界面&lt;/h4&gt;
@@ -83,8 +83,8 @@
 &lt;p&gt;&lt;img alt="车载服务有效期" src="/images/articles/201408/cracking_svautomusic_car.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;另外补充一句，充值显示成功后，还需要把hosts恢复回去，因为后面的专辑下载等操作还需要连接真实的服务器。&lt;/p&gt;
 &lt;h4&gt;9 后记&lt;/h4&gt;
-&lt;p&gt;后来发现其实都不用等到充值那一步再伪造服务器，其实在软件启动的时候就向服务器发送过认证请求，直接在那一步处理的话破解过程会更方便些，不过反正是能任意续期了，就先这样吧。&lt;/p&gt;
-&lt;p&gt;这个问题有几次联系过厂家说明情况，但都没有答复，从上次发布版本的时间来看，估计已经一年多没有维护了，这里把方法公开出来，仅供学习参考，有兴趣的人可以自己试下。另外写了个现成的破解程序，因为比较懒，所以直接用python+qt写的，程序稍稍有点大，需要的可以&lt;a href="/downloads/crack/svautomusic_crack.zip"&gt;点击这里下载&lt;/a&gt;。&lt;/p&gt;</summary><category term="破解"></category><category term="音乐e栈"></category><category term="德赛西威"></category><category term="虾米音乐"></category></entry><entry><title>限制用户登陆Linux的时间</title><link href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time" rel="alternate"></link><updated>2014-06-13T22:50:12+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-06-13:blog/2014/06/13/restrict-user-login-linux-time</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;后来发现其实都不用等到充值那一步再伪造服务器，其实在软件启动的时候就向服务器发送过认证请求，直接在那一步处理的话使用会更方便些，不过反正是能任意续期了，就先这样吧。&lt;/p&gt;
+&lt;p&gt;这个问题有几次联系过厂家说明情况，但都没有答复，从上次发布版本的时间来看，估计已经一年多没有维护了，这里把方法公开出来，仅供学习参考，有兴趣的人可以自己试下。另外写了个现成的程序，因为比较懒，所以直接用python+qt写的，程序稍稍有点大，需要的可以&lt;a href="/downloads/crack/svautomusic_crack.zip"&gt;点击这里下载&lt;/a&gt;。&lt;/p&gt;</summary><category term="音乐e栈"></category><category term="德赛西威"></category><category term="虾米音乐"></category></entry><entry><title>限制用户登陆Linux的时间</title><link href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time" rel="alternate"></link><updated>2014-06-13T22:50:12+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-06-13:blog/2014/06/13/restrict-user-login-linux-time</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。&lt;/p&gt;
 &lt;p&gt;设置个定时任务（执行&lt;code&gt;crontab -e&lt;/code&gt;编辑任务列表）：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;passwd&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;
