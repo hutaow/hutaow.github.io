@@ -1,5 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/hutaow.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-06-13T22:50:12+08:00</updated><entry><title>限制用户登陆Linux的时间</title><link href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time" rel="alternate"></link><updated>2014-06-13T22:50:12+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-06-13:blog/2014/06/13/restrict-user-login-linux-time</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/hutaow.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-08-01T23:50:27+08:00</updated><entry><title>破解音乐e栈认证服务</title><link href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic" rel="alternate"></link><updated>2014-08-01T23:50:27+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-08-01:blog/2014/08/01/cracking-svautomusic</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;音乐e栈是德赛西威和虾米音乐合作的一项音乐服务，可以在下载电台和专辑到TF卡或U盘上，然后放到车上听，带专辑信息及歌词，效果很好也很方便，不过一般只有一年的试用时间，过期之后就需要付费使用，并且以前下载过的歌曲也不能播放。&lt;/p&gt;
+&lt;p&gt;前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是音乐e栈的认证机制略显简陋，本文主要从技术角度来说明破解过程，仅供参考学习。&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;h4&gt;1 原始界面&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="音乐e栈服务过期" src="/images/articles/201408/cracking_svautomusic_service_expired.png" /&gt;&lt;/p&gt;
+&lt;p&gt;如上图，插入经过车机初始化过的TF卡后，启动音乐e栈客户端，显示当前服务有效期为0天，并提示需要充值续费。如果点击下载专辑的按钮，提示不允许下载。&lt;/p&gt;
+&lt;h4&gt;2 寻找入手点&lt;/h4&gt;
+&lt;p&gt;既然提示让续费，那就看看续费过程是什么样子。&lt;/p&gt;
+&lt;p&gt;先随便输个卡号密码试试：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="充值卡无效" src="/images/articles/201408/cracking_svautomusic_paid_invalid.png" /&gt;&lt;/p&gt;
+&lt;p&gt;竟然用CS架构来做充值认证，实在是土的掉渣，就从这里入手了。&lt;/p&gt;
+&lt;h4&gt;3 交互过程&lt;/h4&gt;
+&lt;p&gt;把刚才进行充值时的报文用Wireshark抓下来，看看它是如何交互的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1) 报文&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="充值失败的报文" src="/images/articles/201408/cracking_svautomusic_pcap_paid_failed.png" /&gt;&lt;/p&gt;
+&lt;p&gt;可以看到，充值认证的流量走的是TCP协议8080端口，对端连接的服务器地址是&lt;code&gt;42.156.140.44&lt;/code&gt;，这个暂时放一边，先来看看请求和响应报文分别填了什么内容。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2) 请求消息&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="请求消息内容" src="/images/articles/201408/cracking_svautomusic_pcap_paid_request.png" /&gt;&lt;/p&gt;
+&lt;p&gt;上图中可以看到，充值请求消息虽然走的是8080端口，但实际内容并非HTTP协议。&lt;/p&gt;
+&lt;p&gt;TCP负载的开头44个字节是一段二进制数据，估计是发送充值消息的结构体头，这里我们不关心；接下来就一段xml格式的内容，其中xml内容直接是用明文传输，并且单词基本都在四级词汇范围内，可以清楚的看到它发送了车载设备的ID号、服务剩余天数，以及刚才输入的充值的卡号、密码等信息。&lt;/p&gt;
+&lt;p&gt;因为这个是请求消息，不需要对它关注太多，下面来看看服务的响应消息。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3) 响应消息&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="响应消息内容" src="/images/articles/201408/cracking_svautomusic_pcap_paid_response.png" /&gt;&lt;/p&gt;
+&lt;p&gt;可以看出，响应消息和请求消息的格式基本一样，follow一把看的更清楚些：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Follow Stream" src="/images/articles/201408/cracking_svautomusic_pcap_follow_stream.png" /&gt;&lt;/p&gt;
+&lt;p&gt;注意响应消息xml中的&lt;code&gt;result&lt;/code&gt;和&lt;code&gt;remain_days&lt;/code&gt;字段，可以看到&lt;code&gt;result&lt;/code&gt;字段的值为&lt;code&gt;102&lt;/code&gt;，该值为充值的返回值；另外一个&lt;code&gt;remain_days&lt;/code&gt;值为&lt;code&gt;0&lt;/code&gt;，它便是服务器认证后的有效时间。&lt;/p&gt;
+&lt;h4&gt;4 思路&lt;/h4&gt;
+&lt;p&gt;从上面的报文分析，充值的交互其实是简单的一请求加一响应消息，客户端将车载设备的ID及充值卡号、密码发送给服务器，然后服务器校验认证充值卡是否有效，然后返回充值结果，并且将充值后的有效期也带给客户端。&lt;/p&gt;
+&lt;p&gt;可以想到，通过伪造一个认证服务器，当充值的时候，让客户端去连接伪造的服务器，然后服务器返回充值成功的消息，即有可能骗过客户端认为充值成功。&lt;/p&gt;
+&lt;p&gt;伪造过程中所需要的服务器成功消息，可以尝试通过修改上面抓包内容来构造。&lt;/p&gt;
+&lt;h4&gt;5 主机重定向&lt;/h4&gt;
+&lt;p&gt;前面3.2节中提到到过，客户端所连接的服务器地址是&lt;code&gt;42.156.140.44&lt;/code&gt;，相信不会有人把IP直接写死在代码里的，起码是个域名，那一定会发DNS请求，DNS解析结果会缓存在主机上，执行一下下面的命令，来看看当前Windows主机上的DNS缓存列表：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ipconfig&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;displaydns&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;从列表里搜索IP地址，找到如下信息：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xiami&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+    &lt;span class="o"&gt;----------------------------------------&lt;/span&gt;
+    &lt;span class="err"&gt;记录名称&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xiami&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+    &lt;span class="err"&gt;记录类型&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="err"&gt;生存时间&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;
+    &lt;span class="err"&gt;数据长度&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+    &lt;span class="err"&gt;部分&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;答案&lt;/span&gt;
+    &lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;主机&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;记录&lt;/span&gt;  &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;42.156.140.44&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;看来域名就是&lt;code&gt;s2.xiami.com&lt;/code&gt;了，修改Windows的hosts文件（&lt;code&gt;%windir%\system32\drivers\etc\hosts&lt;/code&gt;）中添加下面一条关联项，将&lt;code&gt;s2.xiami.com&lt;/code&gt;指向伪造的服务器（这里直接使用本机环回地址）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;127.0.0.1&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xiami&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;6 伪造服务器&lt;/h4&gt;
+&lt;p&gt;伪造服务器越简单越好，直接用Python写个TCP的服务器，只要有客户端连接发消息（假设只有目标程序会连接，也不用管发的是什么消息），就直接返回伪造好的内容。&lt;/p&gt;
+&lt;p&gt;代码如下所示，服务器响应的数据先从真实服务器的TCP负载拷贝过来：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="伪造服务器代码" src="/images/articles/201408/cracking_svautomusic_code.png" /&gt;&lt;/p&gt;
+&lt;h4&gt;7 响应消息&lt;/h4&gt;
+&lt;p&gt;服务器正常工作了，下面开始修改响应消息，想办法骗过客户端认为充值成功。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1) 修改响应码&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;先从响应码（&lt;code&gt;result&lt;/code&gt;）开始，原始值是&lt;code&gt;102&lt;/code&gt;，先减1试试&lt;code&gt;101&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="伪造服务器响应101" src="/images/articles/201408/cracking_svautomusic_code_result_101.png" /&gt;&lt;/p&gt;
+&lt;p&gt;进行充值操作，看看客户端收到后是什么情况：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="充值卡已被使用" src="/images/articles/201408/cracking_svautomusic_result_101.png" /&gt;&lt;/p&gt;
+&lt;p&gt;如上图，提示信息变成了“该卡已被使用过”，看来方向是对的，再改成&lt;code&gt;100&lt;/code&gt;看看：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="伪造服务器响应100" src="/images/articles/201408/cracking_svautomusic_code_result_100.png" /&gt;&lt;/p&gt;
+&lt;p&gt;执行充值操作：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="客户端充值成功" src="/images/articles/201408/cracking_svautomusic_result_100.png" /&gt;&lt;/p&gt;
+&lt;p&gt;如上图，客户端提示“账户充值成功！”。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2) 修改有效时间&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;虽然提示充值成功，但是有效期还是显示0天，下面把&lt;code&gt;remain_days&lt;/code&gt;改成&lt;code&gt;99&lt;/code&gt;试下：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="伪造服务器响应100并且有效期99天" src="/images/articles/201408/cracking_svautomusic_code_result_100_remain_99.png" /&gt;&lt;/p&gt;
+&lt;p&gt;再试下充值操作：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="客户端充值成功并且有效期延长99天" src="/images/articles/201408/cracking_svautomusic_result_100_remain_99.png" /&gt;&lt;/p&gt;
+&lt;p&gt;可以看到，充值成功，并且有效期也变成了99天。&lt;/p&gt;
+&lt;h4&gt;8 检验结果&lt;/h4&gt;
+&lt;p&gt;随便选择一张专辑下载，可以发现已经可以随意下载了：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="成功下载专辑" src="/images/articles/201408/cracking_svautomusic_downloading.png" /&gt;&lt;/p&gt;
+&lt;p&gt;下载完成后同步到车载设备上，可以发现车载设备上显示的服务有效期也被延长了99天：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="车载服务有效期" src="/images/articles/201408/cracking_svautomusic_car.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;另外补充一句，充值显示成功后，还需要把hosts恢复回去，因为后面的专辑下载等操作还需要连接真实的服务器。&lt;/p&gt;
+&lt;h4&gt;9 后记&lt;/h4&gt;
+&lt;p&gt;后来发现其实都不用等到充值那一步再伪造服务器，其实在软件启动的时候就向服务器发送过认证请求，直接在那一步处理的话破解过程会更方便些，不过反正是能任意续期了，就先这样吧。&lt;/p&gt;
+&lt;p&gt;这个问题有几次联系过厂家说明情况，但都没有答复，从上次发布版本的时间来看，估计已经一年多没有维护了，这里把方法公开出来，仅供学习参考，有兴趣的人可以自己试下。另外写了个现成的破解程序，因为比较懒，所以直接用python+qt写的，程序稍稍有点大，需要的可以&lt;a href="/downloads/crack/svautomusic_crack.zip"&gt;点击这里下载&lt;/a&gt;。&lt;/p&gt;</summary><category term="破解"></category><category term="音乐e栈"></category><category term="德赛西威"></category><category term="虾米音乐"></category></entry><entry><title>限制用户登陆Linux的时间</title><link href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time" rel="alternate"></link><updated>2014-06-13T22:50:12+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-06-13:blog/2014/06/13/restrict-user-login-linux-time</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。&lt;/p&gt;
 &lt;p&gt;设置个定时任务（执行&lt;code&gt;crontab -e&lt;/code&gt;编辑任务列表）：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;passwd&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;
