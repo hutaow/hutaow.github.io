@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>一种破解音乐e栈延长服务有效期的方法 - 胡桃夹子</title>
+    <title>一种延长音乐e栈服务有效期的方法 - 胡桃夹子</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -13,7 +13,7 @@
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="胡桃夹子" />
             <meta property="og:type" content="article"/>
-            <meta property="og:title" content="一种破解音乐e栈延长服务有效期的方法"/>
+            <meta property="og:title" content="一种延长音乐e栈服务有效期的方法"/>
             <meta property="og:url" content="http://hutaow.com/blog/2014/08/01/cracking-svautomusic"/>
             <meta property="og:description" content="音乐e栈是德赛西威和虾米音乐合作的一项音乐服务，可以在下载电台和专辑到TF卡或U盘上，然后放到车上听，带专辑信息及歌词，效果很好也很方便，不过一般只有一年的试用时间，过期之后就需要付费使用，并且以前下载过的歌曲也不能播放。 前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是音乐e栈的认证机制略显简陋，本文主要从技术角度来说明破解过程，仅供参考学习。 1 原始界面 如上图，插入经过车机初始化过的TF卡后，启动音乐e栈客户端，显示当前服务有效期为0天，并提示需要充值续费。如果点击下载专辑的按钮，提示不允许下载。 2 寻找入手点 既然提示让续费，那就看看续费过程是什么样子。 先随便输个卡号密码试试： 竟然用CS架构来做充值认证，实在是土的掉渣，就从这里入手了。 3 交互过程 把刚才进行充值时的报文用Wireshark抓下来，看看它是如何交互的。 1) 报文 可以看到，充值认证的流量走的是TCP协议8080端口，对端连接的服务器地址是42.156.140.44，这个暂时放一边，先来看看请求和响应报文分别填了什么内容。 2) 请求消息 ..."/>
             <meta property="article:published_time" content="2014-08-01" />
@@ -70,8 +70,8 @@
                 <h1>
                     <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic"
                        rel="bookmark"
-                       title="Permalink to 一种破解音乐e栈延长服务有效期的方法">
-                        一种破解音乐e栈延长服务有效期的方法
+                       title="Permalink to 一种延长音乐e栈服务有效期的方法">
+                        一种延长音乐e栈服务有效期的方法
                     </a>
                 </h1>
             </header>
@@ -246,7 +246,7 @@
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
-                                一种破解音乐e栈延长服务有效期的方法
+                                一种延长音乐e栈服务有效期的方法
                             </a>
                         </li>
                         <li class="list-group-item">
