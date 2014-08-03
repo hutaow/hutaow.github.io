@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>一种延长音乐e栈服务有效期的方法 - 胡桃夹子</title>
+    <title>一种伪造服务器骗过某导航，延长音乐服务有效期的方法 - 胡桃夹子</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -13,14 +13,15 @@
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="胡桃夹子" />
             <meta property="og:type" content="article"/>
-            <meta property="og:title" content="一种延长音乐e栈服务有效期的方法"/>
+            <meta property="og:title" content="一种伪造服务器骗过某导航，延长音乐服务有效期的方法"/>
             <meta property="og:url" content="http://hutaow.com/blog/2014/08/01/cracking-svautomusic"/>
-            <meta property="og:description" content="音乐e栈是德赛西威和虾米音乐合作的一项音乐服务，可以在下载电台和专辑到TF卡或U盘上，然后放到车上听，带专辑信息及歌词，效果很好也很方便，不过一般只有一年的试用时间，过期之后就需要付费使用，并且以前下载过的歌曲也不能播放。 前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是音乐e栈的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。 1 原始界面 如上图，插入经过车机初始化过的TF卡后，启动音乐e栈客户端，显示当前服务有效期为0天，并提示需要充值续费。如果点击下载专辑的按钮，提示不允许下载。 2 寻找入手点 既然提示让续费，那就看看续费过程是什么样子。 先随便输个卡号密码试试： 竟然用CS架构来做充值认证，实在是土的掉渣，就从这里入手了。 3 交互过程 把刚才进行充值时的报文用Wireshark抓下来，看看它是如何交互的。 1) 报文 可以看到，充值认证的流量走的是TCP协议8080端口，对端连接的服务器地址是42.156.140.44，这个暂时放一边，先来看看请求和响应报文分别填了什么内容。 2) 请求消息 ..."/>
+            <meta property="og:description" content="某导航提供的音乐服务（音乐e栈），和虾米合作的，需要付费使用，前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是因为它的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。 1 原始界面 如上图，插入经过车机初始化过的TF卡后，启动音乐e栈客户端，显示当前服务有效期为0天，并提示需要充值续费。如果点击下载专辑的按钮，提示不允许下载。 2 寻找入手点 既然提示让续费，那就看看续费过程是什么样子。 先随便输个卡号密码试试： 竟然用CS架构来做充值认证，实在是土的掉渣，就从这里入手了。 3 交互过程 把刚才进行充值时的报文用Wireshark抓下来，看看它是如何交互的。 1) 报文 可以看到，充值认证的流量走的是TCP协议8080端口，对端连接的服务器地址是42.156.140.44，这个暂时放一边，先来看看请求和响应报文分别填了什么内容。 2) 请求消息 上图中可以看到，充值请求消息虽然走的是8080端口，但实际内容并非HTTP协议。 TCP负载的开头44个字节是一段二进制数据 ..."/>
             <meta property="article:published_time" content="2014-08-01" />
-                <meta property="article:section" content="Technology" />
+                <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="音乐e栈" />
                 <meta property="article:tag" content="德赛西威" />
                 <meta property="article:tag" content="虾米音乐" />
+                <meta property="article:tag" content="Python" />
                 <meta property="article:author" content="hutaow" />
 
     <!-- Bootstrap -->
@@ -69,8 +70,8 @@
                 <h1>
                     <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic"
                        rel="bookmark"
-                       title="Permalink to 一种延长音乐e栈服务有效期的方法">
-                        一种延长音乐e栈服务有效期的方法
+                       title="Permalink to 一种伪造服务器骗过某导航，延长音乐服务有效期的方法">
+                        一种伪造服务器骗过某导航，延长音乐服务有效期的方法
                     </a>
                 </h1>
             </header>
@@ -86,7 +87,7 @@
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
 
         <span class="label label-default">Category</span>
-        <a href="http://hutaow.com/blog/categories/technology/index.html">Technology</a>
+        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
 
 
 <span class="label label-default">Tags</span>
@@ -95,12 +96,13 @@
 	<a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">德赛西威</a>
         /
 	<a href="http://hutaow.com/blog/tags/xia-mi-yin-le/index.html">虾米音乐</a>
+        /
+	<a href="http://hutaow.com/blog/tags/python/index.html">Python</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <hr />
-<p>音乐e栈是德赛西威和虾米音乐合作的一项音乐服务，可以在下载电台和专辑到TF卡或U盘上，然后放到车上听，带专辑信息及歌词，效果很好也很方便，不过一般只有一年的试用时间，过期之后就需要付费使用，并且以前下载过的歌曲也不能播放。</p>
-<p>前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是音乐e栈的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。</p>
+<p>某导航提供的音乐服务（音乐e栈），和虾米合作的，需要付费使用，前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是因为它的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。</p>
 <!-- more -->
 
 <h4>1 原始界面</h4>
@@ -183,9 +185,16 @@
 <p>另外补充一句，充值显示成功后，还需要把hosts恢复回去，因为后面的专辑下载等操作还需要连接真实的服务器。</p>
 <h4>9 后记</h4>
 <p>后来发现其实都不用等到充值那一步再伪造服务器，其实在软件启动的时候就向服务器发送过认证请求，直接在那一步处理的话使用会更方便些，不过反正是能任意续期了，就先这样吧。</p>
-<p>这个问题有几次联系过厂家说明情况，但都没有答复，从上次发布版本的时间来看，估计已经一年多没有维护了，这里把方法公开出来，仅供学习参考，有兴趣的人可以自己试下。另外写了个现成的程序，因为比较懒，所以直接用python+qt写的，程序稍稍有点大，需要的可以<a href="/downloads/crack/svautomusic_crack.zip">点击这里下载</a>。</p>
+<p>这个问题有几次联系过厂家说明情况，但都没有答复，从上次发布版本的时间来看，估计已经一年多没有维护了，这里把方法公开出来，仅供学习参考，有兴趣的人可以自己试下。另外写了个现成的程序，用python+qt写的，程序稍稍有点大，需要的可以<a href="/downloads/crack/svautomusic_crack.zip">点击这里下载</a>。</p>
             </div>
             <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">使用 PyQT 作为 Python 的图形界面</a></li>
+        <li><a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">将 Python 脚本转换为可执行程序</a></li>
+    </ul>
+</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -243,7 +252,7 @@
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
-                                一种延长音乐e栈服务有效期的方法
+                                一种伪造服务器骗过某导航，延长音乐服务有效期的方法
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -304,11 +313,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/categories/tech/index.html">
                                 <i class="fa fa-folder-open fa-lg"></i> Tech
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/categories/technology/index.html">
-                                <i class="fa fa-folder-open fa-lg"></i> Technology
                             </a>
                         </li>
                     </ul>
@@ -546,7 +550,7 @@
                                 PyQT
                             </a>
                         </li>
-                        <li class="list-group-item tag-3">
+                        <li class="list-group-item tag-2">
                             <a href="http://hutaow.com/blog/tags/python/index.html">
                                 Python
                             </a>
