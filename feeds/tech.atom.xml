@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/tech.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-08-01T23:50:27+08:00</updated><entry><title>一种伪造服务器骗过某导航，延长音乐服务有效期的方法</title><link href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic" rel="alternate"></link><updated>2014-08-01T23:50:27+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-08-01:blog/2014/08/01/cracking-svautomusic</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/tech.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-08-01T23:50:27+08:00</updated><entry><title>一种伪造服务器骗过某导航音乐服务，延长有效期的方法</title><link href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic" rel="alternate"></link><updated>2014-08-01T23:50:27+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-08-01:blog/2014/08/01/cracking-svautomusic</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;某导航提供的音乐服务（音乐e栈），和虾米合作的，需要付费使用，前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是因为它的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。&lt;/p&gt;
 &lt;!-- more --&gt;
 
