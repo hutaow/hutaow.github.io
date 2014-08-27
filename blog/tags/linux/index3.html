@@ -58,6 +58,29 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g">解决安装ntfs-3g时遇到的问题</a></h2>
+                <div class="summary"><hr />
+<p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行"mount -t ntfs-3g /dev/hdc5 /media/wdata"，结果提示：</p>
+<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
+<span class="n">fuse</span><span class="o">:</span> <span class="n">device</span> <span class="n">not</span> <span class="n">found</span><span class="o">,</span> <span class="k">try</span> <span class="s1">&#39;modprobe fuse&#39;</span> <span class="n">first</span>
+</pre></div>
+
+
+<!-- more -->
+
+<p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行"modprobe fuse"，结果又出来：</p>
+<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
+</pre></div>
+
+
+<p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net ...</a></p></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux">Linux中改变网卡的速度</a></h2>
                 <div class="summary"><hr />
 <p>今天又用到家里的那根20几米的超长网线了，因为太长了，之前windows里用它联网的时候要把网卡速度降到10Mbps才能用。如果自动配置的话会默认用100Mbps的速度连接，但这样的话就会时断时连很不稳定。</p>
@@ -200,6 +223,11 @@
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">
+                                Linux中查看进程占用内存的情况
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">
                                 限制用户登陆Linux的时间
                             </a>
@@ -242,11 +270,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/10/19/linux-signal">
                                 Linux信号处理机制
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/10/15/dump-stack">
-                                函数调用栈的获取原理分析
                             </a>
                         </li>
                     </ul>
@@ -462,6 +485,11 @@
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/mysql/index.html">
                                 MySQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/nei-cun/index.html">
+                                内存
                             </a>
                         </li>
                         <li class="list-group-item tag-3">

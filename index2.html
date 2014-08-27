@@ -58,6 +58,28 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">使用 PyQT 作为 Python 的图形界面</a></h2>
+                <div class="summary"><hr />
+<p>以前Python写出来的脚本都是靠命令行执行，输入要是复杂点就得靠加参数，甚至加配置文件来搞定，自己用下还行，给别人用的时候总是不太方便，就一直想找个好用的图形界面库。</p>
+<p>有试过Python内置的Tkinter，部署倒是挺简单，不需要额外安装库，但是开发效率还是不够高，而且需要手写不少界面相关的重复代码，用起来不太方便。</p>
+<p>最近开始尝试第三方的界面库，几经权衡，最终在PyGTK、wxPython、PyQT中选择了PyQT，试了一下，确实很不错，下面就介绍一下PyQT的使用方法。</p>
+<!-- more -->
+
+<h3>1 介绍</h3>
+<p>PyQT以QT为基础，跨平台（可以运行在Windows、Linux/Unix、MacOS等操作系统上），同时PyQT的界面可以直接用QT Designer做出来，可以很容易移植到其它语言上（C++、C#、Java、Perl等）。</p>
+<h3>2 例子</h3>
+<p>为了更好了了解PyQT，先写一段简单的示例代码，例子中通过点击按钮，来改变文本框所显示的内容，具体代码含义直接通过注释说明了。</p>
+<div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtCore ...</span></pre></div></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">类型转换导致字符串大小计算错误的问题</a></h2>
                 <div class="summary"><hr />
 <p>今天在定位问题时，发现有一个字符串关键字在搜索时死活不命中，但实际那个关键字在数据中是存在的，跟踪发现是一个不起眼的细节导致的。</p>
@@ -313,20 +335,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2013/10/10/starting-with-new-domain-name">博客搬家完成，新域名正式上线</a></h2>
-                <div class="summary"><hr />
-<p>昨天注册了<code>hutaow.net</code>这个域名，决心把博客搬过来，恢复写博客的生活。</p>
-<p>算下来差不多有两年时间都没有更新过了，其中一个最主要借口是找不到合适的落脚点，时间最长地方要数ChinaUNIX了，早期的时候用着还是蛮不错的，但是随着时间的推移，ChinaUNIX的系统更新实在是跟不上节奏，想到过搬家但是由于ChinaUNIX的订阅数据实在太蹩脚，连搬都不好搬，更不用说评论等等了，博客搬家的计划也就一直搁置了。后来有试过CSDN无奈上面的广告太多，百度也试过但是它贴代码的效果实在太差，WordPress又悲催的被墙等等。</p>
-<p>另一个借口就是工作太忙没时间，一回家就不太想写东西了，但是最近开始意识到挥挥衣袖什么都没有留下的感觉很不好，没有积累，没有思考，需要改变一下了。</p>
-<p>博客一方面作为记录，把了解的知识积累下来，方便自己以后回忆；另一方面作为分享，将解决问题过程中吸取的经验写下来，供大家参考，这样遇到同样问题时可以更迅速的解决。</p>
-<p>不多说，坚持就好。</p>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/10/starting-with-new-domain-name">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/index.html">&laquo;</a>
@@ -368,6 +376,11 @@
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">
+                                Linux中查看进程占用内存的情况
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
                                 德赛西威音乐e栈的破解程序
@@ -411,11 +424,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
                                 将 Python 脚本转换为可执行程序
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
-                                使用 PyQT 作为 Python 的图形界面
                             </a>
                         </li>
                     </ul>
@@ -631,6 +639,11 @@
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/mysql/index.html">
                                 MySQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/nei-cun/index.html">
+                                内存
                             </a>
                         </li>
                         <li class="list-group-item tag-3">

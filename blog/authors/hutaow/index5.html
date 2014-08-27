@@ -58,6 +58,20 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2008/03/20/compilation-failed-due-to-character-encoding">因字符编码导致的编译不通过</a></h2>
+                <div class="summary"><hr />
+<p>从网上下了QR标准的二维码库，打算直接调用里面的类来实现。在Fedora下Java编译通过，只是提示了一下使用了过时的方法。但我把代码复制到Windows里时，却编译不同过，出现了近1k个错误，代码完全一样，只是操作系统不同就会出问题？</p>
+<!-- more -->
+
+<p>回想在Windows里用UltraEdit打开时，提示文件不是"DOS Format"，会不会和文字编码有关？Linux用的是UTF-8的编码，而Windows用的是GBK的编码，难道字符编码必须要和本地相同才能编译通过么？试一下，于是把代码用UltraEdit转换成了GBK编码，再次编译，终于正常通过。</p>
+<p>看来有时编译不通过不一定是语句问题，连文件的编码也有可能出问题，如果在不同系统中出现类似上面一个正常一个错误的情况，可以考虑看是不是因为文件的编码和系统默认的编码有差异而引起的。</p>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/03/20/compilation-failed-due-to-character-encoding">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora">Fedora禁止自动挂载分区的方法</a></h2>
                 <div class="summary"><hr />
 <p>Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在"/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi"文件中。</p>
@@ -246,31 +260,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">Linux中设置Java环境变量</a></h2>
-                <div class="summary"><hr />
-<p>从网上找资料，自己总结一下：</p>
-<ol>
-<li>
-<p>从java.sun.com上下载jdk，解压到某个目录，比如"/usr/local/java/jdk1.x.x/"</p>
-</li>
-<li>
-<p>修改~/.bashrc文件，在文件末尾加入以下几行：</p>
-</li>
-</ol>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">j2sdk1</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span>
-<span class="n">export</span> <span class="n">PATH</span><span class="o">=</span><span class="err">$</span><span class="n">JAVA_HOME</span><span class="o">/</span><span class="n">bin</span><span class="o">:</span><span class="err">$</span><span class="n">PATH</span>
-<span class="n">export</span> <span class="n">CLASSPATH</span><span class="o">=</span><span class="p">.</span><span class="o">:</span><span class="err">$</span><span class="n">JAVA_HOME</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">tools</span><span class="p">.</span><span class="n">jar</span><span class="o">:</span><span class="err">$</span><span class="n">JAVA_HOME</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">dt</span><span class="p">.</span><span class="n">jar</span><span class="o">:</span><span class="err">$</span><span class="n">CLASSPATH</span>
-</pre></div>
-
-
-<p>最后重启终端或执行source ~/.bashrc即可。</p>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/blog/authors/hutaow/index4.html">&laquo;</a>
@@ -312,6 +301,11 @@
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">
+                                Linux中查看进程占用内存的情况
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
                                 德赛西威音乐e栈的破解程序
@@ -355,11 +349,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
                                 将 Python 脚本转换为可执行程序
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
-                                使用 PyQT 作为 Python 的图形界面
                             </a>
                         </li>
                     </ul>
@@ -575,6 +564,11 @@
                         <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/mysql/index.html">
                                 MySQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/nei-cun/index.html">
+                                内存
                             </a>
                         </li>
                         <li class="list-group-item tag-3">
