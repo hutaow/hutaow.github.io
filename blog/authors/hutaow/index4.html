@@ -58,6 +58,25 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw">Xmarks(原Foxmarks)被墙之后更新的方法</a></h2>
+                <div class="summary"><hr />
+<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
+<h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts"文件中添加如下内容：</h4>
+<!-- more -->
+
+<div class="highlight"><pre><span class="cp"># Xmarks</span>
+<span class="mf">64.147.188.86</span><span class="err"> </span><span class="n">www</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">64.147.188.92</span> <span class="n">api</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">64.147.188.89</span> <span class="n">login</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">64.147.188.87</span> <span class="n">sync</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">64.147.188.86 ...</span></pre></div></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">标记ATL控件为安全控件</a></h2>
                 <div class="summary"><hr />
 <p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
@@ -230,23 +249,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora">Fedora禁止自动挂载分区的方法</a></h2>
-                <div class="summary"><hr />
-<p>Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在"/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi"文件中。</p>
-<!-- more -->
-
-<p>找到以下提示行</p>
-<div class="highlight"><pre><span class="c">&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;</span>
-<span class="c">&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;</span>
-<span class="c">&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;</span>
-<span class="nt">&lt;merge</span> <span class="na">key=</span><span class="s">&quot;volume ...</span></pre></div></!-->
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/blog/authors/hutaow/index3.html">&laquo;</a>
@@ -261,6 +263,8 @@
                             href="http://hutaow.com/blog/authors/hutaow/index4.html">4</a></li>
                     <li class=""><a
                             href="http://hutaow.com/blog/authors/hutaow/index5.html">5</a></li>
+                    <li class=""><a
+                            href="http://hutaow.com/blog/authors/hutaow/index6.html">6</a></li>
                 <li class="next"><a
                         href="http://hutaow.com/blog/authors/hutaow/index5.html">&raquo;</a></li>
         </ul>
@@ -286,6 +290,11 @@
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
@@ -329,11 +338,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
                                 使用 PyQT 作为 Python 的图形界面
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
-                                类型转换导致字符串大小计算错误的问题
                             </a>
                         </li>
                     </ul>
@@ -397,6 +401,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -426,7 +435,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -691,7 +700,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

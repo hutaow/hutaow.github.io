@@ -5,9 +5,16 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/index.html</loc>
-<lastmod>2014-08-26T22:47:04-00:00</lastmod>
+<lastmod>2014-08-28T00:27:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hutaow.com/blog/2014/08/02/svautomusic-cracker</loc>
+<lastmod>2014-08-02T00:07:19-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -369,7 +376,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/blog/categories/tech/index.html</loc>
-<lastmod>2014-08-01T23:50:27-00:00</lastmod>
+<lastmod>2014-08-02T00:07:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -390,7 +397,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/blog/tags/de-sai-xi-wei/index.html</loc>
-<lastmod>2014-08-01T23:50:27-00:00</lastmod>
+<lastmod>2014-08-02T00:07:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -712,7 +719,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/blog/tags/yin-le-ezhan/index.html</loc>
-<lastmod>2014-08-01T23:50:27-00:00</lastmod>
+<lastmod>2014-08-02T00:07:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -781,6 +788,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://hutaow.com/blog/tags/cracker/index.html</loc>
+<lastmod>2014-08-02T00:07:19-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://hutaow.com/blog/tags/ids/index.html</loc>
 <lastmod>2010-04-21T10:48:00-00:00</lastmod>
 <changefreq>daily</changefreq>
@@ -831,7 +845,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/blog/tags/security/index.html</loc>
-<lastmod>2014-08-01T23:50:27-00:00</lastmod>
+<lastmod>2014-08-02T00:07:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -859,7 +873,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/blog/authors/hutaow/index.html</loc>
-<lastmod>2014-08-01T23:50:27-00:00</lastmod>
+<lastmod>2014-08-02T00:07:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

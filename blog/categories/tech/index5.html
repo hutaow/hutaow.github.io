@@ -58,6 +58,29 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g">解决安装ntfs-3g时遇到的问题</a></h2>
+                <div class="summary"><hr />
+<p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行"mount -t ntfs-3g /dev/hdc5 /media/wdata"，结果提示：</p>
+<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
+<span class="n">fuse</span><span class="o">:</span> <span class="n">device</span> <span class="n">not</span> <span class="n">found</span><span class="o">,</span> <span class="k">try</span> <span class="s1">&#39;modprobe fuse&#39;</span> <span class="n">first</span>
+</pre></div>
+
+
+<!-- more -->
+
+<p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行"modprobe fuse"，结果又出来：</p>
+<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
+</pre></div>
+
+
+<p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net ...</a></p></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2008/02/13/compile-android-project-in-command-line">Android命令行下的编译和运行</a></h2>
                 <div class="summary"><hr />
 <p>想学到东西还是要从命令行开始，真正学到之后再考虑用IDE。下面总结一下在命令行下android工程的创建、编译、运行和调试的方法。</p>
@@ -294,6 +317,11 @@
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -336,11 +364,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
                                 使用 PyQT 作为 Python 的图形界面
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
-                                类型转换导致字符串大小计算错误的问题
                             </a>
                         </li>
                     </ul>
@@ -404,6 +427,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -433,7 +461,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -698,7 +726,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

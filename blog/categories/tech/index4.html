@@ -58,6 +58,40 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">标记ATL控件为安全控件</a></h2>
+                <div class="summary"><hr />
+<p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
+<p>实现方法如下：</p>
+<p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
+<!-- more -->
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">CHutaow</span> <span class="o">:</span><span class="err"> </span>
+    <span class="c1">// 添加到控件的派生类列表中</span>
+    <span class="k">public</span> <span class="n">IObjectSafetyImpl</span><span class="o">&lt;</span><span class="n">CHutaow</span><span class="p">,</span> <span class="n">INTERFACESAFE_FOR_UNTRUSTED_CALLER</span><span class="o">|</span><span class="n">INTERFACESAFE_FOR_UNTRUSTED_DATA</span><span class="o">&gt;</span>
+    <span class="p">...</span>
+    <span class="p">{</span>
+        <span class="nl">public:</span>
+
+        <span class="n">BEGIN_COM_MAP</span><span class="p">(</span><span class="n">CHutaow</span><span class="p">)</span>
+
+        <span class="n">COM_INTERFACE_ENTRY</span><span class="p">(</span><span class="n">IObjectSafety</span><span class="p">)</span><span class="err"> </span><span class="c1">//创建IObjectSafety的映射</span>
+
+        <span class="p">...</span>
+
+        <span class="n">END_COM_MAP</span><span class="p">()</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>PS: 如果出现"'IObjectSafetyImpl' : base class undefined"的错误，则需要添加"atlctl.h"头文件。</p>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2009/04/02/sql-statements-batch-replace-a-string">SQL语句实现某一字符串的替换</a></h2>
                 <div class="summary"><hr />
 <p>使用update+replace语句：</p>
@@ -213,29 +247,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g">解决安装ntfs-3g时遇到的问题</a></h2>
-                <div class="summary"><hr />
-<p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行"mount -t ntfs-3g /dev/hdc5 /media/wdata"，结果提示：</p>
-<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
-<span class="n">fuse</span><span class="o">:</span> <span class="n">device</span> <span class="n">not</span> <span class="n">found</span><span class="o">,</span> <span class="k">try</span> <span class="s1">&#39;modprobe fuse&#39;</span> <span class="n">first</span>
-</pre></div>
-
-
-<!-- more -->
-
-<p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行"modprobe fuse"，结果又出来：</p>
-<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
-</pre></div>
-
-
-<p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net ...</a></p></!-->
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/blog/categories/tech/index3.html">&laquo;</a>
@@ -275,6 +286,11 @@
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
@@ -318,11 +334,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">
                                 使用 PyQT 作为 Python 的图形界面
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">
-                                类型转换导致字符串大小计算错误的问题
                             </a>
                         </li>
                     </ul>
@@ -386,6 +397,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -415,7 +431,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -680,7 +696,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

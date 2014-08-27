@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/all.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-08-01T23:50:27+08:00</updated><entry><title>一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法</title><link href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic" rel="alternate"></link><updated>2014-08-01T23:50:27+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-08-01:blog/2014/08/01/cracking-svautomusic</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/all.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-08-02T00:07:19+08:00</updated><entry><title>德赛西威音乐e栈的破解程序</title><link href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker" rel="alternate"></link><updated>2014-08-02T00:07:19+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-08-02:blog/2014/08/02/svautomusic-cracker</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;技术细节请参考上一篇文章&lt;a href="/blog/2014/08/01/cracking-svautomusic/"&gt;《一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法》&lt;/a&gt;。根据原理用python+qt写了个现成的破解程序，界面简陋了些，下载链接及使用说明如下。&lt;/p&gt;
+&lt;h4&gt;下载链接&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://dl.vmall.com/c073qryv48"&gt;华为网盘&lt;/a&gt;，&lt;a href="http://pan.baidu.com/s/1sjPRMvN"&gt;百度网盘&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- more --&gt;
+
+&lt;h4&gt;使用说明&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;TF卡或U盘先在车机上初始化，然后插入电脑，打开音乐e栈PC端。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用管理员身份运行程序。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="管理员身份运行程序" src="/images/articles/201408/svautomusic_cracker_runas_administrator.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击“Start Crack!”按钮。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Start Crack" src="/images/articles/201408/svautomusic_cracker_start_crack.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在音乐e栈客户端上，打开充值界面，卡号密码随便填。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="充值界面" src="/images/articles/201408/svautomusic_cracker_charge.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击确定，不出意外的话，即会提示充值成功，并且服务有效期也延长了99天。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="充值成功" src="/images/articles/201408/svautomusic_cracker_success.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可以随意下载电台或专辑了，并且可以同步到车上随时听了。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="破解结果" src="/images/articles/201408/svautomusic_cracker_result.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;因为音乐e栈每次启动都会联网认证一次，所以这个破解程序每次打开客户端都需要执行一下上面的动作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;更新记录&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;2014-08-01: 初始化。&lt;/li&gt;
+&lt;li&gt;2014-08-24: 有效期从99天延长到999天，另外补充设置响应消息长度值，防止客户端由于处理字符串不当导致出错。&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Security"></category><category term="Cracker"></category><category term="音乐e栈"></category><category term="德赛西威"></category></entry><entry><title>一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法</title><link href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic" rel="alternate"></link><updated>2014-08-01T23:50:27+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-08-01:blog/2014/08/01/cracking-svautomusic</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;某导航提供的音乐服务（音乐e栈），和虾米合作的，需要付费使用，前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是因为它的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。&lt;/p&gt;
 &lt;!-- more --&gt;
 
@@ -83,7 +124,7 @@
 &lt;p&gt;另外补充一句，充值显示成功后，还需要把hosts恢复回去，因为后面的专辑下载等操作还需要连接真实的服务器。&lt;/p&gt;
 &lt;h4&gt;9 后记&lt;/h4&gt;
 &lt;p&gt;后来发现其实都不用等到充值那一步再伪造服务器，其实在软件启动的时候就向服务器发送过认证请求，直接在那一步处理的话使用会更方便些，不过反正是能任意续期了，就先这样吧。&lt;/p&gt;
-&lt;p&gt;这个问题有几次联系过厂家说明情况，但都没有答复，从上次发布版本的时间来看，估计已经一年多没有维护了，这里把方法公开出来，仅供学习参考，有兴趣的人可以自己试下。另外写了个现成的程序，用python+qt写的，需要的可以&lt;a href="http://pan.baidu.com/s/1sjPRMvN/"&gt;点击这里下载&lt;/a&gt;。&lt;/p&gt;</summary><category term="Security"></category><category term="Python"></category><category term="音乐e栈"></category><category term="德赛西威"></category><category term="虾米音乐"></category></entry><entry><title>限制用户登陆Linux的时间</title><link href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time" rel="alternate"></link><updated>2014-06-13T22:50:12+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-06-13:blog/2014/06/13/restrict-user-login-linux-time</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;这个问题有几次联系过厂家说明情况，但都没有答复，从上次发布版本的时间来看，估计已经一年多没有维护了，这里把方法公开出来，仅供学习参考，有兴趣的可以自己试下。&lt;/p&gt;</summary><category term="Security"></category><category term="Python"></category><category term="音乐e栈"></category><category term="德赛西威"></category><category term="虾米音乐"></category></entry><entry><title>限制用户登陆Linux的时间</title><link href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time" rel="alternate"></link><updated>2014-06-13T22:50:12+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-06-13:blog/2014/06/13/restrict-user-login-linux-time</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。&lt;/p&gt;
 &lt;p&gt;设置个定时任务（执行&lt;code&gt;crontab -e&lt;/code&gt;编辑任务列表）：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;passwd&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;
