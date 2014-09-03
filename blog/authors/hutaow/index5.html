@@ -78,10 +78,10 @@
 <!-- more -->
 
 <p>找到以下提示行</p>
-<div class="highlight"><pre><span class="c">&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;</span>
-<span class="c">&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;</span>
-<span class="c">&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;</span>
-<span class="nt">&lt;merge</span> <span class="na">key=</span><span class="s">&quot;volume ...</span></pre></div></!-->
+<p><code>&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;
+&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;
+&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;
+&lt;merge key="volume ...</code></p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora">阅读全文</a>
                     </div>
@@ -92,18 +92,14 @@
                 <h2><a href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g">解决安装ntfs-3g时遇到的问题</a></h2>
                 <div class="summary"><hr />
 <p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行"mount -t ntfs-3g /dev/hdc5 /media/wdata"，结果提示：</p>
-<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
-<span class="n">fuse</span><span class="o">:</span> <span class="n">device</span> <span class="n">not</span> <span class="n">found</span><span class="o">,</span> <span class="k">try</span> <span class="s1">&#39;modprobe fuse&#39;</span> <span class="n">first</span>
-</pre></div>
-
-
+<pre><code>FATAL: Module fuse not found.
+fuse: device not found, try 'modprobe fuse' first
+</code></pre>
 <!-- more -->
 
 <p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行"modprobe fuse"，结果又出来：</p>
-<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
-</pre></div>
-
-
+<pre><code>FATAL: Module fuse not found.
+</code></pre>
 <p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net ...</a></p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g">阅读全文</a>
@@ -115,7 +111,7 @@
                 <h2><a href="http://hutaow.com/blog/2008/02/13/compile-android-project-in-command-line">Android命令行下的编译和运行</a></h2>
                 <div class="summary"><hr />
 <p>想学到东西还是要从命令行开始，真正学到之后再考虑用IDE。下面总结一下在命令行下android工程的创建、编译、运行和调试的方法。</p>
-<h3>1 工程的创建</h3>
+<h3 id="1">1 工程的创建</h3>
 <p>在要存放工程的目录下用执行"activityCreator.py --out hutaow edu.bupt.hutaow.example" </p>
 <p>说明如下：</p>
 <ul>
@@ -127,9 +123,9 @@
 
 <p>命令执行后会在hutaow目录下生成工程的所有文件。</p>
 <p>执行后终端输出如下：</p>
-<div class="highlight"><pre><span class="kd">package</span><span class="o">:</span> <span class="n">edu</span><span class="o">.</span><span class="na">bupt</span><span class="o">.</span><span class="na">hutaow</span>
-<span class="n">out_dir</span><span class="o">:</span> <span class="n">hutaow</span>
-<span class="n">activity_name</span><span class="o">:</span> <span class="n">example ...</span></pre></div></!-->
+<p><code>package: edu.bupt.hutaow
+out_dir: hutaow
+activity_name: example ...</code></p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/13/compile-android-project-in-command-line">阅读全文</a>
                     </div>
@@ -144,10 +140,7 @@
 <!-- more -->
 
 <p>用管理员权限执行如下命令</p>
-<div class="highlight"><pre><span class="n">mii</span><span class="o">-</span><span class="n">tool</span> <span class="o">-</span><span class="n">A</span> <span class="mi">10</span><span class="n">baseT</span><span class="o">-</span><span class="n">FD</span> <span class="n">eth0</span>
-</pre></div>
-
-
+<p><code>mii-tool -A 10baseT-FD eth0</code></p>
 <p>eth0是网卡的名称，"10baseT-FD"是网卡的工作模式，如果要改回100Mbps的话这里填"100baseTx-FD"；</p>
 <p>FD指的是Full Duplex全双工，也可以是HD即Half Duplex半双工。</p>
                     <div align="right">
@@ -218,21 +211,17 @@
 <p>之前对于XML的布局方法一直看着不爽，感觉很乱的样子，但时间长了我渐渐发现，这种程序代码与界面布局完全分开的方法非常顺手，该布局的地方都到main.xml里去写，甚至界面中显示的字符串都可以集中到string.xml文件中，而主程序的".java"文件中则完全用于编写代码，思路非常清晰。</p>
 <!-- more -->
 
-<h3>1 首先按照程序的目录结构大致分析</h3>
-<div class="highlight"><pre><span class="n">res</span><span class="o">/</span><span class="n">layout</span><span class="o">/</span>   <span class="err">这个目录存放的就是布局用的</span><span class="n">xml</span><span class="err">文件，一般默认为</span><span class="n">main</span><span class="p">.</span><span class="n">xml</span>
-<span class="n">res</span><span class="o">/</span><span class="n">values</span><span class="o">/</span>   <span class="err">这个目录存放的是一堆常量的</span><span class="n">xml</span><span class="err">文件</span>
-<span class="n">res</span><span class="o">/</span><span class="n">drawable</span><span class="o">/</span> <span class="err">存放的是一些图片什么的，当然图标也在这里</span>
-</pre></div>
-
-
-<h3>2 下面主要对layout下的xml文件做个介绍，顺便也把布局的方法总结一下</h3>
-<h4>2.1 文件的开头</h4>
-<div class="highlight"><pre><span class="o">&lt;?</span><span class="nt">xml</span> <span class="nt">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nt">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="o">?&gt;</span>
-</pre></div>
-
-
-<p>这是在说明xml版本及字符编码</p>
-<h4>2.2 布局框架 ...</h4></!-->
+<h3 id="1">1 首先按照程序的目录结构大致分析</h3>
+<pre><code>res/layout/   这个目录存放的就是布局用的xml文件，一般默认为main.xml
+res/values/   这个目录存放的是一堆常量的xml文件
+res/drawable/ 存放的是一些图片什么的，当然图标也在这里
+</code></pre>
+<h3 id="2-layoutxml">2 下面主要对layout下的xml文件做个介绍，顺便也把布局的方法总结一下</h3>
+<h4 id="21">2.1 文件的开头</h4>
+<p><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;</code>
+这是在说明xml版本及字符编码</p>
+<h4 id="22">2.2 布局框架</h4>
+<p><code>&lt;LinearLayout xmlns:android="http://schemas ...</code></p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/01/28/understanding-on-the-android-layout">阅读全文</a>
                     </div>
@@ -243,17 +232,17 @@
                 <h2><a href="http://hutaow.com/blog/2008/01/11/android-beginner-question">初学Android的一点问题</a></h2>
                 <div class="summary"><hr />
 <p>前几天一直在看Android的文档，有些收获但同时还是有问题。</p>
-<h4>1 问题：关于Android的Layout</h4>
+<h4 id="1-androidlayout">1 问题：关于Android的Layout</h4>
 <p>似乎和java有很大的不同，Android引入了XML，从google所给的例子来看，控件的布局方式都是写在XML文件里，而主程序中需要的只是add并且引用XML文件中的布局方式。</p>
 <!-- more -->
 
 <p>这种方法对我来说并不是很习惯，毕竟java用了那么长时间，在代码中直接setLayout感觉更舒服些。当然既然google采用了这种布局和代码分离的方式那就肯定有它的优点，看来还需要一点的时间来习惯这种布局方式。</p>
-<h4>2 总结：我自己对Android几个模块的理解</h4>
-<div class="highlight"><pre><span class="n">Activity</span><span class="err">：类似</span><span class="n">java</span><span class="err">中的</span><span class="n">Applet</span><span class="err">或</span><span class="n">Frame</span><span class="err">，以我的理解，这个类提供了程序的最基本框架。</span>
-<span class="n">Intent</span> <span class="n">Receiver</span><span class="err">：翻译过来是“目的接收器”，和</span><span class="n">java</span><span class="err">中的</span><span class="n">listener</span><span class="err">类似，用于处理事件。</span>
-<span class="n">Service</span><span class="err">：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。</span>
-<span class="n">Content</span> <span class="n">Provider</span><span class="err">：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。</span>
-</pre></div>
+<h4 id="2-android">2 总结：我自己对Android几个模块的理解</h4>
+<pre><code>Activity：类似java中的Applet或Frame，以我的理解，这个类提供了程序的最基本框架。
+Intent Receiver：翻译过来是“目的接收器”，和java中的listener类似，用于处理事件。
+Service：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。
+Content Provider：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。
+</code></pre>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/01/11/android-beginner-question">阅读全文</a>
                     </div>

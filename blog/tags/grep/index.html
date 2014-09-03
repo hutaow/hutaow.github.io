@@ -61,13 +61,11 @@
                 <h2><a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">在多个文件中批量查找/替换字符串</a></h2>
                 <div class="summary"><hr />
 <p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
-<div class="highlight"><pre>grep string -rl /path
-</pre></div>
-
-
+<p><code>bash
+grep string -rl /path</code></p>
 <p>在目录中查找并替换指定的字符串（如下所示，将path目录中将所有文件中的oldstring字符串替换成newstring）</p>
-<div class="highlight"><pre>sed -i <span class="s2">&quot;s/oldstring/newstring/g&quot;</span> <span class="sb">`</span>grep oldstring -rl /path<span class="sb">`</span>
-</pre></div>
+<p><code>bash
+sed -i "s/oldstring/newstring/g" `grep oldstring -rl /path`</code></p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">阅读全文</a>
                     </div>

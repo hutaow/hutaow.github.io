@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="在Linux程序中输出函数调用栈"/>
             <meta property="og:url" content="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace"/>
-            <meta property="og:description" content="程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。 Linux中提供了三个函数用来获取调用栈： /* 获取函数调用栈 */ int backtrace(void **buffer, int size); /* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */ char **backtrace_symbols(void *const *buffer, int size); /* 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 */ void backtrace_symbols_fd(void *const *buffer, int size, int fd); 示例代码： #include &lt;execinfo.h&gt; #include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; /* 打印调用栈的最大深度 */ #define DUMP_STACK_DEPTH_MAX 16 /* 打印调用栈函数 */ void dump_trace() { void *stack_trace ..."/>
+            <meta property="og:description" content="程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。 Linux中提供了三个函数用来获取调用栈： ``` c / 获取函数调用栈 / int backtrace(void **buffer, int size); / 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 / char backtrace_symbols(void const buffer, int size); / 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 / void backtrace_symbols_fd(void const buffer, int size, int fd); ``` 示例代码： ``` c include include include / 打印调用栈的最大深度 / define DUMP_STACK_DEPTH_MAX 16 / 打印调用栈函数 / void dump_trace() { void stack_trace[DUMP_STACK_DEPTH_MAX] = {0}; char *stack_strings ..."/>
             <meta property="article:published_time" content="2013-10-11" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="C" />
@@ -107,83 +107,72 @@
                 <hr />
 <p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
-<div class="highlight"><pre><span class="cm">/* 获取函数调用栈 */</span>
-<span class="kt">int</span> <span class="nf">backtrace</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
-
-<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */</span>
-<span class="kt">char</span> <span class="o">**</span><span class="nf">backtrace_symbols</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
-
-<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 */</span>
-<span class="kt">void</span> <span class="nf">backtrace_symbols_fd</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fd</span><span class="p">);</span>
-</pre></div>
-
-
+<p>``` c
+/<em> 获取函数调用栈 </em>/
+int backtrace(void **buffer, int size);</p>
+<p>/<em> 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 </em>/
+char <em><em>backtrace_symbols(void </em>const </em>buffer, int size);</p>
+<p>/<em> 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 </em>/
+void backtrace_symbols_fd(void <em>const </em>buffer, int size, int fd);
+```</p>
 <!-- more -->
 
 <p>示例代码：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;execinfo.h&gt;</span>
-<span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
+<p>``` c</p>
+<h1 id="include">include <execinfo.h></h1>
+<h1 id="include_1">include <stdio.h></h1>
+<h1 id="include_2">include <stdlib.h></h1>
+<p>/<em> 打印调用栈的最大深度 </em>/</p>
+<h1 id="define-dump_stack_depth_max-16">define DUMP_STACK_DEPTH_MAX 16</h1>
+<p>/<em> 打印调用栈函数 </em>/
+void dump_trace() {
+    void <em>stack_trace[DUMP_STACK_DEPTH_MAX] = {0};
+    char </em>*stack_strings = NULL;
+    int stack_depth = 0;
+    int i = 0;</p>
+<pre><code>/* 获取栈中各层调用函数地址 */
+stack_depth = backtrace(stack_trace, DUMP_STACK_DEPTH_MAX);
 
-<span class="cm">/* 打印调用栈的最大深度 */</span>
-<span class="cp">#define DUMP_STACK_DEPTH_MAX 16</span>
+/* 查找符号表将函数调用地址转换为函数名称 */
+stack_strings = (char **)backtrace_symbols(stack_trace, stack_depth);
+if (NULL == stack_strings) {
+    printf(" Memory is not enough while dump Stack Trace! \r\n");
+    return;
+}
 
-<span class="cm">/* 打印调用栈函数 */</span>
-<span class="kt">void</span> <span class="nf">dump_trace</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">stack_trace</span><span class="p">[</span><span class="n">DUMP_STACK_DEPTH_MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-    <span class="kt">char</span> <span class="o">**</span><span class="n">stack_strings</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">stack_depth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+/* 打印调用栈 */
+printf(" Stack Trace: \r\n");
+for (i = 0; i &lt; stack_depth; ++i) {
+    printf(" [%d] %s \r\n", i, stack_strings[i]);
+}
 
-    <span class="cm">/* 获取栈中各层调用函数地址 */</span>
-    <span class="n">stack_depth</span> <span class="o">=</span> <span class="n">backtrace</span><span class="p">(</span><span class="n">stack_trace</span><span class="p">,</span> <span class="n">DUMP_STACK_DEPTH_MAX</span><span class="p">);</span>
+/* 获取函数名称时申请的内存需要自行释放 */
+free(stack_strings);
+stack_strings = NULL;
 
-    <span class="cm">/* 查找符号表将函数调用地址转换为函数名称 */</span>
-    <span class="n">stack_strings</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="p">)</span><span class="n">backtrace_symbols</span><span class="p">(</span><span class="n">stack_trace</span><span class="p">,</span> <span class="n">stack_depth</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">stack_strings</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot; Memory is not enough while dump Stack Trace! </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="cm">/* 打印调用栈 */</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot; Stack Trace: </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stack_depth</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot; [%d] %s </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">stack_strings</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="p">}</span>
-
-    <span class="cm">/* 获取函数名称时申请的内存需要自行释放 */</span>
-    <span class="n">free</span><span class="p">(</span><span class="n">stack_strings</span><span class="p">);</span>
-    <span class="n">stack_strings</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-
-    <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/* 测试函数 2 */</span>
-<span class="kt">void</span> <span class="nf">test_meloner</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">dump_trace</span><span class="p">();</span>
-    <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/* 测试函数 1 */</span>
-<span class="kt">void</span> <span class="nf">test_hutaow</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">test_meloner</span><span class="p">();</span>
-    <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/* 主函数 */</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="n">test_hutaow</span><span class="p">();</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
+return;
+</code></pre>
+<p>}</p>
+<p>/<em> 测试函数 2 </em>/
+void test_meloner() {
+    dump_trace();
+    return;
+}</p>
+<p>/<em> 测试函数 1 </em>/
+void test_hutaow() {
+    test_meloner();
+    return;
+}</p>
+<p>/<em> 主函数 </em>/
+int main(int argc, char *argv[]) {
+    test_hutaow();
+    return 0;
+}
+```</p>
 <p>源文件下载：<a href="/downloads/code/backtrace.c">链接</a></p>
 <p>编译时需要加上<code>-rdynamic</code>参数，以得到符号名称，像下面这样：</p>
-<div class="highlight"><pre><span class="n">gcc</span> <span class="o">-</span><span class="n">rdynamic</span> <span class="n">backtrace</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">backtrace</span>
-</pre></div>
-
-
+<pre><code>gcc -rdynamic backtrace.c -o backtrace
+</code></pre>
 <p>执行<code>./backtrace</code>运行程序，输出如下：</p>
 <p><img alt="Dump stack with backtrace" src="/images/articles/201310/dump_stack_with_backtrace.png" /></p>
             </div>
@@ -192,10 +181,10 @@
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></li>
         <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
+        <li><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/19/linux-signal">Linux信号处理机制</a></li>
-        <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
     </ul>
 </section>
     <hr/>

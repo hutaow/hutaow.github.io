@@ -61,30 +61,24 @@
                 <h2><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></h2>
                 <div class="summary"><hr />
 <p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
-<h3>1 安装libpcap库</h3>
+<h3 id="1-libpcap">1 安装libpcap库</h3>
 <p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
-<div class="highlight"><pre>./configure
+<p><code>bash
+./configure
 make
-make install
-</pre></div>
-
-
-<h3>2 实例代码</h3>
+make install</code></p>
+<h3 id="2">2 实例代码</h3>
 <p>代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。</p>
 <p>首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下：</p>
-<div class="highlight"><pre><span class="cp">#ifndef _BASETYPE_H_</span>
-<span class="cp">#define _BASETYPE_H_</span>
-
-<span class="cp">#define OK (0)</span>
-<span class="cp">#define ERROR (1)</span>
-
-<span class="cp">#define YES (1)</span>
-<span class="cp">#define NO (0)</span>
-
-<span class="k">typedef</span> <span class="kt">void</span> <span class="n">VOID</span><span class="p">;</span>
-
-<span class="k">typedef</span> <span class="kt">char</span> <span class="n">CHAR</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="kt">char ...</span></pre></div>
+<p>``` c</p>
+<h1 id="ifndef-basetype_h">ifndef <em>BASETYPE_H</em></h1>
+<h1 id="define-basetype_h">define <em>BASETYPE_H</em></h1>
+<h1 id="define-ok-0">define OK (0)</h1>
+<h1 id="define-error-1">define ERROR (1)</h1>
+<h1 id="define-yes-1">define YES (1)</h1>
+<h1 id="define-no-0">define NO (0)</h1>
+<p>typedef void VOID;</p>
+<p>typedef char CHAR ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">阅读全文</a>
                     </div>

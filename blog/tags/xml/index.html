@@ -61,25 +61,21 @@
                 <h2><a href="http://hutaow.com/blog/2010/04/27/get-xml-node-value-with-c-sharp-language">C#获取XML文件指定节点的数据</a></h2>
                 <div class="summary"><hr />
 <p>实例说明会更清楚些，假设有如下XML文件：</p>
-<p>``` xml message_hutaow.xml
+<p><code>xml message_hutaow.xml
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
-<Message version="1.0">
-  <Head>
-    <Date>20080502</Date>
-    <Source>
-      <Address>192.168.0.1</Address>
-      <Name>hutaow</Name>
-    </Source>
-    <Target>
-      <Address>192.168.0.19</Address>
-    </Target>
-  </Head>
-</Message></p>
-<div class="highlight"><pre><span class="err">现在要读取消息源</span><span class="n">IP</span><span class="err">地址</span><span class="p">(</span><span class="mf">192.168.0.1</span><span class="p">)</span><span class="err">和目的</span><span class="n">IP</span><span class="err">地址</span><span class="p">(</span><span class="mf">192.168.0.19</span><span class="p">)</span><span class="err">。</span>
-
-<span class="o">&lt;!--</span> <span class="n">more</span> <span class="o">--&gt;</span>
-
-<span class="err">根据上面</span><span class="n">XML</span><span class="err">文件的结构，查找路径为</span><span class="s">&quot;/Message/Head/Source/Address&quot;</span><span class="err">和</span><span class="s">&quot;/Message/Head/Target/Address&quot;</span><span class="err">，需要用到 ...</span></pre></div>
+&lt;Message version="1.0"&gt;
+  &lt;Head&gt;
+    &lt;Date&gt;20080502&lt;/Date&gt;
+    &lt;Source&gt;
+      &lt;Address&gt;192.168.0.1&lt;/Address&gt;
+      &lt;Name&gt;hutaow&lt;/Name&gt;
+    &lt;/Source&gt;
+    &lt;Target&gt;
+      &lt;Address&gt;192.168.0.19&lt;/Address&gt;
+    &lt;/Target&gt;
+  &lt;/Head&gt;
+&lt;/Message&gt;</code></p>
+<p>现在要读取消息源IP地址(192.168.0.1)和目的IP地址(192.168.0.19 ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/04/27/get-xml-node-value-with-c-sharp-language">阅读全文</a>
                     </div>

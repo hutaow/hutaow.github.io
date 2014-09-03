@@ -63,27 +63,23 @@
 <p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <!-- more -->
 
-<div class="highlight"><pre>!!<span class="nv">$HOME</span>/.Xdefaults
-Rxvt.preeditType: root
-
-!!窗口大小及标题
+<p>``` bash
+!!$HOME/.Xdefaults
+Rxvt.preeditType: root</p>
+<p>!!窗口大小及标题
 Rxvt.geometry: 80x25
-Rxvt.title: hutaow-rxvt
-
-!!输入法设置
-Rxvt.inputMethod: fcitx
-
-!!透明度设置
-!Rxvt.transparent: <span class="nb">true</span>
+Rxvt.title: hutaow-rxvt</p>
+<p>!!输入法设置
+Rxvt.inputMethod: fcitx</p>
+<p>!!透明度设置
+!Rxvt.transparent: true
 !Rxvt.shading: 110
 !Rxvt.tintColor: grey
-!Rxvt.inheritPixmap: <span class="nb">false</span>
-
-!!扩展设置
-Rxvt.perl-ext-common: default, matcher, fullscreen
-
-!!URL操作
-Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
+!Rxvt.inheritPixmap: false</p>
+<p>!!扩展设置
+Rxvt.perl-ext-common: default, matcher, fullscreen</p>
+<p>!!URL操作
+Rxvt.urlLauncher: /usr/bin ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">阅读全文</a>
                     </div>
@@ -93,21 +89,24 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
             <article>
                 <h2><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></h2>
                 <div class="summary"><hr />
-<div class="highlight"><pre><span class="s">&quot; 设置字符编码</span>
-<span class="n">set</span> <span class="n">encoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">set</span> <span class="n">termencoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">set</span> <span class="n">fileencoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">set</span> <span class="n">fileencodings</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="n">ucs</span><span class="o">-</span><span class="n">bom</span><span class="p">,</span><span class="n">gb2312</span><span class="p">,</span><span class="n">gb18030</span><span class="p">,</span><span class="n">gbk</span><span class="p">,</span><span class="n">cp936</span>
-
-<span class="s">&quot; 设置文件格式(unix=LF,dos=CRLF,mac=CR)</span>
-<span class="n">set</span> <span class="n">fileformat</span><span class="o">=</span><span class="n">unix</span>
-<span class="n">set</span> <span class="n">fileformats</span><span class="o">=</span><span class="n">unix</span><span class="p">,</span><span class="n">dos</span><span class="p">,</span><span class="n">mac</span>
-
-<span class="s">&quot; 提示信息语言</span>
-<span class="n">set</span> <span class="n">langmenu</span><span class="o">=</span><span class="n">en_US</span><span class="p">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">language</span> <span class="n">messages</span> <span class="n">en_US</span><span class="p">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-
-<span class="s">&quot; 开启文件类型检测 ...</span></pre></div>
+<p>```
+" 设置字符编码
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,ucs-bom,gb2312,gb18030,gbk,cp936</p>
+<p>" 设置文件格式(unix=LF,dos=CRLF,mac=CR)
+set fileformat=unix
+set fileformats=unix,dos,mac</p>
+<p>" 提示信息语言
+set langmenu=en_US.utf-8
+language messages en_US.utf-8</p>
+<p>" 开启文件类型检测
+filetype on</p>
+<p>" 开启语法高亮
+syntax on</p>
+<p>" 显示行号
+set ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2007/08/19/my-vi-config">阅读全文</a>
                     </div>

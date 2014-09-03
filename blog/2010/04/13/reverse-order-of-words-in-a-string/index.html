@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="字符串中单词逆序的实现"/>
             <meta property="og:url" content="http://hutaow.com/blog/2010/04/13/reverse-order-of-words-in-a-string"/>
-            <meta property="og:description" content="在Java中可以用压栈/弹栈的方式： import java.util.Stack; public class StackTest { public static void main(String argv[]) { Stack&lt;String&gt; stack = new Stack&lt;String&gt;(); for(String s : &#34;I have a round peach&#34;.split(&#34; &#34;)) { // 按字符串原顺序压栈 stack.push(s); } while(!stack.empty()) { // 弹栈并输出 System.out.print(stack.pop() + &#34; &#34;); } } } 运行后系统将输出 &#34;peach round a have I &#34;。"/>
+            <meta property="og:description" content="在Java中可以用压栈/弹栈的方式： ``` java import java.util.Stack; public class StackTest { public static void main(String argv[]) { Stack stack = new Stack(); for(String s : &#34;I have a round peach&#34;.split(&#34; &#34;)) { // 按字符串原顺序压栈 stack.push(s); } while(!stack.empty()) { // 弹栈并输出 System.out.print(stack.pop() + &#34; &#34;); } } } ``` 运行后系统将输出 &#34;peach round a have I &#34;。"/>
             <meta property="article:published_time" content="2010-04-13" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Java" />
@@ -96,25 +96,23 @@
 <p>在Java中可以用压栈/弹栈的方式：</p>
 <!-- more -->
 
-<div class="highlight"><pre><span class="n">import</span><span class="err"> </span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Stack</span><span class="o">;</span>
-
-<span class="kd">public</span><span class="err"> </span><span class="n">class</span><span class="err"> </span><span class="n">StackTest</span><span class="err"> </span><span class="o">{</span>
-    <span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="kt">void</span><span class="err"> </span><span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">argv</span><span class="o">[])</span><span class="err"> </span><span class="o">{</span>
-        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="err"> </span><span class="n">stack</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="k">new</span><span class="err"> </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-        <span class="k">for</span><span class="o">(</span><span class="n">String</span><span class="err"> </span><span class="n">s</span><span class="err"> </span><span class="o">:</span><span class="err"> </span><span class="s">&quot;I have a round peach&quot;</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">))</span><span class="err"> </span><span class="o">{</span>
-            <span class="c1">// 按字符串原顺序压栈</span>
-            <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-        <span class="o">}</span>
-
-        <span class="k">while</span><span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">empty</span><span class="o">())</span><span class="err"> </span><span class="o">{</span>
-            <span class="c1">// 弹栈并输出</span>
-<span class="err">   </span>         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">()</span><span class="err"> </span><span class="o">+</span><span class="err"> </span><span class="s">&quot; &quot;</span><span class="o">);</span>
-<span class="err">  </span>      <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-
+<p>``` java
+import java.util.Stack;</p>
+<p>public class StackTest {
+    public static void main(String argv[]) {
+        Stack<String> stack = new Stack<String>();
+        for(String s : "I have a round peach".split(" ")) {
+            // 按字符串原顺序压栈
+            stack.push(s);
+        }</p>
+<pre><code>    while(!stack.empty()) {
+        // 弹栈并输出
+</code></pre>
+<p>System.out.print(stack.pop() + " ");
+        }
+    }
+}
+```</p>
 <p>运行后系统将输出 "peach round a have I "。</p>
             </div>
             <!-- /.entry-content -->

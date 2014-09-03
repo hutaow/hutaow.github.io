@@ -97,13 +97,10 @@
                 </div>
                 <hr />
 <p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，"HTTP_PROXY"、"http_proxy"和"FTP_PROXY"、"ftp_proxy"，在"~/.bash_profile"中添加以下几行：</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">HTTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
-<span class="n">export</span> <span class="n">FTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
-<span class="n">export</span> <span class="n">http_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
-<span class="n">export</span> <span class="n">ftp_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
-</pre></div>
-
-
+<p><code>export HTTP_PROXY=http://username:password@proxy.server:8080
+export FTP_PROXY=http://username:password@proxy.server:8080
+export http_proxy=http://username:password@proxy.server:8080
+export ftp_proxy=http://username:password@proxy.server:8080</code></p>
 <p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
 <p>修改保存后重启终端或在执行"source ~/.bash_proxy"生效。</p>
             </div>
@@ -111,11 +108,11 @@
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
-        <li><a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">配置 VIM 开发环境</a></li>
-        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
-        <li><a href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">Linux中设置Java环境变量</a></li>
-        <li><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 RXVT</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
+        <li><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems">解决MPlayer中文字幕显示问题</a></li>
+        <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
+        <li><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></li>
     </ul>
 </section>
     <hr/>

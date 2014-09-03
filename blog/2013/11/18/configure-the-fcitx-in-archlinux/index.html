@@ -102,31 +102,25 @@
 <p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。</p>
 <!-- more -->
 
-<h3>安装输入法</h3>
+<h3 id="_1">安装输入法</h3>
 <p>执行下面的命令安装FCITX：</p>
-<div class="highlight"><pre><span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">fcitx</span><span class="o">-</span><span class="n">im</span>
-</pre></div>
-
-
-<h3>配置环境变量</h3>
+<p><code>pacman -S fcitx-im</code></p>
+<h3 id="_2">配置环境变量</h3>
 <p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="s">&quot;@im=fcitx&quot;</span>
-</pre></div>
-
-
+<p><code>export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"</code></p>
 <p>配置后重新登录生效，使用<code>CTRL+空格</code>激活输入法，如果发现fcitx没有运行，则直接在命令行里执行<code>fcitx</code>即可。</p>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
-        <li><a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">配置 VIM 开发环境</a></li>
-        <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
-        <li><a href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">Linux中设置Java环境变量</a></li>
-        <li><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 RXVT</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
+        <li><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems">解决MPlayer中文字幕显示问题</a></li>
+        <li><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux">Linux中改变网卡的速度</a></li>
     </ul>
 </section>
     <hr/>

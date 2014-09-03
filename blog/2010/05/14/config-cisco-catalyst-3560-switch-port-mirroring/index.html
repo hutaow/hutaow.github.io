@@ -102,31 +102,22 @@
 <p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
 <p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
 <p>2) 交换机上电自检然后登入后出现命令提示符：</p>
-<div class="highlight"><pre><span class="n">Switch</span><span class="o">&gt;</span>
-</pre></div>
-
-
+<p><code>Switch&gt;</code></p>
 <!-- more -->
 
 <p>3) 依次进入特权模式和全局模式，输入如下命令：</p>
-<div class="highlight"><pre><span class="n">Switch</span><span class="o">&gt;</span><span class="n">enable</span>
-<span class="nl">Password:</span>
-<span class="n">Switch</span><span class="err">#</span><span class="n">configure</span> <span class="n">terminal</span>
-<span class="n">Enter</span> <span class="n">configuration</span> <span class="n">commands</span><span class="p">,</span> <span class="n">one</span> <span class="n">per</span> <span class="n">line</span><span class="p">.</span>  <span class="n">End</span> <span class="n">with</span> <span class="n">CNTL</span><span class="o">/</span><span class="n">Z</span><span class="p">.</span>
-<span class="n">Switch</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="err">#</span>
-</pre></div>
-
-
+<p><code>Switch&gt;enable
+Password:
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#</code></p>
 <p>4) 在新session中，将端口19和27设置为被监听端口(source)，2号端口设置为监听端口(destination)，命令如下：</p>
-<div class="highlight"><pre><span class="n">Switch</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="err">#</span><span class="n">monitor</span> <span class="n">session</span> <span class="mi">1</span> <span class="n">source</span> <span class="n">interface</span> <span class="n">Fa0</span><span class="o">/</span><span class="mi">19</span>
-<span class="n">Switch</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="err">#</span><span class="n">monitor</span> <span class="n">session</span> <span class="mi">1</span> <span class="n">source</span> <span class="n">interface</span> <span class="n">Fa0</span><span class="o">/</span><span class="mi">27</span>
-<span class="n">Switch</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="err">#</span><span class="n">monitor</span> <span class="n">session</span> <span class="mi">1</span> <span class="n">destination</span> <span class="n">interface</span> <span class="n">Fa0</span><span class="o">/</span><span class="mi">2</span>
-<span class="n">Switch</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="err">#</span><span class="n">end</span>
-<span class="n">Switch</span><span class="err">#</span>
-<span class="mo">03</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span> <span class="o">%</span><span class="n">SYS</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="n">CONFIG_I</span><span class="o">:</span> <span class="n">Configured</span> <span class="n">from</span> <span class="n">console</span> <span class="n">by</span> <span class="n">console</span>
-</pre></div>
-
-
+<p><code>Switch(config)#monitor session 1 source interface Fa0/19
+Switch(config)#monitor session 1 source interface Fa0/27
+Switch(config)#monitor session 1 destination interface Fa0/2
+Switch(config)#end
+Switch#
+03:30:52: %SYS-5-CONFIG_I: Configured from console by console</code></p>
 <p>5) 断开连接，完成。</p>
             </div>
             <!-- /.entry-content -->

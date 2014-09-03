@@ -62,10 +62,7 @@
                 <div class="summary"><hr />
 <p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫"bchunk"的小软件非常好用，而且小的可以，才几十K，很不错。</p>
 <p>在终端里输入如下命令：</p>
-<div class="highlight"><pre><span class="n">bchunk</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">bin</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">cue</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">iso</span>
-</pre></div>
-
-
+<p><code>bchunk e-w2sp4ru1as.bin e-w2sp4ru1as.cue e-w2sp4ru1as.iso</code></p>
 <!-- more -->
 
 <p>其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。</p>
@@ -85,10 +82,7 @@
 <!-- more -->
 
 <p>用管理员权限执行如下命令</p>
-<div class="highlight"><pre><span class="n">mii</span><span class="o">-</span><span class="n">tool</span> <span class="o">-</span><span class="n">A</span> <span class="mi">10</span><span class="n">baseT</span><span class="o">-</span><span class="n">FD</span> <span class="n">eth0</span>
-</pre></div>
-
-
+<p><code>mii-tool -A 10baseT-FD eth0</code></p>
 <p>eth0是网卡的名称，"10baseT-FD"是网卡的工作模式，如果要改回100Mbps的话这里填"100baseTx-FD"；</p>
 <p>FD指的是Full Duplex全双工，也可以是HD即Half Duplex半双工。</p>
                     <div align="right">

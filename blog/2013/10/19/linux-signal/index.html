@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="Linux信号处理机制"/>
             <meta property="og:url" content="http://hutaow.com/blog/2013/10/19/linux-signal"/>
-            <meta property="og:description" content="在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。 需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。 1 信号的响应动作 每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种： 中止进程(Term) 忽略信号(Ign) 中止进程并保存内存信息(Core) 停止进程(Stop) 继续运行进程(Cont) 用户可以通过signal或sigaction函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。 2 信号类型 Linux支持的信号类型可以参考下面给出的列表。 2.1 在POSIX.1-1990标准中的信号列表 信号 值 动作 说明 ..."/>
+            <meta property="og:description" content="在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。 需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。 1 信号的响应动作 每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种： 中止进程(Term) 忽略信号(Ign) 中止进程并保存内存信息(Core) 停止进程(Stop) 继续运行进程(Cont) 用户可以通过signal或sigaction函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。 2 信号类型 Linux支持的信号类型可以参考下面给出的列表。 2.1 在POSIX.1-1990标准中的信号列表 信号 |值 |动作 |说明 ..."/>
             <meta property="article:published_time" content="2013-10-19" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
@@ -106,7 +106,7 @@
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <!-- more -->
 
-<h3>1 信号的响应动作</h3>
+<h3 id="1">1 信号的响应动作</h3>
 <p>每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种：</p>
 <ul>
 <li>中止进程(Term)</li>
@@ -116,320 +116,96 @@
 <li>继续运行进程(Cont)</li>
 </ul>
 <p>用户可以通过<code>signal</code>或<code>sigaction</code>函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。</p>
-<h3>2 信号类型</h3>
+<h3 id="2">2 信号类型</h3>
 <p>Linux支持的信号类型可以参考下面给出的列表。</p>
-<h4>2.1 在POSIX.1-1990标准中的信号列表</h4>
-<table>
-<thead>
-<tr>
-<th>信号</th>
-<th>值</th>
-<th>动作</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SIGHUP</td>
-<td>1</td>
-<td>Term</td>
-<td>终端控制进程结束(终端连接断开)</td>
-</tr>
-<tr>
-<td>SIGINT</td>
-<td>2</td>
-<td>Term</td>
-<td>用户发送INTR字符(Ctrl+C)触发</td>
-</tr>
-<tr>
-<td>SIGQUIT</td>
-<td>3</td>
-<td>Core</td>
-<td>用户发送QUIT字符(Ctrl+/)触发</td>
-</tr>
-<tr>
-<td>SIGILL</td>
-<td>4</td>
-<td>Core</td>
-<td>非法指令(程序错误、试图执行数据段、栈溢出等)</td>
-</tr>
-<tr>
-<td>SIGABRT</td>
-<td>6</td>
-<td>Core</td>
-<td>调用abort函数触发</td>
-</tr>
-<tr>
-<td>SIGFPE</td>
-<td>8</td>
-<td>Core</td>
-<td>算术运行错误(浮点运算错误、除数为零等)</td>
-</tr>
-<tr>
-<td>SIGKILL</td>
-<td>9</td>
-<td>Term</td>
-<td>无条件结束程序(不能被捕获、阻塞或忽略)</td>
-</tr>
-<tr>
-<td>SIGSEGV</td>
-<td>11</td>
-<td>Core</td>
-<td>无效内存引用(试图访问不属于自己的内存空间、对只读内存空间进行写操作)</td>
-</tr>
-<tr>
-<td>SIGPIPE</td>
-<td>13</td>
-<td>Term</td>
-<td>消息管道损坏(FIFO/Socket通信时，管道未打开而进行写操作)</td>
-</tr>
-<tr>
-<td>SIGALRM</td>
-<td>14</td>
-<td>Term</td>
-<td>时钟定时信号</td>
-</tr>
-<tr>
-<td>SIGTERM</td>
-<td>15</td>
-<td>Term</td>
-<td>结束程序(可以被捕获、阻塞或忽略)</td>
-</tr>
-<tr>
-<td>SIGUSR1</td>
-<td>30,10,16</td>
-<td>Term</td>
-<td>用户保留</td>
-</tr>
-<tr>
-<td>SIGUSR2</td>
-<td>31,12,17</td>
-<td>Term</td>
-<td>用户保留</td>
-</tr>
-<tr>
-<td>SIGCHLD</td>
-<td>20,17,18</td>
-<td>Ign</td>
-<td>子进程结束(由父进程接收)</td>
-</tr>
-<tr>
-<td>SIGCONT</td>
-<td>19,18,25</td>
-<td>Cont</td>
-<td>继续执行已经停止的进程(不能被阻塞)</td>
-</tr>
-<tr>
-<td>SIGSTOP</td>
-<td>17,19,23</td>
-<td>Stop</td>
-<td>停止进程(不能被捕获、阻塞或忽略)</td>
-</tr>
-<tr>
-<td>SIGTSTP</td>
-<td>18,20,24</td>
-<td>Stop</td>
-<td>停止进程(可以被捕获、阻塞或忽略)</td>
-</tr>
-<tr>
-<td>SIGTTIN</td>
-<td>21,21,26</td>
-<td>Stop</td>
-<td>后台程序从终端中读取数据时触发</td>
-</tr>
-<tr>
-<td>SIGTTOU</td>
-<td>22,22,27</td>
-<td>Stop</td>
-<td>后台程序向终端中写数据时触发</td>
-</tr>
-</tbody>
-</table>
+<h4 id="21-posix1-1990">2.1 在POSIX.1-1990标准中的信号列表</h4>
+<p>信号        |值         |动作       |说明
+------------|-----------|-----------|---------------------------------
+SIGHUP      |1          |Term       |终端控制进程结束(终端连接断开)
+SIGINT      |2          |Term       |用户发送INTR字符(Ctrl+C)触发
+SIGQUIT     |3          |Core       |用户发送QUIT字符(Ctrl+/)触发
+SIGILL      |4          |Core       |非法指令(程序错误、试图执行数据段、栈溢出等)
+SIGABRT     |6          |Core       |调用abort函数触发
+SIGFPE      |8          |Core       |算术运行错误(浮点运算错误、除数为零等)
+SIGKILL     |9          |Term       |无条件结束程序(不能被捕获、阻塞或忽略)
+SIGSEGV     |11         |Core       |无效内存引用(试图访问不属于自己的内存空间、对只读内存空间进行写操作)
+SIGPIPE     |13         |Term       |消息管道损坏(FIFO/Socket通信时，管道未打开而进行写操作)
+SIGALRM     |14         |Term       |时钟定时信号
+SIGTERM     |15         |Term       |结束程序(可以被捕获、阻塞或忽略)
+SIGUSR1     |30,10,16   |Term       |用户保留
+SIGUSR2     |31,12,17   |Term       |用户保留
+SIGCHLD     |20,17,18   |Ign        |子进程结束(由父进程接收)
+SIGCONT     |19,18,25   |Cont       |继续执行已经停止的进程(不能被阻塞)
+SIGSTOP     |17,19,23   |Stop       |停止进程(不能被捕获、阻塞或忽略)
+SIGTSTP     |18,20,24   |Stop       |停止进程(可以被捕获、阻塞或忽略)
+SIGTTIN     |21,21,26   |Stop       |后台程序从终端中读取数据时触发
+SIGTTOU     |22,22,27   |Stop       |后台程序向终端中写数据时触发</p>
 <p><strong>注</strong>：其中<code>SIGKILL</code>和<code>SIGSTOP</code>信号不能被捕获、阻塞或忽略。</p>
-<h4>2.2 在SUSv2和POSIX.1-2001标准中的信号列表</h4>
-<table>
-<thead>
-<tr>
-<th>信号</th>
-<th>值</th>
-<th>动作</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SIGTRAP</td>
-<td>5</td>
-<td>Core</td>
-<td>Trap指令触发(如断点，在调试器中使用)</td>
-</tr>
-<tr>
-<td>SIGBUS</td>
-<td>0,7,10</td>
-<td>Core</td>
-<td>非法地址(内存地址对齐错误)</td>
-</tr>
-<tr>
-<td>SIGPOLL</td>
-<td></td>
-<td>Term</td>
-<td>Pollable event (Sys V). Synonym for SIGIO</td>
-</tr>
-<tr>
-<td>SIGPROF</td>
-<td>27,27,29</td>
-<td>Term</td>
-<td>性能时钟信号(包含系统调用时间和进程占用CPU的时间)</td>
-</tr>
-<tr>
-<td>SIGSYS</td>
-<td>12,31,12</td>
-<td>Core</td>
-<td>无效的系统调用(SVr4)</td>
-</tr>
-<tr>
-<td>SIGURG</td>
-<td>16,23,21</td>
-<td>Ign</td>
-<td>有紧急数据到达Socket(4.2BSD)</td>
-</tr>
-<tr>
-<td>SIGVTALRM</td>
-<td>26,26,28</td>
-<td>Term</td>
-<td>虚拟时钟信号(进程占用CPU的时间)(4.2BSD)</td>
-</tr>
-<tr>
-<td>SIGXCPU</td>
-<td>24,24,30</td>
-<td>Core</td>
-<td>超过CPU时间资源限制(4.2BSD)</td>
-</tr>
-<tr>
-<td>SIGXFSZ</td>
-<td>25,25,31</td>
-<td>Core</td>
-<td>超过文件大小资源限制(4.2BSD)</td>
-</tr>
-</tbody>
-</table>
+<h4 id="22-susv2posix1-2001">2.2 在SUSv2和POSIX.1-2001标准中的信号列表</h4>
+<p>信号        |值         |动作       |说明
+------------|-----------|-----------|-------------------------------
+SIGTRAP     |5          |Core       |Trap指令触发(如断点，在调试器中使用)
+SIGBUS      |0,7,10     |Core       |非法地址(内存地址对齐错误)
+SIGPOLL     |           |Term       |Pollable event (Sys V). Synonym for SIGIO
+SIGPROF     |27,27,29   |Term       |性能时钟信号(包含系统调用时间和进程占用CPU的时间)
+SIGSYS      |12,31,12   |Core       |无效的系统调用(SVr4)
+SIGURG      |16,23,21   |Ign        |有紧急数据到达Socket(4.2BSD)
+SIGVTALRM   |26,26,28   |Term       |虚拟时钟信号(进程占用CPU的时间)(4.2BSD)
+SIGXCPU     |24,24,30   |Core       |超过CPU时间资源限制(4.2BSD)
+SIGXFSZ     |25,25,31   |Core       |超过文件大小资源限制(4.2BSD)</p>
 <p><strong>注</strong>：在Linux 2.2版本之前，<code>SIGSYS</code>、<code>SIGXCPU</code>、<code>SIGXFSZ</code>以及<code>SIGBUS</code>的默认响应动作为Term，Linux 2.4版本之后这三个信号的默认响应动作改为Core。</p>
-<h4>2.3 其它信号</h4>
-<table>
-<thead>
-<tr>
-<th>信号</th>
-<th>值</th>
-<th>动作</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SIGIOT</td>
-<td>6</td>
-<td>Core</td>
-<td>IOT捕获信号(同SIGABRT信号)</td>
-</tr>
-<tr>
-<td>SIGEMT</td>
-<td>7,-,7</td>
-<td>Term</td>
-<td>实时硬件发生错误</td>
-</tr>
-<tr>
-<td>SIGSTKFLT</td>
-<td>-,16,-</td>
-<td>Term</td>
-<td>协同处理器栈错误(未使用)</td>
-</tr>
-<tr>
-<td>SIGIO</td>
-<td>23,29,22</td>
-<td>Term</td>
-<td>文件描述符准备就绪(可以开始进行输入/输出操作)(4.2BSD)</td>
-</tr>
-<tr>
-<td>SIGCLD</td>
-<td>-,-,18</td>
-<td>Ign</td>
-<td>子进程结束(由父进程接收)(同SIGCHLD信号)</td>
-</tr>
-<tr>
-<td>SIGPWR</td>
-<td>29,30,19</td>
-<td>Term</td>
-<td>电源错误(System V)</td>
-</tr>
-<tr>
-<td>SIGINFO</td>
-<td>29,-,-</td>
-<td></td>
-<td>电源错误(同SIGPWR信号)</td>
-</tr>
-<tr>
-<td>SIGLOST</td>
-<td>-,-,-</td>
-<td>Term</td>
-<td>文件锁丢失(未使用)</td>
-</tr>
-<tr>
-<td>SIGWINCH</td>
-<td>28,28,20</td>
-<td>Ign</td>
-<td>窗口大小改变时触发(4.3BSD, Sun)</td>
-</tr>
-<tr>
-<td>SIGUNUSED</td>
-<td>-,31,-</td>
-<td>Core</td>
-<td>无效的系统调用(同SIGSYS信号)</td>
-</tr>
-</tbody>
-</table>
+<h4 id="23">2.3 其它信号</h4>
+<p>信号        |值         |动作       |说明
+------------|-----------|-----------|-------------------------------
+SIGIOT      |6          |Core       |IOT捕获信号(同SIGABRT信号)
+SIGEMT      |7,-,7      |Term       |实时硬件发生错误
+SIGSTKFLT   |-,16,-     |Term       |协同处理器栈错误(未使用)
+SIGIO       |23,29,22   |Term       |文件描述符准备就绪(可以开始进行输入/输出操作)(4.2BSD)
+SIGCLD      |-,-,18     |Ign        |子进程结束(由父进程接收)(同SIGCHLD信号)
+SIGPWR      |29,30,19   |Term       |电源错误(System V)
+SIGINFO     |29,-,-     |           |电源错误(同SIGPWR信号)
+SIGLOST     |-,-,-      |Term       |文件锁丢失(未使用)
+SIGWINCH    |28,28,20   |Ign        |窗口大小改变时触发(4.3BSD, Sun)
+SIGUNUSED   |-,31,-     |Core       |无效的系统调用(同SIGSYS信号)</p>
 <p><strong>注意</strong>：列表中有的信号有三个值，这是因为部分信号的值和CPU架构有关，这些信号的值在不同架构的CPU中是不同的，三个值的排列顺序为：1，Alpha/Sparc；2，x86/ARM/Others；3，MIPS。</p>
 <p>例如<code>SIGSTOP</code>这个信号，它有三种可能的值，分别是17、19、23，其中第一个值（17）是用在Alpha和Sparc架构中，第二个值（19）用在x86、ARM等其它架构中，第三个值（23）则是用在MIPS架构中的。</p>
-<h3>3 信号机制</h3>
+<h3 id="3">3 信号机制</h3>
 <p>文章的前面提到过，信号是异步的，这就涉及信号何时接收、何时处理的问题。</p>
 <p>我们知道，函数运行在用户态，当遇到系统调用、中断或是异常的情况时，程序会进入内核态。信号涉及到了这两种状态之间的转换，过程可以先看一下下面的示意图：</p>
 <p><img alt="信号处理机制示意图" src="/images/articles/201310/linux_signal_flow.png" /></p>
 <p>接下来围绕示意图，将信号分成接收、检测和处理三个部分，逐一讲解每一步的处理流程。</p>
-<h4>3.1 信号的接收</h4>
+<h4 id="31">3.1 信号的接收</h4>
 <p>接收信号的任务是由内核代理的，当内核接收到信号后，会将其放到对应进程的信号队列中，同时向进程发送一个中断，使其陷入内核态。</p>
 <p>注意，此时信号还只是在队列中，对进程来说暂时是不知道有信号到来的。</p>
-<h4>3.2 信号的检测</h4>
+<h4 id="32">3.2 信号的检测</h4>
 <p>进程陷入内核态后，有两种场景会对信号进行检测：</p>
 <ul>
 <li>进程从内核态返回到用户态前进行信号检测</li>
 <li>进程在内核态中，从睡眠状态被唤醒的时候进行信号检测</li>
 </ul>
 <p>当发现有新信号时，便会进入下一步，信号的处理。</p>
-<h4>3.3 信号的处理</h4>
+<h4 id="33">3.3 信号的处理</h4>
 <p>信号处理函数是运行在用户态的，调用处理函数前，内核会将当前内核栈的内容备份拷贝到用户栈上，并且修改指令寄存器（eip）将其指向信号处理函数。</p>
 <p>接下来进程返回到用户态中，执行相应的信号处理函数。</p>
 <p>信号处理函数执行完成后，还需要返回内核态，检查是否还有其它信号未处理。如果所有信号都处理完成，就会将内核栈恢复（从用户栈的备份拷贝回来），同时恢复指令寄存器（eip）将其指向中断前的运行位置，最后回到用户态继续执行进程。</p>
 <p>至此，一个完整的信号处理流程便结束了，如果同时有多个信号到达，上面的处理流程会在第2步和第3步骤间重复进行。</p>
-<h3>4 信号的使用</h3>
-<h4>4.1 发送信号</h4>
+<h3 id="4">4 信号的使用</h3>
+<h4 id="41">4.1 发送信号</h4>
 <p>用于发送信号的函数有<code>raise</code>、<code>kill</code>、<code>killpg</code>、<code>pthread_kill</code>、<code>tgkill</code>、<code>sigqueue</code>，这几个函数的含义和用法都大同小异，这里主要介绍一下常用的<code>raise</code>和<code>kill</code>函数。</p>
 <p><strong>raise函数</strong>：向进程本身发送信号</p>
 <p>函数声明如下：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;signal.h&gt;</span>
-
-<span class="kt">int</span> <span class="nf">raise</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
-</pre></div>
-
-
+<p>``` c</p>
+<h1 id="include">include <signal.h></h1>
+<p>int raise(int sig);
+```</p>
 <p>函数功能是向当前程序(自身)发送信号，其中参数<code>sig</code>为信号值。</p>
 <p><strong>kill函数</strong>：向指定进程发送信号</p>
 <p>函数声明如下：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;sys/types.h&gt;</span>
-<span class="cp">#include &lt;signal.h&gt;</span>
-
-<span class="kt">int</span> <span class="nf">kill</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
-</pre></div>
-
-
+<p>``` c</p>
+<h1 id="include_1">include <sys/types.h></h1>
+<h1 id="include_2">include <signal.h></h1>
+<p>int kill(pid_t pid, int sig);
+```</p>
 <p>函数功能是向特定的进程发送信号，其中参数<code>pid</code>为进程号，<code>sig</code>为信号值。</p>
 <p>在这里的参数<code>pid</code>，根据取值范围不同，含义也不同，具体说明如下：</p>
 <ul>
@@ -439,100 +215,88 @@
 <li>pid &lt; -1 ：向进程组号为-pid的所有进程发送信号</li>
 </ul>
 <p>另外，当<code>sig</code>值为零时，实际不发送任何信号，但函数返回值依然有效，可以用于检查进程是否存在。</p>
-<h4>4.2 等待信号被捕获</h4>
+<h4 id="42">4.2 等待信号被捕获</h4>
 <p>等待信号的过程，其实就是将当前进程(线程)暂停，直到有信号发到当前进程(线程)上并被捕获，函数有<code>pause</code>和<code>sigsuspend</code>。</p>
 <p><strong>pause函数</strong>：将进程(或线程)转入睡眠状态，直到接收到信号</p>
 <p>函数声明如下：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;unistd.h&gt;</span>
-
-<span class="kt">int</span> <span class="nf">pause</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-</pre></div>
-
-
+<p>``` c</p>
+<h1 id="include_3">include <unistd.h></h1>
+<p>int pause(void);
+```</p>
 <p>该函数调用后，调用者(进程或线程)会进入睡眠(Sleep)状态，直到捕获到(任意)信号为止。该函数的返回值始终为-1，并且调用结束后，错误代码(errno)会被置为EINTR。</p>
 <p><strong>sigsuspend函数</strong>：将进程(或线程)转入睡眠状态，直到接收到特定信号</p>
 <p>函数声明如下：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;signal.h&gt;</span>
-
-<span class="kt">int</span> <span class="nf">sigsuspend</span><span class="p">(</span><span class="k">const</span> <span class="kt">sigset_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span>
-</pre></div>
-
-
-<p>该函数调用后，会将进程的信号掩码临时修改(参数<code>mask</code>)，然后暂停进程，直到收到符合条件的信号为止，函数返回前会将调用前的信号掩码恢复。该函数的返回值始终为-1，并且调用结束后，错误代码(errno)会被置为EINTR。</p>
-<h4>4.3 修改信号的响应动作</h4>
+<p>``` c</p>
+<h1 id="include_4">include <signal.h></h1>
+<p>int sigsuspend(const sigset_t *mask);
+<code>``
+该函数调用后，会将进程的信号掩码临时修改(参数</code>mask`)，然后暂停进程，直到收到符合条件的信号为止，函数返回前会将调用前的信号掩码恢复。该函数的返回值始终为-1，并且调用结束后，错误代码(errno)会被置为EINTR。</p>
+<h4 id="43">4.3 修改信号的响应动作</h4>
 <p>用户可以自己重新定义某个信号的处理方式，即前面提到的修改信号的默认响应动作，也可以理解为对信号的注册，可以通过<code>signal</code>或<code>sigaction</code>函数进行，这里以<code>signal</code>函数举例说明。</p>
 <p>首先看一下函数声明：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;signal.h&gt;</span>
-
-<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="kt">sighandler_t</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>
-
-<span class="kt">sighandler_t</span> <span class="nf">signal</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">,</span> <span class="kt">sighandler_t</span> <span class="n">handler</span><span class="p">);</span>
-</pre></div>
-
-
+<p>``` c</p>
+<h1 id="include_5">include <signal.h></h1>
+<p>typedef void (*sighandler_t)(int);</p>
+<p>sighandler_t signal(int signum, sighandler_t handler);
+```</p>
 <p>第一个参数<code>signum</code>是信号值，可以从前面的信号列表中查到，第二个参数<code>handler</code>为处理函数，通过回调方式在信号触发时调用。</p>
 <p>下面为示例代码：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;signal.h&gt;</span>
-<span class="cp">#include &lt;unistd.h&gt;</span>
+<p>``` c</p>
+<h1 id="include_6">include <stdio.h></h1>
+<h1 id="include_7">include <signal.h></h1>
+<h1 id="include_8">include <unistd.h></h1>
+<p>/<em> 信号处理函数 </em>/
+void sig_callback(int signum) {
+    switch (signum) {
+        case SIGINT:
+            /<em> SIGINT: Ctrl+C 按下时触发 </em>/
+            printf("Get signal SIGINT. \r\n");
+            break;
+        /<em> 多个信号可以放到同一个函数中进行 通过信号值来区分 </em>/
+        default:
+            /<em> 其它信号 </em>/
+            printf("Unknown signal %d. \r\n", signum);
+            break;
+    }</p>
+<pre><code>return;
+</code></pre>
+<p>}</p>
+<p>/<em> 主函数 </em>/
+int main(int argc, char *argv[]) {
+    printf("Register SIGINT(%u) Signal Action. \r\n", SIGINT);</p>
+<pre><code>/* 注册SIGINT信号的处理函数 */
+signal(SIGINT, sig_callback);
 
-<span class="cm">/* 信号处理函数 */</span>
-<span class="kt">void</span> <span class="nf">sig_callback</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="n">signum</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="n">SIGINT</span>:
-            <span class="cm">/* SIGINT: Ctrl+C 按下时触发 */</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Get signal SIGINT. </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="cm">/* 多个信号可以放到同一个函数中进行 通过信号值来区分 */</span>
-        <span class="nl">default:</span>
-            <span class="cm">/* 其它信号 */</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Unknown signal %d. </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">signum</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
+printf("Waitting for Signal ... \r\n");
 
-    <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
+/* 等待信号触发 */
+pause();
 
-<span class="cm">/* 主函数 */</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Register SIGINT(%u) Signal Action. </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">SIGINT</span><span class="p">);</span>
+printf("Process Continue. \r\n");
 
-    <span class="cm">/* 注册SIGINT信号的处理函数 */</span>
-    <span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">sig_callback</span><span class="p">);</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Waitting for Signal ... </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-
-    <span class="cm">/* 等待信号触发 */</span>
-    <span class="n">pause</span><span class="p">();</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Process Continue. </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
+return 0;
+</code></pre>
+<p>}
+```</p>
 <p>源文件下载：<a href="/downloads/code/linux_signal.c">链接</a></p>
 <p>例子中，将<code>SIGINT</code>信号（<code>Ctrl+C</code>触发）的动作接管(打印提示信息)，程序运行后，按下<code>Ctrl+C</code>，命令行输出如下：</p>
-<div class="highlight"><pre><span class="p">.</span><span class="o">/</span><span class="n">linux_signal_example</span>
-<span class="n">Register</span> <span class="n">SIGINT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">Signal</span> <span class="n">Action</span><span class="p">.</span> 
-<span class="n">Waitting</span> <span class="k">for</span> <span class="n">Signal</span> <span class="p">...</span> 
-<span class="o">^</span><span class="n">CGet</span> <span class="n">signal</span> <span class="n">SIGINT</span><span class="p">.</span> 
-<span class="n">Process</span> <span class="n">Continue</span><span class="p">.</span>
-</pre></div>
-
-
+<pre><code>./linux_signal_example
+Register SIGINT(2) Signal Action. 
+Waitting for Signal ... 
+^CGet signal SIGINT. 
+Process Continue.
+</code></pre>
 <p>进程收到<code>SIGINT</code>信号后，触发响应动作，将提示信息打印出来，然后从暂停的地方继续运行。这里需要注意的是，因为我们修改了<code>SIGINT</code>信号的响应动作（只打印信息，不做进程退出处理），所以我们按下<code>Ctrl+C</code>后，程序并没有直接退出，而是继续运行并将"Process Continue."打印出来，直至程序正常结束。</p>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
+        <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
         <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
-        <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
-        <li><a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">配置 VIM 开发环境</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
+        <li><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></li>
     </ul>
 </section>
     <hr/>

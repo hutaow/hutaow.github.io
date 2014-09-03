@@ -60,23 +60,17 @@
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">配置 VIM 开发环境</a></h2>
                 <div class="summary"><hr />
-<h3>1 插件列表</h3>
-<h4>1.1 CTags</h4>
+<h3 id="1">1 插件列表</h3>
+<h4 id="11-ctags">1.1 CTags</h4>
 <p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
 <p>下载地址：<a href="http://ctags.sourceforge.net">http://ctags.sourceforge.net</a></p>
 <p>使用方式：在代码的根目录执行如下命令即可生成tag文件：</p>
-<div class="highlight"><pre><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
-</pre></div>
-
-
+<p><code>ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .</code></p>
 <!-- more -->
 
 <p>这个命令有点长，可以在<code>.vimrc</code>的文件中加个键盘映射，像下面的样子，这样只需要按下<code>CTRL+F12</code>即可生成tag文件了。</p>
-<div class="highlight"><pre><span class="n">map</span> <span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">F12</span><span class="o">&gt;</span> <span class="o">:!</span><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
-</pre></div>
-
-
-<p>另外，如果需要指明源代码的语言，则需要加上 ...</p></!-->
+<p><code>map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .</code></p>
+<p>另外，如果需要指明源代码的语言，则需要加上<code>--languages ...</code></p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/22/vim-development-environment">阅读全文</a>
                     </div>
@@ -86,21 +80,24 @@
             <article>
                 <h2><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></h2>
                 <div class="summary"><hr />
-<div class="highlight"><pre><span class="s">&quot; 设置字符编码</span>
-<span class="n">set</span> <span class="n">encoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">set</span> <span class="n">termencoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">set</span> <span class="n">fileencoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">set</span> <span class="n">fileencodings</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="n">ucs</span><span class="o">-</span><span class="n">bom</span><span class="p">,</span><span class="n">gb2312</span><span class="p">,</span><span class="n">gb18030</span><span class="p">,</span><span class="n">gbk</span><span class="p">,</span><span class="n">cp936</span>
-
-<span class="s">&quot; 设置文件格式(unix=LF,dos=CRLF,mac=CR)</span>
-<span class="n">set</span> <span class="n">fileformat</span><span class="o">=</span><span class="n">unix</span>
-<span class="n">set</span> <span class="n">fileformats</span><span class="o">=</span><span class="n">unix</span><span class="p">,</span><span class="n">dos</span><span class="p">,</span><span class="n">mac</span>
-
-<span class="s">&quot; 提示信息语言</span>
-<span class="n">set</span> <span class="n">langmenu</span><span class="o">=</span><span class="n">en_US</span><span class="p">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">language</span> <span class="n">messages</span> <span class="n">en_US</span><span class="p">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-
-<span class="s">&quot; 开启文件类型检测 ...</span></pre></div>
+<p>```
+" 设置字符编码
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,ucs-bom,gb2312,gb18030,gbk,cp936</p>
+<p>" 设置文件格式(unix=LF,dos=CRLF,mac=CR)
+set fileformat=unix
+set fileformats=unix,dos,mac</p>
+<p>" 提示信息语言
+set langmenu=en_US.utf-8
+language messages en_US.utf-8</p>
+<p>" 开启文件类型检测
+filetype on</p>
+<p>" 开启语法高亮
+syntax on</p>
+<p>" 显示行号
+set ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2007/08/19/my-vi-config">阅读全文</a>
                     </div>

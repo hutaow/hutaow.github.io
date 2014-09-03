@@ -61,68 +61,25 @@
                 <h2><a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">Linux中查看进程占用内存的情况</a></h2>
                 <div class="summary"><hr />
 <p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
-<div class="highlight"><pre><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span><span class="o">/</span><span class="n">status</span>
-</pre></div>
-
-
-<h4>说明</h4>
+<p><code>shell
+cat /proc/[pid]/status</code></p>
+<h4 id="_1">说明</h4>
 <p><code>/proc/[pid]/status</code>中所保存的信息除了内存信息，还包括进程IDs、信号等信息，此处暂时只介绍内存相关的信息。</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>VmPeak</td>
-<td>进程所使用的虚拟内存的峰值</td>
-</tr>
-<tr>
-<td>VmSize</td>
-<td>进程当前使用的虚拟内存的大小</td>
-</tr>
-<tr>
-<td>VmLck</td>
-<td>已经锁住的物理内存的大小（锁住的物理内存不能交换到硬盘）</td>
-</tr>
-<tr>
-<td>VmHWM</td>
-<td>进程所使用的物理内存的峰值</td>
-</tr>
-<tr>
-<td>VmRSS</td>
-<td>进程当前使用的物理内存的大小</td>
-</tr>
-<tr>
-<td>VmData</td>
-<td>进程占用的数据段大小</td>
-</tr>
-<tr>
-<td>VmStk</td>
-<td>进程占用的栈大小</td>
-</tr>
-<tr>
-<td>VmExe</td>
-<td>进程占用的代码段大小（不包括库）</td>
-</tr>
-<tr>
-<td>VmLib</td>
-<td>进程所加载的动态库所占用的内存大小（可能与其它进程共享）</td>
-</tr>
-<tr>
-<td>VmPTE</td>
-<td>进程占用的页表大小（交换表项数量）</td>
-</tr>
-<tr>
-<td>VmSwap</td>
-<td>进程所使用的交换区的大小</td>
-</tr>
-</tbody>
-</table>
-<h4>举例</h4>
-<p>显示进程<code>cron</code>的内存信息，通过 ...</p>
+<p>字段        |说明
+------------|------------
+VmPeak      |进程所使用的虚拟内存的峰值
+VmSize      |进程当前使用的虚拟内存的大小
+VmLck       |已经锁住的物理内存的大小（锁住的物理内存不能交换到硬盘）
+VmHWM       |进程所使用的物理内存的峰值
+VmRSS       |进程当前使用的物理内存的大小
+VmData      |进程占用的数据段大小
+VmStk       |进程占用的栈大小
+VmExe       |进程占用的代码段大小（不包括库）
+VmLib       |进程所加载的动态库所占用的内存大小（可能与其它进程共享）
+VmPTE       |进程占用的页表大小（交换表项数量）
+VmSwap      |进程所使用的交换区的大小</p>
+<h4 id="_2">举例</h4>
+<p>显示进程<code>cron</code>的内存信息 ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">阅读全文</a>
                     </div>
@@ -133,13 +90,13 @@
                 <h2><a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">德赛西威音乐e栈的破解程序</a></h2>
                 <div class="summary"><hr />
 <p>技术细节请参考上一篇文章<a href="/blog/2014/08/01/cracking-svautomusic/">《一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法》</a>。根据原理用python+qt写了个现成的破解程序，界面简陋了些，下载链接及使用说明如下。</p>
-<h4>下载链接</h4>
+<h4 id="_1">下载链接</h4>
 <ul>
 <li><a href="http://dl.vmall.com/c073qryv48">华为网盘</a>，<a href="http://pan.baidu.com/s/1sjPRMvN">百度网盘</a></li>
 </ul>
 <!-- more -->
 
-<h4>使用说明</h4>
+<h4 id="_2">使用说明</h4>
 <ol>
 <li>
 <p>TF卡或U盘先在车机上初始化，然后插入电脑，打开音乐e栈PC端。</p>
@@ -168,7 +125,7 @@
 <p>因为音乐e栈每次启动都会联网认证一次，所以这个破解程序每次打开客户端都需要执行一下上面的动作。</p>
 </li>
 </ol>
-<h4>更新记录</h4>
+<h4 id="_3">更新记录</h4>
 <ul>
 <li>2014-08-01: 初始化。</li>
 <li>2014-08-24: 有效期从99天延长到999天，另外补充设置响应消息长度值，防止客户端由于处理字符串不当导致出错。</li>
@@ -185,15 +142,15 @@
 <p>某导航提供的音乐服务（音乐e栈），和虾米合作的，需要付费使用，前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是因为它的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。</p>
 <!-- more -->
 
-<h4>1 原始界面</h4>
+<h4 id="1">1 原始界面</h4>
 <p><img alt="音乐e栈服务过期" src="/images/articles/201408/cracking_svautomusic_service_expired.png" /></p>
 <p>如上图，插入经过车机初始化过的TF卡后，启动音乐e栈客户端，显示当前服务有效期为0天，并提示需要充值续费。如果点击下载专辑的按钮，提示不允许下载。</p>
-<h4>2 寻找入手点</h4>
+<h4 id="2">2 寻找入手点</h4>
 <p>既然提示让续费，那就看看续费过程是什么样子。</p>
 <p>先随便输个卡号密码试试：</p>
 <p><img alt="充值卡无效" src="/images/articles/201408/cracking_svautomusic_paid_invalid.png" /></p>
 <p>竟然用CS架构来做充值认证，实在是土的掉渣，就从这里入手了。</p>
-<h4>3 交互过程</h4>
+<h4 id="3">3 交互过程</h4>
 <p>把刚才进行充值时的报文用Wireshark抓下来，看看它是如何交互的。</p>
 <p><strong>1) 报文</strong></p>
 <p><img alt="充值失败的报文" src="/images/articles/201408/cracking_svautomusic_pcap_paid_failed.png" /></p>
@@ -213,11 +170,8 @@
                 <div class="summary"><hr />
 <p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
 <p>设置个定时任务（执行<code>crontab -e</code>编辑任务列表）：</p>
-<div class="highlight"><pre><span class="mi">0</span> <span class="mi">8</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">u</span> <span class="n">username</span>
-<span class="mi">0</span> <span class="mi">12</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">l</span> <span class="n">username</span>
-</pre></div>
-
-
+<p><code>0 8 * * * passwd -u username
+0 12 * * * passwd -l username</code></p>
 <p>其中<code>username</code>替换成想限制的用户名；命令<code>passwd -u</code>是锁定用户，<code>passwd -l</code>解锁。</p>
 <p>附：设置cron定时任务列表的格式：<code>分 时 日 月 星期 命令</code>，如果时间字段是<code>*</code>则表示所有，还可以加上<code>/n</code>表示每隔n个单位时间执行一次；最后跟需要执行的命令。</p>
                     <div align="right">
@@ -231,18 +185,14 @@
                 <div class="summary"><hr />
 <p>不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志）。</p>
 <p>删除最后一次的提交记录：</p>
-<div class="highlight"><pre>git reset --hard HEAD^
-</pre></div>
-
-
+<p><code>bash
+git reset --hard HEAD^</code></p>
 <p>删除最后3次的提交记录：</p>
-<div class="highlight"><pre>git reset --hard HEAD~3
-</pre></div>
-
-
+<p><code>bash
+git reset --hard HEAD~3</code></p>
 <p>已经提交到远端库上了？那就还需要将本地库强行同步到远端库上（注意执行这个命令前先检查一下有没有别人的提交记录，不然会覆盖他人的修改）：</p>
-<div class="highlight"><pre><span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="n">force</span>
-</pre></div>
+<p><code>base
+git push --force</code></p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">阅读全文</a>
                     </div>
@@ -253,30 +203,24 @@
                 <h2><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></h2>
                 <div class="summary"><hr />
 <p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
-<h3>1 安装libpcap库</h3>
+<h3 id="1-libpcap">1 安装libpcap库</h3>
 <p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
-<div class="highlight"><pre>./configure
+<p><code>bash
+./configure
 make
-make install
-</pre></div>
-
-
-<h3>2 实例代码</h3>
+make install</code></p>
+<h3 id="2">2 实例代码</h3>
 <p>代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。</p>
 <p>首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下：</p>
-<div class="highlight"><pre><span class="cp">#ifndef _BASETYPE_H_</span>
-<span class="cp">#define _BASETYPE_H_</span>
-
-<span class="cp">#define OK (0)</span>
-<span class="cp">#define ERROR (1)</span>
-
-<span class="cp">#define YES (1)</span>
-<span class="cp">#define NO (0)</span>
-
-<span class="k">typedef</span> <span class="kt">void</span> <span class="n">VOID</span><span class="p">;</span>
-
-<span class="k">typedef</span> <span class="kt">char</span> <span class="n">CHAR</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="kt">char ...</span></pre></div>
+<p>``` c</p>
+<h1 id="ifndef-basetype_h">ifndef <em>BASETYPE_H</em></h1>
+<h1 id="define-basetype_h">define <em>BASETYPE_H</em></h1>
+<h1 id="define-ok-0">define OK (0)</h1>
+<h1 id="define-error-1">define ERROR (1)</h1>
+<h1 id="define-yes-1">define YES (1)</h1>
+<h1 id="define-no-0">define NO (0)</h1>
+<p>typedef void VOID;</p>
+<p>typedef char CHAR ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">阅读全文</a>
                     </div>
@@ -287,13 +231,11 @@ make install
                 <h2><a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">在多个文件中批量查找/替换字符串</a></h2>
                 <div class="summary"><hr />
 <p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
-<div class="highlight"><pre>grep string -rl /path
-</pre></div>
-
-
+<p><code>bash
+grep string -rl /path</code></p>
 <p>在目录中查找并替换指定的字符串（如下所示，将path目录中将所有文件中的oldstring字符串替换成newstring）</p>
-<div class="highlight"><pre>sed -i <span class="s2">&quot;s/oldstring/newstring/g&quot;</span> <span class="sb">`</span>grep oldstring -rl /path<span class="sb">`</span>
-</pre></div>
+<p><code>bash
+sed -i "s/oldstring/newstring/g" `grep oldstring -rl /path`</code></p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">阅读全文</a>
                     </div>
@@ -306,27 +248,23 @@ make install
 <p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <!-- more -->
 
-<div class="highlight"><pre>!!<span class="nv">$HOME</span>/.Xdefaults
-Rxvt.preeditType: root
-
-!!窗口大小及标题
+<p>``` bash
+!!$HOME/.Xdefaults
+Rxvt.preeditType: root</p>
+<p>!!窗口大小及标题
 Rxvt.geometry: 80x25
-Rxvt.title: hutaow-rxvt
-
-!!输入法设置
-Rxvt.inputMethod: fcitx
-
-!!透明度设置
-!Rxvt.transparent: <span class="nb">true</span>
+Rxvt.title: hutaow-rxvt</p>
+<p>!!输入法设置
+Rxvt.inputMethod: fcitx</p>
+<p>!!透明度设置
+!Rxvt.transparent: true
 !Rxvt.shading: 110
 !Rxvt.tintColor: grey
-!Rxvt.inheritPixmap: <span class="nb">false</span>
-
-!!扩展设置
-Rxvt.perl-ext-common: default, matcher, fullscreen
-
-!!URL操作
-Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
+!Rxvt.inheritPixmap: false</p>
+<p>!!扩展设置
+Rxvt.perl-ext-common: default, matcher, fullscreen</p>
+<p>!!URL操作
+Rxvt.urlLauncher: /usr/bin ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">阅读全文</a>
                     </div>
@@ -336,20 +274,17 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">使用 OProfile 进行性能分析</a></h2>
                 <div class="summary"><hr />
-<h3>1 介绍</h3>
+<h3 id="1">1 介绍</h3>
 <p>OProfile是Linux上的性能监测工具，通过CPU硬件提供的性能计数器对事件（如CPU Cycle、Cache Miss等）进行采样，可以帮助开发者从代码层面分析程序的性能消耗情况，很方便的找出影响程序性能的问题点。</p>
 <p>硬件上，OProfile支持多种架构的CPU，包括Alpha、MIPS、ARM、x86/x86-64、Sparc64、PowerPC等；软件上，OProfile支持Linux 2.2、2.4、2.6多种版本的内核，并且所占用的系统开销较小，一般在1%-8%范围内，具体数值依赖于采样频率。</p>
 <!-- more -->
 
-<h3>2 环境准备</h3>
-<h4>2.1 编译Linux内核</h4>
+<h3 id="2">2 环境准备</h3>
+<h4 id="21-linux">2.1 编译Linux内核</h4>
 <p>OProfile需要Linux内核的支持，到Linux内核源代码目录中（一般为<code>/usr/src/linux-xxx</code>）执行下面的命令：</p>
-<div class="highlight"><pre>make menuconfig
-</pre></div>
-
-
-<p>在配置菜单中找到OProfile的选项并将其打开，然后保存退出。</p>
-<p>如果不想用 ...</p></!-->
+<p><code>bash
+make menuconfig</code></p>
+<p>在配置菜单中找到OProfile的选项并将其打开，然后保存退出 ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">阅读全文</a>
                     </div>
@@ -363,19 +298,18 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 <p>cx_Freeze的官方主页为<a href="http://cx-freeze.sourceforge.net">http://cx-freeze.sourceforge.net</a>，下面以Windows系统为例介绍一下它的使用方法。</p>
 <!-- more -->
 
-<h3>1 配置转换脚本</h3>
+<h3 id="1">1 配置转换脚本</h3>
 <p>新建一个Python脚本文件，如<code>setup.py</code>，内容如下：</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">cx_Freeze</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Executable</span>
-
-<span class="n">base</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;win32&quot;</span><span class="p">:</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="s">&quot;Win32GUI&quot;</span>
-
-<span class="n">setup</span><span class="p">(</span>  <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;MyApp&quot;</span><span class="p">,</span>
-        <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
-        <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;My PyQT application!&quot;</span><span class="p">,</span>
-        <span class="n">executables</span> <span class="o">=</span> <span class="p">[</span><span class="n">Executable</span><span class="p">(</span><span class="s">&quot;pyqt_example.py ...</span></pre></div></!-->
+<p>``` python
+import sys
+from cx_Freeze import setup, Executable</p>
+<p>base = None
+if sys.platform == "win32":
+    base = "Win32GUI"</p>
+<p>setup(  name = "MyApp",
+        version = "0.1",
+        description = "My PyQT application!",
+        executables = [Executable("pyqt_example ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">阅读全文</a>
                     </div>

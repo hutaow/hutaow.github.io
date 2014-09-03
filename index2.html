@@ -65,14 +65,14 @@
 <p>最近开始尝试第三方的界面库，几经权衡，最终在PyGTK、wxPython、PyQT中选择了PyQT，试了一下，确实很不错，下面就介绍一下PyQT的使用方法。</p>
 <!-- more -->
 
-<h3>1 介绍</h3>
+<h3 id="1">1 介绍</h3>
 <p>PyQT以QT为基础，跨平台（可以运行在Windows、Linux/Unix、MacOS等操作系统上），同时PyQT的界面可以直接用QT Designer做出来，可以很容易移植到其它语言上（C++、C#、Java、Perl等）。</p>
-<h3>2 例子</h3>
+<h3 id="2">2 例子</h3>
 <p>为了更好了了解PyQT，先写一段简单的示例代码，例子中通过点击按钮，来改变文本框所显示的内容，具体代码含义直接通过注释说明了。</p>
-<div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
-
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtCore ...</span></pre></div></!-->
+<p>``` python</p>
+<h1 id="-coding-utf-8-">-<em>- coding: utf-8 -</em>-</h1>
+<p>import sys
+from PyQt4 import ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">阅读全文</a>
                     </div>
@@ -86,18 +86,16 @@
 <!-- more -->
 
 <p>用一段简短的代码来说明一下问题出在哪里：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
-
-<span class="cp">#define M_STRING_1 &quot;test&quot;</span>
-<span class="cp">#define M_STRING_2 (char *)&quot;test&quot;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-    <span class="kt">char</span> <span class="o">*</span><span class="n">pcStr</span> <span class="o">=</span> <span class="n">M_STRING_1</span><span class="p">;</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size of string macro 1      : %u bytes </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">M_STRING_1</span><span class="p">));</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size of string pointer 1    : %u bytes </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">pcStr</span><span class="p">));</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size ...</span></pre></div></!-->
+<p>``` c</p>
+<h1 id="include">include <stdio.h></h1>
+<h1 id="define-m_string_1-test">define M_STRING_1 "test"</h1>
+<h1 id="define-m_string_2-char-test">define M_STRING_2 (char *)"test"</h1>
+<p>int main(int argc, char <em>argv[])
+{
+    char </em>pcStr = M_STRING_1;</p>
+<pre><code>printf("Size of string macro 1      : %u bytes \r\n", sizeof(M_STRING_1));
+printf("Size of string pointer 1    : %u bytes \r\n", sizeof(pcStr));
+printf("Size of ...</code></pre></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/05/string-size-calculation">阅读全文</a>
                     </div>
@@ -107,23 +105,17 @@
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">配置 VIM 开发环境</a></h2>
                 <div class="summary"><hr />
-<h3>1 插件列表</h3>
-<h4>1.1 CTags</h4>
+<h3 id="1">1 插件列表</h3>
+<h4 id="11-ctags">1.1 CTags</h4>
 <p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
 <p>下载地址：<a href="http://ctags.sourceforge.net">http://ctags.sourceforge.net</a></p>
 <p>使用方式：在代码的根目录执行如下命令即可生成tag文件：</p>
-<div class="highlight"><pre><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
-</pre></div>
-
-
+<p><code>ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .</code></p>
 <!-- more -->
 
 <p>这个命令有点长，可以在<code>.vimrc</code>的文件中加个键盘映射，像下面的样子，这样只需要按下<code>CTRL+F12</code>即可生成tag文件了。</p>
-<div class="highlight"><pre><span class="n">map</span> <span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">F12</span><span class="o">&gt;</span> <span class="o">:!</span><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
-</pre></div>
-
-
-<p>另外，如果需要指明源代码的语言，则需要加上 ...</p></!-->
+<p><code>map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .</code></p>
+<p>另外，如果需要指明源代码的语言，则需要加上<code>--languages ...</code></p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/22/vim-development-environment">阅读全文</a>
                     </div>
@@ -136,20 +128,14 @@
 <p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。</p>
 <!-- more -->
 
-<h3>安装输入法</h3>
+<h3 id="_1">安装输入法</h3>
 <p>执行下面的命令安装FCITX：</p>
-<div class="highlight"><pre><span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">fcitx</span><span class="o">-</span><span class="n">im</span>
-</pre></div>
-
-
-<h3>配置环境变量</h3>
+<p><code>pacman -S fcitx-im</code></p>
+<h3 id="_2">配置环境变量</h3>
 <p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="s">&quot;@im=fcitx&quot;</span>
-</pre></div>
-
-
+<p><code>export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"</code></p>
 <p>配置后重新登录生效，使用<code>CTRL+空格</code>激活输入法，如果发现fcitx没有运行，则直接在命令行里执行<code>fcitx</code>即可。</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">阅读全文</a>
@@ -160,30 +146,29 @@
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">MySQL协议分析</a></h2>
                 <div class="summary"><hr />
-<h2>1 交互过程</h2>
-<p>MySQL客户端与服务器的交互主要分为两个阶段：握手认证阶段和命令执行阶段。</p>
-<h3>1.1 握手认证阶段</h3>
-<p>握手认证阶段为客户端与服务器建立连接后进行，交互过程如下：</p>
+<h2 id="_1">目录</h2>
+<div class="toc">
 <ul>
-<li>服务器 -&gt; 客户端：握手初始化消息</li>
-<li>客户端 -&gt; 服务器：登陆认证消息</li>
-<li>服务器 -&gt; 客户端：认证结果消息</li>
+<li><a href="#_1">目录</a></li>
+<li><a href="#1">1 交互过程</a><ul>
+<li><a href="#11">1.1 握手认证阶段</a></li>
+<li><a href="#12">1.2 命令执行阶段</a></li>
 </ul>
-<h3>1.2 命令执行阶段</h3>
-<p>客户端认证成功后，会进入命令执行阶段，交互过程如下：</p>
-<ul>
-<li>客户端 -&gt; 服务器：执行命令消息</li>
-<li>服务器 -&gt; 客户端：命令执行结果</li>
+</li>
+<li><a href="#2">2 基本类型</a><ul>
+<li><a href="#21">2.1 整型值</a></li>
+<li><a href="#22-nullnull-terminated-string">2.2 字符串（以NULL结尾）（Null-Terminated String）</a></li>
+<li><a href="#23-length-coded-binary">2.3 二进制数据（长度编码）（Length Coded Binary）</a></li>
+<li><a href="#24-length-coded-string">2.4 字符串（长度编码）（Length Coded String）</a></li>
 </ul>
-<!-- more -->
-
-<p><strong>MySQL客户端与服务器的完整交互过程如下</strong>：</p>
-<p><img alt="MySQL客户端与服务器交互示意图" src="/images/articles/201311/mysql_protocol_message.png" /></p>
-<h2>2 基本类型</h2>
-<h3>2.1 整型值</h3>
-<p>MySQL报文中整型值分别有1、2、3、4、8字节长度，使用小字节序传输。</p>
-<h3>2.2 字符串（以NULL结尾）（Null-Terminated String）</h3>
-<p>字符串长度不固定，当遇到 ...</p></!-->
+</li>
+<li><a href="#3">3 报文结构</a><ul>
+<li><a href="#31">3.1 消息头</a><ul>
+<li><a href="#311">3.1.1 报文长度</a></li>
+<li><a href="#312">3.1.2 序号</a></li>
+</ul>
+</li>
+<li><a href="#32">3.2 ...</a></li></ul></li></ul></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis">阅读全文</a>
                     </div>
@@ -193,7 +178,7 @@
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">通过PXE方式安装Linux系统</a></h2>
                 <div class="summary"><hr />
-<h3>1 准备工作</h3>
+<h3 id="1">1 准备工作</h3>
 <ul>
 <li>Linux安装镜像（本文以CentOS为例）</li>
 <li>TFTP+DHCP服务程序（Windows环境中推荐Tftpd32，<a href="http://tftpd32.jounin.net">点击此处进入下载页面</a>）</li>
@@ -201,7 +186,7 @@
 </ul>
 <!-- more -->
 
-<h3>2 建立PXE启动目录</h3>
+<h3 id="2-pxe">2 建立PXE启动目录</h3>
 <ul>
 <li>创建<code>E:\Server\PXE</code>目录，将Linux光盘镜像<code>/images/pxeboot</code>文件夹中的<code>initrd.img</code>和<code>vmlinux</code>文件拷贝到该目录中</li>
 <li>在<code>E:\Server\PXE</code>中创建<code>pxelinux.cfg</code>目录，将光盘镜像<code>/isolinux</code>文件夹中的<code>isolinux.cfg</code>文件拷贝到该目录中，并重命名为<code>default</code></li>
@@ -215,15 +200,15 @@
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></h2>
                 <div class="summary"><hr />
-<h3>1 什么是 Core Dump</h3>
+<h3 id="1-core-dump">1 什么是 Core Dump</h3>
 <p>Core Dump 又叫核心转储。在程序运行过程中发生异常时，将其内存数据保存到文件中，这个过程叫做 Core Dump。</p>
-<h3>2 Core Dump 的作用</h3>
+<h3 id="2-core-dump">2 Core Dump 的作用</h3>
 <p>在开发过程中，难免会遇到程序运行过程中异常退出的情况，这时候想要定位哪里出了问题，仅仅依靠程序自身的信息打印（日志记录）往往是不够的，这个时候就需要 Core Dump 文件来帮忙了。</p>
 <p>一个完整的 Core Dump 文件实际上相当于恢复了异常现场，利用 Core Dump 文件，可以查看到程序异常时的所有信息，变量值、栈信息、内存数据，程序异常时的运行位置（甚至记录代码行号）等等，定位所需要的一切信息都可以从 Core Dump文件获取到，能够非常有效的提高定位效率。</p>
 <!-- more -->
 
-<h3>3 如何生成 Core Dump</h3>
-<h4>3 ...</h4></!-->
+<h3 id="3-core-dump">3 如何生成 Core Dump</h3>
+<h4 id="31-core-dump">3 ...</h4></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/25/linux-core-dump">阅读全文</a>
                     </div>
@@ -237,7 +222,7 @@
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <!-- more -->
 
-<h3>1 信号的响应动作</h3>
+<h3 id="1">1 信号的响应动作</h3>
 <p>每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种：</p>
 <ul>
 <li>中止进程(Term)</li>
@@ -247,16 +232,10 @@
 <li>继续运行进程(Cont)</li>
 </ul>
 <p>用户可以通过<code>signal</code>或<code>sigaction</code>函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。</p>
-<h3>2 信号类型</h3>
+<h3 id="2">2 信号类型</h3>
 <p>Linux支持的信号类型可以参考下面给出的列表。</p>
-<h4>2.1 在POSIX.1-1990标准中的信号列表</h4>
-<table>
-<thead>
-<tr>
-<th>信号</th>
-<th>值</th>
-<th>动作</th>
-<th>说明 ...</th></tr></thead></table></!-->
+<h4 id="21-posix1-1990">2.1 在POSIX.1-1990标准中的信号列表</h4>
+<p>信号        |值         |动作       |说明 ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/19/linux-signal">阅读全文</a>
                     </div>
@@ -270,30 +249,27 @@
 <!-- more -->
 
 <p>要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<p>```</p>
+<h1 id="include">include <stdio.h></h1>
+<p>int add(int a, int b) {
+    int result = 0;</p>
+<pre><code>result = a + b;
 
-<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+return result;
+</code></pre>
+<p>}</p>
+<p>int main(int argc, char *argv[]) {
+    int result = 0;</p>
+<pre><code>result = test(1, 2);
 
-    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+printf("result = %d \r\n", result);
 
-    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="n">result</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;result = %d </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
+return 0;
+</code></pre>
+<p>}
+```</p>
 <p>使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的：</p>
-<div class="highlight"><pre><span class="p">(</span><span class="nx">gdb ...</span></pre></div></!-->
+<p><code>(gdb) disassemble main ...</code></p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/15/dump-stack">阅读全文</a>
                     </div>
@@ -305,30 +281,27 @@
                 <div class="summary"><hr />
 <p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
-<div class="highlight"><pre><span class="cm">/* 获取函数调用栈 */</span>
-<span class="kt">int</span> <span class="nf">backtrace</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
-
-<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */</span>
-<span class="kt">char</span> <span class="o">**</span><span class="nf">backtrace_symbols</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
-
-<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 */</span>
-<span class="kt">void</span> <span class="nf">backtrace_symbols_fd</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fd</span><span class="p">);</span>
-</pre></div>
-
-
+<p>``` c
+/<em> 获取函数调用栈 </em>/
+int backtrace(void **buffer, int size);</p>
+<p>/<em> 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 </em>/
+char <em><em>backtrace_symbols(void </em>const </em>buffer, int size);</p>
+<p>/<em> 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 </em>/
+void backtrace_symbols_fd(void <em>const </em>buffer, int size, int fd);
+```</p>
 <!-- more -->
 
 <p>示例代码：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;execinfo.h&gt;</span>
-<span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
-
-<span class="cm">/* 打印调用栈的最大深度 */</span>
-<span class="cp">#define DUMP_STACK_DEPTH_MAX 16</span>
-
-<span class="cm">/* 打印调用栈函数 */</span>
-<span class="kt">void</span> <span class="nf">dump_trace</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">stack_trace ...</span></pre></div></!-->
+<p>``` c</p>
+<h1 id="include">include <execinfo.h></h1>
+<h1 id="include_1">include <stdio.h></h1>
+<h1 id="include_2">include <stdlib.h></h1>
+<p>/<em> 打印调用栈的最大深度 </em>/</p>
+<h1 id="define-dump_stack_depth_max-16">define DUMP_STACK_DEPTH_MAX 16</h1>
+<p>/<em> 打印调用栈函数 </em>/
+void dump_trace() {
+    void <em>stack_trace[DUMP_STACK_DEPTH_MAX] = {0};
+    char </em>*stack_strings ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">阅读全文</a>
                     </div>

@@ -94,36 +94,29 @@
                 </div>
                 <hr />
 <p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行"mount -t ntfs-3g /dev/hdc5 /media/wdata"，结果提示：</p>
-<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
-<span class="n">fuse</span><span class="o">:</span> <span class="n">device</span> <span class="n">not</span> <span class="n">found</span><span class="o">,</span> <span class="k">try</span> <span class="s1">&#39;modprobe fuse&#39;</span> <span class="n">first</span>
-</pre></div>
-
-
+<pre><code>FATAL: Module fuse not found.
+fuse: device not found, try 'modprobe fuse' first
+</code></pre>
 <!-- more -->
 
 <p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行"modprobe fuse"，结果又出来：</p>
-<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
-</pre></div>
-
-
+<pre><code>FATAL: Module fuse not found.
+</code></pre>
 <p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net</a>，看上面说明的意思是说fuse(Filesystem in Userspace)是个库，提供了API供用户开发文件系统，看样子通过它开发文件系统又会方便不少，最后只要连接到fuse库上就可以了。呵呵，不管怎么说先下载了安装再说，这些以后有时间再慢慢研究吧。下载后解压，执行下面的命令编译安装fuse：</p>
-<div class="highlight"><pre><span class="p">.</span><span class="o">/</span><span class="n">configure</span>
-<span class="n">make</span>
-<span class="n">make</span> <span class="n">install</span>
-</pre></div>
-
-
+<p><code>./configure
+make
+make install</code></p>
 <p>装好后再次执行mount命令，完成！</p>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
-        <li><a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">在多个文件中批量查找/替换字符串</a></li>
-        <li><a href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">Linux中设置Java环境变量</a></li>
-        <li><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 RXVT</a></li>
-        <li><a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">在 ArchLinux 中使用 Fcitx 输入法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
+        <li><a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">配置 VIM 开发环境</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems">解决MPlayer中文字幕显示问题</a></li>
+        <li><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux">Linux中改变网卡的速度</a></li>
     </ul>
 </section>
     <hr/>

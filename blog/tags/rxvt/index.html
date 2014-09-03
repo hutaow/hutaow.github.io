@@ -63,27 +63,23 @@
 <p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <!-- more -->
 
-<div class="highlight"><pre>!!<span class="nv">$HOME</span>/.Xdefaults
-Rxvt.preeditType: root
-
-!!窗口大小及标题
+<p>``` bash
+!!$HOME/.Xdefaults
+Rxvt.preeditType: root</p>
+<p>!!窗口大小及标题
 Rxvt.geometry: 80x25
-Rxvt.title: hutaow-rxvt
-
-!!输入法设置
-Rxvt.inputMethod: fcitx
-
-!!透明度设置
-!Rxvt.transparent: <span class="nb">true</span>
+Rxvt.title: hutaow-rxvt</p>
+<p>!!输入法设置
+Rxvt.inputMethod: fcitx</p>
+<p>!!透明度设置
+!Rxvt.transparent: true
 !Rxvt.shading: 110
 !Rxvt.tintColor: grey
-!Rxvt.inheritPixmap: <span class="nb">false</span>
-
-!!扩展设置
-Rxvt.perl-ext-common: default, matcher, fullscreen
-
-!!URL操作
-Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
+!Rxvt.inheritPixmap: false</p>
+<p>!!扩展设置
+Rxvt.perl-ext-common: default, matcher, fullscreen</p>
+<p>!!URL操作
+Rxvt.urlLauncher: /usr/bin ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">阅读全文</a>
                     </div>

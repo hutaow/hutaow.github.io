@@ -61,10 +61,8 @@
                 <h2><a href="http://hutaow.com/blog/2009/04/02/sql-statements-batch-replace-a-string">SQL语句实现某一字符串的替换</a></h2>
                 <div class="summary"><hr />
 <p>使用update+replace语句：</p>
-<div class="highlight"><pre><span class="k">update</span> <span class="n">table_name</span> <span class="kt">set</span> <span class="n">column_name</span> <span class="o">=</span> <span class="k">replace</span><span class="p">(</span><span class="n">column_name</span><span class="p">,</span><span class="err">’</span><span class="n">hutaow_original_string</span><span class="err">’</span><span class="p">,</span><span class="err">&#39;</span><span class="n">hutaow_new_string</span><span class="err">’</span><span class="p">);</span>
-</pre></div>
-
-
+<p><code>mysql
+update table_name set column_name = replace(column_name,’hutaow_original_string’,'hutaow_new_string’);</code></p>
 <p>其中，table_name是表的名字，column_name是要替换数据的列的名字，hutaow_original_string是待替换的原始字符串，hutaow_new_string是新字符串，MySQL下验证成功。</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2009/04/02/sql-statements-batch-replace-a-string">阅读全文</a>

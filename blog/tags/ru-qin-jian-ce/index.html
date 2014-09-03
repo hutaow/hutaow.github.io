@@ -69,10 +69,9 @@
 <p>配置Snort时，需要加上"--enable-idmef"参数，如下所示：</p>
 </li>
 </ol>
-<div class="highlight"><pre><span class="p">.</span><span class="o">/</span><span class="n">configure</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">idmef</span>
-<span class="n">make</span>
-<span class="n">make</span> <span class="n">install</span>
-</pre></div>
+<p><code>./configure --enable-idmef
+make
+make install</code></p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort">阅读全文</a>
                     </div>
@@ -82,13 +81,13 @@
             <article>
                 <h2><a href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing">入侵检测与响应系统的信息共享</a></h2>
                 <div class="summary"><hr />
-<h3>引言</h3>
+<h3 id="_1">引言</h3>
 <p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。</p>
 <p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
 <!-- more -->
 
-<h3>1 入侵检测消息交互过程</h3>
-<h4>1.1 建立连接</h4>
+<h3 id="1">1 入侵检测消息交互过程</h3>
+<h4 id="11">1.1 建立连接</h4>
 <p>使用IDXP传输数据的入侵检测实体被称为IDXP对等体。对等体只能成对出现，这些对等体通过BEEP会话中的一个或多个BEEP信道进行数据传输。对等体可能是管理器或分析器。</p>
 <p>在分析器和管理器之间很可能是多对多的关系。即一个分析器可以和多个管理器通信，同样，一个管理器也可以和多个分析器通信；在不同的管理器之间也可以是多对多的关系。所以，一个管理器可以通过多个中间管理器接收大量的来自分析器的报警信息。但是 ...</p></!-->
                     <div align="right">

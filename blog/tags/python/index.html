@@ -63,15 +63,15 @@
 <p>某导航提供的音乐服务（音乐e栈），和虾米合作的，需要付费使用，前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是因为它的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。</p>
 <!-- more -->
 
-<h4>1 原始界面</h4>
+<h4 id="1">1 原始界面</h4>
 <p><img alt="音乐e栈服务过期" src="/images/articles/201408/cracking_svautomusic_service_expired.png" /></p>
 <p>如上图，插入经过车机初始化过的TF卡后，启动音乐e栈客户端，显示当前服务有效期为0天，并提示需要充值续费。如果点击下载专辑的按钮，提示不允许下载。</p>
-<h4>2 寻找入手点</h4>
+<h4 id="2">2 寻找入手点</h4>
 <p>既然提示让续费，那就看看续费过程是什么样子。</p>
 <p>先随便输个卡号密码试试：</p>
 <p><img alt="充值卡无效" src="/images/articles/201408/cracking_svautomusic_paid_invalid.png" /></p>
 <p>竟然用CS架构来做充值认证，实在是土的掉渣，就从这里入手了。</p>
-<h4>3 交互过程</h4>
+<h4 id="3">3 交互过程</h4>
 <p>把刚才进行充值时的报文用Wireshark抓下来，看看它是如何交互的。</p>
 <p><strong>1) 报文</strong></p>
 <p><img alt="充值失败的报文" src="/images/articles/201408/cracking_svautomusic_pcap_paid_failed.png" /></p>
@@ -93,19 +93,18 @@
 <p>cx_Freeze的官方主页为<a href="http://cx-freeze.sourceforge.net">http://cx-freeze.sourceforge.net</a>，下面以Windows系统为例介绍一下它的使用方法。</p>
 <!-- more -->
 
-<h3>1 配置转换脚本</h3>
+<h3 id="1">1 配置转换脚本</h3>
 <p>新建一个Python脚本文件，如<code>setup.py</code>，内容如下：</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">cx_Freeze</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Executable</span>
-
-<span class="n">base</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;win32&quot;</span><span class="p">:</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="s">&quot;Win32GUI&quot;</span>
-
-<span class="n">setup</span><span class="p">(</span>  <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;MyApp&quot;</span><span class="p">,</span>
-        <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
-        <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;My PyQT application!&quot;</span><span class="p">,</span>
-        <span class="n">executables</span> <span class="o">=</span> <span class="p">[</span><span class="n">Executable</span><span class="p">(</span><span class="s">&quot;pyqt_example.py ...</span></pre></div></!-->
+<p>``` python
+import sys
+from cx_Freeze import setup, Executable</p>
+<p>base = None
+if sys.platform == "win32":
+    base = "Win32GUI"</p>
+<p>setup(  name = "MyApp",
+        version = "0.1",
+        description = "My PyQT application!",
+        executables = [Executable("pyqt_example ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">阅读全文</a>
                     </div>
@@ -120,14 +119,14 @@
 <p>最近开始尝试第三方的界面库，几经权衡，最终在PyGTK、wxPython、PyQT中选择了PyQT，试了一下，确实很不错，下面就介绍一下PyQT的使用方法。</p>
 <!-- more -->
 
-<h3>1 介绍</h3>
+<h3 id="1">1 介绍</h3>
 <p>PyQT以QT为基础，跨平台（可以运行在Windows、Linux/Unix、MacOS等操作系统上），同时PyQT的界面可以直接用QT Designer做出来，可以很容易移植到其它语言上（C++、C#、Java、Perl等）。</p>
-<h3>2 例子</h3>
+<h3 id="2">2 例子</h3>
 <p>为了更好了了解PyQT，先写一段简单的示例代码，例子中通过点击按钮，来改变文本框所显示的内容，具体代码含义直接通过注释说明了。</p>
-<div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
-
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtCore ...</span></pre></div></!-->
+<p>``` python</p>
+<h1 id="-coding-utf-8-">-<em>- coding: utf-8 -</em>-</h1>
+<p>import sys
+from PyQt4 import ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">阅读全文</a>
                     </div>

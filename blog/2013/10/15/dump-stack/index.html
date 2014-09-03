@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="函数调用栈的获取原理分析"/>
             <meta property="og:url" content="http://hutaow.com/blog/2013/10/15/dump-stack"/>
-            <meta property="og:description" content="上一篇文章《在Linux程序中输出函数调用栈》，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。 要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子： #include &lt;stdio.h&gt; int add(int a, int b) { int result = 0; result = a + b; return result; } int main(int argc, char *argv[]) { int result = 0; result = test(1, 2); printf(&#34;result = %d \r\n&#34;, result); return 0; } 使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的： (gdb ..."/>
+            <meta property="og:description" content="上一篇文章《在Linux程序中输出函数调用栈》，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。 要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子： ``` include int add(int a, int b) { int result = 0; result = a + b; return result; } int main(int argc, char *argv[]) { int result = 0; result = test(1, 2); printf(&#34;result = %d \r\n&#34;, result); return 0; } ``` 使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的： (gdb) disassemble main ..."/>
             <meta property="article:published_time" content="2013-10-15" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="C" />
@@ -109,155 +109,139 @@
 <!-- more -->
 
 <p>要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<p>```</p>
+<h1 id="include">include <stdio.h></h1>
+<p>int add(int a, int b) {
+    int result = 0;</p>
+<pre><code>result = a + b;
 
-<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+return result;
+</code></pre>
+<p>}</p>
+<p>int main(int argc, char *argv[]) {
+    int result = 0;</p>
+<pre><code>result = test(1, 2);
 
-    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+printf("result = %d \r\n", result);
 
-    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="n">result</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;result = %d </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
+return 0;
+</code></pre>
+<p>}
+```</p>
 <p>使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的：</p>
-<div class="highlight"><pre><span class="p">(</span><span class="nx">gdb</span><span class="p">)</span> <span class="nx">disassemble</span> <span class="nx">main</span> 
-<span class="nb">Dump</span> <span class="nx">of</span> <span class="nx">assembler</span> <span class="nb">code</span> <span class="nb">for</span> <span class="nx">function</span> <span class="nx">main</span><span class="p">:</span>
-   <span class="mh">0x08048439</span> <span class="o">&lt;+</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">:</span>     <span class="nb">push</span>   <span class="o">%</span><span class="nx">ebp</span>
-   <span class="mh">0x0804843a</span> <span class="o">&lt;+</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">:</span>     <span class="nx">mov</span>    <span class="o">%</span><span class="nx">esp</span><span class="p">,</span><span class="o">%</span><span class="nx">ebp</span>
-   <span class="mh">0x0804843c</span> <span class="o">&lt;+</span><span class="mi">3</span><span class="o">&gt;</span><span class="p">:</span>     <span class="ow">and</span>    <span class="err">$</span><span class="mh">0xfffffff0</span><span class="p">,</span><span class="o">%</span><span class="nx">esp</span>
-   <span class="mh">0x0804843f</span> <span class="o">&lt;+</span><span class="mi">6</span><span class="o">&gt;</span><span class="p">:</span>     <span class="nb">sub</span>    <span class="err">$</span><span class="mh">0x20</span><span class="p">,</span><span class="o">%</span><span class="nx">esp</span>
-   <span class="mh">0x08048442</span> <span class="o">&lt;+</span><span class="mi">9</span><span class="o">&gt;</span><span class="p">:</span>     <span class="nx">movl</span>   <span class="err">$</span><span class="mh">0x0</span><span class="p">,</span><span class="mh">0x1c</span><span class="p">(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>  <span class="err">#</span> <span class="err">给</span><span class="nb">result</span><span class="err">变量赋</span><span class="mi">0</span><span class="err">值</span>
-   <span class="mh">0x0804844a</span> <span class="o">&lt;+</span><span class="mi">17</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">movl</span>   <span class="err">$</span><span class="mh">0x2</span><span class="p">,</span><span class="mh">0x4</span><span class="p">(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>   <span class="err">#</span> <span class="err">将第</span><span class="mi">2</span><span class="err">个参数压栈</span><span class="p">(</span><span class="err">该参数偏移为</span><span class="nx">esp</span><span class="o">+</span><span class="mh">0x04</span><span class="p">)</span>
-   <span class="mh">0x08048452</span> <span class="o">&lt;+</span><span class="mi">25</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">movl</span>   <span class="err">$</span><span class="mh">0x1</span><span class="p">,(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>      <span class="err">#</span> <span class="err">将第</span><span class="mi">1</span><span class="err">个参数压栈</span><span class="p">(</span><span class="err">该参数偏移为</span><span class="nx">esp</span><span class="o">+</span><span class="mh">0x00</span><span class="p">)</span>
-   <span class="mh">0x08048459</span> <span class="o">&lt;+</span><span class="mi">32</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nb">call</span>   <span class="mh">0x804841c</span> <span class="o">&lt;</span><span class="nb">add</span><span class="o">&gt;</span>  <span class="err">#</span> <span class="err">调用</span><span class="nb">add</span><span class="err">函数</span>
-   <span class="mh">0x0804845e</span> <span class="o">&lt;+</span><span class="mi">37</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">mov</span>    <span class="o">%</span><span class="nx">eax</span><span class="p">,</span><span class="mh">0x1c</span><span class="p">(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>  <span class="err">#</span> <span class="err">将</span><span class="nb">add</span><span class="err">函数的返回值赋给</span><span class="nb">result</span><span class="err">变量</span>
-   <span class="mh">0x08048462</span> <span class="o">&lt;+</span><span class="mi">41</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">mov</span>    <span class="mh">0x1c</span><span class="p">(</span><span class="o">%</span><span class="nx">esp</span><span class="p">),</span><span class="o">%</span><span class="nx">eax</span>
-   <span class="mh">0x08048466</span> <span class="o">&lt;+</span><span class="mi">45</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">mov</span>    <span class="o">%</span><span class="nx">eax</span><span class="p">,</span><span class="mh">0x4</span><span class="p">(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>
-   <span class="mh">0x0804846a</span> <span class="o">&lt;+</span><span class="mi">49</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">movl</span>   <span class="err">$</span><span class="mh">0x8048510</span><span class="p">,(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>
-   <span class="mh">0x08048471</span> <span class="o">&lt;+</span><span class="mi">56</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nb">call</span>   <span class="mh">0x80482f0</span> <span class="o">&lt;</span><span class="nx">printf</span><span class="p">@</span><span class="nx">plt</span><span class="o">&gt;</span>
-   <span class="mh">0x08048476</span> <span class="o">&lt;+</span><span class="mi">61</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">mov</span>    <span class="err">$</span><span class="mh">0x0</span><span class="p">,</span><span class="o">%</span><span class="nx">eax</span>
-   <span class="mh">0x0804847b</span> <span class="o">&lt;+</span><span class="mi">66</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">leave</span>  
-   <span class="mh">0x0804847c</span> <span class="o">&lt;+</span><span class="mi">67</span><span class="o">&gt;</span><span class="p">:</span>    <span class="nx">ret</span>    
-<span class="nb">End</span> <span class="nx">of</span> <span class="nx">assembler</span> <span class="nx">dump.</span>
-</pre></div>
-
-
+<p><code>(gdb) disassemble main 
+Dump of assembler code for function main:
+   0x08048439 &lt;+0&gt;:     push   %ebp
+   0x0804843a &lt;+1&gt;:     mov    %esp,%ebp
+   0x0804843c &lt;+3&gt;:     and    $0xfffffff0,%esp
+   0x0804843f &lt;+6&gt;:     sub    $0x20,%esp
+   0x08048442 &lt;+9&gt;:     movl   $0x0,0x1c(%esp)  # 给result变量赋0值
+   0x0804844a &lt;+17&gt;:    movl   $0x2,0x4(%esp)   # 将第2个参数压栈(该参数偏移为esp+0x04)
+   0x08048452 &lt;+25&gt;:    movl   $0x1,(%esp)      # 将第1个参数压栈(该参数偏移为esp+0x00)
+   0x08048459 &lt;+32&gt;:    call   0x804841c &lt;add&gt;  # 调用add函数
+   0x0804845e &lt;+37&gt;:    mov    %eax,0x1c(%esp)  # 将add函数的返回值赋给result变量
+   0x08048462 &lt;+41&gt;:    mov    0x1c(%esp),%eax
+   0x08048466 &lt;+45&gt;:    mov    %eax,0x4(%esp)
+   0x0804846a &lt;+49&gt;:    movl   $0x8048510,(%esp)
+   0x08048471 &lt;+56&gt;:    call   0x80482f0 &lt;printf@plt&gt;
+   0x08048476 &lt;+61&gt;:    mov    $0x0,%eax
+   0x0804847b &lt;+66&gt;:    leave  
+   0x0804847c &lt;+67&gt;:    ret    
+End of assembler dump.</code></p>
 <p>可以看到，参数是在add函数调用前压栈，换句话说，参数压栈由调用者进行，参数存储在调用者的栈空间中，下面再看一下进入add函数后都做了什么：</p>
-<div class="highlight"><pre><span class="p">(</span><span class="nx">gdb</span><span class="p">)</span> <span class="nx">disassemble</span> <span class="nx">add</span>
-<span class="nx">Dump</span> <span class="nx">of</span> <span class="nx">assembler</span> <span class="nx">code</span> <span class="k">for</span> <span class="kd">function</span> <span class="nx">add</span><span class="o">:</span>
-   <span class="mh">0x0804841c</span> <span class="o">&lt;+</span><span class="mi">0</span><span class="o">&gt;:</span>     <span class="nx">push</span>   <span class="o">%</span><span class="nx">ebp</span>             <span class="err">#</span> <span class="err">将</span><span class="nx">ebp</span><span class="err">压栈</span><span class="p">(</span><span class="err">保存函数调用者的栈基址</span><span class="p">)</span>
-   <span class="mh">0x0804841d</span> <span class="o">&lt;+</span><span class="mi">1</span><span class="o">&gt;:</span>     <span class="nx">mov</span>    <span class="o">%</span><span class="nx">esp</span><span class="p">,</span><span class="o">%</span><span class="nx">ebp</span>        <span class="err">#</span> <span class="err">将</span><span class="nx">ebp</span><span class="err">指向栈顶</span><span class="nx">esp</span><span class="p">(</span><span class="err">设置当前函数的栈基址</span><span class="p">)</span>
-   <span class="mh">0x0804841f</span> <span class="o">&lt;+</span><span class="mi">3</span><span class="o">&gt;:</span>     <span class="nx">sub</span>    <span class="nx">$0x10</span><span class="p">,</span><span class="o">%</span><span class="nx">esp</span>       <span class="err">#</span> <span class="err">分配栈空间</span><span class="p">(</span><span class="err">栈向低地址方向生长</span><span class="p">)</span>
-   <span class="mh">0x08048422</span> <span class="o">&lt;+</span><span class="mi">6</span><span class="o">&gt;:</span>     <span class="nx">movl</span>   <span class="nx">$0x0</span><span class="p">,</span><span class="o">-</span><span class="mh">0x4</span><span class="p">(</span><span class="o">%</span><span class="nx">ebp</span><span class="p">)</span>  <span class="err">#</span> <span class="err">给</span><span class="nx">result</span><span class="err">变量赋</span><span class="mi">0</span><span class="err">值</span><span class="p">(</span><span class="err">该变量偏移为</span><span class="nx">ebp</span><span class="o">-</span><span class="mh">0x04</span><span class="p">)</span>
-   <span class="mh">0x08048429</span> <span class="o">&lt;+</span><span class="mi">13</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="mh">0xc</span><span class="p">(</span><span class="o">%</span><span class="nx">ebp</span><span class="p">),</span><span class="o">%</span><span class="nx">eax</span>   <span class="err">#</span> <span class="err">将第</span><span class="mi">2</span><span class="err">个参数的值赋给</span><span class="nx">eax</span><span class="p">(</span><span class="err">准备运算</span><span class="p">)</span>
-   <span class="mh">0x0804842c</span> <span class="o">&lt;+</span><span class="mi">16</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="mh">0x8</span><span class="p">(</span><span class="o">%</span><span class="nx">ebp</span><span class="p">),</span><span class="o">%</span><span class="nx">edx</span>   <span class="err">#</span> <span class="err">将第</span><span class="mi">1</span><span class="err">个参数的值赋给</span><span class="nx">edx</span><span class="p">(</span><span class="err">准备运算</span><span class="p">)</span>
-   <span class="mh">0x0804842f</span> <span class="o">&lt;+</span><span class="mi">19</span><span class="o">&gt;:</span>    <span class="nx">add</span>    <span class="o">%</span><span class="nx">edx</span><span class="p">,</span><span class="o">%</span><span class="nx">eax</span>        <span class="err">#</span> <span class="err">加法运算</span><span class="p">(</span><span class="nx">edx</span><span class="o">+</span><span class="nx">eax</span><span class="p">)</span><span class="err">，结果保存在</span><span class="nx">eax</span><span class="err">中</span>
-   <span class="mh">0x08048431</span> <span class="o">&lt;+</span><span class="mi">21</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="o">%</span><span class="nx">eax</span><span class="p">,</span><span class="o">-</span><span class="mh">0x4</span><span class="p">(</span><span class="o">%</span><span class="nx">ebp</span><span class="p">)</span>  <span class="err">#</span> <span class="err">将运算结果</span><span class="nx">eax</span><span class="err">赋给</span><span class="nx">result</span><span class="err">变量</span>
-   <span class="mh">0x08048434</span> <span class="o">&lt;+</span><span class="mi">24</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="o">-</span><span class="mh">0x4</span><span class="p">(</span><span class="o">%</span><span class="nx">ebp</span><span class="p">),</span><span class="o">%</span><span class="nx">eax</span>  <span class="err">#</span> <span class="err">将</span><span class="nx">result</span><span class="err">变量的值赋给</span><span class="nx">eax</span><span class="p">(</span><span class="nx">eax</span><span class="err">将作为函数返回值</span><span class="p">)</span>
-   <span class="mh">0x08048437</span> <span class="o">&lt;+</span><span class="mi">27</span><span class="o">&gt;:</span>    <span class="nx">leave</span>                   <span class="err">#</span> <span class="err">恢复函数调用者的栈基址</span><span class="p">(</span><span class="nx">pop</span> <span class="o">%</span><span class="nx">ebp</span><span class="p">)</span>
-   <span class="mh">0x08048438</span> <span class="o">&lt;+</span><span class="mi">28</span><span class="o">&gt;:</span>    <span class="nx">ret</span>                     <span class="err">#</span> <span class="err">返回</span><span class="p">(</span><span class="err">准备执行下条指令</span><span class="p">)</span>
-<span class="nx">End</span> <span class="nx">of</span> <span class="nx">assembler</span> <span class="nx">dump</span><span class="p">.</span>
-</pre></div>
-
-
+<p><code>(gdb) disassemble add
+Dump of assembler code for function add:
+   0x0804841c &lt;+0&gt;:     push   %ebp             # 将ebp压栈(保存函数调用者的栈基址)
+   0x0804841d &lt;+1&gt;:     mov    %esp,%ebp        # 将ebp指向栈顶esp(设置当前函数的栈基址)
+   0x0804841f &lt;+3&gt;:     sub    $0x10,%esp       # 分配栈空间(栈向低地址方向生长)
+   0x08048422 &lt;+6&gt;:     movl   $0x0,-0x4(%ebp)  # 给result变量赋0值(该变量偏移为ebp-0x04)
+   0x08048429 &lt;+13&gt;:    mov    0xc(%ebp),%eax   # 将第2个参数的值赋给eax(准备运算)
+   0x0804842c &lt;+16&gt;:    mov    0x8(%ebp),%edx   # 将第1个参数的值赋给edx(准备运算)
+   0x0804842f &lt;+19&gt;:    add    %edx,%eax        # 加法运算(edx+eax)，结果保存在eax中
+   0x08048431 &lt;+21&gt;:    mov    %eax,-0x4(%ebp)  # 将运算结果eax赋给result变量
+   0x08048434 &lt;+24&gt;:    mov    -0x4(%ebp),%eax  # 将result变量的值赋给eax(eax将作为函数返回值)
+   0x08048437 &lt;+27&gt;:    leave                   # 恢复函数调用者的栈基址(pop %ebp)
+   0x08048438 &lt;+28&gt;:    ret                     # 返回(准备执行下条指令)
+End of assembler dump.</code></p>
 <p>进入add函数后，首先进行的操作是将当前的栈基址ebp压栈(此栈基址是调用者main函数的)，然后将ebp指向栈顶esp，接下来再进行函数内的处理流程。函数结束前，会将函数调用者的栈基址恢复，然后返回准备执行下一指令。这个过程中，栈上的空间会是下面的样子：</p>
 <p><img alt="函数调用过程中栈的情况" src="/images/articles/201310/dia_function_stack.png" /></p>
 <p>可以发现，每调用一次函数，都会对调用者的栈基址(ebp)进行压栈操作，并且由于栈基址是由当时栈顶指针(esp)而来，会发现，各层函数的栈基址很巧妙的构成了一个链，即当前的栈基址指向下一层函数栈基址所在的位置，如下图所示：</p>
 <p><img alt="调用栈中各层函数栈基址间的关系" src="/images/articles/201310/dia_dump_stack.png" /></p>
 <p>了解了函数的调用过程，想要回溯调用栈也就很简单了，首先获取当前函数的栈基址(寄存器ebp)的值，然后获取该地址所指向的栈的值，该值也就是下层函数的栈基址，找到下层函数的栈基址后，重复刚才的动作，即可以将每一层函数的栈基址都找出来，这也就是我们所需要的调用栈了。</p>
 <p>下面是根据原理实现的一段获取函数调用栈的代码，供参考。</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<p>``` c</p>
+<h1 id="include_1">include <stdio.h></h1>
+<p>/<em> 打印调用栈的最大深度 </em>/</p>
+<h1 id="define-dump_stack_depth_max-16">define DUMP_STACK_DEPTH_MAX 16</h1>
+<p>/<em> 获取寄存器ebp的值 </em>/
+void get_ebp(unsigned long <em>ebp) {
+    <strong>asm</strong> <strong>volatile</strong> (
+        "mov %%ebp, %0"
+        :"=m"(</em>ebp)
+        ::"memory");
+}</p>
+<p>/<em> 获取调用栈 </em>/
+int dump_stack(void **stack, int size) {
+    unsigned long ebp = 0;
+    int depth = 0;</p>
+<pre><code>/* 1.得到首层函数的栈基址 */
+get_ebp(&amp;ebp);
 
-<span class="cm">/* 打印调用栈的最大深度 */</span>
-<span class="cp">#define DUMP_STACK_DEPTH_MAX 16</span>
+/* 2.逐层回溯栈基址 */
+for (depth = 0; (depth &lt; size) &amp;&amp; (0 != ebp) &amp;&amp; (0 != *(unsigned long *)ebp) &amp;&amp; (ebp != *(unsigned long *)ebp); ++depth) {
+    stack[depth] = (void *)(*(unsigned long *)(ebp + sizeof(unsigned long)));
+    ebp = *(unsigned long *)ebp;
+}
 
-<span class="cm">/* 获取寄存器ebp的值 */</span>
-<span class="kt">void</span> <span class="nf">get_ebp</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">ebp</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">__asm__</span> <span class="n">__volatile__</span> <span class="p">(</span>
-        <span class="s">&quot;mov %%ebp, %0&quot;</span>
-        <span class="o">:</span><span class="s">&quot;=m&quot;</span><span class="p">(</span><span class="o">*</span><span class="n">ebp</span><span class="p">)</span>
-        <span class="o">::</span><span class="s">&quot;memory&quot;</span><span class="p">);</span>
-<span class="p">}</span>
+return depth;
+</code></pre>
+<p>}</p>
+<p>/<em> 测试函数 2 </em>/
+void test_meloner() {
+    void *stack[DUMP_STACK_DEPTH_MAX] = {0};
+    int stack_depth = 0;
+    int i = 0;</p>
+<pre><code>/* 获取调用栈 */
+stack_depth = dump_stack(stack, DUMP_STACK_DEPTH_MAX);
 
-<span class="cm">/* 获取调用栈 */</span>
-<span class="kt">int</span> <span class="nf">dump_stack</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">stack</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">ebp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+/* 打印调用栈 */
+printf(" Stack Track: \r\n");
+for (i = 0; i &lt; stack_depth; ++i) {
+    printf(" [%d] %p \r\n", i, stack[i]);
+}
 
-    <span class="cm">/* 1.得到首层函数的栈基址 */</span>
-    <span class="n">get_ebp</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ebp</span><span class="p">);</span>
-
-    <span class="cm">/* 2.逐层回溯栈基址 */</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">(</span><span class="n">depth</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">0</span> <span class="o">!=</span> <span class="n">ebp</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">0</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="n">ebp</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">ebp</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="n">ebp</span><span class="p">);</span> <span class="o">++</span><span class="n">depth</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">stack</span><span class="p">[</span><span class="n">depth</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">ebp</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)));</span>
-        <span class="n">ebp</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="n">ebp</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="n">depth</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/* 测试函数 2 */</span>
-<span class="kt">void</span> <span class="nf">test_meloner</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">stack</span><span class="p">[</span><span class="n">DUMP_STACK_DEPTH_MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-    <span class="kt">int</span> <span class="n">stack_depth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="cm">/* 获取调用栈 */</span>
-    <span class="n">stack_depth</span> <span class="o">=</span> <span class="n">dump_stack</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">DUMP_STACK_DEPTH_MAX</span><span class="p">);</span>
-
-    <span class="cm">/* 打印调用栈 */</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot; Stack Track: </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stack_depth</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot; [%d] %p </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">stack</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/* 测试函数 1 */</span>
-<span class="kt">void</span> <span class="nf">test_hutaow</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">test_meloner</span><span class="p">();</span>
-    <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/* 主函数 */</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="n">test_hutaow</span><span class="p">();</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
+return;
+</code></pre>
+<p>}</p>
+<p>/<em> 测试函数 1 </em>/
+void test_hutaow() {
+    test_meloner();
+    return;
+}</p>
+<p>/<em> 主函数 </em>/
+int main(int argc, char *argv[]) {
+    test_hutaow();
+    return 0;
+}
+```</p>
 <p>源文件下载：<a href="/downloads/code/dumpstack.c">链接</a></p>
 <p>执行<code>gcc dumpstack.c -o dumpstack</code>编译并运行，执行结果如下：</p>
-<div class="highlight"><pre> <span class="n">Stack</span> <span class="n">Track</span><span class="o">:</span> 
- <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="mh">0x8048475</span> 
- <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mh">0x8048508</span> 
- <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="mh">0x804855c</span> 
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="mh">0x804856a</span>
-</pre></div>
+<pre><code> Stack Track: 
+ [0] 0x8048475 
+ [1] 0x8048508 
+ [2] 0x804855c 
+ [3] 0x804856a
+</code></pre>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></li>
         <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
+        <li><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/19/linux-signal">Linux信号处理机制</a></li>
-        <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
+        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
     </ul>
 </section>
     <hr/>
