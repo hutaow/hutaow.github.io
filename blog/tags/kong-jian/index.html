@@ -65,24 +65,25 @@
 <p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
 <!-- more -->
 
-<p>``` c++
-class CHutaow : 
-    // 添加到控件的派生类列表中
-    public IObjectSafetyImpl<CHutaow, INTERFACESAFE_FOR_UNTRUSTED_CALLER|INTERFACESAFE_FOR_UNTRUSTED_DATA>
-    ...
-    {
-        public:</p>
-<pre><code>    BEGIN_COM_MAP(CHutaow)
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">CHutaow</span> <span class="o">:</span><span class="err"> </span>
+    <span class="c1">// 添加到控件的派生类列表中</span>
+    <span class="k">public</span> <span class="n">IObjectSafetyImpl</span><span class="o">&lt;</span><span class="n">CHutaow</span><span class="p">,</span> <span class="n">INTERFACESAFE_FOR_UNTRUSTED_CALLER</span><span class="o">|</span><span class="n">INTERFACESAFE_FOR_UNTRUSTED_DATA</span><span class="o">&gt;</span>
+    <span class="p">...</span>
+    <span class="p">{</span>
+        <span class="nl">public:</span>
 
-    COM_INTERFACE_ENTRY(IObjectSafety) //创建IObjectSafety的映射
+        <span class="n">BEGIN_COM_MAP</span><span class="p">(</span><span class="n">CHutaow</span><span class="p">)</span>
 
-    ...
+        <span class="n">COM_INTERFACE_ENTRY</span><span class="p">(</span><span class="n">IObjectSafety</span><span class="p">)</span><span class="err"> </span><span class="c1">//创建IObjectSafety的映射</span>
 
-    END_COM_MAP()
-    ...
-}
-</code></pre>
-<p>```</p>
+        <span class="p">...</span>
+
+        <span class="n">END_COM_MAP</span><span class="p">()</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+</pre></div>
+
+
 <p>PS: 如果出现"'IObjectSafetyImpl' : base class undefined"的错误，则需要添加"atlctl.h"头文件。</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">阅读全文</a>

@@ -61,25 +61,68 @@
                 <h2><a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">Linux中查看进程占用内存的情况</a></h2>
                 <div class="summary"><hr />
 <p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
-<p><code>shell
-cat /proc/[pid]/status</code></p>
+<div class="highlight"><pre><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span><span class="o">/</span><span class="n">status</span>
+</pre></div>
+
+
 <h4 id="_1">说明</h4>
 <p><code>/proc/[pid]/status</code>中所保存的信息除了内存信息，还包括进程IDs、信号等信息，此处暂时只介绍内存相关的信息。</p>
-<p>字段        |说明
-------------|------------
-VmPeak      |进程所使用的虚拟内存的峰值
-VmSize      |进程当前使用的虚拟内存的大小
-VmLck       |已经锁住的物理内存的大小（锁住的物理内存不能交换到硬盘）
-VmHWM       |进程所使用的物理内存的峰值
-VmRSS       |进程当前使用的物理内存的大小
-VmData      |进程占用的数据段大小
-VmStk       |进程占用的栈大小
-VmExe       |进程占用的代码段大小（不包括库）
-VmLib       |进程所加载的动态库所占用的内存大小（可能与其它进程共享）
-VmPTE       |进程占用的页表大小（交换表项数量）
-VmSwap      |进程所使用的交换区的大小</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VmPeak</td>
+<td>进程所使用的虚拟内存的峰值</td>
+</tr>
+<tr>
+<td>VmSize</td>
+<td>进程当前使用的虚拟内存的大小</td>
+</tr>
+<tr>
+<td>VmLck</td>
+<td>已经锁住的物理内存的大小（锁住的物理内存不能交换到硬盘）</td>
+</tr>
+<tr>
+<td>VmHWM</td>
+<td>进程所使用的物理内存的峰值</td>
+</tr>
+<tr>
+<td>VmRSS</td>
+<td>进程当前使用的物理内存的大小</td>
+</tr>
+<tr>
+<td>VmData</td>
+<td>进程占用的数据段大小</td>
+</tr>
+<tr>
+<td>VmStk</td>
+<td>进程占用的栈大小</td>
+</tr>
+<tr>
+<td>VmExe</td>
+<td>进程占用的代码段大小（不包括库）</td>
+</tr>
+<tr>
+<td>VmLib</td>
+<td>进程所加载的动态库所占用的内存大小（可能与其它进程共享）</td>
+</tr>
+<tr>
+<td>VmPTE</td>
+<td>进程占用的页表大小（交换表项数量）</td>
+</tr>
+<tr>
+<td>VmSwap</td>
+<td>进程所使用的交换区的大小</td>
+</tr>
+</tbody>
+</table>
 <h4 id="_2">举例</h4>
-<p>显示进程<code>cron</code>的内存信息 ...</p>
+<p>显示进程<code>cron</code>的内存信息，通过 ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">阅读全文</a>
                     </div>
@@ -91,8 +134,11 @@ VmSwap      |进程所使用的交换区的大小</p>
                 <div class="summary"><hr />
 <p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
 <p>设置个定时任务（执行<code>crontab -e</code>编辑任务列表）：</p>
-<p><code>0 8 * * * passwd -u username
-0 12 * * * passwd -l username</code></p>
+<div class="highlight"><pre><span class="mi">0</span> <span class="mi">8</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">u</span> <span class="n">username</span>
+<span class="mi">0</span> <span class="mi">12</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">l</span> <span class="n">username</span>
+</pre></div>
+
+
 <p>其中<code>username</code>替换成想限制的用户名；命令<code>passwd -u</code>是锁定用户，<code>passwd -l</code>解锁。</p>
 <p>附：设置cron定时任务列表的格式：<code>分 时 日 月 星期 命令</code>，如果时间字段是<code>*</code>则表示所有，还可以加上<code>/n</code>表示每隔n个单位时间执行一次；最后跟需要执行的命令。</p>
                     <div align="right">
@@ -107,22 +153,28 @@ VmSwap      |进程所使用的交换区的大小</p>
 <p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
 <h3 id="1-libpcap">1 安装libpcap库</h3>
 <p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
-<p><code>bash
-./configure
+<div class="highlight"><pre>./configure
 make
-make install</code></p>
+make install
+</pre></div>
+
+
 <h3 id="2">2 实例代码</h3>
 <p>代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。</p>
 <p>首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下：</p>
-<p>``` c</p>
-<h1 id="ifndef-basetype_h">ifndef <em>BASETYPE_H</em></h1>
-<h1 id="define-basetype_h">define <em>BASETYPE_H</em></h1>
-<h1 id="define-ok-0">define OK (0)</h1>
-<h1 id="define-error-1">define ERROR (1)</h1>
-<h1 id="define-yes-1">define YES (1)</h1>
-<h1 id="define-no-0">define NO (0)</h1>
-<p>typedef void VOID;</p>
-<p>typedef char CHAR ...</p>
+<div class="highlight"><pre><span class="cp">#ifndef _BASETYPE_H_</span>
+<span class="cp">#define _BASETYPE_H_</span>
+
+<span class="cp">#define OK (0)</span>
+<span class="cp">#define ERROR (1)</span>
+
+<span class="cp">#define YES (1)</span>
+<span class="cp">#define NO (0)</span>
+
+<span class="k">typedef</span> <span class="kt">void</span> <span class="n">VOID</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="kt">char</span> <span class="n">CHAR</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">char ...</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">阅读全文</a>
                     </div>
@@ -133,11 +185,13 @@ make install</code></p>
                 <h2><a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">在多个文件中批量查找/替换字符串</a></h2>
                 <div class="summary"><hr />
 <p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
-<p><code>bash
-grep string -rl /path</code></p>
+<div class="highlight"><pre>grep string -rl /path
+</pre></div>
+
+
 <p>在目录中查找并替换指定的字符串（如下所示，将path目录中将所有文件中的oldstring字符串替换成newstring）</p>
-<p><code>bash
-sed -i "s/oldstring/newstring/g" `grep oldstring -rl /path`</code></p>
+<div class="highlight"><pre>sed -i <span class="s2">&quot;s/oldstring/newstring/g&quot;</span> <span class="sb">`</span>grep oldstring -rl /path<span class="sb">`</span>
+</pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">阅读全文</a>
                     </div>
@@ -150,23 +204,27 @@ sed -i "s/oldstring/newstring/g" `grep oldstring -rl /path`</code></p>
 <p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <!-- more -->
 
-<p>``` bash
-!!$HOME/.Xdefaults
-Rxvt.preeditType: root</p>
-<p>!!窗口大小及标题
+<div class="highlight"><pre>!!<span class="nv">$HOME</span>/.Xdefaults
+Rxvt.preeditType: root
+
+!!窗口大小及标题
 Rxvt.geometry: 80x25
-Rxvt.title: hutaow-rxvt</p>
-<p>!!输入法设置
-Rxvt.inputMethod: fcitx</p>
-<p>!!透明度设置
-!Rxvt.transparent: true
+Rxvt.title: hutaow-rxvt
+
+!!输入法设置
+Rxvt.inputMethod: fcitx
+
+!!透明度设置
+!Rxvt.transparent: <span class="nb">true</span>
 !Rxvt.shading: 110
 !Rxvt.tintColor: grey
-!Rxvt.inheritPixmap: false</p>
-<p>!!扩展设置
-Rxvt.perl-ext-common: default, matcher, fullscreen</p>
-<p>!!URL操作
-Rxvt.urlLauncher: /usr/bin ...</p></!-->
+!Rxvt.inheritPixmap: <span class="nb">false</span>
+
+!!扩展设置
+Rxvt.perl-ext-common: default, matcher, fullscreen
+
+!!URL操作
+Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">阅读全文</a>
                     </div>
@@ -181,12 +239,18 @@ Rxvt.urlLauncher: /usr/bin ...</p></!-->
 <p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
 <p>下载地址：<a href="http://ctags.sourceforge.net">http://ctags.sourceforge.net</a></p>
 <p>使用方式：在代码的根目录执行如下命令即可生成tag文件：</p>
-<p><code>ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .</code></p>
+<div class="highlight"><pre><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
+</pre></div>
+
+
 <!-- more -->
 
 <p>这个命令有点长，可以在<code>.vimrc</code>的文件中加个键盘映射，像下面的样子，这样只需要按下<code>CTRL+F12</code>即可生成tag文件了。</p>
-<p><code>map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .</code></p>
-<p>另外，如果需要指明源代码的语言，则需要加上<code>--languages ...</code></p></!-->
+<div class="highlight"><pre><span class="n">map</span> <span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">F12</span><span class="o">&gt;</span> <span class="o">:!</span><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
+</pre></div>
+
+
+<p>另外，如果需要指明源代码的语言，则需要加上 ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/22/vim-development-environment">阅读全文</a>
                     </div>
@@ -201,12 +265,18 @@ Rxvt.urlLauncher: /usr/bin ...</p></!-->
 
 <h3 id="_1">安装输入法</h3>
 <p>执行下面的命令安装FCITX：</p>
-<p><code>pacman -S fcitx-im</code></p>
+<div class="highlight"><pre><span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">fcitx</span><span class="o">-</span><span class="n">im</span>
+</pre></div>
+
+
 <h3 id="_2">配置环境变量</h3>
 <p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
-<p><code>export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"</code></p>
+<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="s">&quot;@im=fcitx&quot;</span>
+</pre></div>
+
+
 <p>配置后重新登录生效，使用<code>CTRL+空格</code>激活输入法，如果发现fcitx没有运行，则直接在命令行里执行<code>fcitx</code>即可。</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">阅读全文</a>
@@ -274,7 +344,13 @@ export XMODIFIERS="@im=fcitx"</code></p>
 <h3 id="2">2 信号类型</h3>
 <p>Linux支持的信号类型可以参考下面给出的列表。</p>
 <h4 id="21-posix1-1990">2.1 在POSIX.1-1990标准中的信号列表</h4>
-<p>信号        |值         |动作       |说明 ...</p></!-->
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>值</th>
+<th>动作</th>
+<th>说明 ...</th></tr></thead></table></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/19/linux-signal">阅读全文</a>
                     </div>

@@ -137,18 +137,27 @@
 <p>伪造过程中所需要的服务器成功消息，可以尝试通过修改上面抓包内容来构造。</p>
 <h4 id="5">5 主机重定向</h4>
 <p>前面3.2节中提到到过，客户端所连接的服务器地址是<code>42.156.140.44</code>，相信不会有人把IP直接写死在代码里的，起码是个域名，那一定会发DNS请求，DNS解析结果会缓存在主机上，执行一下下面的命令，来看看当前Windows主机上的DNS缓存列表：</p>
-<p><code>ipconfig /displaydns</code></p>
+<div class="highlight"><pre><span class="n">ipconfig</span> <span class="o">/</span><span class="n">displaydns</span>
+</pre></div>
+
+
 <p>从列表里搜索IP地址，找到如下信息：</p>
-<p><code>s2.xiami.com
-    ----------------------------------------
-    记录名称. . . . . . . : s2.xiami.com
-    记录类型. . . . . . . : 1
-    生存时间. . . . . . . : 50
-    数据长度. . . . . . . : 4
-    部分. . . . . . . . . : 答案
-    A (主机)记录  . . . . : 42.156.140.44</code></p>
+<div class="highlight"><pre>    <span class="n">s2</span><span class="p">.</span><span class="n">xiami</span><span class="p">.</span><span class="n">com</span>
+    <span class="o">----------------------------------------</span>
+    <span class="err">记录名称</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="o">:</span> <span class="n">s2</span><span class="p">.</span><span class="n">xiami</span><span class="p">.</span><span class="n">com</span>
+    <span class="err">记录类型</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="o">:</span> <span class="mi">1</span>
+    <span class="err">生存时间</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="o">:</span> <span class="mi">50</span>
+    <span class="err">数据长度</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="o">:</span> <span class="mi">4</span>
+    <span class="err">部分</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="o">:</span> <span class="err">答案</span>
+    <span class="n">A</span> <span class="p">(</span><span class="err">主机</span><span class="p">)</span><span class="err">记录</span>  <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="o">:</span> <span class="mf">42.156.140.44</span>
+</pre></div>
+
+
 <p>看来域名就是<code>s2.xiami.com</code>了，修改Windows的hosts文件（<code>%windir%\system32\drivers\etc\hosts</code>）中添加下面一条关联项，将<code>s2.xiami.com</code>指向伪造的服务器（这里直接使用本机环回地址）：</p>
-<p><code>127.0.0.1 s2.xiami.com</code></p>
+<div class="highlight"><pre><span class="mf">127.0.0.1</span> <span class="n">s2</span><span class="p">.</span><span class="n">xiami</span><span class="p">.</span><span class="n">com</span>
+</pre></div>
+
+
 <h4 id="6">6 伪造服务器</h4>
 <p>伪造服务器越简单越好，直接用Python写个TCP的服务器，只要有客户端连接发消息（假设只有目标程序会连接，也不用管发的是什么消息），就直接返回伪造好的内容。</p>
 <p>代码如下所示，服务器响应的数据先从真实服务器的TCP负载拷贝过来：</p>
@@ -186,10 +195,10 @@
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">德赛西威音乐e栈的破解程序</a></li>
-        <li><a href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing">入侵检测与响应系统的信息共享</a></li>
         <li><a href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">使用 PyQT 作为 Python 的图形界面</a></li>
         <li><a href="http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort">Snort安装IDMEF插件</a></li>
         <li><a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">将 Python 脚本转换为可执行程序</a></li>
+        <li><a href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing">入侵检测与响应系统的信息共享</a></li>
     </ul>
 </section>
     <hr/>

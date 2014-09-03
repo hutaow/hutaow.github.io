@@ -100,19 +100,23 @@
                 </div>
                 <hr />
 <p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
-<p><code>find ./ -type d -exec chmod 755 {} \;</code></p>
+<div class="highlight"><pre><span class="n">find</span> <span class="p">.</span><span class="o">/</span> <span class="o">-</span><span class="n">type</span> <span class="n">d</span> <span class="o">-</span><span class="n">exec</span> <span class="n">chmod</span> <span class="mi">755</span> <span class="p">{}</span> <span class="err">\</span><span class="p">;</span>
+</pre></div>
+
+
 <p>递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）</p>
-<p><code>find ./ -type f -exec chmod 644 {} \;</code></p>
+<div class="highlight"><pre><span class="n">find</span> <span class="p">.</span><span class="o">/</span> <span class="o">-</span><span class="n">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">exec</span> <span class="n">chmod</span> <span class="mi">644</span> <span class="p">{}</span> <span class="err">\</span><span class="p">;</span>
+</pre></div>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
-        <li><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></li>
+        <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
+        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
+        <li><a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">Fedora 9 无法启动KDE的解决办法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">终端下使用代理的方法</a></li>
         <li><a href="http://hutaow.com/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems">解决MPlayer中文字幕显示问题</a></li>
-        <li><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux">Linux中改变网卡的速度</a></li>
     </ul>
 </section>
     <hr/>

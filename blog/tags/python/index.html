@@ -95,16 +95,17 @@
 
 <h3 id="1">1 配置转换脚本</h3>
 <p>新建一个Python脚本文件，如<code>setup.py</code>，内容如下：</p>
-<p>``` python
-import sys
-from cx_Freeze import setup, Executable</p>
-<p>base = None
-if sys.platform == "win32":
-    base = "Win32GUI"</p>
-<p>setup(  name = "MyApp",
-        version = "0.1",
-        description = "My PyQT application!",
-        executables = [Executable("pyqt_example ...</p></!-->
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">cx_Freeze</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Executable</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;win32&quot;</span><span class="p">:</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="s">&quot;Win32GUI&quot;</span>
+
+<span class="n">setup</span><span class="p">(</span>  <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;MyApp&quot;</span><span class="p">,</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;My PyQT application!&quot;</span><span class="p">,</span>
+        <span class="n">executables</span> <span class="o">=</span> <span class="p">[</span><span class="n">Executable</span><span class="p">(</span><span class="s">&quot;pyqt_example.py ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">阅读全文</a>
                     </div>
@@ -123,10 +124,10 @@ if sys.platform == "win32":
 <p>PyQT以QT为基础，跨平台（可以运行在Windows、Linux/Unix、MacOS等操作系统上），同时PyQT的界面可以直接用QT Designer做出来，可以很容易移植到其它语言上（C++、C#、Java、Perl等）。</p>
 <h3 id="2">2 例子</h3>
 <p>为了更好了了解PyQT，先写一段简单的示例代码，例子中通过点击按钮，来改变文本框所显示的内容，具体代码含义直接通过注释说明了。</p>
-<p>``` python</p>
-<h1 id="-coding-utf-8-">-<em>- coding: utf-8 -</em>-</h1>
-<p>import sys
-from PyQt4 import ...</p></!-->
+<div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtCore ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/16/using-pyqt-as-graphical-interface-for-python">阅读全文</a>
                     </div>

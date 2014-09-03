@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="新版VirtualBox在Fedora下不能启动虚拟机的解决办法"/>
             <meta property="og:url" content="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora"/>
-            <meta property="og:description" content="前一段时间突然发现VirtualBox被Sun收购了，改名成&#34;Sun xVM VirtualBox&#34;，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误： VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root. 于是按照提示在终端里执行&#34;sudo /etc/init.d/vboxdrv setup ..."/>
+            <meta property="og:description" content="前一段时间突然发现VirtualBox被Sun收购了，改名成&#34;Sun xVM VirtualBox&#34;，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误： VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root. 于是按照提示在终端里执行&#34;sudo /etc/init.d/vboxdrv ..."/>
             <meta property="article:published_time" content="2008-07-18" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
@@ -100,9 +100,11 @@
                 </div>
                 <hr />
 <p>前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
-<pre><code>VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. 
-Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
-</code></pre>
+<div class="highlight"><pre><span class="n">VirtualBox</span> <span class="n">kernel</span> <span class="n">driver</span> <span class="n">not</span> <span class="n">installed</span><span class="p">.</span> <span class="n">The</span> <span class="n">vboxdrv</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">was</span> <span class="n">either</span> <span class="n">not</span> <span class="n">loaded</span> <span class="n">or</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">was</span> <span class="n">not</span> <span class="n">created</span> <span class="k">for</span> <span class="n">some</span> <span class="n">reason</span><span class="p">.</span><span class="err"> </span>
+<span class="n">Re</span><span class="o">-</span><span class="n">setup</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">by</span> <span class="n">executing</span> <span class="err">‘</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">setup</span><span class="err">’</span> <span class="n">as</span> <span class="n">root</span><span class="p">.</span>
+</pre></div>
+
+
 <p>于是按照提示在终端里执行"sudo /etc/init.d/vboxdrv setup"时，却又提示VirtualBox的内核模块无法编译，查看日志发现是没有安装内核源代码。</p>
 <!-- more -->
 
@@ -114,10 +116,10 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://hutaow.com/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora">Fedora禁止自动挂载分区的方法</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems">解决MPlayer中文字幕显示问题</a></li>
-        <li><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux">Linux中改变网卡的速度</a></li>
+        <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
+        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
+        <li><a href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions">Linux中批量设置目录或文件权限的方法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">Fedora 9 无法启动KDE的解决办法</a></li>
     </ul>
 </section>
     <hr/>

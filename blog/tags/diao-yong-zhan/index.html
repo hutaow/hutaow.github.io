@@ -64,27 +64,30 @@
 <!-- more -->
 
 <p>要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子：</p>
-<p>```</p>
-<h1 id="include">include <stdio.h></h1>
-<p>int add(int a, int b) {
-    int result = 0;</p>
-<pre><code>result = a + b;
+<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
 
-return result;
-</code></pre>
-<p>}</p>
-<p>int main(int argc, char *argv[]) {
-    int result = 0;</p>
-<pre><code>result = test(1, 2);
+<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-printf("result = %d \r\n", result);
+    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
 
-return 0;
-</code></pre>
-<p>}
-```</p>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;result = %d </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <p>使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的：</p>
-<p><code>(gdb) disassemble main ...</code></p></!-->
+<div class="highlight"><pre><span class="p">(</span><span class="nx">gdb ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/15/dump-stack">阅读全文</a>
                     </div>
@@ -96,27 +99,30 @@ return 0;
                 <div class="summary"><hr />
 <p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
-<p>``` c
-/<em> 获取函数调用栈 </em>/
-int backtrace(void **buffer, int size);</p>
-<p>/<em> 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 </em>/
-char <em><em>backtrace_symbols(void </em>const </em>buffer, int size);</p>
-<p>/<em> 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 </em>/
-void backtrace_symbols_fd(void <em>const </em>buffer, int size, int fd);
-```</p>
+<div class="highlight"><pre><span class="cm">/* 获取函数调用栈 */</span>
+<span class="kt">int</span> <span class="nf">backtrace</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */</span>
+<span class="kt">char</span> <span class="o">**</span><span class="nf">backtrace_symbols</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 */</span>
+<span class="kt">void</span> <span class="nf">backtrace_symbols_fd</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fd</span><span class="p">);</span>
+</pre></div>
+
+
 <!-- more -->
 
 <p>示例代码：</p>
-<p>``` c</p>
-<h1 id="include">include <execinfo.h></h1>
-<h1 id="include_1">include <stdio.h></h1>
-<h1 id="include_2">include <stdlib.h></h1>
-<p>/<em> 打印调用栈的最大深度 </em>/</p>
-<h1 id="define-dump_stack_depth_max-16">define DUMP_STACK_DEPTH_MAX 16</h1>
-<p>/<em> 打印调用栈函数 </em>/
-void dump_trace() {
-    void <em>stack_trace[DUMP_STACK_DEPTH_MAX] = {0};
-    char </em>*stack_strings ...</p></!-->
+<div class="highlight"><pre><span class="cp">#include &lt;execinfo.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;stdlib.h&gt;</span>
+
+<span class="cm">/* 打印调用栈的最大深度 */</span>
+<span class="cp">#define DUMP_STACK_DEPTH_MAX 16</span>
+
+<span class="cm">/* 打印调用栈函数 */</span>
+<span class="kt">void</span> <span class="nf">dump_trace</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">stack_trace ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">阅读全文</a>
                     </div>

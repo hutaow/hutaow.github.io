@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="基于libpcap的开发实例"/>
             <meta property="og:url" content="http://hutaow.com/blog/2014/05/29/libpcap-based-development"/>
-            <meta property="og:description" content="libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。 1 安装libpcap库 从TCPDUMP官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。 bash ./configure make make install 2 实例代码 代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。 首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下： ``` c ifndef BASETYPE_H define BASETYPE_H define OK (0) define ERROR (1) define YES (1) define NO (0) typedef void VOID; typedef char CHAR ..."/>
+            <meta property="og:description" content="libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。 1 安装libpcap库 从TCPDUMP官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。 ./configure make make install 2 实例代码 代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。 首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下： #ifndef _BASETYPE_H_ #define _BASETYPE_H_ #define OK (0) #define ERROR (1) #define YES (1) #define NO (0) typedef void VOID; typedef char CHAR; typedef char ..."/>
             <meta property="article:published_time" content="2014-05-29" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
@@ -102,204 +102,229 @@
 <p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
 <h3 id="1-libpcap">1 安装libpcap库</h3>
 <p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
-<p><code>bash
-./configure
+<div class="highlight"><pre>./configure
 make
-make install</code></p>
+make install
+</pre></div>
+
+
 <h3 id="2">2 实例代码</h3>
 <p>代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。</p>
 <p>首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下：</p>
-<p>``` c</p>
-<h1 id="ifndef-basetype_h">ifndef <em>BASETYPE_H</em></h1>
-<h1 id="define-basetype_h">define <em>BASETYPE_H</em></h1>
-<h1 id="define-ok-0">define OK (0)</h1>
-<h1 id="define-error-1">define ERROR (1)</h1>
-<h1 id="define-yes-1">define YES (1)</h1>
-<h1 id="define-no-0">define NO (0)</h1>
-<p>typedef void VOID;</p>
-<p>typedef char CHAR;
-typedef char INT8;
-typedef short INT16;
-typedef int INT32;
-typedef long long INT64;
-typedef long LONG;</p>
-<p>typedef unsigned char UCHAR;
-typedef unsigned char UINT8;
-typedef unsigned short UINT16;
-typedef unsigned int UINT32;
-typedef unsigned long long UINT64;
-typedef unsigned long ULONG;</p>
-<h1 id="define-debug_infofmt-printfinfo-fmtrn-va_args">define DEBUG_INFO(fmt, ...) printf("[Info] "fmt"\r\n", ##<strong>VA_ARGS</strong>)</h1>
-<h1 id="define-debug_eventfmt-printfevent-fmtrn-va_args">define DEBUG_EVENT(fmt, ...) printf("[Event] "fmt"\r\n", ##<strong>VA_ARGS</strong>)</h1>
-<h1 id="define-debug_errorfmt-printferror-fmtrn-va_args">define DEBUG_ERROR(fmt, ...) printf("[Error] "fmt"\r\n", ##<strong>VA_ARGS</strong>)</h1>
-<h1 id="endif-_basetype_h__">endif /<em> _BASETYPE_H__ </em>/</h1>
-<p>```</p>
+<div class="highlight"><pre><span class="cp">#ifndef _BASETYPE_H_</span>
+<span class="cp">#define _BASETYPE_H_</span>
+
+<span class="cp">#define OK (0)</span>
+<span class="cp">#define ERROR (1)</span>
+
+<span class="cp">#define YES (1)</span>
+<span class="cp">#define NO (0)</span>
+
+<span class="k">typedef</span> <span class="kt">void</span> <span class="n">VOID</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="kt">char</span> <span class="n">CHAR</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">char</span> <span class="n">INT8</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">short</span> <span class="n">INT16</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">int</span> <span class="n">INT32</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">INT64</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="n">LONG</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">UCHAR</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">UINT8</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">UINT16</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">UINT32</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">UINT64</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">ULONG</span><span class="p">;</span>
+
+<span class="cp">#define DEBUG_INFO(fmt, ...) printf(&quot;[Info] &quot;fmt&quot;\r\n&quot;, ##__VA_ARGS__)</span>
+<span class="cp">#define DEBUG_EVENT(fmt, ...) printf(&quot;[Event] &quot;fmt&quot;\r\n&quot;, ##__VA_ARGS__)</span>
+<span class="cp">#define DEBUG_ERROR(fmt, ...) printf(&quot;[Error] &quot;fmt&quot;\r\n&quot;, ##__VA_ARGS__)</span>
+
+<span class="cp">#endif </span><span class="cm">/* _BASETYPE_H__ */</span><span class="cp"></span>
+</pre></div>
+
+
 <p>接下来是源文件（traffic.c），libpcap的接口调用过程都在这里，具体说明可以参考代码注释：</p>
-<p>``` c</p>
-<h1 id="include">include <stdio.h></h1>
-<h1 id="include_1">include <string.h></h1>
-<h1 id="include_2">include <stdlib.h></h1>
-<h1 id="include_3">include <pcap.h></h1>
-<h1 id="include-basetypeh">include "basetype.h"</h1>
-<p>/<em> 网卡名称最大长度 </em>/</p>
-<h1 id="define-device_name_len-1024">define DEVICE_NAME_LEN (1024)</h1>
-<p>/<em> 过滤条件最大长度 </em>/</p>
-<h1 id="define-filter_len-10-1024">define FILTER_LEN (10 * 1024)</h1>
-<p>/<em> 当前选择抓包的网卡索引及名称 </em>/
-UINT32 g_uiDeviceIndex = -1;
-CHAR g_acDeviceName[DEVICE_NAME_LEN + 1] = {0};</p>
-<p>/<em> 条件过滤器 </em>/
-CHAR g_acFilter[FILTER_LEN + 1] = {0};</p>
-<p>/<em> 报文处理回调函数 </em>/
-VOID traffic_callback(UINT8 <em>pucCntx, const struct pcap_pkthdr </em>pstPktHdr, const UINT8 *pucPacket);</p>
-<p>/<em> 主函数 </em>/
-int main(int argc, char <em>argv[])
-{
-    CHAR </em>pcDev = NULL;
-    CHAR acErrBuff[PCAP_ERRBUF_SIZE] = {0};
-    INT32 iLoop = 0;</p>
-<pre><code>UINT32 uiShowUsageOnly = NO;
-INT32 iRet = 0;
+<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;string.h&gt;</span>
+<span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;pcap.h&gt;</span>
 
-pcap_t *pstHandle = NULL;
-pcap_if_t *pstAllDevices = NULL;
-pcap_if_t *pstDevice = NULL;
+<span class="cp">#include &quot;basetype.h&quot;</span>
 
-struct bpf_program stFilter = {0};
-bpf_u_int32 uiIP = 0;
-bpf_u_int32 uiNetmask = 0;
+<span class="cm">/* 网卡名称最大长度 */</span>
+<span class="cp">#define DEVICE_NAME_LEN (1024)</span>
 
-/* 0.命令行参数处理 */
-if (1 &gt;= argc)
-{
-    uiShowUsageOnly = YES;
-}
-else if (2 == argc)
-{
-    g_uiDeviceIndex = atoi(argv[1]);
-}
-else /* 3 &lt;= argc */
-{
-    g_uiDeviceIndex = atoi(argv[1]);
-    strncpy(g_acFilter, argv[2], FILTER_LEN);
-    DEBUG_EVENT("Set filter: %s", g_acFilter);
-}
+<span class="cm">/* 过滤条件最大长度 */</span>
+<span class="cp">#define FILTER_LEN (10 * 1024)</span>
 
-/* 1.查找所有的网卡接口 */
-iRet = pcap_findalldevs(&amp;pstAllDevices, acErrBuff);
-if (OK != iRet)
-{
-    DEBUG_ERROR("Could not find any device! (%s)", acErrBuff);
-    return ERROR;
-}
+<span class="cm">/* 当前选择抓包的网卡索引及名称 */</span>
+<span class="n">UINT32</span> <span class="n">g_uiDeviceIndex</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">CHAR</span> <span class="n">g_acDeviceName</span><span class="p">[</span><span class="n">DEVICE_NAME_LEN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 
-/* 2.打印网卡接口列表 */
-iLoop = 0;
-pstDevice = pstAllDevices;
-DEBUG_INFO("Device list:");
-while (NULL != pstDevice)
-{
-    if (g_uiDeviceIndex == iLoop)
-    {
-        DEBUG_INFO(" -&gt; (%d) %s (%s)", iLoop, pstDevice-&gt;name, pstDevice-&gt;description);
-        strncpy(g_acDeviceName, pstDevice-&gt;name, DEVICE_NAME_LEN);
-    }
-    else
-    {
-        DEBUG_INFO("    (%d) %s (%s)", iLoop, pstDevice-&gt;name, pstDevice-&gt;description);
-    }
-    pstDevice = pstDevice-&gt;next;
-    ++iLoop;
-}
+<span class="cm">/* 条件过滤器 */</span>
+<span class="n">CHAR</span> <span class="n">g_acFilter</span><span class="p">[</span><span class="n">FILTER_LEN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 
-pcap_freealldevs(pstAllDevices);
-pstAllDevices = NULL;
+<span class="cm">/* 报文处理回调函数 */</span>
+<span class="n">VOID</span> <span class="nf">traffic_callback</span><span class="p">(</span><span class="n">UINT8</span> <span class="o">*</span><span class="n">pucCntx</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">pcap_pkthdr</span> <span class="o">*</span><span class="n">pstPktHdr</span><span class="p">,</span> <span class="k">const</span> <span class="n">UINT8</span> <span class="o">*</span><span class="n">pucPacket</span><span class="p">);</span>
 
-if (YES == uiShowUsageOnly)
-{
-    DEBUG_INFO("Usage:");
-    DEBUG_INFO("    traffic &lt;Device Index&gt; [Filter] ");
-    return OK;
-}
+<span class="cm">/* 主函数 */</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">CHAR</span> <span class="o">*</span><span class="n">pcDev</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">CHAR</span> <span class="n">acErrBuff</span><span class="p">[</span><span class="n">PCAP_ERRBUF_SIZE</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="n">INT32</span> <span class="n">iLoop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-if (0 == strlen(g_acDeviceName))
-{
-    DEBUG_ERROR("Could not found the selected device(%u)!", g_uiDeviceIndex);
-    return OK;
-}
+    <span class="n">UINT32</span> <span class="n">uiShowUsageOnly</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
+    <span class="n">INT32</span> <span class="n">iRet</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-DEBUG_EVENT("Select device: (%u) %s", g_uiDeviceIndex, g_acDeviceName);
+    <span class="kt">pcap_t</span> <span class="o">*</span><span class="n">pstHandle</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="kt">pcap_if_t</span> <span class="o">*</span><span class="n">pstAllDevices</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="kt">pcap_if_t</span> <span class="o">*</span><span class="n">pstDevice</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 
-/* 3.查询网卡信息(IP/Mask) */
-iRet = pcap_lookupnet(g_acDeviceName, &amp;uiIP, &amp;uiNetmask, acErrBuff);
-if (OK != iRet)
-{
-    DEBUG_ERROR("Could not get the device infomation! (%s)", acErrBuff);
-    uiIP = 0;
-    uiNetmask = 0xFFFFFFFF;
+    <span class="k">struct</span> <span class="n">bpf_program</span> <span class="n">stFilter</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="n">bpf_u_int32</span> <span class="n">uiIP</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">bpf_u_int32</span> <span class="n">uiNetmask</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    /* 查询网卡信息失败不影响业务功能 继续处理 */
-}
+    <span class="cm">/* 0.命令行参数处理 */</span>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">argc</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">uiShowUsageOnly</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="mi">2</span> <span class="o">==</span> <span class="n">argc</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">g_uiDeviceIndex</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="cm">/* 3 &lt;= argc */</span>
+    <span class="p">{</span>
+        <span class="n">g_uiDeviceIndex</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="n">strncpy</span><span class="p">(</span><span class="n">g_acFilter</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">FILTER_LEN</span><span class="p">);</span>
+        <span class="n">DEBUG_EVENT</span><span class="p">(</span><span class="s">&quot;Set filter: %s&quot;</span><span class="p">,</span> <span class="n">g_acFilter</span><span class="p">);</span>
+    <span class="p">}</span>
 
-/* 4.打开指定的网卡 */
-/*   参数1:网卡名称 参数2:最大数据长度 参数3:超时时间(ms) 参数4:错误信息 */
-pstHandle = pcap_open_live(g_acDeviceName, 65535, 1, 500, acErrBuff);
-if (NULL == pstHandle)
-{
-    DEBUG_ERROR("Could not open device %s! (%s)", g_acDeviceName, acErrBuff);
-    return ERROR;
-}
+    <span class="cm">/* 1.查找所有的网卡接口 */</span>
+    <span class="n">iRet</span> <span class="o">=</span> <span class="n">pcap_findalldevs</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pstAllDevices</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">OK</span> <span class="o">!=</span> <span class="n">iRet</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not find any device! (%s)&quot;</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>
+    <span class="p">}</span>
 
-/* 5.设置过滤条件 */
-/*   参数1:网卡句柄 参数2:过滤器 参数3:过滤条件字符串 参数4:是否优化 参数5:网络掩码 */
-iRet = pcap_compile(pstHandle, &amp;stFilter, g_acFilter, 0, uiNetmask);
-if (OK != iRet)
-{
-    DEBUG_ERROR("Could not parse the filter \"%s\"! (%s)", g_acFilter, pcap_geterr(pstHandle));
-    return ERROR;
-}
-iRet = pcap_setfilter(pstHandle, &amp;stFilter);
-if (OK != iRet)
-{
-    DEBUG_ERROR("Could not set the filter \"%s\"! (%s)", g_acFilter, pcap_geterr(pstHandle));
-    return ERROR;
-}
+    <span class="cm">/* 2.打印网卡接口列表 */</span>
+    <span class="n">iLoop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">pstDevice</span> <span class="o">=</span> <span class="n">pstAllDevices</span><span class="p">;</span>
+    <span class="n">DEBUG_INFO</span><span class="p">(</span><span class="s">&quot;Device list:&quot;</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">!=</span> <span class="n">pstDevice</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">g_uiDeviceIndex</span> <span class="o">==</span> <span class="n">iLoop</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">DEBUG_INFO</span><span class="p">(</span><span class="s">&quot; -&gt; (%d) %s (%s)&quot;</span><span class="p">,</span> <span class="n">iLoop</span><span class="p">,</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">description</span><span class="p">);</span>
+            <span class="n">strncpy</span><span class="p">(</span><span class="n">g_acDeviceName</span><span class="p">,</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">DEVICE_NAME_LEN</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">DEBUG_INFO</span><span class="p">(</span><span class="s">&quot;    (%d) %s (%s)&quot;</span><span class="p">,</span> <span class="n">iLoop</span><span class="p">,</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">description</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">pstDevice</span> <span class="o">=</span> <span class="n">pstDevice</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="o">++</span><span class="n">iLoop</span><span class="p">;</span>
+    <span class="p">}</span>
 
-/* 6.抓包处理（阻塞） */
-/*   参数1:网卡句柄 参数2:报文个数 参数3:回调函数 参数4:上下文信息 */
-pcap_loop(pstHandle, -1, traffic_callback, NULL);
+    <span class="n">pcap_freealldevs</span><span class="p">(</span><span class="n">pstAllDevices</span><span class="p">);</span>
+    <span class="n">pstAllDevices</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 
-/* 7.关闭网卡 */
-pcap_close(pstHandle);
-pstHandle = NULL;
+    <span class="k">if</span> <span class="p">(</span><span class="n">YES</span> <span class="o">==</span> <span class="n">uiShowUsageOnly</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_INFO</span><span class="p">(</span><span class="s">&quot;Usage:&quot;</span><span class="p">);</span>
+        <span class="n">DEBUG_INFO</span><span class="p">(</span><span class="s">&quot;    traffic &lt;Device Index&gt; [Filter] &quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+    <span class="p">}</span>
 
-return OK;
-</code></pre>
-<p>}</p>
-<p>/<em> 报文处理回调函数 </em>/
-VOID traffic_callback(UINT8 <em>pucCntx, const struct pcap_pkthdr </em>pstPktHdr, const UINT8 *pucPacket)
-{
-    DEBUG_EVENT("Receives a packet (%u bytes).", pstPktHdr-&gt;len);</p>
-<pre><code>return;
-</code></pre>
-<p>}
-```</p>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">strlen</span><span class="p">(</span><span class="n">g_acDeviceName</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not found the selected device(%u)!&quot;</span><span class="p">,</span> <span class="n">g_uiDeviceIndex</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">DEBUG_EVENT</span><span class="p">(</span><span class="s">&quot;Select device: (%u) %s&quot;</span><span class="p">,</span> <span class="n">g_uiDeviceIndex</span><span class="p">,</span> <span class="n">g_acDeviceName</span><span class="p">);</span>
+
+    <span class="cm">/* 3.查询网卡信息(IP/Mask) */</span>
+    <span class="n">iRet</span> <span class="o">=</span> <span class="n">pcap_lookupnet</span><span class="p">(</span><span class="n">g_acDeviceName</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">uiIP</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">uiNetmask</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">OK</span> <span class="o">!=</span> <span class="n">iRet</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not get the device infomation! (%s)&quot;</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+        <span class="n">uiIP</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">uiNetmask</span> <span class="o">=</span> <span class="mh">0xFFFFFFFF</span><span class="p">;</span>
+
+        <span class="cm">/* 查询网卡信息失败不影响业务功能 继续处理 */</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* 4.打开指定的网卡 */</span>
+    <span class="cm">/*   参数1:网卡名称 参数2:最大数据长度 参数3:超时时间(ms) 参数4:错误信息 */</span>
+    <span class="n">pstHandle</span> <span class="o">=</span> <span class="n">pcap_open_live</span><span class="p">(</span><span class="n">g_acDeviceName</span><span class="p">,</span> <span class="mi">65535</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">pstHandle</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not open device %s! (%s)&quot;</span><span class="p">,</span> <span class="n">g_acDeviceName</span><span class="p">,</span> <span class="n">acErrBuff</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* 5.设置过滤条件 */</span>
+    <span class="cm">/*   参数1:网卡句柄 参数2:过滤器 参数3:过滤条件字符串 参数4:是否优化 参数5:网络掩码 */</span>
+    <span class="n">iRet</span> <span class="o">=</span> <span class="n">pcap_compile</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">stFilter</span><span class="p">,</span> <span class="n">g_acFilter</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">uiNetmask</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">OK</span> <span class="o">!=</span> <span class="n">iRet</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not parse the filter </span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;</span><span class="s">! (%s)&quot;</span><span class="p">,</span> <span class="n">g_acFilter</span><span class="p">,</span> <span class="n">pcap_geterr</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">iRet</span> <span class="o">=</span> <span class="n">pcap_setfilter</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">stFilter</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">OK</span> <span class="o">!=</span> <span class="n">iRet</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DEBUG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not set the filter </span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;</span><span class="s">! (%s)&quot;</span><span class="p">,</span> <span class="n">g_acFilter</span><span class="p">,</span> <span class="n">pcap_geterr</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* 6.抓包处理（阻塞） */</span>
+    <span class="cm">/*   参数1:网卡句柄 参数2:报文个数 参数3:回调函数 参数4:上下文信息 */</span>
+    <span class="n">pcap_loop</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">traffic_callback</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="cm">/* 7.关闭网卡 */</span>
+    <span class="n">pcap_close</span><span class="p">(</span><span class="n">pstHandle</span><span class="p">);</span>
+    <span class="n">pstHandle</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* 报文处理回调函数 */</span>
+<span class="n">VOID</span> <span class="nf">traffic_callback</span><span class="p">(</span><span class="n">UINT8</span> <span class="o">*</span><span class="n">pucCntx</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">pcap_pkthdr</span> <span class="o">*</span><span class="n">pstPktHdr</span><span class="p">,</span> <span class="k">const</span> <span class="n">UINT8</span> <span class="o">*</span><span class="n">pucPacket</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">DEBUG_EVENT</span><span class="p">(</span><span class="s">&quot;Receives a packet (%u bytes).&quot;</span><span class="p">,</span> <span class="n">pstPktHdr</span><span class="o">-&gt;</span><span class="n">len</span><span class="p">);</span>
+
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <p>另外补充一句，源文件中的<code>traffic_callback</code>为捕获报文后的回调处理函数，对报文的处理操作均可以在这里进行，<code>pstPktHdr</code>为报文头信息，<code>pucPacket</code>为报文数据指针。</p>
 <h3 id="3">3 编译</h3>
 <p>执行gcc编译，注意需要加上<code>-lpcap</code>选项，因为需要用到libpcap的库函数：</p>
-<p><code>bash
-gcc -o traffic traffic.c -lpcap</code></p>
+<div class="highlight"><pre>gcc -o traffic traffic.c -lpcap
+</pre></div>
+
+
 <p>或者可以直接写个Makefile方便后续编译：</p>
-<p>``` makefile
-CC=gcc
-LIBS=-lpcap
-OPTS=-ggdb3 -rdynamic</p>
-<p>traffic:
-    $(CC) -o traffic *.c $(LIBS) $(OPTS)</p>
-<p>all: traffic</p>
-<p>clean:
+<div class="highlight"><pre><span class="nv">CC</span><span class="o">=</span>gcc
+<span class="nv">LIBS</span><span class="o">=</span>-lpcap
+<span class="nv">OPTS</span><span class="o">=</span>-ggdb3 -rdynamic
+
+<span class="nf">traffic</span><span class="o">:</span>
+    <span class="k">$(</span>CC<span class="k">)</span> -o traffic *.c <span class="k">$(</span>LIBS<span class="k">)</span> <span class="k">$(</span>OPTS<span class="k">)</span>
+
+<span class="nf">all</span><span class="o">:</span> <span class="m">traffic</span>
+
+<span class="nf">clean</span><span class="o">:</span>
     rm traffic
-```</p>
+</pre></div>
+
+
 <h3 id="4">4 运行</h3>
 <p>直接执行<code>./traffic</code>显示可用的网卡列表，这里我们选择6号（无线网卡）进行抓包，运行效果如下图：</p>
 <p><img alt="Traffic Running with Filter" src="/images/articles/201405/traffic_running_with_filter.png" /></p>
@@ -312,11 +337,11 @@ OPTS=-ggdb3 -rdynamic</p>
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://hutaow.com/blog/2013/10/19/linux-signal">Linux信号处理机制</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
+        <li><a href="http://hutaow.com/blog/2013/10/19/linux-signal">Linux信号处理机制</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
-        <li><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></li>
+        <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
+        <li><a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">类型转换导致字符串大小计算错误的问题</a></li>
     </ul>
 </section>
     <hr/>

@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="我的VI配置文件"/>
             <meta property="og:url" content="http://hutaow.com/blog/2007/08/19/my-vi-config"/>
-            <meta property="og:description" content="``` &#34; 设置字符编码 set encoding=utf-8 set termencoding=utf-8 set fileencoding=utf-8 set fileencodings=utf-8,ucs-bom,gb2312,gb18030,gbk,cp936 &#34; 设置文件格式(unix=LF,dos=CRLF,mac=CR) set fileformat=unix set fileformats=unix,dos,mac &#34; 提示信息语言 set langmenu=en_US.utf-8 language messages en_US.utf-8 &#34; 开启文件类型检测 filetype on &#34; 开启语法高亮 syntax on &#34; 显示行号 set ..."/>
+            <meta property="og:description" content="&#34; 设置字符编码 set encoding=utf-8 set termencoding=utf-8 set fileencoding=utf-8 set fileencodings=utf-8,ucs-bom,gb2312,gb18030,gbk,cp936 &#34; 设置文件格式(unix=LF,dos=CRLF,mac=CR) set fileformat=unix set fileformats=unix,dos,mac &#34; 提示信息语言 set langmenu=en_US.utf-8 language messages en_US.utf-8 &#34; 开启文件类型检测 ..."/>
             <meta property="article:published_time" content="2007-08-19" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
@@ -99,89 +99,120 @@
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <hr />
-<p>```
-" 设置字符编码
-set encoding=utf-8
-set termencoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8,ucs-bom,gb2312,gb18030,gbk,cp936</p>
-<p>" 设置文件格式(unix=LF,dos=CRLF,mac=CR)
-set fileformat=unix
-set fileformats=unix,dos,mac</p>
-<p>" 提示信息语言
-set langmenu=en_US.utf-8
-language messages en_US.utf-8</p>
-<p>" 开启文件类型检测
-filetype on</p>
-<p>" 开启语法高亮
-syntax on</p>
-<p>" 显示行号
-set number</p>
-<p>" 设置缩进大小
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4</p>
-<p>" 将制表符用空格代替
-set expandtab</p>
-<p>" 关闭兼容模式(使用VIM的键盘模式)
-set nocompatible</p>
-<p>" 历史记录数量
-set history=1000</p>
-<p>" 设置关键字符(遇到以下字符连接的单词时不进行换行)
-set iskeyword+=_,$,@,%,#,-</p>
-<p>" 设置退格键模式
-set backspace=indent,eol,start</p>
-<p>" 设置列提示(右下角)
-set ruler</p>
-<p>" 设置状态提示(左下角)
-set showmode</p>
-<p>" 启动的时候不显示提示信息
-set shortmess=atI</p>
-<p>" 关闭错误信息响铃
-set noerrorbells</p>
-<p>" 设置(括号)匹配模式
-set showmatch</p>
-<p>" 搜索时实时匹配关键字
-set incsearch</p>
-<p>" 搜索时高亮关键字
-set hlsearch</p>
-<p>" 设置自动缩进
-set autoindent</p>
-<p>" 设置结构缩进(换行时缩进与当前行相同)
-set smartindent</p>
-<p>" 关闭自动备份
-set nobackup</p>
-<p>" 设置当前行/列高亮
-set cursorline
-" set cursorcolumn</p>
-<p>" 设置背景色主题
-set background=dark</p>
-<p>" 主题颜色
-colorscheme desert </p>
-<p>" 状态行显示内容
-set statusline=%F%m%r%h%w\ [FORMAT=%{&amp;ff}:%{&amp;fenc!=''?&amp;fenc:&amp;enc}]\ [TYPE=%Y]\ %r%h%=[POS=%l,%v][%p%%]\ [%{strftime(\"%Y/%m/%d\ %H:%M\")}]</p>
-<p>" 状态行显示模式(0=不显示,1=两个窗口以上显示,2=始终显示)
-set laststatus=2</p>
-<p>" 设置字体
-set guifont=Terminus:h10:cANSI</p>
-<p>" 设置窗口大小
-" set lines=35 columns=128</p>
-<p>" GUI 隐藏菜单栏
-" set guioptions-=m</p>
-<p>" GUI 隐藏工具栏
-set guioptions-=T
-```</p>
+<div class="highlight"><pre><span class="s">&quot; 设置字符编码</span>
+<span class="n">set</span> <span class="n">encoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">set</span> <span class="n">termencoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">set</span> <span class="n">fileencoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">set</span> <span class="n">fileencodings</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="n">ucs</span><span class="o">-</span><span class="n">bom</span><span class="p">,</span><span class="n">gb2312</span><span class="p">,</span><span class="n">gb18030</span><span class="p">,</span><span class="n">gbk</span><span class="p">,</span><span class="n">cp936</span>
+
+<span class="s">&quot; 设置文件格式(unix=LF,dos=CRLF,mac=CR)</span>
+<span class="n">set</span> <span class="n">fileformat</span><span class="o">=</span><span class="n">unix</span>
+<span class="n">set</span> <span class="n">fileformats</span><span class="o">=</span><span class="n">unix</span><span class="p">,</span><span class="n">dos</span><span class="p">,</span><span class="n">mac</span>
+
+<span class="s">&quot; 提示信息语言</span>
+<span class="n">set</span> <span class="n">langmenu</span><span class="o">=</span><span class="n">en_US</span><span class="p">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">language</span> <span class="n">messages</span> <span class="n">en_US</span><span class="p">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+
+<span class="s">&quot; 开启文件类型检测</span>
+<span class="n">filetype</span> <span class="n">on</span>
+
+<span class="s">&quot; 开启语法高亮</span>
+<span class="n">syntax</span> <span class="n">on</span>
+
+<span class="s">&quot; 显示行号</span>
+<span class="n">set</span> <span class="n">number</span>
+
+<span class="s">&quot; 设置缩进大小</span>
+<span class="n">set</span> <span class="n">tabstop</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">set</span> <span class="n">softtabstop</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">set</span> <span class="n">shiftwidth</span><span class="o">=</span><span class="mi">4</span>
+
+<span class="s">&quot; 将制表符用空格代替</span>
+<span class="n">set</span> <span class="n">expandtab</span>
+
+<span class="s">&quot; 关闭兼容模式(使用VIM的键盘模式)</span>
+<span class="n">set</span> <span class="n">nocompatible</span>
+
+<span class="s">&quot; 历史记录数量</span>
+<span class="n">set</span> <span class="n">history</span><span class="o">=</span><span class="mi">1000</span>
+
+<span class="s">&quot; 设置关键字符(遇到以下字符连接的单词时不进行换行)</span>
+<span class="n">set</span> <span class="n">iskeyword</span><span class="o">+=</span><span class="n">_</span><span class="p">,</span><span class="err">$</span><span class="p">,</span><span class="err">@</span><span class="p">,</span><span class="o">%</span><span class="p">,</span><span class="err">#</span><span class="p">,</span><span class="o">-</span>
+
+<span class="s">&quot; 设置退格键模式</span>
+<span class="n">set</span> <span class="n">backspace</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span><span class="n">eol</span><span class="p">,</span><span class="n">start</span>
+
+<span class="s">&quot; 设置列提示(右下角)</span>
+<span class="n">set</span> <span class="n">ruler</span>
+
+<span class="s">&quot; 设置状态提示(左下角)</span>
+<span class="n">set</span> <span class="n">showmode</span>
+
+<span class="s">&quot; 启动的时候不显示提示信息</span>
+<span class="n">set</span> <span class="n">shortmess</span><span class="o">=</span><span class="n">atI</span>
+
+<span class="s">&quot; 关闭错误信息响铃</span>
+<span class="n">set</span> <span class="n">noerrorbells</span>
+
+<span class="s">&quot; 设置(括号)匹配模式</span>
+<span class="n">set</span> <span class="n">showmatch</span>
+
+<span class="s">&quot; 搜索时实时匹配关键字</span>
+<span class="n">set</span> <span class="n">incsearch</span>
+
+<span class="s">&quot; 搜索时高亮关键字</span>
+<span class="n">set</span> <span class="n">hlsearch</span>
+
+<span class="s">&quot; 设置自动缩进</span>
+<span class="n">set</span> <span class="n">autoindent</span>
+
+<span class="s">&quot; 设置结构缩进(换行时缩进与当前行相同)</span>
+<span class="n">set</span> <span class="n">smartindent</span>
+
+<span class="s">&quot; 关闭自动备份</span>
+<span class="n">set</span> <span class="n">nobackup</span>
+
+<span class="s">&quot; 设置当前行/列高亮</span>
+<span class="n">set</span> <span class="n">cursorline</span>
+<span class="s">&quot; set cursorcolumn</span>
+
+<span class="s">&quot; 设置背景色主题</span>
+<span class="n">set</span> <span class="n">background</span><span class="o">=</span><span class="n">dark</span>
+
+<span class="s">&quot; 主题颜色</span>
+<span class="n">colorscheme</span> <span class="n">desert</span> 
+
+<span class="s">&quot; 状态行显示内容</span>
+<span class="n">set</span> <span class="n">statusline</span><span class="o">=%</span><span class="n">F</span><span class="o">%</span><span class="n">m</span><span class="o">%</span><span class="n">r</span><span class="o">%</span><span class="n">h</span><span class="o">%</span><span class="n">w</span><span class="err">\</span> <span class="p">[</span><span class="n">FORMAT</span><span class="o">=%</span><span class="p">{</span><span class="o">&amp;</span><span class="n">ff</span><span class="p">}</span><span class="o">:%</span><span class="p">{</span><span class="o">&amp;</span><span class="n">fenc</span><span class="o">!=</span><span class="err">&#39;&#39;</span><span class="o">?&amp;</span><span class="n">fenc</span><span class="o">:&amp;</span><span class="n">enc</span><span class="p">}]</span><span class="err">\</span> <span class="p">[</span><span class="n">TYPE</span><span class="o">=%</span><span class="n">Y</span><span class="p">]</span><span class="err">\</span> <span class="o">%</span><span class="n">r</span><span class="o">%</span><span class="n">h</span><span class="o">%=</span><span class="p">[</span><span class="n">POS</span><span class="o">=%</span><span class="n">l</span><span class="p">,</span><span class="o">%</span><span class="n">v</span><span class="p">][</span><span class="o">%</span><span class="n">p</span><span class="o">%%</span><span class="p">]</span><span class="err">\</span> <span class="p">[</span><span class="o">%</span><span class="p">{</span><span class="n">strftime</span><span class="p">(</span><span class="err">\</span><span class="s">&quot;%Y/%m/%d\ %H:%M</span><span class="se">\&quot;</span><span class="s">)}]</span>
+
+<span class="s">&quot; 状态行显示模式(0=不显示,1=两个窗口以上显示,2=始终显示)</span>
+<span class="n">set</span> <span class="n">laststatus</span><span class="o">=</span><span class="mi">2</span>
+
+<span class="s">&quot; 设置字体</span>
+<span class="n">set</span> <span class="n">guifont</span><span class="o">=</span><span class="n">Terminus</span><span class="o">:</span><span class="n">h10</span><span class="o">:</span><span class="n">cANSI</span>
+
+<span class="s">&quot; 设置窗口大小</span>
+<span class="s">&quot; set lines=35 columns=128</span>
+
+<span class="s">&quot; GUI 隐藏菜单栏</span>
+<span class="s">&quot; set guioptions-=m</span>
+
+<span class="s">&quot; GUI 隐藏工具栏</span>
+<span class="n">set</span> <span class="n">guioptions</span><span class="o">-=</span><span class="n">T</span>
+</pre></div>
+
+
 <p>源文件下载：<a href="/downloads/code/hutaow.vimrc">链接</a></p>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">配置 VIM 开发环境</a></li>
         <li><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 RXVT</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
-        <li><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems">解决MPlayer中文字幕显示问题</a></li>
+        <li><a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">配置 VIM 开发环境</a></li>
+        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
+        <li><a href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions">Linux中批量设置目录或文件权限的方法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">Fedora 9 无法启动KDE的解决办法</a></li>
     </ul>
 </section>
     <hr/>

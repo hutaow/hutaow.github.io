@@ -100,22 +100,28 @@
 <!-- more -->
 
 <p>找到以下提示行</p>
-<p><code>&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;
-&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;
-&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;
-&lt;merge key="volume.ignore" type="bool"&gt;false&lt;/merge&gt;</code></p>
+<div class="highlight"><pre><span class="c">&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;</span>
+<span class="c">&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;</span>
+<span class="c">&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;</span>
+<span class="nt">&lt;merge</span> <span class="na">key=</span><span class="s">&quot;volume.ignore&quot;</span> <span class="na">type=</span><span class="s">&quot;bool&quot;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/merge&gt;</span>
+</pre></div>
+
+
 <p>按照说明在提示之后添加对磁盘挂载的策略即可，比如我自己的硬盘就是</p>
-<p><code>&lt;match key="volume.fstype" string="vfat"&gt;
-  &lt;match key="volume.label" string="DATA"&gt;
-    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-  &lt;/match&gt;
-  &lt;match key="volume.label" string="MULTI"&gt;
-    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-  &lt;/match&gt;
-  &lt;match key="volume.label" string="BACKUP"&gt;
-    &lt;merge key="volume.ignore" type="bool"&gt;true&lt;/merge&gt;
-  &lt;/match&gt;
-&lt;/match&gt;</code></p>
+<div class="highlight"><pre><span class="nt">&lt;match</span> <span class="na">key=</span><span class="s">&quot;volume.fstype&quot;</span> <span class="na">string=</span><span class="s">&quot;vfat&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;match</span> <span class="na">key=</span><span class="s">&quot;volume.label&quot;</span> <span class="na">string=</span><span class="s">&quot;DATA&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;merge</span> <span class="na">key=</span><span class="s">&quot;volume.ignore&quot;</span> <span class="na">type=</span><span class="s">&quot;bool&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/merge&gt;</span>
+  <span class="nt">&lt;/match&gt;</span>
+  <span class="nt">&lt;match</span> <span class="na">key=</span><span class="s">&quot;volume.label&quot;</span> <span class="na">string=</span><span class="s">&quot;MULTI&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;merge</span> <span class="na">key=</span><span class="s">&quot;volume.ignore&quot;</span> <span class="na">type=</span><span class="s">&quot;bool&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/merge&gt;</span>
+  <span class="nt">&lt;/match&gt;</span>
+  <span class="nt">&lt;match</span> <span class="na">key=</span><span class="s">&quot;volume.label&quot;</span> <span class="na">string=</span><span class="s">&quot;BACKUP&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;merge</span> <span class="na">key=</span><span class="s">&quot;volume.ignore&quot;</span> <span class="na">type=</span><span class="s">&quot;bool&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/merge&gt;</span>
+  <span class="nt">&lt;/match&gt;</span>
+<span class="nt">&lt;/match&gt;</span>
+</pre></div>
+
+
 <p>其中"volume.fstype"后面的值就是匹配的文件系统，"volume.label"后面的值是匹配的卷标，"volume.ignore"中的参数是"true"，意思是忽略被匹配的分区。</p>
             </div>
             <!-- /.entry-content -->
@@ -123,10 +129,10 @@
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems">解决MPlayer中文字幕显示问题</a></li>
+        <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
+        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
-        <li><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></li>
+        <li><a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">Fedora 9 无法启动KDE的解决办法</a></li>
     </ul>
 </section>
     <hr/>

@@ -62,8 +62,11 @@
                 <div class="summary"><hr />
 <p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
 <p>设置个定时任务（执行<code>crontab -e</code>编辑任务列表）：</p>
-<p><code>0 8 * * * passwd -u username
-0 12 * * * passwd -l username</code></p>
+<div class="highlight"><pre><span class="mi">0</span> <span class="mi">8</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">u</span> <span class="n">username</span>
+<span class="mi">0</span> <span class="mi">12</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">l</span> <span class="n">username</span>
+</pre></div>
+
+
 <p>其中<code>username</code>替换成想限制的用户名；命令<code>passwd -u</code>是锁定用户，<code>passwd -l</code>解锁。</p>
 <p>附：设置cron定时任务列表的格式：<code>分 时 日 月 星期 命令</code>，如果时间字段是<code>*</code>则表示所有，还可以加上<code>/n</code>表示每隔n个单位时间执行一次；最后跟需要执行的命令。</p>
                     <div align="right">

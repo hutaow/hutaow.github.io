@@ -64,10 +64,10 @@
 <!-- more -->
 
 <p>找到以下提示行</p>
-<p><code>&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;
-&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;
-&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;
-&lt;merge key="volume ...</code></p></!-->
+<div class="highlight"><pre><span class="c">&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;</span>
+<span class="c">&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;</span>
+<span class="c">&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;</span>
+<span class="nt">&lt;merge</span> <span class="na">key=</span><span class="s">&quot;volume ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora">阅读全文</a>
                     </div>
@@ -78,14 +78,18 @@
                 <h2><a href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g">解决安装ntfs-3g时遇到的问题</a></h2>
                 <div class="summary"><hr />
 <p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行"mount -t ntfs-3g /dev/hdc5 /media/wdata"，结果提示：</p>
-<pre><code>FATAL: Module fuse not found.
-fuse: device not found, try 'modprobe fuse' first
-</code></pre>
+<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
+<span class="n">fuse</span><span class="o">:</span> <span class="n">device</span> <span class="n">not</span> <span class="n">found</span><span class="o">,</span> <span class="k">try</span> <span class="s1">&#39;modprobe fuse&#39;</span> <span class="n">first</span>
+</pre></div>
+
+
 <!-- more -->
 
 <p>冷不丁的冒出这么个错误提示，有点措手不及的感觉，于是按照提示执行"modprobe fuse"，结果又出来：</p>
-<pre><code>FATAL: Module fuse not found.
-</code></pre>
+<div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
+</pre></div>
+
+
 <p>没有fuse模块？用Google搜到了<a href="http://fuse.sourceforge.net">http://fuse.sourceforge.net ...</a></p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g">阅读全文</a>
@@ -109,9 +113,9 @@ fuse: device not found, try 'modprobe fuse' first
 
 <p>命令执行后会在hutaow目录下生成工程的所有文件。</p>
 <p>执行后终端输出如下：</p>
-<p><code>package: edu.bupt.hutaow
-out_dir: hutaow
-activity_name: example ...</code></p></!-->
+<div class="highlight"><pre><span class="kd">package</span><span class="o">:</span> <span class="n">edu</span><span class="o">.</span><span class="na">bupt</span><span class="o">.</span><span class="na">hutaow</span>
+<span class="n">out_dir</span><span class="o">:</span> <span class="n">hutaow</span>
+<span class="n">activity_name</span><span class="o">:</span> <span class="n">example ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/13/compile-android-project-in-command-line">阅读全文</a>
                     </div>
@@ -126,7 +130,10 @@ activity_name: example ...</code></p></!-->
 <!-- more -->
 
 <p>用管理员权限执行如下命令</p>
-<p><code>mii-tool -A 10baseT-FD eth0</code></p>
+<div class="highlight"><pre><span class="n">mii</span><span class="o">-</span><span class="n">tool</span> <span class="o">-</span><span class="n">A</span> <span class="mi">10</span><span class="n">baseT</span><span class="o">-</span><span class="n">FD</span> <span class="n">eth0</span>
+</pre></div>
+
+
 <p>eth0是网卡的名称，"10baseT-FD"是网卡的工作模式，如果要改回100Mbps的话这里填"100baseTx-FD"；</p>
 <p>FD指的是Full Duplex全双工，也可以是HD即Half Duplex半双工。</p>
                     <div align="right">
@@ -198,16 +205,20 @@ activity_name: example ...</code></p></!-->
 <!-- more -->
 
 <h3 id="1">1 首先按照程序的目录结构大致分析</h3>
-<pre><code>res/layout/   这个目录存放的就是布局用的xml文件，一般默认为main.xml
-res/values/   这个目录存放的是一堆常量的xml文件
-res/drawable/ 存放的是一些图片什么的，当然图标也在这里
-</code></pre>
+<div class="highlight"><pre><span class="n">res</span><span class="o">/</span><span class="n">layout</span><span class="o">/</span>   <span class="err">这个目录存放的就是布局用的</span><span class="n">xml</span><span class="err">文件，一般默认为</span><span class="n">main</span><span class="p">.</span><span class="n">xml</span>
+<span class="n">res</span><span class="o">/</span><span class="n">values</span><span class="o">/</span>   <span class="err">这个目录存放的是一堆常量的</span><span class="n">xml</span><span class="err">文件</span>
+<span class="n">res</span><span class="o">/</span><span class="n">drawable</span><span class="o">/</span> <span class="err">存放的是一些图片什么的，当然图标也在这里</span>
+</pre></div>
+
+
 <h3 id="2-layoutxml">2 下面主要对layout下的xml文件做个介绍，顺便也把布局的方法总结一下</h3>
 <h4 id="21">2.1 文件的开头</h4>
-<p><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;</code>
-这是在说明xml版本及字符编码</p>
-<h4 id="22">2.2 布局框架</h4>
-<p><code>&lt;LinearLayout xmlns:android="http://schemas ...</code></p></!-->
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nt">xml</span> <span class="nt">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nt">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="o">?&gt;</span>
+</pre></div>
+
+
+<p>这是在说明xml版本及字符编码</p>
+<h4 id="22">2.2 布局框架 ...</h4></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/01/28/understanding-on-the-android-layout">阅读全文</a>
                     </div>
@@ -224,11 +235,11 @@ res/drawable/ 存放的是一些图片什么的，当然图标也在这里
 
 <p>这种方法对我来说并不是很习惯，毕竟java用了那么长时间，在代码中直接setLayout感觉更舒服些。当然既然google采用了这种布局和代码分离的方式那就肯定有它的优点，看来还需要一点的时间来习惯这种布局方式。</p>
 <h4 id="2-android">2 总结：我自己对Android几个模块的理解</h4>
-<pre><code>Activity：类似java中的Applet或Frame，以我的理解，这个类提供了程序的最基本框架。
-Intent Receiver：翻译过来是“目的接收器”，和java中的listener类似，用于处理事件。
-Service：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。
-Content Provider：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。
-</code></pre>
+<div class="highlight"><pre><span class="n">Activity</span><span class="err">：类似</span><span class="n">java</span><span class="err">中的</span><span class="n">Applet</span><span class="err">或</span><span class="n">Frame</span><span class="err">，以我的理解，这个类提供了程序的最基本框架。</span>
+<span class="n">Intent</span> <span class="n">Receiver</span><span class="err">：翻译过来是“目的接收器”，和</span><span class="n">java</span><span class="err">中的</span><span class="n">listener</span><span class="err">类似，用于处理事件。</span>
+<span class="n">Service</span><span class="err">：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。</span>
+<span class="n">Content</span> <span class="n">Provider</span><span class="err">：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。</span>
+</pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/01/11/android-beginner-question">阅读全文</a>
                     </div>
@@ -247,9 +258,12 @@ Content Provider：主要用在数据存贮和交换，根据官方文档所说�
 <p>修改~/.bashrc文件，在文件末尾加入以下几行：</p>
 </li>
 </ol>
-<p><code>export JAVA_HOME=/usr/java/j2sdk1.x.x
-export PATH=$JAVA_HOME/bin:$PATH
-export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:$CLASSPATH</code></p>
+<div class="highlight"><pre><span class="n">export</span> <span class="n">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">j2sdk1</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span>
+<span class="n">export</span> <span class="n">PATH</span><span class="o">=</span><span class="err">$</span><span class="n">JAVA_HOME</span><span class="o">/</span><span class="n">bin</span><span class="o">:</span><span class="err">$</span><span class="n">PATH</span>
+<span class="n">export</span> <span class="n">CLASSPATH</span><span class="o">=</span><span class="p">.</span><span class="o">:</span><span class="err">$</span><span class="n">JAVA_HOME</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">tools</span><span class="p">.</span><span class="n">jar</span><span class="o">:</span><span class="err">$</span><span class="n">JAVA_HOME</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">dt</span><span class="p">.</span><span class="n">jar</span><span class="o">:</span><span class="err">$</span><span class="n">CLASSPATH</span>
+</pre></div>
+
+
 <p>最后重启终端或执行source ~/.bashrc即可。</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">阅读全文</a>

@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="Linux中查看进程占用内存的情况"/>
             <meta property="og:url" content="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux"/>
-            <meta property="og:description" content="Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号： shell cat /proc/[pid]/status 说明 /proc/[pid]/status中所保存的信息除了内存信息，还包括进程IDs、信号等信息，此处暂时只介绍内存相关的信息。 字段 |说明 ------------|------------ VmPeak |进程所使用的虚拟内存的峰值 VmSize |进程当前使用的虚拟内存的大小 VmLck |已经锁住的物理内存的大小（锁住的物理内存不能交换到硬盘） VmHWM |进程所使用的物理内存的峰值 VmRSS |进程当前使用的物理内存的大小 VmData |进程占用的数据段大小 VmStk |进程占用的栈大小 VmExe |进程占用的代码段大小（不包括库） VmLib |进程所加载的动态库所占用的内存大小（可能与其它进程共享） VmPTE |进程占用的页表大小（交换表项数量） VmSwap |进程所使用的交换区的大小 举例 显示进程cron的内存信息 ..."/>
+            <meta property="og:description" content="Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号： cat /proc/[pid]/status 说明 /proc/[pid]/status中所保存的信息除了内存信息，还包括进程IDs、信号等信息，此处暂时只介绍内存相关的信息。 字段 说明 VmPeak 进程所使用的虚拟内存的峰值 VmSize 进程当前使用的虚拟内存的大小 VmLck 已经锁住的物理内存的大小（锁住的物理内存不能交换到硬盘） VmHWM 进程所使用的物理内存的峰值 VmRSS 进程当前使用的物理内存的大小 VmData 进程占用的数据段大小 VmStk 进程占用的栈大小 VmExe 进程占用的代码段大小（不包括库） VmLib 进程所加载的动态库所占用的内存大小（可能与其它进程共享） VmPTE 进程占用的页表大小（交换表项数量） VmSwap 进程所使用的交换区的大小 举例 显示进程cron的内存信息，通过 ..."/>
             <meta property="article:published_time" content="2014-08-28" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
@@ -97,78 +97,121 @@
                 </div>
                 <hr />
 <p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
-<p><code>shell
-cat /proc/[pid]/status</code></p>
+<div class="highlight"><pre><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span><span class="o">/</span><span class="n">status</span>
+</pre></div>
+
+
 <h4 id="_1">说明</h4>
 <p><code>/proc/[pid]/status</code>中所保存的信息除了内存信息，还包括进程IDs、信号等信息，此处暂时只介绍内存相关的信息。</p>
-<p>字段        |说明
-------------|------------
-VmPeak      |进程所使用的虚拟内存的峰值
-VmSize      |进程当前使用的虚拟内存的大小
-VmLck       |已经锁住的物理内存的大小（锁住的物理内存不能交换到硬盘）
-VmHWM       |进程所使用的物理内存的峰值
-VmRSS       |进程当前使用的物理内存的大小
-VmData      |进程占用的数据段大小
-VmStk       |进程占用的栈大小
-VmExe       |进程占用的代码段大小（不包括库）
-VmLib       |进程所加载的动态库所占用的内存大小（可能与其它进程共享）
-VmPTE       |进程占用的页表大小（交换表项数量）
-VmSwap      |进程所使用的交换区的大小</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VmPeak</td>
+<td>进程所使用的虚拟内存的峰值</td>
+</tr>
+<tr>
+<td>VmSize</td>
+<td>进程当前使用的虚拟内存的大小</td>
+</tr>
+<tr>
+<td>VmLck</td>
+<td>已经锁住的物理内存的大小（锁住的物理内存不能交换到硬盘）</td>
+</tr>
+<tr>
+<td>VmHWM</td>
+<td>进程所使用的物理内存的峰值</td>
+</tr>
+<tr>
+<td>VmRSS</td>
+<td>进程当前使用的物理内存的大小</td>
+</tr>
+<tr>
+<td>VmData</td>
+<td>进程占用的数据段大小</td>
+</tr>
+<tr>
+<td>VmStk</td>
+<td>进程占用的栈大小</td>
+</tr>
+<tr>
+<td>VmExe</td>
+<td>进程占用的代码段大小（不包括库）</td>
+</tr>
+<tr>
+<td>VmLib</td>
+<td>进程所加载的动态库所占用的内存大小（可能与其它进程共享）</td>
+</tr>
+<tr>
+<td>VmPTE</td>
+<td>进程占用的页表大小（交换表项数量）</td>
+</tr>
+<tr>
+<td>VmSwap</td>
+<td>进程所使用的交换区的大小</td>
+</tr>
+</tbody>
+</table>
 <h4 id="_2">举例</h4>
 <p>显示进程<code>cron</code>的内存信息，通过<code>pidof cron</code>获取进程ID，或者通过<code>ps -aux | grep cron</code>查找进程ID。</p>
-<p><code>shell
-$ cat /proc/1161/status
-Name:   cron
-State:  S (sleeping)
-Tgid:   1161
-Ngid:   0
-Pid:    1161
-PPid:   1
-TracerPid:  0
-Uid:    0   0   0   0
-Gid:    0   0   0   0
-FDSize: 64
-Groups: 0 
-VmPeak:    23792 kB
-VmSize:    23656 kB
-VmLck:         0 kB
-VmPin:         0 kB
-VmHWM:      1040 kB
-VmRSS:      1004 kB
-VmData:      260 kB
-VmStk:       136 kB
-VmExe:        40 kB
-VmLib:      2668 kB
-VmPTE:        72 kB
-VmSwap:        0 kB
-Threads:    1
-SigQ:   0/15442
-SigPnd: 0000000000000000
-ShdPnd: 0000000000000000
-SigBlk: 0000000000000000
-SigIgn: 0000000000000000
-SigCgt: 0000000000010001
-CapInh: 0000000000000000
-CapPrm: 0000001fffffffff
-CapEff: 0000001fffffffff
-CapBnd: 0000001fffffffff
-Seccomp:    0
-Cpus_allowed:   3
-Cpus_allowed_list:  0-1
-Mems_allowed:   00000000,00000001
-Mems_allowed_list:  0
-voluntary_ctxt_switches:    151
-nonvoluntary_ctxt_switches: 0</code></p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="mi">1161</span><span class="o">/</span><span class="n">status</span>
+<span class="nl">Name:</span>   <span class="n">cron</span>
+<span class="nl">State:</span>  <span class="n">S</span> <span class="p">(</span><span class="n">sleeping</span><span class="p">)</span>
+<span class="nl">Tgid:</span>   <span class="mi">1161</span>
+<span class="nl">Ngid:</span>   <span class="mi">0</span>
+<span class="nl">Pid:</span>    <span class="mi">1161</span>
+<span class="nl">PPid:</span>   <span class="mi">1</span>
+<span class="nl">TracerPid:</span>  <span class="mi">0</span>
+<span class="nl">Uid:</span>    <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>
+<span class="nl">Gid:</span>    <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>
+<span class="nl">FDSize:</span> <span class="mi">64</span>
+<span class="nl">Groups:</span> <span class="mi">0</span> 
+<span class="nl">VmPeak:</span>    <span class="mi">23792</span> <span class="n">kB</span>
+<span class="nl">VmSize:</span>    <span class="mi">23656</span> <span class="n">kB</span>
+<span class="nl">VmLck:</span>         <span class="mi">0</span> <span class="n">kB</span>
+<span class="nl">VmPin:</span>         <span class="mi">0</span> <span class="n">kB</span>
+<span class="nl">VmHWM:</span>      <span class="mi">1040</span> <span class="n">kB</span>
+<span class="nl">VmRSS:</span>      <span class="mi">1004</span> <span class="n">kB</span>
+<span class="nl">VmData:</span>      <span class="mi">260</span> <span class="n">kB</span>
+<span class="nl">VmStk:</span>       <span class="mi">136</span> <span class="n">kB</span>
+<span class="nl">VmExe:</span>        <span class="mi">40</span> <span class="n">kB</span>
+<span class="nl">VmLib:</span>      <span class="mi">2668</span> <span class="n">kB</span>
+<span class="nl">VmPTE:</span>        <span class="mi">72</span> <span class="n">kB</span>
+<span class="nl">VmSwap:</span>        <span class="mi">0</span> <span class="n">kB</span>
+<span class="nl">Threads:</span>    <span class="mi">1</span>
+<span class="nl">SigQ:</span>   <span class="mi">0</span><span class="o">/</span><span class="mi">15442</span>
+<span class="nl">SigPnd:</span> <span class="mo">0000000000000000</span>
+<span class="nl">ShdPnd:</span> <span class="mo">0000000000000000</span>
+<span class="nl">SigBlk:</span> <span class="mo">0000000000000000</span>
+<span class="nl">SigIgn:</span> <span class="mo">0000000000000000</span>
+<span class="nl">SigCgt:</span> <span class="mo">0000000000010001</span>
+<span class="nl">CapInh:</span> <span class="mo">0000000000000000</span>
+<span class="nl">CapPrm:</span> <span class="mf">0000001ff</span><span class="n">fffffff</span>
+<span class="nl">CapEff:</span> <span class="mf">0000001ff</span><span class="n">fffffff</span>
+<span class="nl">CapBnd:</span> <span class="mf">0000001ff</span><span class="n">fffffff</span>
+<span class="nl">Seccomp:</span>    <span class="mi">0</span>
+<span class="nl">Cpus_allowed:</span>   <span class="mi">3</span>
+<span class="nl">Cpus_allowed_list:</span>  <span class="mi">0</span><span class="o">-</span><span class="mi">1</span>
+<span class="nl">Mems_allowed:</span>   <span class="mo">00000000</span><span class="p">,</span><span class="mo">00000001</span>
+<span class="nl">Mems_allowed_list:</span>  <span class="mi">0</span>
+<span class="nl">voluntary_ctxt_switches:</span>    <span class="mi">151</span>
+<span class="nl">nonvoluntary_ctxt_switches:</span> <span class="mi">0</span>
+</pre></div>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
-        <li><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems">解决MPlayer中文字幕显示问题</a></li>
+        <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
+        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
         <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
-        <li><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></li>
+        <li><a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">Fedora 9 无法启动KDE的解决办法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">终端下使用代理的方法</a></li>
     </ul>
 </section>
     <hr/>

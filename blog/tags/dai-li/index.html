@@ -61,10 +61,13 @@
                 <h2><a href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">终端下使用代理的方法</a></h2>
                 <div class="summary"><hr />
 <p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，"HTTP_PROXY"、"http_proxy"和"FTP_PROXY"、"ftp_proxy"，在"~/.bash_profile"中添加以下几行：</p>
-<p><code>export HTTP_PROXY=http://username:password@proxy.server:8080
-export FTP_PROXY=http://username:password@proxy.server:8080
-export http_proxy=http://username:password@proxy.server:8080
-export ftp_proxy=http://username:password@proxy.server:8080</code></p>
+<div class="highlight"><pre><span class="n">export</span> <span class="n">HTTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+<span class="n">export</span> <span class="n">FTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+<span class="n">export</span> <span class="n">http_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+<span class="n">export</span> <span class="n">ftp_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+</pre></div>
+
+
 <p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
 <p>修改保存后重启终端或在执行 ...</p>
                     <div align="right">

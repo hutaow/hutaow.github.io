@@ -64,27 +64,30 @@
 <!-- more -->
 
 <p>要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子：</p>
-<p>```</p>
-<h1 id="include">include <stdio.h></h1>
-<p>int add(int a, int b) {
-    int result = 0;</p>
-<pre><code>result = a + b;
+<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
 
-return result;
-</code></pre>
-<p>}</p>
-<p>int main(int argc, char *argv[]) {
-    int result = 0;</p>
-<pre><code>result = test(1, 2);
+<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-printf("result = %d \r\n", result);
+    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
 
-return 0;
-</code></pre>
-<p>}
-```</p>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;result = %d </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <p>使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的：</p>
-<p><code>(gdb) disassemble main ...</code></p></!-->
+<div class="highlight"><pre><span class="p">(</span><span class="nx">gdb ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/15/dump-stack">阅读全文</a>
                     </div>
@@ -96,27 +99,30 @@ return 0;
                 <div class="summary"><hr />
 <p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
-<p>``` c
-/<em> 获取函数调用栈 </em>/
-int backtrace(void **buffer, int size);</p>
-<p>/<em> 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 </em>/
-char <em><em>backtrace_symbols(void </em>const </em>buffer, int size);</p>
-<p>/<em> 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 </em>/
-void backtrace_symbols_fd(void <em>const </em>buffer, int size, int fd);
-```</p>
+<div class="highlight"><pre><span class="cm">/* 获取函数调用栈 */</span>
+<span class="kt">int</span> <span class="nf">backtrace</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */</span>
+<span class="kt">char</span> <span class="o">**</span><span class="nf">backtrace_symbols</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 */</span>
+<span class="kt">void</span> <span class="nf">backtrace_symbols_fd</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fd</span><span class="p">);</span>
+</pre></div>
+
+
 <!-- more -->
 
 <p>示例代码：</p>
-<p>``` c</p>
-<h1 id="include">include <execinfo.h></h1>
-<h1 id="include_1">include <stdio.h></h1>
-<h1 id="include_2">include <stdlib.h></h1>
-<p>/<em> 打印调用栈的最大深度 </em>/</p>
-<h1 id="define-dump_stack_depth_max-16">define DUMP_STACK_DEPTH_MAX 16</h1>
-<p>/<em> 打印调用栈函数 </em>/
-void dump_trace() {
-    void <em>stack_trace[DUMP_STACK_DEPTH_MAX] = {0};
-    char </em>*stack_strings ...</p></!-->
+<div class="highlight"><pre><span class="cp">#include &lt;execinfo.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;stdlib.h&gt;</span>
+
+<span class="cm">/* 打印调用栈的最大深度 */</span>
+<span class="cp">#define DUMP_STACK_DEPTH_MAX 16</span>
+
+<span class="cm">/* 打印调用栈函数 */</span>
+<span class="kt">void</span> <span class="nf">dump_trace</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">stack_trace ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">阅读全文</a>
                     </div>
@@ -127,7 +133,10 @@ void dump_trace() {
                 <h2><a href="http://hutaow.com/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux">Linux中分区出现“Read-only file system”的解决办法</a></h2>
                 <div class="summary"><hr />
 <p>最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：</p>
-<p><code>mount -o remount,rw /media/TF</code></p>
+<div class="highlight"><pre><span class="n">mount</span> <span class="o">-</span><span class="n">o</span> <span class="n">remount</span><span class="p">,</span><span class="n">rw</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">TF</span>
+</pre></div>
+
+
 <p>注：其中”/media/TF“是挂载的目录。</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux">阅读全文</a>
@@ -139,9 +148,13 @@ void dump_trace() {
                 <h2><a href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions">Linux中批量设置目录或文件权限的方法</a></h2>
                 <div class="summary"><hr />
 <p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
-<p><code>find ./ -type d -exec chmod 755 {} \;</code></p>
+<div class="highlight"><pre><span class="n">find</span> <span class="p">.</span><span class="o">/</span> <span class="o">-</span><span class="n">type</span> <span class="n">d</span> <span class="o">-</span><span class="n">exec</span> <span class="n">chmod</span> <span class="mi">755</span> <span class="p">{}</span> <span class="err">\</span><span class="p">;</span>
+</pre></div>
+
+
 <p>递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）</p>
-<p><code>find ./ -type f -exec chmod 644 {} \;</code></p>
+<div class="highlight"><pre><span class="n">find</span> <span class="p">.</span><span class="o">/</span> <span class="o">-</span><span class="n">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">exec</span> <span class="n">chmod</span> <span class="mi">644</span> <span class="p">{}</span> <span class="err">\</span><span class="p">;</span>
+</pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions">阅读全文</a>
                     </div>
@@ -152,10 +165,13 @@ void dump_trace() {
                 <h2><a href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">终端下使用代理的方法</a></h2>
                 <div class="summary"><hr />
 <p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，"HTTP_PROXY"、"http_proxy"和"FTP_PROXY"、"ftp_proxy"，在"~/.bash_profile"中添加以下几行：</p>
-<p><code>export HTTP_PROXY=http://username:password@proxy.server:8080
-export FTP_PROXY=http://username:password@proxy.server:8080
-export http_proxy=http://username:password@proxy.server:8080
-export ftp_proxy=http://username:password@proxy.server:8080</code></p>
+<div class="highlight"><pre><span class="n">export</span> <span class="n">HTTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+<span class="n">export</span> <span class="n">FTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+<span class="n">export</span> <span class="n">http_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+<span class="n">export</span> <span class="n">ftp_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+</pre></div>
+
+
 <p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
 <p>修改保存后重启终端或在执行 ...</p>
                     <div align="right">
@@ -184,7 +200,10 @@ export ftp_proxy=http://username:password@proxy.server:8080</code></p>
                 <div class="summary"><hr />
 <p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫"bchunk"的小软件非常好用，而且小的可以，才几十K，很不错。</p>
 <p>在终端里输入如下命令：</p>
-<p><code>bchunk e-w2sp4ru1as.bin e-w2sp4ru1as.cue e-w2sp4ru1as.iso</code></p>
+<div class="highlight"><pre><span class="n">bchunk</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">bin</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">cue</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">iso</span>
+</pre></div>
+
+
 <!-- more -->
 
 <p>其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。</p>
@@ -200,10 +219,12 @@ export ftp_proxy=http://username:password@proxy.server:8080</code></p>
                 <h2><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></h2>
                 <div class="summary"><hr />
 <p>前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
-<pre><code>VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. 
-Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
-</code></pre>
-<p>于是按照提示在终端里执行"sudo /etc/init.d/vboxdrv setup ...</p>
+<div class="highlight"><pre><span class="n">VirtualBox</span> <span class="n">kernel</span> <span class="n">driver</span> <span class="n">not</span> <span class="n">installed</span><span class="p">.</span> <span class="n">The</span> <span class="n">vboxdrv</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">was</span> <span class="n">either</span> <span class="n">not</span> <span class="n">loaded</span> <span class="n">or</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">was</span> <span class="n">not</span> <span class="n">created</span> <span class="k">for</span> <span class="n">some</span> <span class="n">reason</span><span class="p">.</span><span class="err"> </span>
+<span class="n">Re</span><span class="o">-</span><span class="n">setup</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">by</span> <span class="n">executing</span> <span class="err">‘</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">setup</span><span class="err">’</span> <span class="n">as</span> <span class="n">root</span><span class="p">.</span>
+</pre></div>
+
+
+<p>于是按照提示在终端里执行"sudo /etc/init.d/vboxdrv ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">阅读全文</a>
                     </div>
@@ -231,10 +252,10 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 <!-- more -->
 
 <p>找到以下提示行</p>
-<p><code>&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;
-&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;
-&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;
-&lt;merge key="volume ...</code></p></!-->
+<div class="highlight"><pre><span class="c">&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;</span>
+<span class="c">&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;</span>
+<span class="c">&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;</span>
+<span class="nt">&lt;merge</span> <span class="na">key=</span><span class="s">&quot;volume ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora">阅读全文</a>
                     </div>

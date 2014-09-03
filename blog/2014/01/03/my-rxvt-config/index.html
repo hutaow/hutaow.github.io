@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="轻量级的 Linux 终端软件 RXVT"/>
             <meta property="og:url" content="http://hutaow.com/blog/2014/01/03/my-rxvt-config"/>
-            <meta property="og:description" content="最近发现了个轻量级的Linux终端 —— RXVT，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。 ``` bash !!$HOME/.Xdefaults Rxvt.preeditType: root !!窗口大小及标题 Rxvt.geometry: 80x25 Rxvt.title: hutaow-rxvt !!输入法设置 Rxvt.inputMethod: fcitx !!透明度设置 !Rxvt.transparent: true !Rxvt.shading: 110 !Rxvt.tintColor: grey !Rxvt.inheritPixmap: false !!扩展设置 Rxvt.perl-ext-common: default, matcher, fullscreen !!URL操作 Rxvt.urlLauncher: /usr/bin ..."/>
+            <meta property="og:description" content="最近发现了个轻量级的Linux终端 —— RXVT，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。 !!$HOME/.Xdefaults Rxvt.preeditType: root !!窗口大小及标题 Rxvt.geometry: 80x25 Rxvt.title: hutaow-rxvt !!输入法设置 Rxvt.inputMethod: fcitx !!透明度设置 !Rxvt.transparent: true !Rxvt.shading: 110 !Rxvt.tintColor: grey !Rxvt.inheritPixmap: false !!扩展设置 Rxvt.perl-ext-common: default, matcher, fullscreen !!URL操作 Rxvt.urlLauncher: /usr/bin/chromium ..."/>
             <meta property="article:published_time" content="2014-01-03" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
@@ -102,93 +102,109 @@
 <p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <!-- more -->
 
-<p>``` bash
-!!$HOME/.Xdefaults
-Rxvt.preeditType: root</p>
-<p>!!窗口大小及标题
+<div class="highlight"><pre>!!<span class="nv">$HOME</span>/.Xdefaults
+Rxvt.preeditType: root
+
+!!窗口大小及标题
 Rxvt.geometry: 80x25
-Rxvt.title: hutaow-rxvt</p>
-<p>!!输入法设置
-Rxvt.inputMethod: fcitx</p>
-<p>!!透明度设置
-!Rxvt.transparent: true
+Rxvt.title: hutaow-rxvt
+
+!!输入法设置
+Rxvt.inputMethod: fcitx
+
+!!透明度设置
+!Rxvt.transparent: <span class="nb">true</span>
 !Rxvt.shading: 110
 !Rxvt.tintColor: grey
-!Rxvt.inheritPixmap: false</p>
-<p>!!扩展设置
-Rxvt.perl-ext-common: default, matcher, fullscreen</p>
-<p>!!URL操作
+!Rxvt.inheritPixmap: <span class="nb">false</span>
+
+!!扩展设置
+Rxvt.perl-ext-common: default, matcher, fullscreen
+
+!!URL操作
 Rxvt.urlLauncher: /usr/bin/chromium
-Rxvt.matcher.button: 1</p>
-<p>!!标签设置
+Rxvt.matcher.button: 1
+
+!!标签设置
 !Rxvt.per-ext-common: ..., tabbed, ...
 !Rxvt.tabbed.tabbar-fg: 2
 !Rxvt.tabbed.tabbar-bg: 0
 !Rxvt.tabbed.tab-fg: 3
 !Rxvt.tabbed.tab-bg: 0
-!Rxvt.tabbed.new-button: false
-!Rxvt.tabbed.autohide: true
+!Rxvt.tabbed.new-button: <span class="nb">false</span>
+!Rxvt.tabbed.autohide: <span class="nb">true</span>
 !RXvt.tabbed.reopen-on-close: no
 !Rxvt.keysym.Control-t: perl:tabbedex:new_tab
 !Rxvt.keysym.Control-Tab: perl:tabbedex:next_tab
 !Rxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 !Rxvt.keysym.Control-Shift-Left: perl:tabbex:move_tab_left
 !Rxvt.keysym.Control-Shift-Right: perl:tabbex:move_tab_right
-!Rxvt.keysym.Control-Shift-R: perl:tabbex:rename_tab</p>
-<p>!!全屏模式
+!Rxvt.keysym.Control-Shift-R: perl:tabbex:rename_tab
+
+!!全屏模式
 !Rxvt.perl-ext-common: ..., fullscreen, ...
-Rxvt.keysym.F11: perl:fullscreen:switch</p>
-<p>!!滚动条设置
-Rxvt.scrollBar: true
-Rxvt.scrollBar_right: true
-Rxvt.scrollBar_floating: false
-Rxvt.scrollstyle: plain</p>
-<p>!!滚屏设置
-Rxvt.mouseWheelScrollPage: false
-Rxvt.scrollTtyOutput: false
-Rxvt.scrollWithBuffer: true
-Rxvt.scrollTtyKeypress: true</p>
-<p>!!光标闪烁
-Rxvt.cursorBlink: true</p>
-<p>!!缓存行数
-Rxvt.saveLines: 5000</p>
-<p>!!边框设置
-Rxvt.borderLess: false</p>
-<p>!!字体设置
+Rxvt.keysym.F11: perl:fullscreen:switch
+
+!!滚动条设置
+Rxvt.scrollBar: <span class="nb">true</span>
+Rxvt.scrollBar_right: <span class="nb">true</span>
+Rxvt.scrollBar_floating: <span class="nb">false</span>
+Rxvt.scrollstyle: plain
+
+!!滚屏设置
+Rxvt.mouseWheelScrollPage: <span class="nb">false</span>
+Rxvt.scrollTtyOutput: <span class="nb">false</span>
+Rxvt.scrollWithBuffer: <span class="nb">true</span>
+Rxvt.scrollTtyKeypress: <span class="nb">true</span>
+
+!!光标闪烁
+Rxvt.cursorBlink: <span class="nb">true</span>
+
+!!缓存行数
+Rxvt.saveLines: 5000
+
+!!边框设置
+Rxvt.borderLess: <span class="nb">false</span>
+
+!!字体设置
 Rxvt.dpi: 96
-Rxvt.*font: xft:Terminus,xft:WenQuanYi Bitmap Song</p>
-<p>!!颜色设置
+Rxvt.*font: xft:Terminus,xft:WenQuanYi Bitmap Song
+
+!!颜色设置
 Rxvt.depth: 32
-Rxvt.background: #2C2C2C
+Rxvt.background: <span class="c">#2C2C2C</span>
 Rxvt.foreground: 7
 Rxvt.colorBD: 7
-Rxvt.colorUL: 7</p>
-<p>!!基本颜色
+Rxvt.colorUL: 7
+
+!!基本颜色
 !Black
-Rxvt.color0: #3F3F3F
-Rxvt.color8: #709080
+Rxvt.color0: <span class="c">#3F3F3F</span>
+Rxvt.color8: <span class="c">#709080</span>
 !red
-Rxvt.color1: #705050
-Rxvt.color9: #DCA3A3
+Rxvt.color1: <span class="c">#705050</span>
+Rxvt.color9: <span class="c">#DCA3A3</span>
 !Green
-Rxvt.color2: #60B48A
-Rxvt.color10: #72D5A3
+Rxvt.color2: <span class="c">#60B48A</span>
+Rxvt.color10: <span class="c">#72D5A3</span>
 !Yellow
-Rxvt.color3: #DFAF8F
-Rxvt.color11: #F0DFAF
+Rxvt.color3: <span class="c">#DFAF8F</span>
+Rxvt.color11: <span class="c">#F0DFAF</span>
 !Blue
-Rxvt.color4: #9AB8D7
-Rxvt.color12: #94BFF3
+Rxvt.color4: <span class="c">#9AB8D7</span>
+Rxvt.color12: <span class="c">#94BFF3</span>
 !Magenta
-Rxvt.color5: #DC8CC3
-Rxvt.color13: #EC93D3
+Rxvt.color5: <span class="c">#DC8CC3</span>
+Rxvt.color13: <span class="c">#EC93D3</span>
 !Cyan
-Rxvt.color6: #8CD0D3
-Rxvt.color14: #93E0E3
+Rxvt.color6: <span class="c">#8CD0D3</span>
+Rxvt.color14: <span class="c">#93E0E3</span>
 !White
-Rxvt.color7: #DCDCDC
-Rxvt.color15: #FFFFFF
-```</p>
+Rxvt.color7: <span class="c">#DCDCDC</span>
+Rxvt.color15: <span class="c">#FFFFFF</span>
+</pre></div>
+
+
 <p>源文件下载：<a href="/downloads/code/hutaow.Xdefaults">链接</a></p>
 <p>配置后的终端运行效果如下图：
 <img alt="Interface of RXVT" src="/images/articles/201401/rxvt.png" /></p>
@@ -198,10 +214,10 @@ Rxvt.color15: #FFFFFF
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></li>
-        <li><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems">解决MPlayer中文字幕显示问题</a></li>
-        <li><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></li>
+        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
+        <li><a href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions">Linux中批量设置目录或文件权限的方法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">Fedora 9 无法启动KDE的解决办法</a></li>
+        <li><a href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">终端下使用代理的方法</a></li>
     </ul>
 </section>
     <hr/>

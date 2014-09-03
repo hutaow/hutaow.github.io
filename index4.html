@@ -82,13 +82,12 @@
 <h4 id="1-cwindowssystem32driversetchosts">1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts"文件中添加如下内容：</h4>
 <!-- more -->
 
-<p>```</p>
-<h1 id="xmarks">Xmarks</h1>
-<p>64.147.188.86 www.xmarks.com
-64.147.188.92 api.xmarks.com
-64.147.188.89 login.xmarks.com
-64.147.188.87 sync.xmarks.com
-64.147.188.86 ...</p></!-->
+<div class="highlight"><pre><span class="cp"># Xmarks</span>
+<span class="mf">64.147.188.86</span><span class="err"> </span><span class="n">www</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">64.147.188.92</span> <span class="n">api</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">64.147.188.89</span> <span class="n">login</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">64.147.188.87</span> <span class="n">sync</span><span class="p">.</span><span class="n">xmarks</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">64.147.188.86 ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw">阅读全文</a>
                     </div>
@@ -103,24 +102,25 @@
 <p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
 <!-- more -->
 
-<p>``` c++
-class CHutaow : 
-    // 添加到控件的派生类列表中
-    public IObjectSafetyImpl<CHutaow, INTERFACESAFE_FOR_UNTRUSTED_CALLER|INTERFACESAFE_FOR_UNTRUSTED_DATA>
-    ...
-    {
-        public:</p>
-<pre><code>    BEGIN_COM_MAP(CHutaow)
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">CHutaow</span> <span class="o">:</span><span class="err"> </span>
+    <span class="c1">// 添加到控件的派生类列表中</span>
+    <span class="k">public</span> <span class="n">IObjectSafetyImpl</span><span class="o">&lt;</span><span class="n">CHutaow</span><span class="p">,</span> <span class="n">INTERFACESAFE_FOR_UNTRUSTED_CALLER</span><span class="o">|</span><span class="n">INTERFACESAFE_FOR_UNTRUSTED_DATA</span><span class="o">&gt;</span>
+    <span class="p">...</span>
+    <span class="p">{</span>
+        <span class="nl">public:</span>
 
-    COM_INTERFACE_ENTRY(IObjectSafety) //创建IObjectSafety的映射
+        <span class="n">BEGIN_COM_MAP</span><span class="p">(</span><span class="n">CHutaow</span><span class="p">)</span>
 
-    ...
+        <span class="n">COM_INTERFACE_ENTRY</span><span class="p">(</span><span class="n">IObjectSafety</span><span class="p">)</span><span class="err"> </span><span class="c1">//创建IObjectSafety的映射</span>
 
-    END_COM_MAP()
-    ...
-}
-</code></pre>
-<p>```</p>
+        <span class="p">...</span>
+
+        <span class="n">END_COM_MAP</span><span class="p">()</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+</pre></div>
+
+
 <p>PS: 如果出现"'IObjectSafetyImpl' : base class undefined"的错误，则需要添加"atlctl.h"头文件。</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">阅读全文</a>
@@ -132,8 +132,10 @@ class CHutaow : 
                 <h2><a href="http://hutaow.com/blog/2009/04/02/sql-statements-batch-replace-a-string">SQL语句实现某一字符串的替换</a></h2>
                 <div class="summary"><hr />
 <p>使用update+replace语句：</p>
-<p><code>mysql
-update table_name set column_name = replace(column_name,’hutaow_original_string’,'hutaow_new_string’);</code></p>
+<div class="highlight"><pre><span class="k">update</span> <span class="n">table_name</span> <span class="kt">set</span> <span class="n">column_name</span> <span class="o">=</span> <span class="k">replace</span><span class="p">(</span><span class="n">column_name</span><span class="p">,</span><span class="err">’</span><span class="n">hutaow_original_string</span><span class="err">’</span><span class="p">,</span><span class="err">&#39;</span><span class="n">hutaow_new_string</span><span class="err">’</span><span class="p">);</span>
+</pre></div>
+
+
 <p>其中，table_name是表的名字，column_name是要替换数据的列的名字，hutaow_original_string是待替换的原始字符串，hutaow_new_string是新字符串，MySQL下验证成功。</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2009/04/02/sql-statements-batch-replace-a-string">阅读全文</a>
@@ -147,21 +149,21 @@ update table_name set column_name = replace(column_name,’hutaow_original_strin
 <p>原理很简单，直接贴源代码吧。</p>
 <!-- more -->
 
-<p>``` java
-/<em><em>
- </em> @author wangtao
- </em> @version 2008.8.14
- */
-public class Util {
-    public static char[] hexDigits = 
-    {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};</p>
-<p>/<em><em>
-     </em> @notes 字节数组转化为字符串
-     </em> @param bytes
-     <em> @return String
-     </em>/
-    public static String toHexString(byte[] bytes) {
-        char[] chars = new char[bytes.length ...</p></!-->
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @author wangtao</span>
+<span class="cm"> * @version 2008.8.14</span>
+<span class="cm"> */</span>
+<span class="kd">public</span><span class="err"> </span><span class="kd">class</span> <span class="nc">Util</span> <span class="o">{</span>
+<span class="err">    </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="kt">char</span><span class="o">[]</span> <span class="n">hexDigits</span> <span class="o">=</span><span class="err"> </span>
+<span class="err">   </span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;A&#39;</span><span class="o">,</span> <span class="sc">&#39;B&#39;</span><span class="o">,</span> <span class="sc">&#39;C&#39;</span><span class="o">,</span> <span class="sc">&#39;D&#39;</span><span class="o">,</span> <span class="sc">&#39;E&#39;</span><span class="o">,</span> <span class="sc">&#39;F&#39;</span><span class="o">};</span>
+
+<span class="err">   </span> <span class="cm">/**</span>
+<span class="cm">     * @notes 字节数组转化为字符串</span>
+<span class="cm">     * @param bytes</span>
+<span class="cm">     * @return String</span>
+<span class="cm">     */</span>
+<span class="err">    </span><span class="kd">public</span><span class="err"> </span><span class="kd">static</span><span class="err"> </span><span class="n">String</span> <span class="n">toHexString</span><span class="o">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">)</span> <span class="o">{</span>
+<span class="err">   </span> <span class="err">   </span> <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">bytes</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="mi">2 ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/08/14/convert-between-byte-array-and-hex-string">阅读全文</a>
                     </div>
@@ -172,10 +174,13 @@ public class Util {
                 <h2><a href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">终端下使用代理的方法</a></h2>
                 <div class="summary"><hr />
 <p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，"HTTP_PROXY"、"http_proxy"和"FTP_PROXY"、"ftp_proxy"，在"~/.bash_profile"中添加以下几行：</p>
-<p><code>export HTTP_PROXY=http://username:password@proxy.server:8080
-export FTP_PROXY=http://username:password@proxy.server:8080
-export http_proxy=http://username:password@proxy.server:8080
-export ftp_proxy=http://username:password@proxy.server:8080</code></p>
+<div class="highlight"><pre><span class="n">export</span> <span class="n">HTTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+<span class="n">export</span> <span class="n">FTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+<span class="n">export</span> <span class="n">http_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+<span class="n">export</span> <span class="n">ftp_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+</pre></div>
+
+
 <p>其中，username和password是用户名和密码，用在需要验证的代理服务器上；proxy.server是代理服务器的地址，后面的8080是端口号。</p>
 <p>修改保存后重启终端或在执行 ...</p>
                     <div align="right">
@@ -204,7 +209,10 @@ export ftp_proxy=http://username:password@proxy.server:8080</code></p>
                 <div class="summary"><hr />
 <p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫"bchunk"的小软件非常好用，而且小的可以，才几十K，很不错。</p>
 <p>在终端里输入如下命令：</p>
-<p><code>bchunk e-w2sp4ru1as.bin e-w2sp4ru1as.cue e-w2sp4ru1as.iso</code></p>
+<div class="highlight"><pre><span class="n">bchunk</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">bin</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">cue</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">iso</span>
+</pre></div>
+
+
 <!-- more -->
 
 <p>其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。</p>
@@ -220,10 +228,12 @@ export ftp_proxy=http://username:password@proxy.server:8080</code></p>
                 <h2><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></h2>
                 <div class="summary"><hr />
 <p>前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
-<pre><code>VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. 
-Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
-</code></pre>
-<p>于是按照提示在终端里执行"sudo /etc/init.d/vboxdrv setup ...</p>
+<div class="highlight"><pre><span class="n">VirtualBox</span> <span class="n">kernel</span> <span class="n">driver</span> <span class="n">not</span> <span class="n">installed</span><span class="p">.</span> <span class="n">The</span> <span class="n">vboxdrv</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">was</span> <span class="n">either</span> <span class="n">not</span> <span class="n">loaded</span> <span class="n">or</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">was</span> <span class="n">not</span> <span class="n">created</span> <span class="k">for</span> <span class="n">some</span> <span class="n">reason</span><span class="p">.</span><span class="err"> </span>
+<span class="n">Re</span><span class="o">-</span><span class="n">setup</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">by</span> <span class="n">executing</span> <span class="err">‘</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">setup</span><span class="err">’</span> <span class="n">as</span> <span class="n">root</span><span class="p">.</span>
+</pre></div>
+
+
+<p>于是按照提示在终端里执行"sudo /etc/init.d/vboxdrv ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">阅读全文</a>
                     </div>
