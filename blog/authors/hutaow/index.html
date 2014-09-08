@@ -58,6 +58,29 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">使用Python实现端口映射</a></h2>
+                <div class="summary"><hr />
+<h4 id="1">1 端口映射</h4>
+<p>举个例子来说明一下端口映射的作用。</p>
+<p>有A、B、C三台计算机，A、B互通，B、C互通，但是A、C不通，这个时候在C上开了一个Web服务，如何让A访问C的Web服务？</p>
+<p>最简单有效的办法就是在B上开一个端口映射服务，然后让A访问B的某个端口，B将这个端口上的所有流量全部转发到C的Web服务端口上，同时将C上Web服务返回的流量也全部转发给A。这样对A来说，以B为跳板，实现了间接访问C上Web服务的目的。</p>
+<h4 id="2">2 实现流程</h4>
+<p>端口映射的原理并不复杂，本文以TCP为例介绍一下实现过程，简单画了个时序图（如下），这里就不再用文字赘述了。</p>
+<p><img alt="TCP Mapping Runtime" src="/images/articles/201409/tcp_mapping_sequence.png" /></p>
+<p><strong>需要注意的是，由于端口映射只是单纯的流量转发，对应用层数据不进行处理，所以对于多通道协议是无法支持的（如FTP协议）。</strong></p>
+<h4 id="3">3 代码示例</h4>
+<p>按照上面的流程，Python实现如下（建议从后向前看）：</p>
+<div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
+<span class="c"># tcp mapping created by hutaow(hutaow.com) at 2014-08-31</span>
+
+<span class="kn">import ...</span></pre></div>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">Linux中查看进程占用内存的情况</a></h2>
                 <div class="summary"><hr />
 <p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
@@ -356,32 +379,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">将 Python 脚本转换为可执行程序</a></h2>
-                <div class="summary"><hr />
-<p>本文所使用的工具是cx_Freeze，相对py2exe和PyInstaller来说，cx_Freeze的兼容性更好，支持最新的Python 3.X，支持PyQT，并且可以跨平台支持Windows和Linux系统。</p>
-<p>cx_Freeze的官方主页为<a href="http://cx-freeze.sourceforge.net">http://cx-freeze.sourceforge.net</a>，下面以Windows系统为例介绍一下它的使用方法。</p>
-<!-- more -->
-
-<h3 id="1">1 配置转换脚本</h3>
-<p>新建一个Python脚本文件，如<code>setup.py</code>，内容如下：</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">cx_Freeze</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Executable</span>
-
-<span class="n">base</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;win32&quot;</span><span class="p">:</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="s">&quot;Win32GUI&quot;</span>
-
-<span class="n">setup</span><span class="p">(</span>  <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;MyApp&quot;</span><span class="p">,</span>
-        <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
-        <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;My PyQT application!&quot;</span><span class="p">,</span>
-        <span class="n">executables</span> <span class="o">=</span> <span class="p">[</span><span class="n">Executable</span><span class="p">(</span><span class="s">&quot;pyqt_example.py ...</span></pre></div></!-->
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -422,6 +419,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">
+                                使用Python实现端口映射
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">
                                 Linux中查看进程占用内存的情况
@@ -465,11 +467,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
                                 使用 OProfile 进行性能分析
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
-                                将 Python 脚本转换为可执行程序
                             </a>
                         </li>
                     </ul>
@@ -585,6 +582,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item tag-2">
                             <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
                                 定位
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/duan-kou-ying-she/index.html">
+                                端口映射
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -790,6 +792,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/taglist/index.html">
                                 TagList
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/tcp/index.html">
+                                TCP
                             </a>
                         </li>
                         <li class="list-group-item tag-3">

@@ -58,6 +58,19 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder">二维条码终于有了突破!</a></h2>
+                <div class="summary"><hr />
+<p>自己改写了几个类，这几天不停的测试测试测试，今天终于成功解码，不过因为字符编码还没彻底弄好，所以解出来的还都是乱码，不过英文已经可以解析出来了，值得纪念的一天!</p>
+<!-- more -->
+
+<p><img alt="Breakthrough for Dimensional Bar Code Decoder" src="/images/articles/200804/mark_breakthrough_for_dimensional_bar_code_decoder.png" /></p>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2008/03/20/compilation-failed-due-to-character-encoding">因字符编码导致的编译不通过</a></h2>
                 <div class="summary"><hr />
 <p>从网上下了QR标准的二维码库，打算直接调用里面的类来实现。在Fedora下Java编译通过，只是提示了一下使用了过时的方法。但我把代码复制到Windows里时，却编译不同过，出现了近1k个错误，代码完全一样，只是操作系统不同就会出问题？</p>
@@ -239,27 +252,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2008/01/11/android-beginner-question">初学Android的一点问题</a></h2>
-                <div class="summary"><hr />
-<p>前几天一直在看Android的文档，有些收获但同时还是有问题。</p>
-<h4 id="1-androidlayout">1 问题：关于Android的Layout</h4>
-<p>似乎和java有很大的不同，Android引入了XML，从google所给的例子来看，控件的布局方式都是写在XML文件里，而主程序中需要的只是add并且引用XML文件中的布局方式。</p>
-<!-- more -->
-
-<p>这种方法对我来说并不是很习惯，毕竟java用了那么长时间，在代码中直接setLayout感觉更舒服些。当然既然google采用了这种布局和代码分离的方式那就肯定有它的优点，看来还需要一点的时间来习惯这种布局方式。</p>
-<h4 id="2-android">2 总结：我自己对Android几个模块的理解</h4>
-<div class="highlight"><pre><span class="n">Activity</span><span class="err">：类似</span><span class="n">java</span><span class="err">中的</span><span class="n">Applet</span><span class="err">或</span><span class="n">Frame</span><span class="err">，以我的理解，这个类提供了程序的最基本框架。</span>
-<span class="n">Intent</span> <span class="n">Receiver</span><span class="err">：翻译过来是“目的接收器”，和</span><span class="n">java</span><span class="err">中的</span><span class="n">listener</span><span class="err">类似，用于处理事件。</span>
-<span class="n">Service</span><span class="err">：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。</span>
-<span class="n">Content</span> <span class="n">Provider</span><span class="err">：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。</span>
-</pre></div>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/01/11/android-beginner-question">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/index4.html">&laquo;</a>
@@ -301,6 +293,11 @@
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">
+                                使用Python实现端口映射
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">
                                 Linux中查看进程占用内存的情况
@@ -344,11 +341,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
                                 使用 OProfile 进行性能分析
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
-                                将 Python 脚本转换为可执行程序
                             </a>
                         </li>
                     </ul>
@@ -464,6 +456,11 @@
                         <li class="list-group-item tag-2">
                             <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
                                 定位
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/duan-kou-ying-she/index.html">
+                                端口映射
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -669,6 +666,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/taglist/index.html">
                                 TagList
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/tcp/index.html">
+                                TCP
                             </a>
                         </li>
                         <li class="list-group-item tag-3">

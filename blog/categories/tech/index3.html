@@ -58,6 +58,41 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></h2>
+                <div class="summary"><hr />
+<p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
+<p>Linux中提供了三个函数用来获取调用栈：</p>
+<div class="highlight"><pre><span class="cm">/* 获取函数调用栈 */</span>
+<span class="kt">int</span> <span class="nf">backtrace</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */</span>
+<span class="kt">char</span> <span class="o">**</span><span class="nf">backtrace_symbols</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 */</span>
+<span class="kt">void</span> <span class="nf">backtrace_symbols_fd</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fd</span><span class="p">);</span>
+</pre></div>
+
+
+<!-- more -->
+
+<p>示例代码：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;execinfo.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;stdlib.h&gt;</span>
+
+<span class="cm">/* 打印调用栈的最大深度 */</span>
+<span class="cp">#define DUMP_STACK_DEPTH_MAX 16</span>
+
+<span class="cm">/* 打印调用栈函数 */</span>
+<span class="kt">void</span> <span class="nf">dump_trace</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">stack_trace ...</span></pre></div></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2013/09/06/install-openwrt">TP-WR703n安装OpenWRT记录</a></h2>
                 <div class="summary"><hr />
 <h3 id="1-openwrt">1 安装OpenWRT</h3>
@@ -257,24 +292,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2010/01/14/interesting-features-in-htc-diamond">HTC Diamond 两个有意思的功能</a></h2>
-                <div class="summary"><hr />
-<p>这两天一直折腾 HTC Diamond，发现了两个很有意思的功能：</p>
-<ol>
-<li>
-<p>Diamond的手写笔不像其它手机那样有卡槽卡住，而是像有磁铁一样把笔"吸"进去，实际上功能远不止这个。在Diamond关闭屏幕时，拔出手写笔，屏幕会自动亮起，还有比这更神奇的，在打电话时，如果拔出手写笔，Diamond会打开便签，并且便签已经包含了通话对象、时间等信息，方便记录；</p>
-</li>
-<li>
-<p>Diamond的重力感应不仅用在玩游戏上，来电话时，只要把手机面向下放，就可以关闭铃声（静音）。这避免了在开会等类似场合突然遇到来电手忙脚乱情况的发生。</p>
-</li>
-</ol>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/01/14/interesting-features-in-htc-diamond">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/blog/categories/tech/index2.html">&laquo;</a>
@@ -316,6 +333,11 @@
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">
+                                使用Python实现端口映射
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">
                                 Linux中查看进程占用内存的情况
@@ -359,11 +381,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
                                 使用 OProfile 进行性能分析
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
-                                将 Python 脚本转换为可执行程序
                             </a>
                         </li>
                     </ul>
@@ -479,6 +496,11 @@
                         <li class="list-group-item tag-2">
                             <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
                                 定位
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/duan-kou-ying-she/index.html">
+                                端口映射
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -684,6 +706,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/taglist/index.html">
                                 TagList
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/tcp/index.html">
+                                TCP
                             </a>
                         </li>
                         <li class="list-group-item tag-3">

@@ -58,6 +58,41 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></h2>
+                <div class="summary"><hr />
+<p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
+<p>Linux中提供了三个函数用来获取调用栈：</p>
+<div class="highlight"><pre><span class="cm">/* 获取函数调用栈 */</span>
+<span class="kt">int</span> <span class="nf">backtrace</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */</span>
+<span class="kt">char</span> <span class="o">**</span><span class="nf">backtrace_symbols</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* 将调用栈中的函数地址转化为函数名称 并将其定入到文件中 */</span>
+<span class="kt">void</span> <span class="nf">backtrace_symbols_fd</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fd</span><span class="p">);</span>
+</pre></div>
+
+
+<!-- more -->
+
+<p>示例代码：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;execinfo.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;stdlib.h&gt;</span>
+
+<span class="cm">/* 打印调用栈的最大深度 */</span>
+<span class="cp">#define DUMP_STACK_DEPTH_MAX 16</span>
+
+<span class="cm">/* 打印调用栈函数 */</span>
+<span class="kt">void</span> <span class="nf">dump_trace</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">stack_trace ...</span></pre></div></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/10/starting-with-new-domain-name">博客搬家完成，新域名正式上线</a></h2>
                 <div class="summary"><hr />
 <p>昨天注册了<code>hutaow.net</code>这个域名，决心把博客搬过来，恢复写博客的生活。</p>
@@ -255,22 +290,6 @@
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash">正斜杠与反斜杠的分析</a></h2>
-                <div class="summary"><hr />
-<p>正斜杠(左斜杠)，符号是"/"；反斜杠(右斜杠)，符号是"\"。</p>
-<p>在Unix/Linux中，路径的分隔采用正斜杠"/"，比如"/home/hutaow"；而在Windows中，路径分隔采用反斜杠"\"，比如"C:\Windows\System"。</p>
-<p>有时我们会看到这样的路径写法，"C:\\Windows\\System"，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用"C:/Windows/System"来代替，不会出错。但是如果写成了"C:\Windows\System"，那就可能会出现各种奇怪的错误了。</p>
-<!-- more -->
-
-<p>至于上述问题出现的原因，要从字符串解析这方面来分析。</p>
-<p>学过编程的人都应该知道，在C里面，输出字符串时，如果想输出一个换行，那就要加上'\n'这个标志，类似的，输出一个TAB，就加上'\t'，也就是说 ...</p></!-->
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/index2.html">&laquo;</a>
@@ -312,6 +331,11 @@
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">
+                                使用Python实现端口映射
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">
                                 Linux中查看进程占用内存的情况
@@ -355,11 +379,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
                                 使用 OProfile 进行性能分析
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
-                                将 Python 脚本转换为可执行程序
                             </a>
                         </li>
                     </ul>
@@ -475,6 +494,11 @@
                         <li class="list-group-item tag-2">
                             <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
                                 定位
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/duan-kou-ying-she/index.html">
+                                端口映射
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -680,6 +704,11 @@
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/taglist/index.html">
                                 TagList
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/tcp/index.html">
+                                TCP
                             </a>
                         </li>
                         <li class="list-group-item tag-3">
