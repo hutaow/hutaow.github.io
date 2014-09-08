@@ -59,8 +59,7 @@
 
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/02/15/slove-the-problem-on-install-ntfs-3g">解决安装ntfs-3g时遇到的问题</a></h2>
-                <div class="summary"><hr />
-<p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行"mount -t ntfs-3g /dev/hdc5 /media/wdata"，结果提示：</p>
+                <div class="summary"><p>今天安装了CentOS，结果发现好多软件源里都没有，看来又要手动安装了，为了挂载ntfs分区，跑去<a href="http://www.ntfs-3g.org">http://www.ntfs-3g.org</a>下载ntfs-3g，安装好后，试图执行"mount -t ntfs-3g /dev/hdc5 /media/wdata"，结果提示：</p>
 <div class="highlight"><pre><span class="n">FATAL</span><span class="o">:</span> <span class="n">Module</span> <span class="n">fuse</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
 <span class="n">fuse</span><span class="o">:</span> <span class="n">device</span> <span class="n">not</span> <span class="n">found</span><span class="o">,</span> <span class="k">try</span> <span class="s1">&#39;modprobe fuse&#39;</span> <span class="n">first</span>
 </pre></div>
@@ -82,8 +81,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/02/11/change-the-spped-of-network-adapter-under-linux">Linux中改变网卡的速度</a></h2>
-                <div class="summary"><hr />
-<p>今天又用到家里的那根20几米的超长网线了，因为太长了，之前windows里用它联网的时候要把网卡速度降到10Mbps才能用。如果自动配置的话会默认用100Mbps的速度连接，但这样的话就会时断时连很不稳定。</p>
+                <div class="summary"><p>今天又用到家里的那根20几米的超长网线了，因为太长了，之前windows里用它联网的时候要把网卡速度降到10Mbps才能用。如果自动配置的话会默认用100Mbps的速度连接，但这样的话就会时断时连很不稳定。</p>
 <p>我在Linux里试图在Network里直接配置速度，但没有找到，上网google发现需要手动修改，用到的工具是mii-tool。</p>
 <!-- more -->
 
@@ -102,8 +100,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/02/02/slove-mplayer-chinese-subtitles-problems">解决MPlayer中文字幕显示问题</a></h2>
-                <div class="summary"><hr />
-<p>MPlayer在播放电影时，中文字幕往往不能正确显示，自己简单分析了一下，之所以中文显示出乱码是由于字符的编码选择不正确造成的。</p>
+                <div class="summary"><p>MPlayer在播放电影时，中文字幕往往不能正确显示，自己简单分析了一下，之所以中文显示出乱码是由于字符的编码选择不正确造成的。</p>
 <p>在MPlayer的设置里有两个地方要对字符编码进行设置，一个是对显示字幕的编码进行设置，另一个是对字体文件的编码设置。</p>
 <!-- more -->
 
@@ -128,8 +125,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/02/02/rhythmbox-play-mp3-and-wma-format-decoder-required">Rhythmbox播放MP3和WMA所需要的解码器</a></h2>
-                <div class="summary"><hr />
-<ul>
+                <div class="summary"><ul>
 <li>如果想支持mp3，需要gstreamer-plugins-bad和gstreamer-plugins-ugly</li>
 <li>如果想支持wma，需要gstreamer-ffmpeg</li>
 </ul>
@@ -141,8 +137,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">Linux中设置Java环境变量</a></h2>
-                <div class="summary"><hr />
-<p>从网上找资料，自己总结一下：</p>
+                <div class="summary"><p>从网上找资料，自己总结一下：</p>
 <ol>
 <li>
 <p>从java.sun.com上下载jdk，解压到某个目录，比如"/usr/local/java/jdk1.x.x/"</p>
@@ -166,8 +161,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2007/08/19/my-vi-config">我的VI配置文件</a></h2>
-                <div class="summary"><hr />
-<div class="highlight"><pre><span class="s">&quot; 设置字符编码</span>
+                <div class="summary"><div class="highlight"><pre><span class="s">&quot; 设置字符编码</span>
 <span class="n">set</span> <span class="n">encoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
 <span class="n">set</span> <span class="n">termencoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
 <span class="n">set</span> <span class="n">fileencoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>

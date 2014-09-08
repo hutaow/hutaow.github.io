@@ -59,8 +59,7 @@
 
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">使用Python实现端口映射</a></h2>
-                <div class="summary"><hr />
-<h4 id="1">1 端口映射</h4>
+                <div class="summary"><h4 id="1">1 端口映射</h4>
 <p>举个例子来说明一下端口映射的作用。</p>
 <p>有A、B、C三台计算机，A、B互通，B、C互通，但是A、C不通，这个时候在C上开了一个Web服务，如何让A访问C的Web服务？</p>
 <p>最简单有效的办法就是在B上开一个端口映射服务，然后让A访问B的某个端口，B将这个端口上的所有流量全部转发到C的Web服务端口上，同时将C上Web服务返回的流量也全部转发给A。这样对A来说，以B为跳板，实现了间接访问C上Web服务的目的。</p>

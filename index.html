@@ -59,8 +59,7 @@
 
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">使用Python实现端口映射</a></h2>
-                <div class="summary"><hr />
-<h4 id="1">1 端口映射</h4>
+                <div class="summary"><h4 id="1">1 端口映射</h4>
 <p>举个例子来说明一下端口映射的作用。</p>
 <p>有A、B、C三台计算机，A、B互通，B、C互通，但是A、C不通，这个时候在C上开了一个Web服务，如何让A访问C的Web服务？</p>
 <p>最简单有效的办法就是在B上开一个端口映射服务，然后让A访问B的某个端口，B将这个端口上的所有流量全部转发到C的Web服务端口上，同时将C上Web服务返回的流量也全部转发给A。这样对A来说，以B为跳板，实现了间接访问C上Web服务的目的。</p>
@@ -82,8 +81,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">Linux中查看进程占用内存的情况</a></h2>
-                <div class="summary"><hr />
-<p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
+                <div class="summary"><p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
 <div class="highlight"><pre><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span><span class="o">/</span><span class="n">status</span>
 </pre></div>
 
@@ -154,8 +152,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">德赛西威音乐e栈的破解程序</a></h2>
-                <div class="summary"><hr />
-<p>技术细节请参考上一篇文章<a href="/blog/2014/08/01/cracking-svautomusic/">《一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法》</a>。根据原理用python+qt写了个现成的破解程序，界面简陋了些，下载链接及使用说明如下。</p>
+                <div class="summary"><p>技术细节请参考上一篇文章<a href="/blog/2014/08/01/cracking-svautomusic/">《一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法》</a>。根据原理用python+qt写了个现成的破解程序，界面简陋了些，下载链接及使用说明如下。</p>
 <h4 id="_1">下载链接</h4>
 <ul>
 <li><a href="http://dl.vmall.com/c073qryv48">华为网盘</a>，<a href="http://pan.baidu.com/s/1sjPRMvN">百度网盘</a></li>
@@ -204,8 +201,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法</a></h2>
-                <div class="summary"><hr />
-<p>某导航提供的音乐服务（音乐e栈），和虾米合作的，需要付费使用，前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是因为它的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。</p>
+                <div class="summary"><p>某导航提供的音乐服务（音乐e栈），和虾米合作的，需要付费使用，前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是因为它的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。</p>
 <!-- more -->
 
 <h4 id="1">1 原始界面</h4>
@@ -233,8 +229,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></h2>
-                <div class="summary"><hr />
-<p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
+                <div class="summary"><p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
 <p>设置个定时任务（执行<code>crontab -e</code>编辑任务列表）：</p>
 <div class="highlight"><pre><span class="mi">0</span> <span class="mi">8</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">u</span> <span class="n">username</span>
 <span class="mi">0</span> <span class="mi">12</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">l</span> <span class="n">username</span>
@@ -251,8 +246,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">删除Git的提交记录</a></h2>
-                <div class="summary"><hr />
-<p>不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志）。</p>
+                <div class="summary"><p>不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志）。</p>
 <p>删除最后一次的提交记录：</p>
 <div class="highlight"><pre>git reset --hard HEAD^
 </pre></div>
@@ -274,8 +268,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></h2>
-                <div class="summary"><hr />
-<p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
+                <div class="summary"><p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
 <h3 id="1-libpcap">1 安装libpcap库</h3>
 <p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
 <div class="highlight"><pre>./configure
@@ -308,8 +301,7 @@ make install
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">在多个文件中批量查找/替换字符串</a></h2>
-                <div class="summary"><hr />
-<p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
+                <div class="summary"><p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
 <div class="highlight"><pre>grep string -rl /path
 </pre></div>
 
@@ -325,8 +317,7 @@ make install
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 RXVT</a></h2>
-                <div class="summary"><hr />
-<p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
+                <div class="summary"><p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <!-- more -->
 
 <div class="highlight"><pre>!!<span class="nv">$HOME</span>/.Xdefaults
@@ -358,8 +349,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">使用 OProfile 进行性能分析</a></h2>
-                <div class="summary"><hr />
-<h3 id="1">1 介绍</h3>
+                <div class="summary"><h3 id="1">1 介绍</h3>
 <p>OProfile是Linux上的性能监测工具，通过CPU硬件提供的性能计数器对事件（如CPU Cycle、Cache Miss等）进行采样，可以帮助开发者从代码层面分析程序的性能消耗情况，很方便的找出影响程序性能的问题点。</p>
 <p>硬件上，OProfile支持多种架构的CPU，包括Alpha、MIPS、ARM、x86/x86-64、Sparc64、PowerPC等；软件上，OProfile支持Linux 2.2、2.4、2.6多种版本的内核，并且所占用的系统开销较小，一般在1%-8%范围内，具体数值依赖于采样频率。</p>
 <!-- more -->

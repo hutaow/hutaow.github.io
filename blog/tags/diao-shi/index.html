@@ -59,8 +59,7 @@
 
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></h2>
-                <div class="summary"><hr />
-<p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。</p>
+                <div class="summary"><p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。</p>
 <!-- more -->
 
 <p>要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子：</p>
@@ -96,8 +95,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></h2>
-                <div class="summary"><hr />
-<p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
+                <div class="summary"><p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
 <div class="highlight"><pre><span class="cm">/* 获取函数调用栈 */</span>
 <span class="kt">int</span> <span class="nf">backtrace</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>

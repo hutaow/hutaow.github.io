@@ -59,8 +59,7 @@
 
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></h2>
-                <div class="summary"><hr />
-<p>前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
+                <div class="summary"><p>前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
 <div class="highlight"><pre><span class="n">VirtualBox</span> <span class="n">kernel</span> <span class="n">driver</span> <span class="n">not</span> <span class="n">installed</span><span class="p">.</span> <span class="n">The</span> <span class="n">vboxdrv</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">was</span> <span class="n">either</span> <span class="n">not</span> <span class="n">loaded</span> <span class="n">or</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">was</span> <span class="n">not</span> <span class="n">created</span> <span class="k">for</span> <span class="n">some</span> <span class="n">reason</span><span class="p">.</span><span class="err"> </span>
 <span class="n">Re</span><span class="o">-</span><span class="n">setup</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">by</span> <span class="n">executing</span> <span class="err">‘</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">setup</span><span class="err">’</span> <span class="n">as</span> <span class="n">root</span><span class="p">.</span>
 </pre></div>
@@ -75,8 +74,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora">Fedora禁止自动挂载分区的方法</a></h2>
-                <div class="summary"><hr />
-<p>Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在"/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi"文件中。</p>
+                <div class="summary"><p>Fedora在启动时会自动把系统中的其它分区挂载，为了对自动挂载的分区进行一定的限制，就要改变相应的策略，这一策略存放在"/usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi"文件中。</p>
 <!-- more -->
 
 <p>找到以下提示行</p>

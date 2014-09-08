@@ -59,8 +59,7 @@
 
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">Linux中查看进程占用内存的情况</a></h2>
-                <div class="summary"><hr />
-<p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
+                <div class="summary"><p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
 <div class="highlight"><pre><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span><span class="o">/</span><span class="n">status</span>
 </pre></div>
 
@@ -131,8 +130,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/06/13/restrict-user-login-linux-time">限制用户登陆Linux的时间</a></h2>
-                <div class="summary"><hr />
-<p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
+                <div class="summary"><p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
 <p>设置个定时任务（执行<code>crontab -e</code>编辑任务列表）：</p>
 <div class="highlight"><pre><span class="mi">0</span> <span class="mi">8</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">u</span> <span class="n">username</span>
 <span class="mi">0</span> <span class="mi">12</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">l</span> <span class="n">username</span>
@@ -149,8 +147,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></h2>
-                <div class="summary"><hr />
-<p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
+                <div class="summary"><p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
 <h3 id="1-libpcap">1 安装libpcap库</h3>
 <p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
 <div class="highlight"><pre>./configure
@@ -183,8 +180,7 @@ make install
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">在多个文件中批量查找/替换字符串</a></h2>
-                <div class="summary"><hr />
-<p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
+                <div class="summary"><p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
 <div class="highlight"><pre>grep string -rl /path
 </pre></div>
 
@@ -200,8 +196,7 @@ make install
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 RXVT</a></h2>
-                <div class="summary"><hr />
-<p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
+                <div class="summary"><p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <!-- more -->
 
 <div class="highlight"><pre>!!<span class="nv">$HOME</span>/.Xdefaults
@@ -233,8 +228,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/11/22/vim-development-environment">配置 VIM 开发环境</a></h2>
-                <div class="summary"><hr />
-<h3 id="1">1 插件列表</h3>
+                <div class="summary"><h3 id="1">1 插件列表</h3>
 <h4 id="11-ctags">1.1 CTags</h4>
 <p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
 <p>下载地址：<a href="http://ctags.sourceforge.net">http://ctags.sourceforge.net</a></p>
@@ -259,8 +253,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">在 ArchLinux 中使用 Fcitx 输入法</a></h2>
-                <div class="summary"><hr />
-<p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。</p>
+                <div class="summary"><p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。</p>
 <!-- more -->
 
 <h3 id="_1">安装输入法</h3>
@@ -286,8 +279,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">通过PXE方式安装Linux系统</a></h2>
-                <div class="summary"><hr />
-<h3 id="1">1 准备工作</h3>
+                <div class="summary"><h3 id="1">1 准备工作</h3>
 <ul>
 <li>Linux安装镜像（本文以CentOS为例）</li>
 <li>TFTP+DHCP服务程序（Windows环境中推荐Tftpd32，<a href="http://tftpd32.jounin.net">点击此处进入下载页面</a>）</li>
@@ -308,8 +300,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></h2>
-                <div class="summary"><hr />
-<h3 id="1-core-dump">1 什么是 Core Dump</h3>
+                <div class="summary"><h3 id="1-core-dump">1 什么是 Core Dump</h3>
 <p>Core Dump 又叫核心转储。在程序运行过程中发生异常时，将其内存数据保存到文件中，这个过程叫做 Core Dump。</p>
 <h3 id="2-core-dump">2 Core Dump 的作用</h3>
 <p>在开发过程中，难免会遇到程序运行过程中异常退出的情况，这时候想要定位哪里出了问题，仅仅依靠程序自身的信息打印（日志记录）往往是不够的，这个时候就需要 Core Dump 文件来帮忙了。</p>
@@ -326,8 +317,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/19/linux-signal">Linux信号处理机制</a></h2>
-                <div class="summary"><hr />
-<p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
+                <div class="summary"><p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <!-- more -->
 

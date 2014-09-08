@@ -59,8 +59,7 @@
 
             <article>
                 <h2><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></h2>
-                <div class="summary"><hr />
-<p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
+                <div class="summary"><p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
 <h3 id="1-libpcap">1 安装libpcap库</h3>
 <p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
 <div class="highlight"><pre>./configure
@@ -93,8 +92,7 @@ make install
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/12/05/string-size-calculation">类型转换导致字符串大小计算错误的问题</a></h2>
-                <div class="summary"><hr />
-<p>今天在定位问题时，发现有一个字符串关键字在搜索时死活不命中，但实际那个关键字在数据中是存在的，跟踪发现是一个不起眼的细节导致的。</p>
+                <div class="summary"><p>今天在定位问题时，发现有一个字符串关键字在搜索时死活不命中，但实际那个关键字在数据中是存在的，跟踪发现是一个不起眼的细节导致的。</p>
 <!-- more -->
 
 <p>用一段简短的代码来说明一下问题出在哪里：</p>
@@ -118,8 +116,7 @@ make install
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/19/linux-signal">Linux信号处理机制</a></h2>
-                <div class="summary"><hr />
-<p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
+                <div class="summary"><p>在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。</p>
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <!-- more -->
 
@@ -151,8 +148,7 @@ make install
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></h2>
-                <div class="summary"><hr />
-<p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。</p>
+                <div class="summary"><p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。</p>
 <!-- more -->
 
 <p>要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子：</p>
@@ -188,8 +184,7 @@ make install
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></h2>
-                <div class="summary"><hr />
-<p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
+                <div class="summary"><p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
 <div class="highlight"><pre><span class="cm">/* 获取函数调用栈 */</span>
 <span class="kt">int</span> <span class="nf">backtrace</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
@@ -223,8 +218,7 @@ make install
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">标记ATL控件为安全控件</a></h2>
-                <div class="summary"><hr />
-<p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
+                <div class="summary"><p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
 <p>实现方法如下：</p>
 <p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
 <!-- more -->

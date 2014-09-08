@@ -59,8 +59,7 @@
 
             <article>
                 <h2><a href="http://hutaow.com/blog/2010/01/30/analysis-of-the-forward-slash-and-backslash">正斜杠与反斜杠的分析</a></h2>
-                <div class="summary"><hr />
-<p>正斜杠(左斜杠)，符号是"/"；反斜杠(右斜杠)，符号是"\"。</p>
+                <div class="summary"><p>正斜杠(左斜杠)，符号是"/"；反斜杠(右斜杠)，符号是"\"。</p>
 <p>在Unix/Linux中，路径的分隔采用正斜杠"/"，比如"/home/hutaow"；而在Windows中，路径分隔采用反斜杠"\"，比如"C:\Windows\System"。</p>
 <p>有时我们会看到这样的路径写法，"C:\\Windows\\System"，也就是用两个反斜杠来分隔路径，这种写法在网络应用或编程中经常看到，事实上，上面这个路径可以用"C:/Windows/System"来代替，不会出错。但是如果写成了"C:\Windows\System"，那就可能会出现各种奇怪的错误了。</p>
 <!-- more -->
@@ -75,8 +74,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2010/01/14/interesting-features-in-htc-diamond">HTC Diamond 两个有意思的功能</a></h2>
-                <div class="summary"><hr />
-<p>这两天一直折腾 HTC Diamond，发现了两个很有意思的功能：</p>
+                <div class="summary"><p>这两天一直折腾 HTC Diamond，发现了两个很有意思的功能：</p>
 <ol>
 <li>
 <p>Diamond的手写笔不像其它手机那样有卡槽卡住，而是像有磁铁一样把笔"吸"进去，实际上功能远不止这个。在Diamond关闭屏幕时，拔出手写笔，屏幕会自动亮起，还有比这更神奇的，在打电话时，如果拔出手写笔，Diamond会打开便签，并且便签已经包含了通话对象、时间等信息，方便记录；</p>
@@ -93,8 +91,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw">Xmarks(原Foxmarks)被墙之后更新的方法</a></h2>
-                <div class="summary"><hr />
-<p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
+                <div class="summary"><p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
 <h4 id="1-cwindowssystem32driversetchosts">1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts"文件中添加如下内容：</h4>
 <!-- more -->
 
@@ -112,8 +109,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2009/05/02/mark-atl-control-as-a-safe-control">标记ATL控件为安全控件</a></h2>
-                <div class="summary"><hr />
-<p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
+                <div class="summary"><p>用ATL开发网页控件时，IE总会出现“该控件不是安全的”之类的提示，去掉这个提示的方法就是使用 IObjectSafety 将其标记为可安全初始化的控件。</p>
 <p>实现方法如下：</p>
 <p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
 <!-- more -->
@@ -146,8 +142,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2009/04/02/sql-statements-batch-replace-a-string">SQL语句实现某一字符串的替换</a></h2>
-                <div class="summary"><hr />
-<p>使用update+replace语句：</p>
+                <div class="summary"><p>使用update+replace语句：</p>
 <div class="highlight"><pre><span class="k">update</span> <span class="n">table_name</span> <span class="kt">set</span> <span class="n">column_name</span> <span class="o">=</span> <span class="k">replace</span><span class="p">(</span><span class="n">column_name</span><span class="p">,</span><span class="err">’</span><span class="n">hutaow_original_string</span><span class="err">’</span><span class="p">,</span><span class="err">&#39;</span><span class="n">hutaow_new_string</span><span class="err">’</span><span class="p">);</span>
 </pre></div>
 
@@ -161,8 +156,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/08/14/convert-between-byte-array-and-hex-string">Java中十六进制字符串与字节数组的相互转换</a></h2>
-                <div class="summary"><hr />
-<p>原理很简单，直接贴源代码吧。</p>
+                <div class="summary"><p>原理很简单，直接贴源代码吧。</p>
 <!-- more -->
 
 <div class="highlight"><pre><span class="cm">/**</span>
@@ -188,8 +182,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/08/10/config-proxy-in-linux-terminal">终端下使用代理的方法</a></h2>
-                <div class="summary"><hr />
-<p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，"HTTP_PROXY"、"http_proxy"和"FTP_PROXY"、"ftp_proxy"，在"~/.bash_profile"中添加以下几行：</p>
+                <div class="summary"><p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，"HTTP_PROXY"、"http_proxy"和"FTP_PROXY"、"ftp_proxy"，在"~/.bash_profile"中添加以下几行：</p>
 <div class="highlight"><pre><span class="n">export</span> <span class="n">HTTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
 <span class="n">export</span> <span class="n">FTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
 <span class="n">export</span> <span class="n">http_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
@@ -207,8 +200,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">Fedora 9 无法启动KDE的解决办法</a></h2>
-                <div class="summary"><hr />
-<p>今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout-&gt;KDE，结果却报出个错误，说"Could not start kstartupconfig4. Check your installation"，无语，难道是我少装了什么东西？</p>
+                <div class="summary"><p>今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout-&gt;KDE，结果却报出个错误，说"Could not start kstartupconfig4. Check your installation"，无语，难道是我少装了什么东西？</p>
 <p>按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用"chown"改变"~/.kde"目录的所有者，哦？检查……"~/.kde"这个目录竟然是root的，原来是权限的问题。</p>
 <!-- more -->
 
@@ -222,8 +214,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux">Linux下将.cue/.bin转换为.iso的方法</a></h2>
-                <div class="summary"><hr />
-<p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫"bchunk"的小软件非常好用，而且小的可以，才几十K，很不错。</p>
+                <div class="summary"><p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫"bchunk"的小软件非常好用，而且小的可以，才几十K，很不错。</p>
 <p>在终端里输入如下命令：</p>
 <div class="highlight"><pre><span class="n">bchunk</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">bin</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">cue</span> <span class="n">e</span><span class="o">-</span><span class="n">w2sp4ru1as</span><span class="p">.</span><span class="n">iso</span>
 </pre></div>
@@ -242,8 +233,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">新版VirtualBox在Fedora下不能启动虚拟机的解决办法</a></h2>
-                <div class="summary"><hr />
-<p>前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
+                <div class="summary"><p>前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
 <div class="highlight"><pre><span class="n">VirtualBox</span> <span class="n">kernel</span> <span class="n">driver</span> <span class="n">not</span> <span class="n">installed</span><span class="p">.</span> <span class="n">The</span> <span class="n">vboxdrv</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">was</span> <span class="n">either</span> <span class="n">not</span> <span class="n">loaded</span> <span class="n">or</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">was</span> <span class="n">not</span> <span class="n">created</span> <span class="k">for</span> <span class="n">some</span> <span class="n">reason</span><span class="p">.</span><span class="err"> </span>
 <span class="n">Re</span><span class="o">-</span><span class="n">setup</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">by</span> <span class="n">executing</span> <span class="err">‘</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">setup</span><span class="err">’</span> <span class="n">as</span> <span class="n">root</span><span class="p">.</span>
 </pre></div>

@@ -59,8 +59,7 @@
 
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></h2>
-                <div class="summary"><hr />
-<p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
+                <div class="summary"><p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
 <div class="highlight"><pre><span class="cm">/* 获取函数调用栈 */</span>
 <span class="kt">int</span> <span class="nf">backtrace</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
@@ -94,8 +93,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/10/starting-with-new-domain-name">博客搬家完成，新域名正式上线</a></h2>
-                <div class="summary"><hr />
-<p>昨天注册了<code>hutaow.net</code>这个域名，决心把博客搬过来，恢复写博客的生活。</p>
+                <div class="summary"><p>昨天注册了<code>hutaow.net</code>这个域名，决心把博客搬过来，恢复写博客的生活。</p>
 <p>算下来差不多有两年时间都没有更新过了，其中一个最主要借口是找不到合适的落脚点，时间最长地方要数ChinaUNIX了，早期的时候用着还是蛮不错的，但是随着时间的推移，ChinaUNIX的系统更新实在是跟不上节奏，想到过搬家但是由于ChinaUNIX的订阅数据实在太蹩脚，连搬都不好搬，更不用说评论等等了，博客搬家的计划也就一直搁置了。后来有试过CSDN无奈上面的广告太多，百度也试过但是它贴代码的效果实在太差，WordPress又悲催的被墙等等。</p>
 <p>另一个借口就是工作太忙没时间，一回家就不太想写东西了，但是最近开始意识到挥挥衣袖什么都没有留下的感觉很不好，没有积累，没有思考，需要改变一下了。</p>
 <p>博客一方面作为记录，把了解的知识积累下来，方便自己以后回忆；另一方面作为分享，将解决问题过程中吸取的经验写下来，供大家参考，这样遇到同样问题时可以更迅速的解决。</p>
@@ -108,8 +106,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/09/06/install-openwrt">TP-WR703n安装OpenWRT记录</a></h2>
-                <div class="summary"><hr />
-<h3 id="1-openwrt">1 安装OpenWRT</h3>
+                <div class="summary"><h3 id="1-openwrt">1 安装OpenWRT</h3>
 <h4 id="11">1.1 下载并刷新固件</h4>
 <p>如果以前没刷过OpenWRT，需要升级factory固件，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin">点击这里下载</a>。</p>
 <p>如果之前已经安装过了OpenWRT，则直接更新sysupgrade固件即可，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin">点击这里下载</a>。</p>
@@ -130,8 +127,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/06/16/slove-the-read-only-file-system-problem-in-linux">Linux中分区出现“Read-only file system”的解决办法</a></h2>
-                <div class="summary"><hr />
-<p>最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：</p>
+                <div class="summary"><p>最近发现手机上TF卡权限显示是可写入的，但无法向TF卡写入文件，并提示“Read-only file system”，用下面的命令重新挂载一下就可以了：</p>
 <div class="highlight"><pre><span class="n">mount</span> <span class="o">-</span><span class="n">o</span> <span class="n">remount</span><span class="p">,</span><span class="n">rw</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">TF</span>
 </pre></div>
 
@@ -145,8 +141,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2013/06/16/batch-settings-directory-or-file-permissions">Linux中批量设置目录或文件权限的方法</a></h2>
-                <div class="summary"><hr />
-<p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
+                <div class="summary"><p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
 <div class="highlight"><pre><span class="n">find</span> <span class="p">.</span><span class="o">/</span> <span class="o">-</span><span class="n">type</span> <span class="n">d</span> <span class="o">-</span><span class="n">exec</span> <span class="n">chmod</span> <span class="mi">755</span> <span class="p">{}</span> <span class="err">\</span><span class="p">;</span>
 </pre></div>
 
@@ -162,8 +157,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring">配置 Cisco Catalyst 3560 交换机端口镜像</a></h2>
-                <div class="summary"><hr />
-<p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
+                <div class="summary"><p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
 <p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
 <p>2) 交换机上电自检然后登入后出现命令提示符：</p>
 <div class="highlight"><pre><span class="n">Switch</span><span class="o">&gt;</span>
@@ -191,8 +185,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2010/04/27/get-xml-node-value-with-c-sharp-language">C#获取XML文件指定节点的数据</a></h2>
-                <div class="summary"><hr />
-<p>实例说明会更清楚些，假设有如下XML文件：</p>
+                <div class="summary"><p>实例说明会更清楚些，假设有如下XML文件：</p>
 <p>``` xml message_hutaow.xml
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 <Message version="1.0">
@@ -220,8 +213,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2010/04/21/install-idmef-plugin-for-snort">Snort安装IDMEF插件</a></h2>
-                <div class="summary"><hr />
-<p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
+                <div class="summary"><p>Snort作为一款开源的入侵检测系统，可以与其它各种网络设备连接协同工作，其中IDMEF插件可以实现设备之间报警信息的共享，在安装该插件时，需要注意以下几个问题：</p>
 <ol>
 <li>
 <p>IDMEF插件依赖于<a href="http://sourceforge.net/projects/libidmef">libidmef</a>、<a href="http://xmlsoft.org">libxml2</a>及<a href="http://www.ntp.org">libntp</a>库，所以在安装Snort之前，需要首先安装这三个库。</p>
@@ -242,8 +234,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing">入侵检测与响应系统的信息共享</a></h2>
-                <div class="summary"><hr />
-<h3 id="_1">引言</h3>
+                <div class="summary"><h3 id="_1">引言</h3>
 <p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。</p>
 <p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
 <!-- more -->
@@ -260,8 +251,7 @@
             <hr/>
             <article>
                 <h2><a href="http://hutaow.com/blog/2010/04/13/reverse-order-of-words-in-a-string">字符串中单词逆序的实现</a></h2>
-                <div class="summary"><hr />
-<p>在Java中可以用压栈/弹栈的方式：</p>
+                <div class="summary"><p>在Java中可以用压栈/弹栈的方式：</p>
 <!-- more -->
 
 <div class="highlight"><pre><span class="n">import</span><span class="err"> </span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Stack</span><span class="o">;</span>
