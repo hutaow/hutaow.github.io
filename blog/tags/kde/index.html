@@ -59,6 +59,25 @@
 
             <article>
                 <h2><a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">Fedora 9 无法启动KDE的解决办法</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2008-07-29T11:34:00"> 二 29 七月 2008</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/linux/index.html">Linux</a>
+        /
+	<a href="http://hutaow.com/blog/tags/kde/index.html">KDE</a>
+    
+</footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout-&gt;KDE，结果却报出个错误，说"Could not start kstartupconfig4. Check your installation"，无语，难道是我少装了什么东西？</p>
 <p>按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用"chown"改变"~/.kde"目录的所有者，哦？检查……"~/.kde"这个目录竟然是root的，原来是权限的问题。</p>
 <!-- more -->
