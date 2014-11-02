@@ -5,9 +5,16 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/index.html</loc>
-<lastmod>2014-09-26T01:39:14-00:00</lastmod>
+<lastmod>2014-11-02T17:34:29-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service</loc>
+<lastmod>2014-11-02T16:23:11-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -383,7 +390,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/blog/categories/tech/index.html</loc>
-<lastmod>2014-09-08T17:00:20-00:00</lastmod>
+<lastmod>2014-11-02T16:23:11-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -529,8 +536,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/pxe/index.html</loc>
-<lastmod>2013-10-30T23:30:57-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/openwrt/index.html</loc>
+<lastmod>2014-11-02T16:23:11-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -550,8 +557,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/git/index.html</loc>
-<lastmod>2014-06-02T15:38:56-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/samba/index.html</loc>
+<lastmod>2014-11-02T16:23:11-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -578,8 +585,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/script/index.html</loc>
-<lastmod>2013-12-16T23:02:24-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/git/index.html</loc>
+<lastmod>2014-06-02T15:38:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -620,8 +627,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hutaow.com/blog/tags/openwrt/index.html</loc>
-<lastmod>2013-09-06T23:16:00-00:00</lastmod>
+<loc>http://hutaow.com/blog/tags/pxe/index.html</loc>
+<lastmod>2013-10-30T23:30:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -657,6 +664,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://hutaow.com/blog/tags/xmarks/index.html</loc>
 <lastmod>2010-01-12T22:53:00-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hutaow.com/blog/tags/smb/index.html</loc>
+<lastmod>2014-11-02T16:23:11-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -830,6 +844,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://hutaow.com/blog/tags/script/index.html</loc>
+<lastmod>2013-12-16T23:02:24-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://hutaow.com/blog/tags/sed/index.html</loc>
 <lastmod>2014-05-26T23:36:27-00:00</lastmod>
 <changefreq>daily</changefreq>
@@ -894,7 +915,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hutaow.com/blog/authors/hutaow/index.html</loc>
-<lastmod>2014-09-08T17:00:20-00:00</lastmod>
+<lastmod>2014-11-02T16:23:11-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

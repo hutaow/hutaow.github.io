@@ -58,6 +58,47 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service">配置OpenWRT的Samba共享服务</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-11-02T16:23:11"> 日 02 十一月 2014</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/openwrt/index.html">OpenWRT</a>
+        /
+	<a href="http://hutaow.com/blog/tags/samba/index.html">Samba</a>
+        /
+	<a href="http://hutaow.com/blog/tags/smb/index.html">SMB</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>本想把wr703n挂个硬盘开共享服务，无奈它的USB输出电流太小，挂移动硬盘过于吃力，于是又入手了一个wr720n，2A的USB输出对移动硬盘是绰绰有余了。刷入OpenWRT后配置Samba服务折腾了不少时间，这次赶紧记下来以防下次又忘了。</p>
+<p>由于OpenWRT添加用户需要额外安装<code>shadow</code>软件包，而OpenWRT本身又不太建议这样做，所以本文直接以root用户共享为例说明一下配置过程。</p>
+<h4 id="1-samba">1. 安装Samba服务</h4>
+<p>执行如下命令安装Samba服务：</p>
+<div class="highlight"><pre><span class="n">opkg</span> <span class="n">update</span>
+<span class="n">opkg</span> <span class="n">install</span> <span class="n">samba36</span><span class="o">-</span><span class="n">server</span>
+</pre></div>
+
+
+<p><em>注：上面的<code>samba36-server</code>是本文发布时的Samba服务软件包名称，其中数字36表示3.6.X版本，以后Samba版本更新的话可能找不到这个软件包，这个时候执行<code>opkg list | grep samba</code>搜一下就好。</em></p>
+<h4 id="2">2. 配置全局共享参数</h4>
+<p>配置文件路径为<code>/etc/samba/smb.conf</code>，将<code>[global]</code>中的<code>invalid users = root</code>注掉，像下面的样子 ...</p>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">用 Python 实现端口映射功能</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
@@ -503,48 +544,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">将 Python 脚本转换为可执行程序</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-12-24T00:00:01"> 二 24 十二月 2013</time>
-    </span>
-            <span class="label label-default">By</span>
-            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
-
-        <span class="label label-default">Category</span>
-        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://hutaow.com/blog/tags/python/index.html">Python</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>本文所使用的工具是cx_Freeze，相对py2exe和PyInstaller来说，cx_Freeze的兼容性更好，支持最新的Python 3.X，支持PyQT，并且可以跨平台支持Windows和Linux系统。</p>
-<p>cx_Freeze的官方主页为<a href="http://cx-freeze.sourceforge.net">http://cx-freeze.sourceforge.net</a>，下面以Windows系统为例介绍一下它的使用方法。</p>
-<!-- more -->
-
-<h3 id="1">1 配置转换脚本</h3>
-<p>新建一个Python脚本文件，如<code>setup.py</code>，内容如下：</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">cx_Freeze</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Executable</span>
-
-<span class="n">base</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;win32&quot;</span><span class="p">:</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="s">&quot;Win32GUI&quot;</span>
-
-<span class="n">setup</span><span class="p">(</span>  <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;MyApp&quot;</span><span class="p">,</span>
-        <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
-        <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;My PyQT application!&quot;</span><span class="p">,</span>
-        <span class="n">executables</span> <span class="o">=</span> <span class="p">[</span><span class="n">Executable</span><span class="p">(</span><span class="s">&quot;pyqt_example.py ...</span></pre></div></!-->
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -585,6 +584,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service">
+                                配置OpenWRT的Samba共享服务
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">
                                 用 Python 实现端口映射功能
@@ -628,11 +632,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
                                 使用 OProfile 进行性能分析
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">
-                                将 Python 脚本转换为可执行程序
                             </a>
                         </li>
                     </ul>
@@ -860,7 +859,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                                 Network
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/openwrt/index.html">
                                 OpenWRT
                             </a>
@@ -916,6 +915,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/samba/index.html">
+                                Samba
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/script/index.html">
                                 Script
                             </a>
@@ -938,6 +942,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/signal/index.html">
                                 Signal
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/smb/index.html">
+                                SMB
                             </a>
                         </li>
                         <li class="list-group-item tag-4">

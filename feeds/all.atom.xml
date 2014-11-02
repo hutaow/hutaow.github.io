@@ -1,5 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/all.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-09-08T17:00:20+08:00</updated><entry><title>用 Python 实现端口映射功能</title><link href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python" rel="alternate"></link><updated>2014-09-08T17:00:20+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-09-08:blog/2014/09/08/write-tcp-mapping-program-with-python</id><summary type="html">&lt;h4 id="1"&gt;1 端口映射&lt;/h4&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/all.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2014-11-02T16:23:11+08:00</updated><entry><title>配置OpenWRT的Samba共享服务</title><link href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service" rel="alternate"></link><updated>2014-11-02T16:23:11+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-11-02:blog/2014/11/02/configure-openwrt-samba-shared-service</id><summary type="html">&lt;p&gt;本想把wr703n挂个硬盘开共享服务，无奈它的USB输出电流太小，挂移动硬盘过于吃力，于是又入手了一个wr720n，2A的USB输出对移动硬盘是绰绰有余了。刷入OpenWRT后配置Samba服务折腾了不少时间，这次赶紧记下来以防下次又忘了。&lt;/p&gt;
+&lt;p&gt;由于OpenWRT添加用户需要额外安装&lt;code&gt;shadow&lt;/code&gt;软件包，而OpenWRT本身又不太建议这样做，所以本文直接以root用户共享为例说明一下配置过程。&lt;/p&gt;
+&lt;h4 id="1-samba"&gt;1. 安装Samba服务&lt;/h4&gt;
+&lt;p&gt;执行如下命令安装Samba服务：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;opkg&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt;
+&lt;span class="n"&gt;opkg&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;samba36&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;注：上面的&lt;code&gt;samba36-server&lt;/code&gt;是本文发布时的Samba服务软件包名称，其中数字36表示3.6.X版本，以后Samba版本更新的话可能找不到这个软件包，这个时候执行&lt;code&gt;opkg list | grep samba&lt;/code&gt;搜一下就好。&lt;/em&gt;&lt;/p&gt;
+&lt;h4 id="2"&gt;2. 配置全局共享参数&lt;/h4&gt;
+&lt;p&gt;配置文件路径为&lt;code&gt;/etc/samba/smb.conf&lt;/code&gt;，将&lt;code&gt;[global]&lt;/code&gt;中的&lt;code&gt;invalid users = root&lt;/code&gt;注掉，像下面的样子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[global]&lt;/span&gt;
+&lt;span class="na"&gt;netbios name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;|NAME|&lt;/span&gt;
+&lt;span class="na"&gt;display charset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;|CHARSET|&lt;/span&gt;
+&lt;span class="na"&gt;interfaces&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;|INTERFACES|&lt;/span&gt;
+&lt;span class="na"&gt;server string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;|DESCRIPTION|&lt;/span&gt;
+&lt;span class="na"&gt;unix charset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;|CHARSET|&lt;/span&gt;
+&lt;span class="na"&gt;workgroup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;|WORKGROUP|&lt;/span&gt;
+&lt;span class="na"&gt;browseable&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="na"&gt;deadtime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;30&lt;/span&gt;
+&lt;span class="na"&gt;domain master&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="na"&gt;encrypt passwords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;true&lt;/span&gt;
+&lt;span class="na"&gt;enable core files&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;no&lt;/span&gt;
+&lt;span class="na"&gt;guest account&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;nobody&lt;/span&gt;
+&lt;span class="na"&gt;guest ok&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="c1"&gt;# invalid users = root&lt;/span&gt;
+&lt;span class="na"&gt;local master&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="na"&gt;load printers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;no&lt;/span&gt;
+&lt;span class="na"&gt;map to guest&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;Bad User&lt;/span&gt;
+&lt;span class="na"&gt;max protocol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;SMB2&lt;/span&gt;
+&lt;span class="na"&gt;min receivefile size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;16384&lt;/span&gt;
+&lt;span class="na"&gt;null passwords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="na"&gt;obey pam restrictions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="na"&gt;os level&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;20&lt;/span&gt;
+&lt;span class="na"&gt;passdb backend&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;smbpasswd&lt;/span&gt;
+&lt;span class="na"&gt;preferred master&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="na"&gt;printable&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;no&lt;/span&gt;
+&lt;span class="na"&gt;security&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;user&lt;/span&gt;
+&lt;span class="na"&gt;smb encrypt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;disabled&lt;/span&gt;
+&lt;span class="na"&gt;smb passwd file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;/etc/samba/smbpasswd&lt;/span&gt;
+&lt;span class="na"&gt;socket options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;TCP_NODELAY IPTOS_LOWDELAY&lt;/span&gt;
+&lt;span class="na"&gt;syslog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;2&lt;/span&gt;
+&lt;span class="na"&gt;use sendfile&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="na"&gt;writeable&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="3"&gt;3. 配置共享目录&lt;/h4&gt;
+&lt;p&gt;例如要添加一个名称为&lt;code&gt;home&lt;/code&gt;的共享，共享路径为&lt;code&gt;/home&lt;/code&gt;，允许root用户读写操作，在&lt;code&gt;/etc/samba/smb.conf&lt;/code&gt;配置文件中增加如下信息：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[home]&lt;/span&gt;
+&lt;span class="na"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;/home&lt;/span&gt;
+&lt;span class="na"&gt;valid users&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;root&lt;/span&gt;
+&lt;span class="na"&gt;read only&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;no&lt;/span&gt;
+&lt;span class="na"&gt;guest ok&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="na"&gt;create mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;0750&lt;/span&gt;
+&lt;span class="na"&gt;directory mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;0750&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="4"&gt;4. 配置共享密码&lt;/h4&gt;
+&lt;p&gt;Samba的共享用户密码是单独配置的，执行下面的命令将root添加为共享用户，同时按照命令提示设置共享密码。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;smbpasswd&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="5"&gt;5. 完成&lt;/h4&gt;
+&lt;p&gt;配置完成后，启动Samba服务即可。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;samba&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="OpenWRT"></category><category term="Samba"></category><category term="SMB"></category></entry><entry><title>用 Python 实现端口映射功能</title><link href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python" rel="alternate"></link><updated>2014-09-08T17:00:20+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2014-09-08:blog/2014/09/08/write-tcp-mapping-program-with-python</id><summary type="html">&lt;h4 id="1"&gt;1 端口映射&lt;/h4&gt;
 &lt;p&gt;举个例子来说明一下端口映射的作用。&lt;/p&gt;
 &lt;p&gt;有A、B、C三台计算机，A、B互通，B、C互通，但是A、C不通，这个时候在C上开了一个Web服务，如何让A访问C的Web服务？&lt;/p&gt;
 &lt;p&gt;最简单有效的办法就是在B上开一个端口映射服务，然后让A访问B的某个端口，B将这个端口上的所有流量全部转发到C的Web服务端口上，同时将C上Web服务返回的流量也全部转发给A。这样对A来说，以B为跳板，实现了间接访问C上Web服务的目的。&lt;/p&gt;
