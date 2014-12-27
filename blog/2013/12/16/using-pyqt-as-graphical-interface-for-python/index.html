@@ -82,7 +82,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-12-16T23:02:24"> 一 16 十二月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-12-16T23:02:24+08:00"> Mon 16 December 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -216,7 +216,7 @@
 <p>可以看出，QT设计器所保存的界面是XML文件格式的，事实上，QT设计器所生成的界面可以很自由的移植到不同语言中，甚至不需要太多额外的适配工作，非常方便。</p>
 <h3 id="4">4 生成代码</h3>
 <p>有了QT界面，下一步就需要用<code>pyuic</code>这个工具来将QT界面转换为Python代码（基于PyQT库），转换命令如下：</p>
-<div class="highlight"><pre><span class="n">pyuic4</span> <span class="o">-</span><span class="n">x</span> <span class="o">-</span><span class="n">o</span> <span class="n">qt_designer_example</span><span class="p">.</span><span class="n">py</span> <span class="n">qt_designer_example</span><span class="p">.</span><span class="n">ui</span>
+<div class="highlight"><pre>pyuic4 -x -o qt_designer_example.py qt_designer_example.ui
 </pre></div>
 
 
@@ -325,14 +325,6 @@
 <p>完成上述步骤后，就可以运行Python脚本了，运行后界面功能和开头中的例子基本相同，只不过这个是用QT设计器辅助完成的，相比手写界面代码来说，效率高了不少。</p>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">用 Python 实现端口映射功能</a></li>
-        <li><a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法</a></li>
-        <li><a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">将 Python 脚本转换为可执行程序</a></li>
-    </ul>
-</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -404,6 +396,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -431,11 +428,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -499,6 +491,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -528,7 +525,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -818,7 +815,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

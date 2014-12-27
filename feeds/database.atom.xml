@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>胡桃夹子</title><link href="http://hutaow.com/" rel="alternate"></link><link href="http://hutaow.com/feeds/database.atom.xml" rel="self"></link><id>http://hutaow.com/</id><updated>2009-04-02T10:55:00+08:00</updated><entry><title>SQL语句实现某一字符串的替换</title><link href="http://hutaow.com/blog/2009/04/02/sql-statements-batch-replace-a-string" rel="alternate"></link><updated>2009-04-02T10:55:00+08:00</updated><author><name>hutaow</name></author><id>tag:hutaow.com,2009-04-02:blog/2009/04/02/sql-statements-batch-replace-a-string</id><summary type="html">&lt;hr /&gt;
-&lt;p&gt;使用update+replace语句：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;update&lt;/span&gt; &lt;span class="n"&gt;table_name&lt;/span&gt; &lt;span class="kt"&gt;set&lt;/span&gt; &lt;span class="n"&gt;column_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;column_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="n"&gt;hutaow_original_string&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;hutaow_new_string&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;其中，table_name是表的名字，column_name是要替换数据的列的名字，hutaow_original_string是待替换的原始字符串，hutaow_new_string是新字符串，MySQL下验证成功。&lt;/p&gt;</summary><category term="数据库"></category><category term="SQL"></category><category term="MySQL"></category></entry></feed>

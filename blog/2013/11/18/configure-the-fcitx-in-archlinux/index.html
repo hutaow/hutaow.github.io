@@ -80,7 +80,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-11-18T22:37:16"> 一 18 十一月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-11-18T22:37:16+08:00"> Mon 18 November 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -103,31 +103,21 @@
 
 <h3 id="_1">安装输入法</h3>
 <p>执行下面的命令安装FCITX：</p>
-<div class="highlight"><pre><span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">fcitx</span><span class="o">-</span><span class="n">im</span>
+<div class="highlight"><pre>pacman -S fcitx-im
 </pre></div>
 
 
 <h3 id="_2">配置环境变量</h3>
 <p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="s">&quot;@im=fcitx&quot;</span>
+<div class="highlight"><pre>export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=&quot;@im=fcitx&quot;
 </pre></div>
 
 
 <p>配置后重新登录生效，使用<code>CTRL+空格</code>激活输入法，如果发现fcitx没有运行，则直接在命令行里执行<code>fcitx</code>即可。</p>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">Linux中设置Java环境变量</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">通过PXE方式安装Linux系统</a></li>
-        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
-        <li><a href="http://hutaow.com/blog/2008/03/20/compilation-failed-due-to-character-encoding">因字符编码导致的编译不通过</a></li>
-    </ul>
-</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -199,6 +189,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -226,11 +221,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -294,6 +284,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -323,7 +318,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -613,7 +608,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

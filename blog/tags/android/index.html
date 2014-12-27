@@ -63,7 +63,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-04-02T12:21:00"> 三 02 四月 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-04-02T12:21:00+08:00"> Wed 02 April 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -92,7 +92,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-02-13T15:51:00"> 三 13 二月 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-02-13T15:51:00+08:00"> Wed 13 February 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -133,7 +133,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-01-30T11:50:00"> 三 30 一月 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-01-30T11:50:00+08:00"> Wed 30 January 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -165,7 +165,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-01-28T20:13:00"> 一 28 一月 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-01-28T20:13:00+08:00"> Mon 28 January 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -183,20 +183,21 @@
 <!-- more -->
 
 <h3 id="1">1 首先按照程序的目录结构大致分析</h3>
-<div class="highlight"><pre><span class="n">res</span><span class="o">/</span><span class="n">layout</span><span class="o">/</span>   <span class="err">这个目录存放的就是布局用的</span><span class="n">xml</span><span class="err">文件，一般默认为</span><span class="n">main</span><span class="p">.</span><span class="n">xml</span>
-<span class="n">res</span><span class="o">/</span><span class="n">values</span><span class="o">/</span>   <span class="err">这个目录存放的是一堆常量的</span><span class="n">xml</span><span class="err">文件</span>
-<span class="n">res</span><span class="o">/</span><span class="n">drawable</span><span class="o">/</span> <span class="err">存放的是一些图片什么的，当然图标也在这里</span>
+<div class="highlight"><pre>res/layout/   这个目录存放的就是布局用的xml文件，一般默认为main.xml
+res/values/   这个目录存放的是一堆常量的xml文件
+res/drawable/ 存放的是一些图片什么的，当然图标也在这里
 </pre></div>
 
 
 <h3 id="2-layoutxml">2 下面主要对layout下的xml文件做个介绍，顺便也把布局的方法总结一下</h3>
 <h4 id="21">2.1 文件的开头</h4>
-<div class="highlight"><pre><span class="o">&lt;?</span><span class="nt">xml</span> <span class="nt">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nt">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="o">?&gt;</span>
+<div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 </pre></div>
 
 
 <p>这是在说明xml版本及字符编码</p>
-<h4 id="22">2.2 布局框架 ...</h4></!-->
+<h4 id="22">2.2 布局框架</h4>
+<div class="highlight"><pre><span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/01/28/understanding-on-the-android-layout">阅读全文</a>
                     </div>
@@ -209,7 +210,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-01-11T11:33:00"> 五 11 一月 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-01-11T11:33:00+08:00"> Fri 11 January 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -229,10 +230,10 @@
 
 <p>这种方法对我来说并不是很习惯，毕竟java用了那么长时间，在代码中直接setLayout感觉更舒服些。当然既然google采用了这种布局和代码分离的方式那就肯定有它的优点，看来还需要一点的时间来习惯这种布局方式。</p>
 <h4 id="2-android">2 总结：我自己对Android几个模块的理解</h4>
-<div class="highlight"><pre><span class="n">Activity</span><span class="err">：类似</span><span class="n">java</span><span class="err">中的</span><span class="n">Applet</span><span class="err">或</span><span class="n">Frame</span><span class="err">，以我的理解，这个类提供了程序的最基本框架。</span>
-<span class="n">Intent</span> <span class="n">Receiver</span><span class="err">：翻译过来是“目的接收器”，和</span><span class="n">java</span><span class="err">中的</span><span class="n">listener</span><span class="err">类似，用于处理事件。</span>
-<span class="n">Service</span><span class="err">：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。</span>
-<span class="n">Content</span> <span class="n">Provider</span><span class="err">：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。</span>
+<div class="highlight"><pre>Activity：类似java中的Applet或Frame，以我的理解，这个类提供了程序的最基本框架。
+Intent Receiver：翻译过来是“目的接收器”，和java中的listener类似，用于处理事件。
+Service：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。
+Content Provider：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。
 </pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/01/11/android-beginner-question">阅读全文</a>
@@ -349,6 +350,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -378,7 +384,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -668,7 +674,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

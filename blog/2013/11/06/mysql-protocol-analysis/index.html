@@ -82,7 +82,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-11-06T00:34:54"> 三 06 十一月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-11-06T00:34:54+08:00"> Wed 06 November 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -729,7 +729,7 @@
 </table>
 <p><strong>参数</strong>：内容是用户在MySQL客户端输入的命令（不包括每行命令结尾的";"分号）。另外这个字段的字符串不是以NULL字符结尾，而是通过消息头中的长度值计算而来。</p>
 <p>例如：当我们在MySQL客户端中执行<code>use hutaow;</code>命令时（切换到<code>hutaow</code>数据库），发送的请求报文数据会是下面的样子：</p>
-<div class="highlight"><pre><span class="mh">0x02</span> <span class="mh">0x68</span> <span class="mh">0x75</span> <span class="mh">0x74</span> <span class="mh">0x61</span> <span class="mh">0x6f</span> <span class="mh">0x77</span>
+<div class="highlight"><pre>0x02 0x68 0x75 0x74 0x61 0x6f 0x77
 </pre></div>
 
 
@@ -2008,12 +2008,6 @@
 <p>《<a href="http://dev.mysql.com/doc/internals/en/index.html">MySQL Internals Manual</a>: <a href="http://dev.mysql.com/doc/internals/en/client-server-protocol.html">MySQL Client/Server Protocol</a>》</p>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://hutaow.com/blog/2009/04/02/sql-statements-batch-replace-a-string">SQL语句实现某一字符串的替换</a></li>
-    </ul>
-</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -2085,6 +2079,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -2112,11 +2111,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -2180,6 +2174,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -2209,7 +2208,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -2499,7 +2498,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

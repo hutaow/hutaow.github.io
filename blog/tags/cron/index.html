@@ -63,7 +63,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-06-13T22:50:12"> 五 13 六月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-06-13T22:50:12+08:00"> Fri 13 June 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -80,8 +80,8 @@
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
 <p>设置个定时任务（执行<code>crontab -e</code>编辑任务列表）：</p>
-<div class="highlight"><pre><span class="mi">0</span> <span class="mi">8</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">u</span> <span class="n">username</span>
-<span class="mi">0</span> <span class="mi">12</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">l</span> <span class="n">username</span>
+<div class="highlight"><pre>0 8 * * * passwd -u username
+0 12 * * * passwd -l username
 </pre></div>
 
 
@@ -182,6 +182,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -211,7 +216,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -501,7 +506,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

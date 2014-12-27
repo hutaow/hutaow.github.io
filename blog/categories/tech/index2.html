@@ -58,12 +58,53 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">使用 OProfile 进行性能分析</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-12-29T19:09:33+08:00"> Sun 29 December 2013</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/oprofile/index.html">OProfile</a>
+        /
+	<a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">性能优化</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><h3 id="1">1 介绍</h3>
+<p>OProfile是Linux上的性能监测工具，通过CPU硬件提供的性能计数器对事件（如CPU Cycle、Cache Miss等）进行采样，可以帮助开发者从代码层面分析程序的性能消耗情况，很方便的找出影响程序性能的问题点。</p>
+<p>硬件上，OProfile支持多种架构的CPU，包括Alpha、MIPS、ARM、x86/x86-64、Sparc64、PowerPC等；软件上，OProfile支持Linux 2.2、2.4、2.6多种版本的内核，并且所占用的系统开销较小，一般在1%-8%范围内，具体数值依赖于采样频率。</p>
+<!-- more -->
+
+<h3 id="2">2 环境准备</h3>
+<h4 id="21-linux">2.1 编译Linux内核</h4>
+<p>OProfile需要Linux内核的支持，到Linux内核源代码目录中（一般为<code>/usr/src/linux-xxx</code>）执行下面的命令：</p>
+<div class="highlight"><pre>make menuconfig
+</pre></div>
+
+
+<p>在配置菜单中找到OProfile的选项并将其打开，然后保存退出。</p>
+<p>如果不想用 ...</p></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2013/12/24/convert-python-script-to-executable-program">将 Python 脚本转换为可执行程序</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-12-24T00:00:01"> 二 24 十二月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-12-24T00:00:01+08:00"> Tue 24 December 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -105,7 +146,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-12-16T23:02:24"> 一 16 十二月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-12-16T23:02:24+08:00"> Mon 16 December 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -151,7 +192,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-12-05T01:17:30"> 四 05 十二月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-12-05T01:17:30+08:00"> Thu 05 December 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -192,7 +233,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-11-22T22:43:22"> 五 22 十一月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-11-22T22:43:22+08:00"> Fri 22 November 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -218,18 +259,18 @@
 <p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
 <p>下载地址：<a href="http://ctags.sourceforge.net">http://ctags.sourceforge.net</a></p>
 <p>使用方式：在代码的根目录执行如下命令即可生成tag文件：</p>
-<div class="highlight"><pre><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
+<div class="highlight"><pre>ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 </pre></div>
 
 
 <!-- more -->
 
 <p>这个命令有点长，可以在<code>.vimrc</code>的文件中加个键盘映射，像下面的样子，这样只需要按下<code>CTRL+F12</code>即可生成tag文件了。</p>
-<div class="highlight"><pre><span class="n">map</span> <span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">F12</span><span class="o">&gt;</span> <span class="o">:!</span><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
+<div class="highlight"><pre>map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 </pre></div>
 
 
-<p>另外，如果需要指明源代码的语言，则需要加上 ...</p></!-->
+<p>另外，如果需要指明源代码的语言，则需要加上<code>--languages ...</code></p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/22/vim-development-environment">阅读全文</a>
                     </div>
@@ -242,7 +283,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-11-18T22:37:16"> 一 18 十一月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-11-18T22:37:16+08:00"> Mon 18 November 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -264,15 +305,15 @@
 
 <h3 id="_1">安装输入法</h3>
 <p>执行下面的命令安装FCITX：</p>
-<div class="highlight"><pre><span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">fcitx</span><span class="o">-</span><span class="n">im</span>
+<div class="highlight"><pre>pacman -S fcitx-im
 </pre></div>
 
 
 <h3 id="_2">配置环境变量</h3>
 <p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="s">&quot;@im=fcitx&quot;</span>
+<div class="highlight"><pre>export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=&quot;@im=fcitx&quot;
 </pre></div>
 
 
@@ -289,7 +330,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-11-06T00:34:54"> 三 06 十一月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-11-06T00:34:54+08:00"> Wed 06 November 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -345,7 +386,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-30T23:30:57"> 三 30 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-30T23:30:57+08:00"> Wed 30 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -385,7 +426,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-25T23:19:39"> 五 25 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-25T23:19:39+08:00"> Fri 25 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -425,7 +466,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-19T21:47:22"> 六 19 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-19T21:47:22+08:00"> Sat 19 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -470,67 +511,6 @@
 <th>说明 ...</th></tr></thead></table></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/19/linux-signal">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-15T23:32:31"> 二 15 十月 2013</time>
-    </span>
-            <span class="label label-default">By</span>
-            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
-
-        <span class="label label-default">Category</span>
-        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://hutaow.com/blog/tags/c/index.html">C</a>
-        /
-	<a href="http://hutaow.com/blog/tags/linux/index.html">Linux</a>
-        /
-	<a href="http://hutaow.com/blog/tags/diao-yong-zhan/index.html">调用栈</a>
-        /
-	<a href="http://hutaow.com/blog/tags/diao-shi/index.html">调试</a>
-        /
-	<a href="http://hutaow.com/blog/tags/ding-wei/index.html">定位</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>上一篇文章<a href="/blog/2013/10/11/dump-stack-with-backtrace">《在Linux程序中输出函数调用栈》</a>，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。</p>
-<!-- more -->
-
-<p>要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
-
-<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-
-    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="n">result</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;result = %d </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的：</p>
-<div class="highlight"><pre><span class="p">(</span><span class="nx">gdb ...</span></pre></div></!-->
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/15/dump-stack">阅读全文</a>
                     </div>
                 </div>
             </article>
@@ -592,6 +572,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -619,11 +604,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -687,6 +667,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -716,7 +701,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -1006,7 +991,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

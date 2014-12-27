@@ -79,7 +79,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-08-28T01:08:03"> 四 28 八月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-08-28T01:08:03+08:00"> Thu 28 August 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -96,7 +96,7 @@
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
-<div class="highlight"><pre><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span><span class="o">/</span><span class="n">status</span>
+<div class="highlight"><pre>cat /proc/<span class="o">[</span>pid<span class="o">]</span>/status
 </pre></div>
 
 
@@ -158,61 +158,51 @@
 </table>
 <h4 id="_2">举例</h4>
 <p>显示进程<code>cron</code>的内存信息，通过<code>pidof cron</code>获取进程ID，或者通过<code>ps -aux | grep cron</code>查找进程ID。</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="mi">1161</span><span class="o">/</span><span class="n">status</span>
-<span class="nl">Name:</span>   <span class="n">cron</span>
-<span class="nl">State:</span>  <span class="n">S</span> <span class="p">(</span><span class="n">sleeping</span><span class="p">)</span>
-<span class="nl">Tgid:</span>   <span class="mi">1161</span>
-<span class="nl">Ngid:</span>   <span class="mi">0</span>
-<span class="nl">Pid:</span>    <span class="mi">1161</span>
-<span class="nl">PPid:</span>   <span class="mi">1</span>
-<span class="nl">TracerPid:</span>  <span class="mi">0</span>
-<span class="nl">Uid:</span>    <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>
-<span class="nl">Gid:</span>    <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>
-<span class="nl">FDSize:</span> <span class="mi">64</span>
-<span class="nl">Groups:</span> <span class="mi">0</span> 
-<span class="nl">VmPeak:</span>    <span class="mi">23792</span> <span class="n">kB</span>
-<span class="nl">VmSize:</span>    <span class="mi">23656</span> <span class="n">kB</span>
-<span class="nl">VmLck:</span>         <span class="mi">0</span> <span class="n">kB</span>
-<span class="nl">VmPin:</span>         <span class="mi">0</span> <span class="n">kB</span>
-<span class="nl">VmHWM:</span>      <span class="mi">1040</span> <span class="n">kB</span>
-<span class="nl">VmRSS:</span>      <span class="mi">1004</span> <span class="n">kB</span>
-<span class="nl">VmData:</span>      <span class="mi">260</span> <span class="n">kB</span>
-<span class="nl">VmStk:</span>       <span class="mi">136</span> <span class="n">kB</span>
-<span class="nl">VmExe:</span>        <span class="mi">40</span> <span class="n">kB</span>
-<span class="nl">VmLib:</span>      <span class="mi">2668</span> <span class="n">kB</span>
-<span class="nl">VmPTE:</span>        <span class="mi">72</span> <span class="n">kB</span>
-<span class="nl">VmSwap:</span>        <span class="mi">0</span> <span class="n">kB</span>
-<span class="nl">Threads:</span>    <span class="mi">1</span>
-<span class="nl">SigQ:</span>   <span class="mi">0</span><span class="o">/</span><span class="mi">15442</span>
-<span class="nl">SigPnd:</span> <span class="mo">0000000000000000</span>
-<span class="nl">ShdPnd:</span> <span class="mo">0000000000000000</span>
-<span class="nl">SigBlk:</span> <span class="mo">0000000000000000</span>
-<span class="nl">SigIgn:</span> <span class="mo">0000000000000000</span>
-<span class="nl">SigCgt:</span> <span class="mo">0000000000010001</span>
-<span class="nl">CapInh:</span> <span class="mo">0000000000000000</span>
-<span class="nl">CapPrm:</span> <span class="mf">0000001ff</span><span class="n">fffffff</span>
-<span class="nl">CapEff:</span> <span class="mf">0000001ff</span><span class="n">fffffff</span>
-<span class="nl">CapBnd:</span> <span class="mf">0000001ff</span><span class="n">fffffff</span>
-<span class="nl">Seccomp:</span>    <span class="mi">0</span>
-<span class="nl">Cpus_allowed:</span>   <span class="mi">3</span>
-<span class="nl">Cpus_allowed_list:</span>  <span class="mi">0</span><span class="o">-</span><span class="mi">1</span>
-<span class="nl">Mems_allowed:</span>   <span class="mo">00000000</span><span class="p">,</span><span class="mo">00000001</span>
-<span class="nl">Mems_allowed_list:</span>  <span class="mi">0</span>
-<span class="nl">voluntary_ctxt_switches:</span>    <span class="mi">151</span>
-<span class="nl">nonvoluntary_ctxt_switches:</span> <span class="mi">0</span>
+<div class="highlight"><pre><span class="nv">$ </span>cat /proc/1161/status
+Name:   cron
+State:  S <span class="o">(</span>sleeping<span class="o">)</span>
+Tgid:   1161
+Ngid:   0
+Pid:    1161
+PPid:   1
+TracerPid:  0
+Uid:    <span class="m">0</span>   <span class="m">0</span>   <span class="m">0</span>   0
+Gid:    <span class="m">0</span>   <span class="m">0</span>   <span class="m">0</span>   0
+FDSize: 64
+Groups: <span class="m">0</span> 
+VmPeak:    <span class="m">23792</span> kB
+VmSize:    <span class="m">23656</span> kB
+VmLck:         <span class="m">0</span> kB
+VmPin:         <span class="m">0</span> kB
+VmHWM:      <span class="m">1040</span> kB
+VmRSS:      <span class="m">1004</span> kB
+VmData:      <span class="m">260</span> kB
+VmStk:       <span class="m">136</span> kB
+VmExe:        <span class="m">40</span> kB
+VmLib:      <span class="m">2668</span> kB
+VmPTE:        <span class="m">72</span> kB
+VmSwap:        <span class="m">0</span> kB
+Threads:    1
+SigQ:   0/15442
+SigPnd: 0000000000000000
+ShdPnd: 0000000000000000
+SigBlk: 0000000000000000
+SigIgn: 0000000000000000
+SigCgt: 0000000000010001
+CapInh: 0000000000000000
+CapPrm: 0000001fffffffff
+CapEff: 0000001fffffffff
+CapBnd: 0000001fffffffff
+Seccomp:    0
+Cpus_allowed:   3
+Cpus_allowed_list:  0-1
+Mems_allowed:   00000000,00000001
+Mems_allowed_list:  0
+voluntary_ctxt_switches:    151
+nonvoluntary_ctxt_switches: 0
 </pre></div>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">Linux中设置Java环境变量</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
-        <li><a href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux">Linux下将.cue/.bin转换为.iso的方法</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">通过PXE方式安装Linux系统</a></li>
-        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
-    </ul>
-</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -284,6 +274,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -311,11 +306,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -379,6 +369,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -408,7 +403,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -698,7 +693,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

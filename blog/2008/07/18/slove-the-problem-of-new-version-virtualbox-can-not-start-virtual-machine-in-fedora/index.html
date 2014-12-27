@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="新版VirtualBox在Fedora下不能启动虚拟机的解决办法"/>
             <meta property="og:url" content="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora"/>
-            <meta property="og:description" content="前一段时间突然发现VirtualBox被Sun收购了，改名成&#34;Sun xVM VirtualBox&#34;，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误： VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root. 于是按照提示在终端里执行&#34;sudo /etc/init.d/vboxdrv ..."/>
+            <meta property="og:description" content="前一段时间突然发现VirtualBox被Sun收购了，改名成&#34;Sun xVM VirtualBox&#34;，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误： VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root. 于是按照提示在终端里执行&#34;sudo /etc/init.d/vboxdrv setup ..."/>
             <meta property="article:published_time" content="2008-07-18" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
@@ -80,7 +80,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-07-18T20:48:00"> 五 18 七月 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-07-18T20:48:00+08:00"> Fri 18 July 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -99,8 +99,8 @@
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
-<div class="highlight"><pre><span class="n">VirtualBox</span> <span class="n">kernel</span> <span class="n">driver</span> <span class="n">not</span> <span class="n">installed</span><span class="p">.</span> <span class="n">The</span> <span class="n">vboxdrv</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">was</span> <span class="n">either</span> <span class="n">not</span> <span class="n">loaded</span> <span class="n">or</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">was</span> <span class="n">not</span> <span class="n">created</span> <span class="k">for</span> <span class="n">some</span> <span class="n">reason</span><span class="p">.</span><span class="err"> </span>
-<span class="n">Re</span><span class="o">-</span><span class="n">setup</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">by</span> <span class="n">executing</span> <span class="err">‘</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">setup</span><span class="err">’</span> <span class="n">as</span> <span class="n">root</span><span class="p">.</span>
+<div class="highlight"><pre>VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. 
+Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 </pre></div>
 
 
@@ -111,16 +111,6 @@
 <p>安装完成后，再次执行"sudo /etc/init.d/vboxdrv setup"，搞定！</p>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://hutaow.com/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora">Fedora禁止自动挂载分区的方法</a></li>
-        <li><a href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">Linux中设置Java环境变量</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
-        <li><a href="http://hutaow.com/blog/2013/11/18/configure-the-fcitx-in-archlinux">在 ArchLinux 中使用 Fcitx 输入法</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">通过PXE方式安装Linux系统</a></li>
-    </ul>
-</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -192,6 +182,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -219,11 +214,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -287,6 +277,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -316,7 +311,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -606,7 +601,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

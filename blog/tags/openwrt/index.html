@@ -63,7 +63,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-11-02T16:23:11"> 日 02 十一月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-11-02T16:23:11+08:00"> Sun 02 November 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -84,14 +84,15 @@
 <p>由于OpenWRT添加用户需要额外安装<code>shadow</code>软件包，而OpenWRT本身又不太建议这样做，所以本文直接以root用户共享为例说明一下配置过程。</p>
 <h4 id="1-samba">1. 安装Samba服务</h4>
 <p>执行如下命令安装Samba服务：</p>
-<div class="highlight"><pre><span class="n">opkg</span> <span class="n">update</span>
-<span class="n">opkg</span> <span class="n">install</span> <span class="n">samba36</span><span class="o">-</span><span class="n">server</span>
+<div class="highlight"><pre>opkg update
+opkg install samba36-server
 </pre></div>
 
 
 <p><em>注：上面的<code>samba36-server</code>是本文发布时的Samba服务软件包名称，其中数字36表示3.6.X版本，以后Samba版本更新的话可能找不到这个软件包，这个时候执行<code>opkg list | grep samba</code>搜一下就好。</em></p>
 <h4 id="2">2. 配置全局共享参数</h4>
-<p>配置文件路径为<code>/etc/samba/smb.conf</code>，将<code>[global]</code>中的<code>invalid users = root</code>注掉，像下面的样子 ...</p>
+<p>配置文件路径为<code>/etc/samba/smb.conf</code>，将<code>[global]</code>中的<code>invalid users = root</code>注掉，像下面的样子：</p>
+<div class="highlight"><pre><span class="k">[global ...</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service">阅读全文</a>
                     </div>
@@ -104,7 +105,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-09-06T23:16:00"> 五 06 九月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-09-06T23:16:00+08:00"> Fri 06 September 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -133,7 +134,8 @@
 <img alt="First Login" src="/images/articles/201309/install_openwrt_01_first_login.png" /></p>
 <h4 id="13">1.3 打开无线信号</h4>
 <p>编辑"/etc/config/wireless"文件，将"option disabled 1"这一行注掉，或者直接删除。</p>
-<div class="highlight"><pre><span class="n">config</span> <span class="n">wifi</span><span class="o">-</span><span class="n">device</span> <span class="n">radio0 ...</span></pre></div></!-->
+<div class="highlight"><pre>config wifi-device radio0
+    option ...</pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/09/06/install-openwrt">阅读全文</a>
                     </div>
@@ -234,6 +236,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -263,7 +270,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -553,7 +560,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

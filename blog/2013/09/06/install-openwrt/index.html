@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="TP-WR703n安装OpenWRT记录"/>
             <meta property="og:url" content="http://hutaow.com/blog/2013/09/06/install-openwrt"/>
-            <meta property="og:description" content="1 安装OpenWRT 1.1 下载并刷新固件 如果以前没刷过OpenWRT，需要升级factory固件，点击这里下载。 如果之前已经安装过了OpenWRT，则直接更新sysupgrade固件即可，点击这里下载。 注意升级的时候要将原配置删除，避免配置文件互相影响，固件刷新完成后，路由器会自动重启。 1.2 登陆路由器 OpenWRT主线固件的无线信号是默认关闭的，这个时候需要找跟网线将电脑和路由器连接上，然后将电脑的IP地址设置为静态的&#34;192.168.1.100&#34;，然后用Telnet访问&#34;192.168.1.1&#34;，正确的情况下，会看到如下界面： 1.3 打开无线信号 编辑&#34;/etc/config/wireless&#34;文件，将&#34;option disabled 1&#34;这一行注掉，或者直接删除。 config wifi-device radio0 ..."/>
+            <meta property="og:description" content="1 安装OpenWRT 1.1 下载并刷新固件 如果以前没刷过OpenWRT，需要升级factory固件，点击这里下载。 如果之前已经安装过了OpenWRT，则直接更新sysupgrade固件即可，点击这里下载。 注意升级的时候要将原配置删除，避免配置文件互相影响，固件刷新完成后，路由器会自动重启。 1.2 登陆路由器 OpenWRT主线固件的无线信号是默认关闭的，这个时候需要找跟网线将电脑和路由器连接上，然后将电脑的IP地址设置为静态的&#34;192.168.1.100&#34;，然后用Telnet访问&#34;192.168.1.1&#34;，正确的情况下，会看到如下界面： 1.3 打开无线信号 编辑&#34;/etc/config/wireless&#34;文件，将&#34;option disabled 1&#34;这一行注掉，或者直接删除。 config wifi-device radio0 option ..."/>
             <meta property="article:published_time" content="2013-09-06" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Network" />
@@ -80,7 +80,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-09-06T23:16:00"> 五 06 九月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-09-06T23:16:00+08:00"> Fri 06 September 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -110,59 +110,59 @@
 <img alt="First Login" src="/images/articles/201309/install_openwrt_01_first_login.png" /></p>
 <h4 id="13">1.3 打开无线信号</h4>
 <p>编辑"/etc/config/wireless"文件，将"option disabled 1"这一行注掉，或者直接删除。</p>
-<div class="highlight"><pre><span class="n">config</span> <span class="n">wifi</span><span class="o">-</span><span class="n">device</span> <span class="n">radio0</span>
-    <span class="n">option</span> <span class="n">type</span>     <span class="n">mac80211</span>
-    <span class="n">option</span> <span class="n">channel</span>  <span class="mi">11</span>
-    <span class="n">option</span> <span class="n">hwmode</span>   <span class="mi">11</span><span class="n">ng</span>
-    <span class="n">option</span> <span class="n">path</span>     <span class="err">&#39;</span><span class="n">platform</span><span class="o">/</span><span class="n">ar933x_wmac</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">htmode</span>   <span class="n">HT20</span>
-    <span class="n">list</span> <span class="n">ht_capab</span>   <span class="n">SHORT</span><span class="o">-</span><span class="n">GI</span><span class="o">-</span><span class="mi">20</span>
-    <span class="n">list</span> <span class="n">ht_capab</span>   <span class="n">SHORT</span><span class="o">-</span><span class="n">GI</span><span class="o">-</span><span class="mi">40</span>
-    <span class="n">list</span> <span class="n">ht_capab</span>   <span class="n">RX</span><span class="o">-</span><span class="n">STBC1</span>
-    <span class="n">list</span> <span class="n">ht_capab</span>   <span class="n">DSSS_CCK</span><span class="o">-</span><span class="mi">40</span>
-    <span class="err">#</span> <span class="n">REMOVE</span> <span class="n">THIS</span> <span class="n">LINE</span> <span class="n">TO</span> <span class="n">ENABLE</span> <span class="n">WIFI</span><span class="o">:</span>
-    <span class="err">#</span> <span class="n">option</span> <span class="n">disabled</span> <span class="mi">1</span>
+<div class="highlight"><pre>config wifi-device radio0
+    option type     mac80211
+    option channel  11
+    option hwmode   11ng
+    option path     &#39;platform/ar933x_wmac&#39;
+    option htmode   HT20
+    list ht_capab   SHORT-GI-20
+    list ht_capab   SHORT-GI-40
+    list ht_capab   RX-STBC1
+    list ht_capab   DSSS_CCK-40
+    # REMOVE THIS LINE TO ENABLE WIFI:
+    # option disabled 1
 
-<span class="n">config</span> <span class="n">wifi</span><span class="o">-</span><span class="n">iface</span>
-    <span class="n">option</span> <span class="n">device</span>   <span class="n">radio0</span>
-    <span class="n">option</span> <span class="n">network</span>  <span class="n">lan</span>
-    <span class="n">option</span> <span class="n">mode</span>     <span class="n">ap</span>
-    <span class="n">option</span> <span class="n">ssid</span>     <span class="n">OpenWrt</span>
-    <span class="n">option</span> <span class="n">encryption</span> <span class="n">none</span>
+config wifi-iface
+    option device   radio0
+    option network  lan
+    option mode     ap
+    option ssid     OpenWrt
+    option encryption none
 </pre></div>
 
 
 <h4 id="14">1.4 外网接入配置</h4>
 <p>编辑"/etc/config/network"文件，将原"lan"区段中的"ifname"注掉，新增"wan"段，如果是用宽带拨号上网，则配置成下面的样子（其中USERNAME和PASSWORD分别是拨号的用户名和密码）：</p>
-<div class="highlight"><pre><span class="n">config</span> <span class="n">interface</span> <span class="err">&#39;</span><span class="n">loopback</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">ifname</span> <span class="err">&#39;</span><span class="n">lo</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">proto</span> <span class="err">&#39;</span><span class="k">static</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">ipaddr</span> <span class="err">&#39;</span><span class="mf">127.0.0.1</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">netmask</span> <span class="err">&#39;</span><span class="mf">255.0.0.0</span><span class="err">&#39;</span>
+<div class="highlight"><pre>config interface &#39;loopback&#39;
+    option ifname &#39;lo&#39;
+    option proto &#39;static&#39;
+    option ipaddr &#39;127.0.0.1&#39;
+    option netmask &#39;255.0.0.0&#39;
 
-<span class="n">config</span> <span class="n">globals</span> <span class="err">&#39;</span><span class="n">globals</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">ula_prefix</span> <span class="err">&#39;</span><span class="n">fd4f</span><span class="o">:</span><span class="mf">26f</span><span class="n">b</span><span class="o">:</span><span class="mi">9</span><span class="n">d78</span><span class="o">::/</span><span class="mi">48</span><span class="err">&#39;</span>
+config globals &#39;globals&#39;
+    option ula_prefix &#39;fd4f:26fb:9d78::/48&#39;
 
-<span class="n">config</span> <span class="n">interface</span> <span class="err">&#39;</span><span class="n">lan</span><span class="err">&#39;</span>
-    <span class="err">#</span> <span class="n">option</span> <span class="n">ifname</span> <span class="err">&#39;</span><span class="n">eth0</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">type</span> <span class="err">&#39;</span><span class="n">bridge</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">proto</span> <span class="err">&#39;</span><span class="k">static</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">ipaddr</span> <span class="err">&#39;</span><span class="mf">192.168.1.1</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">netmask</span> <span class="err">&#39;</span><span class="mf">255.255.255.0</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">ip6assign</span> <span class="err">&#39;</span><span class="mi">60</span><span class="err">&#39;</span>
+config interface &#39;lan&#39;
+    # option ifname &#39;eth0&#39;
+    option type &#39;bridge&#39;
+    option proto &#39;static&#39;
+    option ipaddr &#39;192.168.1.1&#39;
+    option netmask &#39;255.255.255.0&#39;
+    option ip6assign &#39;60&#39;
 
-<span class="n">config</span> <span class="n">interface</span> <span class="err">&#39;</span><span class="n">wan</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">ifname</span> <span class="err">&#39;</span><span class="n">eth0</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">proto</span> <span class="err">&#39;</span><span class="n">pppoe</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">username</span> <span class="err">&#39;</span><span class="n">USERNAME</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">password</span> <span class="err">&#39;</span><span class="n">PASSWORD</span><span class="err">&#39;</span>
+config interface &#39;wan&#39;
+    option ifname &#39;eth0&#39;
+    option proto &#39;pppoe&#39;
+    option username &#39;USERNAME&#39;
+    option password &#39;PASSWORD&#39;
 </pre></div>
 
 
 <p>如果不需要拨号，直接通过其它路由器连接，则将"wan"区段配置成下面的样子：</p>
-<div class="highlight"><pre><span class="n">config</span> <span class="n">interface</span> <span class="err">&#39;</span><span class="n">wan</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">ifname</span> <span class="err">&#39;</span><span class="n">eth0</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">proto</span> <span class="err">&#39;</span><span class="n">dhcp</span><span class="err">&#39;</span>
+<div class="highlight"><pre>config interface &#39;wan&#39;
+    option ifname &#39;eth0&#39;
+    option proto &#39;dhcp&#39;
 </pre></div>
 
 
@@ -171,8 +171,8 @@
 <h3 id="2-openwrtu">2 将OpenWRT扩展至U盘</h3>
 <h4 id="21">2.1 安装基本软件</h4>
 <p>再次用Telnet访问"192.168.1.1"，执行下面的命令，将挂载U盘相关的基本软件安装上。</p>
-<div class="highlight"><pre><span class="n">opkg</span> <span class="n">update</span>
-<span class="n">opkg</span> <span class="n">install</span> <span class="n">block</span><span class="o">-</span><span class="n">mount</span> <span class="n">kmod</span><span class="o">-</span><span class="n">fs</span><span class="o">-</span><span class="n">ext4</span> <span class="n">kmod</span><span class="o">-</span><span class="n">usb</span><span class="o">-</span><span class="n">ohci</span> <span class="n">kmod</span><span class="o">-</span><span class="n">usb</span><span class="o">-</span><span class="n">storage</span> <span class="n">e2fsprogs</span>
+<div class="highlight"><pre>opkg update
+opkg install block-mount kmod-fs-ext4 kmod-usb-ohci kmod-usb-storage e2fsprogs
 </pre></div>
 
 
@@ -181,51 +181,51 @@
 <img alt="Block Info" src="/images/articles/201309/install_openwrt_02_block_info.png" /></p>
 <h4 id="23">2.3 拷贝系统文件</h4>
 <p>执行如下命令，将路由器ROM中的系统文件全部拷贝到U盘中：</p>
-<div class="highlight"><pre><span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span> <span class="o">/</span><span class="n">mnt</span> 
-<span class="n">mkdir</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vroot</span> 
-<span class="n">mount</span> <span class="o">--</span><span class="n">bind</span> <span class="o">/</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vroot</span> 
-<span class="n">cp</span> <span class="o">-</span><span class="n">a</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vroot</span><span class="o">/*</span> <span class="o">/</span><span class="n">mnt</span> 
-<span class="n">sync</span> 
-<span class="n">umount</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vroot</span>
+<div class="highlight"><pre>mount /dev/sda1 /mnt 
+mkdir /tmp/vroot 
+mount --bind / /tmp/vroot 
+cp -a /tmp/vroot/* /mnt 
+sync 
+umount /tmp/vroot
 </pre></div>
 
 
 <h4 id="24">2.4 设置交换空间（可选）</h4>
 <p>U盘在分区时可以预留一个交换分区，防止路由器内存不足，这里预留的交换分区是sda5，执行下面的命令：</p>
-<div class="highlight"><pre><span class="n">swapon</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda5</span>
+<div class="highlight"><pre>swapon /dev/sda5
 </pre></div>
 
 
 <h4 id="25">2.5 保存挂载信息</h4>
 <p>将当前挂载状态写入fstab文件中：</p>
-<div class="highlight"><pre><span class="n">block</span> <span class="n">detect</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">fstab</span>
+<div class="highlight"><pre>block detect &gt; /etc/config/fstab
 </pre></div>
 
 
 <p>然后修改"/etc/config/fstab"文件，将sda1的挂载点设置为"/"，并将"option enabled"置1，配置类似下面的样子：</p>
-<div class="highlight"><pre><span class="n">config</span> <span class="n">global</span>
-    <span class="n">option</span> <span class="n">anon_swap</span> <span class="sc">&#39;0&#39;</span>
-    <span class="n">option</span> <span class="n">anon_mount</span> <span class="sc">&#39;0&#39;</span>
-    <span class="n">option</span> <span class="n">auto_swap</span> <span class="sc">&#39;1&#39;</span>
-    <span class="n">option</span> <span class="n">auto_mount</span> <span class="sc">&#39;1&#39;</span>
-    <span class="n">option</span> <span class="n">delay_root</span> <span class="sc">&#39;5&#39;</span>
-    <span class="n">option</span> <span class="n">check_fs</span> <span class="sc">&#39;0&#39;</span>
+<div class="highlight"><pre>config global
+    option anon_swap &#39;0&#39;
+    option anon_mount &#39;0&#39;
+    option auto_swap &#39;1&#39;
+    option auto_mount &#39;1&#39;
+    option delay_root &#39;5&#39;
+    option check_fs &#39;0&#39;
 
-<span class="n">config</span> <span class="n">mount</span>
-    <span class="n">option</span> <span class="n">target</span> <span class="sc">&#39;/&#39;</span>
-    <span class="n">option</span> <span class="n">uuid</span> <span class="err">&#39;</span><span class="mi">413</span><span class="n">b964c</span><span class="o">-</span><span class="mi">9</span><span class="n">c9c</span><span class="o">-</span><span class="mi">4</span><span class="n">af4</span><span class="o">-</span><span class="mi">8966</span><span class="o">-</span><span class="n">daf04ee53414</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">enabled</span> <span class="sc">&#39;1&#39;</span>
-    <span class="n">option</span> <span class="n">fstype</span> <span class="err">&#39;</span><span class="n">ext4</span><span class="err">&#39;</span>
+config mount
+    option target &#39;/&#39;
+    option uuid &#39;413b964c-9c9c-4af4-8966-daf04ee53414&#39;
+    option enabled &#39;1&#39;
+    option fstype &#39;ext4&#39;
 
-<span class="n">config</span> <span class="n">mount</span>
-    <span class="n">option</span> <span class="n">target</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">home</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">uuid</span> <span class="err">&#39;</span><span class="n">e7052ed0</span><span class="o">-</span><span class="n">b883</span><span class="o">-</span><span class="mi">4375</span><span class="o">-</span><span class="mf">9f</span><span class="mi">31</span><span class="o">-</span><span class="mi">5648</span><span class="n">ea8f2948</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">enabled</span> <span class="sc">&#39;1&#39;</span>
-    <span class="n">option</span> <span class="n">fstype</span> <span class="err">&#39;</span><span class="n">ext4</span><span class="err">&#39;</span>
+config mount
+    option target &#39;/home&#39;
+    option uuid &#39;e7052ed0-b883-4375-9f31-5648ea8f2948&#39;
+    option enabled &#39;1&#39;
+    option fstype &#39;ext4&#39;
 
-<span class="n">config</span> <span class="n">swap</span>
-    <span class="n">option</span> <span class="n">uuid</span> <span class="err">&#39;</span><span class="mi">58713</span><span class="n">d02</span><span class="o">-</span><span class="n">e9de</span><span class="o">-</span><span class="mi">4</span><span class="n">c23</span><span class="o">-</span><span class="n">a56b</span><span class="o">-</span><span class="n">a5ea3d3dfcf0</span><span class="err">&#39;</span>
-    <span class="n">option</span> <span class="n">enabled</span> <span class="sc">&#39;1&#39;</span>
+config swap
+    option uuid &#39;58713d02-e9de-4c23-a56b-a5ea3d3dfcf0&#39;
+    option enabled &#39;1&#39;
 </pre></div>
 
 
@@ -235,13 +235,6 @@
 <img alt="DF Info" src="/images/articles/201309/install_openwrt_03_df.png" /></p>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring">配置 Cisco Catalyst 3560 交换机端口镜像</a></li>
-        <li><a href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service">配置OpenWRT的Samba共享服务</a></li>
-    </ul>
-</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -313,6 +306,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -340,11 +338,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -408,6 +401,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -437,7 +435,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -727,7 +725,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

@@ -78,7 +78,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-01-11T11:33:00"> 五 11 一月 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-01-11T11:33:00+08:00"> Fri 11 January 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -99,22 +99,13 @@
 
 <p>这种方法对我来说并不是很习惯，毕竟java用了那么长时间，在代码中直接setLayout感觉更舒服些。当然既然google采用了这种布局和代码分离的方式那就肯定有它的优点，看来还需要一点的时间来习惯这种布局方式。</p>
 <h4 id="2-android">2 总结：我自己对Android几个模块的理解</h4>
-<div class="highlight"><pre><span class="n">Activity</span><span class="err">：类似</span><span class="n">java</span><span class="err">中的</span><span class="n">Applet</span><span class="err">或</span><span class="n">Frame</span><span class="err">，以我的理解，这个类提供了程序的最基本框架。</span>
-<span class="n">Intent</span> <span class="n">Receiver</span><span class="err">：翻译过来是“目的接收器”，和</span><span class="n">java</span><span class="err">中的</span><span class="n">listener</span><span class="err">类似，用于处理事件。</span>
-<span class="n">Service</span><span class="err">：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。</span>
-<span class="n">Content</span> <span class="n">Provider</span><span class="err">：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。</span>
+<div class="highlight"><pre>Activity：类似java中的Applet或Frame，以我的理解，这个类提供了程序的最基本框架。
+Intent Receiver：翻译过来是“目的接收器”，和java中的listener类似，用于处理事件。
+Service：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。
+Content Provider：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。
 </pre></div>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://hutaow.com/blog/2008/01/30/android-calculator">用Android做了一个计算器</a></li>
-        <li><a href="http://hutaow.com/blog/2008/04/02/mark-breakthrough-for-dimensional-bar-code-decoder">二维条码终于有了突破!</a></li>
-        <li><a href="http://hutaow.com/blog/2008/01/28/understanding-on-the-android-layout">对Android布局的理解</a></li>
-        <li><a href="http://hutaow.com/blog/2008/02/13/compile-android-project-in-command-line">Android命令行下的编译和运行</a></li>
-    </ul>
-</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -186,6 +177,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -213,11 +209,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -281,6 +272,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -310,7 +306,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -600,7 +596,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

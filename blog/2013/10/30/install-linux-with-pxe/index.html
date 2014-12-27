@@ -79,7 +79,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-30T23:30:57"> 三 30 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-30T23:30:57+08:00"> Wed 30 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -110,12 +110,12 @@
 <li>将syslinux的PXE启动加载程序<code>pxelinux.0</code>拷贝到<code>E:\Server\PXE</code>目录中（可以从一个现有的Linux中拷贝一个，一般在<code>/usr/lib/syslinux</code>或<code>/usr/share/syslinux</code>目录中，如果找不到现成的Linux，可以<a href="/downloads/linux/pxelinux.0">点击这里下载</a>一个）</li>
 </ul>
 <p>PXE目录建立好后，结构应该是下面的样子：</p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">PXE</span><span class="o">/</span>
-    <span class="o">|-</span> <span class="n">pxelinux</span><span class="p">.</span><span class="n">cfg</span><span class="o">/</span>
-    <span class="o">|</span>              <span class="o">|-</span> <span class="k">default</span>
-    <span class="o">|-</span> <span class="n">pxelinux</span><span class="mf">.0</span>
-    <span class="o">|-</span> <span class="n">initrd</span><span class="p">.</span><span class="n">img</span>
-    <span class="o">|-</span> <span class="n">vmlinuz</span>
+<div class="highlight"><pre>/PXE/
+    |- pxelinux.cfg/
+    |              |- default
+    |- pxelinux.0
+    |- initrd.img
+    |- vmlinuz
 </pre></div>
 
 
@@ -145,16 +145,6 @@
 </ul>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">Linux中设置Java环境变量</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
-        <li><a href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux">Linux下将.cue/.bin转换为.iso的方法</a></li>
-        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
-    </ul>
-</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -226,6 +216,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -253,11 +248,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -321,6 +311,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -350,7 +345,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -640,7 +635,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

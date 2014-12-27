@@ -63,7 +63,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2010-05-14T22:13:00"> 五 14 五月 2010</time>
+        <i class="fa fa-calendar"></i><time datetime="2010-05-14T22:13:00+08:00"> Fri 14 May 2010</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -83,23 +83,23 @@
                 <div class="summary"><p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
 <p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
 <p>2) 交换机上电自检然后登入后出现命令提示符：</p>
-<div class="highlight"><pre><span class="n">Switch</span><span class="o">&gt;</span>
+<div class="highlight"><pre>Switch&gt;
 </pre></div>
 
 
 <!-- more -->
 
 <p>3) 依次进入特权模式和全局模式，输入如下命令：</p>
-<div class="highlight"><pre><span class="n">Switch</span><span class="o">&gt;</span><span class="n">enable</span>
-<span class="nl">Password:</span>
-<span class="n">Switch</span><span class="err">#</span><span class="n">configure</span> <span class="n">terminal</span>
-<span class="n">Enter</span> <span class="n">configuration</span> <span class="n">commands</span><span class="p">,</span> <span class="n">one</span> <span class="n">per</span> <span class="n">line</span><span class="p">.</span>  <span class="n">End</span> <span class="n">with</span> <span class="n">CNTL</span><span class="o">/</span><span class="n">Z</span><span class="p">.</span>
-<span class="n">Switch</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="err">#</span>
+<div class="highlight"><pre>Switch&gt;enable
+Password:
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
 </pre></div>
 
 
 <p>4) 在新session中，将端口19和27设置为被监听端口(source)，2号端口设置为监听端口(destination)，命令如下：</p>
-<div class="highlight"><pre><span class="n">Switch</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="err">#</span><span class="n">monitor</span> <span class="n">session</span> <span class="mi">1</span> <span class="n">source</span> <span class="n">interface</span> <span class="n">Fa0</span><span class="o">/</span><span class="mi">19 ...</span></pre></div></!-->
+<div class="highlight"><pre>Switch(config)#monitor session 1 source interface Fa0/19 ...</pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring">阅读全文</a>
                     </div>
@@ -195,6 +195,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -224,7 +229,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -514,7 +519,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

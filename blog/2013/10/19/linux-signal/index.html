@@ -81,7 +81,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-19T21:47:22"> 六 19 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-19T21:47:22+08:00"> Sat 19 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -478,12 +478,12 @@
 <span class="cm">/* 信号处理函数 */</span>
 <span class="kt">void</span> <span class="nf">sig_callback</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="p">(</span><span class="n">signum</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="n">SIGINT</span>:
+        <span class="k">case</span> <span class="nl">SIGINT</span><span class="p">:</span>
             <span class="cm">/* SIGINT: Ctrl+C 按下时触发 */</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Get signal SIGINT. </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
         <span class="cm">/* 多个信号可以放到同一个函数中进行 通过信号值来区分 */</span>
-        <span class="nl">default:</span>
+        <span class="k">default</span><span class="o">:</span>
             <span class="cm">/* 其它信号 */</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Unknown signal %d. </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">signum</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
@@ -513,27 +513,17 @@
 
 <p>源文件下载：<a href="/downloads/code/linux_signal.c">链接</a></p>
 <p>例子中，将<code>SIGINT</code>信号（<code>Ctrl+C</code>触发）的动作接管(打印提示信息)，程序运行后，按下<code>Ctrl+C</code>，命令行输出如下：</p>
-<div class="highlight"><pre><span class="p">.</span><span class="o">/</span><span class="n">linux_signal_example</span>
-<span class="n">Register</span> <span class="n">SIGINT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">Signal</span> <span class="n">Action</span><span class="p">.</span> 
-<span class="n">Waitting</span> <span class="k">for</span> <span class="n">Signal</span> <span class="p">...</span> 
-<span class="o">^</span><span class="n">CGet</span> <span class="n">signal</span> <span class="n">SIGINT</span><span class="p">.</span> 
-<span class="n">Process</span> <span class="n">Continue</span><span class="p">.</span>
+<div class="highlight"><pre>./linux_signal_example
+Register SIGINT(2) Signal Action. 
+Waitting for Signal ... 
+^CGet signal SIGINT. 
+Process Continue.
 </pre></div>
 
 
 <p>进程收到<code>SIGINT</code>信号后，触发响应动作，将提示信息打印出来，然后从暂停的地方继续运行。这里需要注意的是，因为我们修改了<code>SIGINT</code>信号的响应动作（只打印信息，不做进程退出处理），所以我们按下<code>Ctrl+C</code>后，程序并没有直接退出，而是继续运行并将"Process Continue."打印出来，直至程序正常结束。</p>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">在Linux程序中输出函数调用栈</a></li>
-        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
-        <li><a href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">Linux中设置Java环境变量</a></li>
-        <li><a href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">Fedora 9 无法启动KDE的解决办法</a></li>
-    </ul>
-</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -605,6 +595,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -632,11 +627,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -700,6 +690,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -729,7 +724,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -1019,7 +1014,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

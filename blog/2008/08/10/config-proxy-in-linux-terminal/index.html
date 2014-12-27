@@ -79,7 +79,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-08-10T15:12:00"> 日 10 八月 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-08-10T15:12:00+08:00"> Sun 10 August 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -96,10 +96,10 @@
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>很长时间都不知道怎么设置，今天突然发现，设置四个环境变量就行了，"HTTP_PROXY"、"http_proxy"和"FTP_PROXY"、"ftp_proxy"，在"~/.bash_profile"中添加以下几行：</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">HTTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
-<span class="n">export</span> <span class="n">FTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
-<span class="n">export</span> <span class="n">http_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
-<span class="n">export</span> <span class="n">ftp_proxy</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//username:password@proxy.server:8080</span>
+<div class="highlight"><pre>export HTTP_PROXY=http://username:password@proxy.server:8080
+export FTP_PROXY=http://username:password@proxy.server:8080
+export http_proxy=http://username:password@proxy.server:8080
+export ftp_proxy=http://username:password@proxy.server:8080
 </pre></div>
 
 
@@ -107,16 +107,6 @@
 <p>修改保存后重启终端或在执行"source ~/.bash_proxy"生效。</p>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://hutaow.com/blog/2007/09/22/config-java-environment-in-linux">Linux中设置Java环境变量</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/15/dump-stack">函数调用栈的获取原理分析</a></li>
-        <li><a href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux">Linux下将.cue/.bin转换为.iso的方法</a></li>
-        <li><a href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">通过PXE方式安装Linux系统</a></li>
-        <li><a href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">基于libpcap的开发实例</a></li>
-    </ul>
-</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -188,6 +178,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -215,11 +210,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -283,6 +273,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -312,7 +307,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -602,7 +597,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

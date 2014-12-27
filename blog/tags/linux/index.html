@@ -63,7 +63,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-08-28T01:08:03"> 四 28 八月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-08-28T01:08:03+08:00"> Thu 28 August 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -79,7 +79,7 @@
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
-<div class="highlight"><pre><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span><span class="o">/</span><span class="n">status</span>
+<div class="highlight"><pre>cat /proc/<span class="o">[</span>pid<span class="o">]</span>/status
 </pre></div>
 
 
@@ -153,7 +153,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-06-13T22:50:12"> 五 13 六月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-06-13T22:50:12+08:00"> Fri 13 June 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -170,8 +170,8 @@
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
 <p>设置个定时任务（执行<code>crontab -e</code>编辑任务列表）：</p>
-<div class="highlight"><pre><span class="mi">0</span> <span class="mi">8</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">u</span> <span class="n">username</span>
-<span class="mi">0</span> <span class="mi">12</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">passwd</span> <span class="o">-</span><span class="n">l</span> <span class="n">username</span>
+<div class="highlight"><pre>0 8 * * * passwd -u username
+0 12 * * * passwd -l username
 </pre></div>
 
 
@@ -189,7 +189,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-05-29T23:25:19"> 四 29 五月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-05-29T23:25:19+08:00"> Thu 29 May 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -243,7 +243,7 @@ make install
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-05-26T23:36:27"> 一 26 五月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-05-26T23:36:27+08:00"> Mon 26 May 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -280,7 +280,7 @@ make install
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-01-03T14:28:23"> 五 03 一月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-01-03T14:28:23+08:00"> Fri 03 January 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -333,7 +333,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-11-22T22:43:22"> 五 22 十一月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-11-22T22:43:22+08:00"> Fri 22 November 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -359,18 +359,18 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 <p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
 <p>下载地址：<a href="http://ctags.sourceforge.net">http://ctags.sourceforge.net</a></p>
 <p>使用方式：在代码的根目录执行如下命令即可生成tag文件：</p>
-<div class="highlight"><pre><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
+<div class="highlight"><pre>ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 </pre></div>
 
 
 <!-- more -->
 
 <p>这个命令有点长，可以在<code>.vimrc</code>的文件中加个键盘映射，像下面的样子，这样只需要按下<code>CTRL+F12</code>即可生成tag文件了。</p>
-<div class="highlight"><pre><span class="n">map</span> <span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">F12</span><span class="o">&gt;</span> <span class="o">:!</span><span class="n">ctags</span> <span class="o">-</span><span class="n">R</span> <span class="o">--</span><span class="n">c</span><span class="o">++-</span><span class="n">kinds</span><span class="o">=+</span><span class="n">p</span> <span class="o">--</span><span class="n">fields</span><span class="o">=+</span><span class="n">iaS</span> <span class="o">--</span><span class="n">extra</span><span class="o">=+</span><span class="n">q</span> <span class="p">.</span>
+<div class="highlight"><pre>map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 </pre></div>
 
 
-<p>另外，如果需要指明源代码的语言，则需要加上 ...</p></!-->
+<p>另外，如果需要指明源代码的语言，则需要加上<code>--languages ...</code></p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/22/vim-development-environment">阅读全文</a>
                     </div>
@@ -383,7 +383,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-11-18T22:37:16"> 一 18 十一月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-11-18T22:37:16+08:00"> Mon 18 November 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -405,15 +405,15 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 
 <h3 id="_1">安装输入法</h3>
 <p>执行下面的命令安装FCITX：</p>
-<div class="highlight"><pre><span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">fcitx</span><span class="o">-</span><span class="n">im</span>
+<div class="highlight"><pre>pacman -S fcitx-im
 </pre></div>
 
 
 <h3 id="_2">配置环境变量</h3>
 <p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="s">&quot;@im=fcitx&quot;</span>
+<div class="highlight"><pre>export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=&quot;@im=fcitx&quot;
 </pre></div>
 
 
@@ -430,7 +430,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-30T23:30:57"> 三 30 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-30T23:30:57+08:00"> Wed 30 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -470,7 +470,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-25T23:19:39"> 五 25 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-25T23:19:39+08:00"> Fri 25 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -510,7 +510,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-19T21:47:22"> 六 19 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-19T21:47:22+08:00"> Sat 19 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -704,6 +704,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -733,7 +738,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -1023,7 +1028,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

@@ -63,7 +63,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-07-18T20:48:00"> 五 18 七月 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-07-18T20:48:00+08:00"> Fri 18 July 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -81,12 +81,12 @@
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
-<div class="highlight"><pre><span class="n">VirtualBox</span> <span class="n">kernel</span> <span class="n">driver</span> <span class="n">not</span> <span class="n">installed</span><span class="p">.</span> <span class="n">The</span> <span class="n">vboxdrv</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">was</span> <span class="n">either</span> <span class="n">not</span> <span class="n">loaded</span> <span class="n">or</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">was</span> <span class="n">not</span> <span class="n">created</span> <span class="k">for</span> <span class="n">some</span> <span class="n">reason</span><span class="p">.</span><span class="err"> </span>
-<span class="n">Re</span><span class="o">-</span><span class="n">setup</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">module</span> <span class="n">by</span> <span class="n">executing</span> <span class="err">‘</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vboxdrv</span> <span class="n">setup</span><span class="err">’</span> <span class="n">as</span> <span class="n">root</span><span class="p">.</span>
+<div class="highlight"><pre>VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. 
+Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 </pre></div>
 
 
-<p>于是按照提示在终端里执行"sudo /etc/init.d/vboxdrv ...</p>
+<p>于是按照提示在终端里执行"sudo /etc/init.d/vboxdrv setup ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">阅读全文</a>
                     </div>
@@ -182,6 +182,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -211,7 +216,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -501,7 +506,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

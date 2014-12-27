@@ -58,12 +58,57 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2008/01/28/understanding-on-the-android-layout">对Android布局的理解</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2008-01-28T20:13:00+08:00"> Mon 28 January 2008</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/android/index.html">Android</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>前一段时间一直在考试，现在放假了，有时间好好的看了一下Android的布局。</p>
+<p>之前对于XML的布局方法一直看着不爽，感觉很乱的样子，但时间长了我渐渐发现，这种程序代码与界面布局完全分开的方法非常顺手，该布局的地方都到main.xml里去写，甚至界面中显示的字符串都可以集中到string.xml文件中，而主程序的".java"文件中则完全用于编写代码，思路非常清晰。</p>
+<!-- more -->
+
+<h3 id="1">1 首先按照程序的目录结构大致分析</h3>
+<div class="highlight"><pre>res/layout/   这个目录存放的就是布局用的xml文件，一般默认为main.xml
+res/values/   这个目录存放的是一堆常量的xml文件
+res/drawable/ 存放的是一些图片什么的，当然图标也在这里
+</pre></div>
+
+
+<h3 id="2-layoutxml">2 下面主要对layout下的xml文件做个介绍，顺便也把布局的方法总结一下</h3>
+<h4 id="21">2.1 文件的开头</h4>
+<div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+</pre></div>
+
+
+<p>这是在说明xml版本及字符编码</p>
+<h4 id="22">2.2 布局框架</h4>
+<div class="highlight"><pre><span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas ...</span></pre></div></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/01/28/understanding-on-the-android-layout">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2008/01/11/android-beginner-question">初学Android的一点问题</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-01-11T11:33:00"> 五 11 一月 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-01-11T11:33:00+08:00"> Fri 11 January 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -83,10 +128,10 @@
 
 <p>这种方法对我来说并不是很习惯，毕竟java用了那么长时间，在代码中直接setLayout感觉更舒服些。当然既然google采用了这种布局和代码分离的方式那就肯定有它的优点，看来还需要一点的时间来习惯这种布局方式。</p>
 <h4 id="2-android">2 总结：我自己对Android几个模块的理解</h4>
-<div class="highlight"><pre><span class="n">Activity</span><span class="err">：类似</span><span class="n">java</span><span class="err">中的</span><span class="n">Applet</span><span class="err">或</span><span class="n">Frame</span><span class="err">，以我的理解，这个类提供了程序的最基本框架。</span>
-<span class="n">Intent</span> <span class="n">Receiver</span><span class="err">：翻译过来是“目的接收器”，和</span><span class="n">java</span><span class="err">中的</span><span class="n">listener</span><span class="err">类似，用于处理事件。</span>
-<span class="n">Service</span><span class="err">：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。</span>
-<span class="n">Content</span> <span class="n">Provider</span><span class="err">：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。</span>
+<div class="highlight"><pre>Activity：类似java中的Applet或Frame，以我的理解，这个类提供了程序的最基本框架。
+Intent Receiver：翻译过来是“目的接收器”，和java中的listener类似，用于处理事件。
+Service：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。
+Content Provider：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。
 </pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/01/11/android-beginner-question">阅读全文</a>
@@ -100,7 +145,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2007-09-22T13:38:00"> 六 22 九月 2007</time>
+        <i class="fa fa-calendar"></i><time datetime="2007-09-22T13:38:00+08:00"> Sat 22 September 2007</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -124,9 +169,9 @@
 <p>修改~/.bashrc文件，在文件末尾加入以下几行：</p>
 </li>
 </ol>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">j2sdk1</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span>
-<span class="n">export</span> <span class="n">PATH</span><span class="o">=</span><span class="err">$</span><span class="n">JAVA_HOME</span><span class="o">/</span><span class="n">bin</span><span class="o">:</span><span class="err">$</span><span class="n">PATH</span>
-<span class="n">export</span> <span class="n">CLASSPATH</span><span class="o">=</span><span class="p">.</span><span class="o">:</span><span class="err">$</span><span class="n">JAVA_HOME</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">tools</span><span class="p">.</span><span class="n">jar</span><span class="o">:</span><span class="err">$</span><span class="n">JAVA_HOME</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">dt</span><span class="p">.</span><span class="n">jar</span><span class="o">:</span><span class="err">$</span><span class="n">CLASSPATH</span>
+<div class="highlight"><pre><span class="x">export JAVA_HOME=/usr/java/j2sdk1.x.x</span>
+<span class="x">export PATH=</span><span class="p">$</span><span class="nv">JAVA_HOME</span><span class="x">/bin:</span><span class="p">$</span><span class="nv">PATH</span><span class="x"></span>
+<span class="x">export CLASSPATH=.:</span><span class="p">$</span><span class="nv">JAVA_HOME</span><span class="x">/lib/tools.jar:</span><span class="p">$</span><span class="nv">JAVA_HOME</span><span class="x">/lib/dt.jar:</span><span class="p">$</span><span class="nv">CLASSPATH</span><span class="x"></span>
 </pre></div>
 
 
@@ -143,7 +188,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2007-08-19T14:02:00"> 日 19 八月 2007</time>
+        <i class="fa fa-calendar"></i><time datetime="2007-08-19T14:02:00+08:00"> Sun 19 August 2007</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -160,21 +205,28 @@
 	<a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">配置文件</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><div class="highlight"><pre><span class="s">&quot; 设置字符编码</span>
-<span class="n">set</span> <span class="n">encoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">set</span> <span class="n">termencoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">set</span> <span class="n">fileencoding</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">set</span> <span class="n">fileencodings</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="n">ucs</span><span class="o">-</span><span class="n">bom</span><span class="p">,</span><span class="n">gb2312</span><span class="p">,</span><span class="n">gb18030</span><span class="p">,</span><span class="n">gbk</span><span class="p">,</span><span class="n">cp936</span>
+                <div class="summary"><div class="highlight"><pre>&quot; 设置字符编码
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,ucs-bom,gb2312,gb18030,gbk,cp936
 
-<span class="s">&quot; 设置文件格式(unix=LF,dos=CRLF,mac=CR)</span>
-<span class="n">set</span> <span class="n">fileformat</span><span class="o">=</span><span class="n">unix</span>
-<span class="n">set</span> <span class="n">fileformats</span><span class="o">=</span><span class="n">unix</span><span class="p">,</span><span class="n">dos</span><span class="p">,</span><span class="n">mac</span>
+&quot; 设置文件格式(unix=LF,dos=CRLF,mac=CR)
+set fileformat=unix
+set fileformats=unix,dos,mac
 
-<span class="s">&quot; 提示信息语言</span>
-<span class="n">set</span> <span class="n">langmenu</span><span class="o">=</span><span class="n">en_US</span><span class="p">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">language</span> <span class="n">messages</span> <span class="n">en_US</span><span class="p">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+&quot; 提示信息语言
+set langmenu=en_US.utf-8
+language messages en_US.utf-8
 
-<span class="s">&quot; 开启文件类型检测 ...</span></pre></div>
+&quot; 开启文件类型检测
+filetype on
+
+&quot; 开启语法高亮
+syntax on
+
+&quot; 显示行号
+set ...</pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2007/08/19/my-vi-config">阅读全文</a>
                     </div>
@@ -237,6 +289,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -264,11 +321,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -332,6 +384,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -361,7 +418,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -651,7 +708,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>

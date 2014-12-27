@@ -79,7 +79,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2010-04-27T12:43:00"> 二 27 四月 2010</time>
+        <i class="fa fa-calendar"></i><time datetime="2010-04-27T12:43:00+08:00"> Tue 27 April 2010</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -110,29 +110,29 @@
     </Target>
   </Head>
 </Message></p>
-<div class="highlight"><pre><span class="err">现在要读取消息源</span><span class="n">IP</span><span class="err">地址</span><span class="p">(</span><span class="mf">192.168.0.1</span><span class="p">)</span><span class="err">和目的</span><span class="n">IP</span><span class="err">地址</span><span class="p">(</span><span class="mf">192.168.0.19</span><span class="p">)</span><span class="err">。</span>
+<div class="highlight"><pre><span class="err">现在要读取消息源</span><span class="nt">IP</span><span class="err">地址</span><span class="o">(</span><span class="nt">192</span><span class="nc">.168.0.1</span><span class="o">)</span><span class="err">和目的</span><span class="nt">IP</span><span class="err">地址</span><span class="o">(</span><span class="nt">192</span><span class="nc">.168.0.19</span><span class="o">)</span><span class="err">。</span>
 
-<span class="o">&lt;!--</span> <span class="n">more</span> <span class="o">--&gt;</span>
+<span class="o">&lt;!</span><span class="nt">--</span> <span class="nt">more</span> <span class="nt">--</span><span class="o">&gt;</span>
 
-<span class="err">根据上面</span><span class="n">XML</span><span class="err">文件的结构，查找路径为</span><span class="s">&quot;/Message/Head/Source/Address&quot;</span><span class="err">和</span><span class="s">&quot;/Message/Head/Target/Address&quot;</span><span class="err">，需要用到</span><span class="n">XPath</span><span class="err">的寻径方式，代码如下：</span>
+<span class="err">根据上面</span><span class="nt">XML</span><span class="err">文件的结构，查找路径为</span><span class="s2">&quot;/Message/Head/Source/Address&quot;</span><span class="err">和</span><span class="s2">&quot;/Message/Head/Target/Address&quot;</span><span class="err">，需要用到</span><span class="nt">XPath</span><span class="err">的寻径方式，代码如下：</span>
 
-<span class="err">```</span> <span class="n">c</span><span class="err">#</span>
-<span class="c1">// 需要引用System.Xml库</span>
-<span class="n">using</span><span class="err"> </span><span class="n">System</span><span class="p">.</span><span class="n">Xml</span><span class="p">;</span>
+<span class="err">```</span> <span class="nt">c</span><span class="err">#</span>
+<span class="o">//</span> <span class="err">需要引用</span><span class="nt">System</span><span class="nc">.Xml</span><span class="err">库</span>
+<span class="nt">using</span><span class="err"> </span><span class="nt">System</span><span class="nc">.Xml</span><span class="o">;</span>
 
-<span class="c1">// 省略中间无关代码</span>
+<span class="o">//</span> <span class="err">省略中间无关代码</span>
 
-<span class="c1">// 加载XML文件</span>
-<span class="n">XmlDocument</span><span class="err"> </span><span class="n">xmlDoc</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">new</span><span class="err"> </span><span class="n">XmlDocument</span><span class="p">();</span>
-<span class="n">xmlDoc</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="s">&quot;message_hutaow.xml&quot;</span><span class="p">);</span>
+<span class="o">//</span> <span class="err">加载</span><span class="nt">XML</span><span class="err">文件</span>
+<span class="nt">XmlDocument</span><span class="err"> </span><span class="nt">xmlDoc</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="nt">new</span><span class="err"> </span><span class="nt">XmlDocument</span><span class="o">();</span>
+<span class="nt">xmlDoc</span><span class="nc">.Load</span><span class="o">(</span><span class="s2">&quot;message_hutaow.xml&quot;</span><span class="o">);</span>
 
-<span class="c1">// 使用XPath方式寻找源IP地址节点并输出</span>
-<span class="n">xmlNode</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">xmlDoc</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s">&quot;/Message/Head/Source/Address&quot;</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Source Address: {0}&quot;</span><span class="p">,</span><span class="n">xmlNode</span><span class="p">.</span><span class="n">InnerText</span><span class="p">);</span>
+<span class="o">//</span> <span class="err">使用</span><span class="nt">XPath</span><span class="err">方式寻找源</span><span class="nt">IP</span><span class="err">地址节点并输出</span>
+<span class="nt">xmlNode</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="nt">xmlDoc</span><span class="nc">.SelectSingleNode</span><span class="o">(</span><span class="s2">&quot;/Message/Head/Source/Address&quot;</span><span class="o">);</span>
+<span class="nt">Console</span><span class="nc">.WriteLine</span><span class="o">(</span><span class="s2">&quot;Source Address: {0}&quot;</span><span class="o">,</span><span class="nt">xmlNode</span><span class="nc">.InnerText</span><span class="o">);</span>
 
-<span class="c1">// 使用XPath方式寻找目的IP地址节点并输出</span>
-<span class="n">xmlNode</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">xmlDoc</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s">&quot;/Message/Head/Target/Address&quot;</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Target Address: {0}&quot;</span><span class="p">,</span><span class="n">xmlNode</span><span class="p">.</span><span class="n">InnerText</span><span class="p">);</span>
+<span class="o">//</span> <span class="err">使用</span><span class="nt">XPath</span><span class="err">方式寻找目的</span><span class="nt">IP</span><span class="err">地址节点并输出</span>
+<span class="nt">xmlNode</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="nt">xmlDoc</span><span class="nc">.SelectSingleNode</span><span class="o">(</span><span class="s2">&quot;/Message/Head/Target/Address&quot;</span><span class="o">);</span>
+<span class="nt">Console</span><span class="nc">.WriteLine</span><span class="o">(</span><span class="s2">&quot;Target Address: {0}&quot;</span><span class="o">,</span><span class="nt">xmlNode</span><span class="nc">.InnerText</span><span class="o">);</span>
 </pre></div>
 
 
@@ -212,6 +212,11 @@
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2014/08/02/svautomusic-cracker">
+                                德赛西威音乐e栈的破解程序
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">
                                 一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法
                             </a>
@@ -239,11 +244,6 @@
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
                                 轻量级的 Linux 终端软件 RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">
-                                使用 OProfile 进行性能分析
                             </a>
                         </li>
                     </ul>
@@ -307,6 +307,11 @@
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
+                                Cracker
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/cron/index.html">
                                 cron
                             </a>
@@ -336,7 +341,7 @@
                                 Database
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
                                 德赛西威
                             </a>
@@ -626,7 +631,7 @@
                                 XML
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-3">
                             <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
                                 音乐e栈
                             </a>
