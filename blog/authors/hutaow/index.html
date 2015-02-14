@@ -58,12 +58,43 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2015/02/14/ld-o">如何将多个.o合并为一个.o文件</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-02-14T20:10:01+08:00"> 六 14 二月 2015</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/ld/index.html">ld</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>一般情况下，多个.o都是打包成一个.a做为库文件使用，最近碰到个情况，需要将多个.o合并为一个.o文件，其实方法并不复杂，把几个.o重新链接一下就行了，一条命令就能搞定。</p>
+<div class="highlight"><pre>ld -r -s -o output.o origin1.o origin2.o
+</pre></div>
+
+
+<p><em>参数<code>-r</code>表示输出可重定位的文件（新生成的.o可以再次做为ld的输入），<code>-s</code>表示忽略输出文件中的符号信息；另外<code>output.o</code>是新生成的.o文件，<code>origin1.o</code>、<code>origin2.o</code>为原始的.o文件，还可以加上更多，或者直接<code>*.o</code>也可以。</em></p>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2015/02/14/ld-o">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service">配置OpenWRT的Samba共享服务</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-11-02T16:23:11+08:00"> Sun 02 November 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-11-02T16:23:11+08:00"> 日 02 十一月 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -105,7 +136,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-09-08T17:00:20+08:00"> Mon 08 September 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-09-08T17:00:20+08:00"> 一 08 九月 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -148,7 +179,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-08-28T01:08:03+08:00"> Thu 28 August 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-08-28T01:08:03+08:00"> 四 28 八月 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -238,7 +269,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-08-02T00:07:19+08:00"> Sat 02 August 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-08-02T00:07:19+08:00"> 六 02 八月 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -311,7 +342,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-08-01T23:50:27+08:00"> Fri 01 August 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-08-01T23:50:27+08:00"> 五 01 八月 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -364,7 +395,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-06-13T22:50:12+08:00"> Fri 13 June 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-06-13T22:50:12+08:00"> 五 13 六月 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -400,7 +431,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-06-02T15:38:56+08:00"> Mon 02 June 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-06-02T15:38:56+08:00"> 一 02 六月 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -439,7 +470,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-05-29T23:25:19+08:00"> Thu 29 May 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-05-29T23:25:19+08:00"> 四 29 五月 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -493,7 +524,7 @@ make install
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-05-26T23:36:27+08:00"> Mon 26 May 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-05-26T23:36:27+08:00"> 一 26 五月 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -520,59 +551,6 @@ make install
 </pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">轻量级的 Linux 终端软件 RXVT</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-01-03T14:28:23+08:00"> Fri 03 January 2014</time>
-    </span>
-            <span class="label label-default">By</span>
-            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
-
-        <span class="label label-default">Category</span>
-        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://hutaow.com/blog/tags/linux/index.html">Linux</a>
-        /
-	<a href="http://hutaow.com/blog/tags/rxvt/index.html">RXVT</a>
-        /
-	<a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">配置文件</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
-<!-- more -->
-
-<div class="highlight"><pre>!!<span class="nv">$HOME</span>/.Xdefaults
-Rxvt.preeditType: root
-
-!!窗口大小及标题
-Rxvt.geometry: 80x25
-Rxvt.title: hutaow-rxvt
-
-!!输入法设置
-Rxvt.inputMethod: fcitx
-
-!!透明度设置
-!Rxvt.transparent: <span class="nb">true</span>
-!Rxvt.shading: 110
-!Rxvt.tintColor: grey
-!Rxvt.inheritPixmap: <span class="nb">false</span>
-
-!!扩展设置
-Rxvt.perl-ext-common: default, matcher, fullscreen
-
-!!URL操作
-Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">阅读全文</a>
                     </div>
                 </div>
             </article>
@@ -618,6 +596,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2015/02/14/ld-o">
+                                如何将多个.o合并为一个.o文件
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service">
                                 配置OpenWRT的Samba共享服务
                             </a>
@@ -660,11 +643,6 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
                                 在多个文件中批量查找/替换字符串
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
-                                轻量级的 Linux 终端软件 RXVT
                             </a>
                         </li>
                     </ul>
@@ -860,6 +838,11 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
                                 控件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/ld/index.html">
+                                ld
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -1089,7 +1072,7 @@ Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 hutaow
+         <div class="col-xs-10">&copy; 2015 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

@@ -58,12 +58,52 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing">入侵检测与响应系统的信息共享</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2010-04-17T21:25:00+08:00"> 六 17 四月 2010</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/security/index.html">Security</a>
+        /
+	<a href="http://hutaow.com/blog/tags/ids/index.html">IDS</a>
+        /
+	<a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">信息安全</a>
+        /
+	<a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">入侵检测</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><h3 id="_1">引言</h3>
+<p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。</p>
+<p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
+<!-- more -->
+
+<h3 id="1">1 入侵检测消息交互过程</h3>
+<h4 id="11">1.1 建立连接</h4>
+<p>使用IDXP传输数据的入侵检测实体被称为IDXP对等体。对等体只能成对出现，这些对等体通过BEEP会话中的一个或多个BEEP信道进行数据传输。对等体可能是管理器或分析器。</p>
+<p>在分析器和管理器之间很可能是多对多的关系。即一个分析器可以和多个管理器通信，同样，一个管理器也可以和多个分析器通信；在不同的管理器之间也可以是多对多的关系。所以，一个管理器可以通过多个中间管理器接收大量的来自分析器的报警信息。但是 ...</p></!-->
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2010/04/13/reverse-order-of-words-in-a-string">字符串中单词逆序的实现</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2010-04-13T19:35:00+08:00"> Tue 13 April 2010</time>
+        <i class="fa fa-calendar"></i><time datetime="2010-04-13T19:35:00+08:00"> 二 13 四月 2010</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -111,7 +151,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2010-01-30T00:29:00+08:00"> Sat 30 January 2010</time>
+        <i class="fa fa-calendar"></i><time datetime="2010-01-30T00:29:00+08:00"> 六 30 一月 2010</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -141,7 +181,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2010-01-14T20:28:00+08:00"> Thu 14 January 2010</time>
+        <i class="fa fa-calendar"></i><time datetime="2010-01-14T20:28:00+08:00"> 四 14 一月 2010</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -175,7 +215,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2010-01-12T22:53:00+08:00"> Tue 12 January 2010</time>
+        <i class="fa fa-calendar"></i><time datetime="2010-01-12T22:53:00+08:00"> 二 12 一月 2010</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -212,7 +252,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2009-05-02T14:02:00+08:00"> Sat 02 May 2009</time>
+        <i class="fa fa-calendar"></i><time datetime="2009-05-02T14:02:00+08:00"> 六 02 五月 2009</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -266,7 +306,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2009-04-02T10:55:00+08:00"> Thu 02 April 2009</time>
+        <i class="fa fa-calendar"></i><time datetime="2009-04-02T10:55:00+08:00"> 四 02 四月 2009</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -303,7 +343,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-08-14T19:05:00+08:00"> Thu 14 August 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-08-14T19:05:00+08:00"> 四 14 八月 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -346,7 +386,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-08-10T15:12:00+08:00"> Sun 10 August 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-08-10T15:12:00+08:00"> 日 10 八月 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -383,7 +423,7 @@ export ftp_proxy=http://username:password@proxy.server:8080
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-07-29T11:34:00+08:00"> Tue 29 July 2008</time>
+        <i class="fa fa-calendar"></i><time datetime="2008-07-29T11:34:00+08:00"> 二 29 七月 2008</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -406,44 +446,6 @@ export ftp_proxy=http://username:password@proxy.server:8080
 <p>之后重新进入KDE，一切正常 ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux">Linux下将.cue/.bin转换为.iso的方法</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2008-07-19T17:20:00+08:00"> Sat 19 July 2008</time>
-    </span>
-            <span class="label label-default">By</span>
-            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
-
-        <span class="label label-default">Category</span>
-        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://hutaow.com/blog/tags/linux/index.html">Linux</a>
-        /
-	<a href="http://hutaow.com/blog/tags/gong-ju/index.html">工具</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>从学校的FTP上下了个Windows 2000 Advance Server光盘镜像，打算装在虚拟机里，结果发现下下来的镜像是.cue/.bin格式的，VirtualBox还用不了，于是跑google上搜了一大堆linux里转换.iso格式的软件，发现一个叫"bchunk"的小软件非常好用，而且小的可以，才几十K，很不错。</p>
-<p>在终端里输入如下命令：</p>
-<div class="highlight"><pre>bchunk e-w2sp4ru1as.bin e-w2sp4ru1as.cue e-w2sp4ru1as.iso
-</pre></div>
-
-
-<!-- more -->
-
-<p>其中，e-w2sp4ru1as.e-w2sp4ru1as.cue是原来的镜像名，e-w2sp4ru1as.iso是转换后想要保存的文件名。</p>
-<p>等一小会儿，就像下面这幅图一样，会有一个进度条，进度到100%后转换就完成了。
-<img alt="Convert CUE and BIN to ISO format" src="/images/articles/200807/convert_cue_and_bin_to_iso_format_in_linux.png" /></p>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/07/19/convert-cue-and-bin-to-iso-format-in-linux">阅读全文</a>
                     </div>
                 </div>
             </article>
@@ -490,6 +492,11 @@ export ftp_proxy=http://username:password@proxy.server:8080
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
                         <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2015/02/14/ld-o">
+                                如何将多个.o合并为一个.o文件
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service">
                                 配置OpenWRT的Samba共享服务
                             </a>
@@ -532,11 +539,6 @@ export ftp_proxy=http://username:password@proxy.server:8080
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
                                 在多个文件中批量查找/替换字符串
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">
-                                轻量级的 Linux 终端软件 RXVT
                             </a>
                         </li>
                     </ul>
@@ -732,6 +734,11 @@ export ftp_proxy=http://username:password@proxy.server:8080
                         <li class="list-group-item tag-4">
                             <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
                                 控件
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://hutaow.com/blog/tags/ld/index.html">
+                                ld
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -961,7 +968,7 @@ export ftp_proxy=http://username:password@proxy.server:8080
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 hutaow
+         <div class="col-xs-10">&copy; 2015 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
