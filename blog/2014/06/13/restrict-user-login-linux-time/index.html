@@ -131,10 +131,44 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
-            Disqus.</a></noscript>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
+    </section>
+
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+        <div id="gitment-container">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+        <script>
+            const myTheme = {
+                render(state, instance) {
+                    const container = document.createElement('div')
+                    container.lang = "en-US"
+                    container.className = 'gitment-container gitment-root-container'
+                    container.appendChild(instance.renderHeader(state, instance))
+                    container.appendChild(instance.renderEditor(state, instance))
+                    container.appendChild(instance.renderComments(state, instance))
+                    container.appendChild(instance.renderFooter(state, instance))
+                    return container
+                },
+            }
+            var gitment = new Gitment({
+                theme: myTheme,
+                owner: 'hutaow',
+                repo: 'git@github.com:hutaow/hutaow.github.io.git',
+                oauth: {
+                    client_id: 'cd12415ceab8cbff197c',
+                    client_secret: '7c9f0166602e8c7fe96c9c915480c7592ae48b50',
+                },
+            })
+            gitment.render('gitment-container')
+        </script>
     </section>
         </article>
     </section>
