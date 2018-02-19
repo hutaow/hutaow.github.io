@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="入侵检测与响应系统的信息共享"/>
             <meta property="og:url" content="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing"/>
-            <meta property="og:description" content="引言 入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。 值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。 1 入侵检测消息交互过程 1.1 建立连接 使用IDXP传输数据的入侵检测实体被称为IDXP对等体。对等体只能成对出现，这些对等体通过BEEP会话中的一个或多个BEEP信道进行数据传输。对等体可能是管理器或分析器。 在分析器和管理器之间很可能是多对多的关系。即一个分析器可以和多个管理器通信，同样，一个管理器也可以和多个分析器通信；在不同的管理器之间也可以是多对多的关系。所以，一个管理器可以通过多个中间管理器接收大量的来自分析器的报警信息。但是 ..."/>
+            <meta property="og:description" content="引言 入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。 值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。 1 入侵检测消息交互过程 1.1 建立连接 使用IDXP传输数据的入侵检测实体被称为IDXP对等体。对等体只能成对出现，这些对等体通过BEEP会话中的一个或多个BEEP信道进行数据传输。对等体可能是管理器或分析器。 在分析器和管理器之间很可能是多对多的关系。即一个分析器可以和多个管理器通信，同样，一个管理器也可以和多个分析器通信；在不同的管理器之间也可以是多对多的关系。所以，一个管理器可以通过多个中间管理器接收大量的来自分析器的报警信息。但是 …"/>
             <meta property="article:published_time" content="2010-04-17" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Security" />
@@ -81,7 +81,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2010-04-17T21:25:00+08:00"> 六 17 四月 2010</time>
+        <i class="fa fa-calendar"></i><time datetime="2010-04-17T21:25:00+08:00"> Sat 17 April 2010</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -101,18 +101,18 @@
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <h3 id="_1">引言</h3>
+                <h3>引言</h3>
 <p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。</p>
 <p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
 <!-- more -->
 
-<h3 id="1">1 入侵检测消息交互过程</h3>
-<h4 id="11">1.1 建立连接</h4>
+<h3>1 入侵检测消息交互过程</h3>
+<h4>1.1 建立连接</h4>
 <p>使用IDXP传输数据的入侵检测实体被称为IDXP对等体。对等体只能成对出现，这些对等体通过BEEP会话中的一个或多个BEEP信道进行数据传输。对等体可能是管理器或分析器。</p>
 <p>在分析器和管理器之间很可能是多对多的关系。即一个分析器可以和多个管理器通信，同样，一个管理器也可以和多个分析器通信；在不同的管理器之间也可以是多对多的关系。所以，一个管理器可以通过多个中间管理器接收大量的来自分析器的报警信息。但是，各个分析器之间禁止建立IDXP连接，避免重复报警情况的发生。</p>
 <p><strong>对等体"Alice"和"Bob"建立IDXP交换的过程</strong></p>
 <p>IDXP对等体之间通过打开一个BEEP信道进行通信。在打开BEEP信道之前，需要首先建立BEEP会话，然后就安全特性等问题进行协商。BEEP安全轮廓协商成功后，再经互相确认应答，然后开始IDXP交换。</p>
-<div class="highlight"><pre>Alice                                               Bob
+<div class="highlight"><pre><span></span>Alice                                               Bob
   ------------------- 建立连接(1) --------------------&gt;
 &lt;---------------------- 问候 ------------------------&gt;
 &lt;------------------ 启动安全轮廓(2) ------------------&gt;
@@ -130,7 +130,7 @@
 <p><strong>对等体"Alice"和"Bob"通过代理服务器建立IDXP交换</strong></p>
 <p>在一对IDXP对等体之间可以存在多个代理，这些代理可能是因为管理的需要。比如透过防火墙进行受限访问，或是将公司各部门分析器的数据转发到公司总管理器。</p>
 <p>在使用代理转发数据时，会使用BEEP协调轮廓建立一个应用层的隧道。隧道轮廓(详细见"RFC3620 - The TUNNEL profile")即在此时发挥作用。在创建应用层隧道时，必须建立一个作为协调轮廓的隧道，并且该隧道轮廓需要进行SASL认证。隧道建立完成后，BEEP安全轮廓才可以提供IDXP协商时需要的各项安全特性。</p>
-<div class="highlight"><pre>Alice              proxy1               proxy2               Bob
+<div class="highlight"><pre><span></span>Alice              proxy1               proxy2               Bob
   ----- 建立连接 ----&gt;
 &lt;------ 问候 -------&gt;
   ---- 启动隧道 -----&gt;
@@ -155,10 +155,10 @@
 <li>收到"Alice"启动隧道的消息后，"proxy1"并没有立即返回确认消息，而是先试图和"proxy"连接以建立隧道。同样的，"proxy2"也不会立即给"proxy1"返回确认消息</li>
 <li>"Bob"的确认信息首先到达"proxy2"并且与之启动隧道，然后确认消息会传递下去最终返回给"Alice"，最终"Alice"和"Bob"之间就成功建立了应用层的隧道</li>
 </ul>
-<h4 id="12">1.2 数据传输</h4>
+<h4>1.2 数据传输</h4>
 <p>在一对入侵检测实体通过BEEP会话进行通信时，会使用IDXP轮廓打开一个或多个BEEP信道。如果需要，可以用IDXP轮廓建立更多的BEEP会话，以提供额外的信道。但是在多数情况下，还是应该在已有的BEEP会话中添加新的信道，尽量避免用新建BEEP会话的方式添加信道。</p>
 <p>在每条信道中，对等体都是以客户端/服务器形式进行通信。客户端和服务器的角色扮演决定于建立BEEP会话的发起者和监听者。即发起者为客户端，监听者为服务器。</p>
-<div class="highlight"><pre>+----------+                          +----------+
+<div class="highlight"><pre><span></span>+----------+                          +----------+
 |          |                          |          |
 |          |******** BEEP 会话 ********|          |
 |          |                          |          |
@@ -172,7 +172,7 @@
 
 
 <p>在一个BEEP会话中使用多个BEEP信道的方式对IDXP对等体之间传输数据的分类和优先级的管理非常有利。例如，管理器"M1"向"M2"发送报警数据时，可以将不同类型的信息使用单独的信道进行传输。"M1"在这些信道中扮演了客户端的角色，"M2"则对接收到的报警信息根据其不同类型进行相应处理。</p>
-<div class="highlight"><pre>+----------+                                            +----------+
+<div class="highlight"><pre><span></span>+----------+                                            +----------+
 |          |                                            |          |
 |          |**************** BEEP 会话 ******************|          |
 |          |                                            |          |
@@ -188,18 +188,18 @@
 </pre></div>
 
 
-<h4 id="13">1.3 断开连接</h4>
+<h4>1.3 断开连接</h4>
 <p>在一些情况下(如处理过程中出现错误)，IDXP对等体可以关闭某个IDXP信道。要关闭某条信道，需要在零号信道上发送一条"关闭"的指令，并且指明所关闭的信道。如果想要关闭整个BEEP会话，只需在零号信道上发送一条要求"关闭"零信道的指令即可。</p>
 <p>由于应用层隧道和BEEP安全轮廓会经常使用，所以凡是包含IDXP信道的BEEP会话将会一直存活下去。同时，为了避免IDXP信道被反复的建立，系统会一直保持这些IDXP信道的连接，即使当前已经没有数据在上面传输。建议当IDXP对等体在合适的时候，手动关闭并重建BEEP会话。</p>
-<h4 id="14">1.4 可信模型</h4>
+<h4>1.4 可信模型</h4>
 <p>在以上的模型中，BEEP安全轮廓是建立在IDXP对等体之间从而实现的端到端安全，而无需对中间代理建立信任。因此，只有在安全轮廓下经过协商后的IDXP对等体之间是相互信任的，而代理始终被看作是不可信的。</p>
-<h3 id="2">2 入侵检测消息交换格式</h3>
-<h4 id="21-idmef">2.1 IDMEF数据模型</h4>
+<h3>2 入侵检测消息交换格式</h3>
+<h4>2.1 IDMEF数据模型</h4>
 <p>IDMEF数据模型的各主要部分关系如下图所示（这里省略了事件指示器和属性）。
-<img alt="数据模型" src="/images/articles/201004/intrusion_dedection_and_response_system_for_information_sharing.png" /></p>
+<img alt="数据模型" src="/images/articles/201004/intrusion_dedection_and_response_system_for_information_sharing.png"></p>
 <p>IDMEF消息的最高层类是"IDMEF-Message"，其它各类型消息都是该类的子类。目前IDMEF定义了两种消息："Alerts"和"Heartbeats"。其中这两个消息各自携带不同的子类，各子类又描述了更加详细的信息。</p>
 <p>需要注意的是，数据模型并没有指明警报信息如何分类和识别。例如，端口扫描这一行为，它可能被分析器识别为一次单点对多目标的攻击，同时被另一分析器识别为多次的单点攻击。所有，只有在分析器确定了报警类型之后，数据模型才能确定如何对报警数据进行格式化。</p>
-<h4 id="22">2.2 示例</h4>
+<h4>2.2 示例</h4>
 <p>IDMEF数据模型最终是以XML形式实现，XML跨平台、跨语言以及强扩展性的特点保证了IDS设备之间共享信息时良好的兼容性。</p>
 <p>下面用实例说明IDMEF对报警信息封装的格式。这些例子只是为说明用，不具备代表性。</p>
 <p>``` xml 基于网络检测到的某次泪滴攻击报警信息
@@ -239,7 +239,7 @@
        </idmef:Classification>
      </idmef:Alert>
    </idmef:IDMEF-Message></p>
-<div class="highlight"><pre>``` xml 基于网络检测到的某个端口扫描行为（注意<span class="nt">&lt;portlist&gt;</span>中记录了被扫描的端口列表）
+<div class="highlight"><pre><span></span>``` xml 基于网络检测到的某个端口扫描行为（注意<span class="nt">&lt;portlist&gt;</span>中记录了被扫描的端口列表）
 <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
    <span class="nt">&lt;idmef:IDMEF-Message</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span> <span class="na">xmlns:idmef=</span><span class="s">&quot;http://iana.org/idmef&quot;</span><span class="nt">&gt;</span>
      <span class="nt">&lt;idmef:Alert</span> <span class="na">messageid=</span><span class="s">&quot;abc123456789&quot;</span><span class="nt">&gt;</span>
@@ -282,8 +282,8 @@
 </pre></div>
 
 
-<h3 id="3">3 参考资料</h3>
-<div class="highlight"><pre>1. RFC4765 - The Intrusion Detection Message Exchange Format (IDMEF)
+<h3>3 参考资料</h3>
+<div class="highlight"><pre><span></span>1. RFC4765 - The Intrusion Detection Message Exchange Format (IDMEF)
 2. RFC4767 - The Intrusion Detection Exchange Protocol (IDXP)
 </pre></div>
             </div>
@@ -413,386 +413,6 @@
 
                 <li class="list-group-item"><a href="http://hutaow.com/blog/tags/index.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                     <ul class="list-group list-inline tagcloud" id="tags">
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags//index.html">
-                                
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/android/index.html">
-                                Android
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/archlinux/index.html">
-                                ArchLinux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/atl/index.html">
-                                ATL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/c/index.html">
-                                C
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/chmod/index.html">
-                                chmod
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cisco/index.html">
-                                CISCO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/core-dump/index.html">
-                                Core Dump
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
-                                Cracker
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cron/index.html">
-                                cron
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cscope/index.html">
-                                CScope
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/csharp/index.html">
-                                CSharp
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/ctags/index.html">
-                                CTags
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/dai-li/index.html">
-                                代理
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/database/index.html">
-                                Database
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
-                                德赛西威
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/diao-shi/index.html">
-                                调试
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/diao-yong-zhan/index.html">
-                                调用栈
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
-                                定位
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/duan-kou-ying-she/index.html">
-                                端口映射
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/fcitx/index.html">
-                                Fcitx
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/fedora/index.html">
-                                Fedora
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/find/index.html">
-                                find
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/foxmarks/index.html">
-                                Foxmarks
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/gdb/index.html">
-                                GDB
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/git/index.html">
-                                Git
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/gong-ju/index.html">
-                                工具
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/grep/index.html">
-                                grep
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/htc/index.html">
-                                HTC
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/ids/index.html">
-                                IDS
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/java/index.html">
-                                Java
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/jiao-ben/index.html">
-                                脚本
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/jiao-huan-ji/index.html">
-                                交换机
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/kde/index.html">
-                                KDE
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
-                                控件
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/ld/index.html">
-                                ld
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/libpcap/index.html">
-                                libpcap
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="http://hutaow.com/blog/tags/linux/index.html">
-                                Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">
-                                路由器
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/mplayer/index.html">
-                                MPlayer
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/mysql/index.html">
-                                MySQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/nei-cun/index.html">
-                                内存
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/network/index.html">
-                                Network
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/openwrt/index.html">
-                                OpenWRT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/oprofile/index.html">
-                                OProfile
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
-                                配置文件
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/protocol/index.html">
-                                Protocol
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/pxe/index.html">
-                                PXE
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/pyqt/index.html">
-                                PyQT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/python/index.html">
-                                Python
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/qt/index.html">
-                                QT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/rhythmbox/index.html">
-                                Rhythmbox
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">
-                                入侵检测
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/rxvt/index.html">
-                                RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/samba/index.html">
-                                Samba
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/script/index.html">
-                                Script
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/security/index.html">
-                                Security
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/sed/index.html">
-                                sed
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
-                                数据库
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/signal/index.html">
-                                Signal
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/smb/index.html">
-                                SMB
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/snort/index.html">
-                                Snort
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/sql/index.html">
-                                SQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/taglist/index.html">
-                                TagList
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/tcp/index.html">
-                                TCP
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/vi/index.html">
-                                VI
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/virtualbox/index.html">
-                                VirtualBox
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xia-mi-yin-le/index.html">
-                                虾米音乐
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xie-yi/index.html">
-                                协议
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
-                                信号
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">
-                                信息安全
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">
-                                性能优化
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xmarks/index.html">
-                                Xmarks
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xml/index.html">
-                                XML
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
-                                音乐e栈
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/zi-fu-bian-ma/index.html">
-                                字符编码
-                            </a>
-                        </li>
                     </ul>
                 </li>    
     <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>

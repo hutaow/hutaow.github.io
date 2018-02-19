@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="函数调用栈的获取原理分析"/>
             <meta property="og:url" content="http://hutaow.com/blog/2013/10/15/dump-stack"/>
-            <meta property="og:description" content="上一篇文章《在Linux程序中输出函数调用栈》，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。 要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子： #include &lt;stdio.h&gt; int add(int a, int b) { int result = 0; result = a + b; return result; } int main(int argc, char *argv[]) { int result = 0; result = add(1, 2); printf(&#34;result = %d \r\n&#34;, result); return 0; } 使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的： (gdb ..."/>
+            <meta property="og:description" content="上一篇文章《在Linux程序中输出函数调用栈》，讲述了在Linux中如何利用backtrace获取调用栈，本篇文章主要介绍一下获取函数调用栈的原理，并给出相应的实现方式。 要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子： #include &lt;stdio.h&gt; int add(int a, int b) { int result = 0; result = a + b; return result; } int main(int argc, char *argv[]) { int result = 0; result = add(1, 2); printf(&#34;result = %d \r\n&#34;, result); return 0; } 使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的： (gdb …"/>
             <meta property="article:published_time" content="2013-10-15" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="C" />
@@ -82,7 +82,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-15T23:32:31+08:00"> 二 15 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-15T23:32:31+08:00"> Tue 15 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -108,7 +108,7 @@
 <!-- more -->
 
 <p>要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -131,53 +131,53 @@
 
 
 <p>使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的：</p>
-<div class="highlight"><pre><span class="p">(</span><span class="nx">gdb</span><span class="p">)</span> <span class="nx">disassemble</span> <span class="nx">main</span> 
-<span class="nx">Dump</span> <span class="nx">of</span> <span class="nx">assembler</span> <span class="nx">code</span> <span class="k">for</span> <span class="kd">function</span> <span class="nx">main</span><span class="o">:</span>
-   <span class="mh">0x08048439</span> <span class="o">&lt;+</span><span class="mi">0</span><span class="o">&gt;:</span>     <span class="nx">push</span>   <span class="o">%</span><span class="nx">ebp</span>
-   <span class="mh">0x0804843a</span> <span class="o">&lt;+</span><span class="mi">1</span><span class="o">&gt;:</span>     <span class="nx">mov</span>    <span class="o">%</span><span class="nx">esp</span><span class="p">,</span><span class="o">%</span><span class="nx">ebp</span>
-   <span class="mh">0x0804843c</span> <span class="o">&lt;+</span><span class="mi">3</span><span class="o">&gt;:</span>     <span class="nx">and</span>    <span class="nx">$0xfffffff0</span><span class="p">,</span><span class="o">%</span><span class="nx">esp</span>
-   <span class="mh">0x0804843f</span> <span class="o">&lt;+</span><span class="mi">6</span><span class="o">&gt;:</span>     <span class="nx">sub</span>    <span class="nx">$0x20</span><span class="p">,</span><span class="o">%</span><span class="nx">esp</span>
-   <span class="mh">0x08048442</span> <span class="o">&lt;+</span><span class="mi">9</span><span class="o">&gt;:</span>     <span class="nx">movl</span>   <span class="nx">$0x0</span><span class="p">,</span><span class="mh">0x1c</span><span class="p">(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">给result变量赋0值</span>
-   <span class="mh">0x0804844a</span> <span class="o">&lt;+</span><span class="mi">17</span><span class="o">&gt;:</span>    <span class="nx">movl</span>   <span class="nx">$0x2</span><span class="p">,</span><span class="mh">0x4</span><span class="p">(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>   <span class="err">#</span> <span class="nx">将第2个参数压栈</span><span class="p">(</span><span class="nx">该参数偏移为esp</span><span class="o">+</span><span class="mh">0x04</span><span class="p">)</span>
-   <span class="mh">0x08048452</span> <span class="o">&lt;+</span><span class="mi">25</span><span class="o">&gt;:</span>    <span class="nx">movl</span>   <span class="nx">$0x1</span><span class="p">,(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>      <span class="err">#</span> <span class="nx">将第1个参数压栈</span><span class="p">(</span><span class="nx">该参数偏移为esp</span><span class="o">+</span><span class="mh">0x00</span><span class="p">)</span>
-   <span class="mh">0x08048459</span> <span class="o">&lt;+</span><span class="mi">32</span><span class="o">&gt;:</span>    <span class="nx">call</span>   <span class="mh">0x804841c</span> <span class="o">&lt;</span><span class="nx">add</span><span class="o">&gt;</span>  <span class="err">#</span> <span class="nx">调用add函数</span>
-   <span class="mh">0x0804845e</span> <span class="o">&lt;+</span><span class="mi">37</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="o">%</span><span class="nx">eax</span><span class="p">,</span><span class="mh">0x1c</span><span class="p">(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">将add函数的返回值赋给result变量</span>
-   <span class="mh">0x08048462</span> <span class="o">&lt;+</span><span class="mi">41</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="mh">0x1c</span><span class="p">(</span><span class="o">%</span><span class="nx">esp</span><span class="p">),</span><span class="o">%</span><span class="nx">eax</span>
-   <span class="mh">0x08048466</span> <span class="o">&lt;+</span><span class="mi">45</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="o">%</span><span class="nx">eax</span><span class="p">,</span><span class="mh">0x4</span><span class="p">(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>
-   <span class="mh">0x0804846a</span> <span class="o">&lt;+</span><span class="mi">49</span><span class="o">&gt;:</span>    <span class="nx">movl</span>   <span class="nx">$0x8048510</span><span class="p">,(</span><span class="o">%</span><span class="nx">esp</span><span class="p">)</span>
-   <span class="mh">0x08048471</span> <span class="o">&lt;+</span><span class="mi">56</span><span class="o">&gt;:</span>    <span class="nx">call</span>   <span class="mh">0x80482f0</span> <span class="o">&lt;</span><span class="nx">printf</span><span class="err">@</span><span class="nx">plt</span><span class="o">&gt;</span>
-   <span class="mh">0x08048476</span> <span class="o">&lt;+</span><span class="mi">61</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="nx">$0x0</span><span class="p">,</span><span class="o">%</span><span class="nx">eax</span>
-   <span class="mh">0x0804847b</span> <span class="o">&lt;+</span><span class="mi">66</span><span class="o">&gt;:</span>    <span class="nx">leave</span>  
-   <span class="mh">0x0804847c</span> <span class="o">&lt;+</span><span class="mi">67</span><span class="o">&gt;:</span>    <span class="nx">ret</span>    
-<span class="nx">End</span> <span class="nx">of</span> <span class="nx">assembler</span> <span class="nx">dump</span><span class="p">.</span>
+<div class="highlight"><pre><span></span>(gdb) disassemble main 
+Dump of assembler code for function main:
+   0x08048439 &lt;+0&gt;:     push   %ebp
+   0x0804843a &lt;+1&gt;:     mov    %esp,%ebp
+   0x0804843c &lt;+3&gt;:     and    $0xfffffff0,%esp
+   0x0804843f &lt;+6&gt;:     sub    $0x20,%esp
+   0x08048442 &lt;+9&gt;:     movl   $0x0,0x1c(%esp)  # 给result变量赋0值
+   0x0804844a &lt;+17&gt;:    movl   $0x2,0x4(%esp)   # 将第2个参数压栈(该参数偏移为esp+0x04)
+   0x08048452 &lt;+25&gt;:    movl   $0x1,(%esp)      # 将第1个参数压栈(该参数偏移为esp+0x00)
+   0x08048459 &lt;+32&gt;:    call   0x804841c &lt;add&gt;  # 调用add函数
+   0x0804845e &lt;+37&gt;:    mov    %eax,0x1c(%esp)  # 将add函数的返回值赋给result变量
+   0x08048462 &lt;+41&gt;:    mov    0x1c(%esp),%eax
+   0x08048466 &lt;+45&gt;:    mov    %eax,0x4(%esp)
+   0x0804846a &lt;+49&gt;:    movl   $0x8048510,(%esp)
+   0x08048471 &lt;+56&gt;:    call   0x80482f0 &lt;printf@plt&gt;
+   0x08048476 &lt;+61&gt;:    mov    $0x0,%eax
+   0x0804847b &lt;+66&gt;:    leave  
+   0x0804847c &lt;+67&gt;:    ret    
+End of assembler dump.
 </pre></div>
 
 
 <p>可以看到，参数是在add函数调用前压栈，换句话说，参数压栈由调用者进行，参数存储在调用者的栈空间中，下面再看一下进入add函数后都做了什么：</p>
-<div class="highlight"><pre><span class="p">(</span><span class="nx">gdb</span><span class="p">)</span> <span class="nx">disassemble</span> <span class="nx">add</span>
-<span class="nx">Dump</span> <span class="nx">of</span> <span class="nx">assembler</span> <span class="nx">code</span> <span class="k">for</span> <span class="kd">function</span> <span class="nx">add</span><span class="o">:</span>
-   <span class="mh">0x0804841c</span> <span class="o">&lt;+</span><span class="mi">0</span><span class="o">&gt;:</span>     <span class="nx">push</span>   <span class="o">%</span><span class="nx">ebp</span>             <span class="err">#</span> <span class="nx">将ebp压栈</span><span class="p">(</span><span class="nx">保存函数调用者的栈基址</span><span class="p">)</span>
-   <span class="mh">0x0804841d</span> <span class="o">&lt;+</span><span class="mi">1</span><span class="o">&gt;:</span>     <span class="nx">mov</span>    <span class="o">%</span><span class="nx">esp</span><span class="p">,</span><span class="o">%</span><span class="nx">ebp</span>        <span class="err">#</span> <span class="nx">将ebp指向栈顶esp</span><span class="p">(</span><span class="nx">设置当前函数的栈基址</span><span class="p">)</span>
-   <span class="mh">0x0804841f</span> <span class="o">&lt;+</span><span class="mi">3</span><span class="o">&gt;:</span>     <span class="nx">sub</span>    <span class="nx">$0x10</span><span class="p">,</span><span class="o">%</span><span class="nx">esp</span>       <span class="err">#</span> <span class="nx">分配栈空间</span><span class="p">(</span><span class="nx">栈向低地址方向生长</span><span class="p">)</span>
-   <span class="mh">0x08048422</span> <span class="o">&lt;+</span><span class="mi">6</span><span class="o">&gt;:</span>     <span class="nx">movl</span>   <span class="nx">$0x0</span><span class="p">,</span><span class="o">-</span><span class="mh">0x4</span><span class="p">(</span><span class="o">%</span><span class="nx">ebp</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">给result变量赋0值</span><span class="p">(</span><span class="nx">该变量偏移为ebp</span><span class="o">-</span><span class="mh">0x04</span><span class="p">)</span>
-   <span class="mh">0x08048429</span> <span class="o">&lt;+</span><span class="mi">13</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="mh">0xc</span><span class="p">(</span><span class="o">%</span><span class="nx">ebp</span><span class="p">),</span><span class="o">%</span><span class="nx">eax</span>   <span class="err">#</span> <span class="nx">将第2个参数的值赋给eax</span><span class="p">(</span><span class="nx">准备运算</span><span class="p">)</span>
-   <span class="mh">0x0804842c</span> <span class="o">&lt;+</span><span class="mi">16</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="mh">0x8</span><span class="p">(</span><span class="o">%</span><span class="nx">ebp</span><span class="p">),</span><span class="o">%</span><span class="nx">edx</span>   <span class="err">#</span> <span class="nx">将第1个参数的值赋给edx</span><span class="p">(</span><span class="nx">准备运算</span><span class="p">)</span>
-   <span class="mh">0x0804842f</span> <span class="o">&lt;+</span><span class="mi">19</span><span class="o">&gt;:</span>    <span class="nx">add</span>    <span class="o">%</span><span class="nx">edx</span><span class="p">,</span><span class="o">%</span><span class="nx">eax</span>        <span class="err">#</span> <span class="nx">加法运算</span><span class="p">(</span><span class="nx">edx</span><span class="o">+</span><span class="nx">eax</span><span class="p">)</span><span class="err">，</span><span class="nx">结果保存在eax中</span>
-   <span class="mh">0x08048431</span> <span class="o">&lt;+</span><span class="mi">21</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="o">%</span><span class="nx">eax</span><span class="p">,</span><span class="o">-</span><span class="mh">0x4</span><span class="p">(</span><span class="o">%</span><span class="nx">ebp</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">将运算结果eax赋给result变量</span>
-   <span class="mh">0x08048434</span> <span class="o">&lt;+</span><span class="mi">24</span><span class="o">&gt;:</span>    <span class="nx">mov</span>    <span class="o">-</span><span class="mh">0x4</span><span class="p">(</span><span class="o">%</span><span class="nx">ebp</span><span class="p">),</span><span class="o">%</span><span class="nx">eax</span>  <span class="err">#</span> <span class="nx">将result变量的值赋给eax</span><span class="p">(</span><span class="nx">eax将作为函数返回值</span><span class="p">)</span>
-   <span class="mh">0x08048437</span> <span class="o">&lt;+</span><span class="mi">27</span><span class="o">&gt;:</span>    <span class="nx">leave</span>                   <span class="err">#</span> <span class="nx">恢复函数调用者的栈基址</span><span class="p">(</span><span class="nx">pop</span> <span class="o">%</span><span class="nx">ebp</span><span class="p">)</span>
-   <span class="mh">0x08048438</span> <span class="o">&lt;+</span><span class="mi">28</span><span class="o">&gt;:</span>    <span class="nx">ret</span>                     <span class="err">#</span> <span class="nx">返回</span><span class="p">(</span><span class="nx">准备执行下条指令</span><span class="p">)</span>
-<span class="nx">End</span> <span class="nx">of</span> <span class="nx">assembler</span> <span class="nx">dump</span><span class="p">.</span>
+<div class="highlight"><pre><span></span>(gdb) disassemble add
+Dump of assembler code for function add:
+   0x0804841c &lt;+0&gt;:     push   %ebp             # 将ebp压栈(保存函数调用者的栈基址)
+   0x0804841d &lt;+1&gt;:     mov    %esp,%ebp        # 将ebp指向栈顶esp(设置当前函数的栈基址)
+   0x0804841f &lt;+3&gt;:     sub    $0x10,%esp       # 分配栈空间(栈向低地址方向生长)
+   0x08048422 &lt;+6&gt;:     movl   $0x0,-0x4(%ebp)  # 给result变量赋0值(该变量偏移为ebp-0x04)
+   0x08048429 &lt;+13&gt;:    mov    0xc(%ebp),%eax   # 将第2个参数的值赋给eax(准备运算)
+   0x0804842c &lt;+16&gt;:    mov    0x8(%ebp),%edx   # 将第1个参数的值赋给edx(准备运算)
+   0x0804842f &lt;+19&gt;:    add    %edx,%eax        # 加法运算(edx+eax)，结果保存在eax中
+   0x08048431 &lt;+21&gt;:    mov    %eax,-0x4(%ebp)  # 将运算结果eax赋给result变量
+   0x08048434 &lt;+24&gt;:    mov    -0x4(%ebp),%eax  # 将result变量的值赋给eax(eax将作为函数返回值)
+   0x08048437 &lt;+27&gt;:    leave                   # 恢复函数调用者的栈基址(pop %ebp)
+   0x08048438 &lt;+28&gt;:    ret                     # 返回(准备执行下条指令)
+End of assembler dump.
 </pre></div>
 
 
 <p>进入add函数后，首先进行的操作是将当前的栈基址ebp压栈(此栈基址是调用者main函数的)，然后将ebp指向栈顶esp，接下来再进行函数内的处理流程。函数结束前，会将函数调用者的栈基址恢复，然后返回准备执行下一指令。这个过程中，栈上的空间会是下面的样子：</p>
-<p><img alt="函数调用过程中栈的情况" src="/images/articles/201310/dia_function_stack.png" /></p>
+<p><img alt="函数调用过程中栈的情况" src="/images/articles/201310/dia_function_stack.png"></p>
 <p>可以发现，每调用一次函数，都会对调用者的栈基址(ebp)进行压栈操作，并且由于栈基址是由当时栈顶指针(esp)而来，会发现，各层函数的栈基址很巧妙的构成了一个链，即当前的栈基址指向下一层函数栈基址所在的位置，如下图所示：</p>
-<p><img alt="调用栈中各层函数栈基址间的关系" src="/images/articles/201310/dia_dump_stack.png" /></p>
+<p><img alt="调用栈中各层函数栈基址间的关系" src="/images/articles/201310/dia_dump_stack.png"></p>
 <p>了解了函数的调用过程，想要回溯调用栈也就很简单了，首先获取当前函数的栈基址(寄存器ebp)的值，然后获取该地址所指向的栈的值，该值也就是下层函数的栈基址，找到下层函数的栈基址后，重复刚才的动作，即可以将每一层函数的栈基址都找出来，这也就是我们所需要的调用栈了。</p>
 <p>下面是根据原理实现的一段获取函数调用栈的代码，供参考。</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="cm">/* 打印调用栈的最大深度 */</span>
 <span class="cp">#define DUMP_STACK_DEPTH_MAX 16</span>
@@ -241,7 +241,7 @@
 
 <p>源文件下载：<a href="/downloads/code/dumpstack.c">链接</a></p>
 <p>执行<code>gcc dumpstack.c -o dumpstack</code>编译并运行，执行结果如下：</p>
-<div class="highlight"><pre> Stack Track: 
+<div class="highlight"><pre><span></span> Stack Track: 
  [0] 0x8048475 
  [1] 0x8048508 
  [2] 0x804855c 
@@ -374,386 +374,6 @@
 
                 <li class="list-group-item"><a href="http://hutaow.com/blog/tags/index.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                     <ul class="list-group list-inline tagcloud" id="tags">
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags//index.html">
-                                
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/android/index.html">
-                                Android
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/archlinux/index.html">
-                                ArchLinux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/atl/index.html">
-                                ATL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/c/index.html">
-                                C
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/chmod/index.html">
-                                chmod
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cisco/index.html">
-                                CISCO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/core-dump/index.html">
-                                Core Dump
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
-                                Cracker
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cron/index.html">
-                                cron
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cscope/index.html">
-                                CScope
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/csharp/index.html">
-                                CSharp
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/ctags/index.html">
-                                CTags
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/dai-li/index.html">
-                                代理
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/database/index.html">
-                                Database
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
-                                德赛西威
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/diao-shi/index.html">
-                                调试
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/diao-yong-zhan/index.html">
-                                调用栈
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
-                                定位
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/duan-kou-ying-she/index.html">
-                                端口映射
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/fcitx/index.html">
-                                Fcitx
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/fedora/index.html">
-                                Fedora
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/find/index.html">
-                                find
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/foxmarks/index.html">
-                                Foxmarks
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/gdb/index.html">
-                                GDB
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/git/index.html">
-                                Git
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/gong-ju/index.html">
-                                工具
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/grep/index.html">
-                                grep
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/htc/index.html">
-                                HTC
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/ids/index.html">
-                                IDS
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/java/index.html">
-                                Java
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/jiao-ben/index.html">
-                                脚本
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/jiao-huan-ji/index.html">
-                                交换机
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/kde/index.html">
-                                KDE
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
-                                控件
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/ld/index.html">
-                                ld
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/libpcap/index.html">
-                                libpcap
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="http://hutaow.com/blog/tags/linux/index.html">
-                                Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">
-                                路由器
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/mplayer/index.html">
-                                MPlayer
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/mysql/index.html">
-                                MySQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/nei-cun/index.html">
-                                内存
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/network/index.html">
-                                Network
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/openwrt/index.html">
-                                OpenWRT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/oprofile/index.html">
-                                OProfile
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
-                                配置文件
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/protocol/index.html">
-                                Protocol
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/pxe/index.html">
-                                PXE
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/pyqt/index.html">
-                                PyQT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/python/index.html">
-                                Python
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/qt/index.html">
-                                QT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/rhythmbox/index.html">
-                                Rhythmbox
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">
-                                入侵检测
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/rxvt/index.html">
-                                RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/samba/index.html">
-                                Samba
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/script/index.html">
-                                Script
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/security/index.html">
-                                Security
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/sed/index.html">
-                                sed
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
-                                数据库
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/signal/index.html">
-                                Signal
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/smb/index.html">
-                                SMB
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/snort/index.html">
-                                Snort
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/sql/index.html">
-                                SQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/taglist/index.html">
-                                TagList
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/tcp/index.html">
-                                TCP
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/vi/index.html">
-                                VI
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/virtualbox/index.html">
-                                VirtualBox
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xia-mi-yin-le/index.html">
-                                虾米音乐
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xie-yi/index.html">
-                                协议
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
-                                信号
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">
-                                信息安全
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">
-                                性能优化
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xmarks/index.html">
-                                Xmarks
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xml/index.html">
-                                XML
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
-                                音乐e栈
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/zi-fu-bian-ma/index.html">
-                                字符编码
-                            </a>
-                        </li>
                     </ul>
                 </li>    
     <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>

@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="MySQL协议分析"/>
             <meta property="og:url" content="http://hutaow.com/blog/2013/11/06/mysql-protocol-analysis"/>
-            <meta property="og:description" content="目录 目录 1 交互过程 1.1 握手认证阶段 1.2 命令执行阶段 2 基本类型 2.1 整型值 2.2 字符串（以NULL结尾）（Null-Terminated String） 2.3 二进制数据（长度编码）（Length Coded Binary） 2.4 字符串（长度编码）（Length Coded String） 3 报文结构 3.1 消息头 3.1.1 报文长度 3.1.2 序号 3.2 ..."/>
+            <meta property="og:description" content="目录 [TOC] 1 交互过程 MySQL客户端与服务器的交互主要分为两个阶段：握手认证阶段和命令执行阶段。 1.1 握手认证阶段 握手认证阶段为客户端与服务器建立连接后进行，交互过程如下： 服务器 -&gt; 客户端：握手初始化消息 客户端 -&gt; 服务器：登陆认证消息 服务器 -&gt; 客户端：认证结果消息 1.2 命令执行阶段 客户端认证成功后，会进入命令执行阶段，交互过程如下： 客户端 -&gt; 服务器：执行命令消息 服务器 -&gt; 客户端：命令执行结果 MySQL客户端与服务器的完整交互过程如下： 2 基本类型 2.1 整型值 MySQL报文中整型值分别有1、2、3、4、8字节长度，使用小字节序传输。 2.2 字符串（以NULL结尾）（Null-Terminated String …"/>
             <meta property="article:published_time" content="2013-11-06" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Protocol" />
@@ -82,7 +82,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-11-06T00:34:54+08:00"> 三 06 十一月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-11-06T00:34:54+08:00"> Wed 06 November 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -104,92 +104,18 @@
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <h2 id="_1">目录</h2>
-<div class="toc">
-<ul>
-<li><a href="#_1">目录</a></li>
-<li><a href="#1">1 交互过程</a><ul>
-<li><a href="#11">1.1 握手认证阶段</a></li>
-<li><a href="#12">1.2 命令执行阶段</a></li>
-</ul>
-</li>
-<li><a href="#2">2 基本类型</a><ul>
-<li><a href="#21">2.1 整型值</a></li>
-<li><a href="#22-nullnull-terminated-string">2.2 字符串（以NULL结尾）（Null-Terminated String）</a></li>
-<li><a href="#23-length-coded-binary">2.3 二进制数据（长度编码）（Length Coded Binary）</a></li>
-<li><a href="#24-length-coded-string">2.4 字符串（长度编码）（Length Coded String）</a></li>
-</ul>
-</li>
-<li><a href="#3">3 报文结构</a><ul>
-<li><a href="#31">3.1 消息头</a><ul>
-<li><a href="#311">3.1.1 报文长度</a></li>
-<li><a href="#312">3.1.2 序号</a></li>
-</ul>
-</li>
-<li><a href="#32">3.2 消息体</a></li>
-</ul>
-</li>
-<li><a href="#4">4 报文类型</a><ul>
-<li><a href="#41">4.1 登陆认证交互报文</a><ul>
-<li><a href="#411-">4.1.1 握手初始化报文（服务器 -&gt; 客户端）</a></li>
-<li><a href="#412-">4.1.2 登陆认证报文（客户端 -&gt; 服务器）</a></li>
-</ul>
-</li>
-<li><a href="#42-">4.2 客户端命令请求报文（客户端 -&gt; 服务器）</a><ul>
-<li><a href="#421-com_quit">4.2.1 COM_QUIT 消息报文</a></li>
-<li><a href="#422-com_init_db">4.2.2 COM_INIT_DB 消息报文</a></li>
-<li><a href="#423-com_query">4.2.3 COM_QUERY 消息报文</a></li>
-<li><a href="#424-com_field_list">4.2.4 COM_FIELD_LIST 消息报文</a></li>
-<li><a href="#425-com_create_db">4.2.5 COM_CREATE_DB 消息报文</a></li>
-<li><a href="#426-com_drop_db">4.2.6 COM_DROP_DB 消息报文</a></li>
-<li><a href="#427-com_refresh">4.2.7 COM_REFRESH 消息报文</a></li>
-<li><a href="#428-com_shutdown">4.2.8 COM_SHUTDOWN 消息报文</a></li>
-<li><a href="#429-com_statistics">4.2.9 COM_STATISTICS 消息报文</a></li>
-<li><a href="#4210-com_process_info">4.2.10 COM_PROCESS_INFO 消息报文</a></li>
-<li><a href="#4211-com_process_kill">4.2.11 COM_PROCESS_KILL 消息报文</a></li>
-<li><a href="#4212-com_debug">4.2.12 COM_DEBUG 消息报文</a></li>
-<li><a href="#4213-com_ping">4.2.13 COM_PING 消息报文</a></li>
-<li><a href="#4214-com_change_user">4.2.14 COM_CHANGE_USER 消息报文</a></li>
-<li><a href="#4215-com_binlog_dump">4.2.15 COM_BINLOG_DUMP 消息报文</a></li>
-<li><a href="#4216-com_table_dump">4.2.16 COM_TABLE_DUMP 消息报文</a></li>
-<li><a href="#4217-com_register_slave">4.2.17 COM_REGISTER_SLAVE 消息报文</a></li>
-<li><a href="#4218-com_prepare">4.2.18 COM_PREPARE 消息报文</a></li>
-<li><a href="#4219-com_execute">4.2.19 COM_EXECUTE 消息报文</a></li>
-<li><a href="#4220-com_long_data">4.2.20 COM_LONG_DATA 消息报文</a></li>
-<li><a href="#4221-com_close_stmt">4.2.21 COM_CLOSE_STMT 消息报文</a></li>
-<li><a href="#4222-com_reset_stmt">4.2.22 COM_RESET_STMT 消息报文</a></li>
-<li><a href="#4223-com_set_option">4.2.23 COM_SET_OPTION 消息报文</a></li>
-<li><a href="#4224-com_fetch_stmt">4.2.24 COM_FETCH_STMT 消息报文</a></li>
-</ul>
-</li>
-<li><a href="#43-">4.3 服务器响应报文（服务器 -&gt; 客户端）</a><ul>
-<li><a href="#431-ok">4.3.1 OK 响应报文</a></li>
-<li><a href="#432-error">4.3.2 Error 响应报文</a></li>
-<li><a href="#433-result-set">4.3.3 Result Set 消息</a></li>
-<li><a href="#434-result-set-header">4.3.4 Result Set Header 结构</a></li>
-<li><a href="#435-field">4.3.5 Field 结构</a></li>
-<li><a href="#436-eof">4.3.6 EOF 结构</a></li>
-<li><a href="#437-row-data">4.3.7 Row Data 结构</a></li>
-<li><a href="#438-row-data">4.3.8 Row Data 结构（二进制数据）</a></li>
-<li><a href="#439-prepare_ok-prepared-statement">4.3.9 PREPARE_OK 响应报文（Prepared Statement）</a></li>
-<li><a href="#4310-parameter-prepared-statement">4.3.10 Parameter 响应报文（Prepared Statement）</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#5">5 参考资料</a></li>
-</ul>
-</div>
-<h2 id="1">1 交互过程</h2>
+                <h2>目录</h2>
+<p>[TOC]</p>
+<h2>1 交互过程</h2>
 <p>MySQL客户端与服务器的交互主要分为两个阶段：握手认证阶段和命令执行阶段。</p>
-<h3 id="11">1.1 握手认证阶段</h3>
+<h3>1.1 握手认证阶段</h3>
 <p>握手认证阶段为客户端与服务器建立连接后进行，交互过程如下：</p>
 <ul>
 <li>服务器 -&gt; 客户端：握手初始化消息</li>
 <li>客户端 -&gt; 服务器：登陆认证消息</li>
 <li>服务器 -&gt; 客户端：认证结果消息</li>
 </ul>
-<h3 id="12">1.2 命令执行阶段</h3>
+<h3>1.2 命令执行阶段</h3>
 <p>客户端认证成功后，会进入命令执行阶段，交互过程如下：</p>
 <ul>
 <li>客户端 -&gt; 服务器：执行命令消息</li>
@@ -198,13 +124,13 @@
 <!-- more -->
 
 <p><strong>MySQL客户端与服务器的完整交互过程如下</strong>：</p>
-<p><img alt="MySQL客户端与服务器交互示意图" src="/images/articles/201311/mysql_protocol_message.png" /></p>
-<h2 id="2">2 基本类型</h2>
-<h3 id="21">2.1 整型值</h3>
+<p><img alt="MySQL客户端与服务器交互示意图" src="/images/articles/201311/mysql_protocol_message.png"></p>
+<h2>2 基本类型</h2>
+<h3>2.1 整型值</h3>
 <p>MySQL报文中整型值分别有1、2、3、4、8字节长度，使用小字节序传输。</p>
-<h3 id="22-nullnull-terminated-string">2.2 字符串（以NULL结尾）（Null-Terminated String）</h3>
+<h3>2.2 字符串（以NULL结尾）（Null-Terminated String）</h3>
 <p>字符串长度不固定，当遇到'NULL'（0x00）字符时结束。</p>
-<h3 id="23-length-coded-binary">2.3 二进制数据（长度编码）（Length Coded Binary）</h3>
+<h3>2.3 二进制数据（长度编码）（Length Coded Binary）</h3>
 <p>数据长度不固定，长度值由数据前的1-9个字节决定，其中长度值所占的字节数不定，字节数由第1个字节决定，如下表：</p>
 <table>
 <thead>
@@ -242,9 +168,9 @@
 </tr>
 </tbody>
 </table>
-<h3 id="24-length-coded-string">2.4 字符串（长度编码）（Length Coded String）</h3>
+<h3>2.4 字符串（长度编码）（Length Coded String）</h3>
 <p>字符串长度不固定，无'NULL'（0x00）结束符，编码方式与上面的 Length Coded Binary 相同。</p>
-<h2 id="3">3 报文结构</h2>
+<h2>3 报文结构</h2>
 <p>报文分为消息头和消息体两部分，其中消息头占用固定的4个字节，消息体长度由消息头中的长度字段决定，报文结构如下：</p>
 <!--
     ┏━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -257,17 +183,17 @@
     |<-             消息头          ->|<-                  消息体                 ->|
 -->
 
-<p><img alt="MySQL报文结构" src="/images/articles/201311/mysql_protocol_struct.png" /></p>
-<h3 id="31">3.1 消息头</h3>
-<h4 id="311">3.1.1 报文长度</h4>
+<p><img alt="MySQL报文结构" src="/images/articles/201311/mysql_protocol_struct.png"></p>
+<h3>3.1 消息头</h3>
+<h4>3.1.1 报文长度</h4>
 <p>用于标记当前请求消息的实际数据长度值，以字节为单位，占用3个字节，最大值为 0xFFFFFF，即接近 16 MB 大小（比16MB少1个字节）。</p>
-<h4 id="312">3.1.2 序号</h4>
+<h4>3.1.2 序号</h4>
 <p>在一次完整的请求/响应交互过程中，用于保证消息顺序的正确，每次客户端发起请求时，序号值都会从0开始计算。</p>
-<h3 id="32">3.2 消息体</h3>
+<h3>3.2 消息体</h3>
 <p>消息体用于存放请求的内容及响应的数据，长度由消息头中的长度值决定。</p>
-<h2 id="4">4 报文类型</h2>
-<h3 id="41">4.1 登陆认证交互报文</h3>
-<h4 id="411-">4.1.1 握手初始化报文（服务器 -&gt; 客户端）</h4>
+<h2>4 报文类型</h2>
+<h3>4.1 登陆认证交互报文</h3>
+<h4>4.1.1 握手初始化报文（服务器 -&gt; 客户端）</h4>
 <!--
     0                                   16                                  32
     ┏━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -308,7 +234,7 @@
     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━┛
 -->
 
-<p><img alt="MySQL握手初始化报文" src="/images/articles/201311/mysql_protocol_handshake.png" /></p>
+<p><img alt="MySQL握手初始化报文" src="/images/articles/201311/mysql_protocol_handshake.png"></p>
 <p><strong>服务协议版本号</strong>：该值由 PROTOCOL_VERSION 宏定义决定（参考MySQL源代码<code>/include/mysql_version.h</code>头文件定义）</p>
 <p><strong>服务版本信息</strong>：该值为字符串，由 MYSQL_SERVER_VERSION 宏定义决定（参考MySQL源代码<code>/include/mysql_version.h</code>头文件定义）</p>
 <p><strong>服务器线程ID</strong>：服务器为当前连接所创建的线程ID。</p>
@@ -455,7 +381,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="412-">4.1.2 登陆认证报文（客户端 -&gt; 服务器）</h4>
+<h4>4.1.2 登陆认证报文（客户端 -&gt; 服务器）</h4>
 <p><strong> MySQL 4.0 及之前的版本</strong></p>
 <!--
     0                                   16                                  32
@@ -480,7 +406,7 @@
     ┗━━━━━━━━━━━━━━━━━┛
 -->
 
-<p><img alt="MySQL登陆认证报文(4.0及之前的版本)" src="/images/articles/201311/mysql_protocol_auth_40.png" /></p>
+<p><img alt="MySQL登陆认证报文(4.0及之前的版本)" src="/images/articles/201311/mysql_protocol_auth_40.png"></p>
 <p><strong> MySQL 4.1 及之后的版本</strong></p>
 <!--
     0                                   16                                  32
@@ -520,14 +446,14 @@
     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 -->
 
-<p><img alt="MySQL登陆认证报文(4.1及之后的版本)" src="/images/articles/201311/mysql_protocol_auth_41.png" /></p>
+<p><img alt="MySQL登陆认证报文(4.1及之后的版本)" src="/images/articles/201311/mysql_protocol_auth_41.png"></p>
 <p><strong>客户端权能标志</strong>：用于与客户端协商通讯方式，标志位含义与握手初始化报文中的相同。客户端收到服务器发来的初始化报文后，会对服务器发送的权能标志进行修改，保留自身所支持的功能，然后将权能标返回给服务器，从而保证服务器与客户端通讯的兼容性。</p>
 <p><strong>最大消息长度</strong>：客户端发送请求报文时所支持的最大消息长度值。</p>
 <p><strong>字符编码</strong>：标识通讯过程中使用的字符编码，与服务器在认证初始化报文中发送的相同。</p>
 <p><strong>用户名</strong>：客户端登陆用户的用户名称。</p>
 <p><strong>挑战认证数据</strong>：客户端用户密码使用服务器发送的挑战随机数进行加密后，生成挑战认证数据，然后返回给服务器，用于对用户身份的认证。</p>
 <p><strong>数据库名称</strong>：当客户端的权能标志位 CLIENT_CONNECT_WITH_DB 被置位时，该字段必须出现。</p>
-<h3 id="42-">4.2 客户端命令请求报文（客户端 -&gt; 服务器）</h3>
+<h3>4.2 客户端命令请求报文（客户端 -&gt; 服务器）</h3>
 <!--
     ┏━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
     ┃                │                                                              ┃
@@ -539,7 +465,7 @@
     |<-                                消息体                                     ->|
 -->
 
-<p><img alt="MySQL客户端命令请求报文" src="/images/articles/201311/mysql_protocol_command.png" /></p>
+<p><img alt="MySQL客户端命令请求报文" src="/images/articles/201311/mysql_protocol_command.png"></p>
 <p><strong>命令</strong>：用于标识当前请求消息的类型，例如切换数据库（0x02）、查询命令（0x03）等。命令值的取值范围及说明如下表（参考MySQL源代码<code>/include/mysql_com.h</code>头文件中的定义）：</p>
 <table>
 <thead>
@@ -729,14 +655,14 @@
 </table>
 <p><strong>参数</strong>：内容是用户在MySQL客户端输入的命令（不包括每行命令结尾的";"分号）。另外这个字段的字符串不是以NULL字符结尾，而是通过消息头中的长度值计算而来。</p>
 <p>例如：当我们在MySQL客户端中执行<code>use hutaow;</code>命令时（切换到<code>hutaow</code>数据库），发送的请求报文数据会是下面的样子：</p>
-<div class="highlight"><pre>0x02 0x68 0x75 0x74 0x61 0x6f 0x77
+<div class="highlight"><pre><span></span>0x02 0x68 0x75 0x74 0x61 0x6f 0x77
 </pre></div>
 
 
 <p>其中，<code>0x02</code>为请求类型值<code>COM_INIT_DB</code>，后面的<code>0x68 0x75 0x74 0x61 0x6f 0x77</code>为ASCII字符<code>hutaow</code>。</p>
-<h4 id="421-com_quit">4.2.1 COM_QUIT 消息报文</h4>
+<h4>4.2.1 COM_QUIT 消息报文</h4>
 <p><strong>功能</strong>：关闭当前连接（客户端退出），无参数。</p>
-<h4 id="422-com_init_db">4.2.2 COM_INIT_DB 消息报文</h4>
+<h4>4.2.2 COM_INIT_DB 消息报文</h4>
 <p><strong>功能</strong>：切换数据库，对应的SQL语句为<code>USE &lt;database&gt;</code>。</p>
 <table>
 <thead>
@@ -752,7 +678,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="423-com_query">4.2.3 COM_QUERY 消息报文</h4>
+<h4>4.2.3 COM_QUERY 消息报文</h4>
 <p><strong>功能</strong>：最常见的请求消息类型，当用户执行SQL语句时发送该消息。</p>
 <table>
 <thead>
@@ -768,7 +694,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="424-com_field_list">4.2.4 COM_FIELD_LIST 消息报文</h4>
+<h4>4.2.4 COM_FIELD_LIST 消息报文</h4>
 <p><strong>功能</strong>：查询某表的字段（列）信息，等同于SQL语句<code>SHOW [FULL] FIELDS FROM ...</code>。</p>
 <table>
 <thead>
@@ -788,7 +714,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="425-com_create_db">4.2.5 COM_CREATE_DB 消息报文</h4>
+<h4>4.2.5 COM_CREATE_DB 消息报文</h4>
 <p><strong>功能</strong>：创建数据库，该消息已过时，而被SQL语句<code>CREATE DATABASE</code>代替。</p>
 <table>
 <thead>
@@ -804,7 +730,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="426-com_drop_db">4.2.6 COM_DROP_DB 消息报文</h4>
+<h4>4.2.6 COM_DROP_DB 消息报文</h4>
 <p><strong>功能</strong>：删除数据库，该消息已过时，而被SQL语句<code>DROP DATABASE</code>代替。</p>
 <table>
 <thead>
@@ -820,7 +746,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="427-com_refresh">4.2.7 COM_REFRESH 消息报文</h4>
+<h4>4.2.7 COM_REFRESH 消息报文</h4>
 <p><strong>功能</strong>：清除缓存，等同于SQL语句<code>FLUSH</code>，或是执行<code>mysqladmin flush-foo</code>命令时发送该消息。</p>
 <table>
 <thead>
@@ -868,7 +794,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="428-com_shutdown">4.2.8 COM_SHUTDOWN 消息报文</h4>
+<h4>4.2.8 COM_SHUTDOWN 消息报文</h4>
 <p><strong>功能</strong>：停止MySQL服务。执行<code>mysqladmin shutdown</code>命令时发送该消息。</p>
 <table>
 <thead>
@@ -916,11 +842,11 @@
 </tr>
 </tbody>
 </table>
-<h4 id="429-com_statistics">4.2.9 COM_STATISTICS 消息报文</h4>
+<h4>4.2.9 COM_STATISTICS 消息报文</h4>
 <p><strong>功能</strong>：查看MySQL服务的统计信息（例如运行时间、每秒查询次数等）。执行<code>mysqladmin status</code>命令时发送该消息，无参数。</p>
-<h4 id="4210-com_process_info">4.2.10 COM_PROCESS_INFO 消息报文</h4>
+<h4>4.2.10 COM_PROCESS_INFO 消息报文</h4>
 <p><strong>功能</strong>：获取当前活动的线程（连接）列表。等同于SQL语句<code>SHOW PROCESSLIST</code>，或是执行<code>mysqladmin processlist</code>命令时发送该消息，无参数。</p>
-<h4 id="4211-com_process_kill">4.2.11 COM_PROCESS_KILL 消息报文</h4>
+<h4>4.2.11 COM_PROCESS_KILL 消息报文</h4>
 <p><strong>功能</strong>：要求服务器中断某个连接。等同于SQL语句<code>KILL &lt;id&gt;</code>。</p>
 <table>
 <thead>
@@ -936,11 +862,11 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4212-com_debug">4.2.12 COM_DEBUG 消息报文</h4>
+<h4>4.2.12 COM_DEBUG 消息报文</h4>
 <p><strong>功能</strong>：要求服务器将调试信息保存下来，保存的信息多少依赖于编译选项设置（debug=no|yes|full）。执行<code>mysqladmin debug</code>命令时发送该消息，无参数。</p>
-<h4 id="4213-com_ping">4.2.13 COM_PING 消息报文</h4>
+<h4>4.2.13 COM_PING 消息报文</h4>
 <p><strong>功能</strong>：该消息用来测试连通性，同时会将服务器的无效连接（超时）计数器清零。执行<code>mysqladmin ping</code>命令时发送该消息，无参数。</p>
-<h4 id="4214-com_change_user">4.2.14 COM_CHANGE_USER 消息报文</h4>
+<h4>4.2.14 COM_CHANGE_USER 消息报文</h4>
 <p><strong>功能</strong>：在不断连接的情况下重新登陆，该操作会销毁MySQL服务器端的会话上下文（包括临时表、会话变量等）。有些连接池用这种方法实现清除会话上下文。</p>
 <table>
 <thead>
@@ -976,7 +902,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4215-com_binlog_dump">4.2.15 COM_BINLOG_DUMP 消息报文</h4>
+<h4>4.2.15 COM_BINLOG_DUMP 消息报文</h4>
 <p><strong>功能</strong>：该消息是备份连接时由从服务器向主服务器发送的最后一个请求，主服务器收到后，会响应一系列的报文，每个报文都包含一个二进制日志事件。如果主服务器出现故障时，会发送一个EOF报文。</p>
 <table>
 <thead>
@@ -1004,7 +930,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4216-com_table_dump">4.2.16 COM_TABLE_DUMP 消息报文</h4>
+<h4>4.2.16 COM_TABLE_DUMP 消息报文</h4>
 <p><strong>功能</strong>：将数据表从主服务器复制到从服务器中，执行SQL语句<code>LOAD TABLE ... FROM MASTER</code>时发送该消息。目前该消息已过时，不再使用。</p>
 <table>
 <thead>
@@ -1024,7 +950,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4217-com_register_slave">4.2.17 COM_REGISTER_SLAVE 消息报文</h4>
+<h4>4.2.17 COM_REGISTER_SLAVE 消息报文</h4>
 <p><strong>功能</strong>：在从服务器<code>report_host</code>变量设置的情况下，当备份连接时向主服务器发送的注册消息。</p>
 <table>
 <thead>
@@ -1064,7 +990,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4218-com_prepare">4.2.18 COM_PREPARE 消息报文</h4>
+<h4>4.2.18 COM_PREPARE 消息报文</h4>
 <p><strong>功能</strong>：预处理SQL语句，使用带有"?"占位符的SQL语句时发送该消息。</p>
 <table>
 <thead>
@@ -1080,7 +1006,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4219-com_execute">4.2.19 COM_EXECUTE 消息报文</h4>
+<h4>4.2.19 COM_EXECUTE 消息报文</h4>
 <p><strong>功能</strong>：执行预处理语句。</p>
 <table>
 <thead>
@@ -1144,7 +1070,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4220-com_long_data">4.2.20 COM_LONG_DATA 消息报文</h4>
+<h4>4.2.20 COM_LONG_DATA 消息报文</h4>
 <p>该消息报文有两种形式，一种用于发送二进制数据，另一种用于发送文本数据。</p>
 <p><strong>功能</strong>：用于发送二进制（BLOB）类型的数据（调用<code>mysql_stmt_send_long_data</code>函数）。</p>
 <table>
@@ -1196,7 +1122,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4221-com_close_stmt">4.2.21 COM_CLOSE_STMT 消息报文</h4>
+<h4>4.2.21 COM_CLOSE_STMT 消息报文</h4>
 <p><strong>功能</strong>：销毁预处理语句。</p>
 <table>
 <thead>
@@ -1212,7 +1138,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4222-com_reset_stmt">4.2.22 COM_RESET_STMT 消息报文</h4>
+<h4>4.2.22 COM_RESET_STMT 消息报文</h4>
 <p><strong>功能</strong>：将预处理语句的参数缓存清空。多数情况和<code>COM_LONG_DATA</code>一起使用。</p>
 <table>
 <thead>
@@ -1228,7 +1154,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4223-com_set_option">4.2.23 COM_SET_OPTION 消息报文</h4>
+<h4>4.2.23 COM_SET_OPTION 消息报文</h4>
 <p><strong>功能</strong>：设置语句选项，选项值为<code>/include/mysql_com.h</code>头文件中定义的<code>enum_mysql_set_option</code>枚举类型：</p>
 <ul>
 <li>MYSQL_OPTION_MULTI_STATEMENTS_ON</li>
@@ -1248,7 +1174,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4224-com_fetch_stmt">4.2.24 COM_FETCH_STMT 消息报文</h4>
+<h4>4.2.24 COM_FETCH_STMT 消息报文</h4>
 <p><strong>功能</strong>：获取预处理语句的执行结果（一次可以获取多行数据）。</p>
 <table>
 <thead>
@@ -1268,7 +1194,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="43-">4.3 服务器响应报文（服务器 -&gt; 客户端）</h3>
+<h3>4.3 服务器响应报文（服务器 -&gt; 客户端）</h3>
 <p>当客户端发起认证请求或命令请求后，服务器会返回相应的执行结果给客户端。客户端在收到响应报文后，需要首先检查第1个字节的值，来区分响应报文的类型。</p>
 <table>
 <thead>
@@ -1305,7 +1231,7 @@
 </tbody>
 </table>
 <p>注：响应报文的第1个字节在不同类型中含义不同，比如在OK报文中，该字节并没有实际意义，值恒为0x00；而在Result Set报文中，该字节又是长度编码的二进制数据结构（Length Coded Binary）中的第1字节。</p>
-<h4 id="431-ok">4.3.1 OK 响应报文</h4>
+<h4>4.3.1 OK 响应报文</h4>
 <p>客户端的命令执行正确时，服务器会返回OK响应报文。</p>
 <p><strong> MySQL 4.0 及之前的版本</strong></p>
 <table>
@@ -1378,7 +1304,7 @@
 <p><strong>服务器状态</strong>：客户端可以通过该值检查命令是否在事务处理中。</p>
 <p><strong>告警计数</strong>：告警发生的次数。</p>
 <p><strong>服务器消息</strong>：服务器返回给客户端的消息，一般为简单的描述性字符串，可选字段。</p>
-<h4 id="432-error">4.3.2 Error 响应报文</h4>
+<h4>4.3.2 Error 响应报文</h4>
 <p><strong> MySQL 4.0 及之前的版本</strong></p>
 <table>
 <thead>
@@ -1436,7 +1362,7 @@
 <p><strong>错误编号</strong>：错误编号值定义在源代码<code>/include/mysqld_error.h</code>头文件中。</p>
 <p><strong>服务器状态</strong>：服务器将错误编号通过<code>mysql_errno_to_sqlstate</code>函数转换为状态值，状态值由5字节的ASCII字符组成，定义在源代码<code>/include/sql_state.h</code>头文件中。</p>
 <p><strong>服务器消息</strong>：错误消息字符串到达消息尾时结束，长度可以由消息头中的长度值计算得出。消息长度为0-512字节。</p>
-<h4 id="433-result-set">4.3.3 Result Set 消息</h4>
+<h4>4.3.3 Result Set 消息</h4>
 <p>当客户端发送查询请求后，在没有错误的情况下，服务器会返回结果集（Result Set）给客户端。</p>
 <p>Result Set 消息分为五部分，结构如下：</p>
 <table>
@@ -1469,7 +1395,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="434-result-set-header">4.3.4 Result Set Header 结构</h4>
+<h4>4.3.4 Result Set Header 结构</h4>
 <table>
 <thead>
 <tr>
@@ -1490,7 +1416,7 @@
 </table>
 <p><strong>Field结构计数</strong>：用于标识Field结构的数量，取值范围0x00-0xFA。</p>
 <p><strong>额外信息</strong>：可选字段，一般情况下不应该出现。只有像<code>SHOW COLUMNS</code>这种语句的执行结果才会用到额外信息（标识表格的列数量）。</p>
-<h4 id="435-field">4.3.5 Field 结构</h4>
+<h4>4.3.5 Field 结构</h4>
 <p>Field为数据表的列信息，在Result Set中，Field会连续出现多次，次数由Result Set Header结构中的IField结构计数值决定。</p>
 <p><strong> MySQL 4.0 及之前的版本</strong></p>
 <table>
@@ -1791,7 +1717,7 @@
 <li>客户端：<code>/client/client.c</code>源文件中的<code>unpack_fields</code>函数</li>
 <li>服务器：<code>/sql/sql_base.cc</code>源文件中的<code>send_fields</code>函数</li>
 </ul>
-<h4 id="436-eof">4.3.6 EOF 结构</h4>
+<h4>4.3.6 EOF 结构</h4>
 <p>EOF结构用于标识Field和Row Data的结束，在预处理语句中，EOF也被用来标识参数的结束。</p>
 <p><strong> MySQL 4.0 及之前的版本</strong></p>
 <table>
@@ -1842,7 +1768,7 @@
 <ul>
 <li>服务器：<code>protocol.cc</code>源文件中的<code>send_eof</code>函数</li>
 </ul>
-<h4 id="437-row-data">4.3.7 Row Data 结构</h4>
+<h4>4.3.7 Row Data 结构</h4>
 <p>在Result Set消息中，会包含多个Row Data结构，每个Row Data结构又包含多个字段值，这些字段值组成一行数据。</p>
 <table>
 <thead>
@@ -1867,7 +1793,7 @@
 <ul>
 <li>客户端：<code>/client/client.c</code>源文件中的<code>read_rows</code>函数</li>
 </ul>
-<h4 id="438-row-data">4.3.8 Row Data 结构（二进制数据）</h4>
+<h4>4.3.8 Row Data 结构（二进制数据）</h4>
 <p>该结构用于传输二进制的字段值，既可以是服务器返回的结果，也可以是由客户端发送的（当执行预处理语句时，客户端使用Result Set消息来发送参数及数据）。</p>
 <table>
 <thead>
@@ -1897,7 +1823,7 @@
 </table>
 <p><strong>空位图</strong>：前2个比特位被保留，值分别为0和1，以保证不会和OK、Error包的首字节冲突。在MySQL 5.0及之后的版本中，这2个比特位的值都为0。</p>
 <p><strong>字段值</strong>：行数据中的字段值，二进制形式。</p>
-<h4 id="439-prepare_ok-prepared-statement">4.3.9 PREPARE_OK 响应报文（Prepared Statement）</h4>
+<h4>4.3.9 PREPARE_OK 响应报文（Prepared Statement）</h4>
 <p>用于响应客户端发起的预处理语句报文，组成结构如下：</p>
 <table>
 <thead>
@@ -1972,7 +1898,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4310-parameter-prepared-statement">4.3.10 Parameter 响应报文（Prepared Statement）</h4>
+<h4>4.3.10 Parameter 响应报文（Prepared Statement）</h4>
 <p>预处理语句的值与参数正确对应后，服务器会返回 Parameter 报文。</p>
 <table>
 <thead>
@@ -2004,7 +1930,7 @@
 <p><strong>标志</strong>：与 Field 结构中的字段标志相同。</p>
 <p><strong>数值精度</strong>：与 Field 结构中的数值精度相同。</p>
 <p><strong>字段长度</strong>：与 Field 结构中的字段长度相同。</p>
-<h2 id="5">5 参考资料</h2>
+<h2>5 参考资料</h2>
 <p>《<a href="http://dev.mysql.com/doc/internals/en/index.html">MySQL Internals Manual</a>: <a href="http://dev.mysql.com/doc/internals/en/client-server-protocol.html">MySQL Client/Server Protocol</a>》</p>
             </div>
             <!-- /.entry-content -->
@@ -2133,386 +2059,6 @@
 
                 <li class="list-group-item"><a href="http://hutaow.com/blog/tags/index.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                     <ul class="list-group list-inline tagcloud" id="tags">
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags//index.html">
-                                
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/android/index.html">
-                                Android
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/archlinux/index.html">
-                                ArchLinux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/atl/index.html">
-                                ATL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/c/index.html">
-                                C
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/chmod/index.html">
-                                chmod
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cisco/index.html">
-                                CISCO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/core-dump/index.html">
-                                Core Dump
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
-                                Cracker
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cron/index.html">
-                                cron
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cscope/index.html">
-                                CScope
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/csharp/index.html">
-                                CSharp
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/ctags/index.html">
-                                CTags
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/dai-li/index.html">
-                                代理
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/database/index.html">
-                                Database
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
-                                德赛西威
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/diao-shi/index.html">
-                                调试
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/diao-yong-zhan/index.html">
-                                调用栈
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
-                                定位
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/duan-kou-ying-she/index.html">
-                                端口映射
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/fcitx/index.html">
-                                Fcitx
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/fedora/index.html">
-                                Fedora
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/find/index.html">
-                                find
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/foxmarks/index.html">
-                                Foxmarks
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/gdb/index.html">
-                                GDB
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/git/index.html">
-                                Git
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/gong-ju/index.html">
-                                工具
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/grep/index.html">
-                                grep
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/htc/index.html">
-                                HTC
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/ids/index.html">
-                                IDS
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/java/index.html">
-                                Java
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/jiao-ben/index.html">
-                                脚本
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/jiao-huan-ji/index.html">
-                                交换机
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/kde/index.html">
-                                KDE
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
-                                控件
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/ld/index.html">
-                                ld
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/libpcap/index.html">
-                                libpcap
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="http://hutaow.com/blog/tags/linux/index.html">
-                                Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">
-                                路由器
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/mplayer/index.html">
-                                MPlayer
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/mysql/index.html">
-                                MySQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/nei-cun/index.html">
-                                内存
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/network/index.html">
-                                Network
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/openwrt/index.html">
-                                OpenWRT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/oprofile/index.html">
-                                OProfile
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
-                                配置文件
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/protocol/index.html">
-                                Protocol
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/pxe/index.html">
-                                PXE
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/pyqt/index.html">
-                                PyQT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/python/index.html">
-                                Python
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/qt/index.html">
-                                QT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/rhythmbox/index.html">
-                                Rhythmbox
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">
-                                入侵检测
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/rxvt/index.html">
-                                RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/samba/index.html">
-                                Samba
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/script/index.html">
-                                Script
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/security/index.html">
-                                Security
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/sed/index.html">
-                                sed
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
-                                数据库
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/signal/index.html">
-                                Signal
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/smb/index.html">
-                                SMB
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/snort/index.html">
-                                Snort
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/sql/index.html">
-                                SQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/taglist/index.html">
-                                TagList
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/tcp/index.html">
-                                TCP
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/vi/index.html">
-                                VI
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/virtualbox/index.html">
-                                VirtualBox
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xia-mi-yin-le/index.html">
-                                虾米音乐
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xie-yi/index.html">
-                                协议
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
-                                信号
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">
-                                信息安全
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">
-                                性能优化
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xmarks/index.html">
-                                Xmarks
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xml/index.html">
-                                XML
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
-                                音乐e栈
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/zi-fu-bian-ma/index.html">
-                                字符编码
-                            </a>
-                        </li>
                     </ul>
                 </li>    
     <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>

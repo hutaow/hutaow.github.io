@@ -63,7 +63,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-05-29T23:25:19+08:00"> 四 29 五月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-05-29T23:25:19+08:00"> Thu 29 May 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -81,18 +81,18 @@
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
-<h3 id="1-libpcap">1 安装libpcap库</h3>
+<h3>1 安装libpcap库</h3>
 <p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
-<div class="highlight"><pre>./configure
+<div class="highlight"><pre><span></span>./configure
 make
 make install
 </pre></div>
 
 
-<h3 id="2">2 实例代码</h3>
+<h3>2 实例代码</h3>
 <p>代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。</p>
 <p>首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下：</p>
-<div class="highlight"><pre><span class="cp">#ifndef _BASETYPE_H_</span>
+<div class="highlight"><pre><span></span><span class="cp">#ifndef _BASETYPE_H_</span>
 <span class="cp">#define _BASETYPE_H_</span>
 
 <span class="cp">#define OK (0)</span>
@@ -104,7 +104,7 @@ make install
 <span class="k">typedef</span> <span class="kt">void</span> <span class="n">VOID</span><span class="p">;</span>
 
 <span class="k">typedef</span> <span class="kt">char</span> <span class="n">CHAR</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="kt">char ...</span></pre></div>
+<span class="k">typedef</span> <span class="kt">char …</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">阅读全文</a>
                     </div>
@@ -117,7 +117,7 @@ make install
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-12-05T01:17:30+08:00"> 四 05 十二月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-12-05T01:17:30+08:00"> Thu 05 December 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -134,7 +134,7 @@ make install
 <!-- more -->
 
 <p>用一段简短的代码来说明一下问题出在哪里：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="cp">#define M_STRING_1 &quot;test&quot;</span>
 <span class="cp">#define M_STRING_2 (char *)&quot;test&quot;</span>
@@ -145,7 +145,7 @@ make install
 
     <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size of string macro 1      : %u bytes </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">M_STRING_1</span><span class="p">));</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size of string pointer 1    : %u bytes </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">pcStr</span><span class="p">));</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size ...</span></pre></div></!-->
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Size …</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/05/string-size-calculation">阅读全文</a>
                     </div>
@@ -158,7 +158,7 @@ make install
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-19T21:47:22+08:00"> 六 19 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-19T21:47:22+08:00"> Sat 19 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -181,7 +181,7 @@ make install
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <!-- more -->
 
-<h3 id="1">1 信号的响应动作</h3>
+<h3>1 信号的响应动作</h3>
 <p>每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种：</p>
 <ul>
 <li>中止进程(Term)</li>
@@ -191,16 +191,16 @@ make install
 <li>继续运行进程(Cont)</li>
 </ul>
 <p>用户可以通过<code>signal</code>或<code>sigaction</code>函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。</p>
-<h3 id="2">2 信号类型</h3>
+<h3>2 信号类型</h3>
 <p>Linux支持的信号类型可以参考下面给出的列表。</p>
-<h4 id="21-posix1-1990">2.1 在POSIX.1-1990标准中的信号列表</h4>
+<h4>2.1 在POSIX.1-1990标准中的信号列表</h4>
 <table>
 <thead>
 <tr>
 <th>信号</th>
 <th>值</th>
 <th>动作</th>
-<th>说明 ...</th></tr></thead></table></!-->
+<th>说明 …</th></tr></thead></table>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/19/linux-signal">阅读全文</a>
                     </div>
@@ -213,7 +213,7 @@ make install
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-15T23:32:31+08:00"> 二 15 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-15T23:32:31+08:00"> Tue 15 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -238,7 +238,7 @@ make install
 <!-- more -->
 
 <p>要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -261,7 +261,7 @@ make install
 
 
 <p>使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的：</p>
-<div class="highlight"><pre><span class="p">(</span><span class="nx">gdb ...</span></pre></div></!-->
+<div class="highlight"><pre><span></span>(gdb …</pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/15/dump-stack">阅读全文</a>
                     </div>
@@ -274,7 +274,7 @@ make install
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-11T22:03:39+08:00"> 五 11 十月 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-10-11T22:03:39+08:00"> Fri 11 October 2013</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -297,7 +297,7 @@ make install
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
-<div class="highlight"><pre><span class="cm">/* 获取函数调用栈 */</span>
+<div class="highlight"><pre><span></span><span class="cm">/* 获取函数调用栈 */</span>
 <span class="kt">int</span> <span class="nf">backtrace</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
 
 <span class="cm">/* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */</span>
@@ -311,16 +311,16 @@ make install
 <!-- more -->
 
 <p>示例代码：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;execinfo.h&gt;</span>
-<span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;execinfo.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
 
 <span class="cm">/* 打印调用栈的最大深度 */</span>
 <span class="cp">#define DUMP_STACK_DEPTH_MAX 16</span>
 
 <span class="cm">/* 打印调用栈函数 */</span>
 <span class="kt">void</span> <span class="nf">dump_trace</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">stack_trace ...</span></pre></div></!-->
+    <span class="kt">void</span> <span class="o">*</span><span class="n">stack_trace …</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">阅读全文</a>
                     </div>
@@ -333,7 +333,7 @@ make install
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2009-05-02T14:02:00+08:00"> 六 02 五月 2009</time>
+        <i class="fa fa-calendar"></i><time datetime="2009-05-02T14:02:00+08:00"> Sat 02 May 2009</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -355,7 +355,7 @@ make install
 <p>首先在需要将 IObjectSafetyImpl 添加到该控件的派生类中，然后在映射列表中添加 IObjectSafety，具体添加的代码如下：</p>
 <!-- more -->
 
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">CHutaow</span> <span class="o">:</span><span class="err"> </span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CHutaow</span> <span class="o">:</span><span class="err"> </span>
     <span class="c1">// 添加到控件的派生类列表中</span>
     <span class="k">public</span> <span class="n">IObjectSafetyImpl</span><span class="o">&lt;</span><span class="n">CHutaow</span><span class="p">,</span> <span class="n">INTERFACESAFE_FOR_UNTRUSTED_CALLER</span><span class="o">|</span><span class="n">INTERFACESAFE_FOR_UNTRUSTED_DATA</span><span class="o">&gt;</span>
     <span class="p">...</span>
@@ -454,386 +454,6 @@ make install
 
                 <li class="list-group-item"><a href="http://hutaow.com/blog/tags/index.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                     <ul class="list-group list-inline tagcloud" id="tags">
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags//index.html">
-                                
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/android/index.html">
-                                Android
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/archlinux/index.html">
-                                ArchLinux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/atl/index.html">
-                                ATL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/c/index.html">
-                                C
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/chmod/index.html">
-                                chmod
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cisco/index.html">
-                                CISCO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/core-dump/index.html">
-                                Core Dump
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
-                                Cracker
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cron/index.html">
-                                cron
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cscope/index.html">
-                                CScope
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/csharp/index.html">
-                                CSharp
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/ctags/index.html">
-                                CTags
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/dai-li/index.html">
-                                代理
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/database/index.html">
-                                Database
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
-                                德赛西威
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/diao-shi/index.html">
-                                调试
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/diao-yong-zhan/index.html">
-                                调用栈
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
-                                定位
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/duan-kou-ying-she/index.html">
-                                端口映射
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/fcitx/index.html">
-                                Fcitx
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/fedora/index.html">
-                                Fedora
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/find/index.html">
-                                find
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/foxmarks/index.html">
-                                Foxmarks
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/gdb/index.html">
-                                GDB
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/git/index.html">
-                                Git
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/gong-ju/index.html">
-                                工具
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/grep/index.html">
-                                grep
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/htc/index.html">
-                                HTC
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/ids/index.html">
-                                IDS
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/java/index.html">
-                                Java
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/jiao-ben/index.html">
-                                脚本
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/jiao-huan-ji/index.html">
-                                交换机
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/kde/index.html">
-                                KDE
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
-                                控件
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/ld/index.html">
-                                ld
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/libpcap/index.html">
-                                libpcap
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="http://hutaow.com/blog/tags/linux/index.html">
-                                Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">
-                                路由器
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/mplayer/index.html">
-                                MPlayer
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/mysql/index.html">
-                                MySQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/nei-cun/index.html">
-                                内存
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/network/index.html">
-                                Network
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/openwrt/index.html">
-                                OpenWRT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/oprofile/index.html">
-                                OProfile
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
-                                配置文件
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/protocol/index.html">
-                                Protocol
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/pxe/index.html">
-                                PXE
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/pyqt/index.html">
-                                PyQT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/python/index.html">
-                                Python
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/qt/index.html">
-                                QT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/rhythmbox/index.html">
-                                Rhythmbox
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">
-                                入侵检测
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/rxvt/index.html">
-                                RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/samba/index.html">
-                                Samba
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/script/index.html">
-                                Script
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/security/index.html">
-                                Security
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/sed/index.html">
-                                sed
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
-                                数据库
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/signal/index.html">
-                                Signal
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/smb/index.html">
-                                SMB
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/snort/index.html">
-                                Snort
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/sql/index.html">
-                                SQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/taglist/index.html">
-                                TagList
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/tcp/index.html">
-                                TCP
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/vi/index.html">
-                                VI
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/virtualbox/index.html">
-                                VirtualBox
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xia-mi-yin-le/index.html">
-                                虾米音乐
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xie-yi/index.html">
-                                协议
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
-                                信号
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">
-                                信息安全
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">
-                                性能优化
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xmarks/index.html">
-                                Xmarks
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xml/index.html">
-                                XML
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
-                                音乐e栈
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/zi-fu-bian-ma/index.html">
-                                字符编码
-                            </a>
-                        </li>
                     </ul>
                 </li>    
     <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>

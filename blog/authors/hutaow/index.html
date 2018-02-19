@@ -63,7 +63,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-02-14T20:10:01+08:00"> 六 14 二月 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2015-02-14T20:10:01+08:00"> Sat 14 February 2015</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -77,7 +77,7 @@
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>一般情况下，多个.o都是打包成一个.a做为库文件使用，最近碰到个情况，需要将多个.o合并为一个.o文件，其实方法并不复杂，把几个.o重新链接一下就行了，一条命令就能搞定。</p>
-<div class="highlight"><pre>ld -r -s -o output.o origin1.o origin2.o
+<div class="highlight"><pre><span></span>ld -r -s -o output.o origin1.o origin2.o
 </pre></div>
 
 
@@ -94,7 +94,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-11-02T16:23:11+08:00"> 日 02 十一月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-11-02T16:23:11+08:00"> Sun 02 November 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -113,17 +113,17 @@
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>本想把wr703n挂个硬盘开共享服务，无奈它的USB输出电流太小，挂移动硬盘过于吃力，于是又入手了一个wr720n，2A的USB输出对移动硬盘是绰绰有余了，但是刷入OpenWRT后重新配置Samba服务折腾了不少时间，这次赶紧记下来以防下次又忘了。</p>
 <p>由于OpenWRT添加用户需要额外安装<code>shadow</code>软件包，而OpenWRT本身又不太建议这样做，所以本文直接以root用户共享为例说明一下配置过程。</p>
-<h4 id="1-samba">1. 安装Samba服务</h4>
+<h4>1. 安装Samba服务</h4>
 <p>执行如下命令安装Samba服务：</p>
-<div class="highlight"><pre>opkg update
+<div class="highlight"><pre><span></span>opkg update
 opkg install samba36-server
 </pre></div>
 
 
 <p><em>注：上面的<code>samba36-server</code>是本文发布时的Samba服务软件包名称，其中数字36表示3.6.X版本，以后Samba版本更新的话可能找不到这个软件包，这个时候执行<code>opkg list | grep samba</code>搜一下就好。</em></p>
-<h4 id="2">2. 配置全局共享参数</h4>
+<h4>2. 配置全局共享参数</h4>
 <p>配置文件路径为<code>/etc/samba/smb.conf</code>，将<code>[global]</code>中的<code>invalid users = root</code>注掉，像下面的样子：</p>
-<div class="highlight"><pre><span class="k">[global ...</span></pre></div>
+<div class="highlight"><pre><span></span><span class="k">[global …</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service">阅读全文</a>
                     </div>
@@ -136,7 +136,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-09-08T17:00:20+08:00"> 一 08 九月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-09-08T17:00:20+08:00"> Mon 08 September 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -153,20 +153,20 @@ opkg install samba36-server
 	<a href="http://hutaow.com/blog/tags/duan-kou-ying-she/index.html">端口映射</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h4 id="1">1 端口映射</h4>
+                <div class="summary"><h4>1 端口映射</h4>
 <p>举个例子来说明一下端口映射的作用。</p>
 <p>有A、B、C三台计算机，A、B互通，B、C互通，但是A、C不通，这个时候在C上开了一个Web服务，如何让A访问C的Web服务？</p>
 <p>最简单有效的办法就是在B上开一个端口映射服务，然后让A访问B的某个端口，B将这个端口上的所有流量全部转发到C的Web服务端口上，同时将C上Web服务返回的流量也全部转发给A。这样对A来说，以B为跳板，实现了间接访问C上Web服务的目的。</p>
-<h4 id="2">2 实现流程</h4>
+<h4>2 实现流程</h4>
 <p>端口映射的原理并不复杂，本文以TCP为例介绍一下实现过程，简单画了个时序图（如下），这里就不再用文字赘述了。</p>
-<p><img alt="TCP Mapping Runtime" src="/images/articles/201409/tcp_mapping_sequence.png" /></p>
+<p><img alt="TCP Mapping Runtime" src="/images/articles/201409/tcp_mapping_sequence.png"></p>
 <p><strong>需要注意的是，由于端口映射只是单纯的流量转发，对应用层数据不进行处理，所以对于多通道协议是无法支持的（如FTP协议）。</strong></p>
-<h4 id="3">3 代码示例</h4>
+<h4>3 代码示例</h4>
 <p>按照上面的流程，Python实现如下（建议从后向前看）：</p>
-<div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
-<span class="c"># tcp mapping created by hutaow(hutaow.com) at 2014-08-31</span>
+<div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># tcp mapping created by hutaow(hutaow.com) at 2014-08-31</span>
 
-<span class="kn">import ...</span></pre></div>
+<span class="kn">import …</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">阅读全文</a>
                     </div>
@@ -179,7 +179,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-08-28T01:08:03+08:00"> 四 28 八月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-08-28T01:08:03+08:00"> Thu 28 August 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -195,11 +195,11 @@ opkg install samba36-server
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
-<div class="highlight"><pre>cat /proc/<span class="o">[</span>pid<span class="o">]</span>/status
+<div class="highlight"><pre><span></span>cat /proc/<span class="o">[</span>pid<span class="o">]</span>/status
 </pre></div>
 
 
-<h4 id="_1">说明</h4>
+<h4>说明</h4>
 <p><code>/proc/[pid]/status</code>中所保存的信息除了内存信息，还包括进程IDs、信号等信息，此处暂时只介绍内存相关的信息。</p>
 <table>
 <thead>
@@ -255,8 +255,8 @@ opkg install samba36-server
 </tr>
 </tbody>
 </table>
-<h4 id="_2">举例</h4>
-<p>显示进程<code>cron</code>的内存信息，通过 ...</p>
+<h4>举例</h4>
+<p>显示进程<code>cron</code>的内存信息，通过 …</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">阅读全文</a>
                     </div>
@@ -269,7 +269,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-08-02T00:07:19+08:00"> 六 02 八月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-08-02T00:07:19+08:00"> Sat 02 August 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -289,42 +289,42 @@ opkg install samba36-server
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>技术细节请参考上一篇文章<a href="/blog/2014/08/01/cracking-svautomusic/">《一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法》</a>。根据原理用python+qt写了个现成的破解程序，界面简陋了些，下载链接及使用说明如下。</p>
-<h4 id="_1">下载链接</h4>
+<h4>下载链接</h4>
 <ul>
 <li><a href="http://pan.baidu.com/s/1kTwvqKJ">百度网盘</a>（提取码：bi9f）</li>
 </ul>
 <!-- more -->
 
-<h4 id="_2">使用说明</h4>
+<h4>使用说明</h4>
 <ol>
 <li>
 <p>TF卡或U盘先在车机上初始化，然后插入电脑，打开音乐e栈PC端。</p>
 </li>
 <li>
 <p>用管理员身份运行程序。</p>
-<p><img alt="管理员身份运行程序" src="/images/articles/201408/svautomusic_cracker_runas_administrator.png" /></p>
+<p><img alt="管理员身份运行程序" src="/images/articles/201408/svautomusic_cracker_runas_administrator.png"></p>
 </li>
 <li>
 <p>点击“Start Crack!”按钮。</p>
-<p><img alt="Start Crack" src="/images/articles/201408/svautomusic_cracker_start_crack.png" /></p>
+<p><img alt="Start Crack" src="/images/articles/201408/svautomusic_cracker_start_crack.png"></p>
 </li>
 <li>
 <p>在音乐e栈客户端上，打开充值界面，卡号密码随便填。</p>
-<p><img alt="充值界面" src="/images/articles/201408/svautomusic_cracker_charge.png" /></p>
+<p><img alt="充值界面" src="/images/articles/201408/svautomusic_cracker_charge.png"></p>
 </li>
 <li>
 <p>点击确定，不出意外的话，即会提示充值成功，并且服务有效期也延长了99天。</p>
-<p><img alt="充值成功" src="/images/articles/201408/svautomusic_cracker_success.png" /></p>
+<p><img alt="充值成功" src="/images/articles/201408/svautomusic_cracker_success.png"></p>
 </li>
 <li>
 <p>可以随意下载电台或专辑了，并且可以同步到车上随时听了。</p>
-<p><img alt="破解结果" src="/images/articles/201408/svautomusic_cracker_result.png" /></p>
+<p><img alt="破解结果" src="/images/articles/201408/svautomusic_cracker_result.png"></p>
 </li>
 <li>
 <p>因为音乐e栈每次启动都会联网认证一次，所以这个破解程序每次打开客户端都需要执行一下上面的动作。</p>
 </li>
 </ol>
-<h4 id="_3">更新记录</h4>
+<h4>更新记录</h4>
 <ul>
 <li>2014-08-01: v0.1 初始化。</li>
 <li>2014-08-24: v0.2 有效期从99天延长到999天，另外补充设置响应消息长度值，防止客户端由于处理字符串不当导致出错。</li>
@@ -342,7 +342,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-08-01T23:50:27+08:00"> 五 01 八月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-08-01T23:50:27+08:00"> Fri 01 August 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -366,23 +366,23 @@ opkg install samba36-server
                 <div class="summary"><p>某导航提供的音乐服务（音乐e栈），和虾米合作的，需要付费使用，前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是因为它的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。</p>
 <!-- more -->
 
-<h4 id="1">1 原始界面</h4>
-<p><img alt="音乐e栈服务过期" src="/images/articles/201408/cracking_svautomusic_service_expired.png" /></p>
+<h4>1 原始界面</h4>
+<p><img alt="音乐e栈服务过期" src="/images/articles/201408/cracking_svautomusic_service_expired.png"></p>
 <p>如上图，插入经过车机初始化过的TF卡后，启动音乐e栈客户端，显示当前服务有效期为0天，并提示需要充值续费。如果点击下载专辑的按钮，提示不允许下载。</p>
-<h4 id="2">2 寻找入手点</h4>
+<h4>2 寻找入手点</h4>
 <p>既然提示让续费，那就看看续费过程是什么样子。</p>
 <p>先随便输个卡号密码试试：</p>
-<p><img alt="充值卡无效" src="/images/articles/201408/cracking_svautomusic_paid_invalid.png" /></p>
+<p><img alt="充值卡无效" src="/images/articles/201408/cracking_svautomusic_paid_invalid.png"></p>
 <p>竟然用CS架构来做充值认证，实在是土的掉渣，就从这里入手了。</p>
-<h4 id="3">3 交互过程</h4>
+<h4>3 交互过程</h4>
 <p>把刚才进行充值时的报文用Wireshark抓下来，看看它是如何交互的。</p>
 <p><strong>1) 报文</strong></p>
-<p><img alt="充值失败的报文" src="/images/articles/201408/cracking_svautomusic_pcap_paid_failed.png" /></p>
+<p><img alt="充值失败的报文" src="/images/articles/201408/cracking_svautomusic_pcap_paid_failed.png"></p>
 <p>可以看到，充值认证的流量走的是TCP协议8080端口，对端连接的服务器地址是<code>42.156.140.44</code>，这个暂时放一边，先来看看请求和响应报文分别填了什么内容。</p>
 <p><strong>2) 请求消息</strong></p>
-<p><img alt="请求消息内容" src="/images/articles/201408/cracking_svautomusic_pcap_paid_request.png" /></p>
+<p><img alt="请求消息内容" src="/images/articles/201408/cracking_svautomusic_pcap_paid_request.png"></p>
 <p>上图中可以看到，充值请求消息虽然走的是8080端口，但实际内容并非HTTP协议。</p>
-<p>TCP负载的开头44个字节是一段二进制数据 ...</p></!-->
+<p>TCP负载的开头44个字节是一段二进制数据 …</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">阅读全文</a>
                     </div>
@@ -395,7 +395,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-06-13T22:50:12+08:00"> 五 13 六月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-06-13T22:50:12+08:00"> Fri 13 June 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -412,7 +412,7 @@ opkg install samba36-server
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
 <p>设置个定时任务（执行<code>crontab -e</code>编辑任务列表）：</p>
-<div class="highlight"><pre>0 8 * * * passwd -u username
+<div class="highlight"><pre><span></span>0 8 * * * passwd -u username
 0 12 * * * passwd -l username
 </pre></div>
 
@@ -431,7 +431,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-06-02T15:38:56+08:00"> 一 02 六月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-06-02T15:38:56+08:00"> Mon 02 June 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -446,17 +446,17 @@ opkg install samba36-server
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志）。</p>
 <p>删除最后一次的提交记录：</p>
-<div class="highlight"><pre>git reset --hard HEAD^
+<div class="highlight"><pre><span></span>git reset --hard HEAD^
 </pre></div>
 
 
 <p>删除最后3次的提交记录：</p>
-<div class="highlight"><pre>git reset --hard HEAD~3
+<div class="highlight"><pre><span></span>git reset --hard HEAD~3
 </pre></div>
 
 
 <p>已经提交到远端库上了？那就还需要将本地库强行同步到远端库上（注意执行这个命令前先检查一下有没有别人的提交记录，不然会覆盖他人的修改）：</p>
-<div class="highlight"><pre>git push --force
+<div class="highlight"><pre><span></span>git push --force
 </pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">阅读全文</a>
@@ -470,7 +470,7 @@ opkg install samba36-server
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-05-29T23:25:19+08:00"> 四 29 五月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-05-29T23:25:19+08:00"> Thu 29 May 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -488,18 +488,18 @@ opkg install samba36-server
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
-<h3 id="1-libpcap">1 安装libpcap库</h3>
+<h3>1 安装libpcap库</h3>
 <p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
-<div class="highlight"><pre>./configure
+<div class="highlight"><pre><span></span>./configure
 make
 make install
 </pre></div>
 
 
-<h3 id="2">2 实例代码</h3>
+<h3>2 实例代码</h3>
 <p>代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。</p>
 <p>首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下：</p>
-<div class="highlight"><pre><span class="cp">#ifndef _BASETYPE_H_</span>
+<div class="highlight"><pre><span></span><span class="cp">#ifndef _BASETYPE_H_</span>
 <span class="cp">#define _BASETYPE_H_</span>
 
 <span class="cp">#define OK (0)</span>
@@ -511,7 +511,7 @@ make install
 <span class="k">typedef</span> <span class="kt">void</span> <span class="n">VOID</span><span class="p">;</span>
 
 <span class="k">typedef</span> <span class="kt">char</span> <span class="n">CHAR</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="kt">char ...</span></pre></div>
+<span class="k">typedef</span> <span class="kt">char …</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">阅读全文</a>
                     </div>
@@ -524,7 +524,7 @@ make install
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-05-26T23:36:27+08:00"> 一 26 五月 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-05-26T23:36:27+08:00"> Mon 26 May 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
@@ -542,12 +542,12 @@ make install
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
-<div class="highlight"><pre>grep string -rl /path
+<div class="highlight"><pre><span></span>grep string -rl /path
 </pre></div>
 
 
 <p>在目录中查找并替换指定的字符串（如下所示，将path目录中将所有文件中的oldstring字符串替换成newstring）</p>
-<div class="highlight"><pre>sed -i <span class="s2">&quot;s/oldstring/newstring/g&quot;</span> <span class="sb">`</span>grep oldstring -rl /path<span class="sb">`</span>
+<div class="highlight"><pre><span></span>sed -i <span class="s2">&quot;s/oldstring/newstring/g&quot;</span> <span class="sb">`</span>grep oldstring -rl /path<span class="sb">`</span>
 </pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">阅读全文</a>
@@ -665,386 +665,6 @@ make install
 
                 <li class="list-group-item"><a href="http://hutaow.com/blog/tags/index.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                     <ul class="list-group list-inline tagcloud" id="tags">
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags//index.html">
-                                
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/android/index.html">
-                                Android
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/archlinux/index.html">
-                                ArchLinux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/atl/index.html">
-                                ATL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/c/index.html">
-                                C
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/chmod/index.html">
-                                chmod
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cisco/index.html">
-                                CISCO
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/core-dump/index.html">
-                                Core Dump
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cracker/index.html">
-                                Cracker
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cron/index.html">
-                                cron
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/cscope/index.html">
-                                CScope
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/csharp/index.html">
-                                CSharp
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/ctags/index.html">
-                                CTags
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/dai-li/index.html">
-                                代理
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/database/index.html">
-                                Database
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/de-sai-xi-wei/index.html">
-                                德赛西威
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/diao-shi/index.html">
-                                调试
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/diao-yong-zhan/index.html">
-                                调用栈
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/ding-wei/index.html">
-                                定位
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/duan-kou-ying-she/index.html">
-                                端口映射
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/fcitx/index.html">
-                                Fcitx
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/fedora/index.html">
-                                Fedora
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/find/index.html">
-                                find
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/foxmarks/index.html">
-                                Foxmarks
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/gdb/index.html">
-                                GDB
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/git/index.html">
-                                Git
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/gong-ju/index.html">
-                                工具
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/grep/index.html">
-                                grep
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/htc/index.html">
-                                HTC
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/ids/index.html">
-                                IDS
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/java/index.html">
-                                Java
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/jiao-ben/index.html">
-                                脚本
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/jiao-huan-ji/index.html">
-                                交换机
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/kde/index.html">
-                                KDE
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/kong-jian/index.html">
-                                控件
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/ld/index.html">
-                                ld
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/libpcap/index.html">
-                                libpcap
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="http://hutaow.com/blog/tags/linux/index.html">
-                                Linux
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">
-                                路由器
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/mplayer/index.html">
-                                MPlayer
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/mysql/index.html">
-                                MySQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/nei-cun/index.html">
-                                内存
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/network/index.html">
-                                Network
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/openwrt/index.html">
-                                OpenWRT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/oprofile/index.html">
-                                OProfile
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">
-                                配置文件
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/protocol/index.html">
-                                Protocol
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/pxe/index.html">
-                                PXE
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/pyqt/index.html">
-                                PyQT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/python/index.html">
-                                Python
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/qt/index.html">
-                                QT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/rhythmbox/index.html">
-                                Rhythmbox
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">
-                                入侵检测
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/rxvt/index.html">
-                                RXVT
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/samba/index.html">
-                                Samba
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/script/index.html">
-                                Script
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://hutaow.com/blog/tags/security/index.html">
-                                Security
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/sed/index.html">
-                                sed
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/shu-ju-ku/index.html">
-                                数据库
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/signal/index.html">
-                                Signal
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/smb/index.html">
-                                SMB
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/snort/index.html">
-                                Snort
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/sql/index.html">
-                                SQL
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/taglist/index.html">
-                                TagList
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/tcp/index.html">
-                                TCP
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/vi/index.html">
-                                VI
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/virtualbox/index.html">
-                                VirtualBox
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xia-mi-yin-le/index.html">
-                                虾米音乐
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xie-yi/index.html">
-                                协议
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xin-hao/index.html">
-                                信号
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">
-                                信息安全
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">
-                                性能优化
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xmarks/index.html">
-                                Xmarks
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/xml/index.html">
-                                XML
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://hutaow.com/blog/tags/yin-le-ezhan/index.html">
-                                音乐e栈
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://hutaow.com/blog/tags/zi-fu-bian-ma/index.html">
-                                字符编码
-                            </a>
-                        </li>
                     </ul>
                 </li>    
     <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
