@@ -141,10 +141,9 @@ export XMODIFIERS=&quot;@im=fcitx&quot;
                     return container
                 },
             }
-            var comment_id = document.title
             var gitment = new Gitment({
                 theme: myTheme,
-                id: comment_id,
+                id: document.write(document.title),
                 owner: 'hutaow',
                 repo: 'hutaow.github.io',
                 oauth: {
