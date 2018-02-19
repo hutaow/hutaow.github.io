@@ -140,9 +140,10 @@
                     return container
                 },
             }
+            var comment_id = document.title
             var gitment = new Gitment({
                 theme: myTheme,
-                id: '<%= page.title %>',
+                id: comment_id,
                 owner: 'hutaow',
                 repo: 'hutaow.github.io',
                 oauth: {
