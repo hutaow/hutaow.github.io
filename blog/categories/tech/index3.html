@@ -58,6 +58,46 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2013/10/25/linux-core-dump">Linux中生成 Core Dump 文件的方法</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-10-25T23:19:39+08:00"> Fri 25 October 2013</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/linux/index.html">Linux</a>
+        /
+	<a href="http://hutaow.com/blog/tags/core-dump/index.html">Core Dump</a>
+        /
+	<a href="http://hutaow.com/blog/tags/gdb/index.html">GDB</a>
+        /
+	<a href="http://hutaow.com/blog/tags/ding-wei/index.html">定位</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><h3>1 什么是 Core Dump</h3>
+<p>Core Dump 又叫核心转储。在程序运行过程中发生异常时，将其内存数据保存到文件中，这个过程叫做 Core Dump。</p>
+<h3>2 Core Dump 的作用</h3>
+<p>在开发过程中，难免会遇到程序运行过程中异常退出的情况，这时候想要定位哪里出了问题，仅仅依靠程序自身的信息打印（日志记录）往往是不够的，这个时候就需要 Core Dump 文件来帮忙了。</p>
+<p>一个完整的 Core Dump 文件实际上相当于恢复了异常现场，利用 Core Dump 文件，可以查看到程序异常时的所有信息，变量值、栈信息、内存数据，程序异常时的运行位置（甚至记录代码行号）等等，定位所需要的一切信息都可以从 Core Dump文件获取到，能够非常有效的提高定位效率。</p>
+<!-- more -->
+
+<h3>3 如何生成 Core Dump</h3>
+<h4>3 …</h4>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/25/linux-core-dump">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2013/10/19/linux-signal">Linux信号处理机制</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
@@ -485,46 +525,6 @@ make install
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing">入侵检测与响应系统的信息共享</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2010-04-17T21:25:00+08:00"> Sat 17 April 2010</time>
-    </span>
-            <span class="label label-default">By</span>
-            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
-
-        <span class="label label-default">Category</span>
-        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://hutaow.com/blog/tags/security/index.html">Security</a>
-        /
-	<a href="http://hutaow.com/blog/tags/ids/index.html">IDS</a>
-        /
-	<a href="http://hutaow.com/blog/tags/xin-xi-an-quan/index.html">信息安全</a>
-        /
-	<a href="http://hutaow.com/blog/tags/ru-qin-jian-ce/index.html">入侵检测</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h3>引言</h3>
-<p>入侵检测系统(IDS)与其它系统(如防火墙)交互过程中，需要遵循一定的规范和协议，然而生产IDS的各个厂家的报警日志及数据格式均有所区别，所以在不同设备之间交互会遇到很多麻烦。早先知道的是CheckPoint提出的OPSec协议和天融信提出的TOPSec协议，凡是遵循这两个协议的网络安全设备均可与相应的IDS进行交互，协同防护网络安全。在2007年，IETF针对这种交互情况形成了四份相关文档，分为三个部分，分别是隧道轮廓(RFC3620 - The TUNNEL Profile)、入侵检测消息交换格式和要求(RFC4765 - IDMEF, RFC4766 - IDMER)、入侵检测交换协议(RFC4767 - IDXP)。</p>
-<p>值得注意的是，IETF规定IDS对其它设备交互的方式采用XML格式存储和传输，和SOAP似乎有些相似，XML跨平台跨语言结构清晰等优点使它的应用范围越来越广，几乎达到了无处不用XML的程度。</p>
-<!-- more -->
-
-<h3>1 入侵检测消息交互过程</h3>
-<h4>1.1 建立连接</h4>
-<p>使用IDXP传输数据的入侵检测实体被称为IDXP对等体。对等体只能成对出现，这些对等体通过BEEP会话中的一个或多个BEEP信道进行数据传输。对等体可能是管理器或分析器。</p>
-<p>在分析器和管理器之间很可能是多对多的关系。即一个分析器可以和多个管理器通信，同样，一个管理器也可以和多个分析器通信；在不同的管理器之间也可以是多对多的关系。所以，一个管理器可以通过多个中间管理器接收大量的来自分析器的报警信息。但是 …</p>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/04/17/intrusion-dedection-and-response-system-for-information-sharing">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="http://hutaow.com/blog/categories/tech/index2.html">&laquo;</a>
@@ -566,6 +566,11 @@ make install
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2018/06/30/bitshares-plugin-develop">
+                                BitShares插件开发入门
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2015/02/14/ld-o">
                                 如何将多个.o合并为一个.o文件
@@ -611,11 +616,6 @@ make install
                                 基于libpcap的开发实例
                             </a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
-                                在多个文件中批量查找/替换字符串
-                            </a>
-                        </li>
                     </ul>
                 </li>
 
@@ -658,7 +658,7 @@ make install
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2015 hutaow
+         <div class="col-xs-10">&copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

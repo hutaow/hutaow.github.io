@@ -58,6 +58,56 @@
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://hutaow.com/blog/2018/06/30/bitshares-plugin-develop">BitShares插件开发入门</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2018-06-30T22:25:00+08:00"> Sat 30 June 2018</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
+
+        <span class="label label-default">Category</span>
+        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://hutaow.com/blog/tags/qu-kuai-lian/index.html">区块链</a>
+        /
+	<a href="http://hutaow.com/blog/tags/bi-te-gu/index.html">比特股</a>
+        /
+	<a href="http://hutaow.com/blog/tags/cha-jian/index.html">插件</a>
+        /
+	<a href="http://hutaow.com/blog/tags/bitshares/index.html">BitShares</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>BitShares（比特股）是一种支持包括虚拟货币、法币、贵金属等有价值实物的开源分布式交易系统。关于BitShares，网上的资料有很多，这里不作具体赘述，本文主要对BitShares的插件的开发进行入门介绍。</p>
+<p>在进行BitShares的插件开发前，需要具备以下技能：</p>
+<ul>
+<li>本地编译并搭建过BitShares节点/重钱包（必须）</li>
+<li>能看懂简单的C++代码（必须）</li>
+<li>使用过命令行版的钱包，或自已构造过json消息和节点进行简单的交互（可选）</li>
+</ul>
+<p>推荐一下这个链接：<a href="https://github.com/abitmore/bts-cn-docs">BitShares (BTS) 中文技术文档</a>，对于BitShares技术入门非常有帮助。</p>
+<!-- more -->
+
+<h4>1. 目的</h4>
+<p>通过插件，可以直接获取到BitShares区块链上的各种数据，对BitShares进行扩展开发，实现定制化的功能。本文通过插件的方式来监控区块链上的转账操作，对插件的开发进行简单的介绍。</p>
+<h4>2. 目录结构</h4>
+<p>BitShares的插件源代码存放在<code>libraries/plugins</code>目录中，以我们要创建的<code>monitor</code>插件为例，新建的插件目录结构如下：</p>
+<div class="highlight"><pre><span></span>libraries/plugins/
+├── monitor
+│   ├── CMakeLists.txt (+)
+│   ├── include
+│   │   └── graphene …</pre></div>
+                    <div align="right">
+                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2018/06/30/bitshares-plugin-develop">阅读全文</a>
+                    </div>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://hutaow.com/blog/2015/02/14/ld-o">如何将多个.o合并为一个.o文件</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
@@ -518,43 +568,6 @@ make install
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">在多个文件中批量查找/替换字符串</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-05-26T23:36:27+08:00"> Mon 26 May 2014</time>
-    </span>
-            <span class="label label-default">By</span>
-            <a href="http://hutaow.com/blog/authors/hutaow/index.html"><i class="fa fa-user"></i> hutaow</a>
-
-        <span class="label label-default">Category</span>
-        <a href="http://hutaow.com/blog/categories/tech/index.html">Tech</a>
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://hutaow.com/blog/tags/linux/index.html">Linux</a>
-        /
-	<a href="http://hutaow.com/blog/tags/sed/index.html">sed</a>
-        /
-	<a href="http://hutaow.com/blog/tags/grep/index.html">grep</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
-<div class="highlight"><pre><span></span>grep string -rl /path
-</pre></div>
-
-
-<p>在目录中查找并替换指定的字符串（如下所示，将path目录中将所有文件中的oldstring字符串替换成newstring）</p>
-<div class="highlight"><pre><span></span>sed -i <span class="s2">&quot;s/oldstring/newstring/g&quot;</span> <span class="sb">`</span>grep oldstring -rl /path<span class="sb">`</span>
-</pre></div>
-                    <div align="right">
-                        <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">阅读全文</a>
-                    </div>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -595,6 +608,11 @@ make install
 
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                     <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://hutaow.com/blog/2018/06/30/bitshares-plugin-develop">
+                                BitShares插件开发入门
+                            </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://hutaow.com/blog/2015/02/14/ld-o">
                                 如何将多个.o合并为一个.o文件
@@ -640,11 +658,6 @@ make install
                                 基于libpcap的开发实例
                             </a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">
-                                在多个文件中批量查找/替换字符串
-                            </a>
-                        </li>
                     </ul>
                 </li>
 
@@ -687,7 +700,7 @@ make install
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2015 hutaow
+         <div class="col-xs-10">&copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
