@@ -81,18 +81,18 @@
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
-<h3>1 安装libpcap库</h3>
+<h3 id="1-libpcap">1 安装libpcap库</h3>
 <p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
-<div class="highlight"><pre><span></span>./configure
+<div class="highlight"><pre>./configure
 make
 make install
 </pre></div>
 
 
-<h3>2 实例代码</h3>
+<h3 id="2">2 实例代码</h3>
 <p>代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。</p>
 <p>首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下：</p>
-<div class="highlight"><pre><span></span><span class="cp">#ifndef _BASETYPE_H_</span>
+<div class="highlight"><pre><span class="cp">#ifndef _BASETYPE_H_</span>
 <span class="cp">#define _BASETYPE_H_</span>
 
 <span class="cp">#define OK (0)</span>
@@ -104,7 +104,7 @@ make install
 <span class="k">typedef</span> <span class="kt">void</span> <span class="n">VOID</span><span class="p">;</span>
 
 <span class="k">typedef</span> <span class="kt">char</span> <span class="n">CHAR</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="kt">char …</span></pre></div>
+<span class="k">typedef</span> <span class="kt">char ...</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">阅读全文</a>
                     </div>
@@ -181,7 +181,7 @@ make install
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2014 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

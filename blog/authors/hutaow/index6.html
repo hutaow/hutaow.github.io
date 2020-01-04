@@ -109,7 +109,7 @@
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>这两天一直在看xml，昨天简单的做了一个计算器，算是实地练习一下，熟悉一下Android的开发过程，不过有些小问题还没有顾及，还有就是界面可能稍显难看了一些。</p>
 <p>运行时的截图：
-<img alt="Android Calculator" src="/images/articles/200801/android_calculator.png"></p>
+<img alt="Android Calculator" src="/images/articles/200801/android_calculator.png" /></p>
 <p>源代码地址：<a href="https://github.com/hutaow/AndroidCalculator">点击这里</a></p>
 <!-- more -->
 
@@ -143,22 +143,22 @@
 <p>之前对于XML的布局方法一直看着不爽，感觉很乱的样子，但时间长了我渐渐发现，这种程序代码与界面布局完全分开的方法非常顺手，该布局的地方都到main.xml里去写，甚至界面中显示的字符串都可以集中到string.xml文件中，而主程序的".java"文件中则完全用于编写代码，思路非常清晰。</p>
 <!-- more -->
 
-<h3>1 首先按照程序的目录结构大致分析</h3>
-<div class="highlight"><pre><span></span>res/layout/   这个目录存放的就是布局用的xml文件，一般默认为main.xml
+<h3 id="1">1 首先按照程序的目录结构大致分析</h3>
+<div class="highlight"><pre>res/layout/   这个目录存放的就是布局用的xml文件，一般默认为main.xml
 res/values/   这个目录存放的是一堆常量的xml文件
 res/drawable/ 存放的是一些图片什么的，当然图标也在这里
 </pre></div>
 
 
-<h3>2 下面主要对layout下的xml文件做个介绍，顺便也把布局的方法总结一下</h3>
-<h4>2.1 文件的开头</h4>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<h3 id="2-layoutxml">2 下面主要对layout下的xml文件做个介绍，顺便也把布局的方法总结一下</h3>
+<h4 id="21">2.1 文件的开头</h4>
+<div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 </pre></div>
 
 
 <p>这是在说明xml版本及字符编码</p>
-<h4>2.2 布局框架</h4>
-<div class="highlight"><pre><span></span><span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas …</span></pre></div>
+<h4 id="22">2.2 布局框架</h4>
+<div class="highlight"><pre><span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/01/28/understanding-on-the-android-layout">阅读全文</a>
                     </div>
@@ -185,13 +185,13 @@ res/drawable/ 存放的是一些图片什么的，当然图标也在这里
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>前几天一直在看Android的文档，有些收获但同时还是有问题。</p>
-<h4>1 问题：关于Android的Layout</h4>
+<h4 id="1-androidlayout">1 问题：关于Android的Layout</h4>
 <p>似乎和java有很大的不同，Android引入了XML，从google所给的例子来看，控件的布局方式都是写在XML文件里，而主程序中需要的只是add并且引用XML文件中的布局方式。</p>
 <!-- more -->
 
 <p>这种方法对我来说并不是很习惯，毕竟java用了那么长时间，在代码中直接setLayout感觉更舒服些。当然既然google采用了这种布局和代码分离的方式那就肯定有它的优点，看来还需要一点的时间来习惯这种布局方式。</p>
-<h4>2 总结：我自己对Android几个模块的理解</h4>
-<div class="highlight"><pre><span></span>Activity：类似java中的Applet或Frame，以我的理解，这个类提供了程序的最基本框架。
+<h4 id="2-android">2 总结：我自己对Android几个模块的理解</h4>
+<div class="highlight"><pre>Activity：类似java中的Applet或Frame，以我的理解，这个类提供了程序的最基本框架。
 Intent Receiver：翻译过来是“目的接收器”，和java中的listener类似，用于处理事件。
 Service：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。
 Content Provider：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。
@@ -232,9 +232,9 @@ Content Provider：主要用在数据存贮和交换，根据官方文档所说�
 <p>修改~/.bashrc文件，在文件末尾加入以下几行：</p>
 </li>
 </ol>
-<div class="highlight"><pre><span></span>export JAVA_HOME=/usr/java/j2sdk1.x.x
-export PATH=$JAVA_HOME/bin:$PATH
-export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:$CLASSPATH
+<div class="highlight"><pre><span class="x">export JAVA_HOME=/usr/java/j2sdk1.x.x</span>
+<span class="x">export PATH=</span><span class="p">$</span><span class="nv">JAVA_HOME</span><span class="x">/bin:</span><span class="p">$</span><span class="nv">PATH</span><span class="x"></span>
+<span class="x">export CLASSPATH=.:</span><span class="p">$</span><span class="nv">JAVA_HOME</span><span class="x">/lib/tools.jar:</span><span class="p">$</span><span class="nv">JAVA_HOME</span><span class="x">/lib/dt.jar:</span><span class="p">$</span><span class="nv">CLASSPATH</span><span class="x"></span>
 </pre></div>
 
 
@@ -268,7 +268,7 @@ export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:$CLASSPATH
 	<a href="http://hutaow.com/blog/tags/pei-zhi-wen-jian/index.html">配置文件</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><div class="highlight"><pre><span></span>&quot; 设置字符编码
+                <div class="summary"><div class="highlight"><pre>&quot; 设置字符编码
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
@@ -289,7 +289,7 @@ filetype on
 syntax on
 
 &quot; 显示行号
-set …</pre></div>
+set ...</pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2007/08/19/my-vi-config">阅读全文</a>
                     </div>
@@ -428,7 +428,7 @@ set …</pre></div>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2018 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

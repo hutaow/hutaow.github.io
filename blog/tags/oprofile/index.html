@@ -78,20 +78,20 @@
 	<a href="http://hutaow.com/blog/tags/xing-neng-you-hua/index.html">性能优化</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h3>1 介绍</h3>
+                <div class="summary"><h3 id="1">1 介绍</h3>
 <p>OProfile是Linux上的性能监测工具，通过CPU硬件提供的性能计数器对事件（如CPU Cycle、Cache Miss等）进行采样，可以帮助开发者从代码层面分析程序的性能消耗情况，很方便的找出影响程序性能的问题点。</p>
 <p>硬件上，OProfile支持多种架构的CPU，包括Alpha、MIPS、ARM、x86/x86-64、Sparc64、PowerPC等；软件上，OProfile支持Linux 2.2、2.4、2.6多种版本的内核，并且所占用的系统开销较小，一般在1%-8%范围内，具体数值依赖于采样频率。</p>
 <!-- more -->
 
-<h3>2 环境准备</h3>
-<h4>2.1 编译Linux内核</h4>
+<h3 id="2">2 环境准备</h3>
+<h4 id="21-linux">2.1 编译Linux内核</h4>
 <p>OProfile需要Linux内核的支持，到Linux内核源代码目录中（一般为<code>/usr/src/linux-xxx</code>）执行下面的命令：</p>
-<div class="highlight"><pre><span></span>make menuconfig
+<div class="highlight"><pre>make menuconfig
 </pre></div>
 
 
 <p>在配置菜单中找到OProfile的选项并将其打开，然后保存退出。</p>
-<p>如果不想用 …</p>
+<p>如果不想用 ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/12/29/performance-analysis-with-oprofile">阅读全文</a>
                     </div>
@@ -168,7 +168,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2013 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2013 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

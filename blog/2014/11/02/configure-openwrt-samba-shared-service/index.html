@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="配置OpenWRT的Samba共享服务"/>
             <meta property="og:url" content="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service"/>
-            <meta property="og:description" content="本想把wr703n挂个硬盘开共享服务，无奈它的USB输出电流太小，挂移动硬盘过于吃力，于是又入手了一个wr720n，2A的USB输出对移动硬盘是绰绰有余了，但是刷入OpenWRT后重新配置Samba服务折腾了不少时间，这次赶紧记下来以防下次又忘了。 由于OpenWRT添加用户需要额外安装shadow软件包，而OpenWRT本身又不太建议这样做，所以本文直接以root用户共享为例说明一下配置过程。 1. 安装Samba服务 执行如下命令安装Samba服务： opkg update opkg install samba36-server 注：上面的samba36-server是本文发布时的Samba服务软件包名称，其中数字36表示3.6.X版本，以后Samba版本更新的话可能找不到这个软件包，这个时候执行opkg list | grep samba搜一下就好。 2. 配置全局共享参数 配置文件路径为/etc/samba/smb.conf，将[global]中的invalid users = root注掉，像下面的样子： [global …"/>
+            <meta property="og:description" content="本想把wr703n挂个硬盘开共享服务，无奈它的USB输出电流太小，挂移动硬盘过于吃力，于是又入手了一个wr720n，2A的USB输出对移动硬盘是绰绰有余了，但是刷入OpenWRT后重新配置Samba服务折腾了不少时间，这次赶紧记下来以防下次又忘了。 由于OpenWRT添加用户需要额外安装shadow软件包，而OpenWRT本身又不太建议这样做，所以本文直接以root用户共享为例说明一下配置过程。 1. 安装Samba服务 执行如下命令安装Samba服务： opkg update opkg install samba36-server 注：上面的samba36-server是本文发布时的Samba服务软件包名称，其中数字36表示3.6.X版本，以后Samba版本更新的话可能找不到这个软件包，这个时候执行opkg list | grep samba搜一下就好。 2. 配置全局共享参数 配置文件路径为/etc/samba/smb.conf，将[global]中的invalid users = root注掉，像下面的样子： [global ..."/>
             <meta property="article:published_time" content="2014-11-02" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="OpenWRT" />
@@ -100,17 +100,17 @@
                 </div>
                 <p>本想把wr703n挂个硬盘开共享服务，无奈它的USB输出电流太小，挂移动硬盘过于吃力，于是又入手了一个wr720n，2A的USB输出对移动硬盘是绰绰有余了，但是刷入OpenWRT后重新配置Samba服务折腾了不少时间，这次赶紧记下来以防下次又忘了。</p>
 <p>由于OpenWRT添加用户需要额外安装<code>shadow</code>软件包，而OpenWRT本身又不太建议这样做，所以本文直接以root用户共享为例说明一下配置过程。</p>
-<h4>1. 安装Samba服务</h4>
+<h4 id="1-samba">1. 安装Samba服务</h4>
 <p>执行如下命令安装Samba服务：</p>
-<div class="highlight"><pre><span></span>opkg update
+<div class="highlight"><pre>opkg update
 opkg install samba36-server
 </pre></div>
 
 
 <p><em>注：上面的<code>samba36-server</code>是本文发布时的Samba服务软件包名称，其中数字36表示3.6.X版本，以后Samba版本更新的话可能找不到这个软件包，这个时候执行<code>opkg list | grep samba</code>搜一下就好。</em></p>
-<h4>2. 配置全局共享参数</h4>
+<h4 id="2">2. 配置全局共享参数</h4>
 <p>配置文件路径为<code>/etc/samba/smb.conf</code>，将<code>[global]</code>中的<code>invalid users = root</code>注掉，像下面的样子：</p>
-<div class="highlight"><pre><span></span><span class="k">[global]</span>
+<div class="highlight"><pre><span class="k">[global]</span>
 <span class="na">netbios name</span> <span class="o">=</span> <span class="s">|NAME|</span>
 <span class="na">display charset</span> <span class="o">=</span> <span class="s">|CHARSET|</span>
 <span class="na">interfaces</span> <span class="o">=</span> <span class="s">|INTERFACES|</span>
@@ -146,9 +146,9 @@ opkg install samba36-server
 </pre></div>
 
 
-<h4>3. 配置共享目录</h4>
+<h4 id="3">3. 配置共享目录</h4>
 <p>例如要添加一个名称为<code>home</code>的共享，共享路径为<code>/home</code>，允许root用户读写操作，在<code>/etc/samba/smb.conf</code>配置文件中增加如下信息：</p>
-<div class="highlight"><pre><span></span><span class="k">[home]</span>
+<div class="highlight"><pre><span class="k">[home]</span>
 <span class="na">path</span> <span class="o">=</span> <span class="s">/home</span>
 <span class="na">valid users</span> <span class="o">=</span> <span class="s">root</span>
 <span class="na">read only</span> <span class="o">=</span> <span class="s">no</span>
@@ -158,15 +158,15 @@ opkg install samba36-server
 </pre></div>
 
 
-<h4>4. 配置共享密码</h4>
+<h4 id="4">4. 配置共享密码</h4>
 <p>Samba的共享用户密码是单独配置的，执行下面的命令将root添加为共享用户，同时按照命令提示设置共享密码。</p>
-<div class="highlight"><pre><span></span>smbpasswd -a root
+<div class="highlight"><pre>smbpasswd -a root
 </pre></div>
 
 
-<h4>5. 完成</h4>
+<h4 id="5">5. 完成</h4>
 <p>配置完成后，启动Samba服务即可。</p>
-<div class="highlight"><pre><span></span>/etc/init.d/samba start
+<div class="highlight"><pre>/etc/init.d/samba start
 </pre></div>
             </div>
             <!-- /.entry-content -->
@@ -323,7 +323,7 @@ opkg install samba36-server
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2018 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

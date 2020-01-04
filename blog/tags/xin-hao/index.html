@@ -86,7 +86,7 @@
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <!-- more -->
 
-<h3>1 信号的响应动作</h3>
+<h3 id="1">1 信号的响应动作</h3>
 <p>每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种：</p>
 <ul>
 <li>中止进程(Term)</li>
@@ -96,16 +96,16 @@
 <li>继续运行进程(Cont)</li>
 </ul>
 <p>用户可以通过<code>signal</code>或<code>sigaction</code>函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。</p>
-<h3>2 信号类型</h3>
+<h3 id="2">2 信号类型</h3>
 <p>Linux支持的信号类型可以参考下面给出的列表。</p>
-<h4>2.1 在POSIX.1-1990标准中的信号列表</h4>
+<h4 id="21-posix1-1990">2.1 在POSIX.1-1990标准中的信号列表</h4>
 <table>
 <thead>
 <tr>
 <th>信号</th>
 <th>值</th>
 <th>动作</th>
-<th>说明 …</th></tr></thead></table>
+<th>说明 ...</th></tr></thead></table></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/19/linux-signal">阅读全文</a>
                     </div>
@@ -182,7 +182,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2013 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2013 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

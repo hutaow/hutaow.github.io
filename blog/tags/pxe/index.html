@@ -78,7 +78,7 @@
 	<a href="http://hutaow.com/blog/tags/pxe/index.html">PXE</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h3>1 准备工作</h3>
+                <div class="summary"><h3 id="1">1 准备工作</h3>
 <ul>
 <li>Linux安装镜像（本文以CentOS为例）</li>
 <li>TFTP+DHCP服务程序（Windows环境中推荐Tftpd32，<a href="http://tftpd32.jounin.net">点击此处进入下载页面</a>）</li>
@@ -86,11 +86,11 @@
 </ul>
 <!-- more -->
 
-<h3>2 建立PXE启动目录</h3>
+<h3 id="2-pxe">2 建立PXE启动目录</h3>
 <ul>
 <li>创建<code>E:\Server\PXE</code>目录，将Linux光盘镜像<code>/images/pxeboot</code>文件夹中的<code>initrd.img</code>和<code>vmlinux</code>文件拷贝到该目录中</li>
 <li>在<code>E:\Server\PXE</code>中创建<code>pxelinux.cfg</code>目录，将光盘镜像<code>/isolinux</code>文件夹中的<code>isolinux.cfg</code>文件拷贝到该目录中，并重命名为<code>default</code></li>
-<li>将syslinux的PXE启动加载程序<code>pxelinux.0</code>拷贝到<code>E:\Server\PXE …</code></li></ul>
+<li>将syslinux的PXE启动加载程序<code>pxelinux.0</code>拷贝到<code>E:\Server\PXE ...</code></li></ul></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">阅读全文</a>
                     </div>
@@ -167,7 +167,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2013 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2013 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

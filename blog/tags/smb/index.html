@@ -82,17 +82,17 @@
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>本想把wr703n挂个硬盘开共享服务，无奈它的USB输出电流太小，挂移动硬盘过于吃力，于是又入手了一个wr720n，2A的USB输出对移动硬盘是绰绰有余了，但是刷入OpenWRT后重新配置Samba服务折腾了不少时间，这次赶紧记下来以防下次又忘了。</p>
 <p>由于OpenWRT添加用户需要额外安装<code>shadow</code>软件包，而OpenWRT本身又不太建议这样做，所以本文直接以root用户共享为例说明一下配置过程。</p>
-<h4>1. 安装Samba服务</h4>
+<h4 id="1-samba">1. 安装Samba服务</h4>
 <p>执行如下命令安装Samba服务：</p>
-<div class="highlight"><pre><span></span>opkg update
+<div class="highlight"><pre>opkg update
 opkg install samba36-server
 </pre></div>
 
 
 <p><em>注：上面的<code>samba36-server</code>是本文发布时的Samba服务软件包名称，其中数字36表示3.6.X版本，以后Samba版本更新的话可能找不到这个软件包，这个时候执行<code>opkg list | grep samba</code>搜一下就好。</em></p>
-<h4>2. 配置全局共享参数</h4>
+<h4 id="2">2. 配置全局共享参数</h4>
 <p>配置文件路径为<code>/etc/samba/smb.conf</code>，将<code>[global]</code>中的<code>invalid users = root</code>注掉，像下面的样子：</p>
-<div class="highlight"><pre><span></span><span class="k">[global …</span></pre></div>
+<div class="highlight"><pre><span class="k">[global ...</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service">阅读全文</a>
                     </div>
@@ -169,7 +169,7 @@ opkg install samba36-server
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2014 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

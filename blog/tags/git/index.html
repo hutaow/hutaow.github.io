@@ -78,17 +78,17 @@
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>不小心提交了错误的代码到库上，想要删除最近一次提交的所有信息（包括代码和日志）。</p>
 <p>删除最后一次的提交记录：</p>
-<div class="highlight"><pre><span></span>git reset --hard HEAD^
+<div class="highlight"><pre>git reset --hard HEAD^
 </pre></div>
 
 
 <p>删除最后3次的提交记录：</p>
-<div class="highlight"><pre><span></span>git reset --hard HEAD~3
+<div class="highlight"><pre>git reset --hard HEAD~3
 </pre></div>
 
 
 <p>已经提交到远端库上了？那就还需要将本地库强行同步到远端库上（注意执行这个命令前先检查一下有没有别人的提交记录，不然会覆盖他人的修改）：</p>
-<div class="highlight"><pre><span></span>git push --force
+<div class="highlight"><pre>git push --force
 </pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/06/02/undo-commits-permanently-in-git">阅读全文</a>
@@ -166,7 +166,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2014 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

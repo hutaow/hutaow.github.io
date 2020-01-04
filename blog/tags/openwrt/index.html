@@ -82,17 +82,17 @@
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>本想把wr703n挂个硬盘开共享服务，无奈它的USB输出电流太小，挂移动硬盘过于吃力，于是又入手了一个wr720n，2A的USB输出对移动硬盘是绰绰有余了，但是刷入OpenWRT后重新配置Samba服务折腾了不少时间，这次赶紧记下来以防下次又忘了。</p>
 <p>由于OpenWRT添加用户需要额外安装<code>shadow</code>软件包，而OpenWRT本身又不太建议这样做，所以本文直接以root用户共享为例说明一下配置过程。</p>
-<h4>1. 安装Samba服务</h4>
+<h4 id="1-samba">1. 安装Samba服务</h4>
 <p>执行如下命令安装Samba服务：</p>
-<div class="highlight"><pre><span></span>opkg update
+<div class="highlight"><pre>opkg update
 opkg install samba36-server
 </pre></div>
 
 
 <p><em>注：上面的<code>samba36-server</code>是本文发布时的Samba服务软件包名称，其中数字36表示3.6.X版本，以后Samba版本更新的话可能找不到这个软件包，这个时候执行<code>opkg list | grep samba</code>搜一下就好。</em></p>
-<h4>2. 配置全局共享参数</h4>
+<h4 id="2">2. 配置全局共享参数</h4>
 <p>配置文件路径为<code>/etc/samba/smb.conf</code>，将<code>[global]</code>中的<code>invalid users = root</code>注掉，像下面的样子：</p>
-<div class="highlight"><pre><span></span><span class="k">[global …</span></pre></div>
+<div class="highlight"><pre><span class="k">[global ...</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/11/02/configure-openwrt-samba-shared-service">阅读全文</a>
                     </div>
@@ -122,20 +122,20 @@ opkg install samba36-server
 	<a href="http://hutaow.com/blog/tags/lu-you-qi/index.html">路由器</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h3>1 安装OpenWRT</h3>
-<h4>1.1 下载并刷新固件</h4>
+                <div class="summary"><h3 id="1-openwrt">1 安装OpenWRT</h3>
+<h4 id="11">1.1 下载并刷新固件</h4>
 <p>如果以前没刷过OpenWRT，需要升级factory固件，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin">点击这里下载</a>。</p>
 <p>如果之前已经安装过了OpenWRT，则直接更新sysupgrade固件即可，<a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin" title="openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin">点击这里下载</a>。</p>
 <p>注意升级的时候要将原配置删除，避免配置文件互相影响，固件刷新完成后，路由器会自动重启。</p>
 <!-- more -->
 
-<h4>1.2 登陆路由器</h4>
+<h4 id="12">1.2 登陆路由器</h4>
 <p>OpenWRT主线固件的无线信号是默认关闭的，这个时候需要找跟网线将电脑和路由器连接上，然后将电脑的IP地址设置为静态的"192.168.1.100"，然后用Telnet访问"192.168.1.1"，正确的情况下，会看到如下界面：
-<img alt="First Login" src="/images/articles/201309/install_openwrt_01_first_login.png"></p>
-<h4>1.3 打开无线信号</h4>
+<img alt="First Login" src="/images/articles/201309/install_openwrt_01_first_login.png" /></p>
+<h4 id="13">1.3 打开无线信号</h4>
 <p>编辑"/etc/config/wireless"文件，将"option disabled 1"这一行注掉，或者直接删除。</p>
-<div class="highlight"><pre><span></span>config wifi-device radio0
-    option …</pre></div>
+<div class="highlight"><pre>config wifi-device radio0
+    option ...</pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/09/06/install-openwrt">阅读全文</a>
                     </div>
@@ -217,7 +217,7 @@ opkg install samba36-server
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2014 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

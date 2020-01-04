@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="Xmarks(原Foxmarks)被墙之后更新的方法"/>
             <meta property="og:url" content="http://hutaow.com/blog/2010/01/12/slove-the-problem-that-xmarks-was-block-by-gfw"/>
-            <meta property="og:description" content="最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下： 1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&#34;文件中添加如下内容： # Xmarks 64.147.188.86 www.xmarks.com 64.147.188.92 api.xmarks.com 64.147.188.89 login.xmarks.com 64.147.188.87 sync.xmarks.com 64.147.188.86 …"/>
+            <meta property="og:description" content="最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下： 1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts&#34;文件中添加如下内容： # Xmarks 64.147.188.86 www.xmarks.com 64.147.188.92 api.xmarks.com 64.147.188.89 login.xmarks.com 64.147.188.87 sync.xmarks.com 64.147.188.86 ..."/>
             <meta property="article:published_time" content="2010-01-12" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Xmarks" />
@@ -96,10 +96,10 @@
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>最近重新装上Xmarks书签同步之后，发现不能用了，还以为设置出了问题，上官网发现已经上不去了，被GFW屏蔽了。于是上网查找解决办法，总结如下：</p>
-<h4>1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts"文件中添加如下内容：</h4>
+<h4 id="1-cwindowssystem32driversetchosts">1. 手动添加域名解析的地址，即向“C:\Windows\System32\Drivers\etc\hosts"文件中添加如下内容：</h4>
 <!-- more -->
 
-<div class="highlight"><pre><span></span># Xmarks
+<div class="highlight"><pre># Xmarks
 64.147.188.86 www.xmarks.com
 64.147.188.92 api.xmarks.com
 64.147.188.89 login.xmarks.com
@@ -110,9 +110,9 @@
 </pre></div>
 
 
-<h4>2. 设置Xmarks连接及传输数据过程中加密，即在"Connection Security"中选择"Encrypt All"。</h4>
+<h4 id="2-xmarksconnection-securityencrypt-all">2. 设置Xmarks连接及传输数据过程中加密，即在"Connection Security"中选择"Encrypt All"。</h4>
 <p>以上两步即可解决Xmarks不能同步的问题。</p>
-<h4>分析原因：</h4>
+<h4 id="_1">分析原因：</h4>
 <ol>
 <li>
 <p>第一步操作的原因在于GFW是根据URL而不是IP进行过滤的，所以在请求解析诸如"xmarks.com"等类似的域名时，返回结果被GFW拦截，所以要手动添加xmarks.com一系列服务器的域名IP；</p>
@@ -276,7 +276,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2018 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

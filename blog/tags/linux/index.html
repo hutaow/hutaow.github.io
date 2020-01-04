@@ -79,11 +79,11 @@
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
-<div class="highlight"><pre><span></span>cat /proc/<span class="o">[</span>pid<span class="o">]</span>/status
+<div class="highlight"><pre>cat /proc/<span class="o">[</span>pid<span class="o">]</span>/status
 </pre></div>
 
 
-<h4>说明</h4>
+<h4 id="_1">说明</h4>
 <p><code>/proc/[pid]/status</code>中所保存的信息除了内存信息，还包括进程IDs、信号等信息，此处暂时只介绍内存相关的信息。</p>
 <table>
 <thead>
@@ -139,8 +139,8 @@
 </tr>
 </tbody>
 </table>
-<h4>举例</h4>
-<p>显示进程<code>cron</code>的内存信息，通过 …</p>
+<h4 id="_2">举例</h4>
+<p>显示进程<code>cron</code>的内存信息，通过 ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">阅读全文</a>
                     </div>
@@ -170,7 +170,7 @@
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>只允许某用户8:00-12:00登陆，用简单粗暴的方式实现。</p>
 <p>设置个定时任务（执行<code>crontab -e</code>编辑任务列表）：</p>
-<div class="highlight"><pre><span></span>0 8 * * * passwd -u username
+<div class="highlight"><pre>0 8 * * * passwd -u username
 0 12 * * * passwd -l username
 </pre></div>
 
@@ -207,18 +207,18 @@
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>libpcap是Unix/Linux平台中用于网络数据包捕获的函数库（Windows版本为winpcap）。本文通过实例来说明其使用方法。</p>
-<h3>1 安装libpcap库</h3>
+<h3 id="1-libpcap">1 安装libpcap库</h3>
 <p>从<a href="http://www.tcpdump.org">TCPDUMP</a>官网下载最新的libpcap源代码，解压到本地后，编译并安装即可，注意安装时需要使用root权限。</p>
-<div class="highlight"><pre><span></span>./configure
+<div class="highlight"><pre>./configure
 make
 make install
 </pre></div>
 
 
-<h3>2 实例代码</h3>
+<h3 id="2">2 实例代码</h3>
 <p>代码完成的功能是抓取指定网卡的数据包，并将数据交给回调函数处理（这里回调函数只是打了个桩，没有做实质性的处理）。</p>
 <p>首先定义一个基本类型的头文件（basetype.h），将数据类型封装一下：</p>
-<div class="highlight"><pre><span></span><span class="cp">#ifndef _BASETYPE_H_</span>
+<div class="highlight"><pre><span class="cp">#ifndef _BASETYPE_H_</span>
 <span class="cp">#define _BASETYPE_H_</span>
 
 <span class="cp">#define OK (0)</span>
@@ -230,7 +230,7 @@ make install
 <span class="k">typedef</span> <span class="kt">void</span> <span class="n">VOID</span><span class="p">;</span>
 
 <span class="k">typedef</span> <span class="kt">char</span> <span class="n">CHAR</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="kt">char …</span></pre></div>
+<span class="k">typedef</span> <span class="kt">char ...</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/29/libpcap-based-development">阅读全文</a>
                     </div>
@@ -261,12 +261,12 @@ make install
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>在目录中查找包含指定字符串的文件（如下所示，在path目录中查找包含string字符串的文件）</p>
-<div class="highlight"><pre><span></span>grep string -rl /path
+<div class="highlight"><pre>grep string -rl /path
 </pre></div>
 
 
 <p>在目录中查找并替换指定的字符串（如下所示，将path目录中将所有文件中的oldstring字符串替换成newstring）</p>
-<div class="highlight"><pre><span></span>sed -i <span class="s2">&quot;s/oldstring/newstring/g&quot;</span> <span class="sb">`</span>grep oldstring -rl /path<span class="sb">`</span>
+<div class="highlight"><pre>sed -i <span class="s2">&quot;s/oldstring/newstring/g&quot;</span> <span class="sb">`</span>grep oldstring -rl /path<span class="sb">`</span>
 </pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/05/26/batch-replace-string-in-files">阅读全文</a>
@@ -300,7 +300,7 @@ make install
                 <div class="summary"><p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <!-- more -->
 
-<div class="highlight"><pre><span></span>!!<span class="nv">$HOME</span>/.Xdefaults
+<div class="highlight"><pre>!!$HOME/.Xdefaults
 Rxvt.preeditType: root
 
 !!窗口大小及标题
@@ -312,7 +312,7 @@ Rxvt.inputMethod: fcitx
 
 !!透明度设置
 !Rxvt.transparent: <span class="nb">true</span>
-!Rxvt.shading: <span class="m">110</span>
+!Rxvt.shading: 110
 !Rxvt.tintColor: grey
 !Rxvt.inheritPixmap: <span class="nb">false</span>
 
@@ -320,7 +320,7 @@ Rxvt.inputMethod: fcitx
 Rxvt.perl-ext-common: default, matcher, fullscreen
 
 !!URL操作
-Rxvt.urlLauncher: /usr/bin/chromium …</pre></div>
+Rxvt.urlLauncher: /usr/bin/chromium ...</pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/01/03/my-rxvt-config">阅读全文</a>
                     </div>
@@ -354,23 +354,23 @@ Rxvt.urlLauncher: /usr/bin/chromium …</pre></div>
 	<a href="http://hutaow.com/blog/tags/cscope/index.html">CScope</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h3>1 插件列表</h3>
-<h4>1.1 CTags</h4>
+                <div class="summary"><h3 id="1">1 插件列表</h3>
+<h4 id="11-ctags">1.1 CTags</h4>
 <p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
 <p>下载地址：<a href="http://ctags.sourceforge.net">http://ctags.sourceforge.net</a></p>
 <p>使用方式：在代码的根目录执行如下命令即可生成tag文件：</p>
-<div class="highlight"><pre><span></span>ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+<div class="highlight"><pre>ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 </pre></div>
 
 
 <!-- more -->
 
 <p>这个命令有点长，可以在<code>.vimrc</code>的文件中加个键盘映射，像下面的样子，这样只需要按下<code>CTRL+F12</code>即可生成tag文件了。</p>
-<div class="highlight"><pre><span></span>map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+<div class="highlight"><pre>map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 </pre></div>
 
 
-<p>另外，如果需要指明源代码的语言，则需要加上<code>--languages …</code></p>
+<p>另外，如果需要指明源代码的语言，则需要加上<code>--languages ...</code></p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/11/22/vim-development-environment">阅读全文</a>
                     </div>
@@ -403,15 +403,15 @@ Rxvt.urlLauncher: /usr/bin/chromium …</pre></div>
                 <div class="summary"><p>Fcitx是Linux中以轻量箸称的输入法框架，短小精悍且兼容性非常好。简单记录一下Fcitx在ArchLinux中的安装配置方式。</p>
 <!-- more -->
 
-<h3>安装输入法</h3>
+<h3 id="_1">安装输入法</h3>
 <p>执行下面的命令安装FCITX：</p>
-<div class="highlight"><pre><span></span>pacman -S fcitx-im
+<div class="highlight"><pre>pacman -S fcitx-im
 </pre></div>
 
 
-<h3>配置环境变量</h3>
+<h3 id="_2">配置环境变量</h3>
 <p>将下面的环境变量设置加入到显示管理器的配置文件中（KDM、GDM、LightDM的配置文件为<code>~/.xprofile</code>，startx、Slim的配置文件为<code>~/.xinitrc</code>）</p>
-<div class="highlight"><pre><span></span>export GTK_IM_MODULE=fcitx
+<div class="highlight"><pre>export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=&quot;@im=fcitx&quot;
 </pre></div>
@@ -445,7 +445,7 @@ export XMODIFIERS=&quot;@im=fcitx&quot;
 	<a href="http://hutaow.com/blog/tags/pxe/index.html">PXE</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h3>1 准备工作</h3>
+                <div class="summary"><h3 id="1">1 准备工作</h3>
 <ul>
 <li>Linux安装镜像（本文以CentOS为例）</li>
 <li>TFTP+DHCP服务程序（Windows环境中推荐Tftpd32，<a href="http://tftpd32.jounin.net">点击此处进入下载页面</a>）</li>
@@ -453,11 +453,11 @@ export XMODIFIERS=&quot;@im=fcitx&quot;
 </ul>
 <!-- more -->
 
-<h3>2 建立PXE启动目录</h3>
+<h3 id="2-pxe">2 建立PXE启动目录</h3>
 <ul>
 <li>创建<code>E:\Server\PXE</code>目录，将Linux光盘镜像<code>/images/pxeboot</code>文件夹中的<code>initrd.img</code>和<code>vmlinux</code>文件拷贝到该目录中</li>
 <li>在<code>E:\Server\PXE</code>中创建<code>pxelinux.cfg</code>目录，将光盘镜像<code>/isolinux</code>文件夹中的<code>isolinux.cfg</code>文件拷贝到该目录中，并重命名为<code>default</code></li>
-<li>将syslinux的PXE启动加载程序<code>pxelinux.0</code>拷贝到<code>E:\Server\PXE …</code></li></ul>
+<li>将syslinux的PXE启动加载程序<code>pxelinux.0</code>拷贝到<code>E:\Server\PXE ...</code></li></ul></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/30/install-linux-with-pxe">阅读全文</a>
                     </div>
@@ -489,15 +489,15 @@ export XMODIFIERS=&quot;@im=fcitx&quot;
 	<a href="http://hutaow.com/blog/tags/ding-wei/index.html">定位</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h3>1 什么是 Core Dump</h3>
+                <div class="summary"><h3 id="1-core-dump">1 什么是 Core Dump</h3>
 <p>Core Dump 又叫核心转储。在程序运行过程中发生异常时，将其内存数据保存到文件中，这个过程叫做 Core Dump。</p>
-<h3>2 Core Dump 的作用</h3>
+<h3 id="2-core-dump">2 Core Dump 的作用</h3>
 <p>在开发过程中，难免会遇到程序运行过程中异常退出的情况，这时候想要定位哪里出了问题，仅仅依靠程序自身的信息打印（日志记录）往往是不够的，这个时候就需要 Core Dump 文件来帮忙了。</p>
 <p>一个完整的 Core Dump 文件实际上相当于恢复了异常现场，利用 Core Dump 文件，可以查看到程序异常时的所有信息，变量值、栈信息、内存数据，程序异常时的运行位置（甚至记录代码行号）等等，定位所需要的一切信息都可以从 Core Dump文件获取到，能够非常有效的提高定位效率。</p>
 <!-- more -->
 
-<h3>3 如何生成 Core Dump</h3>
-<h4>3 …</h4>
+<h3 id="3-core-dump">3 如何生成 Core Dump</h3>
+<h4 id="31-core-dump">3 ...</h4></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/25/linux-core-dump">阅读全文</a>
                     </div>
@@ -533,7 +533,7 @@ export XMODIFIERS=&quot;@im=fcitx&quot;
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <!-- more -->
 
-<h3>1 信号的响应动作</h3>
+<h3 id="1">1 信号的响应动作</h3>
 <p>每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种：</p>
 <ul>
 <li>中止进程(Term)</li>
@@ -543,16 +543,16 @@ export XMODIFIERS=&quot;@im=fcitx&quot;
 <li>继续运行进程(Cont)</li>
 </ul>
 <p>用户可以通过<code>signal</code>或<code>sigaction</code>函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。</p>
-<h3>2 信号类型</h3>
+<h3 id="2">2 信号类型</h3>
 <p>Linux支持的信号类型可以参考下面给出的列表。</p>
-<h4>2.1 在POSIX.1-1990标准中的信号列表</h4>
+<h4 id="21-posix1-1990">2.1 在POSIX.1-1990标准中的信号列表</h4>
 <table>
 <thead>
 <tr>
 <th>信号</th>
 <th>值</th>
 <th>动作</th>
-<th>说明 …</th></tr></thead></table>
+<th>说明 ...</th></tr></thead></table></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/19/linux-signal">阅读全文</a>
                     </div>
@@ -685,7 +685,7 @@ export XMODIFIERS=&quot;@im=fcitx&quot;
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2014 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

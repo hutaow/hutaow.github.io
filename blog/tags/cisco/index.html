@@ -83,14 +83,14 @@
                 <div class="summary"><p>假设要将19和27号端口的数据镜像到2号端口，按如下操作进行：</p>
 <p>1) 通过串口登陆到交换机，其中参数设置为：速率9600bps，8位数据位，1位停止位，无奇偶校验，无流量控制。</p>
 <p>2) 交换机上电自检然后登入后出现命令提示符：</p>
-<div class="highlight"><pre><span></span>Switch&gt;
+<div class="highlight"><pre>Switch&gt;
 </pre></div>
 
 
 <!-- more -->
 
 <p>3) 依次进入特权模式和全局模式，输入如下命令：</p>
-<div class="highlight"><pre><span></span>Switch&gt;enable
+<div class="highlight"><pre>Switch&gt;enable
 Password:
 Switch#configure terminal
 Enter configuration commands, one per line.  End with CNTL/Z.
@@ -99,7 +99,7 @@ Switch(config)#
 
 
 <p>4) 在新session中，将端口19和27设置为被监听端口(source)，2号端口设置为监听端口(destination)，命令如下：</p>
-<div class="highlight"><pre><span></span>Switch(config)#monitor session 1 source interface Fa0/19 …</pre></div>
+<div class="highlight"><pre>Switch(config)#monitor session 1 source interface Fa0/19 ...</pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2010/05/14/config-cisco-catalyst-3560-switch-port-mirroring">阅读全文</a>
                     </div>
@@ -176,7 +176,7 @@ Switch(config)#
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2010 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2010 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

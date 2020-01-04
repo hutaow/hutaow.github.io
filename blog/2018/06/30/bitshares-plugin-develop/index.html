@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="BitShares插件开发入门"/>
             <meta property="og:url" content="http://hutaow.com/blog/2018/06/30/bitshares-plugin-develop"/>
-            <meta property="og:description" content="BitShares（比特股）是一种支持包括虚拟货币、法币、贵金属等有价值实物的开源分布式交易系统。关于BitShares，网上的资料有很多，这里不作具体赘述，本文主要对BitShares的插件的开发进行入门介绍。 在进行BitShares的插件开发前，需要具备以下技能： 本地编译并搭建过BitShares节点/重钱包（必须） 能看懂简单的C++代码（必须） 使用过命令行版的钱包，或自已构造过json消息和节点进行简单的交互（可选） 推荐一下这个链接：BitShares (BTS) 中文技术文档，对于BitShares技术学习非常有帮助。 1. 目的 通过插件，可以直接获取到BitShares区块链上的各种数据，对BitShares进行扩展开发，实现定制化的功能。本文通过插件的方式来监控区块链上的转账操作，对插件的开发进行简单的介绍。 2. 目录结构 BitShares的插件源代码存放在libraries/plugins目录中，以我们要创建的monitor插件为例，新建的插件目录结构如下： libraries/plugins/ ├── monitor │ ├── CMakeLists.txt (+) │ ├── include │ │ └── graphene …"/>
+            <meta property="og:description" content="BitShares（比特股）是一种支持包括虚拟货币、法币、贵金属等有价值实物的开源分布式交易系统。关于BitShares，网上的资料有很多，这里不作具体赘述，本文主要对BitShares的插件的开发进行入门介绍。 在进行BitShares的插件开发前，需要具备以下技能： 本地编译并搭建过BitShares节点/重钱包（必须） 能看懂简单的C++代码（必须） 使用过命令行版的钱包，或自已构造过json消息和节点进行简单的交互（可选） 推荐一下这个链接：BitShares (BTS) 中文技术文档，对于BitShares技术学习非常有帮助。 1. 目的 通过插件，可以直接获取到BitShares区块链上的各种数据，对BitShares进行扩展开发，实现定制化的功能。本文通过插件的方式来监控区块链上的转账操作，对插件的开发进行简单的介绍。 2. 目录结构 BitShares的插件源代码存放在libraries/plugins目录中，以我们要创建的monitor插件为例，新建的插件目录结构如下： libraries/plugins/ ├── monitor │ ├── CMakeLists.txt (+) │ ├── include │ │ └── graphene ..."/>
             <meta property="article:published_time" content="2018-06-30" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="区块链" />
@@ -111,11 +111,11 @@
 <p>推荐一下这个链接：<a href="https://github.com/abitmore/bts-cn-docs">BitShares (BTS) 中文技术文档</a>，对于BitShares技术学习非常有帮助。</p>
 <!-- more -->
 
-<h4>1. 目的</h4>
+<h4 id="1">1. 目的</h4>
 <p>通过插件，可以直接获取到BitShares区块链上的各种数据，对BitShares进行扩展开发，实现定制化的功能。本文通过插件的方式来监控区块链上的转账操作，对插件的开发进行简单的介绍。</p>
-<h4>2. 目录结构</h4>
+<h4 id="2">2. 目录结构</h4>
 <p>BitShares的插件源代码存放在<code>libraries/plugins</code>目录中，以我们要创建的<code>monitor</code>插件为例，新建的插件目录结构如下：</p>
-<div class="highlight"><pre><span></span>libraries/plugins/
+<div class="highlight"><pre>libraries/plugins/
 ├── monitor
 │   ├── CMakeLists.txt (+)
 │   ├── include
@@ -128,9 +128,9 @@
 
 
 <p>其中，<code>(+)</code>表示新增的文件，<code>(*)</code>表示需要修改的文件。</p>
-<h4>3. 插件接口</h4>
+<h4 id="3">3. 插件接口</h4>
 <p>插件需要实现的接口如下示例代码。</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;graphene/app/plugin.hpp&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;graphene/app/plugin.hpp&gt;</span><span class="cp"></span>
 
 <span class="k">namespace</span> <span class="n">graphene</span> <span class="p">{</span> <span class="k">namespace</span> <span class="n">monitor_plugin</span> <span class="p">{</span>
     <span class="c1">// 插件必须继承自graphene::app::plugin类</span>
@@ -163,28 +163,28 @@
 </pre></div>
 
 
-<h4>4. 接口实现示例</h4>
-<h5>4.1 插件名称</h5>
+<h4 id="4">4. 接口实现示例</h4>
+<h5 id="41">4.1 插件名称</h5>
 <p>即启动节点时指定的插件名称，示例中插件名称是<code>monitor</code>，启动节点的时候如果希望加载该插件，则需要带上<code>--plugins "monitor"</code>的参数。</p>
-<div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">plugin_name</span><span class="p">()</span><span class="k">const</span>
+<div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">plugin_name</span><span class="p">()</span><span class="k">const</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="s">&quot;monitor&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<h5>4.2 插件描述信息</h5>
+<h5 id="42">4.2 插件描述信息</h5>
 <p>描述信息在查看帮助信息的时候会显示出来。</p>
-<div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">plugin_description</span><span class="p">()</span><span class="k">const</span>
+<div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">plugin_description</span><span class="p">()</span><span class="k">const</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="s">&quot;Monitor transaction status.&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<h5>4.3 插件配置解析接口</h5>
+<h5 id="43">4.3 插件配置解析接口</h5>
 <p>注册插件的参数选项，这里使用了boost库，包括参数名称、参数类型、参数描述。参数支持两种配置方式，一种是命令行参数，另一种是配置文件，两种方式需要分别注册，代码示例如下。</p>
-<div class="highlight"><pre><span></span><span class="cp">#define MONITOR_OPT_ACTION_TYPE &quot;monitor-action-type&quot;</span>
+<div class="highlight"><pre><span class="cp">#define MONITOR_OPT_ACTION_TYPE &quot;monitor-action-type&quot;</span>
 
 <span class="kt">void</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">plugin_set_program_options</span><span class="p">(</span>
    <span class="n">boost</span><span class="o">::</span><span class="n">program_options</span><span class="o">::</span><span class="n">options_description</span><span class="o">&amp;</span> <span class="n">command_line_options</span><span class="p">,</span>
@@ -198,9 +198,9 @@
 </pre></div>
 
 
-<h5>4.4 插件初始化</h5>
+<h5 id="44">4.4 插件初始化</h5>
 <p>插件初始化接口中，一般用来读取参数配置，或者需要全局初始化不释放的资源。</p>
-<div class="highlight"><pre><span></span><span class="cp">#define MONITOR_OPT_ACTION_TYPE &quot;monitor-action-type&quot;</span>
+<div class="highlight"><pre><span class="cp">#define MONITOR_OPT_ACTION_TYPE &quot;monitor-action-type&quot;</span>
 <span class="cp">#define MONITOR_ACTION_TYPE_ALL (0xFFFFFFFF)</span>
 
 <span class="kt">void</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">plugin_initialize</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">program_options</span><span class="o">::</span><span class="n">variables_map</span><span class="o">&amp;</span> <span class="n">options</span><span class="p">)</span> <span class="p">{</span>
@@ -222,9 +222,9 @@
 </pre></div>
 
 
-<h5>4.5 启动插件</h5>
+<h5 id="45">4.5 启动插件</h5>
 <p>本例中，启动插件时将回调函数<code>monitor_singed_block</code>注册到了生成区块的事件中<code>applied_block</code>，为后续监控打包区块数据做准备。</p>
-<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">plugin_startup</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="kt">void</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">plugin_startup</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// 注册事件回调函数</span>
     <span class="n">monitor_signed_block_handler</span> <span class="o">=</span> <span class="n">database</span><span class="p">().</span><span class="n">applied_block</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span>
         <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span> <span class="k">const</span> <span class="n">graphene</span><span class="o">::</span><span class="n">chain</span><span class="o">::</span><span class="n">signed_block</span><span class="o">&amp;</span> <span class="n">blk</span> <span class="p">)</span> <span class="p">{</span>
@@ -237,9 +237,9 @@
 </pre></div>
 
 
-<h5>4.6 停止插件</h5>
+<h5 id="46">4.6 停止插件</h5>
 <p>和启动相对应，将前面注册的事件取消掉，停止监控。</p>
-<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">plugin_shutdown</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="kt">void</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">plugin_shutdown</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// 卸载事件回调函数</span>
     <span class="n">database</span><span class="p">().</span><span class="n">applied_block</span><span class="p">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">monitor_signed_block_handler</span><span class="p">);</span>
 
@@ -248,9 +248,9 @@
 </pre></div>
 
 
-<h5>4.7 业务处理函数</h5>
+<h5 id="47">4.7 业务处理函数</h5>
 <p>这里业务处理函数是作为回调函数注册到生成区块的事件上的，所实现的功能是遍历新生成区块上的所有操作，并将转帐类型的操作打印出来，具体代码如下。</p>
-<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">monitor_signed_block</span><span class="p">(</span><span class="k">const</span> <span class="n">graphene</span><span class="o">::</span><span class="n">chain</span><span class="o">::</span><span class="n">signed_block</span><span class="o">&amp;</span> <span class="n">blk</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="kt">void</span> <span class="n">monitor_plugin</span><span class="o">::</span><span class="n">monitor_signed_block</span><span class="p">(</span><span class="k">const</span> <span class="n">graphene</span><span class="o">::</span><span class="n">chain</span><span class="o">::</span><span class="n">signed_block</span><span class="o">&amp;</span> <span class="n">blk</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">uint32_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">blk</span><span class="p">.</span><span class="n">transactions</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">processed_transaction</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">blk</span><span class="p">.</span><span class="n">transactions</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 
@@ -275,9 +275,9 @@
 </pre></div>
 
 
-<h4>5. 插件注册</h4>
+<h4 id="5">5. 插件注册</h4>
 <p>插件写完了，还需要注册到系统中才行，在<code>main</code>函数中可以找到类似如下代码：</p>
-<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
     <span class="p">...</span>
 
     <span class="k">auto</span> <span class="n">witness_plug</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">register_plugin</span><span class="o">&lt;</span><span class="n">witness_plugin</span><span class="o">::</span><span class="n">witness_plugin</span><span class="o">&gt;</span><span class="p">();</span>
@@ -296,7 +296,7 @@
 
 
 <p>这里我们将<code>monitor_plugin</code>插件加上去，增加下面代码完成插件的注册：</p>
-<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
     <span class="p">...</span>
 
     <span class="k">auto</span> <span class="n">monitor_plug</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">register_plugin</span><span class="o">&lt;</span><span class="n">monitor_plugin</span><span class="o">::</span><span class="n">monitor_plugin</span><span class="o">&gt;</span><span class="p">();</span>
@@ -306,9 +306,9 @@
 </pre></div>
 
 
-<h4>6. 编译</h4>
+<h4 id="6">6. 编译</h4>
 <p>BitShares源代码使用cmake编译，需要在插件目录下新增一个<code>CMakeLists.txt</code>文件，内容如下。</p>
-<div class="highlight"><pre><span></span>file(GLOB HEADERS &quot;include/graphene/monitor/*.hpp&quot;)
+<div class="highlight"><pre>file(GLOB HEADERS &quot;include/graphene/monitor/*.hpp&quot;)
 
 add_library( graphene_monitor
              monitor.cpp
@@ -329,26 +329,26 @@ install( TARGETS
 
 
 <p>另外，还需要将上级目录中的<code>CMakeLists.txt</code>中追加新插件目录：</p>
-<div class="highlight"><pre><span></span>...
+<div class="highlight"><pre>...
 add_subdirectory( monitor )
 </pre></div>
 
 
 <p>完成插件后，在BitShares目录中依次执行<code>cmake</code>、<code>make</code>，重新编译<code>witness_node</code>程序。</p>
-<div class="highlight"><pre><span></span>cmake
+<div class="highlight"><pre>cmake
 make
 </pre></div>
 
 
-<h4>7. 运行</h4>
+<h4 id="7">7. 运行</h4>
 <p>启动<code>witness_node</code>时通过命令行参数加载<code>monitor</code>插件，执行如下命令：</p>
-<div class="highlight"><pre><span></span>./witness_node --plugins <span class="s2">&quot;monitor&quot;</span>
+<div class="highlight"><pre>./witness_node --plugins <span class="s2">&quot;monitor&quot;</span>
 </pre></div>
 
 
 <p>成功运行后，当区块链上发生转帐操作时，可以看到命令行中会打印追踪到的交易信息。</p>
-<p><img alt="BitShares Plugin Monitor Running" src="/images/articles/201807/bitshares_plugin_monitor_running.png"></p>
-<h4>8. 完整的源代码</h4>
+<p><img alt="BitShares Plugin Monitor Running" src="/images/articles/201807/bitshares_plugin_monitor_running.png" /></p>
+<h4 id="8">8. 完整的源代码</h4>
 <p>本地下载：<a href="/downloads/code/bitshares_plugin_monitor.hpp">monitor.hpp</a>、<a href="/downloads/code/bitshares_plugin_monitor.cpp">monitor.cpp</a></p>
 <p>Github：<a href="https://github.com/hutaow/bitshares-core/tree/master/libraries/plugins/monitor">点击这里</a>，可以直接查看完整的示例代码。</p>
             </div>
@@ -506,7 +506,7 @@ make
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2018 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

@@ -99,12 +99,12 @@
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>递归方式将当前目录下所有的子目录设置为755权限（不包括文件）</p>
-<div class="highlight"><pre><span></span>find ./ -type d -exec chmod 755 {} \;
+<div class="highlight"><pre>find ./ -type d -exec chmod 755 {} \;
 </pre></div>
 
 
 <p>递归方式将当前目录下的所有文件设置为644权限（包括子目录下的文件，但不对目录本身设置权限）</p>
-<div class="highlight"><pre><span></span>find ./ -type f -exec chmod 644 {} \;
+<div class="highlight"><pre>find ./ -type f -exec chmod 644 {} \;
 </pre></div>
             </div>
             <!-- /.entry-content -->
@@ -261,7 +261,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2018 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

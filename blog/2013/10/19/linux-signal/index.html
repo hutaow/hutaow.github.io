@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="Linux信号处理机制"/>
             <meta property="og:url" content="http://hutaow.com/blog/2013/10/19/linux-signal"/>
-            <meta property="og:description" content="在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。 需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。 1 信号的响应动作 每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种： 中止进程(Term) 忽略信号(Ign) 中止进程并保存内存信息(Core) 停止进程(Stop) 继续运行进程(Cont) 用户可以通过signal或sigaction函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。 2 信号类型 Linux支持的信号类型可以参考下面给出的列表。 2.1 在POSIX.1-1990标准中的信号列表 信号 值 动作 说明 …"/>
+            <meta property="og:description" content="在Linux中，信号是进程间通讯的一种方式，它采用的是异步机制。当信号发送到某个进程中时，操作系统会中断该进程的正常流程，并进入相应的信号处理函数执行操作，完成后再回到中断的地方继续执行。 需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。 1 信号的响应动作 每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种： 中止进程(Term) 忽略信号(Ign) 中止进程并保存内存信息(Core) 停止进程(Stop) 继续运行进程(Cont) 用户可以通过signal或sigaction函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。 2 信号类型 Linux支持的信号类型可以参考下面给出的列表。 2.1 在POSIX.1-1990标准中的信号列表 信号 值 动作 说明 ..."/>
             <meta property="article:published_time" content="2013-10-19" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
@@ -105,7 +105,7 @@
 <p>需要说明的是，信号只是用于通知进程发生了某个事件，除了信号本身的信息之外，并不具备传递用户数据的功能。</p>
 <!-- more -->
 
-<h3>1 信号的响应动作</h3>
+<h3 id="1">1 信号的响应动作</h3>
 <p>每个信号都有自己的响应动作，当接收到信号时，进程会根据信号的响应动作执行相应的操作，信号的响应动作有以下几种：</p>
 <ul>
 <li>中止进程(Term)</li>
@@ -115,9 +115,9 @@
 <li>继续运行进程(Cont)</li>
 </ul>
 <p>用户可以通过<code>signal</code>或<code>sigaction</code>函数修改信号的响应动作（也就是常说的“注册信号”，在文章的后面会举例说明）。另外，在多线程中，各线程的信号响应动作都是相同的，不能对某个线程设置独立的响应动作。</p>
-<h3>2 信号类型</h3>
+<h3 id="2">2 信号类型</h3>
 <p>Linux支持的信号类型可以参考下面给出的列表。</p>
-<h4>2.1 在POSIX.1-1990标准中的信号列表</h4>
+<h4 id="21-posix1-1990">2.1 在POSIX.1-1990标准中的信号列表</h4>
 <table>
 <thead>
 <tr>
@@ -245,7 +245,7 @@
 </tbody>
 </table>
 <p><strong>注</strong>：其中<code>SIGKILL</code>和<code>SIGSTOP</code>信号不能被捕获、阻塞或忽略。</p>
-<h4>2.2 在SUSv2和POSIX.1-2001标准中的信号列表</h4>
+<h4 id="22-susv2posix1-2001">2.2 在SUSv2和POSIX.1-2001标准中的信号列表</h4>
 <table>
 <thead>
 <tr>
@@ -313,7 +313,7 @@
 </tbody>
 </table>
 <p><strong>注</strong>：在Linux 2.2版本之前，<code>SIGSYS</code>、<code>SIGXCPU</code>、<code>SIGXFSZ</code>以及<code>SIGBUS</code>的默认响应动作为Term，Linux 2.4版本之后这三个信号的默认响应动作改为Core。</p>
-<h4>2.3 其它信号</h4>
+<h4 id="23">2.3 其它信号</h4>
 <table>
 <thead>
 <tr>
@@ -388,32 +388,32 @@
 </table>
 <p><strong>注意</strong>：列表中有的信号有三个值，这是因为部分信号的值和CPU架构有关，这些信号的值在不同架构的CPU中是不同的，三个值的排列顺序为：1，Alpha/Sparc；2，x86/ARM/Others；3，MIPS。</p>
 <p>例如<code>SIGSTOP</code>这个信号，它有三种可能的值，分别是17、19、23，其中第一个值（17）是用在Alpha和Sparc架构中，第二个值（19）用在x86、ARM等其它架构中，第三个值（23）则是用在MIPS架构中的。</p>
-<h3>3 信号机制</h3>
+<h3 id="3">3 信号机制</h3>
 <p>文章的前面提到过，信号是异步的，这就涉及信号何时接收、何时处理的问题。</p>
 <p>我们知道，函数运行在用户态，当遇到系统调用、中断或是异常的情况时，程序会进入内核态。信号涉及到了这两种状态之间的转换，过程可以先看一下下面的示意图：</p>
-<p><img alt="信号处理机制示意图" src="/images/articles/201310/linux_signal_flow.png"></p>
+<p><img alt="信号处理机制示意图" src="/images/articles/201310/linux_signal_flow.png" /></p>
 <p>接下来围绕示意图，将信号分成接收、检测和处理三个部分，逐一讲解每一步的处理流程。</p>
-<h4>3.1 信号的接收</h4>
+<h4 id="31">3.1 信号的接收</h4>
 <p>接收信号的任务是由内核代理的，当内核接收到信号后，会将其放到对应进程的信号队列中，同时向进程发送一个中断，使其陷入内核态。</p>
 <p>注意，此时信号还只是在队列中，对进程来说暂时是不知道有信号到来的。</p>
-<h4>3.2 信号的检测</h4>
+<h4 id="32">3.2 信号的检测</h4>
 <p>进程陷入内核态后，有两种场景会对信号进行检测：</p>
 <ul>
 <li>进程从内核态返回到用户态前进行信号检测</li>
 <li>进程在内核态中，从睡眠状态被唤醒的时候进行信号检测</li>
 </ul>
 <p>当发现有新信号时，便会进入下一步，信号的处理。</p>
-<h4>3.3 信号的处理</h4>
+<h4 id="33">3.3 信号的处理</h4>
 <p>信号处理函数是运行在用户态的，调用处理函数前，内核会将当前内核栈的内容备份拷贝到用户栈上，并且修改指令寄存器（eip）将其指向信号处理函数。</p>
 <p>接下来进程返回到用户态中，执行相应的信号处理函数。</p>
 <p>信号处理函数执行完成后，还需要返回内核态，检查是否还有其它信号未处理。如果所有信号都处理完成，就会将内核栈恢复（从用户栈的备份拷贝回来），同时恢复指令寄存器（eip）将其指向中断前的运行位置，最后回到用户态继续执行进程。</p>
 <p>至此，一个完整的信号处理流程便结束了，如果同时有多个信号到达，上面的处理流程会在第2步和第3步骤间重复进行。</p>
-<h3>4 信号的使用</h3>
-<h4>4.1 发送信号</h4>
+<h3 id="4">4 信号的使用</h3>
+<h4 id="41">4.1 发送信号</h4>
 <p>用于发送信号的函数有<code>raise</code>、<code>kill</code>、<code>killpg</code>、<code>pthread_kill</code>、<code>tgkill</code>、<code>sigqueue</code>，这几个函数的含义和用法都大同小异，这里主要介绍一下常用的<code>raise</code>和<code>kill</code>函数。</p>
 <p><strong>raise函数</strong>：向进程本身发送信号</p>
 <p>函数声明如下：</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">raise</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
 </pre></div>
@@ -422,7 +422,7 @@
 <p>函数功能是向当前程序(自身)发送信号，其中参数<code>sig</code>为信号值。</p>
 <p><strong>kill函数</strong>：向指定进程发送信号</p>
 <p>函数声明如下：</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">kill</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
@@ -438,11 +438,11 @@
 <li>pid &lt; -1 ：向进程组号为-pid的所有进程发送信号</li>
 </ul>
 <p>另外，当<code>sig</code>值为零时，实际不发送任何信号，但函数返回值依然有效，可以用于检查进程是否存在。</p>
-<h4>4.2 等待信号被捕获</h4>
+<h4 id="42">4.2 等待信号被捕获</h4>
 <p>等待信号的过程，其实就是将当前进程(线程)暂停，直到有信号发到当前进程(线程)上并被捕获，函数有<code>pause</code>和<code>sigsuspend</code>。</p>
 <p><strong>pause函数</strong>：将进程(或线程)转入睡眠状态，直到接收到信号</p>
 <p>函数声明如下：</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">pause</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 </pre></div>
@@ -451,17 +451,17 @@
 <p>该函数调用后，调用者(进程或线程)会进入睡眠(Sleep)状态，直到捕获到(任意)信号为止。该函数的返回值始终为-1，并且调用结束后，错误代码(errno)会被置为EINTR。</p>
 <p><strong>sigsuspend函数</strong>：将进程(或线程)转入睡眠状态，直到接收到特定信号</p>
 <p>函数声明如下：</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">sigsuspend</span><span class="p">(</span><span class="k">const</span> <span class="kt">sigset_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span>
 </pre></div>
 
 
 <p>该函数调用后，会将进程的信号掩码临时修改(参数<code>mask</code>)，然后暂停进程，直到收到符合条件的信号为止，函数返回前会将调用前的信号掩码恢复。该函数的返回值始终为-1，并且调用结束后，错误代码(errno)会被置为EINTR。</p>
-<h4>4.3 修改信号的响应动作</h4>
+<h4 id="43">4.3 修改信号的响应动作</h4>
 <p>用户可以自己重新定义某个信号的处理方式，即前面提到的修改信号的默认响应动作，也可以理解为对信号的注册，可以通过<code>signal</code>或<code>sigaction</code>函数进行，这里以<code>signal</code>函数举例说明。</p>
 <p>首先看一下函数声明：</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
 <span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="kt">sighandler_t</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>
 
@@ -471,7 +471,7 @@
 
 <p>第一个参数<code>signum</code>是信号值，可以从前面的信号列表中查到，第二个参数<code>handler</code>为处理函数，通过回调方式在信号触发时调用。</p>
 <p>下面为示例代码：</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
 
@@ -513,7 +513,7 @@
 
 <p>源文件下载：<a href="/downloads/code/linux_signal.c">链接</a></p>
 <p>例子中，将<code>SIGINT</code>信号（<code>Ctrl+C</code>触发）的动作接管(打印提示信息)，程序运行后，按下<code>Ctrl+C</code>，命令行输出如下：</p>
-<div class="highlight"><pre><span></span>./linux_signal_example
+<div class="highlight"><pre>./linux_signal_example
 Register SIGINT(2) Signal Action. 
 Waitting for Signal ... 
 ^CGet signal SIGINT. 
@@ -677,7 +677,7 @@ Process Continue.
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2018 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

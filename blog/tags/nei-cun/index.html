@@ -79,11 +79,11 @@
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>Linux中查看某个进程占用内存的情况，执行如下命令即可，将其中的[pid]替换成相应进程的PID号：</p>
-<div class="highlight"><pre><span></span>cat /proc/<span class="o">[</span>pid<span class="o">]</span>/status
+<div class="highlight"><pre>cat /proc/<span class="o">[</span>pid<span class="o">]</span>/status
 </pre></div>
 
 
-<h4>说明</h4>
+<h4 id="_1">说明</h4>
 <p><code>/proc/[pid]/status</code>中所保存的信息除了内存信息，还包括进程IDs、信号等信息，此处暂时只介绍内存相关的信息。</p>
 <table>
 <thead>
@@ -139,8 +139,8 @@
 </tr>
 </tbody>
 </table>
-<h4>举例</h4>
-<p>显示进程<code>cron</code>的内存信息，通过 …</p>
+<h4 id="_2">举例</h4>
+<p>显示进程<code>cron</code>的内存信息，通过 ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/08/28/display-process-memory-in-linux">阅读全文</a>
                     </div>
@@ -217,7 +217,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2014 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

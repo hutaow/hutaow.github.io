@@ -80,20 +80,20 @@
 	<a href="http://hutaow.com/blog/tags/duan-kou-ying-she/index.html">端口映射</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h4>1 端口映射</h4>
+                <div class="summary"><h4 id="1">1 端口映射</h4>
 <p>举个例子来说明一下端口映射的作用。</p>
 <p>有A、B、C三台计算机，A、B互通，B、C互通，但是A、C不通，这个时候在C上开了一个Web服务，如何让A访问C的Web服务？</p>
 <p>最简单有效的办法就是在B上开一个端口映射服务，然后让A访问B的某个端口，B将这个端口上的所有流量全部转发到C的Web服务端口上，同时将C上Web服务返回的流量也全部转发给A。这样对A来说，以B为跳板，实现了间接访问C上Web服务的目的。</p>
-<h4>2 实现流程</h4>
+<h4 id="2">2 实现流程</h4>
 <p>端口映射的原理并不复杂，本文以TCP为例介绍一下实现过程，简单画了个时序图（如下），这里就不再用文字赘述了。</p>
-<p><img alt="TCP Mapping Runtime" src="/images/articles/201409/tcp_mapping_sequence.png"></p>
+<p><img alt="TCP Mapping Runtime" src="/images/articles/201409/tcp_mapping_sequence.png" /></p>
 <p><strong>需要注意的是，由于端口映射只是单纯的流量转发，对应用层数据不进行处理，所以对于多通道协议是无法支持的（如FTP协议）。</strong></p>
-<h4>3 代码示例</h4>
+<h4 id="3">3 代码示例</h4>
 <p>按照上面的流程，Python实现如下（建议从后向前看）：</p>
-<div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<div class="highlight"><pre><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="c1"># tcp mapping created by hutaow(hutaow.com) at 2014-08-31</span>
 
-<span class="kn">import …</span></pre></div>
+<span class="kn">import ...</span></pre></div>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/09/08/write-tcp-mapping-program-with-python">阅读全文</a>
                     </div>
@@ -170,7 +170,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2014 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

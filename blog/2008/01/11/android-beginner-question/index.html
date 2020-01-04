@@ -93,13 +93,13 @@
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>前几天一直在看Android的文档，有些收获但同时还是有问题。</p>
-<h4>1 问题：关于Android的Layout</h4>
+<h4 id="1-androidlayout">1 问题：关于Android的Layout</h4>
 <p>似乎和java有很大的不同，Android引入了XML，从google所给的例子来看，控件的布局方式都是写在XML文件里，而主程序中需要的只是add并且引用XML文件中的布局方式。</p>
 <!-- more -->
 
 <p>这种方法对我来说并不是很习惯，毕竟java用了那么长时间，在代码中直接setLayout感觉更舒服些。当然既然google采用了这种布局和代码分离的方式那就肯定有它的优点，看来还需要一点的时间来习惯这种布局方式。</p>
-<h4>2 总结：我自己对Android几个模块的理解</h4>
-<div class="highlight"><pre><span></span>Activity：类似java中的Applet或Frame，以我的理解，这个类提供了程序的最基本框架。
+<h4 id="2-android">2 总结：我自己对Android几个模块的理解</h4>
+<div class="highlight"><pre>Activity：类似java中的Applet或Frame，以我的理解，这个类提供了程序的最基本框架。
 Intent Receiver：翻译过来是“目的接收器”，和java中的listener类似，用于处理事件。
 Service：后台运行的服务，长贮内存中，个人认为这一块最可能出现安全问题。
 Content Provider：主要用在数据存贮和交换，根据官方文档所说，不仅仅是存储数据，还可以是在不同程序、不同设备之间的数据交换。
@@ -259,7 +259,7 @@ Content Provider：主要用在数据存贮和交换，根据官方文档所说�
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2018 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

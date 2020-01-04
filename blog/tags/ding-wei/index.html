@@ -82,15 +82,15 @@
 	<a href="http://hutaow.com/blog/tags/ding-wei/index.html">定位</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><h3>1 什么是 Core Dump</h3>
+                <div class="summary"><h3 id="1-core-dump">1 什么是 Core Dump</h3>
 <p>Core Dump 又叫核心转储。在程序运行过程中发生异常时，将其内存数据保存到文件中，这个过程叫做 Core Dump。</p>
-<h3>2 Core Dump 的作用</h3>
+<h3 id="2-core-dump">2 Core Dump 的作用</h3>
 <p>在开发过程中，难免会遇到程序运行过程中异常退出的情况，这时候想要定位哪里出了问题，仅仅依靠程序自身的信息打印（日志记录）往往是不够的，这个时候就需要 Core Dump 文件来帮忙了。</p>
 <p>一个完整的 Core Dump 文件实际上相当于恢复了异常现场，利用 Core Dump 文件，可以查看到程序异常时的所有信息，变量值、栈信息、内存数据，程序异常时的运行位置（甚至记录代码行号）等等，定位所需要的一切信息都可以从 Core Dump文件获取到，能够非常有效的提高定位效率。</p>
 <!-- more -->
 
-<h3>3 如何生成 Core Dump</h3>
-<h4>3 …</h4>
+<h3 id="3-core-dump">3 如何生成 Core Dump</h3>
+<h4 id="31-core-dump">3 ...</h4></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/25/linux-core-dump">阅读全文</a>
                     </div>
@@ -128,7 +128,7 @@
 <!-- more -->
 
 <p>要了解调用栈，首先需要了解函数的调用过程，下面用一段代码作为例子：</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -151,7 +151,7 @@
 
 
 <p>使用gcc编译，然后gdb反汇编main函数，看看它是如何调用add函数的：</p>
-<div class="highlight"><pre><span></span>(gdb …</pre></div>
+<div class="highlight"><pre>(gdb ...</pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/15/dump-stack">阅读全文</a>
                     </div>
@@ -187,7 +187,7 @@
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>程序发生异常时，将函数的调用栈打印出来，可以大大提高定位效率。</p>
 <p>Linux中提供了三个函数用来获取调用栈：</p>
-<div class="highlight"><pre><span></span><span class="cm">/* 获取函数调用栈 */</span>
+<div class="highlight"><pre><span class="cm">/* 获取函数调用栈 */</span>
 <span class="kt">int</span> <span class="nf">backtrace</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
 
 <span class="cm">/* 将调用栈中的函数地址转化为函数名称 并返回一个字符串数组 */</span>
@@ -201,7 +201,7 @@
 <!-- more -->
 
 <p>示例代码：</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;execinfo.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;execinfo.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
 
@@ -210,7 +210,7 @@
 
 <span class="cm">/* 打印调用栈函数 */</span>
 <span class="kt">void</span> <span class="nf">dump_trace</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">stack_trace …</span></pre></div>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">stack_trace ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2013/10/11/dump-stack-with-backtrace">阅读全文</a>
                     </div>
@@ -297,7 +297,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2013 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2013 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

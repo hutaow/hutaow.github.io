@@ -83,42 +83,42 @@
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>技术细节请参考上一篇文章<a href="/blog/2014/08/01/cracking-svautomusic/">《一种伪造服务器骗过某导航的音乐服务，从而延长有效期的方法》</a>。根据原理用python+qt写了个现成的破解程序，界面简陋了些，下载链接及使用说明如下。</p>
-<h4>下载链接</h4>
+<h4 id="_1">下载链接</h4>
 <ul>
 <li><a href="http://pan.baidu.com/s/1kTwvqKJ">百度网盘</a>（提取码：bi9f）</li>
 </ul>
 <!-- more -->
 
-<h4>使用说明</h4>
+<h4 id="_2">使用说明</h4>
 <ol>
 <li>
 <p>TF卡或U盘先在车机上初始化，然后插入电脑，打开音乐e栈PC端。</p>
 </li>
 <li>
 <p>用管理员身份运行程序。</p>
-<p><img alt="管理员身份运行程序" src="/images/articles/201408/svautomusic_cracker_runas_administrator.png"></p>
+<p><img alt="管理员身份运行程序" src="/images/articles/201408/svautomusic_cracker_runas_administrator.png" /></p>
 </li>
 <li>
 <p>点击“Start Crack!”按钮。</p>
-<p><img alt="Start Crack" src="/images/articles/201408/svautomusic_cracker_start_crack.png"></p>
+<p><img alt="Start Crack" src="/images/articles/201408/svautomusic_cracker_start_crack.png" /></p>
 </li>
 <li>
 <p>在音乐e栈客户端上，打开充值界面，卡号密码随便填。</p>
-<p><img alt="充值界面" src="/images/articles/201408/svautomusic_cracker_charge.png"></p>
+<p><img alt="充值界面" src="/images/articles/201408/svautomusic_cracker_charge.png" /></p>
 </li>
 <li>
 <p>点击确定，不出意外的话，即会提示充值成功，并且服务有效期也延长了99天。</p>
-<p><img alt="充值成功" src="/images/articles/201408/svautomusic_cracker_success.png"></p>
+<p><img alt="充值成功" src="/images/articles/201408/svautomusic_cracker_success.png" /></p>
 </li>
 <li>
 <p>可以随意下载电台或专辑了，并且可以同步到车上随时听了。</p>
-<p><img alt="破解结果" src="/images/articles/201408/svautomusic_cracker_result.png"></p>
+<p><img alt="破解结果" src="/images/articles/201408/svautomusic_cracker_result.png" /></p>
 </li>
 <li>
 <p>因为音乐e栈每次启动都会联网认证一次，所以这个破解程序每次打开客户端都需要执行一下上面的动作。</p>
 </li>
 </ol>
-<h4>更新记录</h4>
+<h4 id="_3">更新记录</h4>
 <ul>
 <li>2014-08-01: v0.1 初始化。</li>
 <li>2014-08-24: v0.2 有效期从99天延长到999天，另外补充设置响应消息长度值，防止客户端由于处理字符串不当导致出错。</li>
@@ -160,23 +160,23 @@
                 <div class="summary"><p>某导航提供的音乐服务（音乐e栈），和虾米合作的，需要付费使用，前段时间本来想上网搜个破解版，结果没搜到，索性自已分析了一下它的交互方式，找出了个通过充值认证来延长服务有效期的方法。方法本身不复杂，主要是因为它的认证机制略显简陋，本文主要从技术角度来说明过程，仅供参考学习。</p>
 <!-- more -->
 
-<h4>1 原始界面</h4>
-<p><img alt="音乐e栈服务过期" src="/images/articles/201408/cracking_svautomusic_service_expired.png"></p>
+<h4 id="1">1 原始界面</h4>
+<p><img alt="音乐e栈服务过期" src="/images/articles/201408/cracking_svautomusic_service_expired.png" /></p>
 <p>如上图，插入经过车机初始化过的TF卡后，启动音乐e栈客户端，显示当前服务有效期为0天，并提示需要充值续费。如果点击下载专辑的按钮，提示不允许下载。</p>
-<h4>2 寻找入手点</h4>
+<h4 id="2">2 寻找入手点</h4>
 <p>既然提示让续费，那就看看续费过程是什么样子。</p>
 <p>先随便输个卡号密码试试：</p>
-<p><img alt="充值卡无效" src="/images/articles/201408/cracking_svautomusic_paid_invalid.png"></p>
+<p><img alt="充值卡无效" src="/images/articles/201408/cracking_svautomusic_paid_invalid.png" /></p>
 <p>竟然用CS架构来做充值认证，实在是土的掉渣，就从这里入手了。</p>
-<h4>3 交互过程</h4>
+<h4 id="3">3 交互过程</h4>
 <p>把刚才进行充值时的报文用Wireshark抓下来，看看它是如何交互的。</p>
 <p><strong>1) 报文</strong></p>
-<p><img alt="充值失败的报文" src="/images/articles/201408/cracking_svautomusic_pcap_paid_failed.png"></p>
+<p><img alt="充值失败的报文" src="/images/articles/201408/cracking_svautomusic_pcap_paid_failed.png" /></p>
 <p>可以看到，充值认证的流量走的是TCP协议8080端口，对端连接的服务器地址是<code>42.156.140.44</code>，这个暂时放一边，先来看看请求和响应报文分别填了什么内容。</p>
 <p><strong>2) 请求消息</strong></p>
-<p><img alt="请求消息内容" src="/images/articles/201408/cracking_svautomusic_pcap_paid_request.png"></p>
+<p><img alt="请求消息内容" src="/images/articles/201408/cracking_svautomusic_pcap_paid_request.png" /></p>
 <p>上图中可以看到，充值请求消息虽然走的是8080端口，但实际内容并非HTTP协议。</p>
-<p>TCP负载的开头44个字节是一段二进制数据 …</p>
+<p>TCP负载的开头44个字节是一段二进制数据 ...</p></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2014/08/01/cracking-svautomusic">阅读全文</a>
                     </div>
@@ -258,7 +258,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2014 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

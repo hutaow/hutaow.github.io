@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="Fedora 9 无法启动KDE的解决办法"/>
             <meta property="og:url" content="http://hutaow.com/blog/2008/07/29/slove-the-problem-that-kde-can-not-start-in-fedora-9"/>
-            <meta property="og:description" content="今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout-&gt;KDE，结果却报出个错误，说&#34;Could not start kstartupconfig4. Check your installation&#34;，无语，难道是我少装了什么东西？ 按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用&#34;chown&#34;改变&#34;~/.kde&#34;目录的所有者，哦？检查……&#34;~/.kde&#34;这个目录竟然是root的，原来是权限的问题。 输入&#34;chown -R owner ~/.kde&#34;，为了保险，再加个&#34;chgrp -R group ~/.kde&#34;，这里面的&#34;owner&#34;和&#34;group&#34;分别是当前的用户名和用户所在的组名。 之后重新进入KDE，一切正常 …"/>
+            <meta property="og:description" content="今天突然想再尝试一下KDE的环境，而且传说中的KDE4出了那么久，还一直没有用过，于是兴致勃勃的安装上了KDE的桌面环境。Logout-&gt;KDE，结果却报出个错误，说&#34;Could not start kstartupconfig4. Check your installation&#34;，无语，难道是我少装了什么东西？ 按照它说的检查，结果没问题啊，kstartupconfig4已经安装好了，于是又上网查，google出好多解决办法，不过基本上都是用&#34;chown&#34;改变&#34;~/.kde&#34;目录的所有者，哦？检查……&#34;~/.kde&#34;这个目录竟然是root的，原来是权限的问题。 输入&#34;chown -R owner ~/.kde&#34;，为了保险，再加个&#34;chgrp -R group ~/.kde&#34;，这里面的&#34;owner&#34;和&#34;group&#34;分别是当前的用户名和用户所在的组名。 之后重新进入KDE，一切正常 ..."/>
             <meta property="article:published_time" content="2008-07-29" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
@@ -257,7 +257,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2018 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

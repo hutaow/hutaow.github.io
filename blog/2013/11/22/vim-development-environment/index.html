@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="配置 VIM 开发环境"/>
             <meta property="og:url" content="http://hutaow.com/blog/2013/11/22/vim-development-environment"/>
-            <meta property="og:description" content="1 插件列表 1.1 CTags CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。 下载地址：http://ctags.sourceforge.net 使用方式：在代码的根目录执行如下命令即可生成tag文件： ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . 这个命令有点长，可以在.vimrc的文件中加个键盘映射，像下面的样子，这样只需要按下CTRL+F12即可生成tag文件了。 map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . 另外，如果需要指明源代码的语言，则需要加上--languages …"/>
+            <meta property="og:description" content="1 插件列表 1.1 CTags CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。 下载地址：http://ctags.sourceforge.net 使用方式：在代码的根目录执行如下命令即可生成tag文件： ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . 这个命令有点长，可以在.vimrc的文件中加个键盘映射，像下面的样子，这样只需要按下CTRL+F12即可生成tag文件了。 map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . 另外，如果需要指明源代码的语言，则需要加上--languages ..."/>
             <meta property="article:published_time" content="2013-11-22" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
@@ -104,83 +104,83 @@
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <h3>1 插件列表</h3>
-<h4>1.1 CTags</h4>
+                <h3 id="1">1 插件列表</h3>
+<h4 id="11-ctags">1.1 CTags</h4>
 <p>CTags用来给源代码生成索引文件，以便于文本编辑器快速定位符号位置（变量、函数、类等）。</p>
 <p>下载地址：<a href="http://ctags.sourceforge.net">http://ctags.sourceforge.net</a></p>
 <p>使用方式：在代码的根目录执行如下命令即可生成tag文件：</p>
-<div class="highlight"><pre><span></span>ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+<div class="highlight"><pre>ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 </pre></div>
 
 
 <!-- more -->
 
 <p>这个命令有点长，可以在<code>.vimrc</code>的文件中加个键盘映射，像下面的样子，这样只需要按下<code>CTRL+F12</code>即可生成tag文件了。</p>
-<div class="highlight"><pre><span></span>map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+<div class="highlight"><pre>map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 </pre></div>
 
 
 <p>另外，如果需要指明源代码的语言，则需要加上<code>--languages=c</code>（使用C语言）的参数。</p>
-<h4>1.2 TagList</h4>
+<h4 id="12-taglist">1.2 TagList</h4>
 <p>TagList是一款基于CTags的VIM插件，用来显示代码的结构概况。</p>
 <p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=273">http://www.vim.org/scripts/script.php?script_id=273</a></p>
 <p>配置方式：在<code>~/.vimrc</code>文件中，增加如下配置：</p>
-<div class="highlight"><pre><span></span>let Tlist_Auto_Open = 1
+<div class="highlight"><pre>let Tlist_Auto_Open = 1
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 </pre></div>
 
 
 <p>其中第一行配置为当发现开启的文件为源代码时，则自动打开TagList，建议打开这个选项，不然每次都都手动执行<code>TlistToggle</code>来开关TagList窗口。</p>
-<h4>1.3 CScope</h4>
+<h4 id="13-cscope">1.3 CScope</h4>
 <p>CScope是一个C语言的浏览工具，可以快速找到函数、变量的定义位置及调用信息。</p>
 <p>下载地址：<a href="http://cscope.sourceforge.net">http://cscope.sourceforge.net</a></p>
 <p>使用方式：在代码的根目录执行下面的命令，即可生成CScope的索引文件：</p>
-<div class="highlight"><pre><span></span>cscope -Rbkq
+<div class="highlight"><pre>cscope -Rbkq
 </pre></div>
 
 
 <p>其中，<code>-R</code>表示递归建立索引，<code>-b</code>表示不启动CScope的用户界面，<code>-k</code>表示生成索引文件时不搜索<code>/usr/include</code>目录，<code>-q</code>表示生成<code>cscope.in.out</code>和<code>cscope.po.out</code>文件，以加快索引速度。</p>
-<h4>1.4 OmniCppComplete</h4>
+<h4 id="14-omnicppcomplete">1.4 OmniCppComplete</h4>
 <p>OmniCppComplete是VIM中对结构体的成员变量、类的属性或方法提供实时提示及补全功能的插件，依赖CTags工具生成的索引文件。</p>
 <p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=1520">http://www.vim.org/scripts/script.php?script_id=1520</a></p>
 <p>配置方式：无需配置，插件安装后即自动生效，在写代码时，输入一个结构体变量的名称后，当继续输入<code>.</code>或<code>-&gt;</code>字符后，会自动弹出该结构体中的所有变量列表，可以上下选择，然后按回车自动补全。</p>
-<h4>1.5 SuperTab</h4>
+<h4 id="15-supertab">1.5 SuperTab</h4>
 <p>SuperTab可以简化补全代码的方式，直接按<code>TAB</code>键即可（之前需要按<code>CTRL+X</code>和<code>CTRL+O</code>）。</p>
 <p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=1643">http://www.vim.org/scripts/script.php?script_id=1643</a></p>
 <p>配置方式：SuperTab插件是Vimball的安装格式，不需要手动拷贝插件，直接用VIM打开，然后执行<code>:so %</code>即可完成安装。安装后需要在<code>~/.vimrc</code>文件中增加如下配置：</p>
-<div class="highlight"><pre><span></span>let g:SuperTabRetainCompletionType=2
+<div class="highlight"><pre>let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType=&quot;&lt;C-X&gt;&lt;C-O&gt;&quot;
 </pre></div>
 
 
-<h4>1.6 MiniBufExplorer</h4>
+<h4 id="16-minibufexplorer">1.6 MiniBufExplorer</h4>
 <p>当需要同时编辑多个文件的时候，MiniBufExplorer可以在VIM顶部以标签形式显示当前打开的文件列表，并可以在各文件间快速切换。</p>
 <p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=159">http://www.vim.org/scripts/script.php?script_id=159</a></p>
 <p>配置方式：在<code>~/.vimrc</code>文件中增加如下配置：</p>
-<div class="highlight"><pre><span></span>let g:miniBufExplMapWindowNavVim = 1 
+<div class="highlight"><pre>let g:miniBufExplMapWindowNavVim = 1 
 let g:miniBufExplMapWindowNavArrows = 1 
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1
 </pre></div>
 
 
-<h4>1.7 Command-T</h4>
+<h4 id="17-command-t">1.7 Command-T</h4>
 <p>Command-T用于在VIM快速定位文件，通过<code>:CommandT</code>呼出Command-T窗口，然后直接输入文件名，在输入的过程中文件列表会逐渐缩小范围，并可以通过<code>CTRL+k</code>和<code>CTRL+j</code>上下选择文件，选定后按回车即可打开文件。</p>
 <p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=3025">http://www.vim.org/scripts/script.php?script_id=3025</a></p>
 <p>安装方式：Command-T插件为Vimball安装格式，首先用VIM打开安装文件，执行<code>:so %</code>安装插件，然后执行下面的命令：</p>
-<div class="highlight"><pre><span></span>cd ~/.vim/ruby/command-t
+<div class="highlight"><pre>cd ~/.vim/ruby/command-t
 ruby extconf.rb
 make
 </pre></div>
 
 
 <p>注：安装需要Ruby开发环境。</p>
-<h4>1.8 CtrlP</h4>
+<h4 id="18-ctrlp">1.8 CtrlP</h4>
 <p>CtrlP是另一个快速定位文件的插件，通过<code>:CtrlP</code>呼出查找窗口，用法和Command-T一样，而且支持正则，另外不需要Ruby运行环境，安装起来更方便。</p>
 <p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=3736">http://www.vim.org/scripts/script.php?script_id=3736</a></p>
 <p>配置方式：在<code>~/.vimrc</code>中增加如下配置选项：</p>
-<div class="highlight"><pre><span></span>let g:ctrlp_working_path_mode = &#39;ra&#39;
+<div class="highlight"><pre>let g:ctrlp_working_path_mode = &#39;ra&#39;
 
 &quot;&quot; MacOSX/Linux
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -196,12 +196,12 @@ let g:ctrlp_custom_ignore = {
 </pre></div>
 
 
-<h4>1.9 A.VIM</h4>
+<h4 id="19-avim">1.9 A.VIM</h4>
 <p>A.VIM是用于<code>.c</code>和<code>.h</code>文件间的快速切换的插件。</p>
 <p>下载地址：<a href="http://www.vim.org/scripts/script.php?script_id=31">http://www.vim.org/scripts/script.php?script_id=31</a></p>
 <p>配置方式：无需配置，插件安装后执行<code>:A</code>即可完成<code>.c</code>和<code>.h</code>文件间的切换。</p>
-<h3>2 运行效果</h3>
-<p><img alt="VIM开发环境配置效果" src="/images/articles/201311/vim_development_environment.png"></p>
+<h3 id="2">2 运行效果</h3>
+<p><img alt="VIM开发环境配置效果" src="/images/articles/201311/vim_development_environment.png" /></p>
 <p>注：图中的效果除了上面的插件配置，还包括了其它对VIM的基本配置，见<a href="/blog/2007/08/19/my-vi-config">《我的VI配置文件》</a>。</p>
             </div>
             <!-- /.entry-content -->
@@ -358,7 +358,7 @@ let g:ctrlp_custom_ignore = {
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2018 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

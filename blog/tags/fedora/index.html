@@ -81,12 +81,12 @@
     
 </footer><!-- /.post-info -->                    </div>
                 <div class="summary"><p>前一段时间突然发现VirtualBox被Sun收购了，改名成"Sun xVM VirtualBox"，于是兴致勃勃的安上了最新版，结果发现虚拟机启动不了了，提示错误：</p>
-<div class="highlight"><pre><span></span>VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. 
+<div class="highlight"><pre>VirtualBox kernel driver not installed. The vboxdrv kernel module was either not loaded or /dev/vboxdrv was not created for some reason. 
 Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 </pre></div>
 
 
-<p>于是按照提示在终端里执行"sudo /etc/init.d/vboxdrv setup …</p>
+<p>于是按照提示在终端里执行"sudo /etc/init.d/vboxdrv setup ...</p>
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/07/18/slove-the-problem-of-new-version-virtualbox-can-not-start-virtual-machine-in-fedora">阅读全文</a>
                     </div>
@@ -118,10 +118,10 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
 <!-- more -->
 
 <p>找到以下提示行</p>
-<div class="highlight"><pre><span></span><span class="c">&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;</span>
+<div class="highlight"><pre><span class="c">&lt;!-- Here follow volumes we specifically want to ignore - it is the --&gt;</span>
 <span class="c">&lt;!-- responsibility of software higher in the stack (e.g. gnome-vfs) --&gt;</span>
 <span class="c">&lt;!-- amd mount programs (e.g. Mount() on HAL) to respect volume.ignore --&gt;</span>
-<span class="nt">&lt;merge</span> <span class="na">key=</span><span class="s">&quot;volume …</span></pre></div>
+<span class="nt">&lt;merge</span> <span class="na">key=</span><span class="s">&quot;volume ...</span></pre></div></!-->
                     <div align="right">
                         <a class="btn btn-default btn-xs" href="http://hutaow.com/blog/2008/02/17/disable-automatically-mount-partitions-under-fedora">阅读全文</a>
                     </div>
@@ -203,7 +203,7 @@ Re-setup the kernel module by executing ‘/etc/init.d/vboxdrv setup’ as root.
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2008 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2008 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>

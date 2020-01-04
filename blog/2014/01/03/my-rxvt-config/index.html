@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="轻量级的 Linux 终端软件 RXVT"/>
             <meta property="og:url" content="http://hutaow.com/blog/2014/01/03/my-rxvt-config"/>
-            <meta property="og:description" content="最近发现了个轻量级的Linux终端 —— RXVT，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。 !!$HOME/.Xdefaults Rxvt.preeditType: root !!窗口大小及标题 Rxvt.geometry: 80x25 Rxvt.title: hutaow-rxvt !!输入法设置 Rxvt.inputMethod: fcitx !!透明度设置 !Rxvt.transparent: true !Rxvt.shading: 110 !Rxvt.tintColor: grey !Rxvt.inheritPixmap: false !!扩展设置 Rxvt.perl-ext-common: default, matcher, fullscreen !!URL操作 Rxvt.urlLauncher: /usr/bin/chromium …"/>
+            <meta property="og:description" content="最近发现了个轻量级的Linux终端 —— RXVT，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。 !!$HOME/.Xdefaults Rxvt.preeditType: root !!窗口大小及标题 Rxvt.geometry: 80x25 Rxvt.title: hutaow-rxvt !!输入法设置 Rxvt.inputMethod: fcitx !!透明度设置 !Rxvt.transparent: true !Rxvt.shading: 110 !Rxvt.tintColor: grey !Rxvt.inheritPixmap: false !!扩展设置 Rxvt.perl-ext-common: default, matcher, fullscreen !!URL操作 Rxvt.urlLauncher: /usr/bin/chromium ..."/>
             <meta property="article:published_time" content="2014-01-03" />
                 <meta property="article:section" content="Tech" />
                 <meta property="article:tag" content="Linux" />
@@ -101,7 +101,7 @@
                 <p>最近发现了个轻量级的Linux终端 —— <a href="http://rxvt.sourceforge.net">RXVT</a>，功能比xterm丰富，又不像其它终端（比如GNOME Terminal）那么臃肿。RXVT主要依靠配置文件来设置各项参数，下面是我的配置文件内容。</p>
 <!-- more -->
 
-<div class="highlight"><pre><span></span>!!<span class="nv">$HOME</span>/.Xdefaults
+<div class="highlight"><pre>!!$HOME/.Xdefaults
 Rxvt.preeditType: root
 
 !!窗口大小及标题
@@ -113,7 +113,7 @@ Rxvt.inputMethod: fcitx
 
 !!透明度设置
 !Rxvt.transparent: <span class="nb">true</span>
-!Rxvt.shading: <span class="m">110</span>
+!Rxvt.shading: 110
 !Rxvt.tintColor: grey
 !Rxvt.inheritPixmap: <span class="nb">false</span>
 
@@ -122,14 +122,14 @@ Rxvt.perl-ext-common: default, matcher, fullscreen
 
 !!URL操作
 Rxvt.urlLauncher: /usr/bin/chromium
-Rxvt.matcher.button: <span class="m">1</span>
+Rxvt.matcher.button: 1
 
 !!标签设置
 !Rxvt.per-ext-common: ..., tabbed, ...
-!Rxvt.tabbed.tabbar-fg: <span class="m">2</span>
-!Rxvt.tabbed.tabbar-bg: <span class="m">0</span>
-!Rxvt.tabbed.tab-fg: <span class="m">3</span>
-!Rxvt.tabbed.tab-bg: <span class="m">0</span>
+!Rxvt.tabbed.tabbar-fg: 2
+!Rxvt.tabbed.tabbar-bg: 0
+!Rxvt.tabbed.tab-fg: 3
+!Rxvt.tabbed.tab-bg: 0
 !Rxvt.tabbed.new-button: <span class="nb">false</span>
 !Rxvt.tabbed.autohide: <span class="nb">true</span>
 !RXvt.tabbed.reopen-on-close: no
@@ -160,21 +160,21 @@ Rxvt.scrollTtyKeypress: <span class="nb">true</span>
 Rxvt.cursorBlink: <span class="nb">true</span>
 
 !!缓存行数
-Rxvt.saveLines: <span class="m">5000</span>
+Rxvt.saveLines: 5000
 
 !!边框设置
 Rxvt.borderLess: <span class="nb">false</span>
 
 !!字体设置
-Rxvt.dpi: <span class="m">96</span>
+Rxvt.dpi: 96
 Rxvt.*font: xft:Terminus,xft:WenQuanYi Bitmap Song
 
 !!颜色设置
-Rxvt.depth: <span class="m">32</span>
+Rxvt.depth: 32
 Rxvt.background: <span class="c1">#2C2C2C</span>
-Rxvt.foreground: <span class="m">7</span>
-Rxvt.colorBD: <span class="m">7</span>
-Rxvt.colorUL: <span class="m">7</span>
+Rxvt.foreground: 7
+Rxvt.colorBD: 7
+Rxvt.colorUL: 7
 
 !!基本颜色
 !Black
@@ -206,7 +206,7 @@ Rxvt.color15: <span class="c1">#FFFFFF</span>
 
 <p>源文件下载：<a href="/downloads/code/hutaow.Xdefaults">链接</a></p>
 <p>配置后的终端运行效果如下图：
-<img alt="Interface of RXVT" src="/images/articles/201401/rxvt.png"></p>
+<img alt="Interface of RXVT" src="/images/articles/201401/rxvt.png" /></p>
             </div>
             <!-- /.entry-content -->
 
@@ -362,7 +362,7 @@ Rxvt.color15: <span class="c1">#FFFFFF</span>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2018 hutaow
+         <div class="col-xs-10"><a href="http://www.beian.miit.gov.cn">京ICP备19010399号-2</a>  &copy; 2018 hutaow
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
